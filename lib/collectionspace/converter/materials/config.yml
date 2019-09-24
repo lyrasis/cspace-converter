@@ -1,0 +1,93 @@
+---
+registered_authorities:
+  - orgauthorities
+  - personauthorities
+  - placeauthorities
+  - conceptauthorities
+  - workauthorities
+  - citationauthorities
+  - nameauthorities
+  - subjectauthorities
+registered_procedures:
+  - CollectionObject
+  - Material
+  - Media
+  - Person
+registered_profiles:
+  cataloging:
+    Procedures:
+      CollectionObject::
+        identifier_field: objectNumber
+        identifier: object_number
+        title: object_number
+    Authorities:
+      Material:
+      - material
+  materials:
+    Procedures:
+      Material:
+        identifier_field: termDisplayName
+        identifier: term_display_name
+        title: term_display_name
+    Authorities:
+      Concept:
+      - material_composition_family_name
+      - material_composition_class_name
+      - material_composition_generic_name
+      Person:
+      - discontinued_by
+      - material_production_person
+      - material_term_attribution_contributing_person
+      - material_term_attribution_editing_person
+      Organization:
+      - material_production_organization
+      - material_term_attribution_contributing_organization
+      - material_term_attribution_editing_organization
+      Place:
+      - material_production_place
+      Work:
+      - featured_application
+      Citation:
+      - material_citation_source
+  media:
+    Procedures:
+      Media:
+        identifier_field: identificationNumber
+        identifier: identification_number
+        title: identification_number
+    Authorities:
+      Name:
+      - contributor
+      - coverage
+      - creator
+      - measured_by
+      - publisher
+      - rights_holder
+      Person:
+      - coverage
+      - measured_by
+      Concept:
+      - date_earliest_single_era
+      - date_latest_single_era
+      - date_period
+      Subject:
+      - subject
+  person:
+    Procedures:
+      Person:
+        identifier_field: termDisplayName
+        identifier: term_display_name
+        title: term_display_name
+    Authorities:
+      Concept:
+      - date_period
+      - group
+      - nationality
+      - occupation
+      - school_or_style
+      Place:
+      - birth_place
+      - death_place
+      - address_municipality
+      - address_state_or_province
+      - address_county
