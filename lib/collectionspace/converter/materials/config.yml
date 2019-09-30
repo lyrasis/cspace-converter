@@ -16,7 +16,7 @@ registered_procedures:
 registered_profiles:
   cataloging:
     Procedures:
-      CollectionObject::
+      CollectionObject:
         identifier_field: objectNumber
         identifier: object_number
         title: object_number
@@ -91,3 +91,4 @@ registered_profiles:
       - address_municipality
       - address_state_or_province
       - address_county
+

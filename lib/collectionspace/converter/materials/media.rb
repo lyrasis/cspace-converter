@@ -8,7 +8,7 @@ module CollectionSpace
             CSXML.add xml, 'identificationNumber', attributes["identification_number"]
             CSXML.add xml, 'title', attributes["title"]
             CSXML.add xml, 'coverage', attributes["coverage"]
-            CSXML.add xml, 'description', attributes["description"]
+	    CSXML.add xml, 'description', attributes["description"]
             CSXML.add xml, 'contributor', attributes["contributor"]
             CSXML.add xml, 'copyrightStatement', attributes["copy_right_statement"]
             CSXML.add xml, 'creator', attributes["creator"]
