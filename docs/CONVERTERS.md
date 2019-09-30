@@ -80,10 +80,10 @@ end
 ```
 
 In this case there are distinct CSV files for different procedures
-so we need a profile to manage data file.
+so we need a profile to manage each data file.
 
-Each "profile" needs to define what it does with the CSV data. It can
-do this for:
+Each "profile" needs to define the type of records it generates from
+the CSV data. There must be only one top level key:
 
 #### Procedures
 
@@ -115,46 +115,48 @@ Example:
 },
 ```
 
-#### Authorities
-
-If a data field is an authority type specify the authority type and
-field name:
+The Procedures configuration can include an "Authorities" key. This refers
+to fields within the csv that refer to, and can generate, authority records
+directly related to the procedures:
 
 ```ruby
-"Authorities" => {
-  "Person" => ["recby", "recfrom"],
+"Procedures" => {
+  # authorities referenced in the csv
+  "Authorities" => {
+    "Person" => ["recby", "recfrom"],
+  },
 },
 ```
 
-#### Relationships
+#### Authorities
 
-Relationships can be created between procedures (these are
-bi-directional). You specify the procedure pair and which fields
-in the source data should be used to identify the records that should
-be related.
+Each Authority to be generated using this profile needs an entry
+defining:
 
-```ruby
-"Relationships" => [
-  {
-    "procedure1_type"  => "Acquisition",
-    "data1_field" => "accession_number",
-    "procedure2_type"  => "ValuationControl",
-    "data2_field" => "valuation_number",
-  },
-],
+- identifier_field: field used to generate the authority name / short_id
+- authority_type: the primary authority type i.e. Concept, Person etc.
+- authority_subtype: the authority subtype i.e. person, ulan_pa, person_shared
+
+Example:
+
+```yml
+Authorities:
+  Person:
+    identifier_field: termdisplayname
+    authority_type: Person
+    authority_subtype: person
 ```
 
 ## Running a converter
 
 ```bash
-./import_procedures.sh data/sample/mymuseum/mymuseum_data.csv mymuseum1 MyMuseum mymuseum
+./import.sh data/sample/mymuseum/mymuseum_data.csv mymuseum1 mymuseum
 ```
 
 The arguments correspond to:
 
 - csv name
 - batch name (arbitrary)
-- converter type
 - converter profile
 
 ---

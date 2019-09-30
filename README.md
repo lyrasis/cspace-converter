@@ -79,7 +79,7 @@ bundle exec rake cache:download_vocabularies
 The general format for the command is:
 
 ```bash
-./import_procedures.sh [FILE] [BATCH] [PROFILE]
+./import.sh [FILE] [BATCH] [PROFILE]
 ```
 
 - `FILE`: path to the import file
@@ -89,21 +89,11 @@ The general format for the command is:
 For example:
 
 ```bash
-# procedure / object
-./import_procedures.sh data/sample/core/SampleCatalogingData.csv cataloging cataloging
+./import.sh data/sample/core/SampleCatalogingData.csv cataloging1 cataloging
+./import.sh data/sample/core/SamplePerson.csv person1 person
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import_procedures.sh data/sample/core/SampleMediaUrl.csv media1 media
+./import.sh data/sample/core/SampleMediaUrl.csv media1 media
 ```
-
-For authorities:
-
-```
-# authority
-./import_authorities.sh [FILE] [BATCH] [ID_COLUMN]
-./import_authorities.sh data/sample/core/SamplePerson.csv person1 termdisplayname
-```
-
-Note: authoritiy csv files must contain both `authority_type` and `authority_subtype` fields.
 
 ## Import Staged Data from MongoDB to CollectionSpace
 
@@ -150,7 +140,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import_procedures.sh data/sample/core/SampleCatalogingData.csv cataloging cataloging
+  ./import.sh data/sample/core/SampleCatalogingData.csv cataloging cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 

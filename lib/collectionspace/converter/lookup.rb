@@ -8,7 +8,7 @@ module CollectionSpace
 
       # i.e. #{CONVERTER_BASE}::Core::CoreMaterials
       def self.authority_class(authority)
-        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{authority}".constantize
+        module_class(authority)
       end
 
       def self.converter_class
@@ -27,13 +27,29 @@ module CollectionSpace
         "#{CONVERTER_DEFAULT}::Relationship".constantize
       end
 
+      def self.import_service(type)
+        "ImportService::#{type}".constantize
+      end
+
+      def self.module_class(type)
+        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{type}".constantize
+      end
+
       def self.parts_for(category)
         "#{CONVERTER_BASE}::Fingerprint::#{category}".constantize
       end
 
       # i.e. #{CONVERTER_BASE}::PBM::PBMCollectionObject
       def self.procedure_class(procedure)
-        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{procedure}".constantize
+        module_class(procedure)
+      end
+
+      def self.profile_type(profile)
+        converter_class.registered_profiles[profile].keys.first
+      end
+
+      def self.service_class
+        "#{CONVERTER_BASE}::Service".constantize
       end
     end
   end

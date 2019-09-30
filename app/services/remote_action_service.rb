@@ -14,7 +14,7 @@ class RemoteActionService
 
   def initialize(object)
     @object  = object
-    @service = CollectionSpace::Converter::Service.lookup object.type, object.subtype
+    @service = Lookup.service_class.get object.type, object.subtype
   end
 
   def remote_delete

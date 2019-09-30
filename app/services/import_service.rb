@@ -1,99 +1,110 @@
 class ImportService
-  attr_reader :data, :object
-  def initialize(data)
-    @data   = data
-    @object = nil
-  end
 
-  # "Person" => ["recby", "recfrom"]
-  # "Concept" => [ ["objname", "objectname"] ]
-  def add_authorities
-    raise 'Data Object has not been created' unless object
-    authorities = object.profile.fetch("Authorities", {})
-    authorities.each do |authority, fields|
-      fields.each do |field|
-        authority_subtype = authority.downcase
+  class Base
+    attr_reader :data, :object
+    def initialize(data)
+      @data   = data
+      @object = nil
+    end
 
-        # if value pair first is the field and second is the specific authority (sub)type
-        if field.respond_to? :each
-          field, authority_subtype = field
+    def add_authority(identifier_field, type, subtype, from_procedure = false)
+      term_display_name = object.object_data[identifier_field]
+      return unless term_display_name
+
+      service = Lookup.service_class.get type, subtype
+      service_id = service[:id]
+
+      # attempt to split field in case it is multi-valued
+      term_display_name.split(object.delimiter).map(&:strip).each do |name|
+        identifier = AuthCache.authority service_id, subtype, name
+        # if we find this procedure authority in the cache skip it!
+        next if identifier && from_procedure
+
+        # if the object data contains a shortidentifier then use it
+        identifier = object.object_data.fetch("shortidentifier", identifier)
+        identifier = CSIDF.short_identifier(name) unless identifier
+
+        unless CollectionSpaceObject.has_authority?(identifier)
+          object.add_authority(
+            type: type,
+            subtype: subtype,
+            name: name,
+            identifier: identifier,
+            from_procedure: from_procedure
+          )
+          object.save!
         end
-
-        add_authority(field, authority, authority_subtype, true)
       end
     end
-  end
 
-  def add_authority(identifier_field, type, subtype, from_procedure = false)
-    term_display_name = object.object_data[identifier_field]
-    return unless term_display_name
-
-    service = CollectionSpace::Converter::Service.lookup type, subtype
-    service_id = service[:id]
-
-    # attempt to split field in case it is multi-valued
-    term_display_name.split(object.delimiter).map(&:strip).each do |name|
-      identifier = AuthCache.authority service_id, subtype, name
-      # if we find this procedure authority in the cache skip it!
-      next if identifier && from_procedure
-
-      # if the object data contains a shortidentifier then use it
-      identifier = object.object_data.fetch("shortidentifier", identifier)
-      identifier = CSIDF.short_identifier(name) unless identifier
-
-      unless CollectionSpaceObject.has_authority?(identifier)
-        object.add_authority(
-          type: type,
-          subtype: subtype,
-          name: name,
-          identifier: identifier,
-          from_procedure: from_procedure
-        )
-        object.save!
-      end
+    def create_object
+      @object = DataObject.new.from_json(JSON.generate(data))
+      object.save!
     end
-  end
 
-  # "Acquisition" => { "identifier_field" => "acqid", "identifier" => "acqid", "title" => "acqid" }
-  def add_procedures
-    raise 'Data Object has not been created' unless object
+    def process
+      raise 'Error: must be implemented in subclass'
+    end
 
-    procedures = object.profile.fetch("Procedures", {})
-    procedures.each do |procedure, attributes|
-      object.add_procedure procedure, attributes
+    def update_status(import_status:, import_message:)
+      raise 'Data Object has not been created' unless object
+      object.write_attributes(
+        import_status: import_status,
+        import_message: import_message
+      )
       object.save!
     end
   end
 
-  def add_relationships(reciprocal = true)
-    relationships = object.profile.fetch("Relationships", [])
-    relationships.each do |relationship|
-      r  = relationship
-      # no point continuing if the fields don't exist
-      unless object.object_data[r["data1_field"]] && object.object_data[r["data2_field"]]
-        next
+  class Authorities < Base
+    def initialize(data)
+      super
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+      authorities = object.profile.fetch("Authorities", {})
+      authorities.each do |_, attributes|
+        add_authority(
+          attributes['identifier_field'],
+          attributes['authority_type'],
+          attributes['authority_subtype'],
+          false
+        )
       end
-
-      object.add_relationship r["procedure1_type"], r["data1_field"],
-        r["procedure2_type"], r["data2_field"]
-
-      object.add_relationship r["procedure2_type"], r["data2_field"],
-        r["procedure1_type"], r["data1_field"] if reciprocal
     end
   end
 
-  def create_object
-    @object = DataObject.new.from_json(JSON.generate(data))
-    object.save!
-  end
+  class Procedures < Base
+    def initialize(data)
+      super
+    end
 
-  def update_status(import_status:, import_message:)
-    raise 'Data Object has not been created' unless object
-    object.write_attributes(
-      import_status: import_status,
-      import_message: import_message
-    )
-    object.save!
-  end
+    def add_related_authorities(authorities)
+      authorities.each do |authority, fields|
+        fields.each do |field|
+          authority_subtype = authority.downcase
 
+          # if value pair first is the field and second is the specific authority (sub)type
+          if field.respond_to? :each
+            field, authority_subtype = field
+          end
+
+          add_authority(field, authority, authority_subtype, true)
+        end
+      end
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+      procedures = object.profile.fetch("Procedures", {})
+      procedures.each do |procedure, attributes|
+        next if procedure == 'Authorities'
+
+        object.add_procedure procedure, attributes
+        object.save!
+      end
+      add_related_authorities(procedures.fetch("Authorities", {}))
+    end
+  end
 end
