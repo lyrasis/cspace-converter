@@ -16,7 +16,7 @@ registered_procedures:
 registered_profiles:
   cataloging:
     Procedures:
-      CollectionObject::
+      CollectionObject:
         identifier_field: objectNumber
         identifier: object_number
         title: object_number
