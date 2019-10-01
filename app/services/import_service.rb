@@ -46,6 +46,10 @@ class ImportService
       raise 'Error: must be implemented in subclass'
     end
 
+    def profile(profile, type)
+      Lookup.profile_for(profile, type)
+    end
+
     def update_status(import_status:, import_message:)
       raise 'Data Object has not been created' unless object
       object.write_attributes(
@@ -63,7 +67,8 @@ class ImportService
 
     def process
       raise 'Data Object has not been created' unless object
-      authorities = object.profile.fetch("Authorities", {})
+
+      authorities = profile(object.converter_profile, object.import_category)
       authorities.each do |_, attributes|
         add_authority(
           attributes['identifier_field'],
@@ -97,7 +102,8 @@ class ImportService
 
     def process
       raise 'Data Object has not been created' unless object
-      procedures = object.profile.fetch("Procedures", {})
+
+      procedures = profile(object.converter_profile, object.import_category)
       procedures.each do |procedure, attributes|
         next if procedure == 'Authorities'
 

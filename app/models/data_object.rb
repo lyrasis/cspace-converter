@@ -18,7 +18,7 @@ class DataObject
   field :import_file,       type: String # ex: cat1.csv
   field :import_message,    type: String, default: 'ok'
   field :import_status,     type: Integer, default: 1
-  field :import_category,   type: String # ex: Procedure
+  field :import_category,   type: String # ex: Procedures
 
   def converter_class
     Lookup.converter_class
@@ -28,15 +28,12 @@ class DataObject
     Rails.application.config.csv_mvf_delimiter
   end
 
-  def profile
-    unless @profile
-      profiles          = self.converter_class.registered_profiles
-      @profile          = profiles[converter_profile]
-      if converter_profile != 'authority'
-        raise "Invalid profile #{converter_profile} for #{profiles}" unless @profile
-      end
+  def module_and_profile_exist
+    begin
+      converter_class.registered_profiles.fetch(converter_profile)
+    rescue Exception => ex
+      errors.add(:invalid_module_or_profile, ex.backtrace)
     end
-    @profile
   end
 
   def set_module
@@ -158,13 +155,4 @@ class DataObject
     )
     self.collection_space_objects << cspace_object if cspace_object.valid?
   end
-
-  def module_and_profile_exist
-    begin
-      self.profile
-    rescue Exception => ex
-      errors.add(:invalid_module_or_profile, ex.message)
-    end
-  end
-
 end

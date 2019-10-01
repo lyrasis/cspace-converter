@@ -45,6 +45,10 @@ module CollectionSpace
         module_class(procedure)
       end
 
+      def self.profile_for(profile, type)
+        converter_class.registered_profiles[profile][type]
+      end
+
       def self.profile_type(profile)
         converter_class.registered_profiles[profile].keys.first
       end

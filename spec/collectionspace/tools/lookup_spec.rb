@@ -58,6 +58,12 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Core::CoreCollectionObject
     end
 
+    it "returns the profile for cataloging" do
+      expect(
+        Lookup.profile_for("cataloging", "Procedures")
+      ).to have_key("CollectionObject")
+    end
+
     it "returns the profile type for cataloging" do
       expect(
         Lookup.profile_type("cataloging")
