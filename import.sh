@@ -5,4 +5,4 @@ export BATCH=${2:-ppsobjects1}
 export PROFILE=${3:-ppsobjectsdata}
 
 ./bin/rake \
-  import:procedures[${FILE},$BATCH,$PROFILE]
+  import:csv[${FILE},$BATCH,$PROFILE]

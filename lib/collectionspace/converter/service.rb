@@ -4,7 +4,7 @@ module CollectionSpace
       # TODO: move this to config
       # used for remote actions
       # subtype is defined for authority records to target a specific authority (sub)type
-      def self.lookup(type, subtype)
+      def self.get(type, subtype)
         {
           "Acquisition" => {
             path: "acquisitions", schema: "acquisitions"
