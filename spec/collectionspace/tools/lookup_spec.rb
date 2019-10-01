@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Lookup do
-
   describe "can find converter class names" do
-
     it "returns the authority class" do
       expect(
         Lookup.authority_class('Person')
@@ -22,7 +20,7 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Default::Person
     end
 
-    it "returns the default class" do
+    it "returns the default converter class" do
       expect(
         Lookup.default_converter_class
       ).to eq CollectionSpace::Converter::Default
@@ -32,6 +30,18 @@ RSpec.describe Lookup do
       expect(
         Lookup.default_relationship_class
       ).to eq CollectionSpace::Converter::Default::Relationship
+    end
+
+    it "returns the import service class" do
+      expect(
+        Lookup.import_service("Procedures")
+      ).to eq ImportService::Procedures
+    end
+
+    it "returns the module class" do
+      expect(
+        Lookup.module_class("Person")
+      ).to eq CollectionSpace::Converter::Core::CorePerson
     end
 
     it "returns the parts classes" do
@@ -48,6 +58,17 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Core::CoreCollectionObject
     end
 
-  end
+    it "returns the profile type for cataloging" do
+      expect(
+        Lookup.profile_type("cataloging")
+      ).to eq "Procedures"
+    end
 
+    it "returns the profile type for person correctly" do
+      expect(
+        Lookup.profile_type("person")
+      ).to eq "Authorities"
+    end
+
+  end
 end
