@@ -140,14 +140,8 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import.sh data/sample/core/SampleCatalogingData.csv cataloging cataloging
+  ./import.sh data/sample/core/SampleCatalogingData.csv cataloging1 cataloging
 docker exec -it converter ./bin/rake db:nuke
-```
-
-To test with the prebuilt Docker images:
-
-```
-docker-compose -f docker-compose-test.yml up
 ```
 
 ## Deploying Converter to Amazon Elastic Beanstalk
