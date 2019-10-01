@@ -1,5 +1,5 @@
 module CollectionSpace
-  module Converter
+  module Tools
     class Service
       # TODO: move this to config
       # used for remote actions

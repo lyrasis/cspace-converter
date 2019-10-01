@@ -1,7 +1,7 @@
 module CollectionSpace
-  module Converter
+  module Tools
     module AuthCache
-      ::AuthCache = Converter::AuthCache
+      ::AuthCache = CollectionSpace::Tools::AuthCache
       # CACHE FORMAT
       # "citationauthorities" "citation" "getty aat" => "getty_att"
       # "acquisition" "acquisitionReferenceNumber" "$id" => "$csid"

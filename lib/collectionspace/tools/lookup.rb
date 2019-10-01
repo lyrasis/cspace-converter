@@ -1,10 +1,11 @@
 module CollectionSpace
-  module Converter
+  module Tools
     module Lookup
-      ::Lookup = CollectionSpace::Converter::Lookup
+      ::Lookup = CollectionSpace::Tools::Lookup
       CONVERTER_BASE    = "CollectionSpace::Converter"
       CONVERTER_DEFAULT = "#{CONVERTER_BASE}::Default"
       CONVERTER_MODULE  = ENV.fetch('CSPACE_CONVERTER_MODULE')
+      CONVERTER_TOOLS   = "CollectionSpace::Tools"
 
       # i.e. #{CONVERTER_BASE}::Core::CoreMaterials
       def self.authority_class(authority)
@@ -36,7 +37,7 @@ module CollectionSpace
       end
 
       def self.parts_for(category)
-        "#{CONVERTER_BASE}::Fingerprint::#{category}".constantize
+        "#{CONVERTER_TOOLS}::Fingerprint::#{category}".constantize
       end
 
       # i.e. #{CONVERTER_BASE}::PBM::PBMCollectionObject
@@ -49,7 +50,7 @@ module CollectionSpace
       end
 
       def self.service_class
-        "#{CONVERTER_BASE}::Service".constantize
+        "#{CONVERTER_TOOLS}::Service".constantize
       end
     end
   end

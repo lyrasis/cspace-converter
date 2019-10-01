@@ -38,7 +38,7 @@ RSpec.describe Lookup do
       ["Authority", "Procedure", "Relationship"].each do |type|
         expect(
           Lookup.parts_for(type)
-        ).to eq "CollectionSpace::Converter::Fingerprint::#{type}".constantize
+        ).to eq "Fingerprint::#{type}".constantize
       end
     end
 

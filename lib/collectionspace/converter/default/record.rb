@@ -11,8 +11,8 @@ module CollectionSpace
         # overriden by sub-classes for procedures, returns converted record
         def convert
           run do |xml|
-            CollectionSpace::XML.add xml, 'shortIdentifier', attributes["shortIdentifier"]
-            CollectionSpace::XML.add_group_list xml, attributes["termType"], [{
+            CSXML.add xml, 'shortIdentifier', attributes["shortIdentifier"]
+            CSXML.add_group_list xml, attributes["termType"], [{
               "termDisplayName" => attributes["termDisplayName"],
             }]
           end
@@ -227,12 +227,12 @@ module CollectionSpace
         # override the default authority convert method inline
         def convert
           run do |xml|
-            CollectionSpace::XML.add xml, 'subjectCsid', attributes["to_csid"]
-            CollectionSpace::XML.add xml, 'subjectDocumentType', attributes["to_doc_type"]
-            CollectionSpace::XML.add xml, 'relationshipType', "affects"
-            CollectionSpace::XML.add xml, 'predicate', "affects"
-            CollectionSpace::XML.add xml, 'objectCsid', attributes["from_csid"]
-            CollectionSpace::XML.add xml, 'objectDocumentType', attributes["from_doc_type"]
+            CSXML.add xml, 'subjectCsid', attributes["to_csid"]
+            CSXML.add xml, 'subjectDocumentType', attributes["to_doc_type"]
+            CSXML.add xml, 'relationshipType', "affects"
+            CSXML.add xml, 'predicate', "affects"
+            CSXML.add xml, 'objectCsid', attributes["from_csid"]
+            CSXML.add xml, 'objectDocumentType', attributes["from_doc_type"]
           end
         end
 

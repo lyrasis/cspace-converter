@@ -1,5 +1,5 @@
 module CollectionSpace
-  module Converter
+  module Tools
     class Nuke
       def self.everything!
         [

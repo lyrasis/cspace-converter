@@ -1,7 +1,7 @@
 module CollectionSpace
-  module Converter
+  module Tools
     class Task
-      ::Task = CollectionSpace::Converter::Task
+      ::Task = CollectionSpace::Tools::Task
       def self.generate_content(converter:, object:, data:)
         Rails.logger.debug(
           "Generating content for: #{converter};#{object.inspect};#{data}"

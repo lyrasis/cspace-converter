@@ -45,22 +45,20 @@ data/sample/core/
 └── ppsobjectsdata.csv # Past Perfect objects data file
 ```
 
-**Start the MongoDB Server**
+## Start the MongoDB Server
 
-If installed locally, you can start the MongoDB server with this command:
+Run Mongo using Docker:
 
 ```bash
-mongod
-
-# If you don't want to install and run Mongo DB directly, you can
-# use a Docker image to run MongoDB -see https://hub.docker.com/r/_/mongo/
 docker run --name mongo -d -p 27017:27017 mongo:3.2
 ```
 
 You should be able to access MongDB on `http://localhost:27017`.  To test the
 connection: https://docs.mongodb.com/v3.0/tutorial/getting-started-with-the-mongo-shell/
 
-**Setup the cache (optional)**
+If you prefer to run Mongo traditionally follow the installation docs online.
+
+## Setup the cache
 
 To match csv fields to existing CollectionSpace authority and vocabulary terms:
 
@@ -70,11 +68,11 @@ bundle exec rake db:nuke
 bundle exec rake cache:clear
 
 # populate the database with cache terms
-bundle exec rake cache:download_authorities
+bundle exec rake cache:download_authorities # optional
 bundle exec rake cache:download_vocabularies
 ```
 
-**Stage the data to MongoDB**
+## Stage the data to MongoDB
 
 The general format for the command is:
 
@@ -95,27 +93,22 @@ For example:
 ./import.sh data/sample/core/SampleMediaUrl.csv media1 media
 ```
 
-## Import Staged Data from MongoDB to CollectionSpace
-
-If you don't want to install and run CollectionSpace directly, you can
-use a Docker image to run CollectionSpace
-
-For local testing only: [docker-collectionspace](https://github.com/lyrasis/docker-collectionspace).
-
-**Starting/Running the cspace-converter tool UI server**
+## Starting/Running the cspace-converter tool UI server
 
 ```bash
 ./bin/rails s
 ```
 Once started, visit http://localhost:3000 with a web browser.
 
-Next, to execute "transfer" jobs you'll eventually create using the UI server, run this command:
+To execute "transfer" jobs created using the UI server, run this command:
 
 ```bash
 ./bin/rake jobs:work
 ```
 
-**Using the console**
+## Useful commands
+
+### Using the console
 
 ```ruby
 # ./bin/rails c
@@ -123,7 +116,7 @@ p = DataObject.first
 puts p.inspect
 ```
 
-**Clearing out data**
+### Clearing out data
 
 ```bash
 bundle exec rake db:nuke
@@ -131,20 +124,15 @@ bundle exec rake db:nuke
 
 Or use 'Nuke' in the ui. Warning: this deletes all data including failed jobs.
 
-## (Optional) Test environment
+### Running tests
+
+Note, MongoDB must be running:
 
 ```bash
-docker-compose build
-docker-compose up
-
-# to run commands
-docker exec -it converter ./bin/rails c
-docker exec -it converter \
-  ./import.sh data/sample/core/SampleCatalogingData.csv cataloging1 cataloging
-docker exec -it converter ./bin/rake db:nuke
+bundle exec rspec
 ```
 
-## Deploying Converter to Amazon Elastic Beanstalk
+## Deploying the Converter to Amazon Elastic Beanstalk
 
 The converter can be easily deployed to [Amazon Elastic Beanstalk](https://aws.amazon.com/documentation/elastic-beanstalk/)
 (account required).

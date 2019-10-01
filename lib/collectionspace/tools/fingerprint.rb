@@ -1,7 +1,7 @@
 module CollectionSpace
-  module Converter
+  module Tools
     class Fingerprint
-      ::Fingerprint = CollectionSpace::Converter::Fingerprint
+      ::Fingerprint = CollectionSpace::Tools::Fingerprint
       def self.generate(parts)
         Digest::MD5.hexdigest parts.compact.map(&:downcase).join('.')
       end

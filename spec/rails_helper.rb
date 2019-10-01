@@ -44,6 +44,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryGirl::Syntax::Methods
   config.before(:suite) do
-    CollectionSpace::Converter::Nuke.everything!
+    CollectionSpace::Tools::Nuke.everything!
   end
 end

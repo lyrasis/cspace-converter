@@ -10,10 +10,10 @@ describe "CollectionSpace" do
 
     let(:xml) { Nokogiri::XML::Builder.new(:encoding => 'UTF-8') }
     let(:source_data_date) { '1971' }
-    let(:structured_date) { CollectionSpace::DateParser.parse(source_data_date) }
+    let(:structured_date) { CSDTP.parse(source_data_date) }
 
     it "can 'add' correctly" do
-      CollectionSpace::XML.add(xml, 'foo', 'bar')
+      CSXML.add(xml, 'foo', 'bar')
       expect(doc(xml).xpath('/foo').text).to eq('bar')
     end
 
@@ -23,7 +23,7 @@ describe "CollectionSpace" do
         "dateDisplayDate" => '01-01-2000',
         'dateLatestDay' => '10?',
       }
-      CollectionSpace::XML.add_group(xml, key, elements)
+      CSXML.add_group(xml, key, elements)
       expect(doc(xml).xpath(
         '/accessionDateGroup/dateDisplayDate').text).to eq('01-01-2000')
       expect(doc(xml).xpath(
@@ -44,7 +44,7 @@ describe "CollectionSpace" do
           "scalarValuesComputed" => false,
         }
       ]
-      CollectionSpace::XML.add_group_list(xml, key, elements)
+      CSXML.add_group_list(xml, key, elements)
 
       expect(doc(xml).xpath(
         '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/scalarValuesComputed').text).to eq('true')
@@ -101,7 +101,7 @@ describe "CollectionSpace" do
         },
         }
       ]
-      CollectionSpace::XML.add_group_list(xml, key, elements, false, sub_elements)
+      CSXML.add_group_list(xml, key, elements, false, sub_elements)
 
       expect(doc(xml).xpath(
         '/publicartProductionDateGroupList/publicartProductionDateGroup[position()=1]/publicartProductionDate/scalarValuesComputed').text).to eq('true')
@@ -154,7 +154,7 @@ describe "CollectionSpace" do
           },
         ]
       }
-      CollectionSpace::XML.add_data(xml, data)
+      CSXML.add_data(xml, data)
       expect(doc(xml).xpath(
         '/publicartProductionDateGroupList/publicartProductionDateGroup[position()=1]/publicartProductionDate/scalarValuesComputed').text).to eq('true')
 
