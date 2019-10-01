@@ -6,11 +6,11 @@ module CollectionSpace
         def convert
           run do |xml|
           	# Person Information
-            CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
+            CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["display_name"])
             CSXML.add_group_list xml, 'personTerm', [
               {
-                "termDisplayName" => attributes["termdisplayname"],
-                "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"], true),
+                "termDisplayName" => attributes["display_name"],
+                "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"], false),
                 "termName" => attributes["term_name"],
                 "foreName" => attributes["fore_name"],
                 "middleName" => attributes["middle_name"],
