@@ -76,5 +76,10 @@ RSpec.describe Lookup do
       ).to eq "Authorities"
     end
 
+    it "returns the record class" do
+      expect(
+        Lookup.record_class("Acquisition")
+      ).to eq CollectionSpace::Converter::Default::Acquisition
+    end
   end
 end

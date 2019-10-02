@@ -45,13 +45,11 @@ class DataObject
     identifier ||= CSIDF.short_identifier(name)
 
     converter = nil
-
     data = {}
     data[:batch]            = import_batch
     data[:category]         = 'Authority' # need this if coming from procedure
     data[:type]             = type
     data[:subtype]          = subtype
-    data[:identifier_field] = 'shortIdentifier'
     data[:identifier]       = identifier
     data[:title]            = name
 
@@ -68,6 +66,7 @@ class DataObject
     end
 
     data[:converter] = converter.to_s
+    data[:identifier_field] = converter.service[:identifier_field]
 
     cspace_object = CollectionSpaceObject.new(data)
     cspace_object.generate_content!(content_data)
@@ -83,7 +82,7 @@ class DataObject
     data[:converter]        = converter.to_s
     data[:type]             = procedure
     data[:subtype]          = ''
-    data[:identifier_field] = attributes["identifier_field"]
+    data[:identifier_field] = converter.service[:identifier_field]
     data[:identifier]       = object_data[attributes["identifier"]]
     data[:title]            = object_data[attributes["title"]]
 
@@ -138,7 +137,7 @@ class DataObject
     data[:type]             = "Relationship"
     data[:subtype]             = ""
     # this will allow remote actions to happen (but not prevent duplicates?)
-    data[:identifier_field] = 'csid'
+    data[:identifier_field] = converter.service[:identifier_field]
     data[:identifier]       = "#{from_csid}_#{to_csid}"
     data[:title]            = "#{from_prefix}:#{from_value}_#{to_prefix}:#{to_value}"
 

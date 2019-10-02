@@ -20,7 +20,6 @@ registered_profiles:
   cataloging:
     Procedures:
       CollectionObject:
-        identifier_field: objectNumber
         identifier: id_number
         title: id_number
       Authorities:
@@ -33,7 +32,6 @@ registered_profiles:
   conditioncheck:
     Procedures:
       ConditionCheck:
-        identifier_field: conditionCheckRefNumber
         identifier: condition_check_reference_number
         title: condition_check_reference_number
       Authorities:
@@ -42,7 +40,6 @@ registered_profiles:
   exhibition:
     Procedures:
       Exhibition:
-        identifier_field: exhibitionNumber
         identifier: exhibition_number
         title: exhibition_number
       Authorities:
@@ -51,7 +48,6 @@ registered_profiles:
   group:
     Procedures:
       Group:
-        identifier_field: title
         identifier: title
         title: title
       Authorities:
@@ -60,7 +56,6 @@ registered_profiles:
   loanin:
     Procedures:
       LoanIn:
-        identifier_field: loanInNumber
         identifier: loan_in_number
         title: loan_in_number
       Authorities:
@@ -72,7 +67,6 @@ registered_profiles:
   loanout:
     Procedures:
       LoanOut:
-        identifier_field: loanOutNumber
         identifier: loan_out_number
         title: loan_out_number
       Authorities:
@@ -84,14 +78,12 @@ registered_profiles:
   media:
     Procedures:
       Media:
-        identifier_field: identificationNumber
         identifier: identification_number
         title: identification_number
       Authorities: {}
   movement:
     Procedures:
       Movement:
-        identifier_field: movementReferenceNumber
         identifier: inventory_reference_number
         title: inventory_reference_number
       Authorities:
@@ -100,7 +92,6 @@ registered_profiles:
   intake:
     Procedures:
       Intake:
-        identifier_field: entryNumber
         identifier: intake_entry_number
         title: intake_entry_number
       Authorities:
@@ -109,7 +100,6 @@ registered_profiles:
   objectexit:
     Procedures:
       ObjectExit:
-        identifier_field: exitNumber
         identifier: exit_number
         title: exit_number
       Authorities:
@@ -118,7 +108,6 @@ registered_profiles:
   acquisition:
     Procedures:
       Acquisition:
-        identifier_field: acquisitionReferenceNumber
         identifier: acquisition_reference_number
         title: acquisition_reference_number
       Authorities:
@@ -128,7 +117,6 @@ registered_profiles:
   valuationcontrol:
     Procedures:
       ValuationControl:
-        identifier_field: valuationcontrolRefNumber
         identifier: valuation_control_reference_number
         title: valuation_control_reference_number
       Authorities:
@@ -137,6 +125,6 @@ registered_profiles:
   person:
     Authorities:
       Person:
-        identifier_field: termdisplayname
+        name_field: termdisplayname
         authority_type: Person
         authority_subtype: person

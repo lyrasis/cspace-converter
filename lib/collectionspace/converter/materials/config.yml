@@ -16,7 +16,6 @@ registered_profiles:
   cataloging:
     Procedures:
       CollectionObject:
-        identifier_field: objectNumber
         identifier: object_number
         title: object_number
       Authorities:
@@ -25,13 +24,12 @@ registered_profiles:
   material:
     Authorities:
       Material:
-        identifier_field: termdisplayname
+        name_field: termdisplayname
         authority_type: Material
         authority_subtype: material
   media:
     Procedures:
       Media:
-        identifier_field: identificationNumber
         identifier: identification_number
         title: identification_number
       Authorities:
@@ -45,6 +43,6 @@ registered_profiles:
   person:
     Authorities:
       Person:
-        identifier_field: display_name
+        name_field: display_name
         authority_type: Person
         authority_subtype: person

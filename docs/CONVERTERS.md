@@ -90,7 +90,6 @@ the CSV data. There must be only one top level key:
 Each Procedure to be generated using this profile needs an entry
 defining:
 
-- identifier_field: field used to look this record type up in CollectionSpace
 - identifier: the field in the source data used for identifier_field
 - title: the field in the source data used for the local title
 
@@ -103,12 +102,10 @@ Example:
 ```ruby
 "Procedures" => {
   "Acquisition" => {
-    "identifier_field" => "acquisitionReferenceNumber",
     "identifier" => "accession_number",
     "title" => "accession_number",
   },
   "ValuationControl" => {
-    "identifier_field" => "valuationcontrolRefNumber",
     "identifier" => "valuation_number",
     "title" => "valuation_number",
   },
@@ -133,7 +130,7 @@ directly related to the procedures:
 Each Authority to be generated using this profile needs an entry
 defining:
 
-- identifier_field: field used to generate the authority name / short_id
+- name_field: field used to generate the authority name / short_id
 - authority_type: the primary authority type i.e. Concept, Person etc.
 - authority_subtype: the authority subtype i.e. person, ulan_pa, person_shared
 
@@ -142,7 +139,7 @@ Example:
 ```yml
 Authorities:
   Person:
-    identifier_field: termdisplayname
+    name_field: termdisplayname
     authority_type: Person
     authority_subtype: person
 ```

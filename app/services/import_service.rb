@@ -9,10 +9,11 @@ class ImportService
       @type    = nil
     end
 
-    def add_authority(identifier_field, type, subtype, from_procedure = false)
-      term_display_name = object.object_data[identifier_field]
+    def add_authority(name_field, type, subtype, from_procedure = false)
+      term_display_name = object.object_data[name_field]
       return unless term_display_name
 
+      # TODO: service = Lookup.record_class(type).service(subtype)
       service = Lookup.service_class.get type, subtype
       service_id = service[:id]
 
@@ -67,7 +68,7 @@ class ImportService
 
       Lookup.profile_for(profile, type).each do |_, attributes|
         add_authority(
-          attributes['identifier_field'],
+          attributes['name_field'],
           attributes['authority_type'],
           attributes['authority_subtype'],
           false
@@ -84,15 +85,15 @@ class ImportService
 
     def add_related_authorities(authorities)
       authorities.each do |authority, fields|
-        fields.each do |field|
+        fields.each do |name_field|
           authority_subtype = authority.downcase
 
-          # if value pair first is the field and second is the specific authority (sub)type
-          if field.respond_to? :each
-            field, authority_subtype = field
+          # if value pair first is the name_field and second is the specific authority (sub)type
+          if name_field.respond_to? :each
+            name_field, authority_subtype = name_field
           end
 
-          add_authority(field, authority, authority_subtype, true)
+          add_authority(name_field, authority, authority_subtype, true)
         end
       end
     end

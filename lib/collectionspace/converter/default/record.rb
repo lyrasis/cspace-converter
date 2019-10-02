@@ -7,6 +7,10 @@ module CollectionSpace
           @attributes = attributes
         end
 
+        def self.service(subtype = nil)
+          raise 'Must be implemented in subclass'
+        end
+
         # default implementation used by authorities
         # overriden by sub-classes for procedures, returns converted record
         def convert
@@ -67,6 +71,12 @@ module CollectionSpace
           super 'acquisitions', 'acquisition', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'acquisitionReferenceNumber'
+          }
+        end
+
       end
 
       class CollectionObject < Record
@@ -74,6 +84,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'collectionobjects', 'collectionobject', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'objectNumber'
+          }
         end
 
       end
@@ -85,6 +101,12 @@ module CollectionSpace
           super 'concepts', 'concept', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'shortIdentifier'
+          }
+        end
+
       end
 
       class ConditionCheck < Record
@@ -92,6 +114,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'conditionchecks', 'conditioncheck', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'conditionCheckRefNumber'
+          }
         end
 
       end
@@ -103,6 +131,12 @@ module CollectionSpace
           super 'conservation', 'conservation', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'conservationNumber'
+          }
+        end
+
       end
 
       class Exhibition < Record
@@ -110,6 +144,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'exhibitions', 'exhibition', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'exhibitionNumber'
+          }
         end
 
       end
@@ -121,6 +161,12 @@ module CollectionSpace
           super 'groups', 'group', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'title'
+          }
+        end
+
       end
 
       class Intake < Record
@@ -128,6 +174,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'intakes', 'intake', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'entryNumber'
+          }
         end
 
       end
@@ -139,6 +191,12 @@ module CollectionSpace
           super 'loansin', 'loanin', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'loanInNumber'
+          }
+        end
+
       end
 
       class LoanOut < Record
@@ -146,6 +204,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'loansout', 'loanout', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'loanOutNumber'
+          }
         end
 
       end
@@ -157,6 +221,12 @@ module CollectionSpace
           super 'locations', 'location', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'movementReferenceNumber'
+          }
+        end
+
       end
 
       class Material < Record
@@ -164,6 +234,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'materials', 'material', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'shortIdentifier'
+          }
         end
 
       end
@@ -175,6 +251,12 @@ module CollectionSpace
           super 'media', 'media', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'identificationNumber'
+          }
+        end
+
       end
 
       class Movement < Record
@@ -182,6 +264,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'movements', 'movement', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'movementReferenceNumber'
+          }
         end
 
       end
@@ -193,6 +281,12 @@ module CollectionSpace
           super 'objectexit', 'objectexit', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'exitNumber'
+          }
+        end
+
       end
 
       class Organization < Record
@@ -200,6 +294,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'organizations', 'organization', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'shortIdentifier'
+          }
         end
 
       end
@@ -211,6 +311,12 @@ module CollectionSpace
           super 'persons', 'person', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'shortIdentifier',
+          }
+        end
+
       end
 
       class Place < Record
@@ -218,6 +324,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'places', 'place', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'shortIdentifier'
+          }
         end
 
       end
@@ -241,6 +353,12 @@ module CollectionSpace
           super 'relations', 'relation', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'csid'
+          }
+        end
+
       end
 
       class Taxon < Record
@@ -250,6 +368,12 @@ module CollectionSpace
           super 'taxon', 'taxonomy', common
         end
 
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'shortIdentifier'
+          }
+        end
+
       end
 
       class ValuationControl < Record
@@ -257,6 +381,12 @@ module CollectionSpace
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'valuationcontrols', 'valuationcontrol', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            identifier_field: 'valuationcontrolRefNumber'
+          }
         end
 
       end

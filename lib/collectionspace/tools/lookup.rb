@@ -53,6 +53,10 @@ module CollectionSpace
         converter_class.registered_profiles[profile].keys.first
       end
 
+      def self.record_class(type)
+        "#{CONVERTER_DEFAULT}::#{type}".constantize
+      end
+
       def self.service_class
         "#{CONVERTER_TOOLS}::Service".constantize
       end
