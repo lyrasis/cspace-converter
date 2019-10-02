@@ -67,12 +67,10 @@ class DataObject
       content_data = object_data
     end
 
+    data[:converter] = converter.to_s
+
     cspace_object = CollectionSpaceObject.new(data)
-    Task.generate_content(
-      converter: converter,
-      data: content_data,
-      object: cspace_object,
-    )
+    cspace_object.generate_content!(content_data)
     self.collection_space_objects << cspace_object if cspace_object.valid?
   end
 
@@ -82,6 +80,7 @@ class DataObject
     data = {}
     data[:batch]            = import_batch
     data[:category]         = 'Procedure'
+    data[:converter]        = converter.to_s
     data[:type]             = procedure
     data[:subtype]          = ''
     data[:identifier_field] = attributes["identifier_field"]
@@ -89,11 +88,7 @@ class DataObject
     data[:title]            = object_data[attributes["title"]]
 
     cspace_object = CollectionSpaceObject.new(data)
-    Task.generate_content(
-      converter: converter,
-      data: object_data,
-      object: cspace_object,
-    )
+    cspace_object.generate_content!(object_data)
     self.collection_space_objects << cspace_object if cspace_object.valid?
   end
 
@@ -148,11 +143,7 @@ class DataObject
     data[:title]            = "#{from_prefix}:#{from_value}_#{to_prefix}:#{to_value}"
 
     cspace_object = CollectionSpaceObject.new(data)
-    Task.generate_content(
-      converter: converter,
-      data: attributes,
-      object: cspace_object,
-    )
+    cspace_object.generate_content!(object_data)
     self.collection_space_objects << cspace_object if cspace_object.valid?
   end
 end

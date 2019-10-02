@@ -11,6 +11,7 @@ class CollectionSpaceObject
 
   field :batch,            type: String
   field :category,         type: String # ex: Authority, Procedure
+  field :converter,        type: String # ex: CollectionSpace::Converter::Core:CorePerson
   field :type,             type: String # ex: CollectionObject, Person
   field :subtype,          type: String # ex: person [auth only]
   field :identifier_field, type: String
@@ -25,6 +26,19 @@ class CollectionSpaceObject
   attr_readonly :type
 
   scope :transferred, ->{ where(csid: true) } # TODO: check
+
+  def generate_content!(data = nil)
+    data ||= data_object.object_data
+    cvtr = converter.constantize.new(data)
+    Rails.logger.debug(
+      "Generating content for: #{converter} -- #{data}"
+    )
+    write_attribute 'content', hack_namespaces(cvtr.convert)
+  end
+
+  def hack_namespaces(xml)
+    xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
+  end
 
   def has_csid_and_uri?
     !!(csid and uri)
