@@ -26,6 +26,10 @@ class RemoteActionService
         if response.status_code.to_s =~ /^2/
           object.update_attributes!( csid: nil, uri:  nil )
           status.message = "Deleted: #{object.identifier}"
+        else
+          status.ok = false
+          status.message = "Error response: #{response.body}"
+          Rails.logger.error(status.message)
         end
       rescue Exception => ex
         status.ok      = false
@@ -54,6 +58,10 @@ class RemoteActionService
           uri  = "#{service[:path]}/#{csid}"
           object.update_attributes!( csid: csid, uri:  uri )
           status.message = "Transferred: #{object.identifier}"
+        else
+          status.ok = false
+          status.message = "Error response: #{response.body}"
+          Rails.logger.error(status.message)
         end
       rescue Exception => ex
         status.ok      = false
@@ -72,8 +80,14 @@ class RemoteActionService
     if object.has_csid_and_uri?
       Rails.logger.debug("Updating: #{object.identifier}")
       begin
-        $collectionspace_client.put(object.uri, object.content)
-        status.message = "Updated: #{object.identifier}"
+        response = $collectionspace_client.put(object.uri, object.content)
+        if response.status_code.to_s =~ /^2/
+          status.message = "Updated: #{object.identifier}"
+        else
+          status.ok = false
+          status.message = "Error response: #{response.body}"
+          Rails.logger.error(status.message)
+        end
       rescue Exception => ex
         status.ok      = false
         status.message = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
