@@ -28,7 +28,10 @@ class ImportJob < ActiveJob::Base
 
     rows.each do |data|
       data_object_attributes[:object_data] = data
-      service = Lookup.import_service(type).new(data_object_attributes)
+      service = Lookup.import_service(type).new(
+        config[:profile],
+        data_object_attributes
+      )
       begin
         logger.debug "Importing row: #{data_object_attributes.inspect}"
         service.create_object

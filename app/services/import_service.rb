@@ -1,10 +1,12 @@
 class ImportService
 
   class Base
-    attr_reader :data, :object
-    def initialize(data)
-      @data   = data
-      @object = nil
+    attr_reader :data, :object, :profile, :type
+    def initialize(profile, data)
+      @data    = data
+      @object  = nil
+      @profile = profile
+      @type    = nil
     end
 
     def add_authority(identifier_field, type, subtype, from_procedure = false)
@@ -14,26 +16,24 @@ class ImportService
       service = Lookup.service_class.get type, subtype
       service_id = service[:id]
 
-      # attempt to split field in case it is multi-valued
       term_display_name.split(object.delimiter).map(&:strip).each do |name|
         identifier = AuthCache.authority service_id, subtype, name
-        # if we find this procedure authority in the cache skip it!
-        next if identifier && from_procedure
+        next if identifier && from_procedure # skip cached from procedure
 
-        # if the object data contains a shortidentifier then use it
-        identifier = object.object_data.fetch("shortidentifier", identifier)
-        identifier = CSIDF.short_identifier(name) unless identifier
+        # override identifier with shortidentifier if available
+        identifier = object.object_data.fetch('shortidentifier', identifier)
+        identifier ||= CSIDF.short_identifier(name)
 
-        unless CollectionSpaceObject.has_authority?(identifier)
-          object.add_authority(
-            type: type,
-            subtype: subtype,
-            name: name,
-            identifier: identifier,
-            from_procedure: from_procedure
-          )
-          object.save!
-        end
+        next if CollectionSpaceObject.has_authority?(identifier)
+
+        object.add_authority(
+          type: type,
+          subtype: subtype,
+          name: name,
+          identifier: identifier,
+          from_procedure: from_procedure
+        )
+        object.save!
       end
     end
 
@@ -44,10 +44,6 @@ class ImportService
 
     def process
       raise 'Error: must be implemented in subclass'
-    end
-
-    def profile(profile, type)
-      Lookup.profile_for(profile, type)
     end
 
     def update_status(import_status:, import_message:)
@@ -61,15 +57,15 @@ class ImportService
   end
 
   class Authorities < Base
-    def initialize(data)
+    def initialize(profile, data)
       super
+      @type = 'Authorities'
     end
 
     def process
       raise 'Data Object has not been created' unless object
 
-      authorities = profile(object.converter_profile, object.import_category)
-      authorities.each do |_, attributes|
+      Lookup.profile_for(profile, type).each do |_, attributes|
         add_authority(
           attributes['identifier_field'],
           attributes['authority_type'],
@@ -81,8 +77,9 @@ class ImportService
   end
 
   class Procedures < Base
-    def initialize(data)
+    def initialize(profile, data)
       super
+      @type = 'Procedures'
     end
 
     def add_related_authorities(authorities)
@@ -103,14 +100,14 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      procedures = profile(object.converter_profile, object.import_category)
+      procedures = Lookup.profile_for(profile, type)
       procedures.each do |procedure, attributes|
         next if procedure == 'Authorities'
 
         object.add_procedure procedure, attributes
         object.save!
       end
-      add_related_authorities(procedures.fetch("Authorities", {}))
+      add_related_authorities(procedures.fetch('Authorities', {}))
     end
   end
 end

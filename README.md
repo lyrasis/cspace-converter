@@ -70,6 +70,12 @@ bundle exec rake cache:clear
 # populate the database with cache terms
 bundle exec rake cache:download_authorities # optional
 bundle exec rake cache:download_vocabularies
+
+# export the cache for future use
+bundle exec rake cache:export[~/.cspace-converter,cache.csv]
+
+# re-use an exported cache
+bundle exec rake cache:import[~/.cspace-converter/cache.csv]
 ```
 
 ## Stage the data to MongoDB
