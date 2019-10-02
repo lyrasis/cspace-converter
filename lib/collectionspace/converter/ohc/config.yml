@@ -29,5 +29,3 @@ registered_profiles:
       Person:
       - acquisitionauthorizer
       - owner_person
-    Relationships:
-    - {}
