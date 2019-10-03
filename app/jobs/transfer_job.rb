@@ -7,12 +7,12 @@ class TransferJob < ActiveJob::Base
 
     batch = Batch.where(
       category: 'transfer',
-      type: self.class.to_s,
+      type: action_method.to_s,
       for: type,
       name: batch_name
     ).first || Batch.new(
       category: 'transfer',
-      type: self.class.to_s,
+      type: action_method.to_s,
       for: type,
       name: batch_name,
       status: 'running',
