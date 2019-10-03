@@ -4,14 +4,7 @@ RSpec.describe CollectionSpaceObject do
 
   describe "initialization" do
     let(:authority_object) {
-      build(
-        :collection_space_object,
-        category: 'Authority',
-        type: 'Person',
-        subtype: 'person',
-        identifier: 'Mickey Mouse',
-        title: 'Mickey Mouse',
-      )
+      prefab_authority_object
     }
 
     let(:authority_object_fingerprint) {
@@ -19,13 +12,7 @@ RSpec.describe CollectionSpaceObject do
     }
 
     let(:procedure_object) {
-      build(
-        :collection_space_object,
-        category: 'Procedure',
-        type: 'Acquisition',
-        identifier_field: 'acquisitionReferenceNumber',
-        identifier: '123',
-      )
+      prefab_procedure_object
     }
 
     let(:procedure_object_fingerprint) {

@@ -73,7 +73,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'acquisitionReferenceNumber'
+            id: 'acquisitions',
+            identifier_field: 'acquisitionReferenceNumber',
+            path: 'acquisitions',
+            schema: 'acquisitions',
           }
         end
 
@@ -88,7 +91,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'objectNumber'
+            id: 'collectionobjects',
+            identifier_field: 'objectNumber',
+            path: 'collectionobjects',
+            schema: 'collectionobjects',
           }
         end
 
@@ -103,7 +109,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'shortIdentifier'
+            id: 'conceptauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "conceptauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'concepts',
           }
         end
 
@@ -118,7 +127,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'conditionCheckRefNumber'
+            id: 'conditionchecks',
+            identifier_field: 'conditionCheckRefNumber',
+            path: 'conditionchecks',
+            schema: 'conditionchecks',
           }
         end
 
@@ -133,7 +145,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'conservationNumber'
+            id: 'conservation',
+            identifier_field: 'conservationNumber',
+            path: 'conservation',
+            schema: 'conservation',
           }
         end
 
@@ -148,7 +163,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'exhibitionNumber'
+            id: 'exhibitions',
+            identifier_field: 'exhibitionNumber',
+            path: 'exhibitions',
+            schema: 'exhibitions',
           }
         end
 
@@ -163,7 +181,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'title'
+            id: 'groups',
+            identifier_field: 'title',
+            path: 'groups',
+            schema: 'groups',
           }
         end
 
@@ -178,7 +199,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'entryNumber'
+            id: 'intakes',
+            identifier_field: 'entryNumber',
+            path: 'intakes',
+            schema: 'intakes',
           }
         end
 
@@ -193,7 +217,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'loanInNumber'
+            id: 'loansin',
+            identifier_field: 'loanInNumber',
+            path: 'loansin',
+            schema: 'loansin',
           }
         end
 
@@ -208,7 +235,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'loanOutNumber'
+            id: 'loansout',
+            identifier_field: 'loanOutNumber',
+            path: 'loansout',
+            schema: 'loansout',
           }
         end
 
@@ -223,7 +253,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'movementReferenceNumber'
+            id: 'locationauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "locationauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'locations',
           }
         end
 
@@ -238,7 +271,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'shortIdentifier'
+            id: 'materialauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "materialauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'materials',
           }
         end
 
@@ -253,7 +289,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'identificationNumber'
+            id: 'media',
+            identifier_field: 'identificationNumber',
+            path: 'media',
+            schema: 'media',
           }
         end
 
@@ -268,7 +307,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'movementReferenceNumber'
+            id: 'movements',
+            identifier_field: 'movementReferenceNumber',
+            path: 'movements',
+            schema: 'movements',
           }
         end
 
@@ -283,7 +325,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'exitNumber'
+            id: 'objectexit',
+            identifier_field: 'exitNumber',
+            path: 'objectexit',
+            schema: 'objectexit',
           }
         end
 
@@ -298,7 +343,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'shortIdentifier'
+            id: 'orgauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "orgauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'organizations',
           }
         end
 
@@ -313,7 +361,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
+            id: 'personauthorities',
             identifier_field: 'shortIdentifier',
+            path: "personauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'persons',
           }
         end
 
@@ -328,7 +379,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'shortIdentifier'
+            id: 'placeauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "placeauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'places',
           }
         end
 
@@ -355,7 +409,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'csid'
+            id: 'relations',
+            identifier_field: 'csid',
+            path: 'relations',
+            schema: 'relations',
           }
         end
 
@@ -370,7 +427,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'shortIdentifier'
+            id: 'taxonomyauthority',
+            identifier_field: 'shortIdentifier',
+            path: "taxonomyauthority/urn:cspace:name(#{subtype})/items",
+            schema: 'taxon',
           }
         end
 
@@ -385,7 +445,10 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            identifier_field: 'valuationcontrolRefNumber'
+            id: 'valuationcontrols',
+            identifier_field: 'valuationcontrolRefNumber',
+            path: 'valuationcontrols',
+            schema: 'valuationcontrols',
           }
         end
 

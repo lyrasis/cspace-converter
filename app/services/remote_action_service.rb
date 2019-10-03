@@ -14,7 +14,7 @@ class RemoteActionService
 
   def initialize(object)
     @object  = object
-    @service = Lookup.service_class.get object.type, object.subtype
+    @service = Lookup.record_class(object.type).service(object.subtype)
   end
 
   def remote_delete

@@ -13,8 +13,7 @@ class ImportService
       term_display_name = object.object_data[name_field]
       return unless term_display_name
 
-      # TODO: service = Lookup.record_class(type).service(subtype)
-      service = Lookup.service_class.get type, subtype
+      service = Lookup.record_class(type).service(subtype)
       service_id = service[:id]
 
       term_display_name.split(object.delimiter).map(&:strip).each do |name|
