@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export FILE=${1:-ppsobjectsdata.csv}
-export BATCH=${2:-ppsobjects1}
-export PROFILE=${3:-ppsobjectsdata}
+FILE=${1:-data/sample/core/SampleCatalogingData.csv}
+BATCH=${2:-cataloging1}
+PROFILE=${3:-cataloging}
 
 ./bin/rake \
-  import:csv[${FILE},$BATCH,$PROFILE]
+  import:csv[$FILE,$BATCH,$PROFILE]

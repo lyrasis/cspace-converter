@@ -112,6 +112,12 @@ To execute "transfer" jobs created using the UI server, run this command:
 ./bin/rake jobs:work
 ```
 
+Or from the command line:
+
+```bash
+./transfer.sh Person person1 # record type, batch name
+```
+
 ## Useful commands
 
 ### Using the console
