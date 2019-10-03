@@ -28,7 +28,7 @@ namespace :remote do
     batch = batch == "all" ? nil : batch
     start_time = Time.now
     Rails.logger.debug "Starting remote #{action} job at #{start_time}."
-    TransferJob.perform_later(action, type, batch)
+    TransferJob.perform_later(action, type, batch, SecureRandom.uuid)
     # run the job immediately when using rake
     Delayed::Worker.new.run(Delayed::Job.last)
 

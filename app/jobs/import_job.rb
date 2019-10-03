@@ -7,11 +7,9 @@ class ImportJob < ActiveJob::Base
     type = Lookup.profile_type(config[:profile])
 
     batch = Batch.where(
-      category: 'import',
-      type: Lookup.converter_class,
-      for: config[:profile],
-      name: config[:batch]
+      key: config[:key]
     ).first || Batch.new(
+      key: config[:key],
       category: 'import',
       type: Lookup.converter_class,
       for: config[:profile],
@@ -44,6 +42,9 @@ class ImportJob < ActiveJob::Base
         logger.debug "Importing row: #{data_object_attributes.inspect}"
         service.create_object
         service.process
+        if service.object.collection_space_objects.count.zero?
+          raise 'No records were created.'
+        end
         service.update_status(import_status: 1, import_message: 'ok')
       rescue Exception => ex
         logger.error "Error for import row: #{ex.message}"

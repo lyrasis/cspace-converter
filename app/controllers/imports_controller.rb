@@ -10,6 +10,7 @@ class ImportsController < ApplicationController
     if file.respond_to? :path
       config = {
         file:      file.path,
+        key:       SecureRandom.uuid,
         batch:     params[:batch],
         module:    params[:module],
         profile:   params[:profile],

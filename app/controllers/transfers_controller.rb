@@ -11,7 +11,7 @@ class TransfersController < ApplicationController
 
     batch = nil if batch =~ /all/i
 
-    TransferJob.perform_later(action, type, batch)
+    TransferJob.perform_later(action, type, batch, SecureRandom.uuid)
     flash[:notice] = "Transfer job running. Check back periodically for results."
     redirect_to root_path
   end

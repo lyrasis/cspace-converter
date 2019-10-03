@@ -22,6 +22,7 @@ namespace :import do
   # rake import:csv[data/sample/core/SampleCatalogingData.csv,cataloging1,cataloging]
   task :csv, [:filename, :batch, :profile] => :environment do |t, args|
     config = {
+      key:       SecureRandom.uuid,
       filename:  args[:filename],
       batch:     args[:batch],
       profile:   args[:profile],

@@ -1,16 +1,14 @@
 class TransferJob < ActiveJob::Base
   queue_as :default
 
-  def perform(action, type, batch_name)
+  def perform(action, type, batch_name, key)
     action_method = TransferJob.actions action
     raise "Invalid remote action #{action}!" unless action_method
 
     batch = Batch.where(
-      category: 'transfer',
-      type: action_method.to_s,
-      for: type,
-      name: batch_name
+      key: key
     ).first || Batch.new(
+      key: key,
       category: 'transfer',
       type: action_method.to_s,
       for: type,
