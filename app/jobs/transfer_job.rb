@@ -5,7 +5,13 @@ class TransferJob < ActiveJob::Base
     action_method = TransferJob.actions action
     raise "Invalid remote action #{action}!" unless action_method
 
-    batch = Batch.new(
+    batch = Batch.where(
+      category: 'transfer',
+      type: self.class.to_s,
+      for: type,
+      name: batch_name
+    ).first || Batch.new(
+      category: 'transfer',
       type: self.class.to_s,
       for: type,
       name: batch_name,
@@ -15,6 +21,8 @@ class TransferJob < ActiveJob::Base
       start: Time.now,
       end: nil
     )
+    batch.status = 'running' # reset running status
+    batch.save
 
     CollectionSpaceObject.where(type: type, batch: batch_name).each do |object|
       begin

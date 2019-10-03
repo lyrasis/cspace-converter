@@ -2,6 +2,7 @@ class Batch
   include Mongoid::Document
   validates_uniqueness_of :name, scope: :start
 
+  field :category,  type: String
   field :type,      type: String
   field :for,       type: String
   field :name,      type: String

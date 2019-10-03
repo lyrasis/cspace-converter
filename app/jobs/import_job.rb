@@ -6,7 +6,13 @@ class ImportJob < ActiveJob::Base
   def perform(config, rows = [])
     type = Lookup.profile_type(config[:profile])
 
-    batch = Batch.new(
+    batch = Batch.where(
+      category: 'import',
+      type: Lookup.converter_class,
+      for: config[:profile],
+      name: config[:batch]
+    ).first || Batch.new(
+      category: 'import',
       type: Lookup.converter_class,
       for: config[:profile],
       name: config[:batch],
@@ -16,8 +22,9 @@ class ImportJob < ActiveJob::Base
       start: Time.now,
       end: nil
     )
+    batch.status = 'running' # reset running status
+    batch.save
 
-    batch.processed += 1
     data_object_attributes = {
       converter_profile: config[:profile],
       object_data: {},
@@ -27,6 +34,7 @@ class ImportJob < ActiveJob::Base
     }
 
     rows.each do |data|
+      batch.processed += 1
       data_object_attributes[:object_data] = data
       service = Lookup.import_service(type).new(
         config[:profile],
