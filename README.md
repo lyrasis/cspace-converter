@@ -53,8 +53,7 @@ Run Mongo using Docker:
 docker run --name mongo -d -p 27017:27017 mongo:3.2
 ```
 
-You should be able to access MongDB on `http://localhost:27017`.  To test the
-connection: https://docs.mongodb.com/v3.0/tutorial/getting-started-with-the-mongo-shell/
+You should be able to access MongDB on `http://localhost:27017`.
 
 If you prefer to run Mongo traditionally follow the installation docs online.
 
@@ -120,6 +119,17 @@ Or from the command line:
 
 ## Useful commands
 
+### Making api requests to the remote CollectionSpace instance
+
+```bash
+# provides a list of records
+bundle exec rake remote:get[media]
+
+# get a record
+bundle exec rake remote:get[/media/$CSID] # i.e.
+bundle exec rake remote:get[/media/bd775076-05c8-4afd-8b58]
+```
+
 ### Using the console
 
 ```ruby
@@ -134,7 +144,7 @@ puts p.inspect
 bundle exec rake db:nuke
 ```
 
-Or use 'Nuke' in the ui. Warning: this deletes all data including failed jobs.
+Or use 'Nuke' in the ui. Warning: this deletes all data, including failed jobs.
 
 ### Running tests
 
