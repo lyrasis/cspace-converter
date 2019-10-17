@@ -137,6 +137,14 @@ module CollectionSpace
           add_authorities xml, field, 'locationauthorities', 'location', values, method
         end
 
+        def self.add_material(xml, field, value)
+          add_authority xml, field, 'materialauthorities', 'material', value
+        end
+
+        def self.add_materials(xml, field, values = [], method = :add_group_list)
+          add_authorities xml, field, 'materialauthorities', 'material', values, method
+        end
+
         def self.add_person(xml, field, value)
           add_authority xml, field, 'personauthorities', 'person', value
         end
