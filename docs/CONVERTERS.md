@@ -22,7 +22,7 @@ If you're creating a converter for `mymuseum` you could create
 Begin by copying the `_default/default.rb` but replace "Default"
 with "MyMuseum" (following ruby naming conventions).
 
-```
+```ruby
 module CollectionSpace
   module Converter
     module MyMuseum
@@ -147,7 +147,7 @@ Authorities:
 ## Running a converter
 
 ```bash
-./import.sh data/sample/mymuseum/mymuseum_data.csv mymuseum1 mymuseum
+./import.sh data/mymuseum/mymuseum_data.csv mymuseum1 mymuseum
 ```
 
 The arguments correspond to:

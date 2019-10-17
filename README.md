@@ -40,7 +40,7 @@ Before the *cspace-converter* tool can import CSV data into CollectionSpace, it 
 Create a data directory and add the CSV files. For example:
 
 ```txt
-data/sample/core/
+data/core/
 ├── cataloging.csv # custom CSV data file
 └── ppsobjectsdata.csv # Past Perfect objects data file
 ```
@@ -92,10 +92,8 @@ The general format for the command is:
 For example:
 
 ```bash
-./import.sh data/sample/core/SampleCatalogingData.csv cataloging1 cataloging
-./import.sh data/sample/core/SamplePerson.csv person1 person
-# NOTE: for media csv blob_uri field will attempt to create the image
-./import.sh data/sample/core/SampleMediaUrl.csv media1 media
+./import.sh data/core/sample_data_cataloging_core_excerpt.csv cataloging1 cataloging
+./import.sh data/core/sample_data_mediahandling_core_all.csv media1 media
 ```
 
 ## Starting/Running the cspace-converter tool UI server

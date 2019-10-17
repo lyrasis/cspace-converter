@@ -78,8 +78,8 @@ registered_profiles:
   media:
     Procedures:
       Media:
-        identifier: identification_number
-        title: identification_number
+        identifier: identificationnumber
+        title: identificationnumber
       Authorities: {}
   movement:
     Procedures:

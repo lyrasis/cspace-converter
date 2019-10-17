@@ -1,0 +1,11 @@
+﻿Schema Field ID,referenceNumber,method,title,authorizedBy,authorizationDate,authorizationNote,startSingleDate,endDate,user,,note,provisos,,,,result
+SAMPLE DATA,UOC2001.001,class,Use of Collections Title 1,Angie Millson,1/1/2000,Authorization note text.,2/1/2000,3/1/2000,Turi Berrones; Elbertina Lana,Exhibition organizer,UOC note text.,UOC provisos text.,Center for Contemporary Candian Art,,,Result text.
+,UOC2002.001,exhibition,Use of Collections Title 2,Dianna Fella,1/1/2001,Authorization note text.,2/1/2001,3/1/2001,Placido Claros; Lucena Medina,Faculty,UOC note text.,UOC provisos text.,American Museum of Natural History,,,Result text.
+,UOC2003.001,publication,Use of Collections Title 3,Selina Hardison,1/1/2002,Authorization note text.,2/1/2002,3/1/2002,Kesara Nieto; Daumants Bizkalns,Lecturer,UOC note text.,UOC provisos text.,Art Institute of Chicago,,,Result text.
+,UOC2004.001,research,Use of Collections Title 4,Sandy Pound,1/1/2003,Authorization note text.,2/1/2003,3/1/2003,Modesta Marciel; Maigonis Baltgailis,Presenter,UOC note text.,UOC provisos text.,,Melbourne,,Result text.
+,UOC2005.001,class,Use of Collections Title 5,Franco Borge,1/1/2004,Authorization note text.,2/1/2004,3/1/2004,Xuxa Mazon,Publisher,UOC note text.,UOC provisos text.,,South Tarawa,,Result text.
+,UOC2006.001,exhibition,Use of Collections Title 6,Carlos Guajardo,1/1/2005,Authorization note text.,2/1/2005,3/1/2005,Cristina Porto,Researcher,UOC note text.,UOC provisos text.,,Betio Village,,Result text.
+,UOC2007.001,publication,Use of Collections Title 7,Santos Rincon,1/1/2006,Authorization note text.,2/1/2006,3/1/2006,Neiva Silguero,Exhibition organizer,UOC note text.,UOC provisos text.,,,A:Room 1,Result text.
+,UOC2008.001,research,Use of Collections Title 8,Kadmos Painter,1/1/2007,Authorization note text.,2/1/2007,3/1/2007,Xiomara Monzon,Faculty,UOC note text.,UOC provisos text.,,,A:R1:Unit 2,Result text.
+,UOC2009.001,class,Use of Collections Title 9,Joaquin Celestino,1/1/2008,Authorization note text.,2/1/2008,3/1/2008,Madre Paulino,Lecturer,UOC note text.,UOC provisos text.,,,A:R1:Unit 3,Result text.
+,UOC2010.001,exhibition,Use of Collections Title 10,Rico Galindez,1/1/2009,Authorization note text.,2/1/2009,3/1/2009,Ernesta Mateos,Presenter,UOC note text.,UOC provisos text.,,,A:Room 2,Result text.
