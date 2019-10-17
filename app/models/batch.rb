@@ -1,6 +1,7 @@
 class Batch
   include Mongoid::Document
   validates_uniqueness_of :name, scope: :start
+  before_destroy { |batch| DataObject.where(import_batch: batch.name).destroy_all }
 
   field :key,       type: String
   field :category,  type: String
