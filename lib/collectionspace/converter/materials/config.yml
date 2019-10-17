@@ -1,6 +1,4 @@
 ---
-# ./import.sh data/sample/materials/media.csv media1 media
-# ./import.sh data/sample/materials/person.csv person1 person
 registered_authorities:
   - citationauthorities
   - conceptauthorities
@@ -30,16 +28,13 @@ registered_profiles:
   media:
     Procedures:
       Media:
-        identifier: identification_number
-        title: identification_number
+        identifier: identificationnumber
+        title: identificationnumber
       Authorities:
         Person:
-        - coverage
         - measured_by
-        Concept:
-        - date_earliest_single_era
-        - date_latest_single_era
-        - date_period
+        Place:
+        - coverage
   person:
     Authorities:
       Person:

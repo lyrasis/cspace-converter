@@ -5,7 +5,7 @@ module CollectionSpace
       class CoreMedia < Media
         def convert
           run do |xml|
-            CSXML.add xml, 'identificationNumber', attributes["identification_number"]
+            CSXML.add xml, 'identificationNumber', attributes["identificationnumber"]
             CSXML.add xml, 'title', attributes["title"]
             CSXML.add xml, 'coverage', attributes["coverage"]
             CSXML.add xml, 'description', scrub_fields([attributes["description"]])
