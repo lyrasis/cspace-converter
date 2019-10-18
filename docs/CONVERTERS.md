@@ -1,46 +1,53 @@
 # Converters
 
-Converters are a "profile" for mapping data in one or more CSV
-documents to CollectionSpace XML payloads.
+Converters are "modules" containing "profiles" for mapping data
+in one or more CSV documents to CollectionSpace XML payloads.
+
+- Modules refer to literal Ruby modules
+- Profiles are configuration used to define mapping behavior
 
 ## How to create a converter
 
 Converters are defined in `lib/collectionspace/converter/`.
-This directory containers a `_default/record.rb` file that is the
+This directory containers a `default/record.rb` file that is the
 foundation for converter profiles to build upon. If a procedure
 or authority is not represented in `record.rb` it cannot be mapped,
-and most likely should be added (pull requests welcome!).
+and most likely should be added (pull requests are welcome!).
 
 Subfolders in this directory are converter implementations. Each
-converter requires a `_config.rb` file to define its behavior.
+converter requires:
 
-If you're creating a converter for `mymuseum` you could create
-`lib/collectionspace/converter/mymuseum/_config.rb`.
+- a `_config.rb` file containing some boilerplate setup
+- a `config.yml` file that defines the converter mapping behavior
+
+If you're creating a converter for `mymuseum` you could create:
+
+- `lib/collectionspace/converter/mymuseum/_config.rb`
+- `lib/collectionspace/converter/mymuseum/config.yml`
 
 ## Converter configuration
 
-Begin by copying the `_default/default.rb` but replace "Default"
+Begin by copying the `core/_config.rb` but replace "Default"
 with "MyMuseum" (following ruby naming conventions).
 
 ```ruby
 module CollectionSpace
   module Converter
     module MyMuseum
-
-      def self.registered_procedures
-        []
-      end
-
-      def self.registered_profiles
-        {}
-      end
-
+      # ...
     end
   end
 end
 ```
 
-The converter configuration must implement the two class methods:
+### Registered Authorities
+
+The list of authority record types this converter generates. This
+is also used to determine which authorities should be cached.
+
+```bash
+bundle exec rake cache:download_authorities
+```
 
 ### Registered Procedures
 
