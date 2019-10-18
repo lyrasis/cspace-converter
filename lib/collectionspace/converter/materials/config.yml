@@ -17,8 +17,9 @@ registered_profiles:
         identifier: object_number
         title: object_number
       Authorities:
-        Material:
-        - material
+        - name_field: material
+          authority_type: Material
+          authority_subtype: material
   material:
     Authorities:
       Material:
@@ -31,10 +32,11 @@ registered_profiles:
         identifier: identificationnumber
         title: identificationnumber
       Authorities:
-        Person:
-        - measured_by
-        Place:
-        - coverage
+        - name_field: coverage
+          authority_type_from: coveragetype
+        - name_field: measuredby
+          authority_type: Person
+          authority_subtype: person
   person:
     Authorities:
       Person:
