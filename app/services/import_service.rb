@@ -39,7 +39,7 @@ class ImportService
 
     def create_object
       @object = DataObject.new.from_json(JSON.generate(data))
-      object.save!
+      @object.save!
     end
 
     def process
@@ -83,18 +83,22 @@ class ImportService
     end
 
     def add_related_authorities(authorities)
-      authorities.each do |authority, fields|
-        fields.each do |name_field|
-          authority_subtype = authority.downcase
-
-          # if value pair first is the name_field and second is the specific authority (sub)type
-          if name_field.respond_to? :each
-            name_field, authority_subtype = name_field
-          end
-
-          add_authority(name_field, authority, authority_subtype, true)
-        end
+      authorities.each do |attributes|
+        name_field, type, subtype = gather_authority_data(attributes)
+        add_authority(name_field, type, subtype, true)
       end
+    end
+
+    def gather_authority_data(attributes)
+      name_field = attributes['name_field']
+
+      if attributes['authority_type_from']
+        type = object.object_data[attributes['authority_type_from']]
+      end
+      type ||= attributes['authority_type'].capitalize
+
+      subtype = attributes['authority_subtype'] ||= type.downcase
+      [name_field, type, subtype]
     end
 
     def process

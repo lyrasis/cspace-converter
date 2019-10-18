@@ -23,47 +23,60 @@ registered_profiles:
         identifier: id_number
         title: id_number
       Authorities:
-        Person:
-        - content_person
-        - inscriber
-        - production_person
-        Organization:
-        - production_org
+        - name_field: content_person
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inscriber
+          authority_type: Person
+          authority_subtype: person
+        - name_field: production_person
+          authority_type: Person
+          authority_subtype: person
+        - name_field: production_org
+          authority_type: Organization
+          authority_subtype: organization
   conditioncheck:
     Procedures:
       ConditionCheck:
         identifier: condition_check_reference_number
         title: condition_check_reference_number
       Authorities:
-        Person:
-        - condition_checker
+        - name_field: condition_checker
+          authority_type: Person
+          authority_subtype: person
   exhibition:
     Procedures:
       Exhibition:
         identifier: exhibition_number
         title: exhibition_number
       Authorities:
-        Organization:
-        - organizer
+        - name_field: organizer
+          authority_type: Organization
+          authority_subtype: organization
   group:
     Procedures:
       Group:
         identifier: title
         title: title
       Authorities:
-        Person:
-        - owner
+        - name_field: owner
+          authority_type: Person
+          authority_subtype: person
   loanin:
     Procedures:
       LoanIn:
         identifier: loan_in_number
         title: loan_in_number
       Authorities:
-        Person:
-        - lender's_authorizer
-        - borrower's_authorizer
-        Organization:
-        - lender
+        - name_field: lender's_authorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: borrower's_authorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: lender
+          authority_type: Organization
+          authority_subtype: organization
   loanout:
     Procedures:
       LoanOut:
@@ -71,57 +84,69 @@ registered_profiles:
         title: loan_out_number
       Authorities:
         Person:
-        - lender's_authorizer
-        - borrower's_authorizer
-        Organization:
-        - borrower
+        - name_field: lender's_authorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: borrower's_authorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: borrower
+          authority_type: Organization
+          authority_subtype: organization
   media:
     Procedures:
       Media:
         identifier: identificationnumber
         title: identificationnumber
-      Authorities: {}
+      Authorities: []
   movement:
     Procedures:
       Movement:
         identifier: inventory_reference_number
         title: inventory_reference_number
       Authorities:
-        Person:
-        - movement_contact
+        - name_field: movement_contact
+          authority_type: Person
+          authority_subtype: person
   intake:
     Procedures:
       Intake:
         identifier: intake_entry_number
         title: intake_entry_number
       Authorities:
-        Person:
-        - current_owner
+        - name_field: current_owner
+          authority_type: Person
+          authority_subtype: person
   objectexit:
     Procedures:
       ObjectExit:
         identifier: exit_number
         title: exit_number
       Authorities:
-        Organization:
-        - current_owner
+        - name_field: current_owner
+          authority_type: Organization
+          authority_subtype: organization
   acquisition:
     Procedures:
       Acquisition:
         identifier: acquisition_reference_number
         title: acquisition_reference_number
       Authorities:
-        Person:
-        - acquisition_authorizer
-        - owner
+        - name_field: acquisition_authorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: owner
+          authority_type: Person
+          authority_subtype: person
   valuationcontrol:
     Procedures:
       ValuationControl:
         identifier: valuation_control_reference_number
         title: valuation_control_reference_number
       Authorities:
-        Person:
-        - source
+        - name_field: source
+          authority_type: Person
+          authority_subtype: person
   person:
     Authorities:
       Person:
