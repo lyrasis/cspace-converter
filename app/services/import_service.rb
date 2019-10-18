@@ -85,6 +85,8 @@ class ImportService
     def add_related_authorities(authorities)
       authorities.each do |attributes|
         name_field, type, subtype = gather_authority_data(attributes)
+        next unless type
+
         add_authority(name_field, type, subtype, true)
       end
     end
@@ -95,7 +97,8 @@ class ImportService
       if attributes['authority_type_from']
         type = object.object_data[attributes['authority_type_from']]
       end
-      type ||= attributes['authority_type'].capitalize
+      type ||= attributes['authority_type']
+      type = type.capitalize if type
 
       subtype = attributes['authority_subtype'] ||= type.downcase
       [name_field, type, subtype]
