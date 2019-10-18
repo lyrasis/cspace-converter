@@ -55,7 +55,7 @@ docker run --name mongo -d -p 27017:27017 mongo:3.2 || true
 
 ./import.sh data/core/sample_data_mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
-# verify transferred to: https://core.dev.collectionspace.org
+# verify transferred to: https://materials.dev.collectionspace.org
 ./remote.sh delete Media media1
-# verify deleted from: https://core.dev.collectionspace.org
+# verify deleted from: https://materials.dev.collectionspace.org
 ```
