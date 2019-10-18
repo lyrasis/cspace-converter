@@ -1,14 +1,11 @@
+require_relative '../core/media'
 module CollectionSpace
   module Converter
     module Materials
       include Default
-      class MaterialsMedia < Media
+      class MaterialsMedia < CollectionSpace::Converter::Core::CoreMedia
         def convert
-          run do |xml|
-            CSXML.add xml, 'identificationNumber', attributes["identificationnumber"]
-            CSXML.add xml, 'title', attributes["title"]
-            CSXML.add xml, 'coverage', attributes["coverage"]
-            CSXML.add xml, 'description', attributes["description"]
+          super do |xml|
             CSXML.add xml, 'contributor', attributes["contributor"]
             CSXML.add xml, 'copyrightStatement', attributes["copy_right_statement"]
             CSXML.add xml, 'creator', attributes["creator"]

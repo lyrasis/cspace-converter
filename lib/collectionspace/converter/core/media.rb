@@ -9,6 +9,8 @@ module CollectionSpace
             CSXML.add xml, 'title', attributes["title"]
             CSXML.add xml, 'coverage', attributes["coverage"]
             CSXML.add xml, 'description', scrub_fields([attributes["description"]])
+
+            yield xml if block_given?
           end
         end
       end
