@@ -23,8 +23,6 @@ registered_profiles:
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
-        Organization:
-        - owner_organization
-        Person:
-        - acquisitionauthorizer
-        - owner_person
+        - name_field: owner_organization
+          authority_type: Organization
+          authority_subtype: organization
