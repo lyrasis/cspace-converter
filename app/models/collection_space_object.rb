@@ -33,11 +33,7 @@ class CollectionSpaceObject
     Rails.logger.debug(
       "Generating content for: #{converter} -- #{data}"
     )
-    write_attribute 'content', hack_namespaces(cvtr.convert)
-  end
-
-  def hack_namespaces(xml)
-    xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
+    write_attribute 'content', cvtr.convert
   end
 
   def has_csid_and_uri?

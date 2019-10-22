@@ -33,7 +33,8 @@ module CollectionSpace
               end
             }
           end
-          builder.to_xml
+          # hack namespaces
+          builder.to_xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
         end
 
         def self.map(xml, attributes)
