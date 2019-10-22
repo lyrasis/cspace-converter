@@ -3,15 +3,19 @@ module CollectionSpace
     module Core
       include Default
       class CoreMedia < Media
+        ::CoreMedia = CollectionSpace::Converter::Core::CoreMedia
         def convert
           run do |xml|
-            CSXML.add xml, 'identificationNumber', attributes["identificationnumber"]
-            CSXML.add xml, 'title', attributes["title"]
-            CSXML.add xml, 'coverage', attributes["coverage"]
-            CSXML.add xml, 'description', scrub_fields([attributes["description"]])
-
-            yield xml if block_given?
+            CoreMedia.map(xml, attributes)
           end
+        end
+
+        def self.map(xml, attributes)
+          CSXML.add xml, 'identificationNumber', attributes["identificationnumber"]
+          CSXML.add xml, 'title', attributes["title"]
+          CSXML.add xml, 'coverage', attributes["coverage"]
+          CSXML.add xml, 'description', scrub_fields([attributes["description"]])
+          CSXML.add xml, 'externalUrl', attributes["externalurl"]
         end
       end
     end

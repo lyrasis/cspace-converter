@@ -3,9 +3,9 @@ module CollectionSpace
     module PublicArt
       include Default
       class PublicArtPerson < Person
+        ::PublicArtPerson = CollectionSpace::Converter::PublicArt::PublicArtPerson
         def convert
           run(wrapper: "document") do |xml|
-
             xml.send(
                 "ns2:persons_common",
                 "xmlns:ns2" => "http://collectionspace.org/services/person",
@@ -13,14 +13,7 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-
-              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
-
-              CSXML.add_group_list xml, 'personTerm',
-                                   [{
-                                        "termDisplayName" => attributes["termdisplayname"],
-                                        "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"]),
-                                    }]
+              CorePerson.map(xml, attributes)
             end
 
             xml.send(
@@ -30,14 +23,7 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-
-              # organizations
-              organization_urns = []
-              organizations = split_mvf attributes, 'organization'
-              organizations.each do |organization|
-                organization_urns << { "organization" => CSURN.get_authority_urn('orgauthorities', 'organization', organization, true) }
-              end
-              CSXML.add_repeat(xml, 'organizations', organization_urns) if attributes["organization"]
+              PublicArtPerson.extension(xml, attributes)
             end
 
             xml.send(
@@ -47,15 +33,32 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-
-              # webaddress
-              CSXML.add_group_list xml, 'webAddress',
-                                   [{
-                                        "webAddress" => attributes["webaddress"],
-                                        "webAddressType" => attributes["webaddresstype"],
-                                    }]
+              PublicArtPerson.contact(xml, attributes)
             end
           end
+        end
+
+        def self.contact(xml, attributes)
+          # webaddress
+          CSXML.add_group_list xml, 'webAddress',
+                                [{
+                                    "webAddress" => attributes["webaddress"],
+                                    "webAddressType" => attributes["webaddresstype"],
+                                }]
+        end
+
+        def self.extension(xml, attributes)
+          # organizations
+          organization_urns = []
+          organizations = split_mvf attributes, 'organization'
+          organizations.each do |organization|
+            organization_urns << { "organization" => CSURN.get_authority_urn('orgauthorities', 'organization', organization, true) }
+          end
+          CSXML.add_repeat(xml, 'organizations', organization_urns) if attributes["organization"]
+        end
+
+        def self.map(xml, attributes)
+          # n/a
         end
       end
     end

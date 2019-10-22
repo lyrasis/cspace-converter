@@ -3,9 +3,9 @@ module CollectionSpace
     module PublicArt
       include Default
       class PublicArtPlace < Place
+        ::PublicArtPlace = CollectionSpace::Converter::PublicArt::PublicArtPlace
         def convert
           run(wrapper: "document") do |xml|
-
             xml.send(
                 "ns2:places_common",
                 "xmlns:ns2" => "http://collectionspace.org/services/place",
@@ -14,6 +14,7 @@ module CollectionSpace
               # applying namespace breaks import
               xml.parent.namespace = nil
 
+              # TODO: CorePlace
               CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
 
               CSXML.add_group_list xml, 'addr',
@@ -47,16 +48,23 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-
-              # placementTypes
-              placement_types_urns = []
-              placement_types = split_mvf attributes, 'placementtype'
-              placement_types.each do | placement_type |
-                placement_types_urns << { "placementType" => CSURN.get_vocab_urn('placementtypes', placement_type) }
-              end
-              CSXML.add_repeat(xml, 'placementTypes', placement_types_urns) if attributes["placementtype"]
+              PublicArtPlace.extension(xml, attributes)
             end
           end
+        end
+
+        def self.extension(xml, attributes)
+          # placementTypes
+          placement_types_urns = []
+          placement_types = split_mvf attributes, 'placementtype'
+          placement_types.each do | placement_type |
+            placement_types_urns << { "placementType" => CSURN.get_vocab_urn('placementtypes', placement_type) }
+          end
+          CSXML.add_repeat(xml, 'placementTypes', placement_types_urns) if attributes["placementtype"]
+        end
+
+        def self.map(xml, attributes)
+          # n/a
         end
       end
     end

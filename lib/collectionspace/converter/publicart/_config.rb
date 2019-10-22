@@ -50,20 +50,7 @@ module CollectionSpace
              "Authorities" => {
                "Person" => ["condition_checker"],
              },
-             "Relationships" => [
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_1",
-                  "procedure2_type" => "ConditionCheck",
-                  "data2_field" => "condition_check_reference_number",
-               },
-               {
-                  "procedure1_type" => "Movement",
-                  "data1_field" => "relationship_2",
-                  "procedure2_type" => "ConditionCheck",
-                  "data2_field" => "condition_check_reference_number",
-               },
-             ],
+             "Relationships" => [],
            },
           "exhibition" => {
             "Procedures" => {
@@ -76,44 +63,7 @@ module CollectionSpace
             "Authorities" => {
               "Organization" => ["organizer"],
             },
-            "Relationships" => [
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_1",
-                "procedure2_type" => "Exhibition",
-                "data2_field" => "exhibition_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_2",
-                "procedure2_type" => "Exhibition",
-                "data2_field" => "exhibition_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_3",
-                "procedure2_type" => "Exhibition",
-                "data2_field" => "exhibition_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_4",
-                "procedure2_type" => "Exhibition",
-                "data2_field" => "exhibition_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_5",
-                "procedure2_type" => "Exhibition",
-                "data2_field" => "exhibition_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_6",
-                "procedure2_type" => "Exhibition",
-                "data2_field" => "exhibition_number",
-              },
-            ],
+            "Relationships" => [],
           },
           "group" => {
             "Procedures" => {
@@ -126,38 +76,7 @@ module CollectionSpace
             "Authorities" => {
               "Person" => ["owner"],
             },
-            "Relationships" => [
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_1",
-                "procedure2_type" => "Group",
-                "data2_field" => "title",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_2",
-                "procedure2_type" => "Group",
-                "data2_field" => "title",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_3",
-                "procedure2_type" => "Group",
-                "data2_field" => "title",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_4",
-                "procedure2_type" => "Group",
-                "data2_field" => "title",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_5",
-                "procedure2_type" => "Group",
-                "data2_field" => "title",
-              },
-            ],
+            "Relationships" => [],
           },
           "loanin" => {
             "Procedures" => {
@@ -171,26 +90,7 @@ module CollectionSpace
                "Person" => ["lender's_authorizer", "borrower's_authorizer"],
                "Organization" => ["lender"],
              },
-             "Relationships" => [
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_1",
-                  "procedure2_type" => "LoanIn",
-                  "data2_field" => "loan_in_number",
-               },
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_2",
-                  "procedure2_type" => "LoanIn",
-                  "data2_field" => "loan_in_number",
-               },
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_3",
-                  "procedure2_type" => "LoanIn",
-                  "data2_field" => "loan_in_number",
-               },
-             ],
+             "Relationships" => [],
            },
            "loanout" => {
              "Procedures" => {
@@ -204,26 +104,7 @@ module CollectionSpace
                "Person" => ["lender's_authorizer", "borrower's_authorizer"],
                "Organization" => ["borrower"],
              },
-             "Relationships" => [
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_1",
-                  "procedure2_type" => "LoanOut",
-                  "data2_field" => "loan_out_number",
-               },
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_2",
-                  "procedure2_type" => "LoanOut",
-                  "data2_field" => "loan_out_number",
-               },
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_3",
-                  "procedure2_type" => "LoanOut",
-                  "data2_field" => "loan_out_number",
-               },
-             ],
+             "Relationships" => [],
            },
            "media" => {
              "Procedures" => {
@@ -235,14 +116,7 @@ module CollectionSpace
              },
              "Authorities" => {
              },
-             "Relationships" => [
-               {
-                 "procedure1_type" => "CollectionObject",
-                 "data1_field" => "relationship",
-                 "procedure2_type" => "Media",
-                 "data2_field" => "identificationnumber",
-               },
-             ],
+             "Relationships" => [],
            },
            "movement" => {
              "Procedures" => {
@@ -255,14 +129,7 @@ module CollectionSpace
              "Authorities" => {
                "Person" => ["movement_contact"],
              },
-             "Relationships" => [
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship",
-                  "procedure2_type" => "Movement",
-                  "data2_field" => "movementreferencenumber",
-               },
-             ],
+             "Relationships" => [],
            },
            "intake" => {
              "Procedures" => {
@@ -275,38 +142,7 @@ module CollectionSpace
              "Authorities" => {
               "Person" => ["current_owner"],
              },
-             "Relationships" => [
-               {
-                 "procedure1_type" => "CollectionObject",
-                 "data1_field" => "relationship_1",
-                 "procedure2_type" => "Intake",
-                 "data2_field" => "intake_entry_number",
-               },
-               {
-                 "procedure1_type" => "CollectionObject",
-                 "data1_field" => "relationship_2",
-                 "procedure2_type" => "Intake",
-                 "data2_field" => "intake_entry_number",
-               },
-               {
-                 "procedure1_type" => "CollectionObject",
-                 "data1_field" => "relationship_3",
-                 "procedure2_type" => "Intake",
-                 "data2_field" => "intake_entry_number",
-               },
-               {
-                 "procedure1_type" => "Media",
-                 "data1_field" => "relationship_4",
-                 "procedure2_type" => "Intake",
-                 "data2_field" => "intake_entry_number",
-               },
-               {
-                 "procedure1_type" => "Media",
-                 "data1_field" => "relationship_5",
-                 "procedure2_type" => "Intake",
-                 "data2_field" => "intake_entry_number",
-               },
-             ],
+             "Relationships" => [],
            },
            "objectexit" => {
              "Procedures" => {
@@ -319,14 +155,7 @@ module CollectionSpace
              "Authorities" => {
               "Organization" => ["current_owner"],
              },
-             "Relationships" => [
-               {
-                 "procedure1_type" => "CollectionObject",
-                 "data1_field" => "relationship_1",
-                 "procedure2_type" => "ObjectExit",
-                 "data2_field" => "exit_number",
-               },
-             ],
+             "Relationships" => [],
            },
            "acquisition" => {
              "Procedures" => {
@@ -339,32 +168,7 @@ module CollectionSpace
              "Authorities" => {
               "Person" => ["acquisition_authorizer", "owner"],
             },
-            "Relationships" => [
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_1",
-                "procedure2_type" => "Acquisition",
-                "data2_field" => "acquisition_reference_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_2",
-                "procedure2_type" => "Acquisition",
-                "data2_field" => "acquisition_reference_number",
-              },
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_3",
-                "procedure2_type" => "Acquisition",
-                "data2_field" => "acquisition_reference_number",
-              },
-              {
-                "procedure1_type" => "Intake",
-                "data1_field" => "relationship_4",
-                "procedure2_type" => "Acquisition",
-                "data2_field" => "acquisition_reference_number",
-              },
-            ],
+            "Relationships" => [],
           },
           "valuationcontrol" => {
              "Procedures" => {
@@ -377,14 +181,7 @@ module CollectionSpace
              "Authorities" => {
               "Person" => ["source"],
             },
-            "Relationships" => [
-              {
-                "procedure1_type" => "CollectionObject",
-                "data1_field" => "relationship_1",
-                "procedure2_type" => "ValuationControl",
-                "data2_field" => "valuation_control_reference_number",
-              },
-            ],
+            "Relationships" => [],
           },
         }
       end

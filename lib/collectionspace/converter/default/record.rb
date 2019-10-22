@@ -7,18 +7,11 @@ module CollectionSpace
           @attributes = attributes
         end
 
-        def self.service(subtype = nil)
-          raise 'Must be implemented in subclass'
-        end
-
         # default implementation used by authorities
         # overriden by sub-classes for procedures, returns converted record
         def convert
           run do |xml|
-            CSXML.add xml, 'shortIdentifier', attributes["shortIdentifier"]
-            CSXML.add_group_list xml, attributes["termType"], [{
-              "termDisplayName" => attributes["termDisplayName"],
-            }]
+            Record.map(xml, attributes)
           end
         end
 
@@ -43,13 +36,24 @@ module CollectionSpace
           builder.to_xml
         end
 
+        def self.map(xml, attributes)
+          CSXML.add xml, 'shortIdentifier', attributes["shortIdentifier"]
+          CSXML.add_group_list xml, attributes["termType"], [{
+            "termDisplayName" => attributes["termDisplayName"],
+          }]
+        end
+
         # return an array of fields as a string
-        def scrub_fields(fields = [])
+        def self.scrub_fields(fields = [])
           fields.compact.join(". ").squeeze(".").gsub(/\n|\t/, "").strip
         end
 
+        def self.service(subtype = nil)
+          raise 'Must be implemented in subclass'
+        end
+
         # process multivalued fields by splitting them and returning a flat array of all elements
-        def split_mvf(attributes, *fields)
+        def self.split_mvf(attributes, *fields)
           values = []
           fields.each do |field|
             # TODO: log a warning ? may be noisy ...
@@ -61,11 +65,9 @@ module CollectionSpace
           end
           values.flatten.compact
         end
-
       end
 
       class Acquisition < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'acquisitions', 'acquisition', common
@@ -79,11 +81,9 @@ module CollectionSpace
             schema: 'acquisitions',
           }
         end
-
       end
 
       class CollectionObject < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'collectionobjects', 'collectionobject', common
@@ -97,11 +97,9 @@ module CollectionSpace
             schema: 'collectionobjects',
           }
         end
-
       end
 
       class Concept < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'concepts', 'concept', common
@@ -115,11 +113,9 @@ module CollectionSpace
             schema: 'concepts',
           }
         end
-
       end
 
       class ConditionCheck < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'conditionchecks', 'conditioncheck', common
@@ -133,11 +129,9 @@ module CollectionSpace
             schema: 'conditionchecks',
           }
         end
-
       end
 
       class Conservation < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'conservation', 'conservation', common
@@ -151,11 +145,9 @@ module CollectionSpace
             schema: 'conservation',
           }
         end
-
       end
 
       class Exhibition < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'exhibitions', 'exhibition', common
@@ -169,11 +161,9 @@ module CollectionSpace
             schema: 'exhibitions',
           }
         end
-
       end
 
       class Group < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'groups', 'group', common
@@ -187,11 +177,9 @@ module CollectionSpace
             schema: 'groups',
           }
         end
-
       end
 
       class Intake < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'intakes', 'intake', common
@@ -205,11 +193,9 @@ module CollectionSpace
             schema: 'intakes',
           }
         end
-
       end
 
       class LoanIn < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'loansin', 'loanin', common
@@ -223,11 +209,9 @@ module CollectionSpace
             schema: 'loansin',
           }
         end
-
       end
 
       class LoanOut < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'loansout', 'loanout', common
@@ -241,11 +225,9 @@ module CollectionSpace
             schema: 'loansout',
           }
         end
-
       end
 
       class Location < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'locations', 'location', common
@@ -259,11 +241,9 @@ module CollectionSpace
             schema: 'locations',
           }
         end
-
       end
 
       class Material < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'materials', 'material', common
@@ -277,11 +257,9 @@ module CollectionSpace
             schema: 'materials',
           }
         end
-
       end
 
       class Media < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'media', 'media', common
@@ -295,11 +273,9 @@ module CollectionSpace
             schema: 'media',
           }
         end
-
       end
 
       class Movement < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'movements', 'movement', common
@@ -313,11 +289,9 @@ module CollectionSpace
             schema: 'movements',
           }
         end
-
       end
 
       class ObjectExit < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'objectexit', 'objectexit', common
@@ -331,11 +305,9 @@ module CollectionSpace
             schema: 'objectexit',
           }
         end
-
       end
 
       class Organization < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'organizations', 'organization', common
@@ -349,11 +321,9 @@ module CollectionSpace
             schema: 'organizations',
           }
         end
-
       end
 
       class Person < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'persons', 'person', common
@@ -367,11 +337,9 @@ module CollectionSpace
             schema: 'persons',
           }
         end
-
       end
 
       class Place < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'places', 'place', common
@@ -385,11 +353,9 @@ module CollectionSpace
             schema: 'places',
           }
         end
-
       end
 
       class Relationship < Record
-
         # override the default authority convert method inline
         def convert
           run do |xml|
@@ -415,11 +381,9 @@ module CollectionSpace
             schema: 'relations',
           }
         end
-
       end
 
       class Taxon < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'taxon', 'taxonomy', common
@@ -433,11 +397,9 @@ module CollectionSpace
             schema: 'taxon',
           }
         end
-
       end
 
       class ValuationControl < Record
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'valuationcontrols', 'valuationcontrol', common
@@ -451,9 +413,7 @@ module CollectionSpace
             schema: 'valuationcontrols',
           }
         end
-
       end
-
     end
   end
 end

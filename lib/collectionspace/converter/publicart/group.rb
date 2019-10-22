@@ -3,17 +3,15 @@ module CollectionSpace
     module PublicArt
       include Default
       class PublicArtGroup < Group
+        ::PublicArtGroup = CollectionSpace::Converter::PublicArt::PublicArtGroup
         def convert
           run do |xml|
-            #owner
-            CSXML::Helpers.add_persons xml, 'owner', [attributes["owner"]]
-
-            #loanInDate
-            CSXML.add xml, 'title', attributes["title"]
-
-            #loanInNote
-            CSXML.add xml, 'scopeNote', scrub_fields([attributes["scope_note"]])
+            CoreGroup.map(xml, attributes)
           end
+        end
+
+        def self.map(xml, attributes)
+          # n/a
         end
       end
     end
