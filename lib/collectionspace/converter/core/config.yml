@@ -17,6 +17,21 @@ registered_procedures:
   - ConditionCheck
   - ObjectExit
 registered_profiles:
+  acquisition:
+    Procedures:
+      Acquisition:
+        identifier: acquisitionreferencenumber
+        title: acquisitionreferencenumber
+      Authorities:
+        - name_field: acquisitionauthorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerPerson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerOrganization
+          authority_type: Organization
+          authority_subtype: organization
   cataloging:
     Procedures:
       CollectionObject:
@@ -60,6 +75,15 @@ registered_profiles:
         title: title
       Authorities:
         - name_field: owner
+          authority_type: Person
+          authority_subtype: person
+  intake:
+    Procedures:
+      Intake:
+        identifier: intake_entry_number
+        title: intake_entry_number
+      Authorities:
+        - name_field: current_owner
           authority_type: Person
           authority_subtype: person
   loanin:
@@ -108,15 +132,6 @@ registered_profiles:
         - name_field: movement_contact
           authority_type: Person
           authority_subtype: person
-  intake:
-    Procedures:
-      Intake:
-        identifier: intake_entry_number
-        title: intake_entry_number
-      Authorities:
-        - name_field: current_owner
-          authority_type: Person
-          authority_subtype: person
   objectexit:
     Procedures:
       ObjectExit:
@@ -126,18 +141,12 @@ registered_profiles:
         - name_field: current_owner
           authority_type: Organization
           authority_subtype: organization
-  acquisition:
-    Procedures:
-      Acquisition:
-        identifier: acquisition_reference_number
-        title: acquisition_reference_number
-      Authorities:
-        - name_field: acquisition_authorizer
-          authority_type: Person
-          authority_subtype: person
-        - name_field: owner
-          authority_type: Person
-          authority_subtype: person
+  person:
+    Authorities:
+      Person:
+        name_field: termdisplayname
+        authority_type: Person
+        authority_subtype: person
   valuationcontrol:
     Procedures:
       ValuationControl:
@@ -147,9 +156,3 @@ registered_profiles:
         - name_field: source
           authority_type: Person
           authority_subtype: person
-  person:
-    Authorities:
-      Person:
-        name_field: termdisplayname
-        authority_type: Person
-        authority_subtype: person
