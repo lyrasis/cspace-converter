@@ -6,24 +6,20 @@ module CollectionSpace
         ::MaterialsCollectionObject = CollectionSpace::Converter::Materials::MaterialsCollectionObject
         def convert
           run do |xml|
-            # TODO: use core and fields? CoreCollectionObject.map(xml, attributes)
+            CoreCollectionsObject.map(xml, attributes)
             MaterialsCollectionObject.map(xml, attributes)
           end
         end
 
         def self.map(xml, attributes)
-          # objectNumber
-          CSXML.add xml, 'objectNumber', attributes["id_number"]
-            # othernumber
-          CSXML.add xml, 'numberValue', attributes["number_value"]
-          CSXML.add xml, 'numberType', attributes["number_type"]
-            #Description
-          CSXML.add_repeat xml, 'briefDescriptions', [{
-            "briefDescription" => scrub_fields([attributes["brief_description"]])
+          CSXML.add_list xml, 'otherNumber', [{
+            'numberType' => attributes["numbervalue"],
+            'numberValue' => attributes["numbertype"],
           }]
-            # condition
+
+          # TODO: update mapping & csv
           CSXML.add xml, 'condition', attributes["condition"]
-          CSXML.add xml, 'conditionNote', attributes["condition_note"]
+          CSXML.add xml, 'conditionNote', attributes["conditionnote"]
           # conservation
           CSXML.add xml, 'container', attributes["container"]
           CSXML.add xml, 'containerNote', attributes["container_note"]

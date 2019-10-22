@@ -20,19 +20,19 @@ registered_profiles:
   cataloging:
     Procedures:
       CollectionObject:
-        identifier: id_number
-        title: id_number
+        identifier: objectnumber
+        title: objectnumber
       Authorities:
-        - name_field: content_person
+        - name_field: contentperson
           authority_type: Person
           authority_subtype: person
         - name_field: inscriber
           authority_type: Person
           authority_subtype: person
-        - name_field: production_person
+        - name_field: productionperson
           authority_type: Person
           authority_subtype: person
-        - name_field: production_org
+        - name_field: productionorg
           authority_type: Organization
           authority_subtype: organization
   conditioncheck:

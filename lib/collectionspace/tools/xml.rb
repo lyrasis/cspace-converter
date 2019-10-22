@@ -173,6 +173,31 @@ module CollectionSpace
           add_authority xml, field, 'taxonomyauthority', 'taxon', value
         end
 
+        def self.add_title(xml, attributes, require_cache = false)
+          if attributes["titletranslation"]
+            CSXML.add_group_list xml, 'title', [
+              {
+              "title" => attributes["title"],
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["titlelanguage"], require_cache),
+              }
+            ], 'titleTranslation', [
+              {
+                "titleTranslation" => attributes["titletranslation"],
+                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["titletranslationlanguage"], require_cache)
+              }
+            ]
+          elsif attributes["titlelanguage"]
+            CSXML.add_group_list xml, 'title', [{
+              "title" => attributes["title"],
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["titlelanguage"], require_cache),
+            }]
+          else
+            CSXML.add_group_list xml, 'title', [{
+              "title" => attributes["title"],
+            }]
+          end
+        end
+
         # NOTE: assumes field name matches vocab name (may need to update)
         def self.add_vocab(xml, field, value)
           CSXML.add xml, field, CSURN.get_vocab_urn(field, value)

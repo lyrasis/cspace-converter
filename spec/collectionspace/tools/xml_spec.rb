@@ -54,24 +54,6 @@ RSpec.describe CSXML do
       '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateLatestScalarValue').text).to eq("1972-01-01T00:00:00.000Z")
   end
 
-  # <publicartProductionDateGroupList>
-  #   <publicartProductionDateGroup>
-  #     <publicartProductionDateType>Commission</publicartProductionDateType>
-  #     <publicartProductionDate>
-  #       <scalarValuesComputed>true</scalarValuesComputed>
-  #       <dateEarliestSingleDay>1</dateEarliestSingleDay>
-  #       <dateEarliestScalarValue>1971-01-01T00:00:00.000Z</dateEarliestScalarValue>
-  #       <dateLatestScalarValue>1972-01-01T00:00:00.000Z</dateLatestScalarValue>
-  #       <dateLatestDay>1</dateLatestDay>
-  #     </publicartProductionDate>
-  #   </publicartProductionDateGroup>
-  #   <publicartProductionDateGroup>
-  #     <publicartProductionDateType>Purchase</publicartProductionDateType>
-  #     <publicartProductionDate>
-  #       <scalarValuesComputed>false</scalarValuesComputed>
-  #     </publicartProductionDate>
-  #   </publicartProductionDateGroup>
-  # </publicartProductionDateGroupList>
   it "can 'add group list' without sub key and with sub elements correctly" do
     key = 'publicartProductionDate'
     elements = [
@@ -111,20 +93,6 @@ RSpec.describe CSXML do
       '/publicartProductionDateGroupList/publicartProductionDateGroup[position()=2]/publicartProductionDateType').text).to eq('Purchase')
   end
 
-  # <publicartProductionDateGroupList>
-  #   <publicartProductionDateGroup>
-  #     <publicartProductionDate>
-  #       <scalarValuesComputed>true</scalarValuesComputed>
-  #     </publicartProductionDate>
-  #     <publicartProductionDateType>Commission</publicartProductionDateType>
-  #   </publicartProductionDateGroup>
-  #   <publicartProductionDateGroup>
-  #     <publicartProductionDate>
-  #       <scalarValuesComputed>false</scalarValuesComputed>
-  #     </publicartProductionDate>
-  #     <publicartProductionDateType>Purchase</publicartProductionDateType>
-  #   </publicartProductionDateGroup>
-  # </publicartProductionDateGroupList>
   it "can 'add data' correctly" do
     data = {
       "label" => "publicartProductionDateGroupList",

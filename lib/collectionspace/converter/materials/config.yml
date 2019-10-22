@@ -14,8 +14,8 @@ registered_profiles:
   cataloging:
     Procedures:
       CollectionObject:
-        identifier: object_number
-        title: object_number
+        identifier: objectnumber
+        title: objectnumber
       Authorities:
         - name_field: material
           authority_type: Material
@@ -40,6 +40,6 @@ registered_profiles:
   person:
     Authorities:
       Person:
-        name_field: display_name
+        name_field: displayname
         authority_type: Person
         authority_subtype: person
