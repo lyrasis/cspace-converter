@@ -78,6 +78,10 @@ footer .logo {
   margin-left: 1rem;
 }
 
+form {
+  background-color: #FCFCFC;
+}
+
 table {
   margin-top: 0.5rem;
 }
@@ -95,7 +99,7 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 12rem;
-  background-color: #F7F7F7;
+  background-color: #FCFCFC;
 }
 
 .json, .xml {

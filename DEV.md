@@ -29,6 +29,9 @@ docker run --name mongo -d -p 27017:27017 mongo:3.2 || true
 # verify transferred to: https://core.dev.collectionspace.org
 ./remote.sh delete Media media1
 # verify deleted from: https://core.dev.collectionspace.org
+
+# review other imports
+./import.sh data/core/sample_data_cataloging_core_excerpt.csv cataloging1 cataloging
 ```
 
 ## Materials

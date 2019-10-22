@@ -3,6 +3,7 @@ module CollectionSpace
     module Core
       include Default
       class CoreConcept < Concept
+        ::CoreConcept = CollectionSpace::Converter::Core::CoreConcept
         def convert
           run do |xml|
             # TODO: implement

@@ -3,26 +3,15 @@ module CollectionSpace
     module PublicArt
       include Default
       class PublicArtIntake < Intake
+        ::PublicArtIntake = CollectionSpace::Converter::PublicArt::PublicArtIntake
         def convert
           run do |xml|
-            #entryNumber
-            CSXML.add xml, 'entryNumber', attributes["intake_entry_number"]
-
-            #entryDate
-            CSXML.add xml, 'entryDate', attributes["entry_date"]
-
-            #entryReason
-            CSXML.add xml, 'entryReason', attributes["entry_reason"].downcase!
-
-            #currentOwner
-            CSXML::Helpers.add_person xml, 'currentOwner', attributes["current_owner"] if attributes["current_owner"]
-
-            #entryNote
-            CSXML.add xml, 'entryNote', attributes["entry_note"]
-
-            #packingNote
-            CSXML.add xml, 'packingNote', attributes["packing_note"]
+            CoreIntake.map(xml, attributes)
           end
+        end
+
+        def self.map(xml, attributes)
+          # n/a
         end
       end
     end
