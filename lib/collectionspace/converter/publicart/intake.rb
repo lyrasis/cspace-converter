@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtIntake < Intake
         ::PublicArtIntake = CollectionSpace::Converter::PublicArt::PublicArtIntake
         def convert

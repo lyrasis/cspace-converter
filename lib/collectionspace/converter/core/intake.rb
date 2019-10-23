@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreIntake < Intake
         ::CoreIntake = CollectionSpace::Converter::Core::CoreIntake
         def convert

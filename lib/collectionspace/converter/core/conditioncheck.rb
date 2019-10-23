@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreConditionCheck < ConditionCheck
         ::CoreConditionCheck = CollectionSpace::Converter::Core::CoreConditionCheck
         def convert

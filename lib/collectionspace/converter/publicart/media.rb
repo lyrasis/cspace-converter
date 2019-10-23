@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtMedia < Media
         ::PublicArtMedia = CollectionSpace::Converter::PublicArt::PublicArtMedia
         def convert

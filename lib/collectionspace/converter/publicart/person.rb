@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtPerson < Person
         ::PublicArtPerson = CollectionSpace::Converter::PublicArt::PublicArtPerson
         def convert

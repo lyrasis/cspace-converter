@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreCollectionObject < CollectionObject
         ::CoreCollectionObject = CollectionSpace::Converter::Core::CoreCollectionObject
         def convert

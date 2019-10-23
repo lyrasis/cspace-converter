@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreAcquisition < Acquisition
         ::CoreAcquisition = CollectionSpace::Converter::Core::CoreAcquisition
         def convert

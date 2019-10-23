@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Anthro
-      include Default
       class AnthroNagpra < Nagpra
         ::AnthroNagpra = CollectionSpace::Converter::Anthro::AnthroNagpra
         def convert

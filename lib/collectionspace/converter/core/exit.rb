@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreObjectExit < ObjectExit
         ::CoreObjectExit = CollectionSpace::Converter::Core::CoreObjectExit
         def convert

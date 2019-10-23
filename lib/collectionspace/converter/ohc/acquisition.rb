@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module OHC
-      include Default
       class OHCAcquisition < Acquisition
         ::OHCAcquisition = CollectionSpace::Converter::OHC::OHCAcquisition
         def convert

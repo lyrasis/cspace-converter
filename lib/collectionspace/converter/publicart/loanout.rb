@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtLoanOut < LoanOut
         ::PublicArtLoanOut = CollectionSpace::Converter::PublicArt::PublicArtLoanOut
         def convert

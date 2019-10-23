@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtValuationControl < ValuationControl
         ::PublicArtValuationControl = CollectionSpace::Converter::PublicArt::PublicArtValuationControl
         def convert

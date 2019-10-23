@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreMedia < Media
         ::CoreMedia = CollectionSpace::Converter::Core::CoreMedia
         def convert

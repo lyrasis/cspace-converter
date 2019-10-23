@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreMovement < Movement
         ::CoreMovement = CollectionSpace::Converter::Core::CoreMovement
         def convert

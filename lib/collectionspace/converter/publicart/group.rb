@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtGroup < Group
         ::PublicArtGroup = CollectionSpace::Converter::PublicArt::PublicArtGroup
         def convert
