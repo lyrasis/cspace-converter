@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtConditionCheck < ConditionCheck
         ::PublicArtConditionCheck = CollectionSpace::Converter::PublicArt::PublicArtConditionCheck
         def convert

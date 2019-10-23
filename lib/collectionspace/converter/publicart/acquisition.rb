@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtAcquisition < Acquisition
         ::PublicArtAcquisition = CollectionSpace::Converter::PublicArt::PublicArtAcquisition
         def convert

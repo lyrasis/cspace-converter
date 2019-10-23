@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CorePerson < Person
         ::CorePerson = CollectionSpace::Converter::Core::CorePerson
         def convert

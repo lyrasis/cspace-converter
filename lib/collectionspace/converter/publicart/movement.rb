@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtMovement < Movement
         ::PublicArtMovement = CollectionSpace::Converter::PublicArt::PublicArtMovement
         def convert

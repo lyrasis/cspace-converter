@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       COMMON_ERA_URN = "urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'"
       class PublicArtCollectionObject < CollectionObject
         def convert

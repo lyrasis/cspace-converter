@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreConcept < Concept
         ::CoreConcept = CollectionSpace::Converter::Core::CoreConcept
         def convert

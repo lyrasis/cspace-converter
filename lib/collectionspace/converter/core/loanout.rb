@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreLoanOut < LoanOut
         ::CoreLoanOut = CollectionSpace::Converter::Core::CoreLoanOut
         def convert

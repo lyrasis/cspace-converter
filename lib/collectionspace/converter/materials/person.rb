@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Materials
-      include Default
       class MaterialsPerson < Person
         ::MaterialsPerson = CollectionSpace::Converter::Materials::MaterialsPerson
         def convert

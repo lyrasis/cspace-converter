@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module Core
-      include Default
       class CoreValuationControl < ValuationControl
         ::CoreValuationControl = CollectionSpace::Converter::Core::CoreValuationControl
         def convert

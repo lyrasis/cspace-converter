@@ -1,7 +1,6 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      include Default
       class PublicArtObjectExit < ObjectExit
         ::PublicArtObjectExit = CollectionSpace::Converter::PublicArt::PublicArtObjectExit
         def convert
