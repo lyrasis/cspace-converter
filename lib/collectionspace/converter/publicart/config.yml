@@ -1,0 +1,128 @@
+---
+registered_authorities:
+  - conceptauthorities
+  - orgauthorities
+  - personauthorities
+  - placeauthorities
+registered_procedures:
+  - Acquisition
+  - CollectionObject
+  - ConditionCheck
+  - Exhibition
+  - Group
+  - Intake
+  - LoanIn
+  - LoanOut
+  - Media
+  - Movement
+  - ObjectExit
+  - ValuationControl
+registered_profiles:
+  acquisition:
+    Procedures:
+      Acquisition:
+        identifier: acquisition_reference_number
+        title: acquisition_reference_number
+      Authorities:
+        Person:
+        - acquisition_authorizer
+        - owner
+  cataloging:
+    Procedures:
+      CollectionObject:
+        identifier: objectnumber
+        title: title
+      Authorities:
+        Person:
+        - content_person
+        - inscriber
+        - objectproductionperson
+        - owners_person
+        Organization:
+        - production_org
+        - owners_org
+        Concept:
+        - - material
+          - material_ca
+  conditioncheck:
+    Procedures:
+      ConditionCheck:
+        identifier: condition_check_reference_number
+        title: condition_check_reference_number
+      Authorities:
+        Person:
+        - condition_checker
+  exhibition:
+    Procedures:
+      Exhibition:
+        identifier: exhibition_number
+        title: exhibition_number
+      Authorities:
+        Organization:
+        - organizer
+  group:
+    Procedures:
+      Group:
+        identifier: title
+        title: title
+      Authorities:
+        Person:
+        - owner
+  intake:
+    Procedures:
+      Intake:
+        identifier: intake_entry_number
+        title: intake_entry_number
+      Authorities:
+        Person:
+        - current_owner
+  loanin:
+    Procedures:
+      LoanIn:
+        identifier: loan_in_number
+        title: loan_in_number
+      Authorities:
+        Person:
+        - lender's_authorizer
+        - borrower's_authorizer
+  loanout:
+    Procedures:
+      LoanOut:
+        identifier: loan_out_number
+        title: loan_out_number
+      Authorities:
+        Person:
+        - lender's_authorizer
+        - borrower's_authorizer
+        Organization:
+        - borrower
+  media:
+    Procedures:
+      Media:
+        identifier: identificationnumber
+        title: identificationnumber
+      Authorities: []
+  movement:
+    Procedures:
+      Movement:
+        identifier: movementreferencenumber
+        title: movementreferencenumber
+      Authorities:
+        Person:
+        - movement_contact
+  objectexit:
+    Procedures:
+      ObjectExit:
+        identifier: exit_number
+        title: exit_number
+      Authorities:
+        Organization:
+        - current_owner
+  valuationcontrol:
+    Procedures:
+      ValuationControl:
+        identifier: valuation_control_reference_number
+        title: valuation_control_reference_number
+      Authorities:
+        Person:
+        - source
