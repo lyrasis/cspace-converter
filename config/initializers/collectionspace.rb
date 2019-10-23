@@ -3,7 +3,7 @@ Dir["#{Rails.root.join('lib', 'collectionspace', 'converter', 'default')}/*.rb"]
   require lib
 end
 
-# Require everything else
-Dir["#{Rails.root.join('lib', 'collectionspace')}/**/*.rb"].each do |lib|
+# Require everything else (starting with "_*")
+Dir["#{Rails.root.join('lib', 'collectionspace')}/**/*.rb"].sort.each do |lib|
   require lib
 end

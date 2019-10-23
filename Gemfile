@@ -44,6 +44,7 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'pry-rails'
+  gem 'rb-readline'
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara', '~> 2.4.0'
   gem 'factory_girl_rails'
