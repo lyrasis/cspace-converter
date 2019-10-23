@@ -2,6 +2,17 @@
 
 Configuration and steps for testing converter modules & profiles.
 
+## Preliminary setup
+
+Run the preliminary setup run when first using or switching to a config.
+
+```bash
+docker run --name mongo -d -p 27017:27017 mongo:3.2 || true
+bundle exec rake db:nuke
+bundle exec rake cache:download_vocabularies
+bundle exec rake cache:export[~/.cspace-converter,cache.csv]
+```
+
 ## Core
 
 Config:
@@ -20,7 +31,6 @@ export CSPACE_CONVERTER_PASSWORD=Administrator
 Steps:
 
 ```bash
-docker run --name mongo -d -p 27017:27017 mongo:3.2 || true
 ./reset.sh # make sure we're empty
 ./bin/rake remote:get[media] # test connection
 
@@ -56,7 +66,6 @@ export CSPACE_CONVERTER_PASSWORD=Administrator
 Steps:
 
 ```bash
-docker run --name mongo -d -p 27017:27017 mongo:3.2 || true
 ./reset.sh # make sure we're empty
 ./bin/rake remote:get[media] # test connection
 
