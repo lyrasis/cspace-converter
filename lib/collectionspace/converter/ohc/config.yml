@@ -4,18 +4,18 @@ registered_authorities:
   - personauthorities
   - placeauthorities
 registered_procedures:
+  - Acquisition
   - CollectionObject
+  - ConditionCheck
   - Exhibition
+  - Group
+  - Intake
   - LoanIn
   - LoanOut
   - Media
-  - Intake
-  - Acquisition
-  - Group
-  - ValuationControl
   - Movement
-  - ConditionCheck
   - ObjectExit
+  - ValuationControl
 registered_profiles:
   acquisition:
     Procedures:
