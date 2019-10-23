@@ -68,7 +68,7 @@ Steps:
 ./reset.sh # make sure we're empty
 ./bin/rake remote:get[claims] # test connection
 
-./import.sh data/core/$TODO.csv claims1 nagpra
+./import.sh data/anthro/$TODO.csv claims1 nagpra
 ./remote.sh transfer Nagpra claims1
 ./remote.sh delete Nagpra claims1
 ```
