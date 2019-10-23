@@ -1,0 +1,11 @@
+---
+registered_authorities: []
+registered_procedures:
+  - Nagpra
+registered_profiles:
+  nagpra:
+    Procedures:
+      Nagpra:
+        identifier: claimnumber
+        title: claimnumber
+      Authorities: []

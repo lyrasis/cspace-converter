@@ -292,6 +292,22 @@ module CollectionSpace
         end
       end
 
+      class Nagpra < Record
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'claims', 'claim', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'claims',
+            identifier_field: 'claimNumber',
+            path: 'claims',
+            schema: 'claims',
+          }
+        end
+      end
+
       class ObjectExit < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
