@@ -45,7 +45,32 @@ Steps:
 ./import.sh data/core/sample_data_mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
 ./remote.sh delete Media media1
+```
 
+## Anthro
+
+Config:
+
+```txt
+# DEVELOPMENT .env.local
+export CSPACE_CONVERTER_DB_HOST=127.0.0.1
+export CSPACE_CONVERTER_BASE_URI=https://anthro.dev.collectionspace.org/cspace-services
+export CSPACE_CONVERTER_DOMAIN=anthro.collectionspace.org
+export CSPACE_CONVERTER_LOG_LEVEL=debug
+export CSPACE_CONVERTER_MODULE=Anthro
+export CSPACE_CONVERTER_USERNAME=admin@anthro.collectionspace.org
+export CSPACE_CONVERTER_PASSWORD=Administrator
+```
+
+Steps:
+
+```bash
+./reset.sh # make sure we're empty
+./bin/rake remote:get[claims] # test connection
+
+./import.sh data/core/$TODO.csv claims1 nagpra
+./remote.sh transfer Nagpra claims1
+./remote.sh delete Nagpra claims1
 ```
 
 ## Materials
