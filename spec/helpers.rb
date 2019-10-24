@@ -7,4 +7,10 @@ module Helpers
       return JSON.parse(chunk[0].to_json)
     end
   end
+
+  def get_fixture(file)
+    File.open(
+      Rails.root.join('spec', 'fixtures', 'files', file)
+    ) { |f| Nokogiri::XML(f) }
+  end
 end
