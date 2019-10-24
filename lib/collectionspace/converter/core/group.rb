@@ -12,9 +12,14 @@ module CollectionSpace
         def self.map(xml, attributes)
           CSXML::Helpers.add_persons xml, 'owner', [attributes["owner"]]
           CSXML.add xml, 'title', attributes["title"]
-          CSXML.add xml, 'scopeNote', scrub_fields([attributes["scope_note"]])
+          CSXML.add xml, 'scopeNote', scrub_fields([attributes["scopenote"]])
+          CSXML.add xml, 'responsibleDepartment', attributes["responsibledepartment"]
+          CSXML.add_group xml, 'groupDate', { "groupEarliestSingleDate" => attributes['groupearliestsingledate'],
+            'groupLatestDate' => attributes['grouplatestdate'],
+          }
         end
       end
     end
   end
 end
+
