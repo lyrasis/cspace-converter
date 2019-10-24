@@ -1,0 +1,7 @@
+termDisplayName,conceptType,scopeNote,termSource,termSourceNote
+"Category 1: Colors",category,"Definition: The color of a thing",FN4.0,"Changed from ""Hues""; Edited definition"
+"Primary Colors",class,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN3.0,
+Blue,subclass,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
+"Dark blue","primary object term","This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
+"Navy blue","secondary object term","This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
+"Starless Night Blue","tertiary object term","This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
