@@ -13,4 +13,23 @@ module Helpers
       Rails.root.join('spec', 'fixtures', 'files', file)
     ) { |f| Nokogiri::XML(f) }
   end
+
+  def get_text(doc, xpath)
+    if xpath.respond_to? :key
+      t = doc.xpath(xpath[:xpath]).text
+      xpath[:transform].call(t)
+    else
+      doc.xpath(xpath).text
+    end
+  end
+
+  def test_converter(doc, record, xpaths)
+    xpaths.each do |xpath|
+      doc_text = get_text(doc, xpath)
+      record_text = get_text(record, xpath)
+      expect(doc_text).not_to be_empty
+      expect(record_text).not_to be_empty
+      expect(doc_text).to eq(record_text)
+    end
+  end
 end
