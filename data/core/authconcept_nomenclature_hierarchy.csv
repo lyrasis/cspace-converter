@@ -1,6 +1,6 @@
-TERM,BROADER TERM
-Primary Colors,Category 1: Colors
-Blue,Primary Colors
-Dark blue,Blue
-Navy blue,Dark blue
-Starless Night Blue,Navy blue
+term,broaderTerm
+"Primary Colors","Category 1: Colors"
+Blue,"Primary Colors"
+"Dark blue",Blue
+"Navy blue","Dark blue"
+"Starless Night Blue","Navy blue"

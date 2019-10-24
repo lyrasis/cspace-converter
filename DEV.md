@@ -34,19 +34,19 @@ Steps:
 ./reset.sh # make sure we're empty
 ./bin/rake remote:get[media] # test connection
 
-./import.sh data/core/sample_data_acquisition_core_all.csv acquisition1 acquisition
+./import.sh data/core/acquisition_core_all.csv acquisition1 acquisition
 ./remote.sh transfer Acquisition acquisition1
 ./remote.sh delete Acquisition acquisition1
 
-./import.sh data/core/sample_data_cataloging_core_excerpt.csv cataloging1 cataloging
+./import.sh data/core/cataloging_core_excerpt.csv cataloging1 cataloging
 ./remote.sh transfer CollectionObject cataloging1
 ./remote.sh delete CollectionObject cataloging1
 
-./import.sh data/core/sample_data_group_core_all.csv group1 group
+./import.sh data/core/group_core_all.csv group1 group
 ./remote.sh transfer Group group1
 ./remote.sh delete Group group1
 
-./import.sh data/core/sample_data_mediahandling_core_all.csv media1 media
+./import.sh data/core/mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
 ./remote.sh delete Media media1
 ```
@@ -98,7 +98,7 @@ Steps:
 ./reset.sh # make sure we're empty
 ./bin/rake remote:get[media] # test connection
 
-./import.sh data/core/sample_data_mediahandling_core_all.csv media1 media
+./import.sh data/core/mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
 ./remote.sh delete Media media1
 ```

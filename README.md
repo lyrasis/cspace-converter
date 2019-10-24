@@ -92,8 +92,8 @@ The general format for the command is:
 For example:
 
 ```bash
-./import.sh data/core/sample_data_cataloging_core_excerpt.csv cataloging1 cataloging
-./import.sh data/core/sample_data_mediahandling_core_all.csv media1 media
+./import.sh data/core/cataloging_core_excerpt.csv cataloging1 cataloging
+./import.sh data/core/mediahandling_core_all.csv media1 media
 ```
 
 ## Starting/Running the cspace-converter tool UI server
