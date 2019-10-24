@@ -28,4 +28,10 @@ RSpec.describe CSIDF do
   it "can convert vocabulary display values to id form with quotes" do
     expect(CSIDF.for_option("maker's mark")).to eq 'makers_mark'
   end
+
+  it "can generate deterministic short identifiers" do
+    name = "Jurgen Klopp!"
+    short_identifier = "JurgenKlopp1289035554"
+    expect(CSIDF.short_identifier(name)).to eq short_identifier
+  end
 end

@@ -26,10 +26,8 @@ module CollectionSpace
       end
 
       def self.short_identifier(value)
-        v_str = value.gsub(/\W/, ''); # remove non-words
-        v_enc = Base64.strict_encode64(v_str); # encode it
-        v = v_str + v_enc.gsub(/\W/, ''); # remove non-words from result
-        v
+        v = value.gsub(/\W/, '')
+        "#{v}#{XXhash.xxh32(v)}"
       end
     end
   end

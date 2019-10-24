@@ -9,6 +9,7 @@ gem "collectionspace-client", '0.1.4'
 gem 'dbf'
 gem 'whenever'
 gem 'rake'
+gem 'xxhash'
 
 # Use SCSS for stylesheets
 gem "bootstrap", ">= 4.1.2"
