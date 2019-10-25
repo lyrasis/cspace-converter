@@ -34,7 +34,7 @@ with "MyMuseum" (following ruby naming conventions).
 module CollectionSpace
   module Converter
     module MyMuseum
-      # ...
+      include Default
     end
   end
 end
@@ -90,7 +90,7 @@ In this case there are distinct CSV files for different procedures
 so we need a profile to manage each data file.
 
 Each "profile" needs to define the type of records it generates from
-the CSV data. There must be only one top level key:
+the CSV data:
 
 #### Procedures
 
@@ -106,30 +106,57 @@ as "id_number" within the application.
 
 Example:
 
-```ruby
-"Procedures" => {
-  "Acquisition" => {
-    "identifier" => "accession_number",
-    "title" => "accession_number",
-  },
-  "ValuationControl" => {
-    "identifier" => "valuation_number",
-    "title" => "valuation_number",
-  },
-},
+```yml
+acquisition:
+  type: Procedures
+  config:
+    Acquisition:
+      identifier: acquisitionreferencenumber
+      title: acquisitionreferencenumber
+cataloging:
+  type: Procedures
+  config:
+    CollectionObject:
+      identifier: objectnumber
+      title: objectnumber
 ```
 
 The Procedures configuration can include an "Authorities" key. This refers
 to fields within the csv that refer to, and can generate, authority records
 directly related to the procedures:
 
-```ruby
-"Procedures" => {
-  # authorities referenced in the csv
-  "Authorities" => {
-    "Person" => ["recby", "recfrom"],
-  },
-},
+```yml
+acquisition:
+  type: Procedures
+  config:
+    # ...
+    Authorities:
+      - name_field: acquisitionauthorizer
+        authority_type: Person
+        authority_subtype: person
+      - name_field: ownerPerson
+        authority_type: Person
+        authority_subtype: person
+      - name_field: ownerOrganization
+        authority_type: Organization
+        authority_subtype: organization
+cataloging:
+  type: Procedures
+  config:
+    # ...
+    Authorities:
+      - name_field: contentperson
+        authority_type: Person
+        authority_subtype: person
+      - name_field: inscriber
+        authority_type: Person
+        authority_subtype: person
+      - name_field: productionperson
+        authority_type: Person
+        authority_subtype: person
+      - name_field: productionorg
+        authority_type: Organization
+        authority_subtype: organization
 ```
 
 #### Authorities
@@ -144,8 +171,9 @@ defining:
 Example:
 
 ```yml
-Authorities:
-  Person:
+person:
+  type: Authorities
+  config:
     name_field: termdisplayname
     authority_type: Person
     authority_subtype: person
