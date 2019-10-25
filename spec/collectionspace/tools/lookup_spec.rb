@@ -14,6 +14,12 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Core
     end
 
+    it "returns the converter module" do
+      expect(
+        Lookup.converter_module
+      ).to eq 'Core'
+    end
+
     it "returns the default authority class" do
       expect(
         Lookup.default_authority_class('Person')
@@ -64,9 +70,9 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Core::CoreCollectionObject
     end
 
-    it "returns the profile for cataloging" do
+    it "returns the profile config cataloging" do
       expect(
-        Lookup.profile_for("cataloging", "Procedures")
+        Lookup.profile_config("cataloging")
       ).to have_key("CollectionObject")
     end
 

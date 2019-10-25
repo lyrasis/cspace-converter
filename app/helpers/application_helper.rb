@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def converter_module
-    Lookup::CONVERTER_MODULE
+    Lookup.converter_module
   end
 
   def path_for_batch_type(batch)
@@ -31,7 +31,7 @@ module ApplicationHelper
   def profiles
     profiles = []
     Lookup.converter_class.registered_profiles.keys.sort.each do |profile|
-      profiles << [profile, profile, class: Lookup::CONVERTER_MODULE]
+      profiles << [profile, profile, class: Lookup.converter_module]
     end
     profiles
   end

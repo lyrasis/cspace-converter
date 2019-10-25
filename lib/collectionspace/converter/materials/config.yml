@@ -12,7 +12,8 @@ registered_procedures:
   - Media
 registered_profiles:
   cataloging:
-    Procedures:
+    type: Procedures
+    config:
       CollectionObject:
         identifier: objectnumber
         title: objectnumber
@@ -21,13 +22,14 @@ registered_profiles:
           authority_type: Material
           authority_subtype: material
   material:
-    Authorities:
-      Material:
-        name_field: termdisplayname
-        authority_type: Material
-        authority_subtype: material
+    type: Authorities
+    config:
+      name_field: termdisplayname
+      authority_type: Material
+      authority_subtype: material
   media:
-    Procedures:
+    type: Procedures
+    config:
       Media:
         identifier: identificationnumber
         title: identificationnumber
@@ -38,8 +40,8 @@ registered_profiles:
           authority_type: Person
           authority_subtype: person
   person:
-    Authorities:
-      Person:
-        name_field: displayname
-        authority_type: Person
-        authority_subtype: person
+    type: Authorities
+    config:
+      name_field: displayname
+      authority_type: Person
+      authority_subtype: person

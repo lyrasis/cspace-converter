@@ -37,7 +37,7 @@ class DataObject
   end
 
   def set_module
-    write_attribute :converter_module, ENV.fetch('CSPACE_CONVERTER_MODULE').capitalize
+    write_attribute :converter_module, Lookup.converter_module.capitalize
   end
 
   def add_authority(type:, subtype:, name:, identifier: nil, from_procedure: false)

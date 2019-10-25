@@ -1,12 +1,11 @@
 class ImportService
 
   class Base
-    attr_reader :data, :object, :profile, :type
+    attr_reader :data, :object, :profile
     def initialize(profile, data)
       @data    = data
       @object  = nil
       @profile = profile
-      @type    = nil
     end
 
     def add_authority(name_field, type, subtype, from_procedure = false)
@@ -48,6 +47,7 @@ class ImportService
 
     def update_status(import_status:, import_message:)
       raise 'Data Object has not been created' unless object
+
       object.write_attributes(
         import_status: import_status,
         import_message: import_message
@@ -59,27 +59,24 @@ class ImportService
   class Authorities < Base
     def initialize(profile, data)
       super
-      @type = 'Authorities'
     end
 
     def process
       raise 'Data Object has not been created' unless object
 
-      Lookup.profile_for(profile, type).each do |_, attributes|
-        add_authority(
-          attributes['name_field'],
-          attributes['authority_type'],
-          attributes['authority_subtype'],
-          false
-        )
-      end
+      config = Lookup.profile_config(profile)
+      add_authority(
+        config['name_field'],
+        config['authority_type'],
+        config['authority_subtype'],
+        false
+      )
     end
   end
 
   class Procedures < Base
     def initialize(profile, data)
       super
-      @type = 'Procedures'
     end
 
     def add_related_authorities(authorities)
@@ -107,14 +104,14 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      procedures = Lookup.profile_for(profile, type)
-      procedures.each do |procedure, attributes|
+      config = Lookup.profile_config(profile)
+      config.each do |procedure, attributes|
         next if procedure == 'Authorities'
 
         object.add_procedure procedure, attributes
         object.save!
       end
-      add_related_authorities(procedures.fetch('Authorities', {}))
+      add_related_authorities(config.fetch('Authorities', {}))
     end
   end
 end
