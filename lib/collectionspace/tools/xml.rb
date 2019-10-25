@@ -96,15 +96,19 @@ module CollectionSpace
       module Helpers
 
         def self.add_authority(xml, field, authority_type, authority, value)
+          return nil unless value
+
           CSXML.add xml, field, CSURN.get_authority_urn(authority_type, authority, value)
         end
 
         def self.add_authorities(xml, field, authority_type, authority, values = [], method)
-          values = values.map do |value|
+          values = values.compact.map do |value|
             {
                 field => CSURN.get_authority_urn(authority_type, authority, value),
             }
           end
+          return nil unless values.any?
+
           # we are crudely forcing pluralization for repeats (this may need to be revisited)
           # sometimes the parent and child elements are both pluralized so ensure there's only 1 i.e.
           # conservators: [ "conservators" ... ] vs. acquisitionSources: [ "acquisitionSource" ... ]
