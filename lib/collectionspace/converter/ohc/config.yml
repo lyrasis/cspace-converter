@@ -18,7 +18,8 @@ registered_procedures:
   - ValuationControl
 registered_profiles:
   acquisition:
-    Procedures:
+    type: Procedures
+    config:
       Acquisition:
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber

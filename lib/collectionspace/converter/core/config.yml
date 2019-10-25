@@ -19,7 +19,8 @@ registered_procedures:
   - ValuationControl
 registered_profiles:
   acquisition:
-    Procedures:
+    type: Procedures
+    config:
       Acquisition:
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
@@ -34,7 +35,8 @@ registered_profiles:
           authority_type: Organization
           authority_subtype: organization
   cataloging:
-    Procedures:
+    type: Procedures
+    config:
       CollectionObject:
         identifier: objectnumber
         title: objectnumber
@@ -52,7 +54,8 @@ registered_profiles:
           authority_type: Organization
           authority_subtype: organization
   conditioncheck:
-    Procedures:
+    type: Procedures
+    config:
       ConditionCheck:
         identifier: condition_check_reference_number
         title: condition_check_reference_number
@@ -61,7 +64,8 @@ registered_profiles:
           authority_type: Person
           authority_subtype: person
   exhibition:
-    Procedures:
+    type: Procedures
+    config:
       Exhibition:
         identifier: exhibition_number
         title: exhibition_number
@@ -70,7 +74,8 @@ registered_profiles:
           authority_type: Organization
           authority_subtype: organization
   group:
-    Procedures:
+    type: Procedures
+    config:
       Group:
         identifier: title
         title: title
@@ -79,7 +84,8 @@ registered_profiles:
           authority_type: Person
           authority_subtype: person
   intake:
-    Procedures:
+    type: Procedures
+    config:
       Intake:
         identifier: intake_entry_number
         title: intake_entry_number
@@ -88,7 +94,8 @@ registered_profiles:
           authority_type: Person
           authority_subtype: person
   loanin:
-    Procedures:
+    type: Procedures
+    config:
       LoanIn:
         identifier: loan_in_number
         title: loan_in_number
@@ -103,7 +110,8 @@ registered_profiles:
           authority_type: Organization
           authority_subtype: organization
   loanout:
-    Procedures:
+    type: Procedures
+    config:
       LoanOut:
         identifier: loan_out_number
         title: loan_out_number
@@ -119,13 +127,15 @@ registered_profiles:
           authority_type: Organization
           authority_subtype: organization
   media:
-    Procedures:
+    type: Procedures
+    config:
       Media:
         identifier: identificationnumber
         title: identificationnumber
       Authorities: []
   movement:
-    Procedures:
+    type: Procedures
+    config:
       Movement:
         identifier: inventory_reference_number
         title: inventory_reference_number
@@ -134,13 +144,14 @@ registered_profiles:
           authority_type: Person
           authority_subtype: person
   nomenclature:
-    Authorities:
-      Concept:
-        name_field: termdisplayname
-        authority_type: Concept
-        authority_subtype: nomenclature
+    type: Authorities
+    config:
+      name_field: termdisplayname
+      authority_type: Concept
+      authority_subtype: nomenclature
   objectexit:
-    Procedures:
+    type: Procedures
+    config:
       ObjectExit:
         identifier: exit_number
         title: exit_number
@@ -149,13 +160,14 @@ registered_profiles:
           authority_type: Organization
           authority_subtype: organization
   person:
-    Authorities:
-      Person:
-        name_field: termdisplayname
-        authority_type: Person
-        authority_subtype: person
+    type: Authorities
+    config:
+      name_field: termdisplayname
+      authority_type: Person
+      authority_subtype: person
   valuationcontrol:
-    Procedures:
+    type: Procedures
+    config:
       ValuationControl:
         identifier: valuation_control_reference_number
         title: valuation_control_reference_number
@@ -163,3 +175,6 @@ registered_profiles:
         - name_field: source
           authority_type: Person
           authority_subtype: person
+  vocabularies:
+    type: Vocabularies
+    config: {}

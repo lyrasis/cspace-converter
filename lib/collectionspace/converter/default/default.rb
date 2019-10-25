@@ -13,7 +13,7 @@ module CollectionSpace
                 'lib',
                 'collectionspace',
                 'converter',
-                ENV['CSPACE_CONVERTER_MODULE'].downcase,
+                Lookup.converter_module.downcase,
                 'config.yml'
               )
             )

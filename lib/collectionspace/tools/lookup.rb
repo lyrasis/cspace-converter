@@ -4,7 +4,6 @@ module CollectionSpace
       ::Lookup = CollectionSpace::Tools::Lookup
       CONVERTER_BASE    = "CollectionSpace::Converter"
       CONVERTER_DEFAULT = "#{CONVERTER_BASE}::Default"
-      CONVERTER_MODULE  = ENV.fetch('CSPACE_CONVERTER_MODULE')
       CONVERTER_TOOLS   = "CollectionSpace::Tools"
 
       # i.e. #{CONVERTER_BASE}::Core::CoreMaterials
@@ -13,7 +12,11 @@ module CollectionSpace
       end
 
       def self.converter_class
-        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}".constantize
+        "#{CONVERTER_BASE}::#{converter_module}".constantize
+      end
+
+      def self.converter_module
+        ENV.fetch('CSPACE_CONVERTER_MODULE')
       end
 
       def self.default_authority_class(authority)
@@ -37,7 +40,7 @@ module CollectionSpace
       end
 
       def self.module_class(type)
-        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{type}".constantize
+        "#{CONVERTER_BASE}::#{converter_module}::#{converter_module}#{type}".constantize
       end
 
       def self.parts_for(category)
@@ -49,12 +52,12 @@ module CollectionSpace
         module_class(procedure)
       end
 
-      def self.profile_for(profile, type)
-        converter_class.registered_profiles[profile][type]
+      def self.profile_config(profile)
+        converter_class.registered_profiles[profile]['config']
       end
 
       def self.profile_type(profile)
-        converter_class.registered_profiles[profile].keys.first
+        converter_class.registered_profiles[profile]['type']
       end
 
       def self.record_class(type)

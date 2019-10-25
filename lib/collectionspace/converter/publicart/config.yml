@@ -19,7 +19,8 @@ registered_procedures:
   - ValuationControl
 registered_profiles:
   acquisition:
-    Procedures:
+    type: Procedures
+    config:
       Acquisition:
         identifier: acquisition_reference_number
         title: acquisition_reference_number
@@ -28,7 +29,8 @@ registered_profiles:
         - acquisition_authorizer
         - owner
   cataloging:
-    Procedures:
+    type: Procedures
+    config:
       CollectionObject:
         identifier: objectnumber
         title: title
@@ -45,7 +47,8 @@ registered_profiles:
         - - material
           - material_ca
   conditioncheck:
-    Procedures:
+    type: Procedures
+    config:
       ConditionCheck:
         identifier: condition_check_reference_number
         title: condition_check_reference_number
@@ -53,7 +56,8 @@ registered_profiles:
         Person:
         - condition_checker
   exhibition:
-    Procedures:
+    type: Procedures
+    config:
       Exhibition:
         identifier: exhibition_number
         title: exhibition_number
@@ -61,7 +65,8 @@ registered_profiles:
         Organization:
         - organizer
   group:
-    Procedures:
+    type: Procedures
+    config:
       Group:
         identifier: title
         title: title
@@ -69,7 +74,8 @@ registered_profiles:
         Person:
         - owner
   intake:
-    Procedures:
+    type: Procedures
+    config:
       Intake:
         identifier: intake_entry_number
         title: intake_entry_number
@@ -77,7 +83,8 @@ registered_profiles:
         Person:
         - current_owner
   loanin:
-    Procedures:
+    type: Procedures
+    config:
       LoanIn:
         identifier: loan_in_number
         title: loan_in_number
@@ -86,7 +93,8 @@ registered_profiles:
         - lender's_authorizer
         - borrower's_authorizer
   loanout:
-    Procedures:
+    type: Procedures
+    config:
       LoanOut:
         identifier: loan_out_number
         title: loan_out_number
@@ -97,13 +105,15 @@ registered_profiles:
         Organization:
         - borrower
   media:
-    Procedures:
+    type: Procedures
+    config:
       Media:
         identifier: identificationnumber
         title: identificationnumber
       Authorities: []
   movement:
-    Procedures:
+    type: Procedures
+    config:
       Movement:
         identifier: movementreferencenumber
         title: movementreferencenumber
@@ -111,7 +121,8 @@ registered_profiles:
         Person:
         - movement_contact
   objectexit:
-    Procedures:
+    type: Procedures
+    config:
       ObjectExit:
         identifier: exit_number
         title: exit_number
@@ -119,7 +130,8 @@ registered_profiles:
         Organization:
         - current_owner
   valuationcontrol:
-    Procedures:
+    type: Procedures
+    config:
       ValuationControl:
         identifier: valuation_control_reference_number
         title: valuation_control_reference_number

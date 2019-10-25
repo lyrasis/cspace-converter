@@ -21,4 +21,3 @@ module CollectionSpace
     end
   end
 end
-

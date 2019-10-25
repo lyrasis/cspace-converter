@@ -4,7 +4,8 @@ registered_procedures:
   - Nagpra
 registered_profiles:
   nagpra:
-    Procedures:
+    type: Procedures
+    config:
       Nagpra:
         identifier: claimnumber
         title: claimnumber
