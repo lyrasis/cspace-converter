@@ -27,12 +27,12 @@ module CollectionSpace
           'dateEarliestSingleMonth' => date.earliest_month,
           'dateEarliestSingleDay' => date.earliest_day,
           'dateEarliestScalarValue' => date.earliest_scalar,
-          'dateEarliestSingleEra' => CSURN.get_vocab_urn('dateera', 'CE', true),
+          'dateEarliestSingleEra' => CSURN.get_vocab_urn('dateera', 'CE'),
           'dateLatestYear' => date.latest_year,
           'dateLatestMonth' => date.latest_month,
           'dateLatestDay' => date.latest_day,
           'dateLatestScalarValue' => date.latest_scalar,
-          'dateLatestEra' => CSURN.get_vocab_urn('dateera', 'CE', true),
+          'dateLatestEra' => CSURN.get_vocab_urn('dateera', 'CE'),
         }
       end
 

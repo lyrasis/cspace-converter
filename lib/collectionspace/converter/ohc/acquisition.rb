@@ -36,7 +36,7 @@ module CollectionSpace
             end
             status = attributes["approvalstatus#{i}status"]
             if status
-              status = CSURN.get_vocab_urn('deaccessionapprovalstatus', status, true)
+              status = CSURN.get_vocab_urn('deaccessionapprovalstatus', status)
               data['approvalStatus'] = status
             end
             data

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="vocabularyitems">
+  <ns2:vocabularyitems_common xmlns:ns2="http://collectionspace.org/services/vocabulary" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <displayName>Danish</displayName>
+    <shortIdentifier>dan</shortIdentifier>
+  </ns2:vocabularyitems_common>
+</document>

@@ -28,6 +28,10 @@ module CollectionSpace
         "#{CONVERTER_DEFAULT}::Relationship".constantize
       end
 
+      def self.default_vocabulary_class
+        "#{CONVERTER_DEFAULT}::Vocabulary".constantize
+      end
+
       def self.import_service(type)
         "ImportService::#{type}".constantize
       end

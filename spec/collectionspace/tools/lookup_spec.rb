@@ -32,6 +32,12 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Default::Relationship
     end
 
+    it "returns the default vocabulary class" do
+      expect(
+        Lookup.default_vocabulary_class
+      ).to eq CollectionSpace::Converter::Default::Vocabulary
+    end
+
     it "returns the import service class" do
       expect(
         Lookup.import_service("Procedures")
