@@ -38,9 +38,9 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes)
-          CSXML.add xml, 'shortIdentifier', attributes["shortIdentifier"]
-          CSXML.add_group_list xml, attributes["termType"], [{
-            "termDisplayName" => attributes["termDisplayName"],
+          CSXML.add xml, 'shortIdentifier', attributes["shortidentifier"]
+          CSXML.add_group_list xml, attributes["termtype"], [{
+            "termDisplayName" => attributes["termdisplayname"],
           }]
         end
 
@@ -428,6 +428,30 @@ module CollectionSpace
             identifier_field: 'valuationcontrolRefNumber',
             path: 'valuationcontrols',
             schema: 'valuationcontrols',
+          }
+        end
+      end
+
+      class Vocabulary < Record
+        # override the default authority convert method inline
+        def convert
+          run do |xml|
+            CSXML.add xml, 'displayName', attributes["displayname"]
+            CSXML.add xml, 'shortIdentifier', attributes["shortidentifier"]
+          end
+        end
+
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'vocabularyitems', 'vocabulary', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'vocabulary',
+            identifier_field: 'shortIdentifier',
+            path: "vocabularies/urn:cspace:name(#{subtype})/items",
+            schema: 'vocabularyitems',
           }
         end
       end

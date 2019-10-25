@@ -207,7 +207,7 @@ module CollectionSpace
               # applying namespace breaks import
               xml.parent.namespace = nil
               CSXML.add xml, 'materialTechniqueDescription', attributes["process"]
-              CSXML.add xml, 'catalogLevel', CSURN.get_vocab_urn('cataloglevel', ' item ', true)
+              CSXML.add xml, 'catalogLevel', CSURN.get_vocab_urn('cataloglevel', ' item ')
               # creatorDescription: copyright
               CSXML.add xml, 'creatorDescription', attributes["copyright"]
             end

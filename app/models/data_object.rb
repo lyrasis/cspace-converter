@@ -56,9 +56,9 @@ class DataObject
     if from_procedure
       converter = Lookup.default_authority_class(type)
       content_data = {
-        "shortIdentifier" => identifier,
-        "termDisplayName" => name,
-        "termType"        => "#{CSIDF.authority_term_type(type)}Term",
+        "shortidentifier" => identifier,
+        "termdisplayname" => name,
+        "termtype"        => "#{CSIDF.authority_term_type(type)}Term",
       }
     else
       converter    = Lookup.authority_class(type)

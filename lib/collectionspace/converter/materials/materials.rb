@@ -15,7 +15,7 @@ module CollectionSpace
           CSXML.add_group_list xml, 'materialTerm', [
             {
               "termDisplayName" => attributes["termdisplayname"],
-              "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"], true),
+              "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"]),
               "termName" => attributes["term_name"],
               "historicalStatus" => attributes["historical_status"],
               "termFlag" => attributes["term_flag"],

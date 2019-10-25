@@ -16,7 +16,7 @@ module CollectionSpace
           CSXML.add_group_list xml, 'personTerm', [
             {
               "termDisplayName" => attributes["display_name"],
-              "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"], false),
+              "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"]),
               "termName" => attributes["term_name"],
               "foreName" => attributes["fore_name"],
               "middleName" => attributes["middle_name"],
