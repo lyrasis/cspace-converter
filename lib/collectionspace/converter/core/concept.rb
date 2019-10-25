@@ -5,8 +5,12 @@ module CollectionSpace
         ::CoreConcept = CollectionSpace::Converter::Core::CoreConcept
         def convert
           run do |xml|
-            # TODO: implement
+            CoreConcept.map(xml, attributes)
           end
+        end
+
+        def self.map(xml, attributes)
+          # TODO
         end
       end
     end

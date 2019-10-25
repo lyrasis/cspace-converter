@@ -133,6 +133,12 @@ registered_profiles:
         - name_field: movement_contact
           authority_type: Person
           authority_subtype: person
+  nomenclature:
+    Authorities:
+      Concept:
+        name_field: termdisplayname
+        authority_type: Concept
+        authority_subtype: nomenclature
   objectexit:
     Procedures:
       ObjectExit:
