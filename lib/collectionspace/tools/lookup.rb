@@ -15,6 +15,10 @@ module CollectionSpace
         "#{CONVERTER_BASE}::#{converter_module}".constantize
       end
 
+      def self.converter_domain
+        ENV.fetch('CSPACE_CONVERTER_DOMAIN')
+      end
+
       def self.converter_module
         ENV.fetch('CSPACE_CONVERTER_MODULE')
       end

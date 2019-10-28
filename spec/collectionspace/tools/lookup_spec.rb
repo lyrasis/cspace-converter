@@ -14,6 +14,12 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Core
     end
 
+    it "returns the converter domain" do
+      expect(
+        Lookup.converter_domain
+      ).to eq 'core.collectionspace.org'
+    end
+
     it "returns the converter module" do
       expect(
         Lookup.converter_module

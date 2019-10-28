@@ -23,6 +23,8 @@ class ImportJob < ActiveJob::Base
     batch.status = 'running' # reset running status
     batch.save
 
+    CacheService.refresh
+
     data_object_attributes = {
       converter_profile: config[:profile],
       object_data: {},
