@@ -90,7 +90,7 @@ class CacheService
     end
   end
 
-  def refresh
+  def self.refresh
     import
     download_vocabularies
     download_authorities
