@@ -11,11 +11,11 @@ class CacheObject
   field :type,       type: String
   field :subtype,    type: String
   field :key,        type: String
-  field :updated_at, type: DateTime
+  field :rev,        type: Integer
 
   # parent vocabulary
-  field :parent_uri,        type: String
-  field :parent_updated_at, type: String
+  field :parent_refname, type: String
+  field :parent_rev,     type: Integer
 
   def setup
     type    = CSURN.parse_type(refname)
@@ -26,11 +26,17 @@ class CacheObject
     write_attribute :key, key
   end
 
-  def skip_item?(item)
-    false
+  def self.skip_item?(refname, rev)
+    skip = CacheObject.where(
+      refname: refname, :rev.gte => rev
+    ).first
+    skip ? true : false
   end
 
-  def skip_list?(list)
-    false
+  def self.skip_list?(refname, rev)
+    skip = CacheObject.where(
+      parent_refname: refname, :parent_rev.gte => rev
+    ).first
+    skip ? true : false
   end
 end

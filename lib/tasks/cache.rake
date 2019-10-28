@@ -1,28 +1,27 @@
 namespace :cache do
-  CSV_HEADERS = ['refname', 'name', 'identifier']
+  CSV_HEADERS = [
+    'refname', 'name', 'identifier', 'rev', 'parent_refname', 'parent_rev'
+  ]
 
   def download(headers, endpoints)
     endpoints.each do |endpoint|
       $collectionspace_client.all(endpoint).each do |list|
-        list_uri = list['uri']
-        list_updated_at = list['updated_at']
-        next if CacheObject.skip_list?(list_uri, list_updated_at)
+        list_refname = list['refName']
+        list_rev     = list['rev']
+        next if CacheObject.skip_list?(list_refname, list_rev)
 
-        $collectionspace_client.all("#{list_uri}/items").each do |item|
-          item_uri = item['uri']
-          item_updated_at = item['updated_at']
-          next if CacheObject.skip_item?(item_uri, item_updated_at)
+        $collectionspace_client.all("#{list['uri']}/items").each do |item|
+          refname, name, identifier, rev = item.values_at(*headers)
+          next if CacheObject.skip_item?(refname, rev)
 
-          Rails.logger.debug item_uri
-          refname, name, identifier = item.values_at(*headers)
+          Rails.logger.debug "Cache: #{refname}"
           CacheObject.create(
-            uri: item_uri,
             refname: refname,
             name: name,
             identifier: identifier,
-            updated_at: item_updated_at,
-            parent_uri: list_uri,
-            parent_upated_at: list_updated_at
+            rev: rev,
+            parent_refname: list_refname,
+            parent_rev: list_rev
           )
         end
       end
@@ -38,7 +37,7 @@ namespace :cache do
   task :download_authorities => :environment do |t, args|
     authorities = Lookup.converter_class.registered_authorities
     download(
-      ['refName', 'termDisplayName', 'shortIdentifier'],
+      ['refName', 'termDisplayName', 'shortIdentifier', 'rev'],
       authorities
     )
   end
@@ -46,7 +45,7 @@ namespace :cache do
   # bundle exec rake cache:download_vocabularies
   task :download_vocabularies => :environment do |t, args|
     download(
-      ['refName', 'displayName', 'shortIdentifier'],
+      ['refName', 'displayName', 'shortIdentifier', 'rev'],
       ['vocabularies']
     )
   end
@@ -80,11 +79,14 @@ namespace :cache do
     headers = CSV_HEADERS
 
     CSV.foreach(file, headers: true) do |row|
-      refname, name, identifier = row.values_at(*headers)
+      refname, name, identifier, rev, parent_refname, parent_rev = row.values_at(*headers)
       CacheObject.create(
         refname: refname,
         name: name,
-        identifier: identifier
+        identifier: identifier,
+        rev: rev,
+        parent_refname: parent_refname,
+        parent_rev: parent_rev
       )
     end
   end
