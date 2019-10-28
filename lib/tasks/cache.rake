@@ -1,9 +1,4 @@
 namespace :cache do
-  # bundle exec rake cache:clear
-  task :clear => :environment do |t, args|
-    Rails.cache.clear
-  end
-
   # bundle exec rake cache:download_authorities
   task :download_authorities => :environment do |t, args|
     CacheService.download_authorities
@@ -14,44 +9,13 @@ namespace :cache do
     CacheService.download_vocabularies
   end
 
-  # bundle exec rake cache:export[~/.cspace-converter,cache.csv]
-  task :export, [:path, :file] => :environment do |t, args|
-    path = File.expand_path args[:path]
-    file = args[:file]
-    raise "Invalid path #{path}" unless File.directory? path
-
-    headers = CacheService.csv_headers
-    output  = File.join(path, file)
-    FileUtils.rm_f output
-
-    CSV.open(output, 'a') do |csv|
-      csv << headers
-    end
-
-    CacheObject.all.each do |object|
-      CSV.open(output, 'a') do |csv|
-        csv << object.attributes.values_at(*headers)
-      end
-    end
+  # bundle exec rake cache:export
+  task :export => :environment do
+    CacheService.export
   end
 
-  # bundle exec rake cache:import[~/.cspace-converter/cache.csv]
-  task :import, [:file] => :environment do |t, args|
-    file = File.expand_path args[:file]
-    raise "Invalid file #{file}" unless File.file? file
-
-    headers = CacheService.csv_headers
-
-    CSV.foreach(file, headers: true) do |row|
-      refname, name, identifier, rev, parent_refname, parent_rev = row.values_at(*headers)
-      CacheObject.create(
-        refname: refname,
-        name: name,
-        identifier: identifier,
-        rev: rev,
-        parent_refname: parent_refname,
-        parent_rev: parent_rev
-      )
-    end
+  # bundle exec rake cache:import
+  task :import => :environment do
+    CacheService.import
   end
 end

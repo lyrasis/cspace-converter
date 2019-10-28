@@ -64,17 +64,8 @@ To match csv fields to existing CollectionSpace authority and vocabulary terms:
 ```bash
 # clear things out if starting over
 bundle exec rake db:nuke
-bundle exec rake cache:clear
-
-# populate the database with cache terms
-bundle exec rake cache:download_authorities # optional
 bundle exec rake cache:download_vocabularies
-
-# export the cache for future use
-bundle exec rake cache:export[~/.cspace-converter,cache.csv]
-
-# re-use an exported cache
-bundle exec rake cache:import[~/.cspace-converter/cache.csv]
+bundle exec rake cache:download_authorities
 ```
 
 ## Stage the data to MongoDB

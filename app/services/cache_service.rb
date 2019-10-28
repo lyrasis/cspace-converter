@@ -3,6 +3,14 @@ class CacheService
     Lookup.converter_class.registered_authorities
   end
 
+  def self.cache_dir
+    File.join(ENV['HOME'], '.cspace-converter')
+  end
+
+  def self.cache_file
+    File.join(cache_dir, "#{Lookup.converter_domain}.csv")
+  end
+
   def self.csv_headers
     [
       'refname',
@@ -54,8 +62,38 @@ class CacheService
   end
 
   def self.export
+    FileUtils.mkdir_p cache_dir
+    FileUtils.rm_f cache_file
+
+    Rails.logger.info "Exporting cache: #{cache_file}"
+
+    headers = CacheService.csv_headers
+    CSV.open(cache_file, 'a') do |csv|
+      csv << headers
+    end
+
+    CacheObject.all.each do |object|
+      CSV.open(cache_file, 'a') do |csv|
+        csv << object.attributes.values_at(*headers)
+      end
+    end
   end
 
   def self.import
+    return unless File.file? cache_file
+
+    Rails.logger.info "Loading cache: #{cache_file}"
+
+    headers = CacheService.csv_headers
+    CSV.foreach(cache_file, headers: true) do |row|
+      CacheObject.create(row.to_hash)
+    end
+  end
+
+  def refresh
+    import
+    download_vocabularies
+    download_authorities
+    export
   end
 end

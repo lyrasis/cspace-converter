@@ -10,7 +10,7 @@ Run the preliminary setup run when first using or switching to a config.
 docker run --name mongo -d -p 27017:27017 mongo:3.2 || true
 bundle exec rake db:nuke
 bundle exec rake cache:download_vocabularies
-bundle exec rake cache:export[~/.cspace-converter,cache.csv]
+bundle exec rake cache:download_authorities
 ```
 
 ## Core

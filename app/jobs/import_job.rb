@@ -23,10 +23,7 @@ class ImportJob < ActiveJob::Base
     batch.status = 'running' # reset running status
     batch.save
 
-    # cache (unless disabled)
-    # import from ~/.cspace-converter/#{Lookup.converter_domain}.csv
-    # download
-    # export to ~/.cspace-converter/#{Lookup.converter_domain}.csv
+    CacheService.refresh
 
     data_object_attributes = {
       converter_profile: config[:profile],
