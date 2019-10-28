@@ -4,13 +4,25 @@ namespace :cache do
   def download(headers, endpoints)
     endpoints.each do |endpoint|
       $collectionspace_client.all(endpoint).each do |list|
-        $collectionspace_client.all("#{list["uri"]}/items").each do |item|
-          Rails.logger.debug item["uri"]
+        list_uri = list['uri']
+        list_updated_at = list['updated_at']
+        next if CacheObject.skip_list?(list_uri, list_updated_at)
+
+        $collectionspace_client.all("#{list_uri}/items").each do |item|
+          item_uri = item['uri']
+          item_updated_at = item['updated_at']
+          next if CacheObject.skip_item?(item_uri, item_updated_at)
+
+          Rails.logger.debug item_uri
           refname, name, identifier = item.values_at(*headers)
           CacheObject.create(
+            uri: item_uri,
             refname: refname,
             name: name,
-            identifier: identifier
+            identifier: identifier,
+            updated_at: item_updated_at,
+            parent_uri: list_uri,
+            parent_upated_at: list_updated_at
           )
         end
       end
