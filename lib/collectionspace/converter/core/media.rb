@@ -37,16 +37,16 @@ module CollectionSpace
             dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit, "measuredBy" => by, "measurementMethod" => method, "valueDate" => date, "valueQualifier" => qualifier, "dimensionNote" => note}
           end
           CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', dimensions 
-          CSXML.add_list xml, 'language', [{'language' => attributes['language']}]
+          CSXML.add_repeat xml, 'language', [{'language' => CSURN.get_vocab_urn('languages', attributes["language"])}], 'List'
           CSXML::Helpers.add_person xml, 'publisher', attributes["publisher"] if attributes["publishertype"] == "person"
           CSXML::Helpers.add_organization xml, 'publisher', attributes["publisher"] if attributes["publishertype"] == "organization"
-          CSXML.add_list xml, 'relation', [{'relation' => attributes['relation']}] 
+          CSXML.add_repeat xml, 'relation', [{'relation' => attributes['relation']}], 'List'
           CSXML::Helpers.add_person xml, 'rightsHolder', attributes["rightsholder"] if attributes["rightsholdertype"] == "person"
           CSXML::Helpers.add_organization xml, 'rightsHolder', attributes["rightsholder"] if attributes["rightsholdertype"] == "organization"
           CSXML.add xml, 'source', attributes["source"]
           CSXML.add xml, 'externalUrl', attributes["sourceurl"]
-          CSXML.add_list xml, 'subject', [{'subject' => attributes['subject']}]
-          CSXML.add_list xml, 'type', [{'type' => attributes['type']}]   
+          CSXML.add_repeat xml, 'subject', [{'subject' => attributes['subject']}], 'List'
+          CSXML.add_repeat xml, 'type', [{'type' => attributes['type']}], 'List'
         end
       end
     end
