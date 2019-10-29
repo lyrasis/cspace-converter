@@ -23,6 +23,15 @@ module Helpers
     end
   end
 
+  def test_base_basic_date(date)
+    expect(date.parsed_datetime.to_s).to eq '2011-11-02T00:00:00+00:00'
+    expect(date.date_string).to eq basic_date
+    expect(date.earliest_day).to eq 2
+    expect(date.earliest_month).to eq 11
+    expect(date.earliest_year).to eq 2011
+    expect(date.earliest_scalar).to eq '2011-11-02T00:00:00.000Z'
+  end
+
   def test_converter(doc, record, xpaths)
     xpaths.each do |xpath|
       doc_text = get_text(doc, xpath)
