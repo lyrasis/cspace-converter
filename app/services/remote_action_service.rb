@@ -101,6 +101,7 @@ class RemoteActionService
   end
 
   def remote_ping
+    puts "\n\n\nPING!\n\n\n"
     status = Status.new(ok: true, message: '')
     search_args = {
       path: service[:path],

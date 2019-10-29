@@ -448,7 +448,7 @@ module CollectionSpace
 
         def self.service(subtype = nil)
           {
-            id: 'vocabulary',
+            id: 'vocabularies',
             identifier_field: 'shortIdentifier',
             path: "vocabularies/urn:cspace:name(#{subtype})/items",
             schema: 'vocabularyitems',

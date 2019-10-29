@@ -4,6 +4,7 @@ def prefab_authority_object
     category: 'Authority',
     type: 'Person',
     subtype: 'person',
+    identifier_field: 'shortIdentifier',
     identifier: 'Mickey Mouse',
     title: 'Mickey Mouse',
   )
@@ -27,5 +28,18 @@ def prefab_procedure_object
     type: 'Acquisition',
     identifier_field: 'acquisitionReferenceNumber',
     identifier: '123',
+    title: 'Fly in ointment.'
+  )
+end
+
+def prefab_vocabulary_object
+  build(
+    :collection_space_object,
+    category: 'Vocabulary',
+    type: 'vocabularies',
+    subtype: 'languages',
+    identifier_field: 'shortIdentifier',
+    identifier: 'danish',
+    title: 'Danish'
   )
 end

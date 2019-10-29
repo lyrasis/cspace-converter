@@ -53,6 +53,11 @@ registered_profiles:
         - name_field: productionorg
           authority_type: Organization
           authority_subtype: organization
+      Vocabularies:
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
   conditioncheck:
     type: Procedures
     config:
