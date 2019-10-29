@@ -23,6 +23,12 @@ module CollectionSpace
           []
         end
       end
+
+      class Vocabulary
+        def self.parts
+          [:type, :subtype, :title]
+        end
+      end
     end
   end
 end

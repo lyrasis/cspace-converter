@@ -52,6 +52,10 @@ class CollectionSpaceObject
     category == 'Relationship'
   end
 
+  def is_vocabulary?
+    category == 'Vocabulary'
+  end
+
   def set_fingerprint
     parts = Lookup.parts_for(category).parts
     return unless parts.any?
@@ -71,6 +75,11 @@ class CollectionSpaceObject
 
   def self.has_procedure?(identifier)
     identifier = CollectionSpaceObject.where(category: 'Procedure', identifier: identifier).first
+    identifier ? true : false
+  end
+
+  def self.has_vocabulary?(identifier)
+    identifier = CollectionSpaceObject.where(category: 'Vocabulary', identifier: identifier).first
     identifier ? true : false
   end
 

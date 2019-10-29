@@ -34,6 +34,14 @@ RSpec.describe CollectionSpaceObject do
 
     let(:relationship_object_fingerprint) { nil }
 
+    let(:vocabulary_object) {
+      prefab_vocabulary_object
+    }
+
+    let(:vocabulary_object_fingerprint) {
+      Fingerprint.generate(['vocabularies', 'languages', 'Danish'])
+    }
+
     it "returns false correctly for no csid and uri check" do
       expect(authority_object.has_csid_and_uri?).to be false
     end
@@ -46,18 +54,28 @@ RSpec.describe CollectionSpaceObject do
       expect(authority_object.is_authority?).to be true
       expect(authority_object.is_procedure?).to be false
       expect(authority_object.is_relationship?).to be false
+      expect(authority_object.is_vocabulary?).to be false
     end
 
     it "identifies procedure categories correctly" do
       expect(procedure_object.is_authority?).to be false
       expect(procedure_object.is_procedure?).to be true
       expect(procedure_object.is_relationship?).to be false
+      expect(procedure_object.is_vocabulary?).to be false
     end
 
     it "identifies relationship categories correctly" do
       expect(relationship_object.is_authority?).to be false
       expect(relationship_object.is_procedure?).to be false
       expect(relationship_object.is_relationship?).to be true
+      expect(relationship_object.is_vocabulary?).to be false
+    end
+
+    it "identifies vocabulary categories correctly" do
+      expect(vocabulary_object.is_authority?).to be false
+      expect(vocabulary_object.is_procedure?).to be false
+      expect(vocabulary_object.is_relationship?).to be false
+      expect(vocabulary_object.is_vocabulary?).to be true
     end
 
     it "fingerprints authority objects correctly" do
@@ -73,6 +91,11 @@ RSpec.describe CollectionSpaceObject do
     it "fingerprints relationship objects correctly" do
       relationship_object.set_fingerprint
       expect(relationship_object.fingerprint).to eq relationship_object_fingerprint
+    end
+
+    it "fingerprints vocabulary objects correctly" do
+      vocabulary_object.set_fingerprint
+      expect(vocabulary_object.fingerprint).to eq vocabulary_object_fingerprint
     end
 
   end

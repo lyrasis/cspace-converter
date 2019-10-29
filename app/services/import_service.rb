@@ -1,5 +1,4 @@
 class ImportService
-
   class Base
     attr_reader :data, :object, :profile
     def initialize(profile, data)
@@ -8,18 +7,15 @@ class ImportService
       @profile = profile
     end
 
-    def add_authority(name_field, type, subtype, from_procedure = false)
-      term_display_name = object.object_data[name_field]
-      return unless term_display_name
+    def add_authority(name_field:, type:, subtype:)
+      display_name = object.object_data[name_field]
+      return unless display_name
 
-      service = Lookup.record_class(type).service(subtype)
-      service_id = service[:id]
-
-      term_display_name.split(object.delimiter).map(&:strip).each do |name|
-        identifier = AuthCache.authority service_id, subtype, name
+      service = Lookup.record_class(type).service(subtype)[:id]
+      display_name.split(object.delimiter).map(&:strip).each do |name|
+        identifier = AuthCache.authority service, subtype, name
         next if identifier && from_procedure # skip cached from procedure
 
-        # override identifier with shortidentifier if available
         identifier = object.object_data.fetch('shortidentifier', identifier)
         identifier ||= CSIDF.short_identifier(name)
 
@@ -27,6 +23,30 @@ class ImportService
 
         object.add_authority(
           type: type,
+          subtype: subtype,
+          name: name,
+          identifier: identifier,
+          from_procedure: from_procedure
+        )
+        object.save!
+      end
+    end
+
+    def add_vocabulary(name_field:, subtype:)
+      display_name = object.object_data[name_field]
+      return unless display_name
+
+      display_name.split(object.delimiter).map(&:strip).each do |name|
+        identifier = AuthCache.vocabulary(subtype, name)
+        next if identifier && from_procedure
+
+        identifier = object.object_data.fetch('shortidentifier', identifier)
+        identifier ||= CSIDF.short_identifier(name)
+
+        next if CollectionSpaceObject.has_vocabulary?(identifier)
+
+        object.add_vocabulary(
+          type: 'Vocabulary',
           subtype: subtype,
           name: name,
           identifier: identifier,
@@ -57,8 +77,10 @@ class ImportService
   end
 
   class Authorities < Base
+    attr_reader :from_procedure
     def initialize(profile, data)
       super
+      @from_procedure = false
     end
 
     def process
@@ -66,17 +88,18 @@ class ImportService
 
       config = Lookup.profile_config(profile)
       add_authority(
-        config['name_field'],
-        config['authority_type'],
-        config['authority_subtype'],
-        false
+        name_field: config['name_field'],
+        type: config['authority_type'],
+        subtype: config['authority_subtype']
       )
     end
   end
 
   class Procedures < Base
+    attr_reader :from_procedure
     def initialize(profile, data)
       super
+      @from_procedure = true
     end
 
     def add_related_authorities(authorities)
@@ -84,7 +107,20 @@ class ImportService
         name_field, type, subtype = gather_authority_data(attributes)
         next unless type
 
-        add_authority(name_field, type, subtype, true)
+        add_authority(
+          name_field: name_field,
+          type: type,
+          subtype: subtype
+        )
+      end
+    end
+
+    def add_related_vocabularies(vocabularies)
+      vocabularies.each do |attributes|
+        add_vocabulary(
+          name_field: attributes['name_field'],
+          subtype: attributes['vocabulary_subtype'],
+        )
       end
     end
 
@@ -106,12 +142,13 @@ class ImportService
 
       config = Lookup.profile_config(profile)
       config.each do |procedure, attributes|
-        next if procedure == 'Authorities'
+        next if ['Authorities', 'Vocabularies'].include?(procedure)
 
         object.add_procedure procedure, attributes
         object.save!
       end
       add_related_authorities(config.fetch('Authorities', {}))
+      add_related_vocabularies(config.fetch('Vocabularies', {}))
     end
   end
 end
