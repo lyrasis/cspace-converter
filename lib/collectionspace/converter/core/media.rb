@@ -18,6 +18,10 @@ module CollectionSpace
           CSXML.add xml, 'coverage', attributes["coverage"]
           CSXML::Helpers.add_person xml, 'creator', attributes["creator"] if attributes["creatortype"] == "person"
           CSXML::Helpers.add_organization xml, 'creator', attributes["creator"] if attributes["creatortype"] == "organization"
+          CSXML.add_group_list xml, 'date', [{
+           "dateDisplayDate" => attributes["date"],
+           "dateLatestScalarValue" => CSDTP.parse(attributes["date"]).earliest_scalar,
+          }]
           CSXML.add xml, 'description', scrub_fields([attributes["description"]])
           # measuredPartGroupList
           overall_data = {
@@ -30,7 +34,7 @@ module CollectionSpace
           unit = attributes["measurementunit"]
           by = attributes["measuredby"] 
           method = attributes["measurementmethod"]
-          date = attributes["valuedate"]
+          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar
           qualifier = attributes["valuequalifier"]
           note = attributes["dimensionnote"]
           dims.each_with_index do |dim, index|
