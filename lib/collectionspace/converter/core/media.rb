@@ -34,7 +34,7 @@ module CollectionSpace
           unit = attributes["measurementunit"]
           by = attributes["measuredby"] 
           method = attributes["measurementmethod"]
-          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar
+          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar rescue nil
           qualifier = attributes["valuequalifier"]
           note = attributes["dimensionnote"]
           dims.each_with_index do |dim, index|
