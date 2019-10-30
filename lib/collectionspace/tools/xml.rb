@@ -182,18 +182,18 @@ module CollectionSpace
             CSXML.add_group_list xml, 'title', [
               {
               "title" => attributes["title"],
-              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["titlelanguage"]),
+              "titleLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titlelanguage"]),
               }
             ], 'titleTranslation', [
               {
                 "titleTranslation" => attributes["titletranslation"],
-                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["titletranslationlanguage"])
+                "titleTranslationLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titletranslationlanguage"])
               }
             ]
           elsif attributes["titlelanguage"]
             CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["titlelanguage"]),
+              "titleLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titlelanguage"]),
             }]
           else
             CSXML.add_group_list xml, 'title', [{
@@ -202,9 +202,16 @@ module CollectionSpace
           end
         end
 
-        # NOTE: assumes field name matches vocab name (may need to update)
-        def self.add_vocab(xml, field, value)
-          CSXML.add xml, field, CSURN.get_vocab_urn(field, value)
+        def self.add_vocab(xml, field, vocabulary, value)
+          return nil unless value
+
+          CSXML.add xml, field, CSURN.get_vocab_urn(vocabulary, value)
+        end
+
+        def self.get_vocab(vocabulary, value)
+          return nil unless value
+
+          CSURN.get_vocab_urn(vocabulary, value)
         end
       end
     end
