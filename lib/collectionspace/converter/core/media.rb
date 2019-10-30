@@ -32,16 +32,18 @@ module CollectionSpace
           dims = split_mvf attributes, 'dimension'
           values = split_mvf attributes, 'value'
           unit = attributes["measurementunit"]
-          by = attributes["measuredby"] 
+          by = CSXML::Helpers.get_authority(
+            'personauthorities', 'person', attributes["measuredby"]
+          )
           method = attributes["measurementmethod"]
-          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar rescue nil
+          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar
           qualifier = attributes["valuequalifier"]
           note = attributes["dimensionnote"]
           dims.each_with_index do |dim, index|
             dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit, "measuredBy" => by, "measurementMethod" => method, "valueDate" => date, "valueQualifier" => qualifier, "dimensionNote" => note}
           end
-          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', dimensions 
-          CSXML.add_repeat xml, 'language', [{'language' => CSURN.get_vocab_urn('languages', attributes["language"])}], 'List'
+          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', dimensions
+          CSXML.add_repeat xml, 'language', [{'language' => CSXML::Helpers.get_vocab('languages', attributes["language"])}], 'List'
           CSXML::Helpers.add_person xml, 'publisher', attributes["publisher"] if attributes["publishertype"] == "person"
           CSXML::Helpers.add_organization xml, 'publisher', attributes["publisher"] if attributes["publishertype"] == "organization"
           CSXML.add_repeat xml, 'relation', [{'relation' => attributes['relation']}], 'List'

@@ -208,6 +208,12 @@ module CollectionSpace
           CSXML.add xml, field, CSURN.get_vocab_urn(vocabulary, value)
         end
 
+        def self.get_authority(authority_type, authority, value)
+          return nil unless value
+
+          CSURN.get_authority_urn(authority_type, authority, value)
+        end
+
         def self.get_vocab(vocabulary, value)
           return nil unless value
 
