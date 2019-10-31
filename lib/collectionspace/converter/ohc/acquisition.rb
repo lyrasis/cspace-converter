@@ -36,7 +36,7 @@ module CollectionSpace
             end
             status = attributes["approvalstatus#{i}status"]
             if status
-              status = CSURN.get_vocab_urn('deaccessionapprovalstatus', status)
+              status = CSXML::Helpers.get_vocab('deaccessionapprovalstatus', status)
               data['approvalStatus'] = status
             end
             data
@@ -44,11 +44,11 @@ module CollectionSpace
           CSXML.add_group_list xml, 'approval', app
 
           owners = split_mvf(attributes, 'owner_organization').map do |o|
-            urn = CSURN.get_authority_urn('orgauthorities', 'organization', o)
+            urn = CSXML::Helpers.get_authority('orgauthorities', 'organization', o)
             { 'owner' => urn }
           end
           owners.concat(split_mvf(attributes, 'owner_person').map do |o|
-            urn = CSURN.get_authority_urn('personauthorities', 'person', o)
+            urn = CSXML::Helpers.get_authority('personauthorities', 'person', o)
             { 'owner' => urn }
           end)
           CSXML.add_repeat xml, 'owners', owners if owners.any?

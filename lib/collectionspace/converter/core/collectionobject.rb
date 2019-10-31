@@ -16,7 +16,7 @@ module CollectionSpace
 
           CSXML.add_list xml, 'objectName', [{
             "objectName" => attributes["objectname"],
-          }], 'Group' if attributes["objectname"]
+          }], 'Group'
 
           CSXML.add_repeat xml, 'briefDescriptions', [{
             "briefDescription" => scrub_fields([attributes["briefdescription"]])
@@ -24,7 +24,7 @@ module CollectionSpace
 
           CSXML.add_repeat xml, 'responsibleDepartments', [{
             "responsibleDepartment" => attributes["responsibledepartment"]
-          }] if attributes["responsibledepartment"]
+          }]
 
           CSXML.add xml, 'collection', attributes["collection"]
           CSXML.add xml, 'recordStatus', attributes["recordstatus"]
@@ -57,9 +57,9 @@ module CollectionSpace
           CSXML.add_repeat xml, 'forms', [{ "form" => attributes["form"] }]
 
           CSXML.add_group_list xml, 'textualInscription', [{
-            inscriptionContentInscriber => CSURN.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
+            inscriptionContentInscriber => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inscriber"]),
             inscriptionContentMethod => attributes["method"],
-          }] if attributes["inscriber"]
+          }]
 
           # materialGroupList
           mgs = []
@@ -71,7 +71,7 @@ module CollectionSpace
 
           CSXML.add_list xml, 'objectStatus', [{
             "objectStatus" => attributes["objectstatus"]
-          }] if attributes["objectstatus"]
+          }]
 
           CSXML.add xml, 'phase', attributes["phase"]
           CSXML.add xml, 'sex', attributes["sex"]
@@ -79,33 +79,33 @@ module CollectionSpace
 
           CSXML.add_group_list xml, 'technicalAttribute', [{
             "technicalAttribute" => attributes["techattribute"],
-          }] if attributes["techattributes"]
+          }]
 
           CSXML.add_group_list xml, "objectComponent", [{
             "objectComponentName" => attributes["objectcomponentname"]
-          }] if attributes["objectcomponentname"]
+          }]
 
           CSXML.add_group_list xml, "objectProductionDate", [{
             "dateDisplayDate" => attributes["productionddate"]
-          }] if attributes["productionddate"]
+          }]
 
           CSXML.add_group_list xml, 'objectProductionOrganization', [{
-            "objectProductionOrganization" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["productionorg"]),
+            "objectProductionOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["productionorg"]),
             "objectProductionOrganizationRole" => attributes["organizationrole"],
-          }] if attributes["productionorg"]
+          }]
 
           CSXML.add_group_list xml, 'objectProductionPeople', [{
             "objectProductionPeople" => attributes["productionpeople"]
-          }] if attributes["productionpeople"]
+          }]
 
           CSXML.add_group_list xml, 'objectProductionPerson', [{
-            "objectProductionPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["productionperson"]),
+            "objectProductionPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["productionperson"]),
             "objectProductionPersonRole" => attributes["personrole"],
-          }] if attributes["productionperson"]
+          }]
 
           CSXML.add_group_list xml, 'objectProductionPlace', [{
             "objectProductionPlace" => attributes["productionplace"]
-          }] if attributes["productionplace"]
+          }]
 
           # techniqueGroupList
           tgs = []
