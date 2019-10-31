@@ -19,7 +19,7 @@ module CollectionSpace
             'dateLatestMonth' => attributes['exit_latest_date_month'],
             'dateLatestDay' => attributes['exit_latest_date_day'],
           }
-          CSXML.add xml, 'currentOwner', CSURN.get_authority_urn('orgauthorities', 'organization', attributes["current_owner"]) if attributes["current_owner"]
+          CSXML::Helpers.add_organization xml, 'currentOwner', attributes["current_owner"]
           CSXML.add xml, 'exitNote', attributes["exit_note"]
         end
       end

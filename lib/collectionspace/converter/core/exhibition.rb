@@ -11,10 +11,10 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           CSXML.add xml, 'exhibitionNumber', attributes["exhibition_number"]
-          CSXML.add xml, 'type', CSURN.get_vocab_urn('exhibitiontype', attributes["exhibition_type"].capitalize!)
+          CSXML::Helpers.add_vocab xml, 'type', 'exhibitiontype', attributes["exhibition_type"]
           CSXML.add xml, 'title', attributes["exhibition_title"]
           CSXML.add_repeat xml, 'organizers', [{
-            'organizer' =>  CSURN.get_authority_urn('orgauthorities', 'organization', attributes["organizer"])
+            'organizer' =>  CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["organizer"])
           }]
           CSXML.add xml, 'boilerplateText', scrub_fields([attributes["boilerplate_text"]])
         end

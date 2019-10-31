@@ -25,12 +25,12 @@ module CollectionSpace
 
           #acquisitionAuthorizer
           acquisition_authorizer = attributes["acquisition_authorizer"]
-          CSXML::Helpers.add_person xml, 'acquisitionAuthorizer', acquisition_authorizer if acquisition_authorizer
+          CSXML::Helpers.add_person xml, 'acquisitionAuthorizer', acquisition_authorizer
 
           #owner
           CSXML.add_repeat xml, 'owners', [{
-            'owner' => CSURN.get_authority_urn('personauthorities', 'person', attributes['owner']),
-          }] if attributes['owner']
+            'owner' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes['owner']),
+          }]
 
           #acquisitionMethod
           CSXML.add xml, 'acquisition_method', attributes['acquisition_method']
