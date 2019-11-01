@@ -19,8 +19,9 @@ module CollectionSpace
           CSXML::Helpers.add_person xml, 'creator', attributes["creator"] if attributes["creatortype"] == "person"
           CSXML::Helpers.add_organization xml, 'creator', attributes["creator"] if attributes["creatortype"] == "organization"
           CSXML.add_group_list xml, 'date', [{
-           "dateDisplayDate" => attributes["date"],
-           "dateLatestScalarValue" => CSDTP.parse(attributes["date"]).earliest_scalar,
+            "dateDisplayDate" => CSDTP.parse(attributes["date"]).display_date,
+            "dateEarliestScalarValue" => CSDTP.parse(attributes["date"]).earliest_scalar,
+            "dateLatestScalarValue" => CSDTP.parse(attributes["date"]).latest_scalar,
           }]
           CSXML.add xml, 'description', scrub_fields([attributes["description"]])
           # measuredPartGroupList
