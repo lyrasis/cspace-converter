@@ -57,8 +57,8 @@ module CollectionSpace
           CSXML.add_repeat xml, 'forms', [{ "form" => attributes["form"] }]
 
           CSXML.add_group_list xml, 'textualInscription', [{
-            inscriptionContentInscriber => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inscriber"]),
-            inscriptionContentMethod => attributes["method"],
+            "inscriptionContentInscriber" => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inscriber"]),
+            "inscriptionContentMethod" => attributes["method"],
           }]
 
           # materialGroupList
