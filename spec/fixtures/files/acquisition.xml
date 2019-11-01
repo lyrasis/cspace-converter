@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="acquisitions">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-11-01T09:46:03.488Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:acquisitions:id(cde9aff6-480d-41db-8b2d)</refName>
+    <uri>/acquisitions/cde9aff6-480d-41db-8b2d</uri>
+    <updatedAt>2019-11-01T11:55:39.539Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:acquisitions_common xmlns:ns2="http://collectionspace.org/services/acquisition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <acquisitionNote>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</acquisitionNote>
+    <acquisitionReferenceNumber>20CS.001</acquisitionReferenceNumber>
+    <owners>
+      <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1572029760785)'John Mellon'</owner>
+    </owners>
+    <acquisitionDateGroupList>
+      <acquisitionDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2015/11/15</dateDisplayDate>
+        <dateLatestScalarValue>2015-11-16T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra/>
+        <dateEarliestSingleDay>15</dateEarliestSingleDay>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear>2015</dateEarliestSingleYear>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth>11</dateEarliestSingleMonth>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2015-11-15T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </acquisitionDateGroup>
+    </acquisitionDateGroupList>
+    <groupPurchasePriceValue>1360</groupPurchasePriceValue>
+    <acquisitionAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ClementineEgge1572599649165)'Clementine Egge'</acquisitionAuthorizer>
+    <creditLine>Gift of John Mellon</creditLine>
+    <acquisitionReason>eu volutpat odio facilisis mauris sit amet massa vitae tortor</acquisitionReason>
+    <acquisitionSources>
+      <acquisitionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1572029760785)'John Mellon'</acquisitionSource>
+    </acquisitionSources>
+    <accessionDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>2015/01/01</dateDisplayDate>
+      <dateLatestScalarValue>2015-01-02T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>2015</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>2015-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth/>
+    </accessionDateGroup>
+    <groupPurchasePriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</groupPurchasePriceCurrency>
+    <acquisitionProvisos>auctor urna nunc id cursus metus aliquam eleifend mi in</acquisitionProvisos>
+    <acquisitionFundingList>
+      <acquisitionFunding>
+        <acquisitionFundingSourceProvisos>aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod</acquisitionFundingSourceProvisos>
+        <acquisitionFundingCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</acquisitionFundingCurrency>
+        <acquisitionFundingValue>1321</acquisitionFundingValue>
+        <acquisitionFundingSource>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(InstituteofMuseumandLibraryServices1572599745747)'Institute of Museum and Library Services'</acquisitionFundingSource>
+      </acquisitionFunding>
+    </acquisitionFundingList>
+    <fieldCollectionEventNames>
+      <fieldCollectionEventName>Field Collection Event 1</fieldCollectionEventName>
+    </fieldCollectionEventNames>
+    <acquisitionMethod>exchange</acquisitionMethod>
+    <acquisitionAuthorizerDate>2015-12-15T00:00:00.000Z</acquisitionAuthorizerDate>
+    <approvalGroupList>
+      <approvalGroup>
+        <approvalStatus/>
+        <approvalGroup/>
+        <approvalNote/>
+        <approvalDate/>
+        <approvalIndividual/>
+      </approvalGroup>
+    </approvalGroupList>
+  </ns2:acquisitions_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>7c8b7fb7-ac3c-477c-a137-d9b6d4ea9f4f</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
