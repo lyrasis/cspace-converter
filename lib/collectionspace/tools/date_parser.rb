@@ -42,14 +42,8 @@ module CollectionSpace
           date_string = "#{date_string}-01-01" if date_string =~ /^\d{4}$/
 
           parsed_earliest_date = DateTime.parse(date_string)
-          daysInYear           = parsed_earliest_date.year % 4 == 0 ? 365 : 364
-          parsed_latest_date   = nil
-
-          if end_date_string
-            parsed_latest_date = DateTime.parse(end_date_string)
-          else
-            parsed_latest_date = DateTime.parse((parsed_earliest_date + daysInYear + 1).to_s)
-          end
+          parsed_latest_date = end_date_string ?
+            DateTime.parse(end_date_string) : parsed_earliest_date + 1
 
           date = StructuredDate.new
           date.parsed_datetime = parsed_earliest_date
@@ -64,12 +58,6 @@ module CollectionSpace
           date.latest_day = parsed_latest_date.day
           date.latest_month = parsed_latest_date.month
           date.latest_year = parsed_latest_date.year
-
-          unless end_date_string
-            # RM: the latest scalar date should extend to midnight of the last day of the year
-            parsed_latest_date = DateTime.parse((parsed_earliest_date + daysInYear + 1).to_s)
-          end
-
           date.latest_scalar = parsed_latest_date.iso8601(3).sub('+00:00', "Z")
           date
         rescue StandardError

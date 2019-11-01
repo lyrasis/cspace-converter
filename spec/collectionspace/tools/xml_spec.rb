@@ -51,7 +51,7 @@ RSpec.describe CSXML do
     expect(doc(xml).xpath(
       '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateEarliestScalarValue').text).to eq("1971-01-01T00:00:00.000Z")
     expect(doc(xml).xpath(
-      '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateLatestScalarValue').text).to eq("1972-01-01T00:00:00.000Z")
+      '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateLatestScalarValue').text).to eq("1971-01-02T00:00:00.000Z")
   end
 
   it "can 'add group list' without sub key and with sub elements correctly" do
