@@ -11,7 +11,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreMedia do
     '/document/*/coverage',
     { xpath: '/document/*/creator', transform: ->(text) { CSURN.parse(text)[:label] } },
     # '/document/*/dateGroupList/dateGroup/dateDisplayDate',
-    # '/document/*/dateGroupList/dateGroup/dateLatestScalarValue',
+    '/document/*/dateGroupList/dateGroup/dateLatestScalarValue',
     '/document/*/description',
     '/document/*/externalUrl',
     '/document/*/identificationNumber',
