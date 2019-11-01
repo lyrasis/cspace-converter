@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="acquisitions">
-  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2019-11-01T09:46:03.488Z</createdAt>
-    <updatedBy>admin@core.collectionspace.org</updatedBy>
-    <createdBy>admin@core.collectionspace.org</createdBy>
-    <workflowState>project</workflowState>
-    <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:acquisitions:id(cde9aff6-480d-41db-8b2d)</refName>
-    <uri>/acquisitions/cde9aff6-480d-41db-8b2d</uri>
-    <updatedAt>2019-11-01T11:55:39.539Z</updatedAt>
-  </ns2:collectionspace_core>
   <ns2:acquisitions_common xmlns:ns2="http://collectionspace.org/services/acquisition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <acquisitionNote>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</acquisitionNote>
     <acquisitionReferenceNumber>20CS.001</acquisitionReferenceNumber>
@@ -100,12 +90,4 @@
       </approvalGroup>
     </approvalGroupList>
   </ns2:acquisitions_common>
-  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
-    <account>
-      <accountId>7c8b7fb7-ac3c-477c-a137-d9b6d4ea9f4f</accountId>
-      <screenName>Administrator</screenName>
-      <userId>admin@core.collectionspace.org</userId>
-      <tenantId>1</tenantId>
-    </account>
-  </ns2:account_permission>
 </document>
