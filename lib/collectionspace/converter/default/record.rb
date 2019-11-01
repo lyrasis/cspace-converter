@@ -33,8 +33,13 @@ module CollectionSpace
               end
             }
           end
-          # hack namespaces
+          traverse_and_clean(builder.doc)
           builder.to_xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
+        end
+
+        def traverse_and_clean(node)
+          node.children.map { |child| traverse_and_clean(child) }
+          node.remove if node.content.blank? && node.attributes.blank?
         end
 
         def self.map(xml, attributes)
