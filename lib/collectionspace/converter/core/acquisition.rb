@@ -12,11 +12,11 @@ module CollectionSpace
         def self.map(xml, attributes)
           CSXML.add xml, 'acquisitionReferenceNumber', attributes["acquisitionreferencenumber"]
 
-          CSXML.add_group_list xml, 'accessionDate', [{
+          CSXML.add_group xml, 'accessionDate', {
             "dateDisplayDate" => CSDTP.parse(attributes["accessiondategroup"]).display_date,
             "dateEarliestScalarValue" => CSDTP.parse(attributes["accessiondategroup"]).earliest_scalar,
             "dateLatestScalarValue" => CSDTP.parse(attributes["accessiondategroup"]).latest_scalar,
-          }]
+          }
 
           CSXML::Helpers.add_person xml, 'acquisitionAuthorizer', attributes["acquisitionauthorizer"]
           CSXML.add xml, 'acquisitionAuthorizerDate', CSDTP.parse(attributes['acquisitionauthorizerdate']).earliest_scalar
@@ -28,7 +28,7 @@ module CollectionSpace
           }]
 
           funding_currency = CSXML::Helpers.get_vocab('currency', attributes['acquisitionfundingcurrency'])
-          funding_source = CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes['acquisitionfundingcurrency'])
+          funding_source = CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes['acquisitionfundingsource'])
           CSXML.add_list xml, 'acquisitionFunding', [{
             'acquisitionFundingCurrency' => funding_currency,
             'acquisitionFundingValue' => attributes['acquisitionfundingvalue'],
@@ -45,7 +45,13 @@ module CollectionSpace
           owners << { 'owner' => CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes['ownerorganization']) } if attributes['ownerorganization']
           CSXML.add_repeat xml, 'owners', owners
 
-          CSXML.add_repeat xml, 'acquisitionSources', [{'acquisitionSource' => attributes['acquisitionsource']}]
+          CSXML.add_repeat xml, 'acquisitionSources', [
+            {
+              'acquisitionSource' => CSXML::Helpers.get_authority(
+                'personauthorities', 'person', attributes['acquisitionsource']
+              )
+            }
+          ]
           CSXML.add xml, 'creditLine', attributes["creditline"]
 
           currency = CSXML::Helpers.get_vocab('currency', attributes['grouppurchasepricecurrency'])
