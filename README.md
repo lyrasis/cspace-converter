@@ -22,9 +22,9 @@ There is a default `.env` file that provides example configuration. Override it
 by creating a `.env.local` file with custom settings.
 
 ```bash
-# DEVELOPMENT .env
+# DEVELOPMENT .env.local
 export CSPACE_CONVERTER_DB_HOST=127.0.0.1
-export CSPACE_CONVERTER_BASE_URI=http://localhost:1980/cspace-services
+export CSPACE_CONVERTER_BASE_URI=http://core.dev.collectionspace.org/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
 export CSPACE_CONVERTER_LOG_LEVEL=debug
 export CSPACE_CONVERTER_MODULE=Core
@@ -32,18 +32,23 @@ export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator
 ```
 
+The `CSPACE_CONVERTER_BASE_URI` variable must point to an _available_ ColletionSpace
+Services Layer backend.
+
 ## Setup CSV Data to be Imported
 
-Before the *cspace-converter* tool can import CSV data into CollectionSpace, it first
-"stages" the data from the CSV files into a MongoDB database.
+Before the tool can import CSV data into CollectionSpace, it first "stages" the
+data from the CSV files into a MongoDB database.
 
 Create a data directory and add the CSV files. For example:
 
 ```txt
 data/core/
-├── cataloging.csv # custom CSV data file
-└── ppsobjectsdata.csv # Past Perfect objects data file
+├── mymuseum_cataloging.csv
 ```
+
+There are sample data files available for testing for each supported
+Collectionspace profile.
 
 ## Start the MongoDB Server
 
@@ -84,7 +89,6 @@ For example:
 
 ```bash
 ./import.sh data/core/cataloging_core_excerpt.csv cataloging1 cataloging
-./import.sh data/core/mediahandling_core_all.csv media1 media
 ```
 
 ## Starting/Running the cspace-converter tool UI server
@@ -103,7 +107,7 @@ To execute "transfer" jobs created using the UI server, run this command:
 Or from the command line:
 
 ```bash
-./transfer.sh Person person1 # record type, batch name
+./transfer.sh CollectionObject cataloging1 # record type, batch name
 ```
 
 ## Useful commands
@@ -112,11 +116,10 @@ Or from the command line:
 
 ```bash
 # provides a list of records
-bundle exec rake remote:get[media]
+bundle exec rake remote:get[collectionobjects]
 
 # get a record
-bundle exec rake remote:get[/media/$CSID] # i.e.
-bundle exec rake remote:get[/media/bd775076-05c8-4afd-8b58]
+bundle exec rake remote:get[/collecitonobjects/$CSID]
 ```
 
 ### Using the console
