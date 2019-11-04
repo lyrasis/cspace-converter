@@ -11,10 +11,10 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           CSXML.add xml, 'exitNumber', attributes["exitnumber"]
-          CSXML::Helpers.add_person xml, 'currentOwner', attributes["currentowner"] rescue nil
-          CSXML::Helpers.add_organization xml, 'currentOwner', attributes["currentownerorg"] rescue nil
-          CSXML::Helpers.add_person xml, 'depositor', attributes["depositor"] rescue nil
-          CSXML::Helpers.add_organization xml, 'depositor', attributes["depositororg"] rescue nil
+          CSXML::Helpers.add_person xml, 'currentOwner', attributes["currentowner"]
+          CSXML::Helpers.add_organization xml, 'currentOwner', attributes["currentownerorg"]
+          CSXML::Helpers.add_person xml, 'depositor', attributes["depositor"]
+          CSXML::Helpers.add_organization xml, 'depositor', attributes["depositororg"]
           CSXML.add_repeat xml, 'exitMethods', [{'exitMethod' => attributes['exitmethod']}]
           CSXML.add xml, 'exitNote', attributes["exitnote"]
           CSXML.add xml, 'exitReason', attributes["exitreason"]
@@ -25,7 +25,15 @@ module CollectionSpace
           approvalstatus = split_mvf attributes, 'deaccessionapprovalstatus'
           approvaldate = split_mvf attributes, 'deaccessionapprovaldate'
           approvalgroup.each_with_index do |grp, index|
-            approval << { "deaccessionApprovalGroup" => CSXML::Helpers.get_vocab('deaccessionapprovalgroup', grp), "deaccessionApprovalStatus" => CSXML::Helpers.get_vocab('deaccessionapprovalstatus', approvalstatus[index]), "deaccessionApprovalDate" => CSDTP.parse(approvaldate[index]).earliest_scalar}
+            approval << {
+              "deaccessionApprovalGroup" => CSXML::Helpers.get_vocab(
+                'deaccessionapprovalgroup', grp
+              ),
+              "deaccessionApprovalStatus" => CSXML::Helpers.get_vocab(
+                'deaccessionapprovalstatus',approvalstatus[index]
+              ),
+              "deaccessionApprovalDate" => CSDTP.parse(approvaldate[index]).earliest_scalar
+            }
           end
           CSXML.add_group_list xml, 'deacApproval', approval
           CSXML::Helpers.add_person xml, 'deaccessionAuthorizer', attributes["deaccessionauthorizer"]
@@ -36,10 +44,10 @@ module CollectionSpace
           CSXML.add xml, 'displosalReason', attributes["disposalreason"]
           CSXML.add xml, 'displosalProvisos', attributes["disposalprovisos"]
           CSXML.add xml, 'displosalProvisos', attributes["disposalprovisos"]
-          CSXML::Helpers.add_person xml, 'disposalProposedRecipient', attributes["disposalproposedrecipient"] rescue nil
-          CSXML::Helpers.add_organization xml, 'disposalProposedRecipient', attributes["disposalproposedrecipientorg"] rescue nil
-          CSXML::Helpers.add_person xml, 'disposalRecipient', attributes["disposalrecipient"] rescue nil
-          CSXML::Helpers.add_organization xml, 'disposalRecipient', attributes["disposalrecipientorg"] rescue nil
+          CSXML::Helpers.add_person xml, 'disposalProposedRecipient', attributes["disposalproposedrecipient"]
+          CSXML::Helpers.add_organization xml, 'disposalProposedRecipient', attributes["disposalproposedrecipientorg"]
+          CSXML::Helpers.add_person xml, 'disposalRecipient', attributes["disposalrecipient"]
+          CSXML::Helpers.add_organization xml, 'disposalRecipient', attributes["disposalrecipientorg"]
           CSXML.add xml, 'displosalNote', attributes["disposalnote"]
           CSXML.add xml, 'disposalCurrency', CSXML::Helpers.get_vocab('currency', attributes['disposalcurrency'])
           CSXML.add xml, 'displosalValue', attributes['disposalvalue']
@@ -50,4 +58,3 @@ module CollectionSpace
     end
   end
 end
-

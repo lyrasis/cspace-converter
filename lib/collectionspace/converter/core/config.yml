@@ -158,12 +158,15 @@ registered_profiles:
     type: Procedures
     config:
       ObjectExit:
-        identifier: exit_number
-        title: exit_number
+        identifier: exitnumber
+        title: exitnumber
       Authorities:
-        - name_field: current_owner
+        - name_field: currentownerorg
           authority_type: Organization
           authority_subtype: organization
+        - name_field: currentowner
+          authority_type: Person
+          authority_subtype: person
   person:
     type: Authorities
     config:

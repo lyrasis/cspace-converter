@@ -53,6 +53,10 @@ Steps:
 ./import.sh data/core/authconcept_nomenclature_terms.csv nomenclature1 nomenclature
 ./remote.sh transfer Concept nomenclature1
 ./remote.sh delete Concept nomenclature1
+
+./import.sh data/core/objectexit_core_all.csv exit1 objectexit
+./remote.sh transfer ObjectExit exit1
+./remote.sh delete ObjectExit exit1
 ```
 
 ## Anthro
