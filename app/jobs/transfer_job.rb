@@ -22,7 +22,9 @@ class TransferJob < ActiveJob::Base
     batch.status = 'running' # reset running status
     batch.save
 
-    CollectionSpaceObject.where(type: type, batch: batch_name).each do |object|
+    CollectionSpaceObject.batch_size(
+      ENV.fetch('CSPACE_CONVERTER_TRANSFER_BATCH_SIZE', 25)
+    ).where(type: type, batch: batch_name).each do |object|
       begin
         service = RemoteActionService.new(object)
         if !object.is_relationship? && !object.has_csid_and_uri?
@@ -30,7 +32,7 @@ class TransferJob < ActiveJob::Base
         end
         status = service.send(action_method)
         status.ok ? batch.processed += 1 : batch.failed += 1
-      rescue Exception => ex
+      rescue StandardError
         batch.failed += 1
       end
     end
