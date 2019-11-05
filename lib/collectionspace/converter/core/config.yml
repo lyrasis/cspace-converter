@@ -64,18 +64,18 @@ registered_profiles:
     type: Procedures
     config:
       ConditionCheck:
-        identifier: condition_check_reference_number
-        title: condition_check_reference_number
+        identifier: conditioncheckreferencenumber
+        title: conditioncheckreferencenumber
       Authorities:
-        - name_field: condition_checker
+        - name_field: conditionchecker
           authority_type: Person
           authority_subtype: person
   exhibition:
     type: Procedures
     config:
       Exhibition:
-        identifier: exhibition_number
-        title: exhibition_number
+        identifier: exhibitionnumber
+        title: exhibitionnumber
       Authorities:
         - name_field: organizer
           authority_type: Organization
@@ -95,8 +95,8 @@ registered_profiles:
     type: Procedures
     config:
       Intake:
-        identifier: intake_entry_number
-        title: intake_entry_number
+        identifier: intakeentrynumber
+        title: intakeentrynumber
       Authorities:
         - name_field: current_owner
           authority_type: Person
@@ -105,13 +105,13 @@ registered_profiles:
     type: Procedures
     config:
       LoanIn:
-        identifier: loan_in_number
-        title: loan_in_number
+        identifier: loaninnumber
+        title: loaninnumber
       Authorities:
-        - name_field: lender's_authorizer
+        - name_field: lendersauthorizer
           authority_type: Person
           authority_subtype: person
-        - name_field: borrower's_authorizer
+        - name_field: borrowersauthorizer
           authority_type: Person
           authority_subtype: person
         - name_field: lender
@@ -122,14 +122,13 @@ registered_profiles:
     enabled: true
     config:
       LoanOut:
-        identifier: loan_out_number
-        title: loan_out_number
+        identifier: loanoutnumber
+        title: loanoutnumber
       Authorities:
-        Person:
-        - name_field: lender's_authorizer
+        - name_field: lendersauthorizer
           authority_type: Person
           authority_subtype: person
-        - name_field: borrower's_authorizer
+        - name_field: borrowersauthorizer
           authority_type: Person
           authority_subtype: person
         - name_field: borrower
@@ -147,10 +146,10 @@ registered_profiles:
     type: Procedures
     config:
       Movement:
-        identifier: inventory_reference_number
-        title: inventory_reference_number
+        identifier: inventoryreferencenumber
+        title: inventoryreferencenumber
       Authorities:
-        - name_field: movement_contact
+        - name_field: movementcontact
           authority_type: Person
           authority_subtype: person
   nomenclature:
@@ -184,8 +183,8 @@ registered_profiles:
     type: Procedures
     config:
       ValuationControl:
-        identifier: valuation_control_reference_number
-        title: valuation_control_reference_number
+        identifier: valuationcontrolreferencenumber
+        title: valuationcontrolreferencenumber
       Authorities:
         - name_field: source
           authority_type: Person

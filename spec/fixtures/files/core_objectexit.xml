@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="objectexit">
-  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2019-11-04T08:38:20.448Z</createdAt>
-    <updatedBy>admin@core.collectionspace.org</updatedBy>
-    <createdBy>admin@core.collectionspace.org</createdBy>
-    <workflowState>project</workflowState>
-    <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:objectexit:id(aa2b80d0-729c-4210-9f43)</refName>
-    <uri>/objectexit/aa2b80d0-729c-4210-9f43</uri>
-    <updatedAt>2019-11-04T08:38:20.448Z</updatedAt>
-  </ns2:collectionspace_core>
   <ns2:objectexit_common xmlns:ns2="http://collectionspace.org/services/objectexit" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <authorizationDate>2000-01-01T00:00:00.000Z</authorizationDate>
     <exitNote>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</exitNote>
     <groupDisposalCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(DKK)'Danish Krone'</groupDisposalCurrency>
     <displosalReason>dispoal reason text</displosalReason>
-    <packingNote>packing note text      </packingNote>
+    <packingNote>packing note text</packingNote>
     <currentOwner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PhoebeAHearstMuseumofAnthropology1572856095543)'Phoebe A. Hearst Museum of Anthropology'</currentOwner>
     <exitMethods>
       <exitMethod>courier</exitMethod>
@@ -69,7 +59,7 @@
         <deaccessionApprovalIndividual/>
       </deacApprovalGroup>
     </deacApprovalGroupList>
-    <displosalProvisos>disposal provisos text   </displosalProvisos>
+    <displosalProvisos>disposal provisos text</displosalProvisos>
     <disposalRecipient>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(FitzwilliamMuseum1572856572410)'Fitzwilliam Museum'</disposalRecipient>
     <deaccessionDate>2000-02-01T00:00:00.000Z</deaccessionDate>
     <displosalNewObjectNumber>new object number 1</displosalNewObjectNumber>
@@ -77,12 +67,4 @@
     <depositor>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ElizabethBrown1572856131037)'Elizabeth Brown'</depositor>
     <exitNumber>EX20CS.001</exitNumber>
   </ns2:objectexit_common>
-  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
-    <account>
-      <accountId>7c8b7fb7-ac3c-477c-a137-d9b6d4ea9f4f</accountId>
-      <screenName>Administrator</screenName>
-      <userId>admin@core.collectionspace.org</userId>
-      <tenantId>1</tenantId>
-    </account>
-  </ns2:account_permission>
 </document>

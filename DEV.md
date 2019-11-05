@@ -42,9 +42,17 @@ Steps:
 ./remote.sh transfer CollectionObject cataloging1
 ./remote.sh delete CollectionObject cataloging1
 
+./import.sh data/core/objectexit_core_all.csv exit1 objectexit
+./remote.sh transfer ObjectExit exit1
+./remote.sh delete ObjectExit exit1
+
 ./import.sh data/core/group_core_all.csv group1 group
 ./remote.sh transfer Group group1
 ./remote.sh delete Group group1
+
+./import.sh data/core/loansout_core_all.csv loanout1 loanout
+./remote.sh transfer LoanOut loanout1
+./remote.sh delete LoanOut loanout1
 
 ./import.sh data/core/mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1

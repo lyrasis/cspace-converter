@@ -5,6 +5,7 @@ RSpec.describe CSDTP do
   let(:basic_end_date) { '2011/12/05' }
   let(:ca_date) { 'ca. 1915' }
   let(:hyphenated_date) { '1905-1907' }
+  let(:usa_date) { '11/02/1980' }
 
   it "can return an empty date when no date provided" do
     date = CSDTP.parse(nil)
@@ -40,5 +41,13 @@ RSpec.describe CSDTP do
     date = CSDTP.parse(hyphenated_date)
     expect(date.class).to eq CollectionSpace::Tools::StructuredDate
     expect(date.parsed_datetime).to be nil
+  end
+
+  xit "can parse a US formatted date" do
+    date = CSDTP.parse(usa_date)
+    expect(date.earliest_day).to eq 2
+    expect(date.earliest_month).to eq 11
+    expect(date.earliest_year).to eq 1980
+    expect(date.earliest_scalar).to eq '1980-11-02T00:00:00.000Z'
   end
 end
