@@ -22,11 +22,11 @@ registered_profiles:
     type: Procedures
     config:
       Acquisition:
-        identifier: acquisition_reference_number
-        title: acquisition_reference_number
+        identifier: acquisitionreferencenumber
+        title: acquisitionreferencenumber
       Authorities:
         Person:
-        - acquisition_authorizer
+        - acquisitionauthorizer
         - owner
   cataloging:
     type: Procedures
@@ -36,13 +36,13 @@ registered_profiles:
         title: title
       Authorities:
         Person:
-        - content_person
+        - contentperson
         - inscriber
         - objectproductionperson
-        - owners_person
+        - ownersperson
         Organization:
-        - production_org
-        - owners_org
+        - productionorg
+        - ownersorg
         Concept:
         - - material
           - material_ca
@@ -50,17 +50,17 @@ registered_profiles:
     type: Procedures
     config:
       ConditionCheck:
-        identifier: condition_check_reference_number
-        title: condition_check_reference_number
+        identifier: conditioncheckreferencenumber
+        title: conditioncheckreferencenumber
       Authorities:
         Person:
-        - condition_checker
+        - conditionchecker
   exhibition:
     type: Procedures
     config:
       Exhibition:
-        identifier: exhibition_number
-        title: exhibition_number
+        identifier: exhibitionnumber
+        title: exhibitionnumber
       Authorities:
         Organization:
         - organizer
@@ -77,31 +77,31 @@ registered_profiles:
     type: Procedures
     config:
       Intake:
-        identifier: intake_entry_number
-        title: intake_entry_number
+        identifier: intakeentrynumber
+        title: intakeentrynumber
       Authorities:
         Person:
-        - current_owner
+        - currentowner
   loanin:
     type: Procedures
     config:
       LoanIn:
-        identifier: loan_in_number
-        title: loan_in_number
+        identifier: loaninnumber
+        title: loaninnumber
       Authorities:
         Person:
-        - lender's_authorizer
-        - borrower's_authorizer
+        - lendersauthorizer
+        - borrowersauthorizer
   loanout:
     type: Procedures
     config:
       LoanOut:
-        identifier: loan_out_number
-        title: loan_out_number
+        identifier: loanoutnumber
+        title: loanoutnumber
       Authorities:
         Person:
-        - lender's_authorizer
-        - borrower's_authorizer
+        - lendersauthorizer
+        - borrowersauthorizer
         Organization:
         - borrower
   media:
@@ -119,22 +119,22 @@ registered_profiles:
         title: movementreferencenumber
       Authorities:
         Person:
-        - movement_contact
+        - movementcontact
   objectexit:
     type: Procedures
     config:
       ObjectExit:
-        identifier: exit_number
-        title: exit_number
+        identifier: exitnumber
+        title: exitnumber
       Authorities:
         Organization:
-        - current_owner
+        - currentowner
   valuationcontrol:
     type: Procedures
     config:
       ValuationControl:
-        identifier: valuation_control_reference_number
-        title: valuation_control_reference_number
+        identifier: valuationcontrolreferencenumber
+        title: valuationcontrolreferencenumber
       Authorities:
         Person:
         - source

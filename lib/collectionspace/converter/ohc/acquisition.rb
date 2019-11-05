@@ -43,11 +43,11 @@ module CollectionSpace
           end
           CSXML.add_group_list xml, 'approval', app
 
-          owners = split_mvf(attributes, 'owner_organization').map do |o|
+          owners = split_mvf(attributes, 'ownerorganization').map do |o|
             urn = CSXML::Helpers.get_authority('orgauthorities', 'organization', o)
             { 'owner' => urn }
           end
-          owners.concat(split_mvf(attributes, 'owner_person').map do |o|
+          owners.concat(split_mvf(attributes, 'ownerperson').map do |o|
             urn = CSXML::Helpers.get_authority('personauthorities', 'person', o)
             { 'owner' => urn }
           end)

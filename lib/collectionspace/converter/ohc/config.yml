@@ -24,6 +24,6 @@ registered_profiles:
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
-        - name_field: owner_organization
+        - name_field: ownerorganization
           authority_type: Organization
           authority_subtype: organization
