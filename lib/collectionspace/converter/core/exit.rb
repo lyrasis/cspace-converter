@@ -43,7 +43,6 @@ module CollectionSpace
           CSXML.add xml, 'disposalMethod', CSXML::Helpers.get_vocab('disposalmethod', attributes["disposalmethod"])
           CSXML.add xml, 'displosalReason', attributes["disposalreason"]
           CSXML.add xml, 'displosalProvisos', attributes["disposalprovisos"]
-          CSXML.add xml, 'displosalProvisos', attributes["disposalprovisos"]
           CSXML::Helpers.add_person xml, 'disposalProposedRecipient', attributes["disposalproposedrecipient"]
           CSXML::Helpers.add_organization xml, 'disposalProposedRecipient', attributes["disposalproposedrecipientorg"]
           CSXML::Helpers.add_person xml, 'disposalRecipient', attributes["disposalrecipient"]
