@@ -36,6 +36,12 @@ module ApplicationHelper
     profiles
   end
 
+  def disabled_profiles
+    Lookup.converter_class.registered_profiles.find_all do |_, profile|
+      !profile.fetch('enabled', false)
+    end.map{ |p| p[0] }
+  end
+
   def types
     CollectionSpaceObject.pluck('type').uniq
   end

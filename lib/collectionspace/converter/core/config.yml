@@ -20,6 +20,7 @@ registered_procedures:
 registered_profiles:
   acquisition:
     type: Procedures
+    enabled: true
     config:
       Acquisition:
         identifier: acquisitionreferencenumber
@@ -36,6 +37,7 @@ registered_profiles:
           authority_subtype: organization
   cataloging:
     type: Procedures
+    enabled: true
     config:
       CollectionObject:
         identifier: objectnumber
@@ -80,6 +82,7 @@ registered_profiles:
           authority_subtype: organization
   group:
     type: Procedures
+    enabled: true
     config:
       Group:
         identifier: title
@@ -116,6 +119,7 @@ registered_profiles:
           authority_subtype: organization
   loanout:
     type: Procedures
+    enabled: true
     config:
       LoanOut:
         identifier: loan_out_number
@@ -133,6 +137,7 @@ registered_profiles:
           authority_subtype: organization
   media:
     type: Procedures
+    enabled: true
     config:
       Media:
         identifier: identificationnumber
@@ -156,6 +161,7 @@ registered_profiles:
       authority_subtype: nomenclature
   objectexit:
     type: Procedures
+    enabled: true
     config:
       ObjectExit:
         identifier: exitnumber
@@ -169,6 +175,7 @@ registered_profiles:
           authority_subtype: person
   person:
     type: Authorities
+    enabled: true
     config:
       name_field: termdisplayname
       authority_type: Person
@@ -184,5 +191,6 @@ registered_profiles:
           authority_type: Person
           authority_subtype: person
   vocabularies:
+    enabled: true
     type: Vocabularies
     config: {}
