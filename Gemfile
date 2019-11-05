@@ -15,6 +15,7 @@ gem 'xxhash'
 gem "bootstrap", ">= 4.1.2"
 gem 'sass-rails', '~> 5.0'
 gem 'kaminari'
+gem 'kaminari-mongoid'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -48,7 +49,7 @@ group :development, :test do
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.4'
   gem 'capybara', '~> 2.4.0'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
