@@ -11,7 +11,6 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           CSXML.add xml, 'loanOutNumber', attributes["loanoutnumber"]
-=begin
           CSXML::Helpers.add_organization xml, 'borrower', attributes["borrower"]
           CSXML::Helpers.add_person xml, 'borrowersAuthorizer', attributes["borrowersauthorizer"]
           CSXML.add xml, 'borrowersAuthorizationDate', CSDTP.parse(attributes['borrowersauthorizationdate']).earliest_scalar
@@ -30,7 +29,6 @@ module CollectionSpace
             "loanStatusDate" => CSDTP.parse(attributes["loanstatusdate"]).earliest_scalar,
             "loanStatusNote" => attributes["loanstatusnote"]
           }]
-=end
         end
       end
     end
