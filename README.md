@@ -143,7 +143,7 @@ Or use 'Nuke' in the ui. Warning: this deletes all data, including failed jobs.
 Note, MongoDB must be running:
 
 ```bash
-bundle exec rspec
+./bin/rake spec
 ```
 
 ## Deploying the Converter to Amazon Elastic Beanstalk

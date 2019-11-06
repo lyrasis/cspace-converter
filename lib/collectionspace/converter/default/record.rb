@@ -381,12 +381,12 @@ module CollectionSpace
         # override the default authority convert method inline
         def convert
           run do |xml|
-            CSXML.add xml, 'subjectCsid', attributes["to_csid"]
-            CSXML.add xml, 'subjectDocumentType', attributes["to_doc_type"]
+            CSXML.add xml, 'subjectCsid', attributes["subjectcsid"]
+            CSXML.add xml, 'subjectDocumentType', attributes["subjectdocumenttype"]
             CSXML.add xml, 'relationshipType', "affects"
             CSXML.add xml, 'predicate', "affects"
-            CSXML.add xml, 'objectCsid', attributes["from_csid"]
-            CSXML.add xml, 'objectDocumentType', attributes["from_doc_type"]
+            CSXML.add xml, 'objectCsid', attributes["objectcsid"]
+            CSXML.add xml, 'objectDocumentType', attributes["objectdocumenttype"]
           end
         end
 
