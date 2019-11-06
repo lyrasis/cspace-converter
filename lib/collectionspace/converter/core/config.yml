@@ -179,6 +179,14 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
+  useofcollection:
+    type: Procedures
+    enabled: true
+    config:
+      UseOfCollection:
+        identifier: referencenumber
+        title: referencenumber
+      Authorities: []
   valuationcontrol:
     type: Procedures
     config:
