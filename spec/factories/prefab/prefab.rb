@@ -43,3 +43,14 @@ def prefab_vocabulary_object
     title: 'Danish'
   )
 end
+
+def prefab_relationship_object
+  build(
+    :collection_space_object,
+    category: 'Relationship',
+    type: 'Relationship',
+    identifier_field: 'csid',
+    identifier: '123',
+    title: '123'
+  )
+end

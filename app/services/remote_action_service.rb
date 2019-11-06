@@ -1,7 +1,6 @@
 require 'uri'
 
 class RemoteActionService
-
   attr_reader :object, :service
 
   class Status
@@ -10,6 +9,18 @@ class RemoteActionService
       @ok      = ok
       @message = message
     end
+
+    def bad(message)
+      @ok      = false
+      @message = message
+      Rails.logger.error(message)
+    end
+
+    def good(message)
+      @ok      = true
+      @message = message
+      Rails.logger.debug(message)
+    end
   end
 
   def initialize(object)
@@ -17,38 +28,60 @@ class RemoteActionService
     @service = Lookup.record_class(object.type).service(object.subtype)
   end
 
+  def list_criteria
+    relation  = service[:path] == "relations"
+    list_type = relation ? "relations_common_list" : "abstract_common_list"
+    list_item = relation ? "relation_list_item" : "list_item"
+    [relation, list_type, list_item]
+  end
+
+  def self.perform_search_request(path:, schema:, field:, value:)
+    search_args = {
+      path: path,
+      type: schema,
+      field: field,
+      expression: "= '#{value}'",
+    }
+    query = CollectionSpace::Search.new.from_hash search_args
+    $collectionspace_client.search(query)
+  end
+
+  def perform_search_request
+    RemoteActionService.perform_search_request(
+      path: service[:path],
+      schema: "#{service[:schema]}_common",
+      field: object.identifier_field,
+      value: object.identifier,
+    )
+  end
+
   def remote_delete
-    status = Status.new(ok: true, message: '')
+    status = Status.new
     if object.has_csid_and_uri?
       Rails.logger.debug("Deleting: #{object.identifier}")
       begin
         response = $collectionspace_client.delete(object.uri)
         if response.status_code.to_s =~ /^2/
-          object.update_attributes!( csid: nil, uri:  nil )
-          status.message = "Deleted: #{object.identifier}"
+          object.update_attributes!(csid: nil, uri:  nil)
+          status.good "Deleted: #{object.identifier}"
         else
-          status.ok = false
-          status.message = "Error response: #{response.body}"
-          Rails.logger.error(status.message)
+          status.bad "Error response: #{response.body}"
         end
       rescue Exception => ex
-        status.ok      = false
-        status.message = "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
-        Rails.logger.error(status.message)
+        status.bad "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
       end
     else
-      status.ok      = false
-      status.message = "Delete requires existing csid and uri."
+      status.bad "Delete requires existing csid and uri."
     end
     status
   end
 
   def remote_transfer
-    status = Status.new(ok: true, message: '')
+    status = Status.new
     unless object.has_csid_and_uri?
       Rails.logger.debug("Transferring: #{object.identifier}")
       begin
-        blob_uri = object.data_object.object_data.fetch('blob_uri', nil)
+        blob_uri = object.data_object.object_data.fetch('bloburi', nil)
         blob_uri = URI.encode blob_uri if !blob_uri.blank?
         params   = (blob_uri && object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
         response = $collectionspace_client.post(service[:path], object.content, params)
@@ -56,94 +89,65 @@ class RemoteActionService
           # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
           csid = response.headers["Location"].split("/")[-1]
           uri  = "#{service[:path]}/#{csid}"
-          object.update_attributes!( csid: csid, uri:  uri )
-          status.message = "Transferred: #{object.identifier}"
+          object.update_attributes!(csid: csid, uri:  uri)
+          status.good "Transferred: #{object.identifier}"
         else
-          status.ok = false
-          status.message = "Error response: #{response.body}"
-          Rails.logger.error(status.message)
+          status.bad "Error response: #{response.body}"
         end
       rescue Exception => ex
-        status.ok      = false
-        status.message = "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
-        Rails.logger.error(status.message)
+        status.bad = "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
       end
     else
-      status.ok      = false
-      status.message = "Transfer requires no pre-existing csid and uri."
+      status.bad "Transfer requires no pre-existing csid and uri."
     end
     status
   end
 
   def remote_update
-    status = Status.new(ok: true, message: '')
+    status = Status.new
     if object.has_csid_and_uri?
       Rails.logger.debug("Updating: #{object.identifier}")
       begin
         response = $collectionspace_client.put(object.uri, object.content)
         if response.status_code.to_s =~ /^2/
-          status.message = "Updated: #{object.identifier}"
+          status.good "Updated: #{object.identifier}"
         else
-          status.ok = false
-          status.message = "Error response: #{response.body}"
-          Rails.logger.error(status.message)
+          status.bad "Error response: #{response.body}"
         end
       rescue Exception => ex
-        status.ok      = false
-        status.message = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
-        Rails.logger.error(status.message)
+        status.bad = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
       end
     else
-      status.ok      = false
-      status.message = "Update requires existing csid and uri."
+      status.bad "Update requires existing csid and uri."
     end
     status
   end
 
   def remote_ping
-    puts "\n\n\nPING!\n\n\n"
-    status = Status.new(ok: true, message: '')
-    search_args = {
-      path: service[:path],
-      type: "#{service[:schema]}_common",
-      field: object.identifier_field,
-      expression: "= '#{object.identifier}'",
-    }
+    status = Status.new
     message_string = "#{service[:path]} #{service[:schema]} #{object.identifier_field} #{object.identifier}"
+    response = perform_search_request
 
-    query    = CollectionSpace::Search.new.from_hash search_args
-    response = $collectionspace_client.search(query)
     unless response.status_code.to_s =~ /^2/
-      status.ok      = false
-      status.message = "Error searching #{message_string}"
-      Rails.logger.error(status.message)
+      status.bad "Error searching #{message_string}"
       return status
     end
     parsed_response = response.parsed
-
-    # relation list type
-    relation  = service[:path] == "relations" ? true : false
-    list_type = service[:path] == "relations" ? "relations_common_list" : "abstract_common_list"
-    list_item = service[:path] == "relations" ? "relation_list_item" : "list_item"
-
-    return status if relation # cannot reliably search on relations
+    relation, list_type, list_item = list_criteria
+    return status if relation # cannot reliably interpret search on relations
 
     result_count = parsed_response[list_type]["totalItems"].to_i
     if result_count == 0
-      object.update_attributes!(
-        csid: nil,
-        uri:  nil
-      )
-      status.message = 'Record was not found.'
+      object.update_attributes!(csid: nil, uri: nil)
+      status.good 'Record was not found.'
     elsif result_count == 1
       object.update_attributes!(
         csid: parsed_response[list_type][list_item]["csid"],
         uri:  parsed_response[list_type][list_item]["uri"].gsub(/^\//, '')
       )
-      status.message = 'Record was found.'
+      status.good 'Record was found.'
     else
-      status.ok      = false
-      status.message = "Ambiguous result count (#{result_count}) for #{message_string}"
+      status.bad "Ambiguous result count (#{result_count}) for #{message_string}"
     end
     status
   end
