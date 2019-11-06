@@ -421,6 +421,22 @@ module CollectionSpace
         end
       end
 
+      class UseOfCollection < Record
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'uoc', 'uoc', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'uoc',
+            identifier_field: 'referenceNumber',
+            path: 'uoc',
+            schema: 'uoc',
+          }
+        end
+      end
+
       class ValuationControl < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
