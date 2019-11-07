@@ -11,6 +11,10 @@ class CacheService
     File.join(cache_dir, "#{Lookup.converter_domain}.csv")
   end
 
+  def self.cache_date_file
+    File.join(cache_dir, "#{Lookup.converter_domain}.txt")
+  end
+
   def self.csv_headers
     [
       'refname',
@@ -83,17 +87,36 @@ class CacheService
     return unless File.file? cache_file
 
     Rails.logger.info "Loading cache: #{cache_file}"
-
-    headers = CacheService.csv_headers
     CSV.foreach(cache_file, headers: true) do |row|
       CacheObject.create(row.to_hash)
     end
   end
 
+  def self.invalidate
+    unless File.file? cache_date_file
+      FileUtils.rm_f cache_file
+      File.open(cache_date_file, 'w') { |f| f.write Time.now }
+    end
+
+    cached_date = DateTime.parse(File.read(cache_date_file))
+    remote_date = DateTime.parse(system_setup_date)
+    if remote_date > cached_date
+      Rails.logger.warn 'Deleting cache as remote system may have been reset.'
+      FileUtils.rm_f cache_file
+    end
+  end
+
   def self.refresh
+    invalidate
     import
     download_vocabularies
     download_authorities
     export
+  end
+
+  def self.system_setup_date
+    $collectionspace_client.get(
+      'personauthorities/urn:cspace:name(person)'
+    ).parsed['document']['collectionspace_core']['createdAt']
   end
 end
