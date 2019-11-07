@@ -2,6 +2,7 @@ module CollectionSpace
   module Converter
     module Default
       class Record
+        ::CSDR = CollectionSpace::Converter::Default::Record
         attr_reader :attributes
         def initialize(attributes)
           @attributes = attributes

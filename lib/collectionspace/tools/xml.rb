@@ -149,6 +149,46 @@ module CollectionSpace
           add_authorities xml, field, 'materialauthorities', 'material', values, method
         end
 
+        def self.add_measured_part_group_list(xml, attributes)
+          overall_data = {
+            "measuredPart" => attributes["measuredpart"],
+            "dimensionSummary" => attributes["dimensionsummary"],
+          }
+          dimensions = []
+          dims = CSDR.split_mvf attributes, 'dimension'
+          values = CSDR.split_mvf attributes, 'value'
+          unit = attributes["measurementunit"]
+          by = CSXML::Helpers.get_authority(
+            'personauthorities', 'person', attributes["measuredby"]
+          )
+          method = attributes["measurementmethod"]
+          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar
+          qualifier = attributes["valuequalifier"]
+          note = attributes["dimensionnote"]
+          dims.each_with_index do |dim, index|
+            dimensions << {
+              "dimension" => dim,
+              "value" => values[index],
+              "measurementUnit" => unit,
+              "measuredBy" => by,
+              "measurementMethod" => method,
+              "valueDate" => date,
+              "valueQualifier" => qualifier,
+              "dimensionNote" => note
+            }
+          end
+          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', dimensions
+        end
+
+        def self.add_pairs(xml, attributes, pairs)
+          return nil unless pairs
+
+          pairs.each do |attribute, field|
+            field = "#{field}_" if reserved?(field)
+            CSXML.add(xml, field, attributes[attribute])
+          end
+        end
+
         def self.add_person(xml, field, value)
           add_authority xml, field, 'personauthorities', 'person', value
         end
@@ -171,6 +211,24 @@ module CollectionSpace
 
         def self.add_places(xml, field, values = [], method = :add_group_list)
           add_authorities xml, field, 'placeauthorities', 'place', values, method
+        end
+
+        def self.add_simple_groups(xml, attributes, groups)
+          return unless groups
+
+          groups.each do |attribute, field|
+            values = safe_split(field, attributes, attribute)
+            CSXML.add_group_list xml, field, values
+          end
+        end
+
+        def self.add_simple_repeats(xml, attributes, repeats)
+          return unless repeats
+
+          repeats.each do |attribute, field|
+            values = safe_split(field, attributes, attribute)
+            CSXML.add_repeat xml, field, values
+          end
         end
 
         def self.add_taxon(xml, field, value)
@@ -218,6 +276,21 @@ module CollectionSpace
           return nil unless value
 
           CSURN.get_vocab_urn(vocabulary, value)
+        end
+
+        # TODO: config
+        def self.reserved?(field)
+          ['comment', 'format'].include?(field)
+        end
+
+        def self.safe_split(field, attributes, attribute)
+          subfield = field.singularize
+          subfield = "#{subfield}_" if reserved?(subfield)
+          CSDR.split_mvf(attributes, attribute).map do |p|
+            {
+              subfield => p
+            }
+          end
         end
       end
     end

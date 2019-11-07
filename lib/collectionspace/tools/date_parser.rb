@@ -38,12 +38,16 @@ module CollectionSpace
 
       def self.parse(date_string, end_date_string = nil)
         begin
-          date_string = date_string.strip
-          date_string = "#{date_string}-01-01" if date_string =~ /^\d{4}$/
+          date_string    = date_string.strip
+          date_increment = :day
+          if date_string =~ /^\d{4}$/
+            date_string = "#{date_string}-01-01"
+            date_increment = :year
+          end
 
           parsed_earliest_date = DateTime.parse(date_string)
           parsed_latest_date = end_date_string ?
-            DateTime.parse(end_date_string) : parsed_earliest_date + 1
+            DateTime.parse(end_date_string) : parsed_earliest_date + 1.send(date_increment)
 
           date = StructuredDate.new
           date.parsed_datetime = parsed_earliest_date

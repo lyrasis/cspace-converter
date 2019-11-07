@@ -9,114 +9,95 @@ module CollectionSpace
           end
         end
 
-        def self.map(xml, attributes)
-          CSXML.add xml, 'objectNumber', attributes["objectnumber"]
-          CSXML.add xml, 'numberOfObjects', attributes["numberofobjects"]
-          CSXML::Helpers.add_title(xml, attributes)
-
-          CSXML.add_list xml, 'objectName', [{
-            "objectName" => attributes["objectname"],
-          }], 'Group'
-
-          CSXML.add_repeat xml, 'briefDescriptions', [{
-            "briefDescription" => scrub_fields([attributes["briefdescription"]])
-          }]
-
-          CSXML.add_repeat xml, 'responsibleDepartments', [{
-            "responsibleDepartment" => attributes["responsibledepartment"]
-          }]
-
-          CSXML.add xml, 'collection', attributes["collection"]
-          CSXML.add xml, 'recordStatus', attributes["recordstatus"]
-
-          CSXML.add_repeat xml, 'comments', [{
-            "comment_" => scrub_fields([attributes["comments"]])
-          }]
-
-          # measuredPartGroupList
-          overall_data = {
-            "measuredPart" => attributes["dimensionpart"],
-            "dimensionSummary" => attributes["dimensionsummary"],
+        def self.pairs
+          {
+            'objectnumber' => 'objectNumber',
+            'numberofobjects' => 'numberOfObjects',
+            'collection' => 'collection',
+            'recordstatus' => 'recordStatus',
+            'copynumber' => 'copyNumber',
+            'editionnumber' => 'editionNumber',
+            'phase' => 'phase',
+            'sex' => 'sex'
           }
-          dimensions = []
-          dims = split_mvf attributes, 'dimension'
-          values = split_mvf attributes, 'value'
-          unit = attributes["unit"]
-          dims.each_with_index do |dim, index|
-            dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit }
-          end
-          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', dimensions
+        end
 
-          if attributes["contentperson"]
-            contentpersons = split_mvf attributes, 'contentperson'
-            CSXML::Helpers.add_persons xml, 'contentPerson', contentpersons, :add_repeat
-          end
+        def self.simple_groups
+          {
+            'material' => 'material',
+            'productionpeople' => 'objectProductionPeople',
+            'productionplace' => 'objectProductionPlace',
+            'techattribute' => 'technicalAttribute',
+            'technique' => 'technique'
+          }
+        end
 
-          CSXML.add xml, 'copyNumber', attributes["copynumber"]
-          CSXML.add xml, 'editionNumber', attributes["editionnumber"]
-          CSXML.add_repeat xml, 'forms', [{ "form" => attributes["form"] }]
+        def self.simple_repeats
+          {
+            'briefdescription' => 'briefDescriptions',
+            'comments' => 'comments',
+            'fieldcollectioneventname' => 'fieldColEventNames',
+            'form' => 'forms',
+            'responsibledepartment' => 'responsibleDepartments',
+            'style' => 'styles'
+          }
+        end
+
+        def self.map(xml, attributes)
+          CSXML::Helpers.add_title(xml, attributes)
+          CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
+          CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
+          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)
+
+          CSXML::Helpers.add_measured_part_group_list(xml, attributes)
+          CSXML::Helpers.add_date_group_list(
+            xml, 'objectProductionDate', [CSDTP.parse(attributes['productiondate'])]
+          )
+
+          CSXML::Helpers.add_persons(
+            xml,
+            'contentPerson',
+            split_mvf(attributes, 'contentperson'),
+            :add_repeat
+          )
 
           CSXML.add_group_list xml, 'textualInscription', [{
-            "inscriptionContentInscriber" => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inscriber"]),
+            "inscriptionContentInscriber" => CSXML::Helpers.get_authority(
+              'personauthorities',
+              'person',
+              attributes["inscriber"]
+            ),
             "inscriptionContentMethod" => attributes["method"],
           }]
 
-          # materialGroupList
-          mgs = []
-          materials = split_mvf attributes, 'material'
-          materials.each do |m|
-            mgs << { "material" => m }
-          end
-          CSXML.add_group_list xml, 'material', mgs
-
-          CSXML.add_list xml, 'objectStatus', [{
-            "objectStatus" => attributes["objectstatus"]
+          CSXML.add_group_list xml, 'objectProductionOrganization', [{
+            "objectProductionOrganization" => CSXML::Helpers.get_authority(
+              'orgauthorities',
+              'organization',
+              attributes["productionorg"]
+            ),
+            "objectProductionOrganizationRole" => attributes["organizationrole"],
           }]
 
-          CSXML.add xml, 'phase', attributes["phase"]
-          CSXML.add xml, 'sex', attributes["sex"]
-          CSXML.add_repeat xml, 'styles', [{ "style" => attributes["style"] }]
-
-          CSXML.add_group_list xml, 'technicalAttribute', [{
-            "technicalAttribute" => attributes["techattribute"],
+          CSXML.add_group_list xml, 'objectProductionPerson', [{
+            "objectProductionPerson" => CSXML::Helpers.get_authority(
+              'personauthorities',
+              'person',
+              attributes["productionperson"]
+            ),
+            "objectProductionPersonRole" => attributes["personrole"],
           }]
 
           CSXML.add_group_list xml, "objectComponent", [{
             "objectComponentName" => attributes["objectcomponentname"]
           }]
 
-          CSXML.add_group_list xml, "objectProductionDate", [{
-            "dateDisplayDate" => attributes["productionddate"]
-          }]
+          CSXML.add_list xml, 'objectName', [{
+            "objectName" => attributes["objectname"],
+          }], 'Group'
 
-          CSXML.add_group_list xml, 'objectProductionOrganization', [{
-            "objectProductionOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["productionorg"]),
-            "objectProductionOrganizationRole" => attributes["organizationrole"],
-          }]
-
-          CSXML.add_group_list xml, 'objectProductionPeople', [{
-            "objectProductionPeople" => attributes["productionpeople"]
-          }]
-
-          CSXML.add_group_list xml, 'objectProductionPerson', [{
-            "objectProductionPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["productionperson"]),
-            "objectProductionPersonRole" => attributes["personrole"],
-          }]
-
-          CSXML.add_group_list xml, 'objectProductionPlace', [{
-            "objectProductionPlace" => attributes["productionplace"]
-          }]
-
-          # techniqueGroupList
-          tgs = []
-          techniques = split_mvf attributes, 'technique'
-          techniques.each do |t|
-            tgs << { "technique" => t }
-          end
-          CSXML.add_group_list xml, 'technique', tgs
-
-          CSXML.add_repeat xml, 'fieldColEventNames', [{
-            "fieldColEventName" => attributes["fieldcollectioneventname"]
+          CSXML.add_list xml, 'objectStatus', [{
+            "objectStatus" => attributes["objectstatus"]
           }]
         end
       end
