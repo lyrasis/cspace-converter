@@ -1,13 +1,28 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
-ENV BUILD_PACKAGES="bash build-base curl curl-dev dcron nodejs ruby-dev tzdata" \
-    RUBY_PACKAGES="ruby ruby-io-console ruby-irb ruby-json libffi-dev zlib-dev ruby-bigdecimal" \
+ENV BUNDLER_VERSION=1.17.3 \
     TERM=linux \
     PS1="\n\n>> ruby \W \$ " \
     TZ=UTC
 
-RUN apk --no-cache add $BUILD_PACKAGES $RUBY_PACKAGES && \
-    echo 'gem: --no-document' > /etc/gemrc && gem install bundler && \
+RUN apk --no-cache add \
+    bash \
+    build-base \
+    curl \
+    curl-dev \
+    dcron \
+    libffi-dev \
+    nodejs \
+    ruby \
+    ruby-bigdecimal \
+    ruby-dev \
+    ruby-io-console \
+    ruby-irb \
+    ruby-json \
+    tzdata \
+    zlib-dev \
+    && \
+    echo 'gem: --no-document' > /etc/gemrc && gem install bundler -v ${BUNDLER_VERSION} && \
     bundle config --global silence_root_warning 1
 
 RUN mkdir -p /usr/app/
