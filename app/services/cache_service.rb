@@ -66,7 +66,6 @@ class CacheService
   end
 
   def self.export
-    FileUtils.mkdir_p cache_dir
     FileUtils.rm_f cache_file
 
     Rails.logger.info "Exporting cache: #{cache_file}"
@@ -107,6 +106,7 @@ class CacheService
   end
 
   def self.refresh
+    FileUtils.mkdir_p cache_dir
     invalidate
     import
     download_vocabularies
