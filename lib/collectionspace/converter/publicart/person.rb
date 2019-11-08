@@ -32,18 +32,13 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-              PublicArtPerson.contact(xml, attributes)
+              CorePerson.contact(xml, attributes)
             end
           end
         end
 
         def self.contact(xml, attributes)
-          # webaddress
-          CSXML.add_group_list xml, 'webAddress',
-                                [{
-                                    "webAddress" => attributes["webaddress"],
-                                    "webAddressType" => attributes["webaddresstype"],
-                                }]
+          # n/a
         end
 
         def self.extension(xml, attributes)

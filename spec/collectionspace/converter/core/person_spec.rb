@@ -56,5 +56,3 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     test_converter(doc, record, xpaths)
   end
 end
-
-
