@@ -5,7 +5,7 @@ class DataObject
   has_many :collection_space_objects, autosave: true, dependent: :destroy
   validates_presence_of :converter_module
   validates_presence_of :converter_profile
-  validates_presence_of :object_data
+  validates_presence_of :csv_data
   validates_presence_of :import_category
   validate :module_and_profile_exist
 
@@ -13,7 +13,7 @@ class DataObject
 
   field :converter_module,  type: String # ex: Core
   field :converter_profile, type: String # ex: cataloging
-  field :object_data,       type: Hash
+  field :csv_data,          type: Hash
   field :import_batch,      type: String # ex: cat1
   field :import_file,       type: String # ex: cat1.csv
   field :import_message,    type: String, default: 'ok'
@@ -65,7 +65,7 @@ class DataObject
       }
     else
       converter    = Lookup.authority_class(type)
-      content_data = object_data
+      content_data = csv_data
     end
 
     data[:converter] = converter.to_s
@@ -82,9 +82,9 @@ class DataObject
     data[:type]             = procedure
     data[:subtype]          = ''
     data[:identifier_field] = converter.service[:identifier_field]
-    data[:identifier]       = object_data[attributes["identifier"]]
-    data[:title]            = object_data[attributes["title"]]
-    add_cspace_object(data, object_data)
+    data[:identifier]       = csv_data[attributes["identifier"]]
+    data[:title]            = csv_data[attributes["title"]]
+    add_cspace_object(data, csv_data)
   end
 
   def add_vocabulary(type:, subtype:, name:, identifier: nil, from_procedure: false)
@@ -103,7 +103,7 @@ class DataObject
         "displayname"     => name,
       }
     else
-      content_data = object_data
+      content_data = csv_data
     end
 
     data[:converter] = converter.to_s

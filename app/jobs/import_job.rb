@@ -27,7 +27,7 @@ class ImportJob < ActiveJob::Base
 
     data_object_attributes = {
       converter_profile: config[:profile],
-      object_data: {},
+      csv_data: {},
       import_batch: config[:batch],
       import_category: type,
       import_file: config[:filename],
@@ -35,7 +35,7 @@ class ImportJob < ActiveJob::Base
 
     rows.each do |data|
       batch.processed += 1
-      data_object_attributes[:object_data] = data
+      data_object_attributes[:csv_data] = data
       service = Lookup.import_service(type).new(
         config[:profile],
         data_object_attributes

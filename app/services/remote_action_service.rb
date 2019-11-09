@@ -81,7 +81,7 @@ class RemoteActionService
     unless object.has_csid_and_uri?
       Rails.logger.debug("Transferring: #{object.identifier}")
       begin
-        blob_uri = object.data_object.object_data.fetch('bloburi', nil)
+        blob_uri = object.data_object.csv_data.fetch('bloburi', nil)
         blob_uri = URI.encode blob_uri if !blob_uri.blank?
         params   = (blob_uri && object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
         response = $collectionspace_client.post(service[:path], object.content, params)

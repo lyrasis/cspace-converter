@@ -28,7 +28,7 @@ class CollectionSpaceObject
   scope :transferred, ->{ where(csid: true) } # TODO: check
 
   def generate_content!(data = nil)
-    data ||= data_object.object_data
+    data ||= data_object.csv_data
     cvtr = converter.constantize.new(data)
     Rails.logger.debug(
       "Generating content for: #{converter} -- #{data}"
