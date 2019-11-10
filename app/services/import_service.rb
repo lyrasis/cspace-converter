@@ -8,7 +8,7 @@ class ImportService
     end
 
     def add_authority(name_field:, type:, subtype:)
-      display_name = object.object_data[name_field]
+      display_name = object.csv_data[name_field]
       return unless display_name
 
       service = Lookup.record_class(type).service(subtype)[:id]
@@ -16,7 +16,7 @@ class ImportService
         identifier = AuthCache.authority service, subtype, name
         next if identifier && from_procedure # skip cached from procedure
 
-        identifier = object.object_data.fetch('shortidentifier', identifier)
+        identifier = object.csv_data.fetch('shortidentifier', identifier)
         identifier ||= CSIDF.short_identifier(name)
 
         next if CollectionSpaceObject.has_authority?(identifier)
@@ -33,14 +33,14 @@ class ImportService
     end
 
     def add_vocabulary(name_field:, subtype:)
-      display_name = object.object_data[name_field]
+      display_name = object.csv_data[name_field]
       return unless display_name
 
       display_name.split(object.delimiter).map(&:strip).each do |name|
         identifier = AuthCache.vocabulary(subtype, name)
         next if identifier && from_procedure
 
-        identifier = object.object_data.fetch('shortidentifier', identifier)
+        identifier = object.csv_data.fetch('shortidentifier', identifier)
         identifier ||= CSIDF.short_identifier(name)
 
         next if CollectionSpaceObject.has_vocabulary?(identifier)
@@ -128,7 +128,7 @@ class ImportService
       name_field = attributes['name_field']
 
       if attributes['authority_type_from']
-        type = object.object_data[attributes['authority_type_from']]
+        type = object.csv_data[attributes['authority_type_from']]
       end
       type ||= attributes['authority_type']
       type = type.capitalize if type
