@@ -61,7 +61,7 @@ class RemoteActionService
       Rails.logger.debug("Deleting: #{object.identifier}")
       begin
         response = $collectionspace_client.delete(object.uri)
-        if response.status_code.to_s =~ /^2/
+        if response.result.success?
           object.update_attributes!(csid: nil, uri:  nil)
           status.good "Deleted: #{object.identifier}"
         else
@@ -85,7 +85,7 @@ class RemoteActionService
         blob_uri = URI.encode blob_uri if !blob_uri.blank?
         params   = (blob_uri && object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
         response = $collectionspace_client.post(service[:path], object.content, params)
-        if response.status_code.to_s =~ /^2/
+        if response.result.success?
           # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
           csid = response.headers["Location"].split("/")[-1]
           uri  = "#{service[:path]}/#{csid}"
@@ -109,7 +109,7 @@ class RemoteActionService
       Rails.logger.debug("Updating: #{object.identifier}")
       begin
         response = $collectionspace_client.put(object.uri, object.content)
-        if response.status_code.to_s =~ /^2/
+        if response.result.success?
           status.good "Updated: #{object.identifier}"
         else
           status.bad "Error response: #{response.body}"
@@ -128,7 +128,7 @@ class RemoteActionService
     message_string = "#{service[:path]} #{service[:schema]} #{object.identifier_field} #{object.identifier}"
     response = perform_search_request
 
-    unless response.status_code.to_s =~ /^2/
+    unless response.result.success?
       status.bad "Error searching #{message_string}"
       return status
     end
