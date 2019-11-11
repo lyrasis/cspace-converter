@@ -292,6 +292,16 @@ module CollectionSpace
             }
           end
         end
+
+        def self.shortid_for_auth(type, subtype, value)
+          refname = CSXML::Helpers.get_authority(type, subtype, value)
+          CSURN.parse(refname)[:identifier] if refname
+        end
+
+        def self.shortid_for_vocab(vocabulary, value)
+          refname = CSXML::Helpers.get_vocab(vocabulary, value)
+          CSURN.parse(refname)[:identifier] if refname
+        end
       end
     end
   end

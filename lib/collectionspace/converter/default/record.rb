@@ -3,9 +3,10 @@ module CollectionSpace
     module Default
       class Record
         ::CSDR = CollectionSpace::Converter::Default::Record
-        attr_reader :attributes
-        def initialize(attributes)
+        attr_reader :attributes, :config
+        def initialize(attributes, config = {})
           @attributes = attributes
+          @config = config
         end
 
         # default implementation used by authorities

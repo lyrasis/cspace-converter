@@ -29,9 +29,12 @@ class CollectionSpaceObject
 
   def generate_content!(data = nil)
     data ||= data_object.csv_data
-    cvtr = converter.constantize.new(data)
+    config = converter.constantize.service(subtype)
+    config[:identifier] = identifier
+    config[:title] = title
+    cvtr = converter.constantize.new(data, config)
     Rails.logger.debug(
-      "Generating content for: #{converter} -- #{data}"
+      "Generating content for: #{converter} -- #{data}, #{config}"
     )
     write_attribute 'content', cvtr.convert
   end
