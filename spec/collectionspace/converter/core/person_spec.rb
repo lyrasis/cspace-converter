@@ -15,7 +15,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     '/document/*/personTermGroupList/personTermGroup/salutation',
     '/document/*/personTermGroupList/personTermGroup/title',
     '/document/*/personTermGroupList/personTermGroup/nameAdditions',
-    '/document/*/personTermGroupList/personTermGroup/termLanguage',
+    { xpath: '/document/*/personTermGroupList/personTermGroup/termLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/personTermGroupList/personTermGroup/termPrefForLang',
     #'/document/*/personTermGroupList/personTermGroup/termType',
     '/document/*/personTermGroupList/personTermGroup/termQualifier',
@@ -24,8 +24,8 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     '/document/*/personTermGroupList/personTermGroup/termSourceDetail',
     '/document/*/personTermGroupList/personTermGroup/termSourceNote',
     '/document/*/personTermGroupList/personTermGroup/termStatus',
-    # '/document/*/birthDateGroup/dateDisplayDate',
-    # '/document/*/deathDateGroup/dateDisplayDate',
+    { xpath: '/document/*/birthDateGroup/dateDisplayDate', transform: ->(text) { text.split('-')[0] } },
+    { xpath: '/document/*/deathDateGroup/dateDisplayDate', transform: ->(text) { text.split('-')[0] } },
     '/document/*/birthPlace',
     '/document/*/deathPlace',
     '/document/*/groups/group',
@@ -49,7 +49,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     '/document/*/addressGroupList/addressGroup/addressMunicipality',
     '/document/*/addressGroupList/addressGroup/addressStateOrProvince',
     '/document/*/addressGroupList/addressGroup/addressPostCode',
-    '/document/*/addressGroupList/addressGroup/addressCounty',
+    '/document/*/addressGroupList/addressGroup/addressCountry',
   ]}
 
   it "Maps attributes correctly" do

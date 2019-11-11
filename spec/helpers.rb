@@ -36,8 +36,8 @@ module Helpers
     xpaths.each do |xpath|
       doc_text = get_text(doc, xpath)
       record_text = get_text(record, xpath)
-      expect(doc_text).not_to be_empty
-      expect(record_text).not_to be_empty
+      expect(doc_text).not_to be_empty, -> { "Xpath for doc was empty: #{xpath}" }
+      expect(record_text).not_to be_empty, -> { "Xpath for record was empty: #{xpath}" }
       expect(doc_text).to eq(record_text)
     end
   end

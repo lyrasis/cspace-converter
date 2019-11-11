@@ -46,10 +46,16 @@ module CollectionSpace
               "salutation" => attributes["salutation"],
               "termName" => attributes["termname"],
               "termQualifier" => attributes["termqualifier"],
-              "termPrefForLang" => attributes["termprefforlang"],
+              "termPrefForLang" => attributes.fetch("termprefforlang", '').downcase,
             }
           ]
           CSXML.add xml, 'birthPlace', attributes["birthplace"]
+          CSXML::Helpers.add_date_group(
+            xml, 'birthDate', CSDTP.parse(attributes['birthdategroup'])
+          )
+          CSXML::Helpers.add_date_group(
+            xml, 'deathDate', CSDTP.parse(attributes['deathdategroup'])
+          )
           CSXML.add xml, 'deathPlace', attributes["deathplace"]
           CSXML.add_repeat xml, 'groups', [{'group' => attributes['group']}]
           CSXML.add_repeat xml, 'nationalities', [{'nationality' => attributes['nationality']}]
@@ -93,7 +99,7 @@ module CollectionSpace
               "addressMunicipality" => attributes["addressmunicipality"],
               "addressStateOrProvince" => attributes["addressstateorprovince"],
               "addressPostCode" => attributes["addresspostcode"],
-              "addressCounty" => attributes["addresscounty"],
+              "addressCountry" => attributes["addresscountry"],
             }
           ]
         end

@@ -130,13 +130,13 @@
     </faxNumberGroupList>
     <addressGroupList>
       <addressGroup>
-        <addressCountry/>
+        <addressCountry>USA</addressCountry>
         <addressPlace2>Suite 100</addressPlace2>
         <addressPlace1>123 Main Street</addressPlace1>
         <addressType>business</addressType>
         <addressMunicipality>Algiers</addressMunicipality>
-        <addressPostCode/>
-        <addressStateOrProvince/>
+        <addressPostCode>70183</addressPostCode>
+        <addressStateOrProvince>LA</addressStateOrProvince>
       </addressGroup>
     </addressGroupList>
     <inAuthority>2217bfab-d0bd-4535-abbc</inAuthority>
