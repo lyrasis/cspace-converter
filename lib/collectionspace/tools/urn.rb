@@ -32,6 +32,7 @@ module CollectionSpace
 
       def self.parse(refname)
         parts = refname.split(':')
+        parts[6] = parts[6..parts.length].join(':') if parts.length > 7
         {
           domain: parts[2],
           type: parts[3],

@@ -15,12 +15,12 @@ RSpec.describe CollectionSpace::Converter::Core::CoreMedia do
     '/document/*/description',
     '/document/*/externalUrl',
     '/document/*/identificationNumber',
-    { xpath: '/document/*/languageList/language', transform: ->(text) { CSURN.parse(text)[:label].downcase } }
+    { xpath: '/document/*/languageList/language', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSummary',
     '/document/*/measuredPartGroupList/measuredPartGroup/measuredPart',
     '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/dimension',
     {
-      xpath: '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/measuredBy',
+      xpath: '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[1]/measuredBy',
       transform: ->(text) { CSURN.parse(text)[:label] }
     },
     '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/measurementMethod',

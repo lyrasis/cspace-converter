@@ -30,7 +30,7 @@ module CollectionSpace
                 'deaccessionapprovalgroup', grp
               ),
               "deaccessionApprovalStatus" => CSXML::Helpers.get_vocab(
-                'deaccessionapprovalstatus',approvalstatus[index]
+                'deaccessionapprovalstatus', approvalstatus[index]
               ),
               "deaccessionApprovalDate" => CSDTP.parse(approvaldate[index]).earliest_scalar
             }
