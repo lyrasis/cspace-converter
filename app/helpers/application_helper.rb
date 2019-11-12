@@ -47,6 +47,8 @@ module ApplicationHelper
   end
 
   def short_date(date)
+    return '' unless date
+
     date.to_s(:short)
   end
 

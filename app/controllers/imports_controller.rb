@@ -9,12 +9,21 @@ class ImportsController < ApplicationController
 
     if file.respond_to? :path
       config = {
-        file:      file.path,
-        key:       SecureRandom.uuid,
-        batch:     params[:batch],
-        module:    params[:module],
-        profile:   params[:profile],
+        file: file.path,
+        key: SecureRandom.uuid,
+        batch: params[:batch],
+        module: params[:module],
+        profile: params[:profile],
       }
+
+      Batch.create(
+        key: config[:key],
+        category: 'import',
+        type: Lookup.converter_class,
+        for: config[:profile],
+        name: config[:batch],
+        start: Time.now
+      )
 
       ::SmarterCSV.process(file.path, {
           chunk_size: 100,

@@ -5,20 +5,7 @@ class TransferJob < ActiveJob::Base
     action_method = TransferJob.actions action
     raise "Invalid remote action #{action}!" unless action_method
 
-    batch = Batch.where(
-      key: key
-    ).first || Batch.new(
-      key: key,
-      category: 'transfer',
-      type: action_method.to_s,
-      for: type,
-      name: batch_name,
-      status: 'running',
-      processed: 0,
-      failed: 0,
-      start: Time.now,
-      end: nil
-    )
+    batch = Batch.retrieve(key)
     batch.status = 'running' # reset running status
     batch.save
 

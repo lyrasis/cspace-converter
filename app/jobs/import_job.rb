@@ -6,20 +6,7 @@ class ImportJob < ActiveJob::Base
   def perform(config, rows = [])
     type = Lookup.profile_type(config[:profile])
 
-    batch = Batch.where(
-      key: config[:key]
-    ).first || Batch.new(
-      key: config[:key],
-      category: 'import',
-      type: Lookup.converter_class,
-      for: config[:profile],
-      name: config[:batch],
-      status: 'running',
-      processed: 0,
-      failed: 0,
-      start: Time.now,
-      end: nil
-    )
+    batch = Batch.retrieve(config[:key])
     batch.status = 'running' # reset running status
     batch.save
 
