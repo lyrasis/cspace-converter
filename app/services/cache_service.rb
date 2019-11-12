@@ -47,9 +47,9 @@ class CacheService
         list_rev     = list['rev']
         next if CacheObject.skip_list?(list_refname, list_rev)
 
+        CacheObject.where(parent_refname: list_refname).destroy_all
         $collectionspace_client.all("#{list['uri']}/items").each do |item|
           refname, name, identifier, rev = item.values_at(*headers)
-          next if CacheObject.skip_item?(refname, rev)
 
           Rails.logger.debug "Cache: #{refname}"
           CacheObject.create(
