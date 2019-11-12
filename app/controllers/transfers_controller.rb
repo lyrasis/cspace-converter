@@ -9,11 +9,19 @@ class TransfersController < ApplicationController
     type   = params[:type]
     batch  = params[:batch]
 
-    batch = nil if batch =~ /all/i
+    key = SecureRandom.uuid
+    Batch.create(
+      key: key,
+      category: 'transfer',
+      type: action,
+      for: type,
+      name: batch,
+      start: Time.now
+    )
 
-    TransferJob.perform_later(action, type, batch, SecureRandom.uuid)
+    TransferJob.perform_later(action, type, batch, key)
     flash[:notice] = "Transfer job running. Check back periodically for results."
-    redirect_to root_path
+    redirect_to batches_path
   end
 
 end
