@@ -12,14 +12,9 @@ class ImportService
       return unless display_name
 
       service = Lookup.record_class(type).service(subtype)[:id]
-      display_name.split(object.delimiter).map(&:strip).each do |name|
-        identifier = AuthCache.authority service, subtype, name
-        next if identifier && from_procedure # skip cached from procedure
-
-        identifier = object.csv_data.fetch('shortidentifier', identifier)
-        identifier ||= CSIDF.short_identifier(name)
-
-        next if CollectionSpaceObject.has_authority?(identifier)
+      names_for(display_name).each do |name|
+        identifier = identifier_for(:authority, service, subtype, name)
+        next if identifier.nil?
 
         object.add_authority(
           type: type,
@@ -36,14 +31,9 @@ class ImportService
       display_name = object.csv_data[name_field]
       return unless display_name
 
-      display_name.split(object.delimiter).map(&:strip).each do |name|
-        identifier = AuthCache.vocabulary(subtype, name)
-        next if identifier && from_procedure
-
-        identifier = object.csv_data.fetch('shortidentifier', identifier)
-        identifier ||= CSIDF.short_identifier(name)
-
-        next if CollectionSpaceObject.has_vocabulary?(identifier)
+      names_for(display_name).each do |name|
+        identifier = identifier_for(:vocabulary, 'vocabularies', subtype, name)
+        next if identifier.nil?
 
         object.add_vocabulary(
           type: 'Vocabulary',
@@ -59,6 +49,23 @@ class ImportService
     def create_object
       @object = DataObject.new.from_json(JSON.generate(data))
       @object.save!
+    end
+
+    def identifier_for(method, type, subtype, name)
+      identifier = if method == :authority
+        AuthCache.authority(type, subtype, name)
+      elsif method == :vocabulary
+        AuthCache.vocabulary(subtype, name)
+      end
+      # we don't want to create a stub record
+      return nil if identifier && from_procedure
+
+      identifier = object.csv_data.fetch('shortidentifier', identifier)
+      identifier || CSIDF.short_identifier(name)
+    end
+
+    def names_for(display_name)
+      display_name.split(object.delimiter).map(&:strip)
     end
 
     def process
