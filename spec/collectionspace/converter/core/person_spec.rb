@@ -15,7 +15,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     '/document/*/personTermGroupList/personTermGroup/salutation',
     '/document/*/personTermGroupList/personTermGroup/title',
     '/document/*/personTermGroupList/personTermGroup/nameAdditions',
-    { xpath: '/document/*/personTermGroupList/personTermGroup/termLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/personTermGroupList/personTermGroup/termLanguage', transform: ->(text) { CSURN.parse(text)[:label].downcase } }
     '/document/*/personTermGroupList/personTermGroup/termPrefForLang',
     #'/document/*/personTermGroupList/personTermGroup/termType',
     '/document/*/personTermGroupList/personTermGroup/termQualifier',
