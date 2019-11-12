@@ -52,4 +52,10 @@ module ApplicationHelper
     date.to_s(:short)
   end
 
+  def version
+    version = ENV.fetch('BUILD_VERSION', 'dev')
+    date = ENV.fetch('BUILD_DATE', Date.today)
+    "Version: #{version} (#{date})"
+  end
+
 end

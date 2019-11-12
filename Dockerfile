@@ -1,11 +1,14 @@
 FROM alpine:3.7
 
-ENV BUNDLER_VERSION=1.17.3 \
+ENV BUILD_DATE=false \
+    BUILD_VERSION=${SOURCE_BRANCH:-dev} \
+    BUNDLER_VERSION=1.17.3 \
     TERM=linux \
     PS1="\n\n>> ruby \W \$ " \
     TZ=UTC
 
-RUN apk --no-cache add \
+RUN BUILD_DATE=`date '+%Y-%m-%d'` \
+    apk --no-cache add \
     bash \
     build-base \
     curl \
