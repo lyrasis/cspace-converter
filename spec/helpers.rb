@@ -38,7 +38,7 @@ module Helpers
       record_text = get_text(record, xpath)
       expect(doc_text).not_to be_empty, -> { "Xpath for doc was empty: #{xpath}" }
       expect(record_text).not_to be_empty, -> { "Xpath for record was empty: #{xpath}" }
-      expect(doc_text).to eq(record_text)
+      expect(doc_text).to eq(record_text), -> { "Xpath match failure: #{xpath}" }
     end
   end
 end

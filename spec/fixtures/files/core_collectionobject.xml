@@ -118,7 +118,12 @@
     <assocPersonGroupList/>
     <titleGroupList>
       <titleGroup>
-        <titleTranslationSubGroupList/>
+        <titleTranslationSubGroupList>
+          <titleTranslationSubGroup>
+            <titleTranslation>Un hombre</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spanish)'Spanish'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
+        </titleTranslationSubGroupList>
         <titleType/>
         <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
         <title>A Man</title>
@@ -128,7 +133,12 @@
     <usageGroupList/>
     <assocCulturalContextGroupList/>
     <otherNumberList/>
-    <objectProductionPeopleGroupList/>
+    <objectProductionPeopleGroupList>
+      <objectProductionPeopleGroup>
+        <objectProductionPeople>Peoples</objectProductionPeople>
+        <objectProductionPeopleRole/>
+      </objectProductionPeopleGroup>
+    </objectProductionPeopleGroupList>
     <assocPeopleGroupList/>
     <assocEventOrganizations/>
     <contentPeoples/>
