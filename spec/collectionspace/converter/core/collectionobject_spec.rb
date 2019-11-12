@@ -9,16 +9,21 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/objectNumber',
     '/document/*/numberOfObjects',
     '/document/*/titleGroupList/titleGroup/title',
-    { xpath: '/document/*/titleGroupList/titleGroup/titleLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/titleGroupList/titleGroup/titleLanguage',  transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     '/document/*/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslation',
-    { xpath: '/document/*/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslationLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslationLanguage', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     # '/document/*/collection', # static list
     '/document/*/objectNameList/objectNameGroup/objectName',
     '/document/*/briefDescriptions/briefDescription',
     # '/document/*/responsibleDepartments/responsibleDepartment', # static list
     # '/document/*/recordStatus', # static list
     '/document/*/comments/comment',
+    '/document/*/fieldColEventNames/fieldColEventName',
     '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSummary',
+    '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/dimension',
+    '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/value',
+    '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/measurementUnit',
+    '/document/*/measuredPartGroupList/measuredPartGroup/measuredPart',
     # '/document/*/copyNumber', # TODO add data
     # '/document/*/editionNumber', # TODO add data
     # '/document/*/forms/form', # TODO add data
@@ -31,6 +36,8 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     # '/document/*/objectComponentGroupList/...', # TODO add data
     '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateEarliestScalarValue',
     '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateLatestScalarValue',
+    '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup',
+    '/document/*/objectProductionPersonGroupList/objectProductionPersonRole',
     # '/document/*/objectProductionOrganization/...', # TODO add data
     # '/document/*/objectProductionPeopleGroupList/...', # TODO add data
     '/document/*/objectProductionPlaceGroupList/objectProductionPlaceGroup/objectProductionPlace',
