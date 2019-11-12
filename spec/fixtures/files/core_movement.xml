@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="movements">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-11-11T11:21:20.207Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:movements:id(336c1fbd-55a1-49b1-997b)</refName>
+    <uri>/movements/336c1fbd-55a1-49b1-997b</uri>
+    <updatedAt>2019-11-11T11:21:20.207Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:movements_common xmlns:ns2="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <inventoryContactList>
+      <inventoryContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(HermioneMilbourne1573471235447)'Hermione Milbourne'</inventoryContact>
+    </inventoryContactList>
+    <inventoryDate>2006-01-27T00:00:00.000Z</inventoryDate>
+    <currentLocationFitness>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(AR1U1Shelf11573471033098)'A:R1:U1:Shelf 1'</normalLocation>
+    <movementMethods>
+      <movementMethod>forklift</movementMethod>
+    </movementMethods>
+    <inventoryActionRequired>conservation</inventoryActionRequired>
+    <currentLocation>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(AR1U1Shelf11573471033098)'A:R1:U1:Shelf 1'</currentLocation>
+    <plannedRemovalDate>2007-01-27T00:00:00.000Z</plannedRemovalDate>
+    <frequencyForInventory>daily</frequencyForInventory>
+    <removalDate>2008-01-28T00:00:00.000Z</removalDate>
+    <currentLocationNote>mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget</currentLocationNote>
+    <currentLocationFitness>dangerous</currentLocationFitness>
+    <movementNote>ornare lectus sit amet est placerat in egestas erat imperdiet</movementNote>
+    <nextInventoryDate>2007-01-27T00:00:00.000Z</nextInventoryDate>
+    <movementContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ClementineEgge1573471108574)'Clementine Egge'</movementContact>
+    <locationDate>2006-01-27T00:00:00.000Z</locationDate>
+    <movementReferenceNumber>MV20CS.001</movementReferenceNumber>
+    <reasonForMove>conservation</reasonForMove>
+    <inventoryNote>elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere</inventoryNote>
+  </ns2:movements_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>e662bc61-e3ab-4d8b-8ece-dde514c837a5</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
