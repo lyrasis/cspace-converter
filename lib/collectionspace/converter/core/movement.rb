@@ -10,12 +10,29 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes)
-          CSXML.add xml, 'movementReferenceNumber', attributes["inventory_reference_number"]
-          CSXML::Helpers.add_location xml, 'currentLocation', attributes['current_location']
-          CSXML.add xml, 'locationDate', attributes["location_date"]
-          CSXML::Helpers.add_persons xml, 'borrowersAuthorizer', [attributes["movement_contact"]]
-          CSXML.add xml, 'reasonForMove', attributes["reason_for_move"]
-          CSXML.add xml, 'movementNote', scrub_fields([attributes["movement_information_note"]])
+          CSXML.add xml, 'movementReferenceNumber', attributes["movementreferencenumber"]
+          CSXML::Helpers.add_location xml, 'normalLocation', attributes['normallocation']
+          CSXML::Helpers.add_location xml, 'currentLocation', attributes['currentlocation']
+          CSXML.add xml, 'currentLocationFitness', attributes["currentlocationfitness"]
+          CSXML.add xml, 'currentLocationNote', attributes["currentlocationnote"]
+          CSXML.add xml, 'locationDate', CSDTP.parse(attributes['locationdate']).earliest_scalar
+          CSXML.add xml, 'reasonForMove', attributes["reasonformove"]
+          CSXML::Helpers.add_person xml, 'movementContact', attributes["movementcontact"]
+          CSXML.add_repeat xml, 'movementMethods', [{'movementMethod' => attributes['movementmethod']}]
+          CSXML.add xml, 'plannedRemovalDate', CSDTP.parse(attributes['plannedremovaldate']).earliest_scalar
+          CSXML.add xml, 'removalDate', CSDTP.parse(attributes['removaldate']).earliest_scalar
+          CSXML.add xml, 'movementNote', attributes["movementnote"]
+          CSXML.add xml, 'inventoryActionRequired', attributes["inventoryactionrequired"]
+          CSXML.add xml, 'frequencyForInventory', attributes["frequencyforinventory"]
+          CSXML.add xml, 'inventoryDate', CSDTP.parse(attributes['inventorydate']).earliest_scalar
+          CSXML.add xml, 'nextInventoryDate', CSDTP.parse(attributes['nextinventorydate']).earliest_scalar
+=begin
+          contact = CSXML::Helpers.get_authority(
+            'personauthorities', 'person', attributes["inventorycontact"]
+          )
+=end
+          CSXML.add_repeat xml, 'inventoryContact', [{'inventoryContact' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inventorycontact"])}], 'List'
+          CSXML.add xml, 'inventoryNote', attributes["inventorynote"]
         end
       end
     end
