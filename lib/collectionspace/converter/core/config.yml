@@ -144,10 +144,11 @@ registered_profiles:
       Authorities: []
   movement:
     type: Procedures
+    enabled: true
     config:
       Movement:
-        identifier: inventoryreferencenumber
-        title: inventoryreferencenumber
+        identifier: movementreferencenumber
+        title: movementreferencenumber
       Authorities:
         - name_field: movementcontact
           authority_type: Person
