@@ -87,8 +87,8 @@ module CollectionSpace
             "objectProductionPersonRole" => attributes["personrole"],
           }]
 
+          # not simple because 'objectProductionPeople' singularized as 'objectProductionPerson'
           CSXML.add_group_list xml, 'objectProductionPeople', [{"objectProductionPeople" => attributes["productionpeople"]}]
-
 
           CSXML.add_group_list xml, "objectComponent", [{
             "objectComponentName" => attributes["objectcomponentname"]
