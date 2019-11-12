@@ -153,6 +153,9 @@ registered_profiles:
         - name_field: movementcontact
           authority_type: Person
           authority_subtype: person
+        - name_field: inventorycontact
+          authority_type: Person
+          authority_subtype: person
   nomenclature:
     type: Authorities
     config:

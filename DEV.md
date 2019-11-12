@@ -58,6 +58,10 @@ Steps:
 ./remote.sh transfer Media media1
 ./remote.sh delete Media media1
 
+./import.sh data/core/lmi_core_all.csv movement1 movement
+./remote.sh transfer Movement movement1
+./remote.sh delete Movement movement1
+
 ./import.sh data/core/authconcept_nomenclature_terms.csv nomenclature1 nomenclature
 ./remote.sh transfer Concept nomenclature1
 ./remote.sh delete Concept nomenclature1
