@@ -26,11 +26,6 @@ module CollectionSpace
           CSXML.add xml, 'frequencyForInventory', attributes["frequencyforinventory"]
           CSXML.add xml, 'inventoryDate', CSDTP.parse(attributes['inventorydate']).earliest_scalar
           CSXML.add xml, 'nextInventoryDate', CSDTP.parse(attributes['nextinventorydate']).earliest_scalar
-=begin
-          contact = CSXML::Helpers.get_authority(
-            'personauthorities', 'person', attributes["inventorycontact"]
-          )
-=end
           CSXML.add_repeat xml, 'inventoryContact', [{'inventoryContact' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inventorycontact"])}], 'List'
           CSXML.add xml, 'inventoryNote', attributes["inventorynote"]
         end
