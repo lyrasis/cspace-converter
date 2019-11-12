@@ -1,12 +1,19 @@
 namespace :import do
   def process(job_class, config)
-    # process in chunks of 100 rows
+    Batch.create(
+      key: config[:key],
+      category: 'import',
+      type: Lookup.converter_class,
+      for: config[:profile],
+      name: config[:batch],
+      start: Time.now
+    )
+
     SmarterCSV.process(config[:filename], {
         chunk_size: 100,
         convert_values_to_numeric: false,
       }.merge(Rails.application.config.csv_parser_options)) do |chunk|
       job_class.perform_later(config, chunk)
-      # run the job immediately when using rake
       Delayed::Worker.new.run(Delayed::Job.last)
     end
     Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."

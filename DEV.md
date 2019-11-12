@@ -62,6 +62,10 @@ Steps:
 ./remote.sh transfer Concept nomenclature1
 ./remote.sh delete Concept nomenclature1
 
+./import.sh data/core/authperson_core_all.csv person1 person
+./remote.sh transfer Person person1
+./remote.sh delete Person person1
+
 ./import.sh data/core/objectexit_core_all.csv exit1 objectexit
 ./remote.sh transfer ObjectExit exit1
 ./remote.sh delete ObjectExit exit1

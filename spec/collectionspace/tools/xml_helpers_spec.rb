@@ -120,4 +120,19 @@ RSpec.describe CSXML::Helpers do
   xit "can safe split correctly" do
     # TODO
   end
+
+  it "can get short identifier for authority" do
+    expect(CSXML::Helpers.shortid_for_auth(
+      'personauthorities',
+      'person',
+      person_name
+    )).to eq CSURN.parse(person_refname)[:identifier]
+  end
+
+  it "can get short identifier for vocabulary" do
+    expect(CSXML::Helpers.shortid_for_vocab(
+      'languages',
+      vocab
+    )).to eq CSURN.parse(vocab_refname)[:identifier]
+  end
 end

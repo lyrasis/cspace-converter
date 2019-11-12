@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="persons">
+  <ns2:persons_common xmlns:ns2="http://collectionspace.org/services/person" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <personRecordTypes/>
+    <rev>0</rev>
+    <sas>false</sas>
+    <gender>male</gender>
+    <csid>ab547505-b40f-4540-8187</csid>
+    <groups>
+      <group>group text</group>
+    </groups>
+    <nationalities>
+      <nationality>English</nationality>
+    </nationalities>
+    <bioNote>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus in massa tempor nec feugiat. Morbi tincidunt ornare massa eget egestas purus. Nibh sit amet commodo nulla. Cursus sit amet dictum sit. Ultrices dui sapien eget mi. Amet facilisis magna etiam tempor orci eu lobortis elementum nibh. Nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque. Netus et malesuada fames ac turpis egestas sed tempus. Iaculis eu non diam phasellus vestibulum lorem sed risus.</bioNote>
+    <occupations>
+      <occupation>occupation text</occupation>
+    </occupations>
+    <nameNote>name note text</nameNote>
+    <birthPlace>Algiers</birthPlace>
+    <birthDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1813</dateDisplayDate>
+      <dateLatestScalarValue>1814-01-01T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>1813</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay>31</dateLatestDay>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear>1813</dateLatestYear>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>1813-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth>12</dateLatestMonth>
+    </birthDateGroup>
+    <personTermGroupList>
+      <personTermGroup>
+        <termSourceID>123</termSourceID>
+        <termSourceDetail>detail text</termSourceDetail>
+        <surName>Mellon</surName>
+        <termSourceNote>source text</termSourceNote>
+        <termFormattedDisplayName/>
+        <initials>JM</initials>
+        <termType/>
+        <title>Dr</title>
+        <termSource>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(BookOne1573044693237)'Book One'</termSource>
+        <foreName>John</foreName>
+        <nameAdditions>additions text</nameAdditions>
+        <termStatus>provisional</termStatus>
+        <termLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(grc)'Ancient Greek'</termLanguage>
+        <middleName>Thomas</middleName>
+        <salutation>dear</salutation>
+        <termName>John Mellon; J. T. Mellon</termName>
+        <termQualifier>qualifier text</termQualifier>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>John Mellon; J. T. Mellon</termDisplayName>
+        <termFlag/>
+      </personTermGroup>
+    </personTermGroupList>
+    <shortIdentifier>JohnMellonJTMellon1573045052453</shortIdentifier>
+    <proposed>true</proposed>
+    <deathPlace>Tel Aviv</deathPlace>
+    <deathDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1877</dateDisplayDate>
+      <dateLatestScalarValue>1878-01-01T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>1877</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay>31</dateLatestDay>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear>1877</dateLatestYear>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>1877-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth>12</dateLatestMonth>
+    </deathDateGroup>
+    <inAuthority>2217bfab-d0bd-4535-abbc</inAuthority>
+    <refName>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellonJTMellon1573045052453)'John Mellon; J. T. Mellon'</refName>
+    <schoolsOrStyles>
+      <schoolOrStyle>school text</schoolOrStyle>
+    </schoolsOrStyles>
+  </ns2:persons_common>
+  <ns2:contacts_common xmlns:ns2="http://collectionspace.org/services/contact" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <webAddressGroupList>
+      <webAddressGroup>
+        <webAddress>notaURL.atall</webAddress>
+        <webAddressType>business</webAddressType>
+      </webAddressGroup>
+    </webAddressGroupList>
+    <telephoneNumberGroupList>
+      <telephoneNumberGroup>
+        <telephoneNumber>000-555-1212</telephoneNumber>
+        <telephoneNumberType>business</telephoneNumberType>
+      </telephoneNumberGroup>
+    </telephoneNumberGroupList>
+    <inItem>ab547505-b40f-4540-8187</inItem>
+    <displayName>email@address 000-555-1212 123...</displayName>
+    <emailGroupList>
+      <emailGroup>
+        <emailType>business</emailType>
+        <email>email@address</email>
+      </emailGroup>
+    </emailGroupList>
+    <faxNumberGroupList>
+      <faxNumberGroup>
+        <faxNumber>000-555-4545</faxNumber>
+        <faxNumberType>business</faxNumberType>
+      </faxNumberGroup>
+    </faxNumberGroupList>
+    <addressGroupList>
+      <addressGroup>
+        <addressCountry>USA</addressCountry>
+        <addressPlace2>Suite 100</addressPlace2>
+        <addressPlace1>123 Main Street</addressPlace1>
+        <addressType>business</addressType>
+        <addressMunicipality>Algiers</addressMunicipality>
+        <addressPostCode>70183</addressPostCode>
+        <addressStateOrProvince>LA</addressStateOrProvince>
+      </addressGroup>
+    </addressGroupList>
+    <inAuthority>2217bfab-d0bd-4535-abbc</inAuthority>
+  </ns2:contacts_common>
+</document>
