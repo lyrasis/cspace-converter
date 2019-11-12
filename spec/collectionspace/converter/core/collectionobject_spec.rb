@@ -10,6 +10,8 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/numberOfObjects',
     '/document/*/titleGroupList/titleGroup/title',
     { xpath: '/document/*/titleGroupList/titleGroup/titleLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
+    '/document/*/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslation',
+    { xpath: '/document/*/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslationLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
     # '/document/*/collection', # static list
     '/document/*/objectNameList/objectNameGroup/objectName',
     '/document/*/briefDescriptions/briefDescription',
