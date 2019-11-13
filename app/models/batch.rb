@@ -12,8 +12,13 @@ class Batch
   field :status,    type: String, default: 'waiting'
   field :processed, type: Integer, default: 0
   field :failed,    type: Integer, default: 0
+  field :total,     type: Integer, default: 0
   field :start,     type: DateTime, default: Time.now
   field :end,       type: DateTime
+
+  def finished?
+    processed + failed == total
+  end
 
   def self.retrieve(key)
     Batch.where(key: key).first
