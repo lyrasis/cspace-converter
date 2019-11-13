@@ -6,6 +6,10 @@ module CollectionSpace
       CONVERTER_DEFAULT = "#{CONVERTER_BASE}::Default"
       CONVERTER_TOOLS   = "CollectionSpace::Tools"
 
+      def self.async?
+        ENV.fetch('CSPACE_CONVERTER_ASYNC_JOBS', 'true') == 'true'
+      end
+
       # i.e. #{CONVERTER_BASE}::Core::CoreMaterials
       def self.authority_class(authority)
         module_class(authority)

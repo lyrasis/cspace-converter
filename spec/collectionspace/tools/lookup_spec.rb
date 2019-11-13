@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Lookup do
   describe "can find converter class names" do
+    it "returns the async mode" do
+      ENV['CSPACE_CONVERTER_ASYNC_JOBS'] = 'true'
+      expect(Lookup.async?).to be true
+      ENV['CSPACE_CONVERTER_ASYNC_JOBS'] = 'false'
+      expect(Lookup.async?).to be false
+    end
+
     it "returns the authority class" do
       expect(
         Lookup.authority_class('Person')

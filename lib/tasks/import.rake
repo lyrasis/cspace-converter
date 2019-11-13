@@ -14,8 +14,7 @@ namespace :import do
         chunk_size: 100,
         convert_values_to_numeric: false,
       }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-      job_class.perform_later(config, chunk)
-      Delayed::Worker.new.run(Delayed::Job.last)
+      job_class.perform_now(config, chunk)
     end
     Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."
   end

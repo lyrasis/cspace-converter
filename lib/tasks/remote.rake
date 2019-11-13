@@ -36,10 +36,7 @@ namespace :remote do
       start: Time.now
     )
 
-    TransferJob.perform_later(action, type, batch, key)
-    # run the job immediately when using rake
-    Delayed::Worker.new.run(Delayed::Job.last)
-
+    TransferJob.perform_now(action, type, batch, key)
     end_time = Time.now
     Rails.logger.debug "Remote #{action} job completed at #{end_time}."
   end
