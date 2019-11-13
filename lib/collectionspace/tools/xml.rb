@@ -134,11 +134,13 @@ module CollectionSpace
         end
 
         def self.add_date_group(xml, field, date)
+          return unless date.display_date
+
           CSXML.add_group xml, field, CSDTP.fields_for(date)
         end
 
         def self.add_date_group_list(xml, field, dates)
-          dates = dates.map { |d| CSDTP.fields_for(d) }
+          dates = dates.map { |d| CSDTP.fields_for(d) }.delete_if { |d| d['dateDisplayDate'].nil? }
           CSXML.add_group_list xml, field, dates
         end
 
