@@ -41,7 +41,6 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     { xpath: '/document/*/contentPersons/contentPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganizationRole',
-    { xpath: '/document/*/computedCurrentLocation', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/techniqueGroupList/techniqueGroup/technique',
     '/document/*/objectProductionPeopleGroupList/objectProductionPeopleGroup/objectProductionPeople',
     '/document/*/objectProductionPlaceGroupList/objectProductionPlaceGroup/objectProductionPlace',

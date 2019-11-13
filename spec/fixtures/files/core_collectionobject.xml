@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
-  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2019-11-13T09:23:01.917Z</createdAt>
-    <updatedBy>admin@core.collectionspace.org</updatedBy>
-    <createdBy>admin@core.collectionspace.org</createdBy>
-    <workflowState>project</workflowState>
-    <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(cfcc6e92-1a51-41f7-8838)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/cfcc6e92-1a51-41f7-8838</uri>
-    <updatedAt>2019-11-13T09:33:01.509Z</updatedAt>
-  </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
       <scalarValuesComputed/>
@@ -252,12 +242,4 @@
     <contentPositions/>
     <forms/>
   </ns2:collectionobjects_common>
-  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
-    <account>
-      <accountId>e662bc61-e3ab-4d8b-8ece-dde514c837a5</accountId>
-      <screenName>Administrator</screenName>
-      <userId>admin@core.collectionspace.org</userId>
-      <tenantId>1</tenantId>
-    </account>
-  </ns2:account_permission>
 </document>
