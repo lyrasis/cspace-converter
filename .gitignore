@@ -6,6 +6,7 @@
 
 # Ignore dotfiles (making an exception for the default .env configuration)
 /.*
+!/.dockerignore
 !/.env
 !/.ruby-version
 !/.travis.yml
