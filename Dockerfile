@@ -3,11 +3,12 @@ FROM alpine:3.7
 ENV BUILD_DATE=false \
     BUILD_VERSION=${SOURCE_BRANCH:-dev} \
     BUNDLER_VERSION=1.17.3 \
+    ENV="/etc/profile" \
     TERM=linux \
     PS1="\n\n>> ruby \W \$ " \
     TZ=UTC
 
-RUN BUILD_DATE=`date '+%Y-%m-%d'` \
+RUN echo "export BUILD_DATE=`date '+%Y-%m-%d'`" >> $ENV \
     apk --no-cache add \
     bash \
     build-base \
