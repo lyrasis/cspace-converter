@@ -7,10 +7,9 @@ class ImportJob < ActiveJob::Base
     type = Lookup.profile_type(config[:profile])
 
     batch = Batch.retrieve(config[:key])
+    CacheService.refresh if batch.status == 'waiting'
     batch.status = 'running' # reset running status
     batch.save
-
-    CacheService.refresh
 
     data_object_attributes = {
       converter_profile: config[:profile],
