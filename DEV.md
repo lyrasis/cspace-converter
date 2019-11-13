@@ -56,6 +56,11 @@ Steps:
 
 ./import.sh data/core/mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
+### MEDIA UPDATE EXAMPLE
+./reset.sh # clear out existing object data
+./import.sh data/core/mediahandling_core_update.csv media1 media
+./remote.sh update Media media1
+###
 ./remote.sh delete Media media1
 
 ./import.sh data/core/lmi_core_all.csv movement1 movement
@@ -121,6 +126,10 @@ Steps:
 ```bash
 ./reset.sh # make sure we're empty
 ./bin/rake remote:get[media] # test connection
+
+./import.sh data/materials/cataloging_materials_all.csv cataloging1 cataloging
+./remote.sh transfer CollectionObject cataloging1
+./remote.sh delete CollectionObject cataloging1
 
 ./import.sh data/core/mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
