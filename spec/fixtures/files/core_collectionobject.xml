@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-11-13T09:23:01.917Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(cfcc6e92-1a51-41f7-8838)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/cfcc6e92-1a51-41f7-8838</uri>
+    <updatedAt>2019-11-13T09:33:01.509Z</updatedAt>
+  </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
       <scalarValuesComputed/>
@@ -34,26 +44,26 @@
         <scalarValuesComputed>true</scalarValuesComputed>
         <dateEarliestSingleCertainty/>
         <dateEarliestSingleQualifierUnit/>
-        <dateDisplayDate/>
+        <dateDisplayDate>2015-01-01</dateDisplayDate>
         <dateLatestScalarValue>2016-01-01T00:00:00.000Z</dateLatestScalarValue>
         <dateEarliestSingleQualifierValue/>
         <datePeriod/>
-        <dateLatestEra/>
-        <dateEarliestSingleDay/>
+        <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+        <dateEarliestSingleDay>1</dateEarliestSingleDay>
         <dateEarliestSingleQualifier/>
         <dateEarliestSingleYear>2015</dateEarliestSingleYear>
         <dateLatestCertainty/>
         <dateAssociation/>
-        <dateLatestDay/>
-        <dateEarliestSingleMonth/>
-        <dateEarliestSingleEra/>
-        <dateLatestYear/>
+        <dateLatestDay>1</dateLatestDay>
+        <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear>2016</dateLatestYear>
         <dateLatestQualifierUnit/>
         <dateNote/>
         <dateLatestQualifierValue/>
         <dateLatestQualifier/>
         <dateEarliestScalarValue>2015-01-01T00:00:00.000Z</dateEarliestScalarValue>
-        <dateLatestMonth/>
+        <dateLatestMonth>1</dateLatestMonth>
       </objectProductionDateGroup>
     </objectProductionDateGroupList>
     <contentConcepts/>
@@ -121,7 +131,7 @@
         <titleTranslationSubGroupList>
           <titleTranslationSubGroup>
             <titleTranslation>Un hombre</titleTranslation>
-            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spanish)'Spanish'</titleTranslationLanguage>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spa)'Spanish'</titleTranslationLanguage>
           </titleTranslationSubGroup>
         </titleTranslationSubGroupList>
         <titleType/>
@@ -178,19 +188,25 @@
     <assocEventPersons/>
     <objectProductionPersonGroupList>
       <objectProductionPersonGroup>
-        <objectProductionPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1563560230793)'Eleanor Brown'</objectProductionPerson>
+        <objectProductionPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</objectProductionPerson>
         <objectProductionPersonRole>artist</objectProductionPersonRole>
       </objectProductionPersonGroup>
     </objectProductionPersonGroupList>
-    <contentPersons/>
+    <contentPersons>
+      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(HelenMorgan1573637385742)'Helen Morgan'</contentPerson>
+    </contentPersons>
     <fieldCollectionSources/>
     <contentEventNameGroupList/>
     <ownersReferences/>
     <viewersReferences/>
-    <objectProductionOrganizationGroupList/>
-    <publishToList>
-      <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(none)'None'</publishTo>
-    </publishToList>
+    <objectProductionOrganizationGroupList>
+      <objectProductionOrganizationGroup>
+        <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup131699749)'Berkley Publising Group'</objectProductionOrganization>
+      </objectProductionOrganizationGroup>
+    </objectProductionOrganizationGroupList>
+    <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
+    <publishToList/>
     <assocOrganizationGroupList/>
     <contentOrganizations/>
     <contentPlaces/>
@@ -226,11 +242,22 @@
       <comment>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</comment>
     </comments>
     <assocEventPeoples/>
-    <techniqueGroupList/>
-    <inventoryStatusList>
-      <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(unknown)'unknown'</inventoryStatus>
-    </inventoryStatusList>
+    <techniqueGroupList>
+      <techniqueGroup>
+        <techniqueType/>
+        <technique>lithography</technique>
+      </techniqueGroup>
+    </techniqueGroupList>
+    <inventoryStatusList/>
     <contentPositions/>
     <forms/>
   </ns2:collectionobjects_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>e662bc61-e3ab-4d8b-8ece-dde514c837a5</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
 </document>
