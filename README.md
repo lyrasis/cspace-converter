@@ -23,10 +23,8 @@ by creating a `.env.local` file with custom settings.
 
 ```bash
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=http://core.dev.collectionspace.org/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
-export CSPACE_CONVERTER_LOG_LEVEL=debug
 export CSPACE_CONVERTER_MODULE=Core
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator

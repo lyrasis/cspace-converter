@@ -19,10 +19,8 @@ Config:
 
 ```txt
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=https://core.dev.collectionspace.org/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
-export CSPACE_CONVERTER_LOG_LEVEL=debug
 export CSPACE_CONVERTER_MODULE=Core
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator
@@ -86,10 +84,8 @@ Config:
 
 ```txt
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=https://anthro.dev.collectionspace.org/cspace-services
 export CSPACE_CONVERTER_DOMAIN=anthro.collectionspace.org
-export CSPACE_CONVERTER_LOG_LEVEL=debug
 export CSPACE_CONVERTER_MODULE=Anthro
 export CSPACE_CONVERTER_USERNAME=admin@anthro.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator
@@ -112,10 +108,8 @@ Config:
 
 ```txt
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=https://materials.dev.collectionspace.org/cspace-services
 export CSPACE_CONVERTER_DOMAIN=materials.collectionspace.org
-export CSPACE_CONVERTER_LOG_LEVEL=debug
 export CSPACE_CONVERTER_MODULE=Materials
 export CSPACE_CONVERTER_USERNAME=admin@materials.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator
