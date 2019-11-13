@@ -19,10 +19,11 @@ class ImportsController < ApplicationController
       Batch.create(
         key: config[:key],
         category: 'import',
-        type: Lookup.converter_class,
+        type: 'import',
         for: config[:profile],
         name: config[:batch],
-        start: Time.now
+        start: Time.now,
+        total: CSV.read(file.path, headers: true).length
       )
 
       ::SmarterCSV.process(file.path, {
