@@ -7,6 +7,7 @@ module CollectionSpace
         def initialize(attributes, config = {})
           @attributes = attributes
           @config = config
+          @redefined = []
         end
 
         # default implementation used by authorities
@@ -15,6 +16,10 @@ module CollectionSpace
           run do |xml|
             Record.map(xml, attributes)
           end
+        end
+
+        def redefined_fields
+          @redefined.each_with_object({}) { |k, h| h[k] = nil }
         end
 
         def run(document, service, common)
