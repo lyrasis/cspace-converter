@@ -4,15 +4,20 @@ module CollectionSpace
       ::CSXML = CollectionSpace::Tools::XML
 
       def self.add(xml, key, value)
+        return unless value
+
         xml.send(key.to_sym, value)
       end
 
-      # add data from ruby hash containing array of elements (see spec)
       def self.add_data(xml, data = [])
-        ::CSXML.process_array(xml, data['label'], data['elements'])
+        return unless data.any?
+
+        CSXML.process_array(xml, data['label'], data['elements'])
       end
 
       def self.add_group(xml, key, elements = {})
+        return unless elements.any?
+
         xml.send("#{key}Group".to_sym) {
           elements.each {|k, v| xml.send(k.to_sym, v)}
         }
@@ -21,11 +26,9 @@ module CollectionSpace
       # TODO: higher level method to introspect types and build xml
       # TODO: refactor, sub_elements as array of hashes to reconcile uses of sub_key
       def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [], include_group_prefix: true)
-        group_prefix = "List"
-        if include_group_prefix
-          group_prefix = "GroupList"
-        end
+        return unless elements.any?
 
+        group_prefix = include_group_prefix ? 'GroupList' : 'List'
         xml.send("#{key}#{group_prefix}".to_sym) {
           elements.each_with_index do |element, index|
             xml.send("#{key}Group".to_sym) {
@@ -40,6 +43,7 @@ module CollectionSpace
                 }
               elsif sub_elements
                 next unless sub_elements[index]
+
                 sub_elements[index].each do |type, sub_element|
                   if sub_element.respond_to? :each
                     xml.send(type.to_sym) {
@@ -58,6 +62,8 @@ module CollectionSpace
       # key_suffix handles the case that the list child element is not the key without "List"
       # for example: key=objectName, list=objectNameList, key_suffix=Group, child=objectNameGroup
       def self.add_list(xml, key, elements = [], key_suffix = '')
+        return unless elements.any?
+
         xml.send("#{key}List".to_sym) {
           elements.each do |element|
             xml.send("#{key}#{key_suffix}".to_sym) {
@@ -68,6 +74,8 @@ module CollectionSpace
       end
 
       def self.add_repeat(xml, key, elements = [], key_suffix = '')
+        return unless elements.any?
+
         xml.send("#{key}#{key_suffix}".to_sym) {
           elements.each do |element|
             element.each {|k, v| xml.send(k.to_sym, v)}
@@ -76,15 +84,19 @@ module CollectionSpace
       end
 
       def self.add_string(xml, string)
+        return unless string
+
         xml << string
       end
 
       def self.process_array(xml, label, array)
+        return unless array.any?
+
         array.each do |hash|
           xml.send(label) do
             hash.each do |key, value|
               if value.is_a?(Array)
-                ::CSXML.process_array(xml, key, value)
+                CSXML.process_array(xml, key, value)
               else
                 xml.send(key, value)
               end
@@ -96,7 +108,7 @@ module CollectionSpace
       module Helpers
 
         def self.add_authority(xml, field, authority_type, authority, value)
-          return nil unless value
+          return unless value
 
           CSXML.add xml, field, CSURN.get_authority_urn(authority_type, authority, value)
         end
@@ -107,12 +119,9 @@ module CollectionSpace
                 field => CSURN.get_authority_urn(authority_type, authority, value),
             }
           end
-          return nil unless values.any?
+          return unless values.any?
 
-          # we are crudely forcing pluralization for repeats (this may need to be revisited)
-          # sometimes the parent and child elements are both pluralized so ensure there's only 1 i.e.
-          # conservators: [ "conservators" ... ] vs. acquisitionSources: [ "acquisitionSource" ... ]
-          field_wrapper = method == :add_repeat ? "#{field}s".gsub(/ss$/, "s") : field
+          field_wrapper = method == :add_repeat ? field.pluralize : field
           CSXML.send(method, xml, field_wrapper, values)
         end
 
@@ -181,7 +190,7 @@ module CollectionSpace
         end
 
         def self.add_pairs(xml, attributes, pairs)
-          return nil unless pairs
+          return unless pairs
 
           pairs.each do |attribute, field|
             field = "#{field}_" if reserved?(field)
@@ -261,19 +270,19 @@ module CollectionSpace
         end
 
         def self.add_vocab(xml, field, vocabulary, value)
-          return nil unless value
+          return unless value
 
           CSXML.add xml, field, CSURN.get_vocab_urn(vocabulary, value)
         end
 
         def self.get_authority(authority_type, authority, value)
-          return nil unless value
+          return unless value
 
           CSURN.get_authority_urn(authority_type, authority, value)
         end
 
         def self.get_vocab(vocabulary, value)
-          return nil unless value
+          return unless value
 
           CSURN.get_vocab_urn(vocabulary, value)
         end
