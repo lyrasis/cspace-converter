@@ -121,7 +121,7 @@ module CollectionSpace
           end
           return unless values.any?
 
-          field_wrapper = method == :add_repeat ? field.pluralize : field
+          field_wrapper = method == :add_repeat ? sketchy_pluralize(field) : field
           CSXML.send(method, xml, field_wrapper, values)
         end
 
@@ -310,6 +310,10 @@ module CollectionSpace
         def self.shortid_for_vocab(vocabulary, value)
           refname = CSXML::Helpers.get_vocab(vocabulary, value)
           CSURN.parse(refname)[:identifier] if refname
+        end
+
+        def self.sketchy_pluralize(field)
+          "#{field}s".gsub(/ss$/, 's')
         end
       end
     end

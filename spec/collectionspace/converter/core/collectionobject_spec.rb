@@ -37,8 +37,11 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateEarliestScalarValue',
     '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateLatestScalarValue',
     { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:label] } },
-    # '/document/*/objectProductionPersonGroupList/objectProductionPersonRole', # TODO add data
-    # '/document/*/objectProductionOrganization/...', # TODO add data
+    '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup/objectProductionPersonRole',
+    { xpath: '/document/*/contentPersons/contentPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganizationRole',
+    '/document/*/techniqueGroupList/techniqueGroup/technique',
     '/document/*/objectProductionPeopleGroupList/objectProductionPeopleGroup/objectProductionPeople',
     '/document/*/objectProductionPlaceGroupList/objectProductionPlaceGroup/objectProductionPlace',
   ]}
