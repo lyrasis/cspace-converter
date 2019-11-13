@@ -1,20 +1,17 @@
 FROM alpine:3.7
 
-ENV BUILD_DATE=false \
-    BUILD_VERSION=${SOURCE_BRANCH:-dev} \
-    BUNDLER_VERSION=1.17.3 \
-    ENV="/etc/profile" \
+ENV BUNDLER_VERSION=1.17.3 \
     TERM=linux \
     PS1="\n\n>> ruby \W \$ " \
     TZ=UTC
 
-RUN echo "export BUILD_DATE=`date '+%Y-%m-%d'`" >> $ENV \
-    apk --no-cache add \
+RUN apk --no-cache add \
     bash \
     build-base \
     curl \
     curl-dev \
     dcron \
+    git \
     libffi-dev \
     nodejs \
     ruby \
@@ -36,4 +33,7 @@ COPY Gemfile* /usr/app/
 RUN bundle install
 
 COPY . /usr/app/
+RUN echo "export BUILD_DATE=`date '+%Y-%m-%d'`" > /set_env
+
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
 CMD crond && bundle exec whenever --update-crontab && bundle exec rails s -b 0.0.0.0
