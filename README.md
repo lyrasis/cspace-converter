@@ -68,9 +68,9 @@ To match csv fields to existing CollectionSpace authority and vocabulary terms:
 
 ```bash
 # clear things out if starting over
-bundle exec rake db:nuke
-bundle exec rake cache:download_vocabularies
-bundle exec rake cache:download_authorities
+./bin/rake db:nuke
+./bin/rake cache:download_vocabularies
+./bin/rake cache:download_authorities
 ```
 
 ## Stage the data to MongoDB
@@ -101,13 +101,8 @@ Once started, visit http://localhost:3000 with a web browser.
 To execute "transfer" jobs created using the UI server, run this command:
 
 ```bash
-./bin/rake jobs:work
-```
-
-Or from the command line:
-
-```bash
-./transfer.sh CollectionObject cataloging1 # record type, batch name
+# ./transfer.sh CollectionObject cataloging1 or, started from the cli
+./bin/rake jobs:workoff
 ```
 
 ## Useful commands
@@ -116,10 +111,10 @@ Or from the command line:
 
 ```bash
 # provides a list of records
-bundle exec rake remote:get[collectionobjects]
+./bin/rake remote:get[collectionobjects]
 
 # get a record
-bundle exec rake remote:get[/collecitonobjects/$CSID]
+./bin/rake remote:get[/collecitonobjects/$CSID]
 ```
 
 ### Using the console
@@ -133,7 +128,7 @@ puts p.inspect
 ### Clearing out data
 
 ```bash
-bundle exec rake db:nuke
+./bin/rake db:nuke
 ```
 
 Or use 'Nuke' in the ui. Warning: this deletes all data, including failed jobs.
