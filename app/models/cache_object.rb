@@ -1,6 +1,6 @@
 class CacheObject
   include Mongoid::Document
-  validates_uniqueness_of :key
+  validates_uniqueness_of :key, :refname
 
   before_validation :setup
 

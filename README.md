@@ -100,7 +100,7 @@ To execute "transfer" jobs created using the UI server, run this command:
 
 ```bash
 # ./transfer.sh CollectionObject cataloging1 or, started from the cli
-./bin/rake jobs:workoff
+./bin/delayed_job run --exit-on-complete
 ```
 
 ## Useful commands

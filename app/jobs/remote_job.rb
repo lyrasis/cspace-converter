@@ -13,10 +13,8 @@ class RemoteJob < ActiveJob::Base
       status = RemoteActionService::Status.new
     end
     batch = Batch.find(batch_id)
-    batch.with_lock do
-      status.ok ? batch.processed += 1 : batch.failed += 1
-      batch.save
-    end
+    status.ok ? batch.processed += 1 : batch.failed += 1
+    batch.save
     return unless batch.finished?
 
     batch.status = 'complete'
