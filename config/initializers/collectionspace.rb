@@ -7,5 +7,3 @@ end
 Dir["#{Rails.root.join('lib', 'collectionspace')}/**/*.rb"].sort.each do |lib|
   require lib
 end
-
-CacheService.refresh unless ENV.key?('CACHE_REFRESH_SKIP')
