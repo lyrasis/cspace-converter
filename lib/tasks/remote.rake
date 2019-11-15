@@ -33,7 +33,8 @@ namespace :remote do
       type: action,
       for: type,
       name: batch,
-      start: Time.now
+      start: Time.now,
+      total: CollectionSpaceObject.where(type: type, batch: batch).count
     )
 
     TransferJob.perform_now(action, type, batch, key)

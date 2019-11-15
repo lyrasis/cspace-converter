@@ -141,6 +141,8 @@ GEM
     mongoid-compatibility (0.5.1)
       activesupport
       mongoid (>= 2.0)
+    mongoid-locker (2.0.0)
+      mongoid (>= 5.0, < 8)
     multi_xml (0.6.0)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
@@ -271,6 +273,7 @@ DEPENDENCIES
   kaminari
   kaminari-mongoid
   mongoid (~> 5.1.0)
+  mongoid-locker
   pry-rails
   rails (= 4.2.8)
   rake

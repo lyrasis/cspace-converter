@@ -16,7 +16,8 @@ class TransfersController < ApplicationController
       type: action,
       for: type,
       name: batch,
-      start: Time.now
+      start: Time.now,
+      total: CollectionSpaceObject.where(type: type, batch: batch).count
     )
 
     TransferJob.perform_later(action, type, batch, key)
