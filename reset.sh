@@ -1,3 +1,3 @@
 #!/bin/bash
 
-bundle exec rake db:nuke
+CACHE_REFRESH_SKIP=true bundle exec rake db:nuke

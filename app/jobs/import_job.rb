@@ -4,9 +4,6 @@ class ImportJob < ActiveJob::Base
   queue_as :default
 
   def perform(config, rows = [])
-    batch = Batch.retrieve(config[:key])
-    CacheService.refresh if batch.processed.zero?
-
     attributes = {
       converter_profile: config[:profile],
       csv_data: {},
