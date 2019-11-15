@@ -89,6 +89,12 @@ RSpec.describe Lookup do
       ).to have_key("CollectionObject")
     end
 
+    it "returns the profile headers for cataloging" do
+      expect(
+        Lookup.profile_headers("cataloging")
+      ).to include 'objectnumber'
+    end
+
     it "returns the profile type for cataloging" do
       expect(
         Lookup.profile_type("cataloging")
