@@ -160,6 +160,47 @@ module CollectionSpace
         end
       end
 
+      class Contact
+        ::Contact = CollectionSpace::Converter::Default::Contact
+        def self.map(xml, attributes)
+          CSXML.add_group_list xml, 'email', [
+            {
+              "email" => attributes["email"],
+              "emailType" => attributes["emailtype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'telephoneNumber', [
+            {
+              "telephoneNumber" => attributes["telephonenumber"],
+              "telephoneNumberType" => attributes["telephonenumbertype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'faxNumber', [
+            {
+              "faxNumber" => attributes["faxnumber"],
+              "faxNumberType" => attributes["faxnumbertype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'webAddress', [
+            {
+              "webAddress" => attributes["webaddress"],
+              "webAddressType" => attributes["webaddresstype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'address', [
+            {
+              "addressType" => attributes["addresstype"],
+              "addressPlace1" => attributes["addressplace1"],
+              "addressPlace2" => attributes["addressplace2"],
+              "addressMunicipality" => attributes["addressmunicipality"],
+              "addressStateOrProvince" => attributes["addressstateorprovince"],
+              "addressPostCode" => attributes["addresspostcode"],
+              "addressCountry" => attributes["addresscountry"],
+            }
+          ]
+        end
+      end
+
       class Exhibition < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
