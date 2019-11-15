@@ -65,10 +65,7 @@ If you prefer to run Mongo traditionally follow the installation docs online.
 To match csv fields to existing CollectionSpace authority and vocabulary terms:
 
 ```bash
-# clear things out if starting over
-./bin/rake db:nuke
-./bin/rake cache:download_vocabularies
-./bin/rake cache:download_authorities
+./reset.sh
 ```
 
 ## Stage the data to MongoDB
@@ -94,6 +91,7 @@ For example:
 ```bash
 ./bin/rails s
 ```
+
 Once started, visit http://localhost:3000 with a web browser.
 
 To execute "transfer" jobs created using the UI server, run this command:
