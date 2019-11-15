@@ -18,4 +18,9 @@ namespace :cache do
   task :import => :environment do
     CacheService.import
   end
+
+  # bundle exec rake cache:refresh
+  task :refresh => :environment do
+    CacheService.refresh
+  end
 end

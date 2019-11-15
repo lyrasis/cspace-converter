@@ -1,7 +1,7 @@
 class RemoteJob < ActiveJob::Base
   queue_as :default
 
-  def perform(action_method, batch_id, object_id)
+  def perform(action_method, key, object_id)
     object = CollectionSpaceObject.find(object_id)
     begin
       service = RemoteActionService.new(object)
@@ -12,13 +12,11 @@ class RemoteJob < ActiveJob::Base
     rescue StandardError
       status = RemoteActionService::Status.new
     end
-    batch = Batch.find(batch_id)
-    status.ok ? batch.processed += 1 : batch.failed += 1
-    batch.save
-    return unless batch.finished?
-
-    batch.status = 'complete'
-    batch.end = Time.now
-    batch.save
+    batch = Batch.retrieve(key)
+    batch.with_lock do
+      status.ok ? batch.processed += 1 : batch.failed += 1
+      batch.end = Time.now
+      batch.save
+    end
   end
 end

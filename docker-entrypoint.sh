@@ -5,5 +5,6 @@ BUILD_VERSION=${BUILD_VERSION#"heads/"}
 PROCESSES=`grep -c ^processor /proc/cpuinfo`
 echo "export BUILD_VERSION=$BUILD_VERSION" >> /set_env
 source /set_env
-./bin/rails runner 'Delayed::Backend::Mongoid::Job.create_indexes'
+CACHE_REFRESH_SKIP=true ./bin/rails runner 'Delayed::Backend::Mongoid::Job.create_indexes'
+CACHE_REFRESH_SKIP=true ./bin/delayed_job start -n $PROCESSES
 exec "$@"

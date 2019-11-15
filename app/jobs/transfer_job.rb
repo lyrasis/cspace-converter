@@ -5,18 +5,13 @@ class TransferJob < ActiveJob::Base
     action_method = TransferJob.actions action
     raise "Invalid remote action #{action}!" unless action_method
 
-    batch = Batch.retrieve(key)
-    batch.status = 'running' # reset running status
-    batch.total = CollectionSpaceObject.where(type: type, batch: batch_name).count
-    batch.save
-
     CollectionSpaceObject.batch_size(
       ENV.fetch('CSPACE_CONVERTER_TRANSFER_BATCH_SIZE', 25)
     ).where(type: type, batch: batch_name).each do |object|
       if Lookup.async?
-        RemoteJob.perform_later(action_method, batch.id.to_s, object.id.to_s)
+        RemoteJob.perform_later(action_method, key, object.id.to_s)
       else
-        RemoteJob.perform_now(action_method, batch.id.to_s, object.id.to_s)
+        RemoteJob.perform_now(action_method, key, object.id.to_s)
       end
     end
   end

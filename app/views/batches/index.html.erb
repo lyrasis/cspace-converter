@@ -23,9 +23,9 @@
                 <th>Batch</th>
                 <th>Processed</th>
                 <th>Failed</th>
-                <th>Status</th>
+                <th>Total</th>
                 <th>Start</th>
-                <th>End</th>
+                <th>Last</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -37,7 +37,7 @@
                   <td><%= link_to batch.name, path_for_batch_type(batch) %></td>
                   <td><%= batch.processed %></td>
                   <td><%= batch.failed %></td>
-                  <td><%= batch.status %></td>
+                  <td><%= batch.total %></td>
                   <td><%= short_date batch.start %></td>
                   <td><%= short_date batch.end %></td>
                   <td><%= link_to 'Delete', batch_path(batch),
