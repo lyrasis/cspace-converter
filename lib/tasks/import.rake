@@ -10,13 +10,19 @@ namespace :import do
       total: CSV.read(config[:filename], headers: true).length
     )
 
-    SmarterCSV.process(config[:filename], {
-        chunk_size: 100,
-        convert_values_to_numeric: false,
-      }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-      job_class.perform_now(config, chunk)
+    begin
+      SmarterCSV.process(config[:filename], {
+          chunk_size: 100,
+          convert_values_to_numeric: false,
+          required_headers: Lookup.profile_headers(config[:profile])
+        }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+        job_class.perform_now(config, chunk)
+      end
+      Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."
+    rescue StandardError => err
+      Batch.retrieve(config[:key]).destroy
+      Rails.logger.error "Import error: #{err.message}"
     end
-    Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."
   end
 
   # rake import:errors

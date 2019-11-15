@@ -64,6 +64,10 @@ module CollectionSpace
         converter_class.registered_profiles[profile]['config']
       end
 
+      def self.profile_headers(profile)
+        converter_class.registered_profiles[profile].fetch('required_headers', [])
+      end
+
       def self.profile_type(profile)
         converter_class.registered_profiles[profile]['type']
       end
