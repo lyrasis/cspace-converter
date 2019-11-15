@@ -51,7 +51,7 @@
         <termSourceNote>source text</termSourceNote>
         <termFormattedDisplayName/>
         <initials>JM</initials>
-        <termType/>
+        <termType>urn:cspace:core.collectionspace.org:vocabularies:name(persontermtype):item:name(descriptor)'descriptor'</termType>
         <title>Dr</title>
         <termSource>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(BookOne1573044693237)'Book One'</termSource>
         <foreName>John</foreName>

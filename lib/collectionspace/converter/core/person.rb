@@ -30,7 +30,7 @@ module CollectionSpace
           CSXML.add_group_list xml, 'personTerm', [
             {
               "termDisplayName" => attributes["termdisplayname"],
-              #"termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
+              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
               "termSourceID" => attributes["termsourceid"],
               "termSourceDetail" => attributes["termsourcedetail"],
               "surName" => attributes["surname"],

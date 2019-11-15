@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::Core::CorePerson do
   let(:attributes) { get_attributes('core', 'authperson_core_all.csv') }
-  let(:coreperson) { CorePerson.new(attributes) }
+  let(:coreperson) { CorePerson.new(Lookup.profile_defaults('person').merge(attributes)) }
   let(:doc) { Nokogiri::XML(coreperson.convert, nil, 'UTF-8') }
   let(:record) { get_fixture('core_person.xml') }
   let(:xpaths) {[
@@ -17,7 +17,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     '/document/*/personTermGroupList/personTermGroup/nameAdditions',
     { xpath: '/document/*/personTermGroupList/personTermGroup/termLanguage', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     '/document/*/personTermGroupList/personTermGroup/termPrefForLang',
-    #'/document/*/personTermGroupList/personTermGroup/termType',
+    '/document/*/personTermGroupList/personTermGroup/termType',
     '/document/*/personTermGroupList/personTermGroup/termQualifier',
     { xpath: '/document/*/personTermGroupList/personTermGroup/termSource', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/personTermGroupList/personTermGroup/termSourceID',

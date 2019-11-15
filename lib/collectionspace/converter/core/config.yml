@@ -170,6 +170,8 @@ registered_profiles:
           authority_subtype: person
   nomenclature:
     type: Authorities
+    defaults:
+      termlanguage: English
     config:
       name_field: termdisplayname
       authority_type: Concept
@@ -195,6 +197,8 @@ registered_profiles:
     enabled: true
     required_headers:
       - termdisplayname
+    defaults:
+      termtype: descriptor
     config:
       name_field: termdisplayname
       authority_type: Person

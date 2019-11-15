@@ -89,6 +89,12 @@ RSpec.describe Lookup do
       ).to have_key("CollectionObject")
     end
 
+    it "returns the profile defaults for nomenclature" do
+      expect(
+        Lookup.profile_defaults("nomenclature")
+      ).to have_key('termlanguage')
+    end
+
     it "returns the profile headers for cataloging" do
       expect(
         Lookup.profile_headers("cataloging")
