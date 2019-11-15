@@ -65,7 +65,7 @@ module CollectionSpace
       end
 
       def self.profile_headers(profile)
-        converter_class.registered_profiles[profile].fetch('required_headers', [])
+        converter_class.registered_profiles[profile].fetch('required_headers', []).map(&:to_sym)
       end
 
       def self.profile_type(profile)

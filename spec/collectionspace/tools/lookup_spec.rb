@@ -92,7 +92,7 @@ RSpec.describe Lookup do
     it "returns the profile headers for cataloging" do
       expect(
         Lookup.profile_headers("cataloging")
-      ).to include 'objectnumber'
+      ).to include :objectnumber
     end
 
     it "returns the profile type for cataloging" do
