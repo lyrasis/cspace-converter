@@ -1,5 +1,3 @@
-require 'json'
-
 class ImportJob < ActiveJob::Base
   queue_as :default
 
