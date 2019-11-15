@@ -29,15 +29,7 @@ RSpec.describe CacheObject do
     )).to be false
   end
 
-  it "can skip item" do
-    expect(CacheObject.skip_item?(
-      cache_object.refname, cache_object.rev
-    )).to be true
-  end
-
-  it "will not skip item when rev is higher" do
-    expect(CacheObject.skip_item?(
-      cache_object.refname, cache_object.rev + 1
-    )).to be false
+  it "has item" do
+    expect(CacheObject.item?(cache_object.refname)).to be true
   end
 end

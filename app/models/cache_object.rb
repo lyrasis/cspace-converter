@@ -26,11 +26,9 @@ class CacheObject
     write_attribute :key, key
   end
 
-  def self.skip_item?(refname, rev)
-    skip = CacheObject.where(
-      refname: refname, :rev.gte => rev
-    ).first
-    skip ? true : false
+  def self.item?(refname)
+    item = CacheObject.where(refname: refname).first
+    item ? true : false
   end
 
   def self.skip_list?(refname, rev)

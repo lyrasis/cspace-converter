@@ -20,7 +20,6 @@ class CacheService
       'refname',
       'name',
       'identifier',
-      'rev',
       'parent_refname',
       'parent_rev'
     ]
@@ -28,14 +27,14 @@ class CacheService
 
   def self.download_authorities
     download(
-      ['refName', 'termDisplayName', 'shortIdentifier', 'rev'],
+      ['refName', 'termDisplayName', 'shortIdentifier', 'workflowState'],
       authorities
     )
   end
 
   def self.download_vocabularies
     download(
-      ['refName', 'displayName', 'shortIdentifier', 'rev'],
+      ['refName', 'displayName', 'shortIdentifier', 'workflowState'],
       ['vocabularies']
     )
   end
@@ -47,20 +46,26 @@ class CacheService
         list_rev     = list['rev']
         next if CacheObject.skip_list?(list_refname, list_rev)
 
-        CacheObject.where(parent_refname: list_refname).destroy_all
+        $collectionspace_client.config.include_deleted = true
         $collectionspace_client.all("#{list['uri']}/items").each do |item|
-          refname, name, identifier, rev = item.values_at(*headers)
+          refname, name, identifier, wfstate = item.values_at(*headers)
+          item = CacheObject.item?(refname)
+          if wfstate == 'deleted'
+            CacheObject.where(refname: refname).first.destroy if item
+            next # don't add to cache if deleted
+          end
+          next if item #  don't add to cache if already in cache
 
           Rails.logger.debug "Cache: #{refname}"
           CacheObject.create(
             refname: refname,
             name: name,
             identifier: identifier,
-            rev: rev,
             parent_refname: list_refname,
             parent_rev: list_rev
           )
         end
+        $collectionspace_client.config.include_deleted = false
       end
     end
   end
