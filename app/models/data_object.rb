@@ -50,6 +50,7 @@ class DataObject
     converter = nil
     data = {}
     data[:batch]            = import_batch
+    data[:profile]          = converter_profile
     data[:category]         = 'Authority' # need this if coming from procedure
     data[:type]             = type
     data[:subtype]          = subtype
@@ -77,6 +78,7 @@ class DataObject
     converter = Lookup.procedure_class(procedure)
     data = {}
     data[:batch]            = import_batch
+    data[:profile]          = converter_profile
     data[:category]         = 'Procedure'
     data[:converter]        = converter.to_s
     data[:type]             = procedure
@@ -91,6 +93,7 @@ class DataObject
     converter = Lookup.default_vocabulary_class
     data = {}
     data[:batch]            = import_batch
+    data[:profile]          = converter_profile
     data[:category]         = 'Vocabulary' # need this if coming from procedure
     data[:type]             = type
     data[:subtype]          = subtype

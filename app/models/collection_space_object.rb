@@ -10,6 +10,7 @@ class CollectionSpaceObject
   before_validation :set_fingerprint
 
   field :batch,            type: String
+  field :profile,          type: String
   field :category,         type: String # ex: Authority, Procedure
   field :converter,        type: String # ex: CollectionSpace::Converter::Core:CorePerson
   field :type,             type: String # ex: CollectionObject, Person
@@ -32,6 +33,7 @@ class CollectionSpaceObject
     config = converter.constantize.service(subtype)
     config[:identifier] = identifier
     config[:title] = title
+    data = Lookup.profile_defaults(profile).merge(data)
     cvtr = converter.constantize.new(data, config)
     Rails.logger.debug(
       "Generating content for: #{converter} -- #{data}, #{config}"

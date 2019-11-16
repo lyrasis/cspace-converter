@@ -64,6 +64,10 @@ module CollectionSpace
         converter_class.registered_profiles[profile]['config']
       end
 
+      def self.profile_defaults(profile)
+        converter_class.registered_profiles[profile].fetch('defaults', {})
+      end
+
       def self.profile_headers(profile)
         converter_class.registered_profiles[profile].fetch('required_headers', []).map(&:to_sym)
       end
