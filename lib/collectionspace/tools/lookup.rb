@@ -35,6 +35,10 @@ module CollectionSpace
         "#{CONVERTER_DEFAULT}".constantize
       end
 
+      def self.default_hierarchy_class
+        "#{CONVERTER_DEFAULT}::Hierarchy".constantize
+      end
+
       def self.default_relationship_class
         "#{CONVERTER_DEFAULT}::Relationship".constantize
       end

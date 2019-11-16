@@ -75,6 +75,7 @@ Steps:
 ./remote.sh transfer ObjectExit exit1
 ./remote.sh delete ObjectExit exit1
 
+./import.sh data/default/hierarchy.csv hierarchy1 hierarchies
 ./import.sh data/default/vocabulary.csv vocab1 vocabularies
 ```
 

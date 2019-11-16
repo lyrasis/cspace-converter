@@ -70,6 +70,11 @@ class CollectionSpaceObject
     write_attribute 'fingerprint', Fingerprint.generate(parts)
   end
 
+  def self.find_csid(type, identifier)
+    object = CollectionSpaceObject.where(type: type, identifier: identifier).first
+    object ? object.csid : nil
+  end
+
   def self.has_authority?(identifier)
     identifier = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
     identifier ? true : false

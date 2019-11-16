@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   post 'relationships/:id/delete',   to: 'relationship_objects#delete'
   post 'relationships/:id/ping',     to: 'relationship_objects#ping'
   post 'relationships/:id/transfer', to: 'relationship_objects#transfer'
+  post 'relationships/:id/update',   to: 'relationship_objects#update'
   get  'transfer',                   to: 'transfers#new'
   post 'transfer',                   to: 'transfers#create'
   get  'vocabularies',               to: 'vocabulary_objects#index'

@@ -45,6 +45,12 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Default
     end
 
+    it "returns the default hierarchy class" do
+      expect(
+        Lookup.default_hierarchy_class
+      ).to eq CollectionSpace::Converter::Default::Hierarchy
+    end
+
     it "returns the default relationship class" do
       expect(
         Lookup.default_relationship_class

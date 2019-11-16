@@ -97,6 +97,14 @@ registered_profiles:
         - name_field: owner
           authority_type: Person
           authority_subtype: person
+  hierarchies:
+    type: Hierarchies
+    enabled: true
+    required_headers:
+      - type
+      - narrower
+      - broader
+    config: {}
   intake:
     type: Procedures
     config:
