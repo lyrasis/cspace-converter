@@ -158,4 +158,22 @@ class ImportService
       add_related_vocabularies(config.fetch('Vocabularies', {}))
     end
   end
+
+  class Vocabularies < Base
+    attr_reader :from_procedure
+    def initialize(profile, data)
+      super
+      @from_procedure = false
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+
+      config = Lookup.profile_config(profile)
+      add_vocabulary(
+        name_field: config['name_field'],
+        subtype: object.csv_data['vocabulary']
+      )
+    end
+  end
 end

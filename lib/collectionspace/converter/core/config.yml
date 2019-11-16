@@ -227,5 +227,7 @@ registered_profiles:
     type: Vocabularies
     enabled: true
     required_headers:
+      - displayname
       - vocabulary
-    config: {}
+    config:
+      name_field: displayname
