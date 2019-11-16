@@ -6,7 +6,9 @@ class CollectionSpaceObject
   validate   :identifier_is_unique_per_type
   validates_uniqueness_of :fingerprint
 
-  after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
+  # TODO: ENV['CSPACE_CONVERTER_PING_ON_CREATE']
+  after_create :ping, if: -> { !has_csid_and_uri? && !is_relationship? }
+  after_validation :log_errors, if: -> { errors.any? }
   before_validation :set_fingerprint
 
   field :batch,            type: String
@@ -98,5 +100,10 @@ class CollectionSpaceObject
 
   def log_errors
     logger.warn errors.full_messages.append([attributes.inspect]).join("\n")
+  end
+
+  def ping
+    # TODO: PingJob?
+    RemoteActionService.new(self).remote_ping
   end
 end
