@@ -1,0 +1,4 @@
+subjectDocumentType,subjectIdentifier,objectDocumentType,objectIdentifier
+Acquisition,DTS.001,CollectionObject,"DTS.001.0001"
+Acquisition,DTS.001,Group,"DTS 001"
+CollectionObject,DTS.001.0001,Group,"DTS 001"

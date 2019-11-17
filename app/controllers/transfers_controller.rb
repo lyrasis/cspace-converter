@@ -20,7 +20,11 @@ class TransfersController < ApplicationController
       total: CollectionSpaceObject.where(type: type, batch: batch).count
     )
 
-    TransferJob.perform_later(action, type, batch, key)
+    if Lookup.async?
+      TransferJob.perform_later(action, type, batch, key)
+    else
+      TransferJob.perform_now(action, type, batch, key)
+    end
     flash[:notice] = "Transfer job running. Check back periodically for results."
     redirect_to batches_path
   end

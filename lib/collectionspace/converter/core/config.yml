@@ -211,6 +211,15 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
+  relationships:
+    type: Relationships
+    enabled: true
+    required_headers:
+      - subjectdocumenttype
+      - subjectidentifier
+      - objectdocumenttype
+      - objectidentifier
+    config: {}
   useofcollection:
     type: Procedures
     enabled: true
