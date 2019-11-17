@@ -27,6 +27,10 @@ module CollectionSpace
         ENV.fetch('CSPACE_CONVERTER_MODULE')
       end
 
+      def self.converter_remote_host
+        URI.parse(ENV.fetch('CSPACE_CONVERTER_BASE_URI')).host
+      end
+
       def self.default_authority_class(authority)
         "#{CONVERTER_DEFAULT}::#{authority}".constantize
       end

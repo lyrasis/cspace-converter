@@ -8,11 +8,11 @@ class CacheService
   end
 
   def self.cache_file
-    File.join(cache_dir, "#{Lookup.converter_domain}.csv")
+    File.join(cache_dir, "#{Lookup.Lookup.converter_remote_host}.csv")
   end
 
   def self.cache_date_file
-    File.join(cache_dir, "#{Lookup.converter_domain}.txt")
+    File.join(cache_dir, "#{Lookup.Lookup.converter_remote_host}.txt")
   end
 
   def self.csv_headers
