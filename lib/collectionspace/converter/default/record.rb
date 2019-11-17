@@ -233,6 +233,34 @@ module CollectionSpace
         end
       end
 
+      class Hierarchy < Record
+        # override the default authority convert method inline
+        def convert
+          run do |xml|
+            CSXML.add xml, 'subjectCsid', attributes["subjectcsid"]
+            CSXML.add xml, 'subjectDocumentType', attributes["subjectdocumenttype"]
+            CSXML.add xml, 'relationshipType', "hasBroader"
+            CSXML.add xml, 'predicate', 'hasBroader'
+            CSXML.add xml, 'objectCsid', attributes["objectcsid"]
+            CSXML.add xml, 'objectDocumentType', attributes["objectdocumenttype"]
+          end
+        end
+
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'relations', 'relation', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'relations',
+            identifier_field: 'csid',
+            path: 'relations',
+            schema: 'relations',
+          }
+        end
+      end
+
       class Intake < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false

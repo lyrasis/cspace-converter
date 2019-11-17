@@ -1,0 +1,3 @@
+type,subtype,narrower,broader
+Place,place,Blackburn,Lancashire
+Place,place,Lancashire,England

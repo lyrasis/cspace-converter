@@ -102,6 +102,20 @@ class ImportService
     end
   end
 
+  class Hierarchies < Base
+    attr_reader :from_procedure
+    def initialize(profile, data)
+      super
+      @from_procedure = false
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+
+      object.add_hierarchy
+    end
+  end
+
   class Procedures < Base
     attr_reader :from_procedure
     def initialize(profile, data)
