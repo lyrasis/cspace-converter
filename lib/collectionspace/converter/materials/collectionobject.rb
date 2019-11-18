@@ -16,9 +16,10 @@ module CollectionSpace
           ]
           super
         end
-
+     
         def self.map(xml, attributes)
           # TODO
+          CSXML.add xml, 'objectNumber', attributes["objectnumber"]
         end
       end
     end
