@@ -6,10 +6,13 @@ class CollectionSpaceObject
   validate   :identifier_is_unique_per_type
   validates_uniqueness_of :fingerprint
 
-  after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
+  # TODO: ENV['CSPACE_CONVERTER_PING_ON_CREATE']
+  after_create :ping, if: -> { !has_csid_and_uri? && !is_relationship? }
+  after_validation :log_errors, if: -> { errors.any? }
   before_validation :set_fingerprint
 
   field :batch,            type: String
+  field :profile,          type: String
   field :category,         type: String # ex: Authority, Procedure
   field :converter,        type: String # ex: CollectionSpace::Converter::Core:CorePerson
   field :type,             type: String # ex: CollectionObject, Person
@@ -32,6 +35,7 @@ class CollectionSpaceObject
     config = converter.constantize.service(subtype)
     config[:identifier] = identifier
     config[:title] = title
+    data = Lookup.profile_defaults(profile).merge(data)
     cvtr = converter.constantize.new(data, config)
     Rails.logger.debug(
       "Generating content for: #{converter} -- #{data}, #{config}"
@@ -66,6 +70,11 @@ class CollectionSpaceObject
     write_attribute 'fingerprint', Fingerprint.generate(parts)
   end
 
+  def self.find_csid(type, identifier)
+    object = CollectionSpaceObject.where(type: type, identifier: identifier).first
+    object ? object.csid : nil
+  end
+
   def self.has_authority?(identifier)
     identifier = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
     identifier ? true : false
@@ -96,5 +105,10 @@ class CollectionSpaceObject
 
   def log_errors
     logger.warn errors.full_messages.append([attributes.inspect]).join("\n")
+  end
+
+  def ping
+    # TODO: PingJob?
+    RemoteActionService.new(self).remote_ping
   end
 end

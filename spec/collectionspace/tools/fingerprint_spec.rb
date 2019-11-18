@@ -8,6 +8,12 @@ RSpec.describe Fingerprint do
       ).to eq [:type, :subtype, :title]
     end
 
+    it "can get hierarchy parts" do
+      expect(
+        Lookup.parts_for("Hierarchy").parts
+      ).to eq [:type, :identifier_field, :identifier]
+    end
+
     it "can get procedure parts" do
       expect(
         Lookup.parts_for("Procedure").parts
@@ -17,7 +23,7 @@ RSpec.describe Fingerprint do
     it "can get relationship parts" do
       expect(
         Lookup.parts_for("Relationship").parts
-      ).to eq []
+      ).to eq [:type, :identifier_field, :identifier]
     end
   end
 end

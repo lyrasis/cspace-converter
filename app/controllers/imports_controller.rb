@@ -9,8 +9,8 @@ class ImportsController < ApplicationController
 
     if file.respond_to? :path
       config = {
-        file: file.path,
         key: SecureRandom.uuid,
+        filename: file.path,
         batch: params[:batch],
         module: params[:module],
         profile: params[:profile],
@@ -26,18 +26,23 @@ class ImportsController < ApplicationController
         total: CSV.read(file.path, headers: true).length
       )
 
-      ::SmarterCSV.process(file.path, {
-          chunk_size: 100,
-          convert_values_to_numeric: false,
-        }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-        ImportJob.perform_later(config, chunk)
+      begin
+        ::SmarterCSV.process(file.path, {
+            chunk_size: 100,
+            convert_values_to_numeric: false,
+            required_headers: Lookup.profile_headers(params[:profile])
+          }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+          ImportJob.perform_later(config, chunk)
+        end
+        flash[:notice] = "Background import job running. Check back periodically for results."
+      rescue StandardError => err
+        Batch.retrieve(config[:key]).destroy
+        flash[:error] = "Upload error: #{err.message}"
       end
-      flash[:notice] = "Background import job running. Check back periodically for results."
       redirect_to batches_path
     else
       flash[:error] = "There was an error processing the uploaded file."
       redirect_to import_path
     end
   end
-
 end

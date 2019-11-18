@@ -4,6 +4,10 @@ module ApplicationHelper
     DataObject.pluck('import_batch').uniq
   end
 
+  def category_path(category)
+    "#{category.downcase}_path".to_sym
+  end
+
   def collectionspace_base_uri
     Rails.application.secrets[:collectionspace_base_uri]
   end

@@ -27,12 +27,20 @@ module CollectionSpace
         ENV.fetch('CSPACE_CONVERTER_MODULE')
       end
 
+      def self.converter_remote_host
+        URI.parse(ENV.fetch('CSPACE_CONVERTER_BASE_URI')).host
+      end
+
       def self.default_authority_class(authority)
         "#{CONVERTER_DEFAULT}::#{authority}".constantize
       end
 
       def self.default_converter_class
         "#{CONVERTER_DEFAULT}".constantize
+      end
+
+      def self.default_hierarchy_class
+        "#{CONVERTER_DEFAULT}::Hierarchy".constantize
       end
 
       def self.default_relationship_class
@@ -62,6 +70,14 @@ module CollectionSpace
 
       def self.profile_config(profile)
         converter_class.registered_profiles[profile]['config']
+      end
+
+      def self.profile_defaults(profile)
+        converter_class.registered_profiles[profile].fetch('defaults', {})
+      end
+
+      def self.profile_headers(profile)
+        converter_class.registered_profiles[profile].fetch('required_headers', []).map(&:to_sym)
       end
 
       def self.profile_type(profile)

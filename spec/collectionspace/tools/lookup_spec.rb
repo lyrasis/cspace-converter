@@ -33,6 +33,12 @@ RSpec.describe Lookup do
       ).to eq 'Core'
     end
 
+    it "returns the converter remote host" do
+      expect(
+      Lookup.converter_remote_host
+      ).to eq 'localhost'
+    end
+
     it "returns the default authority class" do
       expect(
         Lookup.default_authority_class('Person')
@@ -43,6 +49,12 @@ RSpec.describe Lookup do
       expect(
         Lookup.default_converter_class
       ).to eq CollectionSpace::Converter::Default
+    end
+
+    it "returns the default hierarchy class" do
+      expect(
+        Lookup.default_hierarchy_class
+      ).to eq CollectionSpace::Converter::Default::Hierarchy
     end
 
     it "returns the default relationship class" do
@@ -87,6 +99,18 @@ RSpec.describe Lookup do
       expect(
         Lookup.profile_config("cataloging")
       ).to have_key("CollectionObject")
+    end
+
+    it "returns the profile defaults for nomenclature" do
+      expect(
+        Lookup.profile_defaults("nomenclature")
+      ).to have_key('termlanguage')
+    end
+
+    it "returns the profile headers for cataloging" do
+      expect(
+        Lookup.profile_headers("cataloging")
+      ).to include :objectnumber
     end
 
     it "returns the profile type for cataloging" do

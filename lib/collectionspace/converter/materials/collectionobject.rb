@@ -5,7 +5,7 @@ module CollectionSpace
         ::MaterialsCollectionObject = CollectionSpace::Converter::Materials::MaterialsCollectionObject
         def convert
           run do |xml|
-            CoreCollectionsObject.map(xml, attributes.merge(redefined_fields))
+            CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
             MaterialsCollectionObject.map(xml, attributes)
           end
         end

@@ -35,23 +35,10 @@ class RemoteActionService
     [relation, list_type, list_item]
   end
 
-  def self.perform_search_request(path:, schema:, field:, value:)
-    search_args = {
-      path: path,
-      type: schema,
-      field: field,
-      expression: "= '#{value}'",
-    }
-    query = CollectionSpace::Search.new.from_hash search_args
-    $collectionspace_client.search(query)
-  end
-
   def perform_search_request
     RemoteActionService.perform_search_request(
-      path: service[:path],
-      schema: "#{service[:schema]}_common",
-      field: object.identifier_field,
-      value: object.identifier,
+      service: service,
+      value: object.identifier
     )
   end
 
@@ -134,7 +121,10 @@ class RemoteActionService
     end
     parsed_response = response.parsed
     relation, list_type, list_item = list_criteria
-    return status if relation # cannot reliably interpret search on relations
+    if relation # cannot reliably interpret search on relations
+      status.bad "Cannot ping for relationship record"
+      return status
+    end
 
     result_count = parsed_response[list_type]["totalItems"].to_i
     if result_count == 0
@@ -150,5 +140,27 @@ class RemoteActionService
       status.bad "Ambiguous result count (#{result_count}) for #{message_string}"
     end
     status
+  end
+
+  def self.find_csid(service, identifier)
+    response = RemoteActionService.perform_search_request(
+      service: service,
+      value: identifier
+    )
+    return nil unless response.result.success?
+    return nil if response.parsed['abstract_common_list']['totalItems'].to_i != 1
+
+    response.parsed['abstract_common_list']['list_item']['csid']
+  end
+
+  def self.perform_search_request(service:, value:)
+    search_args = {
+      path: service[:path],
+      type: "#{service[:schema]}_common",
+      field: service[:identifier_field],
+      expression: "= '#{value}'"
+    }
+    query = CollectionSpace::Search.new.from_hash search_args
+    $collectionspace_client.search(query)
   end
 end

@@ -11,6 +11,22 @@ RSpec.describe CollectionSpaceObject do
       Fingerprint.generate(['Person', 'person', 'Mickey Mouse'])
     }
 
+    let(:hierarchy_object) {
+      build(
+        :collection_space_object,
+        category: 'Relationship',
+        csid: 'fake',
+        identifier: 'xyz',
+        identifier_field: 'csid',
+        type: 'Hierarchy',
+        uri: '/fake',
+      )
+    }
+
+    let(:hierarchy_object_fingerprint) {
+      Fingerprint.generate(['Hierarchy', 'csid', 'xyz'])
+    }
+
     let(:procedure_object) {
       prefab_procedure_object
     }
@@ -27,12 +43,15 @@ RSpec.describe CollectionSpaceObject do
         category: 'Relationship',
         csid: 'fake',
         identifier: 'xyz',
+        identifier_field: 'csid',
         type: 'Relationship',
         uri: '/fake',
       )
     }
 
-    let(:relationship_object_fingerprint) { nil }
+    let(:relationship_object_fingerprint) {
+      Fingerprint.generate(['Relationship', 'csid', 'xyz'])
+    }
 
     let(:vocabulary_object) {
       prefab_vocabulary_object
@@ -55,6 +74,13 @@ RSpec.describe CollectionSpaceObject do
       expect(authority_object.is_procedure?).to be false
       expect(authority_object.is_relationship?).to be false
       expect(authority_object.is_vocabulary?).to be false
+    end
+
+    it "identifies hierarchy categories correctly" do
+      expect(hierarchy_object.is_authority?).to be false
+      expect(hierarchy_object.is_procedure?).to be false
+      expect(hierarchy_object.is_relationship?).to be true
+      expect(hierarchy_object.is_vocabulary?).to be false
     end
 
     it "identifies procedure categories correctly" do
@@ -81,6 +107,11 @@ RSpec.describe CollectionSpaceObject do
     it "fingerprints authority objects correctly" do
       authority_object.set_fingerprint
       expect(authority_object.fingerprint).to eq authority_object_fingerprint
+    end
+
+    it "fingerprints hierarchy objects correctly" do
+      hierarchy_object.set_fingerprint
+      expect(hierarchy_object.fingerprint).to eq hierarchy_object_fingerprint
     end
 
     it "fingerprints procedure objects correctly" do

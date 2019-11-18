@@ -20,7 +20,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CorePerson.contact(xml, attributes)
+              Contact.map(xml, attributes)
             end
           end
         end
@@ -30,7 +30,7 @@ module CollectionSpace
           CSXML.add_group_list xml, 'personTerm', [
             {
               "termDisplayName" => attributes["termdisplayname"],
-              #"termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
+              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
               "termSourceID" => attributes["termsourceid"],
               "termSourceDetail" => attributes["termsourcedetail"],
               "surName" => attributes["surname"],
@@ -64,44 +64,6 @@ module CollectionSpace
           CSXML.add_repeat xml, 'schoolsOrStyles', [{'schoolOrStyle' => attributes['schoolorstyle']}]
           CSXML.add xml, 'bioNote', attributes["bionote"]
           CSXML.add xml, 'nameNote', attributes["namenote"]
-        end
-
-        def self.contact(xml, attributes)
-          CSXML.add_group_list xml, 'email', [
-            {
-              "email" => attributes["email"],
-              "emailType" => attributes["emailtype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'telephoneNumber', [
-            {
-              "telephoneNumber" => attributes["telephonenumber"],
-              "telephoneNumberType" => attributes["telephonenumbertype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'faxNumber', [
-            {
-              "faxNumber" => attributes["faxnumber"],
-              "faxNumberType" => attributes["faxnumbertype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'webAddress', [
-            {
-              "webAddress" => attributes["webaddress"],
-              "webAddressType" => attributes["webaddresstype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'address', [
-            {
-              "addressType" => attributes["addresstype"],
-              "addressPlace1" => attributes["addressplace1"],
-              "addressPlace2" => attributes["addressplace2"],
-              "addressMunicipality" => attributes["addressmunicipality"],
-              "addressStateOrProvince" => attributes["addressstateorprovince"],
-              "addressPostCode" => attributes["addresspostcode"],
-              "addressCountry" => attributes["addresscountry"],
-            }
-          ]
         end
       end
     end

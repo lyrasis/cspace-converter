@@ -74,6 +74,9 @@ Steps:
 ./import.sh data/core/objectexit_core_all.csv exit1 objectexit
 ./remote.sh transfer ObjectExit exit1
 ./remote.sh delete ObjectExit exit1
+
+./import.sh data/default/hierarchy.csv hierarchy1 hierarchies
+./import.sh data/default/vocabulary.csv vocab1 vocabularies
 ```
 
 ## Anthro

@@ -23,7 +23,7 @@ class DataObject
   def add_cspace_object(cspace_object_data, content_data)
     cspace_object = CollectionSpaceObject.new(cspace_object_data)
     cspace_object.generate_content!(content_data)
-    self.collection_space_objects << cspace_object if cspace_object.valid?
+    collection_space_objects << cspace_object if cspace_object.valid?
   end
 
   def converter_class
@@ -50,6 +50,7 @@ class DataObject
     converter = nil
     data = {}
     data[:batch]            = import_batch
+    data[:profile]          = converter_profile
     data[:category]         = 'Authority' # need this if coming from procedure
     data[:type]             = type
     data[:subtype]          = subtype
@@ -73,10 +74,50 @@ class DataObject
     add_cspace_object(data, content_data)
   end
 
+  def add_hierarchy
+    converter  = Lookup.default_hierarchy_class
+    type       = csv_data['type']
+    subtype    = csv_data['subtype']
+    narrower   = csv_data['narrower']
+    broader    = csv_data['broader']
+    identifier = [type, subtype, narrower, broader].compact.join('-')
+
+    data = {}
+    data[:batch]            = import_batch
+    data[:profile]          = converter_profile
+    data[:category]         = 'Relationship'
+    data[:converter]        = converter.to_s
+    data[:type]             = 'Hierarchy' # not the same as csv_data type
+    data[:subtype]          = subtype
+    data[:identifier_field] = converter.service[:identifier_field]
+    data[:identifier]       = identifier
+    data[:title]            = identifier
+
+    service = Lookup.record_class(type).service(subtype)
+    content_data = {}
+    if subtype.nil?
+      content_data['subjectdocumenttype'] = type
+      content_data['objectdocumenttype']  = type
+    else
+      content_data['subjectdocumenttype'] = "#{type}item"
+      content_data['objectdocumenttype']  = "#{type}item"
+    end
+    {'subjectcsid' => narrower, 'objectcsid' => broader}.each do |key, value|
+      value = AuthCache.authority(service[:id], subtype, value) unless subtype.nil?
+      csid  = CollectionSpaceObject.find_csid(type, value)
+      csid ||= RemoteActionService.find_csid(service, value)
+      raise "Unable to find csid for #{identifier}" unless csid
+
+      content_data[key] = csid
+    end
+    add_cspace_object(data, content_data)
+  end
+
   def add_procedure(procedure, attributes)
     converter = Lookup.procedure_class(procedure)
     data = {}
     data[:batch]            = import_batch
+    data[:profile]          = converter_profile
     data[:category]         = 'Procedure'
     data[:converter]        = converter.to_s
     data[:type]             = procedure
@@ -91,6 +132,7 @@ class DataObject
     converter = Lookup.default_vocabulary_class
     data = {}
     data[:batch]            = import_batch
+    data[:profile]          = converter_profile
     data[:category]         = 'Vocabulary' # need this if coming from procedure
     data[:type]             = type
     data[:subtype]          = subtype
