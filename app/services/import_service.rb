@@ -173,6 +173,20 @@ class ImportService
     end
   end
 
+  class Relationships < Base
+    attr_reader :from_procedure
+    def initialize(profile, data)
+      super
+      @from_procedure = false
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+
+      object.add_relationship
+    end
+  end
+
   class Vocabularies < Base
     attr_reader :from_procedure
     def initialize(profile, data)

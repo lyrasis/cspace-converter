@@ -31,8 +31,12 @@ class ImportsController < ApplicationController
             chunk_size: 100,
             convert_values_to_numeric: false,
             required_headers: Lookup.profile_headers(params[:profile])
-          }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-          ImportJob.perform_later(config, chunk)
+        }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+          if Lookup.async?
+            ImportJob.perform_later(config, chunk)
+          else
+            ImportJob.perform_now(config, chunk)
+          end
         end
         flash[:notice] = "Background import job running. Check back periodically for results."
       rescue StandardError => err
