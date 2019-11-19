@@ -16,7 +16,7 @@ module CollectionSpace
           ]
           super
         end
-     
+
         def self.map(xml, attributes)
           # TODO
           CSXML.add_group_list xml, "materialCondition", [{
@@ -33,7 +33,7 @@ module CollectionSpace
           handling.each_with_index do |handl, index|
             overall << { "handling" => handl, "handlingNote" => note[index]}
           end
-          CSXML.add_group_list xml, "materialHandling", [overall]
+          CSXML.add_group_list xml, "materialHandling", overall
         end
       end
     end

@@ -8,10 +8,14 @@ module Helpers
     end
   end
 
+  def get_doc(converter)
+    Nokogiri::XML(converter.convert, nil, 'UTF-8').remove_namespaces!
+  end
+
   def get_fixture(file)
     File.open(
       Rails.root.join('spec', 'fixtures', 'files', file)
-    ) { |f| Nokogiri::XML(f) }
+    ) { |f| Nokogiri::XML(f).remove_namespaces! }
   end
 
   def get_text(doc, xpath)
