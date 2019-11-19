@@ -110,8 +110,10 @@ class CollectionSpaceObject
   end
 
   def ping
-    # TODO: ENV['CSPACE_CONVERTER_PING_ON_CREATE']
-    # TODO: PingJob?
-    RemoteActionService.new(self).remote_ping
+    if Lookup.async?
+      PingJob.perform_later(id.to_s)
+    else
+      PingJob.perform_now(id.to_s)
+    end
   end
 end
