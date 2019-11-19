@@ -101,6 +101,11 @@ module CollectionSpace
           CSXML.add_list xml, 'objectStatus', [{
             "objectStatus" => attributes["objectstatus"]
           }]
+          CSXML.add_list xml, 'otherNumber', [{
+            "numberValue" => attributes["numbervalue"],
+            "numberType" => attributes["numbertype"],
+          }]
+
         end
       end
     end
