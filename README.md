@@ -9,7 +9,7 @@ Migrate data into CollectionSpace from CSV files.
 The converter tool is a [Ruby on Rails](https://rubyonrails.org/) application.
 The database backend is [MongoDB](https://www.mongodb.com/) (v3.2).
 
-For deployments there is a [Docker](#) image and [docs](#docs/DEPLOYMENT.md) available.
+For deployments there is a [Docker image](https://hub.docker.com/repository/docker/collectionspace/cspace-converter) and [docs](docs/DEPLOYMENT.md) available.
 
 ## Running the Converter locally
 
