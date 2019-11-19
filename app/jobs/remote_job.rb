@@ -5,9 +5,7 @@ class RemoteJob < ActiveJob::Base
     object = CollectionSpaceObject.find(object_id)
     begin
       service = RemoteActionService.new(object)
-      if !object.is_relationship? && !object.has_csid_and_uri?
-        service.remote_ping # update csid and uri if object is found
-      end
+      service.remote_ping unless object.has_csid_and_uri?
       status = service.send(action_method.to_sym)
     rescue StandardError
       status = RemoteActionService::Status.new

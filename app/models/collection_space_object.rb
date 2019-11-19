@@ -6,8 +6,7 @@ class CollectionSpaceObject
   validate   :identifier_is_unique_per_type
   validates_uniqueness_of :fingerprint
 
-  # TODO: ENV['CSPACE_CONVERTER_PING_ON_CREATE']
-  after_create :ping, if: -> { !has_csid_and_uri? && !is_relationship? }
+  after_create :ping, unless: -> { has_csid_and_uri? }
   after_validation :log_errors, if: -> { errors.any? }
   before_validation :set_fingerprint
 
@@ -25,6 +24,9 @@ class CollectionSpaceObject
   # fields from remote collectionspace
   field :csid,             type: String
   field :uri,              type: String
+  # field for relations only
+  field :subject_csid,     type: String
+  field :object_csid,      type: String
 
   attr_readonly :type
 
@@ -108,7 +110,10 @@ class CollectionSpaceObject
   end
 
   def ping
-    # TODO: PingJob?
-    RemoteActionService.new(self).remote_ping
+    if Lookup.async?
+      PingJob.perform_later(id.to_s)
+    else
+      PingJob.perform_now(id.to_s)
+    end
   end
 end

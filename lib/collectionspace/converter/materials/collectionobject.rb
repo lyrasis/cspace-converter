@@ -16,7 +16,7 @@ module CollectionSpace
           ]
           super
         end
-     
+
         def self.map(xml, attributes)
           # TODO
           CSXML.add_group_list xml, "materialCondition", [{

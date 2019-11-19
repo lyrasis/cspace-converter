@@ -93,24 +93,44 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = identifier
 
-    service = Lookup.record_class(type).service(subtype)
     content_data = {}
-    if subtype.nil?
-      content_data['subjectdocumenttype'] = type
-      content_data['objectdocumenttype']  = type
-    else
-      content_data['subjectdocumenttype'] = "#{type}item"
-      content_data['objectdocumenttype']  = "#{type}item"
-    end
-    {'subjectcsid' => narrower, 'objectcsid' => broader}.each do |key, value|
-      value = AuthCache.authority(service[:id], subtype, value) unless subtype.nil?
-      csid  = CollectionSpaceObject.find_csid(type, value)
-      csid ||= RemoteActionService.find_csid(service, value)
+    content_data['subjectdocumenttype'] = subtype.nil? ? type : "#{type}item"
+    content_data['objectdocumenttype']  = subtype.nil? ? type : "#{type}item"
+    {'subject_csid' => narrower, 'object_csid' => broader}.each do |key, value|
+      csid = find_csid(value, type, subtype)
       raise "Unable to find csid for #{identifier}" unless csid
 
-      content_data[key] = csid
+      data[key.to_sym] = csid
+      content_data[key.delete('_')] = csid
     end
     add_cspace_object(data, content_data)
+  end
+
+  def add_relationship
+    converter = Lookup.default_relationship_class
+    data = {}
+    data[:batch]            = import_batch
+    data[:profile]          = converter_profile
+    data[:category]         = 'Relationship'
+    data[:converter]        = converter.to_s
+    data[:type]             = 'Relationship'
+    data[:subtype]          = nil
+    data[:identifier_field] = converter.service[:identifier_field]
+
+    csids = { subject: {}, object: {} }
+    csids.each do |type, _|
+      csid = find_csid(
+        csv_data["#{type}identifier"],
+        csv_data["#{type}documenttype"]
+      )
+      raise "Unable to find csid for #{csv_data["#{type}identifier"]}" unless csid
+
+      csids[type][:id] = csid
+      csids[type][:type] = csv_data["#{type}documenttype"]
+    end
+
+    prepare_rlshp(data, csids[:subject], csids[:object])
+    prepare_rlshp(data, csids[:object], csids[:subject])
   end
 
   def add_procedure(procedure, attributes)
@@ -150,6 +170,29 @@ class DataObject
 
     data[:converter] = converter.to_s
     data[:identifier_field] = converter.service[:identifier_field]
+    add_cspace_object(data, content_data)
+  end
+
+  def find_csid(id, type, subtype = nil)
+    service = Lookup.record_class(type).service(subtype)
+    id      = AuthCache.authority(service[:id], subtype, id) unless subtype.nil?
+    return if id.nil?
+
+    csid = CollectionSpaceObject.find_csid(type, id)
+    csid || RemoteActionService.find_item_csid(service, id)
+  end
+
+  def prepare_rlshp(data, subj, obj)
+    data[:identifier]   = "#{subj[:id]}-#{obj[:id]}"
+    data[:title]        = data[:identifier]
+    data[:subject_csid] = subj[:id]
+    data[:object_csid]  = obj[:id]
+    content_data = {
+      'subjectcsid' => subj[:id],
+      'subjectdocumenttype' => subj[:type],
+      'objectcsid' => obj[:id],
+      'objectdocumenttype' => obj[:type]
+    }
     add_cspace_object(data, content_data)
   end
 end
