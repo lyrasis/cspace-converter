@@ -96,11 +96,12 @@ class DataObject
     content_data = {}
     content_data['subjectdocumenttype'] = subtype.nil? ? type : "#{type}item"
     content_data['objectdocumenttype']  = subtype.nil? ? type : "#{type}item"
-    {'subjectcsid' => narrower, 'objectcsid' => broader}.each do |key, value|
+    {'subject_csid' => narrower, 'object_csid' => broader}.each do |key, value|
       csid = find_csid(value, type, subtype)
       raise "Unable to find csid for #{identifier}" unless csid
 
-      content_data[key] = csid
+      data[key.to_sym] = csid
+      content_data[key.delete('_')] = csid
     end
     add_cspace_object(data, content_data)
   end
