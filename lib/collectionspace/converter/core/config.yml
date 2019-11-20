@@ -190,6 +190,9 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Concept
       authority_subtype: nomenclature
+    Vocabularies:
+      - name_field: termlanguage
+        vocabulary_subtype: languages
   objectexit:
     type: Procedures
     enabled: true
