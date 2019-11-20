@@ -32,23 +32,18 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-              CorePerson.contact(xml, attributes)
+              Contact.map(xml, attributes)
             end
           end
         end
 
-        def self.contact(xml, attributes)
-          # n/a
-        end
-
         def self.extension(xml, attributes)
-          # organizations
           organization_urns = []
           organizations = split_mvf attributes, 'organization'
           organizations.each do |organization|
             organization_urns << { "organization" => CSURN.get_authority_urn('orgauthorities', 'organization', organization, true) }
           end
-          CSXML.add_repeat(xml, 'organizations', organization_urns) if attributes["organization"]
+          CSXML.add_repeat(xml, 'organizations', organization_urns)
         end
 
         def self.map(xml, attributes)

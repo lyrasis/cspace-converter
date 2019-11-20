@@ -6,10 +6,12 @@ class CollectionSpaceObject
   validate   :identifier_is_unique_per_type
   validates_uniqueness_of :fingerprint
 
-  after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
+  after_create :ping, unless: -> { has_csid_and_uri? }
+  after_validation :log_errors, if: -> { errors.any? }
   before_validation :set_fingerprint
 
   field :batch,            type: String
+  field :profile,          type: String
   field :category,         type: String # ex: Authority, Procedure
   field :converter,        type: String # ex: CollectionSpace::Converter::Core:CorePerson
   field :type,             type: String # ex: CollectionObject, Person
@@ -22,6 +24,9 @@ class CollectionSpaceObject
   # fields from remote collectionspace
   field :csid,             type: String
   field :uri,              type: String
+  # field for relations only
+  field :subject_csid,     type: String
+  field :object_csid,      type: String
 
   attr_readonly :type
 
@@ -32,6 +37,7 @@ class CollectionSpaceObject
     config = converter.constantize.service(subtype)
     config[:identifier] = identifier
     config[:title] = title
+    data = Lookup.profile_defaults(profile).merge(data)
     cvtr = converter.constantize.new(data, config)
     Rails.logger.debug(
       "Generating content for: #{converter} -- #{data}, #{config}"
@@ -66,6 +72,11 @@ class CollectionSpaceObject
     write_attribute 'fingerprint', Fingerprint.generate(parts)
   end
 
+  def self.find_csid(type, identifier)
+    object = CollectionSpaceObject.where(type: type, identifier: identifier).first
+    object ? object.csid : nil
+  end
+
   def self.has_authority?(identifier)
     identifier = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
     identifier ? true : false
@@ -96,5 +107,13 @@ class CollectionSpaceObject
 
   def log_errors
     logger.warn errors.full_messages.append([attributes.inspect]).join("\n")
+  end
+
+  def ping
+    if Lookup.async?
+      PingJob.perform_later(id.to_s)
+    else
+      PingJob.perform_now(id.to_s)
+    end
   end
 end

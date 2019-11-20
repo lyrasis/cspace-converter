@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="relations">
+  <ns2:relations_common xmlns:ns2="http://collectionspace.org/services/relation"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <relationshipType>affects</relationshipType>
+    <predicate>affects</predicate>
+    <objectCsid>efcc6e92-1a51-41f7-8838</objectCsid>
+    <objectDocumentType>CollectionObject</objectDocumentType>
+    <subjectCsid>5ca81bd2-0663-455c-9c32</subjectCsid>
+    <subjectDocumentType>Acquisition</subjectDocumentType>
+  </ns2:relations_common>
+</document>

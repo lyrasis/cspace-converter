@@ -12,6 +12,12 @@ module CollectionSpace
         end
       end
 
+      class Hierarchy
+        def self.parts
+          [:type, :identifier_field, :identifier]
+        end
+      end
+
       class Procedure
         def self.parts
           [:type, :identifier_field, :identifier]
@@ -20,7 +26,7 @@ module CollectionSpace
 
       class Relationship
         def self.parts
-          []
+          [:type, :identifier_field, :identifier]
         end
       end
 

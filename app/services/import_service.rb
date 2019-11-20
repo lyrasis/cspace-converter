@@ -102,6 +102,20 @@ class ImportService
     end
   end
 
+  class Hierarchies < Base
+    attr_reader :from_procedure
+    def initialize(profile, data)
+      super
+      @from_procedure = false
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+
+      object.add_hierarchy
+    end
+  end
+
   class Procedures < Base
     attr_reader :from_procedure
     def initialize(profile, data)
@@ -156,6 +170,38 @@ class ImportService
       end
       add_related_authorities(config.fetch('Authorities', {}))
       add_related_vocabularies(config.fetch('Vocabularies', {}))
+    end
+  end
+
+  class Relationships < Base
+    attr_reader :from_procedure
+    def initialize(profile, data)
+      super
+      @from_procedure = false
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+
+      object.add_relationship
+    end
+  end
+
+  class Vocabularies < Base
+    attr_reader :from_procedure
+    def initialize(profile, data)
+      super
+      @from_procedure = false
+    end
+
+    def process
+      raise 'Data Object has not been created' unless object
+
+      config = Lookup.profile_config(profile)
+      add_vocabulary(
+        name_field: config['name_field'],
+        subtype: object.csv_data['vocabulary']
+      )
     end
   end
 end

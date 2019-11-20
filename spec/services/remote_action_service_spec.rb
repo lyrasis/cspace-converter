@@ -16,13 +16,13 @@ RSpec.describe RemoteActionService do
 
   it "has correct list criteria for non-relations service" do
     expect(procservice.list_criteria).to eq(
-      [false, 'abstract_common_list', 'list_item']
+      ['abstract_common_list', 'list_item']
     )
   end
 
   it "has correct list criteria for relations service" do
     expect(relservice.list_criteria).to eq(
-      [true, 'relations_common_list', 'relation_list_item']
+      ['relations_common_list', 'relation_list_item']
     )
   end
 end

@@ -7,14 +7,19 @@ Migrate data into CollectionSpace from CSV files.
 ## Getting Started
 
 The converter tool is a [Ruby on Rails](https://rubyonrails.org/) application.
-See `.ruby-version` for the recommended version of Ruby. The database backend is
-[MongoDB](https://www.mongodb.com/) (v3.2).
+The database backend is [MongoDB](https://www.mongodb.com/) (v3.2).
 
-Install Ruby and bundler then run:
+For deployments there is a [Docker image](https://hub.docker.com/repository/docker/collectionspace/cspace-converter) and [docs](docs/DEPLOYMENT.md) available.
+
+## Running the Converter locally
+
+To run the converter locally install Ruby and bundler then run:
 
 ```bash
 bundle install
 ```
+
+See `.ruby-version` for the recommended version of Ruby.
 
 ## Configuration
 
@@ -33,21 +38,6 @@ export CSPACE_CONVERTER_PASSWORD=Administrator
 The `CSPACE_CONVERTER_BASE_URI` variable must point to an _available_ ColletionSpace
 Services Layer backend.
 
-## Setup CSV Data to be Imported
-
-Before the tool can import CSV data into CollectionSpace, it first "stages" the
-data from the CSV files into a MongoDB database.
-
-Create a data directory and add the CSV files. For example:
-
-```txt
-data/core/
-├── mymuseum_cataloging.csv
-```
-
-There are sample data files available for testing for each supported
-Collectionspace profile.
-
 ## Start the MongoDB Server
 
 Run Mongo using Docker:
@@ -60,15 +50,46 @@ You should be able to access MongDB on `http://localhost:27017`.
 
 If you prefer to run Mongo traditionally follow the installation docs online.
 
+## Setup CSV Data to be Imported
+
+Before the tool can import CSV data into CollectionSpace, it first "stages" the
+data from the CSV files into the MongoDB database.
+
+Create a data directory and add the CSV files. For example:
+
+```txt
+data/core/
+├── mymuseum_cataloging.csv
+```
+
+There are sample data files available for testing for each supported
+Collectionspace profile.
+
 ## Setup the cache
 
 To match csv fields to existing CollectionSpace authority and vocabulary terms:
 
 ```bash
-./reset.sh
+./reset.sh # ensure db empty and cache is refreshed, requires Mongo
 ```
 
-## Stage the data to MongoDB
+## Converter Tool Web UI
+
+```bash
+./bin/rails s
+```
+
+Once started, visit http://localhost:3000 with a web browser.
+
+To execute jobs created using the UI run this command:
+
+```bash
+./bin/delayed_job run --exit-on-complete
+```
+
+## Conveter Tool CLI
+
+### Stage the data to MongoDB
 
 The general format for the command is:
 
@@ -86,19 +107,11 @@ For example:
 ./import.sh data/core/cataloging_core_excerpt.csv cataloging1 cataloging
 ```
 
-## Starting/Running the cspace-converter tool UI server
+Then to transfer:
 
 ```bash
-./bin/rails s
-```
-
-Once started, visit http://localhost:3000 with a web browser.
-
-To execute "transfer" jobs created using the UI server, run this command:
-
-```bash
-# ./transfer.sh CollectionObject cataloging1 or, started from the cli
-./bin/delayed_job run --exit-on-complete
+./remote.sh transfer CollectionObject cataloging1
+./remote.sh delete CollectionObject cataloging1
 ```
 
 ## Useful commands
@@ -131,40 +144,9 @@ Or use 'Nuke' in the ui. Warning: this deletes all data, including failed jobs.
 
 ### Running tests
 
-Note, MongoDB must be running:
-
 ```bash
-./bin/rake spec
+./bin/rake spec # requires Mongo
 ```
-
-## Deploying the Converter to Amazon Elastic Beanstalk
-
-The converter can be easily deployed to [Amazon Elastic Beanstalk](https://aws.amazon.com/documentation/elastic-beanstalk/)
-(account required).
-
-```bash
-cp Dockerrun.aws-example.json Dockerrun.aws.json
-```
-
-Replace the `INSERT_YOUR_VALUE_HERE` values as needed. Note: for a production
-environment the `username` and `password` should be for a temporary account used
-only to perform the migration tasks. Delete this user from CollectionSpace when
-the migration has been completed.
-
-Follow the AWS documentation for deployment details:
-
-- [Getting started](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/GettingStarted.html)
-
-Summary:
-
-- Create a new application and give it a name
-- Choose Web application
-- Choose Multi-container docker, single instance
-- Upload your custom Dockerrun-aws.json (under application version)
-- Choose a domain name (can be customized further later)
-- Skip RDS and VPC (the mongo db is isolated to a docker local network)
-- Select `t2.small` for instance type (everything else optional)
-- Launch
 
 ## License
 

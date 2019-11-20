@@ -97,7 +97,7 @@
     <textualInscriptionGroupList/>
     <objectNumber>20CS.001.0001</objectNumber>
     <fieldColEventNames>
-      <fieldColEventName>Test</fieldColEventName>
+      <fieldColEventName>Kindergarten</fieldColEventName>
     </fieldColEventNames>
     <colors/>
     <contentScripts/>
@@ -120,8 +120,8 @@
       <titleGroup>
         <titleTranslationSubGroupList>
           <titleTranslationSubGroup>
-            <titleTranslation>Un hombre</titleTranslation>
-            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spa)'Spanish'</titleTranslationLanguage>
+            <titleTranslation>Un Homme</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(fra)'French'</titleTranslationLanguage>
           </titleTranslationSubGroup>
         </titleTranslationSubGroupList>
         <titleType/>
@@ -135,7 +135,7 @@
     <otherNumberList/>
     <objectProductionPeopleGroupList>
       <objectProductionPeopleGroup>
-        <objectProductionPeople>Peoples</objectProductionPeople>
+        <objectProductionPeople>Sample Culture</objectProductionPeople>
         <objectProductionPeopleRole/>
       </objectProductionPeopleGroup>
     </objectProductionPeopleGroupList>
@@ -183,7 +183,7 @@
       </objectProductionPersonGroup>
     </objectProductionPersonGroupList>
     <contentPersons>
-      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(HelenMorgan1573637385742)'Helen Morgan'</contentPerson>
+      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(InokeAloha1573637385742)'Inoke Aloha'</contentPerson>
     </contentPersons>
     <fieldCollectionSources/>
     <contentEventNameGroupList/>
@@ -191,8 +191,8 @@
     <viewersReferences/>
     <objectProductionOrganizationGroupList>
       <objectProductionOrganizationGroup>
-        <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
-        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup131699749)'Berkley Publising Group'</objectProductionOrganization>
+        <objectProductionOrganizationRole>distributor</objectProductionOrganizationRole>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation131699749)'Admiral Corporation'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
     <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
@@ -235,7 +235,7 @@
     <techniqueGroupList>
       <techniqueGroup>
         <techniqueType/>
-        <technique>lithography</technique>
+        <technique>pen and ink</technique>
       </techniqueGroup>
     </techniqueGroupList>
     <inventoryStatusList/>

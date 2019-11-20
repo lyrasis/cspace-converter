@@ -13,6 +13,11 @@
 
 @import "bootstrap";
 
+a {
+  color: #404040;
+  text-decoration: underline;
+}
+
 .header-logo {
   margin: 1rem 0rem;
 }
@@ -45,6 +50,15 @@ footer .logo {
 
 .search button {
   margin-left: 0.5rem;
+  background-color: #73AA4F;
+  color: #FFF;
+}
+
+.btn-success {
+  background-color: #73AA4F;
+  border-color: #73AA4F;
+  color: #FFF;
+  text-decoration: none;
 }
 
 .notice {
@@ -53,13 +67,22 @@ footer .logo {
   text-align: center;
 }
 
+h1, h3 {
+  font-size: 1.5rem;
+  color: #759ECF;
+  font-weight: bold;
+}
+
 .jumbotron {
   text-align: center;
   background-color: transparent;
 }
 
 .jumbotron h1 span {
+  font-size: 2.5rem;
   border-bottom: 1px solid #CCC;
+  color:#759ECF;
+  font-weight: bold;
 }
 
 .sidebar {
@@ -72,6 +95,7 @@ footer .logo {
 
 .list-group-item {
   background-color: #F0F5FB;
+  text-decoration: none;
 }
 
 .page-header {
@@ -83,7 +107,11 @@ footer .logo {
 }
 
 form {
-  background-color: #FCFCFC;
+  background-color: #F0F5FB;
+}
+
+form .module {
+  border-bottom: 1px solid #CCC;
 }
 
 table {

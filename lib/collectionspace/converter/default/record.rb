@@ -160,6 +160,47 @@ module CollectionSpace
         end
       end
 
+      class Contact
+        ::Contact = CollectionSpace::Converter::Default::Contact
+        def self.map(xml, attributes)
+          CSXML.add_group_list xml, 'email', [
+            {
+              "email" => attributes["email"],
+              "emailType" => attributes["emailtype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'telephoneNumber', [
+            {
+              "telephoneNumber" => attributes["telephonenumber"],
+              "telephoneNumberType" => attributes["telephonenumbertype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'faxNumber', [
+            {
+              "faxNumber" => attributes["faxnumber"],
+              "faxNumberType" => attributes["faxnumbertype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'webAddress', [
+            {
+              "webAddress" => attributes["webaddress"],
+              "webAddressType" => attributes["webaddresstype"],
+            }
+          ]
+          CSXML.add_group_list xml, 'address', [
+            {
+              "addressType" => attributes["addresstype"],
+              "addressPlace1" => attributes["addressplace1"],
+              "addressPlace2" => attributes["addressplace2"],
+              "addressMunicipality" => attributes["addressmunicipality"],
+              "addressStateOrProvince" => attributes["addressstateorprovince"],
+              "addressPostCode" => attributes["addresspostcode"],
+              "addressCountry" => attributes["addresscountry"],
+            }
+          ]
+        end
+      end
+
       class Exhibition < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
@@ -188,6 +229,34 @@ module CollectionSpace
             identifier_field: 'title',
             path: 'groups',
             schema: 'groups',
+          }
+        end
+      end
+
+      class Hierarchy < Record
+        # override the default authority convert method inline
+        def convert
+          run do |xml|
+            CSXML.add xml, 'subjectCsid', attributes["subjectcsid"]
+            CSXML.add xml, 'subjectDocumentType', attributes["subjectdocumenttype"]
+            CSXML.add xml, 'relationshipType', "hasBroader"
+            CSXML.add xml, 'predicate', 'hasBroader'
+            CSXML.add xml, 'objectCsid', attributes["objectcsid"]
+            CSXML.add xml, 'objectDocumentType', attributes["objectdocumenttype"]
+          end
+        end
+
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'relations', 'relation', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'relations',
+            identifier_field: 'csid',
+            path: 'relations',
+            schema: 'relations',
           }
         end
       end

@@ -8,9 +8,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Remote</th>
-          <th>User</th>
-          <th>Domain</th>
+          <th>Remote <small>(services layer url)</small></th>
+          <th>User <small>(for authentication)</small></th>
+          <th>Domain <small>(urn used for refnames)</small></th>
         </tr>
       </thead>
       <tbody>
@@ -23,21 +23,9 @@
     </table>
 
     <div class="row">
-      <div class="col-md-4">
-        <p><small>CollectionSpace services layer url.</small></p>
-      </div>
-      <div class="col-md-4">
-        <p><small>CollectionSpace user for authentication.</small></p>
-      </div>
-      <div class="col-md-4">
-        <p><small>Domain used for URN strings in the generated XML.</small></p>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col-md-12">
         <h3>Profile</h3>
-        <p><%= Lookup.converter_class.to_s %>:</p>
+        <p><%= Lookup.converter_class.to_s %></p>
         <pre class="prettyprint lang-yml"><%= Lookup.converter_class.config.to_yaml %></pre>
       <div>
     </div>

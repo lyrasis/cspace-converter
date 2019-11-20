@@ -9,6 +9,11 @@
       <div class="col-md-12">
 
         <%= form_tag('transfer', id: 'transfer') do %>
+          <div class="form-group row module">
+            <div class="col-md-12">
+              <p>Converter Module: <%= converter_module %></p>
+            </div>
+          </div>
           <div class="form-group row">
             <label for="remote_action" class="col-md-2 form-control-label">Action</label>
             <div class="radio">

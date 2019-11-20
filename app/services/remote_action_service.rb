@@ -28,31 +28,30 @@ class RemoteActionService
     @service = Lookup.record_class(object.type).service(object.subtype)
   end
 
-  def list_criteria
-    relation  = service[:path] == "relations"
-    list_type = relation ? "relations_common_list" : "abstract_common_list"
-    list_item = relation ? "relation_list_item" : "list_item"
-    [relation, list_type, list_item]
+  def for_relationship?
+    object.category == 'Relationship' && service[:path] = 'relations'
   end
 
-  def self.perform_search_request(path:, schema:, field:, value:)
-    search_args = {
-      path: path,
-      type: schema,
-      field: field,
-      expression: "= '#{value}'",
-    }
-    query = CollectionSpace::Search.new.from_hash search_args
-    $collectionspace_client.search(query)
+  def list_criteria
+    if for_relationship?
+      ['relations_common_list', 'relation_list_item']
+    else
+      ['abstract_common_list', 'list_item']
+    end
   end
 
   def perform_search_request
-    RemoteActionService.perform_search_request(
-      path: service[:path],
-      schema: "#{service[:schema]}_common",
-      field: object.identifier_field,
-      value: object.identifier,
-    )
+    if for_relationship?
+      RemoteActionService.perform_relations_request(
+        subject_csid: object.subject_csid,
+        object_csid: object.object_csid
+      )
+    else
+      RemoteActionService.perform_search_request(
+        service: service,
+        value: object.identifier
+      )
+    end
   end
 
   def remote_delete
@@ -125,30 +124,56 @@ class RemoteActionService
 
   def remote_ping
     status = Status.new
-    message_string = "#{service[:path]} #{service[:schema]} #{object.identifier_field} #{object.identifier}"
+    message_string = "#{service[:path]} #{service[:schema]} #{service[:identifier_field]} #{object.identifier}"
     response = perform_search_request
 
     unless response.result.success?
       status.bad "Error searching #{message_string}"
       return status
     end
-    parsed_response = response.parsed
-    relation, list_type, list_item = list_criteria
-    return status if relation # cannot reliably interpret search on relations
+    list_type, list_item = list_criteria
 
-    result_count = parsed_response[list_type]["totalItems"].to_i
+    result_count = response.parsed[list_type]["totalItems"].to_i
     if result_count == 0
       object.update_attributes!(csid: nil, uri: nil)
       status.good 'Record was not found.'
     elsif result_count == 1
       object.update_attributes!(
-        csid: parsed_response[list_type][list_item]["csid"],
-        uri:  parsed_response[list_type][list_item]["uri"].gsub(/^\//, '')
+        csid: response.parsed[list_type][list_item]["csid"],
+        uri:  response.parsed[list_type][list_item]["uri"].gsub(/^\//, '')
       )
       status.good 'Record was found.'
     else
       status.bad "Ambiguous result count (#{result_count}) for #{message_string}"
     end
     status
+  end
+
+  def self.find_item_csid(service, identifier)
+    response = RemoteActionService.perform_search_request(
+      service: service,
+      value: identifier
+    )
+    return nil unless response.result.success?
+    return nil if response.parsed['abstract_common_list']['totalItems'].to_i != 1
+
+    response.parsed['abstract_common_list']['list_item']['csid']
+  end
+
+  def self.perform_relations_request(subject_csid:, object_csid:)
+    $collectionspace_client.get(
+      'relations', query: { 'sbj' => subject_csid, 'obj' => object_csid }
+    )
+  end
+
+  def self.perform_search_request(service:, value:)
+    search_args = {
+      path: service[:path],
+      type: "#{service[:schema]}_common",
+      field: service[:identifier_field],
+      expression: "= '#{value}'"
+    }
+    query = CollectionSpace::Search.new.from_hash search_args
+    $collectionspace_client.search(query)
   end
 end
