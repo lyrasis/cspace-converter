@@ -181,6 +181,11 @@ registered_profiles:
     type: Authorities
     defaults:
       termlanguage: English
+      historicalstatus: current
+      termtype: descriptor
+      termsource: AASLH Nomenclature
+      termstatus: accepted
+      termprefforlang: true
     config:
       name_field: termdisplayname
       authority_type: Concept
