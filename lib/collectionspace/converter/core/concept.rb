@@ -12,10 +12,18 @@ module CollectionSpace
         def self.map(xml, attributes)
 
           # conceptTermGroupList
-           term_data = {
-             'termSourceID' => attributes['termsourceid'],
-             'termSourceNote' => attributes['termsourcenote'],
-             'termDisplayName' => attributes['termdisplayname']
+
+
+          term_data = {
+            'historicalStatus' => attributes['historicalstatus'],
+            'termDisplayName' => attributes['termdisplayname'],
+            'termLanguage' => CSXML::Helpers.get_vocab('languages', attributes['termlanguage']),
+            'termPrefForLang' => attributes['termprefforlang'],
+            'termSource' => attributes['termSource'],
+            'termSourceID' => attributes['termsourceid'],
+            'termSourceNote' => attributes['termsourcenote'],
+            'termStatus' => attributes['termstatus'],
+            'termType' => attributes['termtype']
            }
           CSXML.add_group_list xml, 'conceptTerm', [term_data]
 
@@ -31,3 +39,4 @@ module CollectionSpace
     end
   end
 end
+

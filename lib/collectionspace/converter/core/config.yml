@@ -180,8 +180,8 @@ registered_profiles:
   nomenclature:
     type: Authorities
     defaults:
-      termlanguage: English
       historicalstatus: current
+      termlanguage: English
       termtype: descriptor
       termsource: AASLH Nomenclature
       termstatus: accepted
