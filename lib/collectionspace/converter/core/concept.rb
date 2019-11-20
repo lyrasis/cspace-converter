@@ -19,7 +19,11 @@ module CollectionSpace
             'termDisplayName' => attributes['termdisplayname'],
             'termLanguage' => CSXML::Helpers.get_vocab('languages', attributes['termlanguage']),
             'termPrefForLang' => attributes['termprefforlang'],
-            'termSource' => attributes['termSource'],
+            'termSource' => CSXML::Helpers.get_authority(
+              'citationauthorities',
+              'citation',
+              attributes['termsource']
+              ),
             'termSourceID' => attributes['termsourceid'],
             'termSourceNote' => attributes['termsourcenote'],
             'termStatus' => attributes['termstatus'],

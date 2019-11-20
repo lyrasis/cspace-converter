@@ -1,5 +1,6 @@
 ---
 registered_authorities:
+  - citationauthorities
   - conceptauthorities
   - locationauthorities
   - orgauthorities
@@ -179,20 +180,27 @@ registered_profiles:
           authority_subtype: person
   nomenclature:
     type: Authorities
+    enabled: true
+    required_headers:
+      - termdisplayname
     defaults:
       historicalstatus: current
       termlanguage: English
-      termtype: descriptor
+      termprefforlang: true
       termsource: AASLH Nomenclature
       termstatus: accepted
-      termprefforlang: true
+      termtype: descriptor
     config:
       name_field: termdisplayname
       authority_type: Concept
       authority_subtype: nomenclature
-    Vocabularies:
-      - name_field: termlanguage
-        vocabulary_subtype: languages
+      Authorities:
+        - name_field: termsource
+          authority_type: Citation
+          authority_subtype: citation
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
   objectexit:
     type: Procedures
     enabled: true
