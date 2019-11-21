@@ -15,6 +15,8 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
 
   it "Maps core concept attributes correctly" do
     test_converter(doc, record, xpaths)
+    puts "\n\nCORE CONCEPT:"
+    puts doc
   end
 end
 
@@ -38,8 +40,10 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
     '/document/*/conceptTermGroupList/conceptTermGroup/termType',
     '/document/*/scopeNote'
   ]}
-
+  
   it "Maps core concept AND nomenclature default attributes correctly" do
     test_converter(doc, record, xpaths)
+    puts "\n\nNOMENCLATURE CONCEPT:"
+    puts doc
   end
 end

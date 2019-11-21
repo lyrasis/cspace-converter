@@ -194,6 +194,8 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Concept
       authority_subtype: nomenclature
+      Nomenclature:
+        identifier: termdisplayname
       Authorities:
         - name_field: termsource
           authority_type: Citation
