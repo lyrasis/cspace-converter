@@ -4,9 +4,24 @@ module CollectionSpace
       class MaterialsCollectionObject < CollectionObject
         ::MaterialsCollectionObject = CollectionSpace::Converter::Materials::MaterialsCollectionObject
         def convert
-          run do |xml|
-            CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
-            MaterialsCollectionObject.map(xml, attributes)
+          run(wrapper: "document") do |xml|
+            xml.send(
+                "ns2:collectionobjects_common",
+                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",
+                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
+            end
+
+            xml.send(
+                "ns2:collectionobjects_materials",
+                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/local/materials",
+                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              MaterialsCollectionObject.map(xml, attributes)
+            end
           end
         end
 
@@ -18,7 +33,6 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes)
-          # TODO
           CSXML.add_group_list xml, "materialCondition", [{
             "conditionNote" => attributes["conditionnote"],
             "condition" => CSXML::Helpers.get_vocab('materialcondition', attributes["condition"])
@@ -34,6 +48,17 @@ module CollectionSpace
             overall << { "handling" => handl, "handlingNote" => note[index]}
           end
           CSXML.add_group_list xml, "materialHandling", overall
+          CSXML.add_group_list xml, "materialFinish", [{
+            "finishNote" => attributes["finishnote"],
+            "finish" => CSXML::Helpers.get_vocab('materialfinish', attributes["finish"])
+          }]
+          CSXML.add_repeat xml, 'materialGenericColors', [{
+            "materialGenericColor" => CSXML::Helpers.get_vocab('materialgenericcolor', attributes["materialgenericcolor"])
+          }]
+          CSXML.add_repeat xml, 'materialPhysicalDescriptions', [{
+            "materialPhysicalDescription" => attributes["physicaldescription"]
+          }]
+
         end
       end
     end
