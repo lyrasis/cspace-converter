@@ -29,8 +29,11 @@ class CollectionSpaceObject
   field :object_csid,      type: String
 
   attr_readonly :type
-
   scope :transferred, ->{ where(csid: true) } # TODO: check
+  index(
+    { category: 1, identifier: 1 }, { name: 'category_identifier_index', unique: true }
+  )
+  index({ batch: 1, type: 1 }, { name: 'batch_type_index' })
 
   def generate_content!(data = nil)
     data ||= data_object.csv_data
@@ -78,23 +81,19 @@ class CollectionSpaceObject
   end
 
   def self.has_authority?(identifier)
-    identifier = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
-    identifier ? true : false
+    CollectionSpaceObject.where(category: 'Authority', identifier: identifier).count.positive?
   end
 
   def self.has_identifier?(identifier)
-    identifier = CollectionSpaceObject.where(identifier: identifier).first
-    identifier ? true : false
+    CollectionSpaceObject.where(identifier: identifier).count.positive?
   end
 
   def self.has_procedure?(identifier)
-    identifier = CollectionSpaceObject.where(category: 'Procedure', identifier: identifier).first
-    identifier ? true : false
+    CollectionSpaceObject.where(category: 'Procedure', identifier: identifier).count.positive?
   end
 
   def self.has_vocabulary?(identifier)
-    identifier = CollectionSpaceObject.where(category: 'Vocabulary', identifier: identifier).first
-    identifier ? true : false
+    CollectionSpaceObject.where(category: 'Vocabulary', identifier: identifier).count.positive?
   end
 
   private
