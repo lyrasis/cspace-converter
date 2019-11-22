@@ -1,0 +1,23 @@
+---
+registered_authorities:
+  - orgauthorities
+  - personauthorities
+  - placeauthorities
+registered_procedures:
+  - CollectionObject
+  - ConditionCheck
+registered_profiles:
+  mukurtu:
+    type: Procedures
+    enabled: true
+    required_headers:
+      - id
+    config:
+      CollectionObject:
+        identifier: id
+        title: title
+      ConditionCheck:
+        identifier: id
+        title: condition
+      Authorities: []
+      Vocabularies: []
