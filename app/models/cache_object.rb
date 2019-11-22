@@ -17,6 +17,9 @@ class CacheObject
   field :parent_refname, type: String
   field :parent_rev,     type: Integer
 
+  index({ refname: 1 }, { name: 'refname_index', unique: true })
+  index({ parent_refname: 1 }, { name: 'parent_refname_index' })
+
   def setup
     type    = CSURN.parse_type(refname)
     subtype = CSURN.parse_subtype(refname)
@@ -27,14 +30,12 @@ class CacheObject
   end
 
   def self.item?(refname)
-    item = CacheObject.where(refname: refname).first
-    item ? true : false
+    CacheObject.where(refname: refname).count.positive?
   end
 
   def self.skip_list?(refname, rev)
-    skip = CacheObject.where(
+    CacheObject.where(
       parent_refname: refname, :parent_rev.gte => rev
-    ).first
-    skip ? true : false
+    ).count.positive?
   end
 end
