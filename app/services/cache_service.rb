@@ -1,6 +1,6 @@
 class CacheService
   def self.authorities
-    Lookup.converter_class.registered_authorities
+    Lookup.module.registered_authorities
   end
 
   def self.cache_dir

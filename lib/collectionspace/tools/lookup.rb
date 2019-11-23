@@ -15,10 +15,6 @@ module CollectionSpace
         module_class(authority)
       end
 
-      def self.converter_class
-        "#{CONVERTER_BASE}::#{converter_module}".constantize
-      end
-
       def self.converter_domain
         ENV.fetch('CSPACE_CONVERTER_DOMAIN')
       end
@@ -35,7 +31,7 @@ module CollectionSpace
         "#{CONVERTER_DEFAULT}::#{authority}".constantize
       end
 
-      def self.default_converter_class
+      def self.default_converter_module
         "#{CONVERTER_DEFAULT}".constantize
       end
 
@@ -55,6 +51,10 @@ module CollectionSpace
         "ImportService::#{type}".constantize
       end
 
+      def self.module
+        "#{CONVERTER_BASE}::#{converter_module}".constantize
+      end
+
       def self.module_class(type)
         "#{CONVERTER_BASE}::#{converter_module}::#{converter_module}#{type}".constantize
       end
@@ -69,19 +69,19 @@ module CollectionSpace
       end
 
       def self.profile_config(profile)
-        converter_class.registered_profiles[profile]['config']
+        self.module.registered_profiles[profile]['config']
       end
 
       def self.profile_defaults(profile)
-        converter_class.registered_profiles[profile].fetch('defaults', {})
+        self.module.registered_profiles[profile].fetch('defaults', {})
       end
 
       def self.profile_headers(profile)
-        converter_class.registered_profiles[profile].fetch('required_headers', []).map(&:to_sym)
+        self.module.registered_profiles[profile].fetch('required_headers', []).map(&:to_sym)
       end
 
       def self.profile_type(profile)
-        converter_class.registered_profiles[profile]['type']
+        self.module.registered_profiles[profile]['type']
       end
 
       def self.record_class(type)

@@ -26,17 +26,13 @@ class DataObject
     collection_space_objects << cspace_object if cspace_object.valid?
   end
 
-  def converter_class
-    Lookup.converter_class
-  end
-
   def delimiter
     Rails.application.config.csv_mvf_delimiter
   end
 
   def module_and_profile_exist
     begin
-      converter_class.registered_profiles.fetch(converter_profile)
+      Lookup.module.registered_profiles.fetch(converter_profile)
     rescue Exception => ex
       errors.add(:invalid_module_or_profile, ex.backtrace)
     end
