@@ -50,6 +50,16 @@ You should be able to access MongDB on `http://localhost:27017`.
 
 If you prefer to run Mongo traditionally follow the installation docs online.
 
+You can dump and restore the database with Mongo Tools:
+
+```bash
+sudo apt-get install mongo-tools # ubuntu
+mongodump --archive=data/dump/cspace_converter_development.gz
+mongorestore --archive=data/dump/cspace_converter_development.gz
+```
+
+[Robo3T](https://robomongo.org/download) is recommended for a GUI client.
+
 ## Setup CSV Data to be Imported
 
 Before the tool can import CSV data into CollectionSpace, it first "stages" the
