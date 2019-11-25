@@ -45,7 +45,7 @@ module CollectionSpace
           handling = CSDR.split_mvf attributes, 'handling'
           note = CSDR.split_mvf attributes, 'handlingnote'
           handling.each_with_index do |handl, index|
-            overall << { "handling" => handl, "handlingNote" => note[index]}
+            overall << { "handling" => CSXML::Helpers.get_vocab('materialhandling', handl), "handlingNote" => note[index]}
           end
           CSXML.add_group_list xml, "materialHandling", overall
           CSXML.add_group_list xml, "materialFinish", [{
