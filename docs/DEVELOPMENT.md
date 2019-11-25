@@ -1,12 +1,30 @@
-# Converters
+# Development
 
-Converters are "modules" containing "profiles" for mapping data
-in one or more CSV documents to CollectionSpace XML payloads.
+## Converters
 
-- Modules refer to literal Ruby modules
-- Profiles are configuration used to define mapping behavior
+Converters are (Ruby) modules containing (Ruby) classes and
+profiles (config) for mapping data in one or more CSV documents to
+CollectionSpace XML records.
 
-## How to create a converter
+```ruby
+CollectionSpace::Converter::$MODULE::$CLASS
+CollectionSpace::Converter::Core::Collectionobject
+```
+
+Module and class names are arbitrary, not related to anything
+specifically within CollectionSpace, although in practice there
+is a close correlation.
+
+Profiles are defined in a `config.yml` file inside the module
+directory:
+
+```bash
+lib/collectionspace/converter/core/config.yml
+```
+
+More details are provided below.
+
+### How to create a converter
 
 Converters are defined in `lib/collectionspace/converter/`.
 This directory containers a `default/record.rb` file that is the
@@ -14,7 +32,7 @@ foundation for converter profiles to build upon. If a procedure
 or authority is not represented in `record.rb` it cannot be mapped,
 and most likely should be added (pull requests are welcome!).
 
-Subfolders in this directory are converter implementations. Each
+Subfolders in this directory are converter modules. Each
 converter requires:
 
 - a `_config.rb` file containing some boilerplate setup
@@ -40,20 +58,20 @@ module CollectionSpace
 end
 ```
 
+Next, copy `core/config.yml` and update it as development progresses.
+
+The sections are:
+
 ### Registered Authorities
 
 The list of authority record types this converter generates. This
 is also used to determine which authorities should be cached.
 
-```bash
-bundle exec rake cache:download_authorities
-```
-
 ### Registered Procedures
 
 This is simply a list of Procedures that this converter can generate
 XML records for. It's a handbrake against inadevertently generating
-invalid record types.
+unwanted record types.
 
 ### Registered Profiles
 
@@ -62,28 +80,25 @@ implement one or more profiles. You can name these arbitrarily
 according to what makes sense for your data. If all of your data
 was in a single spreadsheet if may look like:
 
-```ruby
-def self.registered_profiles
-  {
-    "mymuseum" => {}, # ...
-  }
-end
+```yml
+registered_profiles:
+  mymuseum:
+    # ...
 ```
 
 This would indicate a single converter "profile" being used to handle
-a **single** CSV document. Note: one profile per CSV file, but one
-profile can handle multiple record types per CSV.
+a **single** CSV document. There should only be one profile per CSV file,
+but one profile can handle multiple record types per CSV.
 
 If we have multiple CSV files to work with we'll need multiple
-"profiles".
+"profiles":
 
-```ruby
-def self.registered_profiles
-  {
-    "cataloging" => {}, # ...
-    "media" => {}, # ...
-  }
-end
+```yml
+registered_profiles:
+  cataloging:
+    # ...
+  media:
+    # ...
 ```
 
 In this case there are distinct CSV files for different procedures
@@ -109,12 +124,18 @@ Example:
 ```yml
 acquisition:
   type: Procedures
+  enabled: true # make availabe in the ui
+  required_headers:
+    - acquisitionreferencenumber
   config:
     Acquisition:
       identifier: acquisitionreferencenumber
       title: acquisitionreferencenumber
 cataloging:
   type: Procedures
+  enabled: false # disabled in the ui
+  required_headers:
+    - objectnumber
   config:
     CollectionObject:
       identifier: objectnumber

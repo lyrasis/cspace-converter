@@ -12,7 +12,8 @@ class RemoteJob < ActiveJob::Base
     end
     batch = Batch.retrieve(key)
     batch.with_lock do
-      status.ok ? batch.processed += 1 : batch.failed += 1
+      batch.processed += 1
+      batch.failed += 1 unless status.ok
       batch.end = Time.now
       batch.save
     end

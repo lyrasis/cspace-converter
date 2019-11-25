@@ -34,14 +34,14 @@ module ApplicationHelper
 
   def profiles
     profiles = []
-    Lookup.converter_class.registered_profiles.keys.sort.each do |profile|
+    Lookup.module.registered_profiles.keys.sort.each do |profile|
       profiles << [profile, profile, class: Lookup.converter_module]
     end
     profiles
   end
 
   def disabled_profiles
-    Lookup.converter_class.registered_profiles.find_all do |_, profile|
+    Lookup.module.registered_profiles.find_all do |_, profile|
       !profile.fetch('enabled', false)
     end.map{ |p| p[0] }
   end

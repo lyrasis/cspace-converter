@@ -45,7 +45,11 @@ footer .logo {
 }
 
 .nav-link {
-  width: 4rem;
+  width: 5rem;
+}
+
+.dropdown-toggle {
+  height: 2.6rem;
 }
 
 .search button {
@@ -108,6 +112,10 @@ h1, h3 {
 
 form {
   background-color: #F0F5FB;
+}
+
+form .module {
+  border-bottom: 1px solid #CCC;
 }
 
 table {

@@ -10,8 +10,11 @@
       <div class="col-md-12">
 
         <%= form_tag('import', multipart: true, id: 'import') do %>
-          <p>Converter Module: <%= converter_module %></p>
-          <hr/>
+          <div class="form-group row module">
+            <div class="col-md-12">
+              <p>Converter Module: <%= converter_module %></p>
+            </div>
+          </div>
           <div class="form-group row">
             <label for="batch" class="col-md-2 form-control-label">Batch</label>
             <div class="col-md-10">

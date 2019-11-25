@@ -1,6 +1,6 @@
 class CacheService
   def self.authorities
-    Lookup.converter_class.registered_authorities
+    Lookup.module.registered_authorities
   end
 
   def self.cache_dir
@@ -92,6 +92,8 @@ class CacheService
 
     Rails.logger.info "Loading cache: #{cache_file}"
     CSV.foreach(cache_file, headers: true) do |row|
+      next if CacheObject.item?(row.to_hash['refname'])
+
       CacheObject.create(row.to_hash)
     end
   end

@@ -16,6 +16,8 @@ class Batch
   field :start,     type: DateTime, default: Time.now
   field :end,       type: DateTime
 
+  index({ key: 1 }, { name: 'key_index', unique: true })
+
   # lock fields
   field :locking_name, type: String
   field :locked_at,    type: Time

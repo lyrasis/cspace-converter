@@ -15,12 +15,6 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Core::CorePerson
     end
 
-    it "returns the converter class" do
-      expect(
-        Lookup.converter_class
-      ).to eq CollectionSpace::Converter::Core
-    end
-
     it "returns the converter domain" do
       expect(
         Lookup.converter_domain
@@ -45,9 +39,9 @@ RSpec.describe Lookup do
       ).to eq CollectionSpace::Converter::Default::Person
     end
 
-    it "returns the default converter class" do
+    it "returns the default converter module" do
       expect(
-        Lookup.default_converter_class
+        Lookup.default_converter_module
       ).to eq CollectionSpace::Converter::Default
     end
 
@@ -73,6 +67,12 @@ RSpec.describe Lookup do
       expect(
         Lookup.import_service("Procedures")
       ).to eq ImportService::Procedures
+    end
+
+    it "returns the module" do
+      expect(
+        Lookup.module
+      ).to eq CollectionSpace::Converter::Core
     end
 
     it "returns the module class" do
