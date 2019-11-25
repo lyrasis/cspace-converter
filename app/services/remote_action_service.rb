@@ -66,8 +66,8 @@ class RemoteActionService
         else
           status.bad "Error response: #{response.body}"
         end
-      rescue Exception => ex
-        status.bad "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
+      rescue StandardError => err
+        status.bad "Error during delete: #{err.message}"
       end
     else
       status.bad "Delete requires existing csid and uri."
@@ -86,15 +86,15 @@ class RemoteActionService
         response = $collectionspace_client.post(service[:path], object.content, params)
         if response.result.success?
           # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
-          csid = response.headers["Location"].split("/")[-1]
+          csid = response.result.headers['Location'].split('/')[-1]
           uri  = "#{service[:path]}/#{csid}"
           object.update_attributes!(csid: csid, uri:  uri)
           status.good "Transferred: #{object.identifier}"
         else
           status.bad "Error response: #{response.body}"
         end
-      rescue Exception => ex
-        status.bad = "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
+      rescue StandardError => err
+        status.bad "Error during transfer: #{err.message}"
       end
     else
       status.bad "Transfer requires no pre-existing csid and uri."
@@ -113,8 +113,8 @@ class RemoteActionService
         else
           status.bad "Error response: #{response.body}"
         end
-      rescue Exception => ex
-        status.bad = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
+      rescue StandardError => err
+        status.bad "Error during update: #{err.message}"
       end
     else
       status.bad "Update requires existing csid and uri."
