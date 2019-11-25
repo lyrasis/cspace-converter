@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'bootstrap', '>= 4.1.2'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'collectionspace-client', '0.1.4'
+gem 'collectionspace-client', '0.2.0'
 gem 'daemons'
 gem 'dbf'
 gem 'delayed_job_mongoid'

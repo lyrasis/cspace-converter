@@ -62,7 +62,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    collectionspace-client (0.1.4)
+    collectionspace-client (0.2.0)
       httparty
       json
       nokogiri
@@ -263,7 +263,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.4.0)
   coffee-rails (~> 4.1.0)
-  collectionspace-client (= 0.1.4)
+  collectionspace-client (= 0.2.0)
   daemons
   dbf
   delayed_job_mongoid
