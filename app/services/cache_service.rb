@@ -41,11 +41,13 @@ class CacheService
 
   def self.download(headers, endpoints)
     endpoints.each do |endpoint|
+      Rails.logger.debug "Processing endpoint: #{endpoint}"
       $collectionspace_client.all(endpoint).each do |list|
         list_refname = list['refName']
         list_rev     = list['rev']
         next if CacheObject.skip_list?(list_refname, list_rev)
 
+        Rails.logger.debug "Processing list: #{list_refname}, #{list_rev}"
         $collectionspace_client.config.include_deleted = true
         $collectionspace_client.all("#{list['uri']}/items").each do |item|
           refname, name, identifier, wfstate = item.values_at(*headers)
@@ -62,7 +64,7 @@ class CacheService
             name: name,
             identifier: identifier,
             parent_refname: list_refname,
-            parent_rev: list_rev
+            parent_rev: list_rev.to_i
           )
         end
         $collectionspace_client.config.include_deleted = false
@@ -89,12 +91,18 @@ class CacheService
 
   def self.import
     return unless File.file? cache_file
+    return unless CacheObject.count.zero?
 
     Rails.logger.info "Loading cache: #{cache_file}"
-    CSV.foreach(cache_file, headers: true) do |row|
-      next if CacheObject.item?(row.to_hash['refname'])
-
-      CacheObject.create(row.to_hash)
+    tracker = 1
+    SmarterCSV.process(cache_file, {
+      chunk_size: 100,
+      convert_values_to_numeric: true,
+      required_headers: csv_headers.map(&:to_sym)
+    }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+      Rails.logger.debug("Processing chunk: #{tracker}")
+      CacheObject.collection.insert_many(chunk)
+      tracker += 1
     end
   end
 
