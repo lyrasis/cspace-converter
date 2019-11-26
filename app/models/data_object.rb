@@ -42,7 +42,7 @@ class DataObject
     write_attribute :converter_module, Lookup.converter_module.capitalize
   end
 
-  def add_authority(type:, subtype:, name:, identifier: nil, from_procedure: false)
+  def add_authority(type:, subtype:, name:, identifier: nil, stub: false)
     converter = nil
     data = {}
     data[:batch]            = import_batch
@@ -53,7 +53,7 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = name
 
-    if from_procedure
+    if stub
       converter = Lookup.default_authority_class(type)
       content_data = {
         "shortidentifier" => identifier,
@@ -144,7 +144,7 @@ class DataObject
     add_cspace_object(data, csv_data)
   end
 
-  def add_vocabulary(type:, subtype:, name:, identifier: nil, from_procedure: false)
+  def add_vocabulary(type:, subtype:, name:, identifier: nil, stub: false)
     converter = Lookup.default_vocabulary_class
     data = {}
     data[:batch]            = import_batch
@@ -155,7 +155,7 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = name
 
-    if from_procedure
+    if stub
       content_data = {
         "shortidentifier" => name.downcase,
         "displayname"     => name,
