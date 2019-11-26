@@ -21,7 +21,10 @@ class CacheService
       'name',
       'identifier',
       'parent_refname',
-      'parent_rev'
+      'parent_rev',
+      'type',
+      'subtype',
+      'key'
     ]
   end
 
