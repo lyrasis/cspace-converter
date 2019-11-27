@@ -32,7 +32,7 @@ module RemoteActionable
       flash[flash_type_for_action(status.ok)] = status.message
     rescue Exception => ex
       logger.error("Connection error:\n#{ex.backtrace}")
-      flash[:error] = "Connection error:\n#{ex.message}\n#{ex.backtrace}"
+      flash[:error] = "Connection error:\n#{ex.message}"
     end
 
     redirect_to send("#{category.downcase}_path".to_sym, @object)

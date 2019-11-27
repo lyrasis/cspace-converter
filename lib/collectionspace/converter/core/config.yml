@@ -212,6 +212,8 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
+      Authorities: []
+      Vocabularies: []
   relationships:
     type: Relationships
     enabled: true

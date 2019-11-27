@@ -10,6 +10,16 @@ def prefab_authority_object
   )
 end
 
+def prefab_data
+  {
+    converter_profile: 'cataloging',
+    import_batch: 'cataloging1',
+    import_category: 'Procedures',
+    import_file: 'cataloging1.csv',
+    csv_data: { objectnumber: '123' }
+  }
+end
+
 def prefab_data_object
   build(
     :data_object,
@@ -17,7 +27,7 @@ def prefab_data_object
     import_batch: 'cataloging1',
     import_category: 'Procedures',
     import_file: 'cataloging1.csv',
-    csv_data: { id: '123' },
+    csv_data: { objectnumber: '123' },
   )
 end
 
