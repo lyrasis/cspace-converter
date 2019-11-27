@@ -107,11 +107,14 @@ module CollectionSpace
             "numberType" => attributes["numbertype"],
           }]
           CSXML.add_repeat xml, 'inventoryStatus', [{
-            "inventoryStatus" => attributes["inventorystatus"]
+            "inventoryStatus" => CSXML::Helpers.get_vocab('inventorystatus', attributes["inventorystatus"])
           }], 'List'
-          CSXML.add_repeat xml, 'publishTo', [{
-            "publishTo" => attributes["publishto"]
-          }], 'List'
+          pbt = []
+          publish = CSDR.split_mvf attributes, 'publishto'
+            publish.each_with_index do |pb, index|
+              pbt << {"publishTo" =>  CSXML::Helpers.get_vocab('publishto', pb)}
+          end
+          CSXML.add_repeat xml, 'publishTo', pbt, 'List'
 
         end
       end
