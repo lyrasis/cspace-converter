@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-11-18T08:56:42.680Z</createdAt>
+    <updatedBy>admin@materials.collectionspace.org</updatedBy>
+    <createdBy>admin@materials.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>2000</tenantId>
+    <refName>urn:cspace:materials.collectionspace.org:collectionobjects:id(2af3ac65-6b8e-4a07-a65b)'DM2001.001.0001'</refName>
+    <uri>/collectionobjects/2af3ac65-6b8e-4a07-a65b</uri>
+    <updatedAt>2019-11-18T13:00:05.281Z</updatedAt>
+  </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
       <scalarValuesComputed/>
@@ -108,7 +118,7 @@
     <objectProductionOrganizationGroupList/>
     <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
     <publishToList>
-      <publishTo/>
+      <publishTo>urn:cspace:materials.collectionspace.org:vocabularies:name(publishto):item:name(all)'All'</publishTo>
     </publishToList>
     <assocOrganizationGroupList/>
     <contentOrganizations/>
@@ -145,7 +155,7 @@
     <assocEventPeoples/>
     <techniqueGroupList/>
     <inventoryStatusList>
-      <inventoryStatus/>
+      <inventoryStatus>urn:cspace:materials.collectionspace.org:vocabularies:name(inventorystatus):item:name(accessioned)'accessioned'</inventoryStatus>
     </inventoryStatusList>
     <contentPositions/>
     <forms/>
@@ -186,4 +196,12 @@
       </materialContainerGroup>
     </materialContainerGroupList>
   </ns2:collectionobjects_materials>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d6a62dc0-fcfc-4166-875b-9a5f76579039</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@materials.collectionspace.org</userId>
+      <tenantId>2000</tenantId>
+    </account>
+  </ns2:account_permission>
 </document>
