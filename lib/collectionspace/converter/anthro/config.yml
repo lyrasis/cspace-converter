@@ -1,7 +1,9 @@
 ---
-registered_authorities: []
+registered_authorities:
+  - personauthorities
 registered_procedures:
   - Nagpra
+  - Osteology
 registered_profiles:
   nagpra:
     type: Procedures
@@ -10,3 +12,23 @@ registered_profiles:
         identifier: claimnumber
         title: claimnumber
       Authorities: []
+  Osteology:
+    type: Procedures
+    enabled: true
+    required_headers:
+      - inventoryid
+    config:
+      Osteology:
+        identifier: inventoryid
+        title: inventoryid
+      Authorities:
+        - name_field: sexdeterminationanalyst
+          authority_type: Person
+          authority_subtype: person
+        - name_field: osteoageestimateanalyst
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inventoryanalyst
+          authority_type: Person
+          authority_subtype: person
+
