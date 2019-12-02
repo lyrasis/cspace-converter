@@ -10,7 +10,7 @@ module CollectionSpace
         id = AuthCache.authority(authority, authority_subtype, display_name)
         id ||= CSIDF.short_identifier(display_name)
         generate(
-          Rails.application.config.domain,
+          Lookup.converter_domain,
           authority,
           authority_subtype,
           id,
@@ -22,7 +22,7 @@ module CollectionSpace
         identifier = AuthCache.vocabulary(vocabulary, display_name)
         identifier ||= display_name.to_s.downcase
         generate(
-          Rails.application.config.domain,
+          Lookup.converter_domain,
           'vocabularies',
           vocabulary,
           identifier,

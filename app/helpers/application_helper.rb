@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def collectionspace_domain
-    Rails.application.config.domain
+    Lookup.converter_domain
   end
 
   def collectionspace_username

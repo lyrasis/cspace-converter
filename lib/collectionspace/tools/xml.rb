@@ -168,7 +168,7 @@ module CollectionSpace
           dimensions = []
           dims = CSDR.split_mvf attributes, 'dimension'
           values = CSDR.split_mvf attributes, 'value'
-          unit = attributes["measurementunit"]
+          unit = CSDR.split_mvf attributes, 'measurementunit'
           by = CSXML::Helpers.get_authority(
             'personauthorities', 'person', attributes["measuredby"]
           )
@@ -180,7 +180,7 @@ module CollectionSpace
             dimensions << {
               "dimension" => dim,
               "value" => values[index],
-              "measurementUnit" => unit,
+              "measurementUnit" => unit[index],
               "measuredBy" => by,
               "measurementMethod" => method,
               "valueDate" => date,

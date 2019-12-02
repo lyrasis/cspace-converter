@@ -38,7 +38,8 @@ module CollectionSpace
             'fieldcollectioneventname' => 'fieldColEventNames',
             'form' => 'forms',
             'responsibledepartment' => 'responsibleDepartments',
-            'style' => 'styles'
+            'style' => 'styles',
+            'color' => 'colors'
           }
         end
 
@@ -98,13 +99,22 @@ module CollectionSpace
             "objectName" => attributes["objectname"],
           }], 'Group'
 
-          CSXML.add_list xml, 'objectStatus', [{
+          CSXML.add_repeat xml, 'objectStatus', [{
             "objectStatus" => attributes["objectstatus"]
-          }]
+          }], 'List'
           CSXML.add_list xml, 'otherNumber', [{
             "numberValue" => attributes["numbervalue"],
             "numberType" => attributes["numbertype"],
           }]
+          CSXML.add_repeat xml, 'inventoryStatus', [{
+            "inventoryStatus" => CSXML::Helpers.get_vocab('inventorystatus', attributes["inventorystatus"])
+          }], 'List'
+          pbt = []
+          publish = CSDR.split_mvf attributes, 'publishto'
+            publish.each_with_index do |pb, index|
+              pbt << {"publishTo" =>  CSXML::Helpers.get_vocab('publishto', pb)}
+          end
+          CSXML.add_repeat xml, 'publishTo', pbt, 'List'
 
         end
       end
