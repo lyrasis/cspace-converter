@@ -69,7 +69,9 @@
     <objectProductionPlaceGroupList/>
     <referenceGroupList/>
     <assocDateGroupList/>
-    <briefDescriptions/>
+    <briefDescriptions>
+      <briefDescription>tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis</briefDescription>
+    </briefDescriptions>
     <contentLanguages/>
     <assocPersonGroupList/>
     <titleGroupList/>
