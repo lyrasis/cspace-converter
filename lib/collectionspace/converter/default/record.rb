@@ -421,6 +421,22 @@ module CollectionSpace
         end
       end
 
+      class Osteology < Record
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'osteology', 'osteology', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'osteology',
+            identifier_field: 'InventoryID',
+            path: 'osteology',
+            schema: 'osteology',
+          }
+        end
+      end
+
       class Person < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
