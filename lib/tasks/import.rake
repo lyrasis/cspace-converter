@@ -11,7 +11,7 @@ namespace :import do
     )
 
     begin
-      SmarterCSV.process(config[:filename], {
+      SmarterCSV.process(File.open(config[:filename], 'r:bom|utf-8'), {
           chunk_size: 100,
           convert_values_to_numeric: false,
           required_headers: Lookup.profile_headers(config[:profile])

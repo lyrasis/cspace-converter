@@ -98,7 +98,7 @@ class CacheService
 
     Rails.logger.info "Loading cache: #{cache_file}"
     tracker = 1
-    SmarterCSV.process(cache_file, {
+    SmarterCSV.process(File.open(cache_file, 'r:bom|utf-8'), {
       chunk_size: 100,
       convert_values_to_numeric: true,
       required_headers: csv_headers.map(&:to_sym)

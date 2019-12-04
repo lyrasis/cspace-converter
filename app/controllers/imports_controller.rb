@@ -27,7 +27,7 @@ class ImportsController < ApplicationController
       )
 
       begin
-        ::SmarterCSV.process(file.path, {
+        ::SmarterCSV.process(File.open(file.path, 'r:bom|utf-8'), {
             chunk_size: 100,
             convert_values_to_numeric: false,
             required_headers: Lookup.profile_headers(params[:profile])
