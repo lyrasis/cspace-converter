@@ -1,6 +1,6 @@
 module Helpers
   def get_attributes(type, file)
-    SmarterCSV.process(Rails.root.join('data', type, file), {
+    SmarterCSV.process(File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
       chunk_size: 1,
       convert_values_to_numeric: false,
     }.merge(Rails.application.config.csv_parser_options)) do |chunk|
