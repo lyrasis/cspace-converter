@@ -6,7 +6,7 @@ class ImportsController < ApplicationController
     file = params[:file]
     unless file.respond_to? :path
       flash[:error] = "There was an error processing the uploaded file."
-      redirect_to import_path
+      redirect_to action: 'new' && return
     end
 
     config = {
