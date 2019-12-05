@@ -1,0 +1,15 @@
+termDisplayName,termStatus,termFlag,termSource,termSourceID,commonName,additionalTermDisplayName,additionalTermStatus
+"Indeterminate Magnoliopsida",accepted,valid,"ITIS",18063,"Flowering plant",Angiospermae,rejected
+"Omphalotus olearius",accepted,valid,,,"Jack-o-lantern fungus","Clitocybe olearius",rejected
+"Gymnopus dryophilus",accepted,valid,,,"Oak-loving Collybia","Collybia dryophila",rejected
+"Trichaptum abietinum",accepted,valid,,,"Poroid fungus","Hirschioporus abietinus",rejected
+"Euphydryas phaeton",accepted,invalid,"ITIS",778057,"Batlimore Checkerspot","melitae phaetona",rejected
+"Lycaena helloides",accepted,invalid,"ITIS",777800,"Purplish Copper"," chrysophanus helloides",rejected
+"Ladona deplanata",accepted,invalid,"ITIS",101882,"Blue Corporal"," libellula deplanata",rejected
+"Ascalapha odorata","under review",,,,"Black Witch Moth","erebus odora ",rejected
+"Plestiodon fasciatus","under review",,,,"Five-lined Skink","eumeces fasciatus ",rejected
+"Betula platyphylla","under review",,"ITIS",183538,"Asian White Birch","Betula mandshurica",rejected
+"Zerene cesonia","under review",,"ITIS",777746,"Southern Dogface Butterfly","Colias cesonia",rejected
+Actinolite,accepted,invalid,,"rock_mineral - NO ITIS entry",,,
+"Actinolite in chlorite",accepted,invalid,,"rock_mineral - NO ITIS entry",,,
+"Actinolite in talc",accepted,invalid,,"rock_mineral - NO ITIS entry",,,
