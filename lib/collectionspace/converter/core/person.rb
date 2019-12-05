@@ -29,24 +29,24 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', config[:identifier]
           CSXML.add_group_list xml, 'personTerm', [
             {
-              "termDisplayName" => attributes["termdisplayname"],
-              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
-              "termSourceID" => attributes["termsourceid"],
-              "termSourceDetail" => attributes["termsourcedetail"],
-              "surName" => attributes["surname"],
-              "termSourceNote" => attributes["termsourcenote"],
-              "initials" => attributes["initials"],
               "title" => attributes["title"],
-              "termSource" => CSXML::Helpers.get_vocab('citation', attributes["termsource"]),
+              "initials" => attributes["initials"],
               "foreName" => attributes["forename"],
+              "surName" => attributes["surname"],
               "nameAdditions" => attributes["nameadditions"],
-              "termStatus" => attributes["termstatus"],
-              "termLanguage" => CSXML::Helpers.get_vocab('languages', attributes["termlanguage"]),
               "middleName" => attributes["middlename"],
               "salutation" => attributes["salutation"],
+              "termDisplayName" => attributes["termdisplayname"],
+              "termLanguage" => CSXML::Helpers.get_vocab('languages', attributes["termlanguage"]),
               "termName" => attributes["termname"],
-              "termQualifier" => attributes["termqualifier"],
               "termPrefForLang" => attributes.fetch("termprefforlang", '').downcase,
+              "termQualifier" => attributes["termqualifier"],
+              "termSource" => CSXML::Helpers.get_vocab('citation', attributes["termsource"]),
+              "termSourceID" => attributes["termsourceid"],
+              "termSourceDetail" => attributes["termsourcedetail"],
+              "termSourceNote" => attributes["termsourcenote"],
+              "termStatus" => attributes["termstatus"],
+              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
             }
           ]
           CSXML.add xml, 'birthPlace', attributes["birthplace"]

@@ -14,10 +14,9 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
           CSXML.add_group_list xml, 'materialTerm', [
             {
-              "termDisplayName" => attributes["termdisplayname"],
-              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
-              "termName" => attributes["term_name"],
               "historicalStatus" => attributes["historical_status"],
+              "termDisplayName" => attributes["termdisplayname"],
+              "termName" => attributes["term_name"],
               "termFlag" => attributes["term_flag"],
               "termLanguage" => attributes["term_language"],
               "termPrefForLang" => attributes["term_pref_for_lang"],
@@ -27,6 +26,7 @@ module CollectionSpace
               "termSourceDetail" => attributes["term_source_detail"],
               "termSourceNote" => attributes["term_source_note"],
               "termStatus" => attributes["term_status"],
+              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
             }
           ]
           # materialComposition
@@ -140,18 +140,18 @@ module CollectionSpace
           # materialTermAttributionContributing
           CSXML.add_group_list xml, 'materialTermAttributionContributing', [
             {
+              "materialTermAttributionContributingDate" => attributes["material_term_attribution_contributing_date"],
               "materialTermAttributionContributingOrganization" => attributes["material_term_attribution_contributing_organization"],
               "materialTermAttributionContributingPerson" => attributes["material_term_attribution_contributing_person"],
-              "materialTermAttributionContributingDate" => attributes["material_term_attribution_contributing_date"],
             }
           ]
           # materialTermAttributionEditing
           CSXML.add_group_list xml, 'materialTermAttributionEditing', [
             {
+              "materialTermAttributionEditingDate" => attributes["material_term_attribution_editing_date"],
+              "materialTermAttributionEditingNote" => attributes["material_term_attribution_editing_note"],
               "materialTermAttributionEditingOrganization" => attributes["material_term_attribution_editing_organization"],
               "materialTermAttributionEditingPerson" => attributes["material_term_attribution_editing_person"],
-              "materialTermAttributionEditingNote" => attributes["material_term_attribution_editing_note"],
-              "materialTermAttributionEditingDate" => attributes["material_term_attribution_editing_date"],
             }
           ]
           # commonForm
