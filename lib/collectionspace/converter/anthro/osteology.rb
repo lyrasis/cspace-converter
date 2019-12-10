@@ -33,6 +33,25 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           CSXML.add xml, 'InventoryID', attributes['inventoryid']
+          osteoageestimate = []
+          verbatim = CSDR.split_mvf attributes, 'osteoageestimateverbatim'
+          age_lower = CSDR.split_mvf attributes, 'osteoageestimatelower'
+          age_upper = CSDR.split_mvf attributes, 'osteoageestimateupper'
+          age_analyst = CSDR.split_mvf attributes, 'osteoageestimateanalyst'
+          age_note = CSDR.split_mvf attributes, 'osteoageestimatenote'
+
+          verbatim.each_with_index do |vbtm, index|
+            osteoageestimate << {"osteoAgeEstimateVerbatim" => vbtm, "osteoAgeEstimateLower" => age_lower[index], "osteoAgeEstimateUpper" => age_upper[index], "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]), "osteoAgeEstimateNote" => age_note}
+          end 
+          CSXML.add_group_list xml, 'osteoAgeEstimate', osteoageestimate
+          sexdetermination = []
+          sex_determination = CSDR.split_mvf attributes, 'sexdetermination'
+          determination_analyst = CSDR.split_mvf attributes, 'sexdeterminationanalyst'
+          determination_note = CSDR.split_mvf attributes, 'sexdeterminationnote'
+          sex_determination.each_with_index do |sxd, index|
+            sexdetermination << {"sexDetermination" => sxd, "sexDeterminationAnalyst" => CSXML::Helpers.get_authority('personauthorities', 'person', determination_analyst[index]), "sexDeterminationNote" => determination_note[index]}
+          end 
+          CSXML.add_group_list xml, 'sexDetermination', sexdetermination
         end
       end
     end
