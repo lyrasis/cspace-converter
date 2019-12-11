@@ -13,7 +13,7 @@ registered_profiles:
         identifier: claimnumber
         title: claimnumber
       Authorities: []
-  Osteology:
+  osteology:
     type: Procedures
     enabled: true
     required_headers:
