@@ -33,4 +33,8 @@ Steps:
 ./import.sh data/anthro/$TODO.csv claims1 nagpra
 ./remote.sh transfer Nagpra claims1
 ./remote.sh delete Nagpra claims1
+
+./import.sh data/anthro/osteology_anthro_all.csv osteology1 osteology
+./remote.sh transfer Osteology osteology1
+./remote.sh delete Osteology osteology1
 ```
