@@ -66,17 +66,18 @@ module CollectionSpace
           age_upper = CSDR.split_mvf attributes, 'osteoageestimateupper'
           age_analyst = CSDR.split_mvf attributes, 'osteoageestimateanalyst'
           age_note = CSDR.split_mvf attributes, 'osteoageestimatenote'
-
+          age_date = CSDR.split_mvf attributes, 'osteoageestimatedategroup'
           verbatim.each_with_index do |vbtm, index|
-            osteoageestimate << {"osteoAgeEstimateVerbatim" => vbtm, "osteoAgeEstimateLower" => age_lower[index], "osteoAgeEstimateUpper" => age_upper[index], "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]), "osteoAgeEstimateNote" => age_note}
+            osteoageestimate << {"osteoAgeEstimateVerbatim" => vbtm, "osteoAgeEstimateLower" => age_lower[index], "osteoAgeEstimateUpper" => age_upper[index], "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]), "osteoAgeEstimateNote" => age_note[index], "osteoAgeEstimateDateGroup" => age_date[index]}
           end 
           CSXML.add_group_list xml, 'osteoAgeEstimate', osteoageestimate
           sexdetermination = []
           sex_determination = CSDR.split_mvf attributes, 'sexdetermination'
           determination_analyst = CSDR.split_mvf attributes, 'sexdeterminationanalyst'
           determination_note = CSDR.split_mvf attributes, 'sexdeterminationnote'
+          determination_date = CSDR.split_mvf attributes, 'sexdeterminationdategroup'
           sex_determination.each_with_index do |sxd, index|
-            sexdetermination << {"sexDetermination" => sxd, "sexDeterminationAnalyst" => CSXML::Helpers.get_authority('personauthorities', 'person', determination_analyst[index]), "sexDeterminationNote" => determination_note[index]}
+            sexdetermination << {"sexDetermination" => sxd, "sexDeterminationAnalyst" => CSXML::Helpers.get_authority('personauthorities', 'person', determination_analyst[index]), "sexDeterminationNote" => determination_note[index], "sexDeterminationDateGroup" => determination_date[index]}
           end 
           CSXML.add_group_list xml, 'sexDetermination', sexdetermination
           CSXML.add xml, 'completeness', CSXML::Helpers.get_vocab('osteocompleteness',  attributes['completeness'])
