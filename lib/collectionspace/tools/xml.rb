@@ -140,7 +140,7 @@ module CollectionSpace
         end
 
         def self.add_date_group_list(xml, field, dates)
-          dates = dates.map { |d| CSDTP.fields_for(d) }.delete_if { |d| d['dateDisplayDate'].nil? }
+          dates = dates.map { |d| CSDTP.fields_for(d) }.compact
           CSXML.add_group_list xml, field, dates
         end
 

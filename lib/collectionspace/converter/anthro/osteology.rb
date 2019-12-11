@@ -69,17 +69,26 @@ module CollectionSpace
           age_date = CSDR.split_mvf attributes, 'osteoageestimatedategroup'
           verbatim.each_with_index do |vbtm, index|
             osteoageestimate << {"osteoAgeEstimateVerbatim" => vbtm, "osteoAgeEstimateLower" => age_lower[index], "osteoAgeEstimateUpper" => age_upper[index], "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]), "osteoAgeEstimateNote" => age_note[index], "osteoAgeEstimateDateGroup" => age_date[index]}
-          end 
+          end
           CSXML.add_group_list xml, 'osteoAgeEstimate', osteoageestimate
+          determinationdates = []
           sexdetermination = []
           sex_determination = CSDR.split_mvf attributes, 'sexdetermination'
           determination_analyst = CSDR.split_mvf attributes, 'sexdeterminationanalyst'
           determination_note = CSDR.split_mvf attributes, 'sexdeterminationnote'
           determination_date = CSDR.split_mvf attributes, 'sexdeterminationdategroup'
           sex_determination.each_with_index do |sxd, index|
-            sexdetermination << {"sexDetermination" => sxd, "sexDeterminationAnalyst" => CSXML::Helpers.get_authority('personauthorities', 'person', determination_analyst[index]), "sexDeterminationNote" => determination_note[index], "sexDeterminationDateGroup" => determination_date[index]}
-          end 
-          CSXML.add_group_list xml, 'sexDetermination', sexdetermination
+            sexdetermination << {
+              "sexDetermination" => sxd,
+              "sexDeterminationAnalyst" => CSXML::Helpers.get_authority('personauthorities', 'person', determination_analyst[index]),
+              "sexDeterminationNote" => determination_note[index],
+            }
+            determinationdates << {
+              "sexDeterminationDateGroup" => CSDTP.fields_for(CSDTP.parse(determination_date[index]))
+
+            }
+          end
+          CSXML.add_group_list xml, 'sexDetermination', sexdetermination, false, determinationdates
           CSXML.add xml, 'completeness', CSXML::Helpers.get_vocab('osteocompleteness',  attributes['completeness'])
           CSXML.add xml, 'completenessNote', attributes['completenessnote']
           CSXML.add xml, 'molarsPresent', attributes['molarspresent']
