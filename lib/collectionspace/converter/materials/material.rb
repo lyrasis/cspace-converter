@@ -14,11 +14,9 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
           CSXML.add_group_list xml, 'materialTerm', [
             {
-              "historicalStatus" => attributes["historical_status"],
-              "termDisplayName" => attributes["termdisplayname"],
-              "termType" => attributes["termtype"],
-              "termName" => attributes["termname"],
               "historicalStatus" => attributes["historicalstatus"],
+              "termDisplayName" => attributes["termdisplayname"],
+              "termName" => attributes["termname"],
               "termFlag" => CSXML::Helpers.get_vocab('materialtermflag', attributes["termflag"]),
               "termLanguage" => CSXML::Helpers.get_vocab('languages', attributes["termlanguage"]),
               "termPrefForLang" => attributes["termprefforlang"],
@@ -28,16 +26,6 @@ module CollectionSpace
               "termSourceDetail" => attributes["termsourcedetail"],
               "termSourceNote" => attributes["termsourcenote"],
               "termStatus" => attributes["termstatus"],
-              "termName" => attributes["term_name"],
-              "termFlag" => attributes["term_flag"],
-              "termLanguage" => attributes["term_language"],
-              "termPrefForLang" => attributes["term_pref_for_lang"],
-              "termQualifier" => attributes["term_qualifier"],
-              "termSource" => attributes["term_source"],
-              "termSourceID" => attributes["term_source_id"],
-              "termSourceDetail" => attributes["term_source_detail"],
-              "termSourceNote" => attributes["term_source_note"],
-              "termStatus" => attributes["term_status"],
               "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
             }
           ]
@@ -158,7 +146,6 @@ module CollectionSpace
             mta_editing << {"materialTermAttributionEditingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', editborg), "materialTermAttributionEditingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtaep[index]), "materialTermAttributionEditingDate" => mtaed[index], "materialTermAttributionEditingNote" => mtaen[index]}
           end 
           CSXML.add_group_list xml, 'materialTermAttributionEditing', mta_editing
-=======
           CSXML.add_group_list xml, 'materialTermAttributionContributing', [
             {
               "materialTermAttributionContributingDate" => attributes["material_term_attribution_contributing_date"],
