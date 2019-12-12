@@ -46,11 +46,18 @@ module CollectionSpace
           }
         end
 
+        def self.simple_repeat_lists
+          {
+            'objectstatus' => 'objectStatus'
+          }
+        end
+
         def self.map(xml, attributes)
           CSXML::Helpers.add_title(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
           CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
           CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)
+          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeat_lists, 'List')
 
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
           CSXML::Helpers.add_date_group_list(
@@ -108,9 +115,6 @@ module CollectionSpace
             object_name << {"objectName" => obj}
           end
           CSXML.add_list xml, 'objectName', object_name, 'Group'
-          CSXML.add_repeat xml, 'objectStatus', [{
-            "objectStatus" => attributes["objectstatus"]
-          }], 'List'
           other_number = []
           numbervalue = CSDR.split_mvf attributes, 'numbervalue'
           numbertype = CSDR.split_mvf attributes, 'numbertype'
