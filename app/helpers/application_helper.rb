@@ -24,6 +24,12 @@ module ApplicationHelper
     Lookup.converter_module
   end
 
+  def disabled_profiles
+    Lookup.module.registered_profiles.find_all do |_, profile|
+      !profile.fetch('enabled', false)
+    end.map{ |p| p[0] }
+  end
+
   def path_for_batch_type(batch)
     if batch.type == 'TransferJob'
       return batches_path
@@ -38,12 +44,6 @@ module ApplicationHelper
       profiles << [profile, profile, class: Lookup.converter_module]
     end
     profiles
-  end
-
-  def disabled_profiles
-    Lookup.module.registered_profiles.find_all do |_, profile|
-      !profile.fetch('enabled', false)
-    end.map{ |p| p[0] }
   end
 
   def types
@@ -61,5 +61,4 @@ module ApplicationHelper
     date = ENV.fetch('BUILD_DATE', Date.today)
     "Version: #{version} (#{date})"
   end
-
 end

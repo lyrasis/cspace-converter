@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="taxon">
+  <ns2:taxon_common xmlns:ns2="http://collectionspace.org/services/taxonomy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <taxonTermGroupList>
+      <taxonTermGroup>
+        <termSourceID>18063</termSourceID>
+        <termSourceDetail/>
+        <termSourceNote>Extinct Species/Fossil</termSourceNote>
+        <termFormattedDisplayName/>
+        <termType>used for term</termType>
+        <taxonomicStatus/>
+        <termSource>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(ITIS1575566493696)'ITIS'</termSource>
+        <termStatus>accepted</termStatus>
+        <termLanguage/>
+        <termName/>
+        <termQualifier/>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>Indeterminate Magnoliopsida</termDisplayName>
+        <termFlag>urn:cspace:anthro.collectionspace.org:vocabularies:name(taxontermflag):item:name(valid)'valid'</termFlag>
+      </taxonTermGroup>
+      <taxonTermGroup>
+        <termSourceID/>
+        <termSourceDetail/>
+        <termSourceNote/>
+        <termFormattedDisplayName/>
+        <termType/>
+        <taxonomicStatus/>
+        <termSource/>
+        <termStatus>rejected</termStatus>
+        <termLanguage/>
+        <termName/>
+        <termQualifier/>
+        <termPrefForLang>false</termPrefForLang>
+        <termDisplayName>Angiospermae</termDisplayName>
+        <termFlag/>
+      </taxonTermGroup>
+    </taxonTermGroupList>
+    <commonNameGroupList>
+      <commonNameGroup>
+        <commonName>Flowering plant</commonName>
+        <commonNameLanguage/>
+        <commonNameSourceDetail/>
+        <commonNameSource/>
+      </commonNameGroup>
+    </commonNameGroupList>
+    <csid>3eb2143b-3a41-4cf6-bf54</csid>
+    <taxonCitationList/>
+    <taxonIsNamedHybrid>false</taxonIsNamedHybrid>
+    <taxonRecordTypes/>
+    <shortIdentifier>IndeterminateMagnoliopsida1575566509572</shortIdentifier>
+    <proposed>true</proposed>
+    <taxonAuthorGroupList/>
+    <refName>urn:cspace:anthro.collectionspace.org:taxonomyauthority:name(taxon):item:name(IndeterminateMagnoliopsida1575566509572)'Indeterminate Magnoliopsida'</refName>
+    <inAuthority>3848bda2-e628-44d2-9254</inAuthority>
+  </ns2:taxon_common>
+</document>

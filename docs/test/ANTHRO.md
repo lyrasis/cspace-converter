@@ -33,4 +33,11 @@ Steps:
 ./import.sh data/anthro/$TODO.csv claims1 nagpra
 ./remote.sh transfer Nagpra claims1
 ./remote.sh delete Nagpra claims1
+
+### Auths
+
+./import.sh data/private/taxon.csv taxon1 taxonomy
+./remote.sh transfer Taxon taxon1
+./remote.sh update Taxon taxon1
+./remote.sh delete Taxon taxon1
 ```

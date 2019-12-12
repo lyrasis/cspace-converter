@@ -1,17 +1,17 @@
 namespace :import do
   def process(job_class, config)
-    Batch.create(
-      key: config[:key],
-      category: 'import',
-      type: 'import',
-      for: config[:profile],
-      name: config[:batch],
-      start: Time.now,
-      total: CSV.read(config[:filename], headers: true).length
-    )
-
     begin
-      SmarterCSV.process(config[:filename], {
+      Batch.create!(
+        key: config[:key],
+        category: 'import',
+        type: 'import',
+        for: config[:profile],
+        name: config[:batch],
+        start: Time.now,
+        total: CSV.read(config[:filename], headers: true).length
+      )
+
+      SmarterCSV.process(File.open(config[:filename], 'r:bom|utf-8'), {
           chunk_size: 100,
           convert_values_to_numeric: false,
           required_headers: Lookup.profile_headers(config[:profile])
@@ -20,7 +20,8 @@ namespace :import do
       end
       Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."
     rescue StandardError => err
-      Batch.retrieve(config[:key]).destroy
+      batch = Batch.retrieve(config[:key])
+      batch&.destroy
       Rails.logger.error "Import error: #{err.message}"
     end
   end

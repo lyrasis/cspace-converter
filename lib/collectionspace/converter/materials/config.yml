@@ -24,6 +24,7 @@ registered_profiles:
           authority_subtype: material
   material:
     type: Authorities
+    enabled: true
     config:
       name_field: termdisplayname
       authority_type: Material

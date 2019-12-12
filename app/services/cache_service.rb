@@ -76,20 +76,20 @@ class CacheService
   end
 
   def self.export
-    FileUtils.rm_f cache_file
-
     Rails.logger.info "Exporting cache: #{cache_file}"
 
+    cache_tmp_file = "#{cache_file}.#{Time.now.to_i}.tmp"
     headers = CacheService.csv_headers
-    CSV.open(cache_file, 'a') do |csv|
+    CSV.open(cache_tmp_file, 'a') do |csv|
       csv << headers
     end
 
     CacheObject.all.each do |object|
-      CSV.open(cache_file, 'a') do |csv|
+      CSV.open(cache_tmp_file, 'a') do |csv|
         csv << object.attributes.values_at(*headers)
       end
     end
+    FileUtils.mv cache_tmp_file, cache_file
   end
 
   def self.import
@@ -98,7 +98,7 @@ class CacheService
 
     Rails.logger.info "Loading cache: #{cache_file}"
     tracker = 1
-    SmarterCSV.process(cache_file, {
+    SmarterCSV.process(File.open(cache_file, 'r:bom|utf-8'), {
       chunk_size: 100,
       convert_values_to_numeric: true,
       required_headers: csv_headers.map(&:to_sym)

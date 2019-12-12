@@ -38,10 +38,6 @@ Steps:
 ./remote.sh transfer CollectionObject cataloging1
 ./remote.sh delete CollectionObject cataloging1
 
-./import.sh data/core/objectexit_core_all.csv exit1 objectexit
-./remote.sh transfer ObjectExit exit1
-./remote.sh delete ObjectExit exit1
-
 ./import.sh data/core/group_core_all.csv group1 group
 ./remote.sh transfer Group group1
 ./remote.sh delete Group group1
@@ -63,6 +59,12 @@ Steps:
 ./remote.sh transfer Movement movement1
 ./remote.sh delete Movement movement1
 
+./import.sh data/core/objectexit_core_all.csv exit1 objectexit
+./remote.sh transfer ObjectExit exit1
+./remote.sh delete ObjectExit exit1
+
+### Auths
+
 ./import.sh data/core/authconcept_nomenclature_terms.csv nomenclature1 nomenclature
 ./remote.sh transfer Concept nomenclature1
 ./remote.sh delete Concept nomenclature1
@@ -71,9 +73,7 @@ Steps:
 ./remote.sh transfer Person person1
 ./remote.sh delete Person person1
 
-./import.sh data/core/objectexit_core_all.csv exit1 objectexit
-./remote.sh transfer ObjectExit exit1
-./remote.sh delete ObjectExit exit1
+### Relationships
 
 ./import.sh data/default/hierarchy.csv hierarchy1 hierarchies
 ./import.sh data/default/relationship.csv relationship1 relationships

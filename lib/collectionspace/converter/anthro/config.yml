@@ -1,6 +1,7 @@
 ---
 registered_authorities:
   - personauthorities
+  - taxonomyauthority
 registered_procedures:
   - Nagpra
   - Osteology
@@ -12,7 +13,7 @@ registered_profiles:
         identifier: claimnumber
         title: claimnumber
       Authorities: []
-  Osteology:
+  osteology:
     type: Procedures
     enabled: true
     required_headers:
@@ -31,4 +32,14 @@ registered_profiles:
         - name_field: inventoryanalyst
           authority_type: Person
           authority_subtype: person
-
+  taxonomy:
+    type: Authorities
+    enabled: true
+    required_headers:
+      - termdisplayname
+    config:
+      name_field: termdisplayname
+      authority_type: Taxon
+      authority_subtype: taxon
+      Authorities: []
+      Vocabularies: []

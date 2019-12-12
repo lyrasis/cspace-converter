@@ -14,6 +14,7 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
           CSXML.add_group_list xml, 'materialTerm', [
             {
+              "historicalStatus" => attributes["historical_status"],
               "termDisplayName" => attributes["termdisplayname"],
               "termType" => attributes["termtype"],
               "termName" => attributes["termname"],
@@ -27,6 +28,17 @@ module CollectionSpace
               "termSourceDetail" => attributes["termsourcedetail"],
               "termSourceNote" => attributes["termsourcenote"],
               "termStatus" => attributes["termstatus"],
+              "termName" => attributes["term_name"],
+              "termFlag" => attributes["term_flag"],
+              "termLanguage" => attributes["term_language"],
+              "termPrefForLang" => attributes["term_pref_for_lang"],
+              "termQualifier" => attributes["term_qualifier"],
+              "termSource" => attributes["term_source"],
+              "termSourceID" => attributes["term_source_id"],
+              "termSourceDetail" => attributes["term_source_detail"],
+              "termSourceNote" => attributes["term_source_note"],
+              "termStatus" => attributes["term_status"],
+              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
             }
           ]
           # punlishTo
@@ -146,6 +158,23 @@ module CollectionSpace
             mta_editing << {"materialTermAttributionEditingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', editborg), "materialTermAttributionEditingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtaep[index]), "materialTermAttributionEditingDate" => mtaed[index], "materialTermAttributionEditingNote" => mtaen[index]}
           end 
           CSXML.add_group_list xml, 'materialTermAttributionEditing', mta_editing
+=======
+          CSXML.add_group_list xml, 'materialTermAttributionContributing', [
+            {
+              "materialTermAttributionContributingDate" => attributes["material_term_attribution_contributing_date"],
+              "materialTermAttributionContributingOrganization" => attributes["material_term_attribution_contributing_organization"],
+              "materialTermAttributionContributingPerson" => attributes["material_term_attribution_contributing_person"],
+            }
+          ]
+          # materialTermAttributionEditing
+          CSXML.add_group_list xml, 'materialTermAttributionEditing', [
+            {
+              "materialTermAttributionEditingDate" => attributes["material_term_attribution_editing_date"],
+              "materialTermAttributionEditingNote" => attributes["material_term_attribution_editing_note"],
+              "materialTermAttributionEditingOrganization" => attributes["material_term_attribution_editing_organization"],
+              "materialTermAttributionEditingPerson" => attributes["material_term_attribution_editing_person"],
+            }
+          ]
           # commonForm
           CSXML.add xml, 'commonForm', CSXML::Helpers.get_vocab('materialform', attributes["commonform"])
           # formType
