@@ -24,25 +24,37 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/value',
     '/document/*/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/measurementUnit',
     '/document/*/measuredPartGroupList/measuredPartGroup/measuredPart',
-    # '/document/*/copyNumber', # TODO add data
-    # '/document/*/editionNumber', # TODO add data
-    # '/document/*/forms/form', # TODO add data
+    '/document/*/copyNumber', 
+    '/document/*/editionNumber', 
+    '/document/*/forms/form',
     '/document/*/materialGroupList/materialGroup/material',
-    # '/document/*/objectStatusList/objectStatus', # TODO add data
-    # '/document/*/phase', # TODO add data
-    # '/document/*/sex', # TODO add data
-    # '/document/*/styles/style', # TODO add data
-    # '/document/*/technicalAttributeGroupList/...', # TODO add data
-    # '/document/*/objectComponentGroupList/...', # TODO add data
+    '/document/*/objectStatusList/objectStatus',
+    '/document/*/otherNumberList/otherNumber/numberValue',
+    '/document/*/otherNumberList/otherNumber/numberType',
+    { xpath: '/document/*/inventoryStatusList/inventoryStatus',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/publishToList/publishTo',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    '/document/*/assocPeopleGroupList/assocPeopleGroup/assocPeople',
+    '/document/*/assocPeopleGroupList/assocPeopleGroup/assocPeopleType',
+    '/document/*/phase', 
+    '/document/*/sex',
+    '/document/*/objectProductionNote',
+    '/document/*/fieldCollectionNote',
+    '/document/*/fieldCollectionFeature',
+    '/document/*/styles/style', 
+    '/document/*/technicalAttributeGroupList/technicalAttributeGroup/technicalAttribute', 
+    '/document/*/objectComponentGroupList/objectComponentGroup/objectComponentName', 
     '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateEarliestScalarValue',
     '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateLatestScalarValue',
     { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup/objectProductionPersonRole',
     { xpath: '/document/*/contentPersons/contentPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
+    '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentMethod',
     { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganizationRole',
     '/document/*/techniqueGroupList/techniqueGroup/technique',
     '/document/*/objectProductionPeopleGroupList/objectProductionPeopleGroup/objectProductionPeople',
+    '/document/*/objectProductionPeopleGroupList/objectProductionPeopleGroup/objectProductionPeopleRole',
     '/document/*/objectProductionPlaceGroupList/objectProductionPlaceGroup/objectProductionPlace',
   ]}
 
