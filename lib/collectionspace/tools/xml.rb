@@ -233,12 +233,12 @@ module CollectionSpace
           end
         end
 
-        def self.add_simple_repeats(xml, attributes, repeats)
+        def self.add_simple_repeats(xml, attributes, repeats, key_suffix = '')
           return unless repeats
 
           repeats.each do |attribute, field|
             values = safe_split(field, attributes, attribute)
-            CSXML.add_repeat xml, field, values
+            CSXML.add_repeat xml, field, values, key_suffix
           end
         end
 
