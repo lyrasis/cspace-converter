@@ -20,6 +20,8 @@ module CollectionSpace
       ::CSDTP = CollectionSpace::Tools::DateParser
 
       def self.fields_for(date)
+        return nil if !date.respond_to?(:display_date) || date.display_date.nil?
+
         {
           'scalarValuesComputed' => 'true',
           'dateDisplayDate' => date.display_date,

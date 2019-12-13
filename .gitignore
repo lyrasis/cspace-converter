@@ -8,6 +8,7 @@
 /.bundle
 /*.csv
 data/private/
+docker-compose.override.yml
 Dockerrun.aws.json
 .DS_Store
 *.gz
