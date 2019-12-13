@@ -25,18 +25,24 @@ module CollectionSpace
 
       # TODO: higher level method to introspect types and build xml
       # TODO: refactor, sub_elements as array of hashes to reconcile uses of sub_key
-      def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [], include_group_prefix: true)
+      def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
+                              include_group_prefix: true,
+                              subgroup_list_name_includes_group: true,
+                              include_subgroup_prefix: true
+                             )
         return unless elements.any?
 
         group_prefix = include_group_prefix ? 'GroupList' : 'List'
+        subgroup_list_suffix = subgroup_list_name_includes_group ? 'GroupList' : 'List'
+        subgroup_prefix = include_subgroup_prefix ? 'Sub' : ''
         xml.send("#{key}#{group_prefix}".to_sym) {
           elements.each_with_index do |element, index|
             xml.send("#{key}Group".to_sym) {
               element.each {|k, v| xml.send(k.to_sym, v)}
               if sub_key
-                xml.send("#{sub_key}SubGroupList".to_sym) {
+                xml.send("#{sub_key}#{subgroup_prefix}#{subgroup_list_suffix}".to_sym) {
                   sub_elements.each do |sub_element|
-                    xml.send("#{sub_key}SubGroup".to_sym) {
+                    xml.send("#{sub_key}#{subgroup_prefix}Group".to_sym) {
                       sub_element.each {|k, v| xml.send(k.to_sym, v)}
                     }
                   end
