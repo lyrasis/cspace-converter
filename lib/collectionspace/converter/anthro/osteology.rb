@@ -60,6 +60,7 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           CSXML.add xml, 'InventoryID', attributes['inventoryid']
+          estimatedate = []
           osteoageestimate = []
           verbatim = CSDR.split_mvf attributes, 'osteoageestimateverbatim'
           age_lower = CSDR.split_mvf attributes, 'osteoageestimatelower'
@@ -68,9 +69,18 @@ module CollectionSpace
           age_note = CSDR.split_mvf attributes, 'osteoageestimatenote'
           age_date = CSDR.split_mvf attributes, 'osteoageestimatedategroup'
           verbatim.each_with_index do |vbtm, index|
-            osteoageestimate << {"osteoAgeEstimateVerbatim" => vbtm, "osteoAgeEstimateLower" => age_lower[index], "osteoAgeEstimateUpper" => age_upper[index], "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]), "osteoAgeEstimateNote" => age_note[index], "osteoAgeEstimateDateGroup" => age_date[index]}
+            osteoageestimate << {
+	      "osteoAgeEstimateVerbatim" => vbtm, 
+              "osteoAgeEstimateLower" => age_lower[index], 
+              "osteoAgeEstimateUpper" => age_upper[index], 
+              "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]),
+              "osteoAgeEstimateNote" => age_note[index]
+            }
+            estimatedate << {
+              "osteoAgeEstimateDateGroup" => CSDTP.fields_for(CSDTP.parse(age_date[index]))
+            }
           end
-          CSXML.add_group_list xml, 'osteoAgeEstimate', osteoageestimate
+          CSXML.add_group_list xml, 'osteoAgeEstimate', osteoageestimate, false, estimatedate
           determinationdates = []
           sexdetermination = []
           sex_determination = CSDR.split_mvf attributes, 'sexdetermination'
