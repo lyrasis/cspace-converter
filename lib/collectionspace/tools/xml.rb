@@ -140,7 +140,7 @@ module CollectionSpace
         end
 
         def self.add_date_group_list(xml, field, dates)
-          dates = dates.map { |d| CSDTP.fields_for(d) }.delete_if { |d| d['dateDisplayDate'].nil? }
+          dates = dates.map { |d| CSDTP.fields_for(d) }.compact
           CSXML.add_group_list xml, field, dates
         end
 
@@ -233,12 +233,12 @@ module CollectionSpace
           end
         end
 
-        def self.add_simple_repeats(xml, attributes, repeats)
+        def self.add_simple_repeats(xml, attributes, repeats, key_suffix = '')
           return unless repeats
 
           repeats.each do |attribute, field|
             values = safe_split(field, attributes, attribute)
-            CSXML.add_repeat xml, field, values
+            CSXML.add_repeat xml, field, values, key_suffix
           end
         end
 
