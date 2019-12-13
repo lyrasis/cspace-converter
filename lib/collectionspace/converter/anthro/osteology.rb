@@ -34,7 +34,7 @@ module CollectionSpace
           CSXML.add xml, 'Notes_CulturalModifications', attributes['notes_culturalmodifications']
           CSXML.add xml, 'Notes_NHTaphonomicAlterations', attributes['notes_nhtaphonomicalterations']
           CSXML.add xml, 'Notes_CuratorialSuffixing', attributes['notes_curatorialsuffixing']
-          CSXML.add xml, 'cranialDeformationPresent', attributes['cranialdeformationpresent']
+          CSXML.add xml, 'cranialDeformationPresent', CSDR.to_boolean(attributes['cranialdeformationpresent'])
           cranial_deform = []
           deform_cat = CSDR.split_mvf attributes, 'cranialdeformationcategory'
           deform_cat.each_with_index do |dfct, index|
@@ -42,7 +42,7 @@ module CollectionSpace
           end
           CSXML.add_repeat xml, 'cranialDeformationCategories', cranial_deform
           CSXML.add xml, 'cranialDeformationNote', attributes['cranialdeformationnote']
-          CSXML.add xml, 'trepanationPresent', attributes['trepanationpresent']
+          CSXML.add xml, 'trepanationPresent', CSDR.to_boolean(attributes['trepanationpresent'])
           overall_trepanation = []
           trepanation_location = CSDR.split_mvf attributes, 'trepanationlocation'
           trepanation_certainty = CSDR.split_mvf attributes, 'trepanationcertainty'
@@ -70,9 +70,9 @@ module CollectionSpace
           age_date = CSDR.split_mvf attributes, 'osteoageestimatedategroup'
           verbatim.each_with_index do |vbtm, index|
             osteoageestimate << {
-	      "osteoAgeEstimateVerbatim" => vbtm, 
-              "osteoAgeEstimateLower" => age_lower[index], 
-              "osteoAgeEstimateUpper" => age_upper[index], 
+              "osteoAgeEstimateVerbatim" => vbtm,
+              "osteoAgeEstimateLower" => age_lower[index],
+              "osteoAgeEstimateUpper" => age_upper[index],
               "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]),
               "osteoAgeEstimateNote" => age_note[index]
             }
@@ -101,7 +101,7 @@ module CollectionSpace
           CSXML.add_group_list xml, 'sexDetermination', sexdetermination, false, determinationdates
           CSXML.add xml, 'completeness', CSXML::Helpers.get_vocab('osteocompleteness',  attributes['completeness'])
           CSXML.add xml, 'completenessNote', attributes['completenessnote']
-          CSXML.add xml, 'molarsPresent', attributes['molarspresent']
+          CSXML.add xml, 'molarsPresent', CSDR.to_boolean(attributes['molarspresent'])
           CSXML.add xml, 'dentitionScore', CSXML::Helpers.get_vocab('dentitionscore',  attributes['dentitionscore'])
           CSXML.add xml, 'dentitionNote', attributes['dentitionnote']
           CSXML.add xml, 'mortuaryTreatment', CSXML::Helpers.get_vocab('mortuarytreatment',  attributes['mortuarytreatment'])
@@ -110,7 +110,7 @@ module CollectionSpace
           CSXML.add xml, 'behrensmeyerUpper', CSXML::Helpers.get_vocab('behrensmeyer',  attributes['behrensmeyerupper'])
           CSXML.add xml, 'NotesOnElementInventory', attributes['notesonelementinventory']
           CSXML.add xml, 'pathologyNote', attributes['pathologynote']
-          CSXML.add xml, 'InventoryIsComplete', attributes['inventoryiscomplete']
+          CSXML.add xml, 'InventoryIsComplete', CSDR.to_boolean(attributes['inventoryiscomplete'])
           CSXML.add xml, 'inventoryAnalyst', CSXML::Helpers.get_authority('personauthorities', 'person',  attributes['inventoryanalyst'])
           CSXML.add xml, 'inventoryDate', CSDTP.parse(attributes['inventorydate']).earliest_scalar
         end

@@ -1,4 +1,4 @@
-irequire 'rails_helper'
+require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
   after(:all) do
@@ -20,12 +20,18 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
     "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateVerbatim",
     "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateLower",
     "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateUpper",
-    "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup",
-    { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+    "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateDisplayDate",
+    "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateEarliestScalarValue",
+    "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateLatestScalarValue",
+    { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[1]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[2]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
     "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateNote",
     "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDetermination",
-    "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDeterminationDateGroup",
-    { xpath: "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDeterminationAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+    "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDeterminationDateGroup/dateDisplayDate",
+    "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDeterminationDateGroup/dateEarliestScalarValue",
+    "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDeterminationDateGroup/dateLatestScalarValue",
+    { xpath: "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup[1]/sexDeterminationAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup[2]/sexDeterminationAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
     "/document/#{p}/sexDeterminationGroupList/sexDeterminationGroup/sexDeterminationNote",
     { xpath: "/document/#{p}/completeness", transform: ->(text) { CSURN.parse(text)[:label] } },
     "/document/#{p}/completenessNote",
@@ -52,11 +58,13 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
     "/document/#{ext}/cranialDeformationNote",
     "/document/#{ext}/trepanationPresent",
     "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationLocation",
-    { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationCertainty", transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup[1]/trepanationCertainty", transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup[2]/trepanationCertainty", transform: ->(text) { CSURN.parse(text)[:label] } },
     "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationDimensionMax",
     "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationDimensionMin",
     { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationTechnique", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationHealing", transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup[1]/trepanationHealing", transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: "/document/#{ext}/trepanationGroupList/trepanationGroup[2]/trepanationHealing", transform: ->(text) { CSURN.parse(text)[:label] } },
     "/document/#{ext}/trepanationGroupList/trepanationGroup/trepanationNote",
     "/document/#{ext}/trepanationGeneralNote",
   ]}
