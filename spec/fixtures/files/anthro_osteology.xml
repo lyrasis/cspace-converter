@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="osteology">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-11-25T12:33:34.953Z</createdAt>
+    <updatedBy>admin@anthro.collectionspace.org</updatedBy>
+    <createdBy>admin@anthro.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1500</tenantId>
+    <refName>urn:cspace:anthro.collectionspace.org:osteology:id(1021c47e-0403-473a-980a)</refName>
+    <uri>/osteology/1021c47e-0403-473a-980a</uri>
+    <updatedAt>2019-11-25T12:40:03.185Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:osteology_anthropology xmlns:ns2="http://collectionspace.org/services/osteology/domain/anthropology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Notes_DentalPathology>Dental pathology note text</Notes_DentalPathology>
+    <cranialDeformationNote>Cranial deformation note text</cranialDeformationNote>
+    <cranialDeformationPresent>false</cranialDeformationPresent>
+    <trepanationPresent>true</trepanationPresent>
+    <cranialDeformationCategories>
+      <cranialDeformationCategory>urn:cspace:anthro.collectionspace.org:vocabularies:name(cranialdeformationcategory):item:name(circumferential)'circumferential'</cranialDeformationCategory>
+      <cranialDeformationCategory>urn:cspace:anthro.collectionspace.org:vocabularies:name(cranialdeformationcategory):item:name(tabular)'tabular'</cranialDeformationCategory>
+    </cranialDeformationCategories>
+    <Notes_NHTaphonomicAlterations>Nonhuman taphonomic alterations text</Notes_NHTaphonomicAlterations>
+    <Notes_CulturalModifications>Cultural modifications text</Notes_CulturalModifications>
+    <Notes_CuratorialSuffixing>Curatorial suffixing notes text</Notes_CuratorialSuffixing>
+    <Notes_PostcranialPathology>Postcranial bony pathology text</Notes_PostcranialPathology>
+    <trepanationGroupList>
+      <trepanationGroup>
+        <trepanationNote>Trepanation note text 1</trepanationNote>
+        <trepanationCertainty>urn:cspace:anthro.collectionspace.org:vocabularies:name(trepanationcertainty):item:name(possible)'possible trepanation'</trepanationCertainty>
+        <trepanationLocation>Trepanation location text 1</trepanationLocation>
+        <trepanationDimensionMin>3</trepanationDimensionMin>
+        <trepanationTechnique>urn:cspace:anthro.collectionspace.org:vocabularies:name(trepanationtechnique):item:name(boringandcutting)'boring-and-cutting'</trepanationTechnique>
+        <trepanationHealing>urn:cspace:anthro.collectionspace.org:vocabularies:name(trepanationhealing):item:name(definite)'definite evidence for healing'</trepanationHealing>
+        <trepanationDimensionMax>1</trepanationDimensionMax>
+      </trepanationGroup>
+      <trepanationGroup>
+        <trepanationNote>Trepanation note text 2</trepanationNote>
+        <trepanationCertainty>urn:cspace:anthro.collectionspace.org:vocabularies:name(trepanationcertainty):item:name(clear)'clear evidence of trepanation'</trepanationCertainty>
+        <trepanationLocation>Trepanation location text 2</trepanationLocation>
+        <trepanationDimensionMin>4</trepanationDimensionMin>
+        <trepanationTechnique>urn:cspace:anthro.collectionspace.org:vocabularies:name(trepanationtechnique):item:name(grooving)'grooving'</trepanationTechnique>
+        <trepanationHealing>urn:cspace:anthro.collectionspace.org:vocabularies:name(trepanationhealing):item:name(none)'no healing'</trepanationHealing>
+        <trepanationDimensionMax>2</trepanationDimensionMax>
+      </trepanationGroup>
+    </trepanationGroupList>
+    <Notes_CranialPathology>Cranial bony pathology note text</Notes_CranialPathology>
+    <trepanationGeneralNote>Trepanation general note text</trepanationGeneralNote>
+  </ns2:osteology_anthropology>
+  <ns2:osteology_common xmlns:ns2="http://collectionspace.org/services/osteology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <InventoryID>OST2001.001</InventoryID>
+    <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(inhumed)'inhumed'</mortuaryTreatment>
+    <behrensmeyerSingleLower>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(1)'1 - longitudinal and/or mosaic cracking present on surface'</behrensmeyerSingleLower>
+    <sexDeterminationGroupList>
+      <sexDeterminationGroup>
+        <sexDetermination>Female</sexDetermination>
+        <sexDeterminationDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2010/1/1</dateDisplayDate>
+          <dateLatestScalarValue>2010-01-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2010</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2010-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </sexDeterminationDateGroup>
+        <sexDeterminationAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(OtomarsVitols1574683960676)'Otomars Vitols'</sexDeterminationAnalyst>
+        <sexDeterminationNote>Sex determination note text 1</sexDeterminationNote>
+      </sexDeterminationGroup>
+      <sexDeterminationGroup>
+        <sexDetermination>Probably female</sexDetermination>
+        <sexDeterminationDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2010/2/1</dateDisplayDate>
+          <dateLatestScalarValue>2010-02-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2010</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2010-02-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </sexDeterminationDateGroup>
+        <sexDeterminationAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(JustsPudele1574683974466)'Justs Pudele'</sexDeterminationAnalyst>
+        <sexDeterminationNote>Sex determination note 2</sexDeterminationNote>
+      </sexDeterminationGroup>
+    </sexDeterminationGroupList>
+    <completeness>urn:cspace:anthro.collectionspace.org:vocabularies:name(osteocompleteness):item:name(skull)'skull only'</completeness>
+    <osteoAgeEstimateGroupList>
+      <osteoAgeEstimateGroup>
+        <osteoAgeEstimateLower>20</osteoAgeEstimateLower>
+        <osteoAgeEstimateVerbatim>early twenties</osteoAgeEstimateVerbatim>
+        <osteoAgeEstimateDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2010/1/1</dateDisplayDate>
+          <dateLatestScalarValue>2010-01-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2010</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2010-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </osteoAgeEstimateDateGroup>
+        <osteoAgeEstimateUpper>25</osteoAgeEstimateUpper>
+        <osteoAgeEstimateAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(OliverioValentino1574683831762)'Oliverio Valentino'</osteoAgeEstimateAnalyst>
+        <osteoAgeEstimateNote>Age estimate note text 1</osteoAgeEstimateNote>
+      </osteoAgeEstimateGroup>
+      <osteoAgeEstimateGroup>
+        <osteoAgeEstimateLower>25</osteoAgeEstimateLower>
+        <osteoAgeEstimateVerbatim>late twenties</osteoAgeEstimateVerbatim>
+        <osteoAgeEstimateDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2010/2/1</dateDisplayDate>
+          <dateLatestScalarValue>2010-02-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2010</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2010-02-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </osteoAgeEstimateDateGroup>
+        <osteoAgeEstimateUpper>30</osteoAgeEstimateUpper>
+        <osteoAgeEstimateAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(GabrielSolares1574683843262)'Gabriel Solares'</osteoAgeEstimateAnalyst>
+        <osteoAgeEstimateNote>Age estimate note text 2</osteoAgeEstimateNote>
+      </osteoAgeEstimateGroup>
+    </osteoAgeEstimateGroupList>
+    <dentitionNote>Dentition note text</dentitionNote>
+    <behrensmeyerUpper>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(3)'3 - fibrous texture, extensive exfoliation'</behrensmeyerUpper>
+    <dentitionScore>urn:cspace:anthro.collectionspace.org:vocabularies:name(dentitionscore):item:name(morethanhalf)'more than half present'</dentitionScore>
+    <NotesOnElementInventory>Present are a mandible and maxilla containing all but 3 teeth and several skull fragments.</NotesOnElementInventory>
+    <pathologyNote>General pathology and trauma note</pathologyNote>
+    <inventoryDate>2001-02-01T00:00:00.000Z</inventoryDate>
+    <mortuaryTreatmentNote>Mortuary treatment note text</mortuaryTreatmentNote>
+    <completenessNote>calvarium-only</completenessNote>
+    <InventoryIsComplete>true</InventoryIsComplete>
+    <molarsPresent>true</molarsPresent>
+    <inventoryAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(NarahikoHirano1574684249390)'Narahiko Hirano'</inventoryAnalyst>
+  </ns2:osteology_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>c3dafbc6-f220-40b8-9f1a-6e1a64dead9a</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@anthro.collectionspace.org</userId>
+      <tenantId>1500</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
