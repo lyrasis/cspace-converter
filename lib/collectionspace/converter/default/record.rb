@@ -101,6 +101,13 @@ module CollectionSpace
           }
           fieldgroups
         end
+
+        def self.to_boolean(field)
+          return nil unless field
+
+          # TODO: boolean validation
+          field.downcase
+        end
       end
 
       class Acquisition < Record
