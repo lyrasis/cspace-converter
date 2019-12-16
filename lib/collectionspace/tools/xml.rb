@@ -23,8 +23,80 @@ module CollectionSpace
         }
       end
 
-      # TODO: higher level method to introspect types and build xml
-      # TODO: refactor, sub_elements as array of hashes to reconcile uses of sub_key
+=begin
+
+IF GROUP IS SINGLE VALUED, you can pass like this:
+add_group_list(xml, "objectComponent",
+               [{"objectComponentName" => attributes["objectcomponentname"]}]
+
+and it will produce:
+
+ <objectComponentGroupList>
+   <objectComponentGroup>
+     <objectComponentName>blade</objectComponentName>
+   </objectComponentGroup>
+ </objectComponentGroupList>
+
+IF GROUP IS MULTIVALUED, the elements argument must be an array of hashes, as follows:
+
+[{'technique' => 'pen and ink', 'techniqueType' => 'type1'},
+{'technique' => 'drypoint', 'techniqueType' => 'type1'}]
+
+Called with key = 'technique', this will produce:
+
+  <techniqueGroupList>
+    <techniqueGroup>
+      <techniqueType>type1</techniqueType>
+      <technique>pen and ink</technique>
+    </techniqueGroup>
+    <techniqueGroup>
+      <techniqueType>type1</techniqueType>
+      <technique>drypoint</technique>
+    </techniqueGroup>
+  </techniqueGroupList>
+
+It seems the whole point of group lists is to structure multi-valued information, so
+IN GENERAL IT SEEMS LIKE A GOOD IDEA TO USE THE 2ND FORM INSTEAD OF THE 1ST
+
+===SUBGROUPS===
+Given a sub_key and sub_elements argument that is an *array of arrays of value hashes*,
+this can create multivalued group lists that are children of multivalued group lists, such as...
+
+commingledRemainsGroupList
+  commingledRemainsGroup
+    mortuaryTreatementGroupList
+      mortuaryTreatmentGroup
+        mortuaryTreatment
+        mortuaryTreatmentNote
+      mortuaryTreatmentGroup
+        mortuaryTreatment
+        mortuaryTreatmentNote
+  commingledRemainsGroup
+    mortuaryTreatementGroupList
+      mortuaryTreatmentGroup
+        mortuaryTreatment
+        mortuaryTreatmentNote
+      mortuaryTreatmentGroup
+        mortuaryTreatment
+        mortuaryTreatmentNote
+
+Modeling this type of data in the CSV is a bit tricky. For now I have structured the CSV data for
+these fields as follows: 
+
+mortuaryTreatment,burned/unburned bone mixture^^embalmed;excarnated^^mummified
+mortuaryTreatmentNote,mtnote1^^mtnote2;mtnote3^^mtnote4
+
+The values for each commingledRemainsGroup are separated by ';'
+Within each commingledRemainsGroup, the mortuaryTreatmentGroup values are separated by '^^'
+
+For now, the details of how to split up the elements within the subgroup are left in the module
+(e.g. anthro > mortuary groups)
+
+***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes****
+
+The element(s) in the outer/first array = the set of sub_group(s) for each parent group.
+The element(s) in the inner array(s) = the individual values for each subgroup
+=end
       def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
                               include_group_prefix: true,
                               subgroup_list_name_includes_group: true,
@@ -35,13 +107,14 @@ module CollectionSpace
         group_prefix = include_group_prefix ? 'GroupList' : 'List'
         subgroup_list_suffix = subgroup_list_name_includes_group ? 'GroupList' : 'List'
         subgroup_prefix = include_subgroup_prefix ? 'Sub' : ''
+
         xml.send("#{key}#{group_prefix}".to_sym) {
           elements.each_with_index do |element, index|
             xml.send("#{key}Group".to_sym) {
               element.each {|k, v| xml.send(k.to_sym, v)}
               if sub_key
                 xml.send("#{sub_key}#{subgroup_prefix}#{subgroup_list_suffix}".to_sym) {
-                  sub_elements.each do |sub_element|
+                  sub_elements[index].each do |sub_element|
                     xml.send("#{sub_key}#{subgroup_prefix}Group".to_sym) {
                       sub_element.each {|k, v| xml.send(k.to_sym, v)}
                     }
@@ -194,7 +267,7 @@ module CollectionSpace
               "dimensionNote" => note
             }
           end
-          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', dimensions
+          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', [dimensions]
         end
 
         def self.add_pairs(xml, attributes, pairs)
@@ -254,17 +327,19 @@ module CollectionSpace
 
         def self.add_title(xml, attributes)
           if attributes["titletranslation"]
+            translangs = CSDR.split_mvf(attributes, 'titletranslationlanguage')
+            titletrans = {
+              'titleTranslation' => CSDR.split_mvf(attributes, 'titletranslation'),
+              'titleTranslationLanguage'  => translangs.map{ |val| CSXML::Helpers.get_vocab('languages', val) }
+            }
+            Rails.logger.warn('Multivalued fields used in titleTranslationGroup have uneven numbers of values') unless CSDR.mvfs_even?(titletrans)
+
             CSXML.add_group_list xml, 'title', [
               {
               "title" => attributes["title"],
               "titleLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titlelanguage"]),
               }
-            ], 'titleTranslation', [
-              {
-                "titleTranslation" => attributes["titletranslation"],
-                "titleTranslationLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titletranslationlanguage"])
-              }
-            ]
+            ], 'titleTranslation', [CSDR.flatten_mvfs(titletrans)]
           elsif attributes["titlelanguage"]
             CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],

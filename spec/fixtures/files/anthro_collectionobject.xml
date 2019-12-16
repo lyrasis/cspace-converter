@@ -424,15 +424,19 @@
     </localityGroupList>
     <commingledRemainsGroupList>
       <commingledRemainsGroup>
-        <ageRange>urn:cspace:anthro.collectionspace.org:vocabularies:name(agerange):item:name(adolescent_0_25)'adolescent 0-25%'</ageRange>
+        <ageRange>urn:cspace:anthro.collectionspace.org:vocabularies:name(agerange):item:name(adolescent_26_75)'adolescent 26-75%'</ageRange>
         <behrensmeyerUpper>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(2)'2 - longitudinal cracks, exfoliation on surface'</behrensmeyerUpper>
         <side/>
         <behrensmeyerSingleLower>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(1)'1 - longitudinal and/or mosaic cracking present on surface'</behrensmeyerSingleLower>
-        <commingledRemainsNote>Commingled remains note 1</commingledRemainsNote>
+        <commingledRemainsNote>crnote2</commingledRemainsNote>
         <mortuaryTreatmentGroupList>
           <mortuaryTreatmentGroup>
-            <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(notcremated)'not cremated'</mortuaryTreatment>
-            <mortuaryTreatmentNote/>
+            <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(burnedunburnedbonemixture)'burned/unburned bone mixture'</mortuaryTreatment>
+            <mortuaryTreatmentNote>mtnote1</mortuaryTreatmentNote>
+          </mortuaryTreatmentGroup>
+          <mortuaryTreatmentGroup>
+            <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(enbalmed)'enbalmed'</mortuaryTreatment>
+            <mortuaryTreatmentNote>mtnote2</mortuaryTreatmentNote>
           </mortuaryTreatmentGroup>
         </mortuaryTreatmentGroupList>
         <sex/>
@@ -443,21 +447,25 @@
       </commingledRemainsGroup>
       <commingledRemainsGroup>
         <ageRange>urn:cspace:anthro.collectionspace.org:vocabularies:name(agerange):item:name(adult_0_25)'adult 0-25%'</ageRange>
-        <behrensmeyerUpper>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(3)'3 - fibrous texture, extensive exfoliation'</behrensmeyerUpper>
-        <side/>
-        <behrensmeyerSingleLower>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(1)'1 - longitudinal and/or mosaic cracking present on surface'</behrensmeyerSingleLower>
-        <commingledRemainsNote/>
+        <behrensmeyerUpper>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(5)'5 - bone crumbling in situ, large splinters'</behrensmeyerUpper>
+        <side>urn:cspace:anthro.collectionspace.org:vocabularies:name(bodyside):item:name(midline)'midline'</side>
+        <behrensmeyerSingleLower>urn:cspace:anthro.collectionspace.org:vocabularies:name(behrensmeyer):item:name(3)'3 - fibrous texture, extensive exfoliation'</behrensmeyerSingleLower>
+        <commingledRemainsNote>crnote2</commingledRemainsNote>
         <mortuaryTreatmentGroupList>
           <mortuaryTreatmentGroup>
-            <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(notcremated)'not cremated'</mortuaryTreatment>
-            <mortuaryTreatmentNote>One adult is cremated, the other is not.</mortuaryTreatmentNote>
+            <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(excarnated)'excarnated'</mortuaryTreatment>
+            <mortuaryTreatmentNote>mtnote3</mortuaryTreatmentNote>
+          </mortuaryTreatmentGroup>
+          <mortuaryTreatmentGroup>
+            <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(mummified)'mummified'</mortuaryTreatment>
+            <mortuaryTreatmentNote>mtnote4</mortuaryTreatmentNote>
           </mortuaryTreatmentGroup>
         </mortuaryTreatmentGroupList>
-        <sex/>
-        <count/>
+        <sex>Possibly female</sex>
+        <count>2</count>
         <minIndividuals>2</minIndividuals>
-        <dentition>false</dentition>
-        <bone/>
+        <dentition>true</dentition>
+        <bone>fdgg</bone>
       </commingledRemainsGroup>
     </commingledRemainsGroupList>
     <anthroOwnershipGroupList>

@@ -187,6 +187,10 @@
             <titleTranslation>Un Homme</titleTranslation>
             <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(fra)'French'</titleTranslationLanguage>
           </titleTranslationSubGroup>
+          <titleTranslationSubGroup>
+            <titleTranslation>Hombre</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spa)'Spanish'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
         </titleTranslationSubGroupList>
         <titleType/>
         <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
