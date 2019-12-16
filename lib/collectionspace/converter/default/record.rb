@@ -79,6 +79,7 @@ module CollectionSpace
           values.flatten.compact
         end
 
+
         # verifies that the same number of values was derived by splitting all multivalued
         #  fields that will be part of a group.
         # For example, it's potentially problematic if the CSV has name: '1;2' and note: '1;2;3'
@@ -101,6 +102,7 @@ module CollectionSpace
           }
           fieldgroups
         end
+
 
         def self.to_boolean(field)
           return nil unless field
