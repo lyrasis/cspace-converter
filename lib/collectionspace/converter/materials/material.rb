@@ -26,7 +26,7 @@ module CollectionSpace
               "termSourceDetail" => attributes["termsourcedetail"],
               "termSourceNote" => attributes["termsourcenote"],
               "termStatus" => attributes["termstatus"],
-              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
+              "termType" => attributes["termtype"],
             }
           ]
           # punlishTo
@@ -57,17 +57,17 @@ module CollectionSpace
           # Discontinued
           CSXML.add xml, 'discontinued', attributes["discontinued"]
           CSXML::Helpers.add_organization xml, 'discontinuedBy', attributes["discontinuedby"]
-          CSXML.add_repeat xml, 'discontinuedDate', {
+          CSXML.add_repeat xml, 'discontinuedDate', [{
             "dateDisplayDate" => CSDTP.parse(attributes["discontinueddate"]).display_date,
             "dateEarliestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).earliest_scalar,
             "dateLatestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).latest_scalar,
-          } rescue nil
+          }] rescue nil
           # Production date
-          CSXML.add_repeat xml, 'productionDate', {
+          CSXML.add_repeat xml, 'productionDate', [{
             "dateDisplayDate" => CSDTP.parse(attributes["productiondate"]).display_date,
             "dateEarliestScalarValue" => CSDTP.parse(attributes["productiondate"]).earliest_scalar,
             "dateLatestScalarValue" => CSDTP.parse(attributes["productiondate"]).latest_scalar,
-          }
+          }]
           # productionNote
           CSXML.add xml, 'productionNote', attributes["productionnote"]
           # materialProductionOrganization
@@ -98,7 +98,7 @@ module CollectionSpace
           featured_application = []
           featuredapp = CSDR.split_mvf attributes, 'featuredapplication'
           featuredappnote = CSDR.split_mvf attributes, 'featuredapplicationnote'
-          featured_application.each_with_index do |ftapp, index|
+          featuredapp.each_with_index do |ftapp, index|
             featured_application << {"featuredApplication" => CSXML::Helpers.get_authority('workauthorities', 'work', ftapp), "featuredApplicationNote" => featuredappnote[index]}
           end
           CSXML.add_group_list xml, 'featuredApplication', featured_application
@@ -130,20 +130,19 @@ module CollectionSpace
           mta_contributing = []
           mtaco = CSDR.split_mvf attributes, 'materialtermattributioncontributingorganization'
           mtacp = CSDR.split_mvf attributes, 'materialtermattributioncontributingperson'
-          mtacd = CSDR.split_mvf attributes, 'materialtermattributioncontributingdate'.earliest_scalar
-          mtacn = CSDR.split_mvf attributes, 'materialtermattributioncontributingnote'
+          mtacd = CSDR.split_mvf attributes, 'materialtermattributioncontributingdate'
           mtaco.each_with_index do |contriborg, index|
-            mta_contributing << {"materialTermAttributionContributingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', contriborg), "materialTermAttributionContributingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtacp[index]), "materialTermAttributionContributingDate" => mtacd[index], "materialTermAttributionContributingNote" => mtacn[index]}
+            mta_contributing << {"materialTermAttributionContributingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', contriborg), "materialTermAttributionContributingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtacp[index]), "materialTermAttributionContributingDate" => CSDTP.parse(mtacd[index]).earliest_scalar}
           end 
           CSXML.add_group_list xml, 'materialTermAttributionContributing', mta_contributing
           # materialTermAttributionEditing
           mta_editing = []
-          mtaeo = CSDR.split_mvf attributes, 'materialTermAttributionEditingOrganization'
-          mtaep = CSDR.split_mvf attributes, 'materialTermAttributionEditingPerson'
-          mtaed = CSDR.split_mvf attributes, 'materialTermAttributionEditingDate'.earliest_scalar
-          mtaen = CSDR.split_mvf attributes, 'materialTermAttributionEditingNote'
+          mtaeo = CSDR.split_mvf attributes, 'materialtermattributioneditingorganization'
+          mtaep = CSDR.split_mvf attributes, 'materialtermattributioneditingperson'
+          mtaed = CSDR.split_mvf attributes, 'materialtermattributioneditingdate'
+          mtaen = CSDR.split_mvf attributes, 'materialtermattributioneditingnote'
           mtaeo.each_with_index do |editborg, index|
-            mta_editing << {"materialTermAttributionEditingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', editborg), "materialTermAttributionEditingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtaep[index]), "materialTermAttributionEditingDate" => mtaed[index], "materialTermAttributionEditingNote" => mtaen[index]}
+            mta_editing << {"materialTermAttributionEditingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', editborg), "materialTermAttributionEditingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtaep[index]), "materialTermAttributionEditingDate" => CSDTP.parse(mtaed[index]).earliest_scalar, "materialTermAttributionEditingNote" => mtaen[index]}
           end 
           CSXML.add_group_list xml, 'materialTermAttributionEditing', mta_editing
           CSXML.add_group_list xml, 'materialTermAttributionContributing', [
@@ -173,19 +172,16 @@ module CollectionSpace
           CSXML.add_group_list xml, 'formType', overall_form
           # typicalSize
           #dimensions
+          typicalsize = []
           dimensions = []
           dims = split_mvf attributes, 'dimension'
           values = split_mvf attributes, 'value'
           unit = split_mvf attributes["measurementunit"]
-          CSXML.add_group_list xml, 'typicalSize', [
-            {
-              "typicalSize" => attributes["typicalsize"],
-            }], 
-              #dimensions
-              dims.each_with_index do |dim, index|
-                dimensions << {"dimension" => dim, "value" => values[index], "measurementUnit" => unit[index]}
-              end
-              CSXML.add_group_list xml, 'typicalSizeDimension', dimensions
+          dims.each_with_index do |dim, index|
+            dimensions << {"dimension" => dim, "value" => values[index], "measurementUnit" => unit[index]}
+          end
+          typicalsize << {"typicalSize" => attributes["typicalsize"]}
+          CSXML.add_group_list xml, 'typicalSize', typicalsize, 'typicalSizeDimension', dimensions
           # formNote
           CSXML.add xml, 'formNote', attributes["formnote"]
           # acousticalProperty
@@ -246,8 +242,8 @@ module CollectionSpace
           CSXML.add_group_list xml, 'sensorialProperty', sensorialproperty
           # smartMaterialProperty
           smartproperty = []
-          smartpropertytype = CSDR.split_mvf attributes, 'smartMaterialpropertytype'
-          smartpropertynote = CSDR.split_mvf attributes, 'smartMaterialpropertynote'
+          smartpropertytype = CSDR.split_mvf attributes, 'smartmaterialpropertytype'
+          smartpropertynote = CSDR.split_mvf attributes, 'smartmaterialpropertynote'
           smartpropertytype.each_with_index do |smpt, index|
             smartproperty << {"smartMaterialPropertyType" => CSXML::Helpers.get_vocab('smartmaterialproperties', smpt), "smartMaterialPropertyNote" => smartpropertynote[index]}
           end 
@@ -268,7 +264,7 @@ module CollectionSpace
           recycledcontenthigh = CSDR.split_mvf attributes, 'recycledcontenthigh'
           recycledcontentqualifier = CSDR.split_mvf attributes, 'recycledcontentqualifier'
           rc.each_with_index do |rct, index|
-            recycledcontent << {"recycledContent" => rc, "recycledContentHigh" => recycledcontenthigh[index], "recycledContentQualifier" => recycledcontentqualifier[index]}
+            recycledcontent << {"recycledContent" => rct, "recycledContentHigh" => recycledcontenthigh[index], "recycledContentQualifier" => recycledcontentqualifier[index]}
           end
           CSXML.add_group_list xml, 'recycledContent', recycledcontent
           # lifecycleComponent
@@ -286,7 +282,7 @@ module CollectionSpace
           eu = CSDR.split_mvf attributes, 'embodiedenergyunit'
           en = CSDR.split_mvf attributes, 'embodiedenergynote'
           ev.each_with_index do |energyval, index|
-            embodiedenergy << {"embodiedEnergyValue" => energyval, "embodiedEnergyValueHigh" => evh[index], "embodiedEnergyUnit" => eu[index], "embodiedEnergyNote" => en[index]}
+            embodiedenergy << {"embodiedEnergyValue" => energyval, "embodiedEnergyValueHigh" => evh[index], "embodiedEnergyUnit" => CSXML::Helpers.get_vocab('energyunits', eu[index]), "embodiedEnergyNote" => en[index]}
           end
           CSXML.add_group_list xml, 'embodiedEnergy', embodiedenergy
           # certificationCredit
