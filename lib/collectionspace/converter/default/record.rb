@@ -79,6 +79,18 @@ module CollectionSpace
           values.flatten.compact
         end
 
+        # flattens multivalue group hash (such as crgsplit in anthro/collectionobject.rb
+        # returns array of field group hashes
+        def self.flatten_mvfs(mvfhash)
+          fieldgroups = []
+          mvfhash[mvfhash.keys.first].each_index{ |ind|
+            fieldgroup = {}
+            mvfhash.each{ |k, v| fieldgroup[k] = v[ind] }
+            fieldgroups << fieldgroup
+          }
+          fieldgroups
+        end
+
         def self.to_boolean(field)
           return nil unless field
 
