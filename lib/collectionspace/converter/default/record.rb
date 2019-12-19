@@ -79,6 +79,17 @@ module CollectionSpace
           values.flatten.compact
         end
 
+        # verifies that the same number of values was derived by splitting all multivalued
+        #  fields that will be part of a group.
+        # For example, it's potentially problematic if the CSV has name: '1;2' and note: '1;2;3'
+        #  if these are mv fields in the same group.
+        # This function will return false in that case
+        # For the type of hash used as an argument, see crgsplit in anthro/collectionobject.rb
+        def self.mvfs_even?(mvfhash)
+          return true if mvfhash.map{ |k, v| v.length }.uniq!.length == 1
+          return false
+        end
+
         # flattens multivalue group hash (such as crgsplit in anthro/collectionobject.rb
         # returns array of field group hashes
         def self.flatten_mvfs(mvfhash)
