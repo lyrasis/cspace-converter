@@ -138,6 +138,58 @@ The element(s) in the inner array(s) = the individual values for each subgroup
         }
       end
 
+      # convenience method to handle pre-processing of nested GroupLists and sending them
+      #  to add_group_list
+      #  vocab_sources hash format is:
+      #  { 'fieldName' => { 'vocab' => 'vocabulary name' },
+      #    'otherField' => { 'authority' => [authoritytype, authorityname] }
+      #  }
+      def self.add_nested_group_lists(
+        xml,
+        attributes,
+        topKey, # String; used to name initial GroupList
+        all_elements, # { 'fieldName' => 'attributes header' } 
+        childKey, # String; used to name the nested GroupList
+        child_fields, # ['fieldPartOfChildGroupList', 'anotherChildField']
+        vocab_sources = {},
+        topGroupList: true, # true: #{topKey}GroupList; false: #{topKey}List
+        childGroupList: true, # true: #{childkey}GroupList; false: #{childKey}List
+        childListPrefix: true # true: #{childkey}SubGroupList; false: #{childKey}GroupList
+      )
+        all = all_elements.map{ |k, v| [k, CSDR.split_mvf(attributes, v)] }.to_h
+        unless CSDR.mvfs_even?(all)
+          Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
+        end
+
+        top_groups = CSDR.flatten_mvfs(all)
+        child_groups = []
+
+        top_groups.each_with_index{ |tg, index|
+          child_group_splits = {}
+          child_fields.each{ |field|
+            child_group_splits[field] = tg[field].split('^^')
+            tg.delete(field) if tg[field]
+            all.delete(field) if all[field]
+          }
+          unless CSDR.mvfs_even?(child_group_splits)
+            Rails.logger.warn("Multivalued fields used in #{childKey} within #{topKey} (##{index + 1}) have uneven numbers of values")
+          end
+          child_groups << CSDR.flatten_mvfs(child_group_splits)
+        }
+
+        unless vocab_sources.empty?
+          Helpers.apply_vocab_sources(vocab_sources, top_groups) if (vocab_sources.keys & all.keys).length > 0
+          child_groups.each{ |child_group|
+            Helpers.apply_vocab_sources(vocab_sources, child_group)
+          } if (vocab_sources.keys & child_fields).length > 0
+        end
+        
+        CSXML.add_group_list(xml, topKey, top_groups, childKey, child_groups,
+                             include_group_prefix: topGroupList,
+                             subgroup_list_name_includes_group: childGroupList,
+                             include_subgroup_prefix: childListPrefix)
+      end
+
       # key_suffix handles the case that the list child element is not the key without "List"
       # for example: key=objectName, list=objectNameList, key_suffix=Group, child=objectNameGroup
       def self.add_list(xml, key, elements = [], key_suffix = '')
@@ -185,7 +237,25 @@ The element(s) in the inner array(s) = the individual values for each subgroup
       end
 
       module Helpers
-
+       
+        def self.apply_vocab_sources(vocab_sources, groups)
+          vocab_config = vocab_sources.select{ |k, v| v.keys.first == 'vocab' }
+          authority_config = vocab_sources.select{ |k, v| v.keys.first == 'authority' }
+          groups.each{ |group|
+            group.each{ |field, value|
+              if vocab_config.keys.include?(field)
+                vocab_name = vocab_config[field]['vocab']
+                group[field] = Helpers.get_vocab(vocab_name, value)
+              end
+              if authority_config.keys.include?(field)
+                authority_type = authority_config[field]['authority'][0]
+                authority_name = authority_config[field]['authority'][1]
+                group[field] = Helpers.get_authority(authority_type, authority_name, value)
+              end
+            }
+          }
+        end
+        
         def self.add_authority(xml, field, authority_type, authority, value)
           return unless value
 
@@ -325,21 +395,39 @@ The element(s) in the inner array(s) = the individual values for each subgroup
           add_authority xml, field, 'taxonomyauthority', 'taxon', value
         end
 
+        def self.add_title_with_translation(xml, attributes)
+          title_data = {
+            'title' => 'title',
+            'titleLanguage' => 'titlelanguage',
+            'titleTranslation' => 'titletranslation',
+            'titleTranslationLanguage' => 'titletranslationlanguage'
+          }
+          title_vocabs = {
+            'titleLanguage' => { 'vocab' => 'languages' },
+            'titleTranslationLanguage' => { 'vocab' => 'languages' }
+          }
+          trans_fields = [
+            'titleTranslation',
+            'titleTranslationLanguage'
+            ]
+
+          CSXML.add_nested_group_lists(
+            xml, attributes,
+            'title',
+            title_data,
+            'titleTranslation',
+            trans_fields,
+            title_vocabs,
+            topGroupList: true,
+            childGroupList: true,
+            childListPrefix: true
+          )
+        end
+        
+
         def self.add_title(xml, attributes)
           if attributes["titletranslation"]
-            translangs = CSDR.split_mvf(attributes, 'titletranslationlanguage')
-            titletrans = {
-              'titleTranslation' => CSDR.split_mvf(attributes, 'titletranslation'),
-              'titleTranslationLanguage'  => translangs.map{ |val| CSXML::Helpers.get_vocab('languages', val) }
-            }
-            Rails.logger.warn('Multivalued fields used in titleTranslationGroup have uneven numbers of values') unless CSDR.mvfs_even?(titletrans)
-
-            CSXML.add_group_list xml, 'title', [
-              {
-              "title" => attributes["title"],
-              "titleLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titlelanguage"]),
-              }
-            ], 'titleTranslation', [CSDR.flatten_mvfs(titletrans)]
+            add_title_with_translation(xml, attributes)
           elsif attributes["titlelanguage"]
             CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],

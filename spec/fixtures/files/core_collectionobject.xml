@@ -196,6 +196,21 @@
         <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
         <title>A Man</title>
       </titleGroup>
+      <titleGroup>
+        <titleTranslationSubGroupList>
+          <titleTranslationSubGroup>
+            <titleTranslation>Une Femme</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(fra)'French'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
+          <titleTranslationSubGroup>
+            <titleTranslation>Fraulein</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(deu)'German'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
+        </titleTranslationSubGroupList>
+        <titleType/>
+        <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
+        <title>A Woman</title>
+      </titleGroup>
     </titleGroupList>
     <fieldCollectionNote>Field collection note text.</fieldCollectionNote>
     <assocConceptGroupList/>

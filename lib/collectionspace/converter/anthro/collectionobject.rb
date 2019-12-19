@@ -20,36 +20,34 @@ module CollectionSpace
         def self.map(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, AnthroCollectionObject.pairs)
 
-          crgsplit = {
-            'ageRange' => split_mvf(attributes, 'agerange'),
-            'behrensmeyerUpper' => split_mvf(attributes, 'behrensmeyerupper'),
-            'behrensmeyerSingleLower' => split_mvf(attributes, 'behrensmeyersinglelower'),
-            'commingledRemainsNote' =>  split_mvf(attributes, 'commingledremainsnote'),
-            'sex' => split_mvf(attributes, 'sex'),
-            'count' => split_mvf(attributes, 'count'),
-            'minIndividuals' => split_mvf(attributes, 'minindividuals'),
-            'dentition' => split_mvf(attributes, 'dentition'),
-            'bone' => split_mvf(attributes, 'bone'),
-            'mortuaryTreatment' => split_mvf(attributes, 'mortuarytreatment'),
-            'mortuaryTreatmentNote' => split_mvf(attributes, 'mortuarytreatmentnote')
+          commingled_remains_data = {
+            'ageRange' => 'agerange',
+            'behrensmeyerUpper' => 'behrensmeyerupper',
+            'behrensmeyerSingleLower' => 'behrensmeyersinglelower',
+            'commingledRemainsNote' =>  'commingledremainsnote',
+            'sex' => 'sex',
+            'count' => 'count',
+            'minIndividuals' => 'minindividuals',
+            'dentition' => 'dentition',
+            'bone' => 'bone',
+            'mortuaryTreatment' => 'mortuarytreatment',
+            'mortuaryTreatmentNote' => 'mortuarytreatmentnote'
           }
-          Rails.logger.warn('Multivalued fields used in commingledRemainsGroup have uneven numbers of values') unless mvfs_even?(crgsplit)
-          remains_groups = flatten_mvfs(crgsplit)
-
-          mortuary_groups = []
-          remains_groups.each{ |h|
-            mtsplit = {
-              'mortuaryTreatment' => h['mortuaryTreatment'].split('^^'),
-              'mortuaryTreatmentNote' => h['mortuaryTreatmentNote'].split('^^')
-            }
-            h.delete('mortuaryTreatment')
-            h.delete('mortuaryTreatmentNote')
-            Rails.logger.warn('Multivalued fields used in mortuaryTreatmentGroup have uneven numbers of values') unless mvfs_even?(mtsplit)
-            mortuary_groups << flatten_mvfs(mtsplit)
-          }
-          CSXML.add_group_list(xml, 'commingledRemains', remains_groups, 'mortuaryTreatment', mortuary_groups)
-
-
+          mortuary_treatment_fields = [
+            'mortuaryTreatment',
+            'mortuaryTreatmentNote'
+          ]
+          
+          CSXML.add_nested_group_lists(
+            xml, attributes,
+            'commingledRemains',
+            commingled_remains_data,
+            'mortuaryTreatment',
+            mortuary_treatment_fields,
+            topGroupList: true,
+            childGroupList: true,
+            childListPrefix: false
+            )
         end
       end
     end
