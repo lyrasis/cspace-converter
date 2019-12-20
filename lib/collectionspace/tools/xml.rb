@@ -147,9 +147,35 @@ The element(s) in the inner array(s) = the individual values for each subgroup
         }
       end
 
+      # convenience method to handle pre-processing of non-nested GroupList
+      # see add_nested_group_list comments below for info on arguments not explained here
+      def self.prep_and_add_single_level_group_list(
+        xml,
+        attributes,
+        key, # String; used to name GroupList
+        all_elements,
+        transforms = {},
+        topGroupList: true
+      )
+
+        all = all_elements.map{ |k, v| [k, CSDR.split_mvf(attributes, v)] }.to_h
+        unless CSDR.mvfs_even?(all)
+          Rails.logger.warn("Multivalued fields used in #{key} Group have uneven numbers of values")
+        end
+
+        groups = CSDR.flatten_mvfs(all)
+
+        unless transforms.empty?
+          Helpers.apply_transforms(transforms, groups) if (transforms.keys & all.keys).length > 0
+        end
+        
+        CSXML.add_group_list(xml, key, groups,
+                             include_group_prefix: topGroupList)
+      end
+      
       # convenience method to handle pre-processing of nested GroupLists and sending them
       #  to add_group_list
-      #  vocab_sources hash format is:
+      #  transforms hash format is:
       #  { 'fieldName' => { 'vocab' => 'vocabulary name' },
       #    'otherField' => { 'authority' => [authoritytype, authorityname] }
       #  }
@@ -160,7 +186,7 @@ The element(s) in the inner array(s) = the individual values for each subgroup
         all_elements, # { 'fieldName' => 'attributes header' } 
         childKey, # String; used to name the nested GroupList
         child_fields, # ['fieldPartOfChildGroupList', 'anotherChildField']
-        vocab_sources = {},
+        transforms = {},
         topGroupList: true, # true: #{topKey}GroupList; false: #{topKey}List
         childGroupList: true, # true: #{childkey}GroupList; false: #{childKey}List
         childListPrefix: true # true: #{childkey}SubGroupList; false: #{childKey}GroupList
@@ -186,11 +212,11 @@ The element(s) in the inner array(s) = the individual values for each subgroup
           child_groups << CSDR.flatten_mvfs(child_group_splits)
         }
 
-        unless vocab_sources.empty?
-          Helpers.apply_vocab_sources(vocab_sources, top_groups) if (vocab_sources.keys & all.keys).length > 0
+        unless transforms.empty?
+          Helpers.apply_transforms(transforms, top_groups) if (transforms.keys & all.keys).length > 0
           child_groups.each{ |child_group|
-            Helpers.apply_vocab_sources(vocab_sources, child_group)
-          } if (vocab_sources.keys & child_fields).length > 0
+            Helpers.apply_transforms(transforms, child_group)
+          } if (transforms.keys & child_fields).length > 0
         end
         
         CSXML.add_group_list(xml, topKey, top_groups, childKey, child_groups,
@@ -246,16 +272,42 @@ The element(s) in the inner array(s) = the individual values for each subgroup
       end
 
       module Helpers
-       
-        def self.apply_vocab_sources(vocab_sources, groups)
-          vocab_config = vocab_sources.select{ |k, v| v.keys.first == 'vocab' }
-          authority_config = vocab_sources.select{ |k, v| v.keys.first == 'authority' }
+        
+        def self.apply_transforms(transforms, groups)
+          replace_config = transforms.select{ |k, v| v.keys.include?('replace') }
+          special_config = transforms.select{ |k, v| v.keys.include?('special') }
+          vocab_config = transforms.select{ |k, v| v.keys.include?('vocab') }
+          authority_config = transforms.select{ |k, v| v.keys.include?('authority') }
+          
           groups.each{ |group|
             group.each{ |field, value|
+              if replace_config.keys.include?(field)
+                replacements = replace_config[field]['replace']
+                replacements.each{ |r|
+                  case r['type']
+                  when 'plain'
+                    group[field] = value.gsub!(r['find'], r['replace'])
+                  when 'regexp'
+                    group[field] = value.gsub!(Regexp.new(r['find']), r['replace'])
+                  end
+                }
+              end
+
+              if special_config.keys.include?(field)
+                case special_config[field]['special']
+                when 'boolean'
+                  group[field] = Helpers.to_boolean(value)
+                when 'behrensmeyer_translate'
+                  puts "INFO: field #{field}: BT"
+                  group[field] = Helpers.behrensmeyer_translate(value)
+                end
+              end
+              
               if vocab_config.keys.include?(field)
                 vocab_name = vocab_config[field]['vocab']
                 group[field] = Helpers.get_vocab(vocab_name, value)
               end
+
               if authority_config.keys.include?(field)
                 authority_type = authority_config[field]['authority'][0]
                 authority_name = authority_config[field]['authority'][1]
@@ -263,6 +315,48 @@ The element(s) in the inner array(s) = the individual values for each subgroup
               end
             }
           }
+        end
+
+        def self.to_boolean(value)
+          case value.downcase
+          when 'true'
+            return 'true'
+          when 'false'
+            return 'false'
+          when ''
+            return 'false'
+          when 'yes'
+            return 'true'
+          when 'no'
+            return 'false'
+          when 'y'
+            return 'true'
+          when 'n'
+            return 'false'
+          when 't'
+            return 'true'
+          when 'f'
+            return 'false'
+          else
+            Rails.logger.warn("#{value} cannot be converted to boolean in FIELD/ROW")
+            return value
+          end
+        end
+        
+        def self.behrensmeyer_translate(value)
+          lookup = {
+            '0' => '0 - no cracking or flaking on bone surface',
+            '1' => '1 - longitudinal and/or mosaic cracking present on surface',
+            '2' => '2 - longitudinal cracks, exfoliation on surface',
+            '3' => '3 - fibrous texture, extensive exfoliation',
+            '4' => '4 - coarsely fibrous texture, splinters of bone loose on the surface, open cracks',
+            '5' => '5 - bone crumbling in situ, large splinters'
+          }
+          if lookup.keys.include?(value)
+            return lookup[value]
+          else
+            return value
+          end
         end
         
         def self.add_authority(xml, field, authority_type, authority, value)

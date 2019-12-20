@@ -135,4 +135,66 @@ RSpec.describe CSXML::Helpers do
       vocab
     )).to eq CSURN.parse(vocab_refname)[:identifier]
   end
+
+  describe '#apply_transforms' do
+    let(:groups) { [{
+      'a' => '9 - 10',
+      'b' => 'cat bat rat sat',
+      'e' => 'True',
+      'f' => '3'
+    }] }
+
+    let(:transforms) { {
+      'a' => { 'replace' => [{ 'find' => ' - ',
+                              'replace' => '-',
+                              'type' => 'plain' }],
+              'vocab' => 'agerange'
+             },
+      'b' => { 'replace' => [{ 'find' => '[bc]at',
+                              'replace' => 'batcat',
+                              'type' => 'regexp' }],
+              'authority' => ['placeauthorities', 'place']
+             },
+      'e' => { 'special' => 'boolean' },
+      'f' => { 'special' => 'behrensmeyer_translate' }
+    } }
+
+    it 'applies transforms properly' do
+      CSXML::Helpers.apply_transforms(transforms, groups)
+      expect(groups[0]['a']).to include('9-10')
+      expect(groups[0]['a']).to include(':vocabularies:name(agerange):')
+      expect(groups[0]['b']).to include('batcat batcat rat sat')
+      expect(groups[0]['b']).to include(':placeauthorities:name(place):')
+      expect(groups[0]['e']).to eq('true')
+      expect(groups[0]['f']).to eq(CSXML::Helpers.behrensmeyer_translate('3'))
+    end
+    
+  end
+  
+  describe '#behrensmeyer_translate' do
+    context 'when value is a number in Behrensmeyer scale' do
+      it 'returns full Behrensmeyer value' do
+        expect(CSXML::Helpers.behrensmeyer_translate('3')).to eq('3 - fibrous texture, extensive exfoliation')
+      end
+    end
+    context 'when value is anything else' do
+      it 'returns original value' do
+        expect(CSXML::Helpers.behrensmeyer_translate('nope')).to eq('nope')
+      end
+    end
+  end
+
+  describe '#to_boolean' do
+    it 'returns true if value = True' do
+      expect(CSXML::Helpers.to_boolean('True')).to eq('true')
+    end
+    it 'returns true if value = y' do
+      expect(CSXML::Helpers.to_boolean('y')).to eq('true')
+    end
+    it 'returns false if value = empty string' do
+      expect(CSXML::Helpers.to_boolean('')).to eq('false')
+    end
+  end
+  
+  
 end
