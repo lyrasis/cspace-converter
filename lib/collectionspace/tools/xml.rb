@@ -100,7 +100,8 @@ The element(s) in the inner array(s) = the individual values for each subgroup
       def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
                               include_group_prefix: true,
                               subgroup_list_name_includes_group: true,
-                              include_subgroup_prefix: true
+                              include_subgroup_prefix: true,
+                              include_subgrouplist_level: true
                              )
         return unless elements.any?
 
@@ -112,7 +113,8 @@ The element(s) in the inner array(s) = the individual values for each subgroup
           elements.each_with_index do |element, index|
             xml.send("#{key}Group".to_sym) {
               element.each {|k, v| xml.send(k.to_sym, v)}
-              if sub_key
+              
+              if sub_key && include_subgrouplist_level
                 xml.send("#{sub_key}#{subgroup_prefix}#{subgroup_list_suffix}".to_sym) {
                   sub_elements[index].each do |sub_element|
                     xml.send("#{sub_key}#{subgroup_prefix}Group".to_sym) {
@@ -120,6 +122,13 @@ The element(s) in the inner array(s) = the individual values for each subgroup
                     }
                   end
                 }
+              elsif sub_key && !include_subgrouplist_level
+                sub_elements[index].each do |sub_element|
+                    xml.send("#{sub_key}#{subgroup_prefix}Group".to_sym) {
+                      sub_element.each {|k, v|
+                        xml.send(k.to_sym, v)}
+                    }
+                  end
               elsif sub_elements
                 next unless sub_elements[index]
 

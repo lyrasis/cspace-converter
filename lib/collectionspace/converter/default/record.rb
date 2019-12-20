@@ -94,7 +94,19 @@ module CollectionSpace
         # returns array of field group hashes
         def self.flatten_mvfs(mvfhash)
           fieldgroups = []
-          mvfhash[mvfhash.keys.first].each_index{ |ind|
+          # remove completely empty fields
+          emptyfields = []
+          mvfhash.each{ |k, v| emptyfields << k if v.empty? }
+          emptyfields.each{ |field| mvfhash.delete(field) }
+
+          # populate a hash with the lengths of all the fields, with one
+          #  field name recorded per length value, so we can select one
+          #  of the fields with the most values -- doesn't matter which
+          lhash = mvfhash.map{ |k, v| [v.length, k] }.to_h
+          longfieldname = lhash[lhash.keys.max]
+
+          # iterate over field with max number of values
+          mvfhash[longfieldname].each_index{ |ind|
             fieldgroup = {}
             mvfhash.each{ |k, v| fieldgroup[k] = v[ind] }
             fieldgroups << fieldgroup

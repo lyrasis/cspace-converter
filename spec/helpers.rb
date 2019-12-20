@@ -8,6 +8,15 @@ module Helpers
     end
   end
 
+  def get_attributes_by_row(type, file, rownum)
+    SmarterCSV.process(File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
+      chunk_size: rownum - 1,
+      convert_values_to_numeric: false,
+    }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+      return JSON.parse(chunk.pop.to_json)
+    end
+  end
+
   def get_doc(converter)
     Nokogiri::XML(converter.convert, nil, 'UTF-8').remove_namespaces!
   end
