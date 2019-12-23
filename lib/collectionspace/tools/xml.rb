@@ -594,12 +594,33 @@ module CollectionSpace
           end
         end
 
+        def self.add_repeats(xml, attributes, repeats, transforms = {})
+          return unless repeats
+
+          repeats.each{ |csvheader, fields|
+            values = CSDR.split_mvf(attributes, csvheader)
+            unless transforms.empty?
+              if transforms.keys.include?(csvheader)
+                values = values.map{ |value| CSXML::Helpers.apply_transforms(transforms, csvheader, value) }
+              end
+            end
+
+            parent = fields[0]
+            child = fields[1]
+
+            xml.send(parent.to_sym) {
+              values.each{ |value| xml.send(child.to_sym, value)}
+              }
+            }
+        end
+
         def self.add_simple_repeats(xml, attributes, repeats, key_suffix = '')
           return unless repeats
 
           repeats.each do |attribute, field|
             values = safe_split(field, attributes, attribute)
-            CSXML.add_repeat xml, field, values, key_suffix
+            
+            CSXML.add_repeat(xml, field, values, key_suffix)
           end
         end
 

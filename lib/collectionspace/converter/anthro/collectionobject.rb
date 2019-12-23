@@ -153,6 +153,15 @@ module CollectionSpace
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pair_transforms)
 
+          repeats = {
+            'repatriationnote' => ['repatriationNotes', 'repatriationNote'],
+            'nagpracategory' => ['nagpraCategories', 'nagpraCategory']
+          }
+          repeat_transforms = {
+            'nagpracategory' => { 'vocab' => 'nagpracategory' }
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
+
         end
       end
     end

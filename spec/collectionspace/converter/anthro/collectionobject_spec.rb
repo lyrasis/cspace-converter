@@ -90,6 +90,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         ]}
 
         it "Maps attributes correctly" do
+          puts doc
           test_converter(doc, record, xpaths)
         end
       end #  context 'sample data row 2'
