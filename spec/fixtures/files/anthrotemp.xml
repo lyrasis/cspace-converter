@@ -8,7 +8,7 @@
     <tenantId>1500</tenantId>
     <refName>urn:cspace:anthro.collectionspace.org:collectionobjects:id(5b0aeba0-24ac-4a38-aa43)'123123'</refName>
     <uri>/collectionobjects/5b0aeba0-24ac-4a38-aa43</uri>
-    <updatedAt>2019-12-20T15:40:49.994Z</updatedAt>
+    <updatedAt>2019-12-20T23:31:11.385Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -292,34 +292,41 @@
   </ns2:collectionobjects_annotation>
   <ns2:collectionobjects_nagpra xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/nagpra" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <nagpraReportFiledDate>
-      <scalarValuesComputed>false</scalarValuesComputed>
+      <scalarValuesComputed>true</scalarValuesComputed>
       <dateEarliestSingleCertainty/>
       <dateEarliestSingleQualifierUnit/>
-      <dateDisplayDate/>
-      <dateLatestScalarValue/>
+      <dateDisplayDate>1/2/2019</dateDisplayDate>
+      <dateLatestScalarValue>2019-01-03T00:00:00.000Z</dateLatestScalarValue>
       <dateEarliestSingleQualifierValue/>
       <datePeriod/>
       <dateLatestEra/>
-      <dateEarliestSingleDay/>
+      <dateEarliestSingleDay>2</dateEarliestSingleDay>
       <dateEarliestSingleQualifier/>
-      <dateEarliestSingleYear/>
+      <dateEarliestSingleYear>2019</dateEarliestSingleYear>
       <dateLatestCertainty/>
       <dateAssociation/>
       <dateLatestDay/>
-      <dateEarliestSingleMonth/>
-      <dateEarliestSingleEra/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
       <dateLatestYear/>
       <dateLatestQualifierUnit/>
       <dateNote/>
       <dateLatestQualifierValue/>
       <dateLatestQualifier/>
-      <dateEarliestScalarValue/>
+      <dateEarliestScalarValue>2019-01-02T00:00:00.000Z</dateEarliestScalarValue>
       <dateLatestMonth/>
     </nagpraReportFiledDate>
-    <nagpraReportFiled>false</nagpraReportFiled>
+    <nagpraReportFiled>true</nagpraReportFiled>
     <graveAssocCodes/>
-    <repatriationNotes/>
-    <nagpraCategories/>
+    <repatriationNotes>
+      <repatriationNote>Repatriation note 1</repatriationNote>
+      <repatriationNote>Repatriation note 2</repatriationNote>
+    </repatriationNotes>
+    <nagpraCategories>
+      <nagpraCategory>urn:cspace:anthro.collectionspace.org:vocabularies:name(nagpracategory):item:name(subjectToNAGPRA)'subject to NAGPRA (unspec.)'</nagpraCategory>
+      <nagpraCategory>urn:cspace:anthro.collectionspace.org:vocabularies:name(nagpracategory):item:name(nonNagpra)'not subject to NAGPRA'</nagpraCategory>
+    </nagpraCategories>
+    <nagpraReportFiledBy>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(AnnAnalyst1574450792195)'Ann Analyst'</nagpraReportFiledBy>
     <nagpraCulturalDeterminations/>
     <nagpraInventoryNames/>
   </ns2:collectionobjects_nagpra>

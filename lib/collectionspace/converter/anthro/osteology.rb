@@ -62,22 +62,24 @@ module CollectionSpace
           CSXML.add xml, 'InventoryID', attributes['inventoryid']
 
           osteoagedata = {
-          'osteoAgeEstimateVerbatim' => CSDR.split_mvf(attributes, 'osteoageestimateverbatim'),
-          'osteoAgeEstimateLower' => CSDR.split_mvf(attributes, 'osteoageestimatelower'),
-          'osteoAgeEstimateUpper' => CSDR.split_mvf(attributes, 'osteoageestimateupper'),
-          'osteoAgeEstimateAnalyst' => CSDR.split_mvf(attributes, 'osteoageestimateanalyst').map{ |e| CSXML::Helpers.get_authority('personauthorities', 'person', e) },
-          'osteoAgeEstimateNote' => CSDR.split_mvf(attributes, 'osteoageestimatenote')
+          'osteoageestimateverbatim' => 'osteoAgeEstimateVerbatim',
+          'osteoageestimatelower' => 'osteoAgeEstimateLower',
+          'osteoageestimateupper' => 'osteoAgeEstimateUpper',
+          'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
+          'osteoageestimatenote' => 'osteoAgeEstimateNote',
+          'osteoageestimatedate' => 'osteoAgeEstimateDate'
         }
-          osteoageestimate = CSDR.flatten_mvfs(osteoagedata)
-          
-          estimatedate = []
-          age_date = CSDR.split_mvf(attributes, 'osteoageestimatedategroup')
-          age_date.each{ |date| estimatedate << [CSDTP.fields_for(CSDTP.parse(date))] }
-          
-          CSXML.add_group_list(xml, 'osteoAgeEstimate', osteoageestimate,
-                               'osteoAgeEstimateDate', estimatedate,
-                               include_subgroup_prefix: false,
-                              include_subgrouplist_level: false)
+          osteoage_transforms = {
+            'osteoageestimateanalyst' => {'authority' => ['personauthorities', 'person']}
+          }
+
+          CSXML.add_group_list_with_structured_date(
+            xml,
+            attributes,
+            'osteoAgeEstimate',
+            osteoagedata,
+            'osteoAgeEstimateDate',
+            osteoage_transforms)
 
           determinationdates = []
           sexdetermination = []

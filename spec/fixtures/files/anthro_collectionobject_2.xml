@@ -299,10 +299,16 @@
   <ns2:collectionobjects_annotation xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/annotation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <annotationGroupList>
       <annotationGroup>
-        <annotationAuthor/>
-        <annotationDate/>
+        <annotationAuthor>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(AnnAnalyst1574450792195)'Ann Analyst'</annotationAuthor>
+        <annotationDate>2019-12-19</annotationDate>
+        <annotationType>urn:cspace:anthro.collectionspace.org:vocabularies:name(annotationtype):item:name(type)'type'</annotationType>
+        <annotationNote>Stored in coffee can</annotationNote>
+      </annotationGroup>
+      <annotationGroup>
+        <annotationAuthor>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(GabrielSolares1574683843262)'Gabriel Solares'</annotationAuthor>
+        <annotationDate>2019-12-10</annotationDate>
         <annotationType>urn:cspace:anthro.collectionspace.org:vocabularies:name(annotationtype):item:name(image_made)'image made'</annotationType>
-        <annotationNote>Annotation number 1</annotationNote>
+        <annotationNote>Photographed by staff</annotationNote>
       </annotationGroup>
     </annotationGroupList>
   </ns2:collectionobjects_annotation>
@@ -336,6 +342,7 @@
     <graveAssocCodes/>
     <repatriationNotes>
       <repatriationNote>Repatriation note 1</repatriationNote>
+      <repatriationNote>Repatriation note 2</repatriationNote>
     </repatriationNotes>
     <nagpraCategories>
       <nagpraCategory>urn:cspace:anthro.collectionspace.org:vocabularies:name(nagpracategory):item:name(subjectToNAGPRA)'subject to NAGPRA (unspec.)'</nagpraCategory>

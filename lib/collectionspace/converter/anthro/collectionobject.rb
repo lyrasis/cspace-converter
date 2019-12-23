@@ -22,6 +22,24 @@ module CollectionSpace
               xml.parent.namespace = nil
               AnthroCollectionObject.map(xml, attributes)
             end
+
+            xml.send(
+              "ns2:collectionobjects_annotation",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/annotation",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              AnthroCollectionObject.map_annotations(xml, attributes)
+            end
+
+            xml.send(
+              "ns2:collectionobjects_nagpra",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/nagpra",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              AnthroCollectionObject.map_nagpra(xml, attributes)
+            end
           end
         end
 
@@ -30,21 +48,21 @@ module CollectionSpace
           # localityGroupList
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           locality_data = {
-            'fieldLocPlace' => 'fieldlocplace',
-            'fieldLocCounty' => 'fieldloccounty',
-            'fieldLocState' => 'fieldlocstate',
-            'localityNote' => 'localitynote'
+            'fieldlocplace' => 'fieldLocPlace',
+            'fieldloccounty' => 'fieldLocCounty',
+            'fieldlocstate' => 'fieldLocState',
+            'localitynote' => 'localityNote'
           }
 
-          vocab_config = {
-            'fieldLocPlace' => { 'authority' => ['placeauthorities', 'place'] }
+          locality_transforms = {
+            'fieldlocplace' => { 'authority' => ['placeauthorities', 'place'] }
           }
 
           CSXML.prep_and_add_single_level_group_list(
             xml, attributes,
             'locality',
             locality_data,
-            vocab_config,
+            locality_transforms,
             topGroupList: true
           )
 
@@ -52,36 +70,37 @@ module CollectionSpace
           # commingledRemainsGroupList
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           commingled_remains_data = {
-            'ageRange' => 'agerange',
-            'behrensmeyerUpper' => 'behrensmeyerupper',
-            'behrensmeyerSingleLower' => 'behrensmeyersinglelower',
-            'commingledRemainsNote' =>  'commingledremainsnote',
+            'agerange' => 'ageRange',
+            'behrensmeyerupper' => 'behrensmeyerUpper',
+            'behrensmeyersinglelower' => 'behrensmeyerSingleLower',
+             'commingledremainsnote' => 'commingledRemainsNote',
             'sex' => 'sex',
             'count' => 'count',
-            'minIndividuals' => 'minindividuals',
+            'minindividuals' => 'minIndividuals',
             'dentition' => 'dentition',
             'bone' => 'bone',
-            'mortuaryTreatment' => 'mortuarytreatment',
-            'mortuaryTreatmentNote' => 'mortuarytreatmentnote'
+            'mortuarytreatment' => 'mortuaryTreatment',
+            'mortuarytreatmentnote' => 'mortuaryTreatmentNote'
           }
           mortuary_treatment_fields = [
             'mortuaryTreatment',
             'mortuaryTreatmentNote'
           ]
 
-          processing_config = {
-            'ageRange' => { 'replace' => [{ 'find' => ' - ',
+          commingled_transforms = {
+            'agerange' => {'replace' => [{'find' => ' - ',
                                           'replace' => '-',
-                                          'type' => 'plain' }],
-                            'vocab' => 'agerange'
+                                          'type' => 'plain'}],
+                           'vocab' => 'agerange'
                           },
-            'behrensmeyerUpper' => { 'special' => 'behrensmeyer_translate',
+            'behrensmeyerupper' => {'special' => 'behrensmeyer_translate',
                                     'vocab' => 'behrensmeyer'
                                    },
-            'behrensmeyerSingleLower' => { 'special' => 'behrensmeyer_translate',
+            'behrensmeyersinglelower' => {'special' => 'behrensmeyer_translate',
                                           'vocab' => 'behrensmeyer'
                                          },
-            'dentition' => { 'special' => 'boolean' }
+            'dentition' => {'special' => 'boolean'},
+            'mortuarytreatment' => {'vocab' => 'mortuarytreatment'}
           }
 
           CSXML.add_nested_group_lists(
@@ -90,11 +109,50 @@ module CollectionSpace
             commingled_remains_data,
             'mortuaryTreatment',
             mortuary_treatment_fields,
-            processing_config,
+            commingled_transforms,
             topGroupList: true,
             childGroupList: true,
             childListPrefix: false
-            )
+          )
+        end
+
+        def self.map_annotations(xml, attributes)
+          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
+          # annotationGroupList
+          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
+          annotation_data = {
+            'annotationnote' => 'annotationNote',
+            'annotationtype' => 'annotationType',
+            'annotationdate' => 'annotationDate',
+            'annotationauthor' => 'annotationAuthor'
+          }
+
+          annotation_transforms = {
+            'annotationauthor' => {'authority' => ['personauthorities', 'person']},
+            'annotationtype' => {'vocab' => 'annotationtype'},
+            'annotationdate' => {'special' => 'unstructured_date'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml, attributes,
+            'annotation',
+            annotation_data,
+            annotation_transforms,
+            topGroupList: true
+          )
+        end
+        
+        def self.map_nagpra(xml, attributes)
+          pairs = {
+            'nagprareportfiled' => 'nagpraReportFiled',
+            'nagprareportfiledby' => 'nagpraReportFiledBy'
+          }
+          pair_transforms = {
+            'nagprareportfiled' => {'special' => 'boolean'},
+            'nagprareportfiledby' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pair_transforms)
+
         end
       end
     end

@@ -136,37 +136,90 @@ RSpec.describe CSXML::Helpers do
     )).to eq CSURN.parse(vocab_refname)[:identifier]
   end
 
-  describe '#apply_transforms' do
-    let(:groups) { [{
-      'a' => '9 - 10',
-      'b' => 'cat bat rat sat',
-      'e' => 'True',
-      'f' => '3'
-    }] }
+  describe '#mvfs_even?' do
+    let(:fghash1) { {
+      'a' => {:values => ['9 - 10', '10 - 11', '11 - 12'], :field => 'fieldName'},
+      'b' => {:values => %w[cat bat rat], :field => 'fieldName'},	
+      'c' => {:values => %w[goat moat stoat], :field => 'fieldName'}
+    } }
+    let(:fghash2) { {
+      'a' => {:values => ['9 - 10', '10 - 11', '11 - 12'], :field => 'fieldName'},
+      'b' => {:values => %w[cat bat rat ghat], :field => 'fieldName'},
+      'c' => {:values => %w[goat moat stoat], :field => 'fieldName'}
+    } }
 
+    it 'returns true if equal number of values in fieldGroup fields' do
+      expect(CSXML::Helpers.mvfs_even?(fghash1)).to be true
+    end
+
+    it 'returns false if unequal number of values in fieldGroup fields' do
+      expect(CSXML::Helpers.mvfs_even?(fghash2)).to be false
+    end
+  end
+
+  describe '#flatten_mvfs' do
+    let(:fghash1) { {
+      'z' => {:values => [], :field => 'noField'},
+      'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
+      'aa' => {:values => ['', '', '11 - 12'], :field => 'fieldOne'},
+      'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
+      'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'}
+    } }
+    let(:result) { [
+      {'fieldOne' => '9 - 10', 'fieldTwo' => 'cat', 'fieldThree' => 'goat'},
+      {'fieldOne' => '10 - 11', 'fieldTwo' => 'bat', 'fieldThree' => 'moat'},
+      {'fieldOne' => '11 - 12', 'fieldTwo' => 'rat', 'fieldThree' => 'stoat'},
+    ]}
+
+    it 'flattens fieldgroup hash properly' do
+      expect(CSXML::Helpers.flatten_mvfs(fghash1)).to eq(result)
+    end
+  end
+  
+
+  describe '#apply_transforms' do
     let(:transforms) { {
-      'a' => { 'replace' => [{ 'find' => ' - ',
+      'a' => {'replace' => [{ 'find' => ' - ',
                               'replace' => '-',
                               'type' => 'plain' }],
               'vocab' => 'agerange'
              },
-      'b' => { 'replace' => [{ 'find' => '[bc]at',
+      'b' => {'replace' => [{ 'find' => '[bc]at',
                               'replace' => 'batcat',
-                              'type' => 'regexp' }],
+                              'type' => 'regexp' },
+                            { 'find' => 'batcat batcat',
+                              'replace' => 'batcats',
+                              'type' => 'plain' }],
               'authority' => ['placeauthorities', 'place']
              },
-      'e' => { 'special' => 'boolean' },
-      'f' => { 'special' => 'behrensmeyer_translate' }
+      'c' => {'replace' => [{'find' => '^goat *(\d+)',
+                              'replace' => 'caprine \1',
+                              'type' => 'regexp'}]
+             },
+      'd' => {'special' => 'unstructured_date'},
+      'e' => {'special' => 'boolean' },
+      'f' => {'special' => 'behrensmeyer_translate',
+              'vocab' => 'behrensmeyer'
+             }
     } }
 
+    let(:resa) { CSXML::Helpers.apply_transforms(transforms, 'a', '9 - 10') }
+    let(:resb) { CSXML::Helpers.apply_transforms(transforms, 'b', 'cat bat rat sat') }
+    let(:resc) { CSXML::Helpers.apply_transforms(transforms, 'c', 'goat123') }
+    let(:resd) { CSXML::Helpers.apply_transforms(transforms, 'd', '9/9/1999') }
+    let(:rese) { CSXML::Helpers.apply_transforms(transforms, 'e', 'True') }
+    let(:resf) { CSXML::Helpers.apply_transforms(transforms, 'f', '3') }
+    let(:b_urn) { CSXML::Helpers.get_vocab('behrensmeyer', CSXML::Helpers.behrensmeyer_translate('3')) }
+
     it 'applies transforms properly' do
-      CSXML::Helpers.apply_transforms(transforms, groups)
-      expect(groups[0]['a']).to include('9-10')
-      expect(groups[0]['a']).to include(':vocabularies:name(agerange):')
-      expect(groups[0]['b']).to include('batcat batcat rat sat')
-      expect(groups[0]['b']).to include(':placeauthorities:name(place):')
-      expect(groups[0]['e']).to eq('true')
-      expect(groups[0]['f']).to eq(CSXML::Helpers.behrensmeyer_translate('3'))
+      expect(resa).to include('9-10')
+      expect(resa).to include(':vocabularies:name(agerange):')
+      expect(resb).to include('batcats rat sat')
+      expect(resb).to include(':placeauthorities:name(place):')
+      expect(resc).to eq('caprine 123')
+      expect(resd).to eq('1999-09-09')
+      expect(rese).to eq('true')
+      expect(resf).to eq(b_urn)
     end
     
   end

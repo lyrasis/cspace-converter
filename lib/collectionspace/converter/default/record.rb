@@ -79,41 +79,6 @@ module CollectionSpace
           values.flatten.compact
         end
 
-        # verifies that the same number of values was derived by splitting all multivalued
-        #  fields that will be part of a group.
-        # For example, it's potentially problematic if the CSV has name: '1;2' and note: '1;2;3'
-        #  if these are mv fields in the same group.
-        # This function will return false in that case
-        # For the type of hash used as an argument, see crgsplit in anthro/collectionobject.rb
-        def self.mvfs_even?(mvfhash)
-          return true if mvfhash.map{ |k, v| v.length }.uniq!.length == 1
-          return false
-        end
-
-        # flattens multivalue group hash (such as crgsplit in anthro/collectionobject.rb
-        # returns array of field group hashes
-        def self.flatten_mvfs(mvfhash)
-          fieldgroups = []
-          # remove completely empty fields
-          emptyfields = []
-          mvfhash.each{ |k, v| emptyfields << k if v.empty? }
-          emptyfields.each{ |field| mvfhash.delete(field) }
-
-          # populate a hash with the lengths of all the fields, with one
-          #  field name recorded per length value, so we can select one
-          #  of the fields with the most values -- doesn't matter which
-          lhash = mvfhash.map{ |k, v| [v.length, k] }.to_h
-          longfieldname = lhash[lhash.keys.max]
-
-          # iterate over field with max number of values
-          mvfhash[longfieldname].each_index{ |ind|
-            fieldgroup = {}
-            mvfhash.each{ |k, v| fieldgroup[k] = v[ind] }
-            fieldgroups << fieldgroup
-          }
-          fieldgroups
-        end
-
         def self.to_boolean(field)
           return nil unless field
 
