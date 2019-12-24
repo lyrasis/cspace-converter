@@ -47,10 +47,7 @@ RSpec.describe CSXML::Helpers do
   let(:person_refname) { "urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JurgenKlopp1289035554)'Jurgen Klopp'" }
   let(:vocab) { 'English' }
   let(:vocab_refname) { "urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(english)'English'" }
-
-  xit "can 'add date group' correctly" do
-    # TODO
-  end
+  let(:date) { CSDTP.parse('2015-06-07') }
 
   it "can 'add measured part group list' correctly" do
     CSXML::Helpers.add_measured_part_group_list(xml, attributes_measured_part_group_list)
@@ -248,6 +245,25 @@ RSpec.describe CSXML::Helpers do
       expect(CSXML::Helpers.to_boolean('')).to eq('false')
     end
   end
-  
+
+  describe '#add_date_group' do
+    context 'when suffix argument not given' do
+      it "adds date group with 'Group' suffix" do
+        CSXML::Helpers.add_date_group(xml, 'testDate', date)
+        expect(doc(xml).xpath('/testDateGroup/dateDisplayDate').text).to eq('2015-06-07')
+        expect(doc(xml).xpath('/testDateGroup/dateEarliestSingleYear').text).to eq('2015')
+      end
+    end
+    context 'when suffix argument given as empty string' do
+      it "adds date group with no suffix" do
+        CSXML::Helpers.add_date_group(xml, 'testDate', date, '')
+        expect(doc(xml).xpath('/testDate/dateDisplayDate').text).to eq('2015-06-07')
+        expect(doc(xml).xpath('/testDate/dateEarliestSingleYear').text).to eq('2015')
+      end
+    end
+  end
+
+  describe '#add_date_group_list' do
+  end
   
 end

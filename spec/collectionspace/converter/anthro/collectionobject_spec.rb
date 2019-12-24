@@ -83,10 +83,11 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         let(:xpaths) {[
           "/document/#{nagpra}/nagpraReportFiled",
           { xpath: "/document/#{nagpra}/nagpraReportFiledBy", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-#          "/document/#{nagpra}/repatriationNotes/repatriationNote",
-#          "/document/#{nagpra}/nagpraCategories/nagpraCategory",
-#          "/document/#{nagpra}nagpraReportFiledDate/dateLatestScalarValue",
-#          "/document/#{nagpra}nagpraReportFiledDate/dateEarliestScalarValue"          
+          "/document/#{nagpra}/repatriationNotes/repatriationNote",
+          { xpath: "/document/#{nagpra}/nagpraCategories/nagpraCategory[1]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{nagpra}/nagpraCategories/nagpraCategory[2]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          "/document/#{nagpra}/nagpraReportFiledDate/dateLatestScalarValue",
+          "/document/#{nagpra}/nagpraReportFiledDate/dateEarliestScalarValue"          
         ]}
 
         it "Maps attributes correctly" do

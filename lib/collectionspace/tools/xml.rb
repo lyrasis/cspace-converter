@@ -15,10 +15,10 @@ module CollectionSpace
         CSXML.process_array(xml, data['label'], data['elements'])
       end
 
-      def self.add_group(xml, key, elements = {})
+      def self.add_group(xml, key, elements = {}, suffix = 'Group')
         return unless elements.any?
 
-        xml.send("#{key}Group".to_sym) {
+        xml.send("#{key}#{suffix}".to_sym) {
           elements.each {|k, v| xml.send(k.to_sym, v)}
         }
       end
@@ -97,7 +97,7 @@ module CollectionSpace
       The element(s) in the outer/first array = the set of sub_group(s) for each parent group.
       The element(s) in the inner array(s) = the individual values for each subgroup
 =end
-      def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
+def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
                               include_group_prefix: true,
                               subgroup_list_name_includes_group: true,
                               include_subgroup_prefix: true,
@@ -211,26 +211,18 @@ module CollectionSpace
 
         groups.each{ |fhash|
           if fhash[date_field]
-            puts "DATE FROM CSV: #{fhash[date_field]}"
             date_groups << [CSDTP.fields_for(CSDTP.parse(fhash[date_field]))]
             fhash.delete(date_field)
           end
         }
 
-        puts "GROUPS:"
-        pp(groups)
-
-        puts "DATES:"
-        pp(date_groups)
-        
         CSXML.add_group_list(xml, topKey, groups,
                              date_field, date_groups,
                                     include_group_prefix: topGroupList,
                               include_subgroup_prefix: childListPrefix,
                               include_subgrouplist_level: subgroupIsList)
+      end #def self.add_group_list_with_structured_date
 
-
-      end
       # convenience method to handle pre-processing of nested GroupLists and sending them
       #  to add_group_list
       #  transforms hash format is:
@@ -479,10 +471,10 @@ module CollectionSpace
           add_authorities xml, field, 'conceptauthorities', 'concept', values, method
         end
 
-        def self.add_date_group(xml, field, date)
+        def self.add_date_group(xml, field, date, suffix = 'Group')
           return unless date.display_date
 
-          CSXML.add_group xml, field, CSDTP.fields_for(date)
+          CSXML.add_group(xml, field, CSDTP.fields_for(date), suffix)
         end
 
         def self.add_date_group_list(xml, field, dates)

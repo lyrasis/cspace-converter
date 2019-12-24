@@ -162,6 +162,10 @@ module CollectionSpace
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
 
+          CSXML::Helpers.add_date_group(
+            xml, 'nagpraReportFiledDate', CSDTP.parse(attributes['nagprareportfileddate']), ''
+            )
+
         end
       end
     end
