@@ -62,8 +62,7 @@ module CollectionSpace
             xml, attributes,
             'locality',
             locality_data,
-            locality_transforms,
-            topGroupList: true
+            locality_transforms
           )
 
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -110,9 +109,7 @@ module CollectionSpace
             'mortuaryTreatment',
             mortuary_treatment_fields,
             commingled_transforms,
-            topGroupList: true,
-            childGroupList: true,
-            childListPrefix: false
+            subgroup_suffix: 'Group',
           )
         end
 
@@ -137,8 +134,7 @@ module CollectionSpace
             xml, attributes,
             'annotation',
             annotation_data,
-            annotation_transforms,
-            topGroupList: true
+            annotation_transforms
           )
         end
         

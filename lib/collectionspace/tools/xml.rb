@@ -98,33 +98,31 @@ module CollectionSpace
       The element(s) in the inner array(s) = the individual values for each subgroup
 =end
 def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
-                              include_group_prefix: true,
-                              subgroup_list_name_includes_group: true,
-                              include_subgroup_prefix: true,
-                              include_subgrouplist_level: true
-                             )
-        return unless elements.any?
+                        list_suffix: 'List',
+                        group_suffix: 'Group',
+                        sublist_suffix: 'List',
+                        subgroup_suffix: 'SubGroup',
+                        include_subgrouplist_level: true
+                        )
+  return unless elements.any?
+  
 
-        group_prefix = include_group_prefix ? 'GroupList' : 'List'
-        subgroup_list_suffix = subgroup_list_name_includes_group ? 'GroupList' : 'List'
-        subgroup_prefix = include_subgroup_prefix ? 'Sub' : ''
-
-        xml.send("#{key}#{group_prefix}".to_sym) {
+        xml.send("#{key}#{group_suffix}#{list_suffix}".to_sym) {
           elements.each_with_index do |element, index|
-            xml.send("#{key}Group".to_sym) {
+            xml.send("#{key}#{group_suffix}".to_sym) {
               element.each {|k, v| xml.send(k.to_sym, v)}
               
               if sub_key && include_subgrouplist_level
-                xml.send("#{sub_key}#{subgroup_prefix}#{subgroup_list_suffix}".to_sym) {
+                xml.send("#{sub_key}#{subgroup_suffix}#{sublist_suffix}".to_sym) {
                   sub_elements[index].each do |sub_element|
-                    xml.send("#{sub_key}#{subgroup_prefix}Group".to_sym) {
+                    xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
                       sub_element.each {|k, v| xml.send(k.to_sym, v)}
                     }
                   end
                 }
               elsif sub_key && !include_subgrouplist_level
                 sub_elements[index].each do |sub_element|
-                  xml.send("#{sub_key}#{subgroup_prefix}Group".to_sym) {
+                  xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
                     sub_element.each {|k, v|
                       xml.send(k.to_sym, v)}
                   }
@@ -155,7 +153,8 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         key, # String; used to name GroupList
         all_elements,
         transforms = {},
-        topGroupList: true
+        list_suffix: 'List',
+        group_suffix: 'Group'
       )
 
         all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
@@ -176,8 +175,7 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         groups = CSXML::Helpers.flatten_mvfs(all)
 
         
-        CSXML.add_group_list(xml, key, groups,
-                             include_group_prefix: topGroupList)
+        CSXML.add_group_list(xml, key, groups, list_suffix: list_suffix, group_suffix: group_suffix)
       end
 
       def self.add_group_list_with_structured_date(
@@ -187,10 +185,12 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         all_elements, # { 'csvheader' => 'fieldName' }
         date_field,
         transforms = {},
-        topGroupList: true, # true: #{topKey}GroupList; false: #{topKey}List
-        childListPrefix: false, # true: #{childkey}SubGroupList; false: #{childKey}GroupList
-        subgroupIsList: false
-)
+        list_suffix: 'List',
+        group_suffix: 'Group',
+        sublist_suffix: 'List',
+        subgroup_suffix: 'Group',
+        include_subgrouplist_level: false
+      )
         all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
@@ -218,9 +218,10 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
 
         CSXML.add_group_list(xml, topKey, groups,
                              date_field, date_groups,
-                                    include_group_prefix: topGroupList,
-                              include_subgroup_prefix: childListPrefix,
-                              include_subgrouplist_level: subgroupIsList)
+                             list_suffix: list_suffix, group_suffix: group_suffix,
+                             sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
+                             include_subgrouplist_level: include_subgrouplist_level
+                             )
       end #def self.add_group_list_with_structured_date
 
       # convenience method to handle pre-processing of nested GroupLists and sending them
@@ -237,27 +238,16 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         childKey, # String; used to name the nested GroupList
         child_fields, # ['fieldPartOfChildGroupList', 'anotherChildField']
         transforms = {},
-        topGroupList: true, # true: #{topKey}GroupList; false: #{topKey}List
-        childGroupList: true, # true: #{childkey}GroupList; false: #{childKey}List
-        childListPrefix: true # true: #{childkey}SubGroupList; false: #{childKey}GroupList
+        list_suffix: 'List',
+        group_suffix: 'Group',
+        sublist_suffix: 'List',
+        subgroup_suffix: 'SubGroup',
+        include_subgrouplist_level: true
       )
         all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
-        # { title => {:values => ['A man', 'A woman'], :field => 'title'},
-        #   titletranslation => {:values => ['Homme^^Hombre', 'Femme^^Fraulein'], :field => 'titleTranslation'},
-        #   titletranslationlanguage => {:values => ['French^^Spanish', 'French^^German'], :field => 'titleTranslationLanguage'}
-        # }
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
         end
-
-
-        # all =
-        # { title => {:values => ['A man', 'A woman'], :field => 'title'} }
-        # children =
-        # {
-        #   titletranslation => {:values => ['Homme^^Hombre', 'Femme^^Fraulein'], :field => 'titleTranslation'},
-        #   titletranslationlanguage => {:values => ['French^^Spanish', 'French^^German'], :field => 'titleTranslationLanguage'}
-        # }
 
         unless transforms.empty?
           transforms.keys.each{ |csvheader|
@@ -295,9 +285,10 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
 
         
         CSXML.add_group_list(xml, topKey, top_groups, childKey, child_groups,
-                             include_group_prefix: topGroupList,
-                             subgroup_list_name_includes_group: childGroupList,
-                             include_subgroup_prefix: childListPrefix)
+                             list_suffix: list_suffix, group_suffix: group_suffix,
+                             sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
+                             include_subgrouplist_level: include_subgrouplist_level
+                             )
       end
 
       # key_suffix handles the case that the list child element is not the key without "List"
@@ -642,10 +633,7 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             title_data,
             'titleTranslation',
             trans_fields,
-            title_transforms,
-            topGroupList: true,
-            childGroupList: true,
-            childListPrefix: true
+            title_transforms
           )
         end
         

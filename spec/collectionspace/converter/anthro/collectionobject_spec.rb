@@ -19,31 +19,37 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
       let(:anthrocollectionobject) { AnthroCollectionObject.new(attributes) }
       let(:doc) { get_doc(anthrocollectionobject) }
       let(:record) { get_fixture('anthro_collectionobject_2.xml') }
-      let(:xpaths) {[
-        { xpath: "/document/#{anthro}/localityGroupList/localityGroup/fieldLocPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        "/document/#{anthro}/localityGroupList/localityGroup/fieldLocCounty",
-        "/document/#{anthro}/localityGroupList/localityGroup/fieldLocState",
-        "/document/#{anthro}/localityGroupList/localityGroup/localityNote",
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/ageRange", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/ageRange", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },    
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/commingledRemainsNote",
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/sex",
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/count",
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/minIndividuals",
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/dentition",
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/bone",
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[1]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[2]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[1]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[2]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/mortuaryTreatmentGroupList/mortuaryTreatmentGroup/mortuaryTreatmentNote"
-      ]}
 
-      it "Maps attributes correctly" do
+      it "Maps localityGroupList correctly" do
+        xpaths = [
+          { xpath: "/document/#{anthro}/localityGroupList/localityGroup/fieldLocPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          "/document/#{anthro}/localityGroupList/localityGroup/fieldLocCounty",
+          "/document/#{anthro}/localityGroupList/localityGroup/fieldLocState",
+          "/document/#{anthro}/localityGroupList/localityGroup/localityNote",
+        ]
+        test_converter(doc, record, xpaths)
+      end
+
+      it "Maps commingledRemainsGroupList correctly" do
+        xpaths = [
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/ageRange", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/ageRange", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },    
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/commingledRemainsNote",
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/sex",
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/count",
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/minIndividuals",
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/dentition",
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/bone",
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[1]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[2]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[1]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[2]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/mortuaryTreatmentGroupList/mortuaryTreatmentGroup/mortuaryTreatmentNote"
+        ]
         test_converter(doc, record, xpaths)
       end
     end #  context 'sample data row 2'
