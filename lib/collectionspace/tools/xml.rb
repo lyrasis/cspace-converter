@@ -9,11 +9,12 @@ module CollectionSpace
         xml.send(key.to_sym, value)
       end
 
-      def self.add_data(xml, data = [])
-        return unless data.any?
+      # this method is not used anywhere 
+      # def self.add_data(xml, data = [])
+      #   return unless data.any?
 
-        CSXML.process_array(xml, data['label'], data['elements'])
-      end
+      #   CSXML.process_array(xml, data['label'], data['elements'])
+      # end
 
       def self.add_group(xml, key, elements = {}, suffix = 'Group')
         return unless elements.any?
@@ -616,7 +617,8 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             'title' => 'title',
             'titlelanguage' => 'titleLanguage',
             'titletranslation' => 'titleTranslation',
-            'titletranslationlanguage' => 'titleTranslationLanguage'
+            'titletranslationlanguage' => 'titleTranslationLanguage',
+            'titletype' => 'titleType'
           }
           title_transforms = {
             'titlelanguage' => { 'vocab' => 'languages' },
@@ -641,15 +643,22 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         def self.add_title(xml, attributes)
           if attributes["titletranslation"]
             add_title_with_translation(xml, attributes)
-          elsif attributes["titlelanguage"]
-            CSXML.add_group_list xml, 'title', [{
-              "title" => attributes["title"],
-              "titleLanguage" => CSXML::Helpers.get_vocab('languages', attributes["titlelanguage"]),
-            }]
           else
-            CSXML.add_group_list xml, 'title', [{
-              "title" => attributes["title"],
-            }]
+            title_data = {
+              'title' => 'title'
+            }
+            title_transforms = {}
+            if attributes['titlelanguage']
+              title_data['titlelanguage'] = 'titleLanguage'
+              title_transforms['titlelanguage'] = {'vocab' => 'languages'}
+            end
+            title_data['titletype'] = 'titleType' if attributes['titleType']
+            CSXML.prep_and_add_single_level_group_list(
+              xml, attributes,
+              'title',
+              title_data,
+              title_transforms
+              )
           end
         end
 

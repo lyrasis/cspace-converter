@@ -10,10 +10,48 @@ RSpec.describe CSXML do
   let(:source_data_date) { '1971' }
   let(:structured_date) { CSDTP.parse(source_data_date) }
 
+  describe '#add' do
   it "can 'add' correctly" do
       CSXML.add(xml, 'foo', 'bar')
     expect(doc(xml).xpath('/foo').text).to eq('bar')
   end
+  end
+
+  # describe '#add_data' do
+  #   it "can 'add data' correctly" do
+  #     data = {
+  #       "label" => "publicartProductionDateGroupList",
+  #       "elements" => [
+  #         {
+  #           "publicartProductionDateGroup" => [
+  #             {
+  #               "publicartProductionDate" => [
+  #                 {
+  #                   "scalarValuesComputed" => true,
+  #                 },
+  #               ],
+  #               "publicartProductionDateType" => "Commission",
+  #             },
+  #             {
+  #               "publicartProductionDate" => [
+  #                 {
+  #                   "scalarValuesComputed" => false,
+  #                 }
+  #               ],
+  #               "publicartProductionDateType" => "Purchase",
+  #             },
+  #           ],
+  #         },
+  #       ]
+  #     }
+  #     CSXML.add_data(xml, data)
+
+  #     expect(doc(xml).xpath(
+  #       '/publicartProductionDateGroupList/publicartProductionDateGroup[1]/publicartProductionDate/scalarValuesComputed').text).to eq('true')
+  #     expect(doc(xml).xpath(
+  #       '/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDate/scalarValuesComputed').text).to eq('false')
+  #   end
+  # end
 
   it "can 'add group' correctly" do
     key = 'accessionDate'
@@ -21,7 +59,7 @@ RSpec.describe CSXML do
       "dateDisplayDate" => '01-01-2000',
       'dateLatestDay' => '10?',
     }
-      CSXML.add_group(xml, key, elements)
+    CSXML.add_group(xml, key, elements)
     expect(doc(xml).xpath(
       '/accessionDateGroup/dateDisplayDate').text).to eq('01-01-2000')
     expect(doc(xml).xpath(
@@ -42,7 +80,7 @@ RSpec.describe CSXML do
         "scalarValuesComputed" => false,
       }
     ]
-      CSXML.add_group_list(xml, key, elements)
+    CSXML.add_group_list(xml, key, elements)
 
     expect(doc(xml).xpath(
       '/objectProductionDateGroupList/objectProductionDateGroup[1]/scalarValuesComputed').text).to eq('true')
@@ -78,10 +116,10 @@ RSpec.describe CSXML do
       {
         "publicartProductionDate" => {
           "scalarValuesComputed" => false,
-      },
+        },
       }
     ]
-      CSXML.add_group_list(xml, key, elements, false, sub_elements)
+    CSXML.add_group_list(xml, key, elements, false, sub_elements)
 
     expect(doc(xml).xpath(
       '/publicartProductionDateGroupList/publicartProductionDateGroup[1]/publicartProductionDate/scalarValuesComputed').text).to eq('true')
@@ -94,48 +132,21 @@ RSpec.describe CSXML do
       '/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDateType').text).to eq('Purchase')
   end
 
-  it "can 'add data' correctly" do
-    data = {
-      "label" => "publicartProductionDateGroupList",
-      "elements" => [
-        {
-          "publicartProductionDateGroup" => [
-            {
-              "publicartProductionDate" => [
-                {
-                  "scalarValuesComputed" => true,
-                },
-              ],
-              "publicartProductionDateType" => "Commission",
-            },
-            {
-              "publicartProductionDate" => [
-                {
-                  "scalarValuesComputed" => false,
-                }
-              ],
-              "publicartProductionDateType" => "Purchase",
-            },
-          ],
-        },
-      ]
-    }
-      CSXML.add_data(xml, data)
-
-    expect(doc(xml).xpath(
-      '/publicartProductionDateGroupList/publicartProductionDateGroup[1]/publicartProductionDate/scalarValuesComputed').text).to eq('true')
-
-    expect(doc(xml).xpath(
-      '/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDate/scalarValuesComputed').text).to eq('false')
-  end
-
   describe "Contact" do
+    def builder
+      Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do |xml|
+        xml.root { yield xml }
+      end
+    end
+
     let(:contact) {{
       'email' => 'no-reply@collectionspace.org'
     }}
     it "can map correctly" do
+      x = builder do |xml|
         Contact.map(xml, contact)
-      expect(doc(xml).xpath('/emailGroupList/emailGroup/email').text).to eq contact['email']
+      end
+      expect(doc(x).xpath('/root/emailGroupList/emailGroup/email').text).to eq contact['email']
     end
   end
 end
