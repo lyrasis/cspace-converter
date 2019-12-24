@@ -14,7 +14,7 @@ module CollectionSpace
               # applying namespace breaks import
               xml.parent.namespace = nil
               CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
-              PublicArtCollectionObject.map_core_overrides(xml, attributes)
+              PublicArtCollectionObject.map_common_overrides(xml, attributes)
             end
 
             #
@@ -29,105 +29,104 @@ module CollectionSpace
               xml.parent.namespace = nil
               PublicArtCollectionObject.map(xml, attributes)
             end
+          end #run(wrapper: "document") do |xml|
+        end #def convert
 
             def redefined_fields
               @redefined = [
-                'objectnumber'
+                'responsibledepartment',
+                'objectname',
+                'objectnamenote',
+                'material',
+                'materialcomponentnote'
               ]
               super
             end
 
             def self.map_common_overrides(xml, attributes)
-              
+              repeats = {
+                'responsibledepartment' => ['responsibleDepartments', 'responsibleDepartment']
+              }
+              repeat_transforms = {
+                'responsibledepartment' => {'vocab' => 'program'}
+              }
+              CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
+
+              oname_data = {
+                'objectname' => 'objectName',
+                'objectnamenote' => 'objectNameNote'
+              }
+              oname_transforms = {
+                'objectname' => {'authority' => ['conceptauthorities', 'worktype']}
+              }
+              CSXML.prep_and_add_single_level_group_list(
+                xml, attributes,
+                'objectName',
+                oname_data,
+                oname_transforms,
+                list_suffix: 'List'
+              )
+
+              mat_data = {
+                'material' => 'material',
+                'materialcomponentnote' => 'materialComponentNote'
+              }
+              mat_transforms = {
+                'material' => {'authority' => ['conceptauthorities', 'material_ca']}   
+              }
+              CSXML.prep_and_add_single_level_group_list(
+                xml, attributes,
+                'material',
+                mat_data,
+                mat_transforms
+              )
             end
             
             def self.map(xml, attributes)
-              # Example XML payload
-              #
-              # Column 'objectProductionDate' should map to the <dateDisplayDate> element
-              # Column 'objectProductionDateType' should map to the <publicartProductionDateType> element
-              #
-              # <publicartProductionDateGroupList>
-              #     <publicartProductionDateGroup>
-              #         <publicartProductionDate>
-              #             <dateDisplayDate>7/4/1776</dateDisplayDate>
-              #         </publicartProductionDate>
-              #         <publicartProductionDateType>
-              #             urn:cspace:publicart.collectionspace.org:vocabularies:name(proddatetype):item:name(commission)'commission'
-              #         </publicartProductionDateType>
-              #     </publicartProductionDateGroup>
-              # </publicartProductionDateGroupList>
-              #
-              proddategroups = []
-              proddates = CSDR.split_mvf attributes, 'objectproductiondate'
-              proddatetypes = CSDR.split_mvf attributes, 'objectproductiondatetype'
-              proddates.each_with_index do |date, index|
-                proddategroups << { "publicartProductionDate" => date, "publicartProductionDateType" => proddatetypes[index] }
-              end
-
-              xml.send("publicartProductionDateGroupList".to_sym) {
-                proddategroups.each do |element|
-                  xml.send("publicartProductionDateGroup".to_sym) {
-                    if !element["publicartProductionDate"].blank?
-                      structured_date = CSDTP::parse element["publicartProductionDate"] if element["publicartProductionDate"]
-                      if !structured_date.blank?
-                        xml.send("publicartProductionDate".to_sym) {
-                          xml.send("scalarValuesComputed".to_sym, "true")
-                          xml.send("dateDisplayDate".to_sym, structured_date.display_date)
-
-                          xml.send("dateEarliestSingleDay".to_sym, structured_date.earliest_day)
-                          xml.send("dateEarliestSingleMonth".to_sym, structured_date.earliest_month)
-                          xml.send("dateEarliestSingleYear".to_sym, structured_date.earliest_year)
-                          xml.send("dateEarliestScalarValue".to_sym, structured_date.earliest_scalar)
-                          xml.send("dateEarliestSingleEra".to_sym, COMMON_ERA_URN)
-
-                          xml.send("dateLatestDay".to_sym, structured_date.latest_day)
-                          xml.send("dateLatestMonth".to_sym, structured_date.latest_month)
-                          xml.send("dateLatestYear".to_sym, structured_date.latest_year)
-                          xml.send("dateLatestScalarValue".to_sym, structured_date.latest_scalar)
-                          xml.send("dateLatestEra".to_sym, COMMON_ERA_URN)
-                        }
-                      else
-                        xml.send("publicartProductionDate".to_sym) {
-                          xml.send("dateDisplayDate".to_sym, element["publicartProductionDate"])
-                        }
-                      end
-                    end
-                    xml.send("publicartProductionDateType".to_sym, CSURN.get_vocab_urn('proddatetype', element["publicartProductionDateType"]))
-                  }
-                end
+              repeats = {
+                'publicartcollection' => ['publicartCollections', 'publicartCollection']
               }
+              repeat_transforms = {
+                'publicartcollection' => {'authority' => ['orgauthorities', 'organization']}
+              }
+              CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
 
-              # Collection
-              CSXML.add_repeat xml, 'publicartCollections', [{
-                  "publicartCollection" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["collection"]),
-              }] if attributes["collection"]
+              ppd_data = {
+                'publicartproductiondate' => 'publicartProductionDate',
+                'publicartproductiondatetype' => 'publicartProductionDateType'
+              }
+              ppd_transforms = {
+                'publicartproductiondatetype' => {'vocab' => 'proddatetype'}
+              }
+              CSXML.add_group_list_with_structured_date(
+                xml,
+                attributes,
+                'publicartProductionDate',
+                ppd_data,
+                'publicartProductionDate',
+                ppd_transforms
+                )
 
-              # publicartProductionPersonGroupList
-              prodpersongroups = []
 
-              prodpersons_urns = []
-              prodpersons = CSDR.split_mvf attributes, 'objectproductionperson'
-              prodpersons.each do |person, index|
-                prodpersons_urns << CSURN.get_authority_urn('personauthorities', 'person', person)
-              end
+              ppp_data = {
+                'publicartproductionpersontype' => 'publicartProductionPersonType',
+                'publicartproductionpersonrole' => 'publicartProductionPersonRole',
+                'publicartproductionpersonperson' => 'publicartProductionPerson',
+                'publicartproductionpersonorganization' => 'publicartProductionPerson'
+              }
+              ppp_transforms = {
+                'publicartproductionpersonrole' => {'vocab' => 'prodpersonrole'},
+                'publicartproductionpersonperson' => {'authority' => ['personauthorities', 'person']},
+                'publicartproductionpersonorganization' => {'authority' => ['orgauthorities', 'organization']}
+              }
+              CSXML.prep_and_add_single_level_group_list(
+                xml, attributes,
+                'publicartProductionPerson',
+                ppp_data,
+                ppp_transforms
+              )
 
-              role_urns = []
-              roles = CSDR.split_mvf attributes, 'objectproductionpersonrole'
-              roles.each do |role, index|
-                role_urns << CSURN.get_vocab_urn('prodpersonrole', role)
-              end
-              types = CSDR.split_mvf attributes, 'objectproductionpersontype'
-
-              # Build the multi-valued group
-              prodpersons_urns.each_with_index do |person_urn, index|
-                prodpersongroups << { "publicartProductionPerson" => person_urn, "publicartProductionPersonRole" => role_urns[index], "publicartProductionPersonType" => types[index] }
-              end
-              CSXML.add_group_list xml, 'publicartProductionPerson', prodpersongroups
-            end # def self.map
-
-          end #run(wrapper: "document") do |xml|
-        end #def convert
+        end # def self.map
       end # class PublicArtCollectionObject
     end #module PublicArt
   end # module Converter

@@ -79,7 +79,8 @@ module CollectionSpace
             'osteoAgeEstimate',
             osteoagedata,
             'osteoAgeEstimateDate',
-            osteoage_transforms)
+            osteoage_transforms,
+            subgroup_suffix: 'Group')
 
           determinationdates = []
           sexdetermination = []

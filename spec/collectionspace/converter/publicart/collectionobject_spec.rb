@@ -29,20 +29,106 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
           "/document/#{common}/titleGroupList/titleGroup[2]/titleTranslationSubGroupList/titleTranslationSubGroup[2]/titleTranslation",
           { xpath: "/document/#{common}/titleGroupList/titleGroup[2]/titleTranslationSubGroupList/titleTranslationSubGroup[2]/titleTranslationLanguage", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
         ]
-        puts doc
         test_converter(doc, record, xpaths)
       end 
 
       it 'maps responsible department terms correctly' do
         xpaths = [
-          "/document/#{common}/responsibleDepartments/responsibleDepartment[1]",
-          "/document/#{common}/responsibleDepartments/responsibleDepartment[2]",
-#          { xpath: "/document/#{common}/responsibleDepartments/responsibleDepartment[1]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-#          { xpath: "/document/#{common}/responsibleDepartments/responsibleDepartment[2]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/responsibleDepartments/responsibleDepartment[1]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/responsibleDepartments/responsibleDepartment[2]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
         ]
-        puts doc
         test_converter(doc, record, xpaths)
-      end 
+      end
+
+      it 'maps responsible department terms to program vocab' do
+        xpath = "/document/#{common}/responsibleDepartments/responsibleDepartment[1]"
+        result = get_text(doc, xpath)
+        expect(result).to include('vocabularies:name(program):')
+      end
+
+      it 'maps object names to worktype concepts' do
+        xpath = "/document/#{common}/objectNameList/objectNameGroup[1]/objectName"
+        result = get_text(doc, xpath)
+        expect(result).to include('conceptauthorities:name(worktype)')
+      end
+      
+      it 'maps materials to material concepts' do
+        xpath = "/document/#{common}/materialGroupList/materialGroup[1]/material"
+        result = get_text(doc, xpath)
+        puts "RESULT: #{result}"
+        expect(result).to include('conceptauthorities:name(material_ca)')
+        
+      end
+
+      it 'does not set overridden common fields' do
+        xpaths = [
+          '/document/*/collection',
+          '/document/*/objectProductionDateGroupList/objectProductionDateGroup/dateEarliestScalarValue'
+        ]
+        xpaths.each{ |xpath|
+          expect(get_text(doc, xpath)).to be_empty
+        }
+      end
+
+      it 'maps publicartCollection to expected terms' do
+        xpaths = [
+          { xpath: "/document/#{pa}/publicartCollections/publicartCollection[1]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{pa}/publicartCollections/publicartCollection[2]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+        ]
+        test_converter(doc, record, xpaths)
+      end
+
+      it 'maps publicartCollection to organization name' do
+        xpath = "/document/#{pa}/publicartCollections/publicartCollection[1]"
+        result = get_text(doc, xpath)
+        expect(result).to include('orgauthorities:name(organization)')
+      end
+
+      it 'maps publicartProductionPerson field groups' do
+        xpaths = [
+          { xpath: "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[1]/publicartProductionPersonRole", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[2]/publicartProductionPersonRole", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[1]/publicartProductionPerson", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[2]/publicartProductionPerson", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[1]/publicartProductionPersonType",
+          "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[2]/publicartProductionPersonType",
+        ]
+        test_converter(doc, record, xpaths)
+      end
+
+      it 'maps publicartProductionPerson to organization name if from column for org names' do
+        xpath = "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[2]/publicartProductionPerson"
+        result = get_text(doc, xpath)
+        expect(result).to include('orgauthorities:name(organization)')
+      end
+
+      it 'maps publicartProductionPerson to person name if from column for person names' do
+        xpath = "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[1]/publicartProductionPerson"
+        result = get_text(doc, xpath)
+        expect(result).to include('personauthorities:name(person)')
+      end
+
+      it 'maps publicartProductionPersonRole to prodpersonrole vocab' do
+        xpath = "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup[1]/publicartProductionPersonRole"
+        result = get_text(doc, xpath)
+        expect(result).to include('vocabularies:name(prodpersonrole)')
+      end
+
+      it 'maps publicartProductionDate field groups' do
+        xpaths = [
+          { xpath: "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup[1]/publicartProductionDateType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDateType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup[1]/publicartProductionDate/dateDisplayDate",
+          "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDate/dateDisplayDate",
+        ]
+        test_converter(doc, record, xpaths)
+      end
+
+      it 'maps publicartProductionDateType to proddatetype vocab' do
+        xpath = "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup[1]/publicartProductionDateType"
+        result = get_text(doc, xpath)
+        expect(result).to include('vocabularies:name(proddatetype)')
+      end
 
     end # context 'given full sample data'
   end # describe #map

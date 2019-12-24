@@ -48,6 +48,7 @@ module Helpers
   def test_converter(doc, record, xpaths)
     xpaths.each do |xpath|
       doc_text = get_text(doc, xpath)
+      puts doc
       record_text = get_text(record, xpath)
       unless doc_text == record_text
         puts "CONVERTER RESULT: #{doc_text}"

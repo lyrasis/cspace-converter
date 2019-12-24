@@ -72,7 +72,6 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
     ]}
 
     it "Maps attributes correctly" do
-#      puts doc.xpath("/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup")
       test_converter(doc, record, xpaths)
     end
   end #context with full sample data

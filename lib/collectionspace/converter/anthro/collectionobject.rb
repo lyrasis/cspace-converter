@@ -109,6 +109,7 @@ module CollectionSpace
             'mortuaryTreatment',
             mortuary_treatment_fields,
             commingled_transforms,
+            sublist_suffix: 'GroupList',
             subgroup_suffix: 'Group',
           )
         end
