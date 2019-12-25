@@ -52,10 +52,37 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         ]
         test_converter(doc, record, xpaths)
       end
+
+      it 'Maps overrides to objectProductionPeopleGroupList' do
+        xpaths = [
+          { xpath: "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[1]/objectProductionPeople", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[1]/objectProductionPeopleRole", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[2]/objectProductionPeople", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[2]/objectProductionPeopleRole", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          ]
+        test_converter(doc, record, xpaths)
+      end
+
+      it 'Maps overrides to objectProductionPeople from Ethno column to concept: ethculture' do
+        xpath = "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[1]/objectProductionPeople"
+        result = get_text(doc, xpath)
+        expect(result).to include('conceptauthorities:name(ethculture)')
+      end
+      it 'Maps overrides to objectProductionPeople from Arch column to concept: archculture' do
+        xpath = "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[2]/objectProductionPeople"
+        result = get_text(doc, xpath)
+        expect(result).to include('conceptauthorities:name(archculture)')
+      end 
+      it 'Maps overrides to objectProductionPeopleRole to vocab: prodpeoplerole' do
+        xpath = "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[2]/objectProductionPeopleRole"
+        result = get_text(doc, xpath)
+        expect(result).to include('vocabularies:name(prodpeoplerole)')
+      end
+     
     end #  context 'sample data row 2'
   end # describe #map
 
-    describe '#map_annotations' do
+  describe '#map_annotations' do
     let(:annotation) { 'collectionobjects_annotation' }
 
     context 'sample data row 2' do

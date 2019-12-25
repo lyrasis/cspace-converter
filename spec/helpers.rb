@@ -48,12 +48,12 @@ module Helpers
   def test_converter(doc, record, xpaths)
     xpaths.each do |xpath|
       doc_text = get_text(doc, xpath)
-      puts doc
+#      puts doc
       record_text = get_text(record, xpath)
-      unless doc_text == record_text
-        puts "CONVERTER RESULT: #{doc_text}"
-        puts "EXPECTED RESULT: #{record_text}"
-      end
+ #     unless doc_text == record_text
+ #       puts "CONVERTER RESULT: #{doc_text}"
+ #       puts "EXPECTED RESULT: #{record_text}"
+ #     end
       expect(doc_text).not_to be_empty, -> { "Xpath for doc was empty: #{xpath}" }
       expect(record_text).not_to be_empty, -> { "Xpath for record was empty: #{xpath}" }
       expect(doc_text).to eq(record_text), -> { "Xpath match failure: #{xpath}\n#{doc_text}\n#{record_text}" }

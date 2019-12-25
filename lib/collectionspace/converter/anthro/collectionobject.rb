@@ -12,6 +12,7 @@ module CollectionSpace
             ) do
               xml.parent.namespace = nil
               CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
+              AnthroCollectionObject.map_common_overrides(xml, attributes)
             end
 
             xml.send(
@@ -43,6 +44,33 @@ module CollectionSpace
           end
         end
 
+        def redefined_fields
+          @redefined = [
+            'objectproductionpeople',
+            'objectproductionpeoplerole'
+          ]
+          super
+        end
+
+        def self.map_common_overrides(xml, attributes)
+          opp_data = {
+            'objectproductionpeopleethnoculture' => 'objectProductionPeople',
+            'objectproductionpeoplearchculture' => 'objectProductionPeople',
+            'objectproductionpeoplerole' => 'objectProductionPeopleRole'
+          }
+          opp_transforms = {
+            'objectproductionpeopleethnoculture' => {'authority' => ['conceptauthorities', 'ethculture']},
+            'objectproductionpeoplearchculture' =>  {'authority' => ['conceptauthorities', 'archculture']},
+            'objectproductionpeoplerole' => {'vocab' => 'prodpeoplerole'}
+          }
+          CSXML.prep_and_add_single_level_group_list(
+            xml, attributes,
+            'objectProductionPeople',
+            opp_data,
+            opp_transforms
+          )
+        end
+
         def self.map(xml, attributes)
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # localityGroupList
@@ -72,8 +100,8 @@ module CollectionSpace
             'agerange' => 'ageRange',
             'behrensmeyerupper' => 'behrensmeyerUpper',
             'behrensmeyersinglelower' => 'behrensmeyerSingleLower',
-             'commingledremainsnote' => 'commingledRemainsNote',
-            'sex' => 'sex',
+            'commingledremainsnote' => 'commingledRemainsNote',
+            'commingledremainssex' => 'sex',
             'count' => 'count',
             'minindividuals' => 'minIndividuals',
             'dentition' => 'dentition',
