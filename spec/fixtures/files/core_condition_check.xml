@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="conditionchecks">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-01-06T13:28:10.360Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:conditionchecks:id(973b25b0-bc1d-43cb-8141)</refName>
+    <uri>/conditionchecks/973b25b0-bc1d-43cb-8141</uri>
+    <updatedAt>2020-01-06T13:28:10.360Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:conditionchecks_common xmlns:ns2="http://collectionspace.org/services/conditioncheck" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <packingRecommendations>Packing recommendations text.</packingRecommendations>
+    <salvagePriorityCodeGroupList>                                                                                                                                                                                                           
+      <salvagePriorityCodeGroup>                                                                                                                                                                                                             
+        <salvagePriorityCode>high</salvagePriorityCode>                                                                                                                                                                                      
+        <salvagePriorityCodeDate>2000-08-01T00:00:00.000Z</salvagePriorityCodeDate>                                                                                                                                                          
+      </salvagePriorityCodeGroup>                                                                                                                                                                                                            
+      <salvagePriorityCodeGroup>                                                                                                                                                                                                             
+        <salvagePriorityCode>medium</salvagePriorityCode>                                                                                                                                                                                    
+        <salvagePriorityCodeDate>2000-08-02T00:00:00.000Z</salvagePriorityCodeDate>                                                                                                                                                          
+      </salvagePriorityCodeGroup>                                                                                                                                                                                                            
+    </salvagePriorityCodeGroupList>                                                                                                                                                                                                          
+    <conditionCheckGroupList>                                                                                                                                                                                                                
+      <conditionCheckGroup>                                                                                                                                                                                                                  
+        <conditionNote>Condition note text 1.</conditionNote>                                                                                                                                                                                
+        <condition>needsnowork</condition>                                                                                                                                                                                                   
+        <conditionDate>2000-03-01T00:00:00.000Z</conditionDate>                                                                                                                                                                              
+      </conditionCheckGroup>                                                                                                                                                                                                                 
+      <conditionCheckGroup>
+        <conditionNote>Condition note text 2.</conditionNote>
+        <condition>injeopardy</condition>
+        <conditionDate>2000-03-02T00:00:00.000Z</conditionDate>
+      </conditionCheckGroup>
+    </conditionCheckGroupList>
+    <displayRecommendations>Display recommendations text.</displayRecommendations>
+    <objectAuditCategory>low</objectAuditCategory>
+    <storageRequirements>Storage requirements text.</storageRequirements>
+    <legalRequirements>Legal license requirements text.</legalRequirements>
+    <handlingRecommendations>Handling recommendations text.</handlingRecommendations>
+    <securityRecommendations>Security recommendations text.</securityRecommendations>
+    <conditionCheckMethod>observed</conditionCheckMethod>
+    <conditionCheckRefNumber>CC2000.001</conditionCheckRefNumber>
+    <legalReqsHeldGroupList>
+      <legalReqsHeldGroup>
+        <legalReqsHeld>Legal license requirements held text 1.</legalReqsHeld>
+        <legalReqsHeldBeginDate>2000-09-01T00:00:00.000Z</legalReqsHeldBeginDate>
+        <legalReqsHeldRenewDate>2000-11-01T00:00:00.000Z</legalReqsHeldRenewDate>
+        <legalReqsHeldEndDate>2000-10-01T00:00:00.000Z</legalReqsHeldEndDate>
+        <legalReqsHeldNumber>Legal license requirements held number text 1.</legalReqsHeldNumber>
+      </legalReqsHeldGroup>
+      <legalReqsHeldGroup>
+        <legalReqsHeld>Legal lLegal license requirements held text 2.</legalReqsHeld>
+        <legalReqsHeldBeginDate>2000-09-02T00:00:00.000Z</legalReqsHeldBeginDate>
+        <legalReqsHeldRenewDate>2000-11-02T00:00:00.000Z</legalReqsHeldRenewDate>
+        <legalReqsHeldEndDate>2000-10-02T00:00:00.000Z</legalReqsHeldEndDate>
+        <legalReqsHeldNumber>LeLegal license requirements held number text 2.</legalReqsHeldNumber>
+      </legalReqsHeldGroup>
+    </legalReqsHeldGroupList>
+    <conditionCheckNote>Condition check assessment note text.</conditionCheckNote>
+    <conditionChecker>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(PrincetonUniversityArtMuseum1578314067124)'Princeton University Art Museum'</conditionChecker>
+    <techAssessmentGroupList>
+      <techAssessmentGroup>
+        <techAssessment>Technical assessment text 1.</techAssessment>
+        <techAssessmentDate>2000-06-01T00:00:00.000Z</techAssessmentDate>
+      </techAssessmentGroup>
+      <techAssessmentGroup>
+        <techAssessment>Technical assessment text 2.</techAssessment>
+        <techAssessmentDate>2000-06-02T00:00:00.000Z</techAssessmentDate>
+      </techAssessmentGroup>
+    </techAssessmentGroupList>
+    <hazardGroupList>
+      <hazardGroup>
+        <hazard>poisonous</hazard>
+        <hazardDate>2000-07-01T00:00:00.000Z</hazardDate>
+        <hazardNote>Hazard note text 1.</hazardNote>
+      </hazardGroup>
+      <hazardGroup>
+        <hazard>radioactive</hazard>
+        <hazardDate>2000-07-02T00:00:00.000Z</hazardDate>
+        <hazardNote>Hazard note text 2.</hazardNote>
+      </hazardGroup>
+    </hazardGroupList>
+    <completenessGroupList>
+      <completenessGroup>
+        <completenessDate>2000-02-01T00:00:00.000Z</completenessDate>
+        <completeness>complete</completeness>
+        <completenessNote>Completeness note text 1.</completenessNote>
+      </completenessGroup>
+      <completenessGroup>
+        <completenessDate>2000-02-02T00:00:00.000Z</completenessDate>
+        <completeness>fragmented</completeness>
+        <completenessNote>Completeness note text 2.</completenessNote>
+      </completenessGroup>
+    </completenessGroupList>
+    <conditionCheckReason>conservation</conditionCheckReason>
+    <conditionCheckAssessmentDate>2000-01-01T00:00:00.000Z</conditionCheckAssessmentDate>
+    <envConditionNoteGroupList>
+      <envConditionNoteGroup>
+        <envConditionNoteDate>2000-04-01T00:00:00.000Z</envConditionNoteDate>
+        <envConditionNote>Environmental condition note text 1.</envConditionNote>
+      </envConditionNoteGroup>
+      <envConditionNoteGroup>
+        <envConditionNoteDate>2000-04-02T00:00:00.000Z</envConditionNoteDate>
+        <envConditionNote>Environmental condition note text 2.</envConditionNote>
+      </envConditionNoteGroup>
+    </envConditionNoteGroupList>
+    <conservationTreatmentPriority>medium</conservationTreatmentPriority>
+    <nextConditionCheckDate>2000-05-01T00:00:00.000Z</nextConditionCheckDate>
+    <specialRequirements>Special requirements text.</specialRequirements>
+    <envRecommendations>Environmental recommendations text.</envRecommendations>
+  </ns2:conditionchecks_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
