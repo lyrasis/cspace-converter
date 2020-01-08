@@ -53,7 +53,7 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes)
-          CSXML::Helpers.add_title(xml, attributes) if attributes['title']
+          CSXML::Helpers.add_title(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
           CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
           CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)

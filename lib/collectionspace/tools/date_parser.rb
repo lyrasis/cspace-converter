@@ -95,7 +95,6 @@ module CollectionSpace
         day = "%02d" % m[2]
         return "#{year}-#{month}-#{day}"
       end
-      
     end
   end
 end

@@ -62,13 +62,13 @@ module CollectionSpace
           CSXML.add xml, 'InventoryID', attributes['inventoryid']
 
           osteoagedata = {
-          'osteoageestimateverbatim' => 'osteoAgeEstimateVerbatim',
-          'osteoageestimatelower' => 'osteoAgeEstimateLower',
-          'osteoageestimateupper' => 'osteoAgeEstimateUpper',
-          'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
-          'osteoageestimatenote' => 'osteoAgeEstimateNote',
-          'osteoageestimatedate' => 'osteoAgeEstimateDate'
-        }
+            'osteoageestimateverbatim' => 'osteoAgeEstimateVerbatim',
+            'osteoageestimatelower' => 'osteoAgeEstimateLower',
+            'osteoageestimateupper' => 'osteoAgeEstimateUpper',
+            'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
+            'osteoageestimatenote' => 'osteoAgeEstimateNote',
+            'osteoageestimatedate' => 'osteoAgeEstimateDate'
+          }
           osteoage_transforms = {
             'osteoageestimateanalyst' => {'authority' => ['personauthorities', 'person']}
           }
@@ -80,7 +80,8 @@ module CollectionSpace
             osteoagedata,
             'osteoAgeEstimateDate',
             osteoage_transforms,
-            subgroup_suffix: 'Group')
+            subgroup_suffix: 'Group'
+          )
 
           determinationdates = []
           sexdetermination = []
