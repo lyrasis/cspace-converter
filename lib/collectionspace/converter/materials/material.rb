@@ -19,7 +19,7 @@ module CollectionSpace
               "termName" => attributes["termname"],
               "termFlag" => CSXML::Helpers.get_vocab('materialtermflag', attributes["termflag"]),
               "termLanguage" => CSXML::Helpers.get_vocab('languages', attributes["termlanguage"]),
-              "termPrefForLang" => attributes["termprefforlang"],
+              "termPrefForLang" => CSDR.to_boolean(attributes["termprefforlang"]),
               "termQualifier" => attributes["termqualifier"],
               "termSource" => CSXML::Helpers.get_authority('citationauthorities', 'citation', attributes["termsource"]),
               "termSourceID" => attributes["termsourceid"],
@@ -42,7 +42,17 @@ module CollectionSpace
           cname = CSDR.split_mvf attributes, 'materialcompositionclassname'
           gname = CSDR.split_mvf attributes, 'materialcompositiongenericname'
           fname.each_with_index do |famname, index|
-            overall_composition << {"materialCompositionFamilyName" => CSXML::Helpers.get_authority('conceptauthorities', 'materialclassification', famname), "materialCompositionClassName" => CSXML::Helpers.get_authority('conceptauthorities', 'materialclassification', cname[index]), "materialCompositionGenericName" => CSXML::Helpers.get_authority('conceptauthorities', 'materialclassification', gname[index])}
+            overall_composition << {
+              "materialCompositionFamilyName" => CSXML::Helpers.get_authority(
+                'conceptauthorities', 'materialclassification', famname
+              ),
+              "materialCompositionClassName" => CSXML::Helpers.get_authority(
+                'conceptauthorities', 'materialclassification', cname[index]
+              ),
+              "materialCompositionGenericName" => CSXML::Helpers.get_authority(
+                'conceptauthorities', 'materialclassification', gname[index]
+              )
+            }
           end
           CSXML.add_group_list xml, 'materialComposition', overall_composition
           # description
@@ -57,17 +67,17 @@ module CollectionSpace
           # Discontinued
           CSXML.add xml, 'discontinued', attributes["discontinued"]
           CSXML::Helpers.add_organization xml, 'discontinuedBy', attributes["discontinuedby"]
-          CSXML.add_repeat xml, 'discontinuedDate', [{
-            "dateDisplayDate" => CSDTP.parse(attributes["discontinueddate"]).display_date,
-            "dateEarliestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).earliest_scalar,
-            "dateLatestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).latest_scalar,
-          }] rescue nil
+          # CSXML.add_repeat xml, 'discontinuedDate', [{
+          #   "dateDisplayDate" => CSDTP.parse(attributes["discontinueddate"]).display_date,
+          #   "dateEarliestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).earliest_scalar,
+          #   "dateLatestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).latest_scalar,
+          # }]
           # Production date
-          CSXML.add_repeat xml, 'productionDate', [{
-            "dateDisplayDate" => CSDTP.parse(attributes["productiondate"]).display_date,
-            "dateEarliestScalarValue" => CSDTP.parse(attributes["productiondate"]).earliest_scalar,
-            "dateLatestScalarValue" => CSDTP.parse(attributes["productiondate"]).latest_scalar,
-          }]
+          # CSXML.add_repeat xml, 'productionDate', [{
+          #   "dateDisplayDate" => CSDTP.parse(attributes["productiondate"]).display_date,
+          #   "dateEarliestScalarValue" => CSDTP.parse(attributes["productiondate"]).earliest_scalar,
+          #   "dateLatestScalarValue" => CSDTP.parse(attributes["productiondate"]).latest_scalar,
+          # }]
           # productionNote
           CSXML.add xml, 'productionNote', attributes["productionnote"]
           # materialProductionOrganization
@@ -181,7 +191,7 @@ module CollectionSpace
             dimensions << {"dimension" => dim, "value" => values[index], "measurementUnit" => unit[index]}
           end
           typicalsize << {"typicalSize" => attributes["typicalsize"]}
-          CSXML.add_group_list xml, 'typicalSize', typicalsize, 'typicalSizeDimension', dimensions
+          # CSXML.add_group_list xml, 'typicalSize', typicalsize, 'typicalSizeDimension', dimensions
           # formNote
           CSXML.add xml, 'formNote', attributes["formnote"]
           # acousticalProperty
@@ -322,7 +332,7 @@ module CollectionSpace
           machiningprocess.each_with_index do |mcp, index|
             machiningprocesses << {"machiningProcess" => CSXML::Helpers.get_vocab('machiningprocesses', mcp)}
           end
-          CSXML.add_repeat xml, 'machiningProcess', machiningprocesses
+          CSXML.add_repeat xml, 'machiningProcesses', machiningprocesses
           # moldingProcess
           moldingprocesses = []
           moldingprocess = CSDR.split_mvf attributes, 'moldingprocess'
