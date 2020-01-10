@@ -30,8 +30,8 @@ module CollectionSpace
             attributes,
             'completeness',
             overall_completeness,
-            list_suffix: 'GroupList'
-          ) rescue nil
+            group_suffix: 'Group'
+          ) rescue nil 
 =begin
           overall_completeness = []
           completeness = CSDR.split_mvf attributes, 'completeness'
