@@ -57,7 +57,7 @@
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>1/1/2010</dateDisplayDate>
+          <dateDisplayDate>2010/1/1</dateDisplayDate>
           <dateLatestScalarValue>2010-01-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
@@ -87,7 +87,7 @@
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>2/1/2010</dateDisplayDate>
+          <dateDisplayDate>2010/2/1</dateDisplayDate>
           <dateLatestScalarValue>2010-02-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
@@ -116,12 +116,11 @@
     <osteoAgeEstimateGroupList>
       <osteoAgeEstimateGroup>
         <osteoAgeEstimateLower>20</osteoAgeEstimateLower>
-        <osteoAgeEstimateVerbatim>early twenties</osteoAgeEstimateVerbatim>
         <osteoAgeEstimateDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>1/1/2010</dateDisplayDate>
+          <dateDisplayDate>2010/1/1</dateDisplayDate>
           <dateLatestScalarValue>2010-01-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
@@ -148,12 +147,11 @@
       </osteoAgeEstimateGroup>
       <osteoAgeEstimateGroup>
         <osteoAgeEstimateLower>25</osteoAgeEstimateLower>
-        <osteoAgeEstimateVerbatim>late twenties</osteoAgeEstimateVerbatim>
         <osteoAgeEstimateDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>2/1/2010</dateDisplayDate>
+          <dateDisplayDate>2010/2/1</dateDisplayDate>
           <dateLatestScalarValue>2010-02-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>

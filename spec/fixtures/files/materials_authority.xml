@@ -286,12 +286,12 @@
     <recycledContentGroupList>
       <recycledContentGroup>
         <recycledContent>10</recycledContent>
-        <recycledContentQualifier/>
+        <recycledContentQualifier>Post-consumer</recycledContentQualifier>
         <recycledContentHigh>20</recycledContentHigh>
       </recycledContentGroup>
       <recycledContentGroup>
         <recycledContent>20</recycledContent>
-        <recycledContentQualifier/>
+        <recycledContentQualifier>Post industrial</recycledContentQualifier>
         <recycledContentHigh>30</recycledContentHigh>
       </recycledContentGroup>
     </recycledContentGroupList>
