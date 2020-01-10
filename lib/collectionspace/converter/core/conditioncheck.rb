@@ -15,7 +15,24 @@ module CollectionSpace
           CSXML.add xml, 'conditionCheckMethod', attributes["conditioncheckmethod"]
           CSXML.add xml, 'conditionCheckNote', attributes["conditionchecknote"]
           CSXML.add xml, 'conditionCheckReason', attributes["conditioncheckreason"]
+          CSXML.add xml, 'conditionChecker', CSXML::Helpers.get_authority('personauthorities', 'person', attributes["conditioncheckerperson"])
+          CSXML.add xml, 'conditionChecker', CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["conditioncheckerorganization"])
           CSXML.add xml, 'objectAuditCategory', attributes["objectauditcategory"]
+       
+          overall_completeness = {
+            'completeness' => 'completeness',
+            'completenessnote' => 'completenessNote',
+            'completenessdate' => 'completenessDate'
+          }
+        
+          CSXML.add_group_list_with_structured_date(
+            xml,
+            attributes,
+            'completeness',
+            overall_completeness,
+            list_suffix: 'GroupList'
+          ) rescue nil
+=begin
           overall_completeness = []
           completeness = CSDR.split_mvf attributes, 'completeness'
           completenessnote = CSDR.split_mvf attributes, 'completenessnote'
@@ -24,6 +41,7 @@ module CollectionSpace
             overall_completeness << {"completeness" => cmplt, "completenessNote" => completenessnote[index], "completenessDate" => CSDTP.parse(completenessdate[index]).earliest_scalar}
           end
           CSXML.add_group_list xml, 'completeness', overall_completeness
+=end
           overall_condition = []
           condition = CSDR.split_mvf attributes, 'condition'
           conditiondate = CSDR.split_mvf attributes, 'conditiondate' 
