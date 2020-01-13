@@ -25,13 +25,13 @@ module CollectionSpace
             'completenessdate' => 'completenessDate'
           }
         
-          CSXML.add_group_list_with_structured_date(
+          CSXML.add_group_list(
             xml,
             attributes,
             'completeness',
             overall_completeness,
             group_suffix: 'Group'
-          ) rescue nil 
+          ) 
 =begin
           overall_completeness = []
           completeness = CSDR.split_mvf attributes, 'completeness'
