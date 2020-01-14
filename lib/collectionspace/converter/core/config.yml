@@ -5,7 +5,6 @@ registered_authorities:
   - orgauthorities
   - personauthorities
   - placeauthorities
-  - citationauthorities
 registered_procedures:
   - Acquisition
   - CollectionObject
@@ -111,9 +110,6 @@ registered_profiles:
         - name_field: sponsorperson
           authority_type: Person
           authority_subtype: person
-        - name_field: exhibitionreference
-          authority_type: Citation
-          authority_subtype: citation
   group:
     type: Procedures
     enabled: true
