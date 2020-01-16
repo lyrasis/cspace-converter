@@ -1,7 +1,8 @@
-termDisplayName,conceptRecordType,scopeNote,termSourceID,termSourceNote
-"Category 1: Colors",category,"Definition: The color of a thing",FN4.0,"Changed from ""Hues""; Edited definition"
-"Primary Colors",class,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN3.0,
-Blue,subclass,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
-"Dark blue","primary object term","This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
-"Navy blue","secondary object term","This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
-"Starless Night Blue","tertiary object term","This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",FN4.0,
+termDisplayName,termName,termQualifier,termStatus,termType,termFlag,historicalStatus,termLanguage,termPrefForLang,termSource,termSourceDetail,termSourceID,termSourceNote,conceptRecordType,scopeNote,scopeNoteSource,scopeNoteSourceDetail,citationSource,citationSourceDetail,additionalSource,additionalSourceDetail,additionalSourceID,additionalSourceNote
+"Censer; Bowl, incense; Holder, incense",Censer name; Incense bowl; Incense holder name,Censer qualifier; Incense bowl qual; Incense holder qualifier,accepted; accepted; accepted,descriptor; used for term; used for term,; common term; common term,current; both; current,English; English; English,y; n; n,AASLH Nomenclature; AASLH Nomenclature; AASLH Nomenclature,Source detail 1; Incense bowl source detail; Incense holder source detail,N3.0; N4.0; N4.0,Source note 1; Incense bowl source note; Incense holder source note,secondary term; generic,Scope note here,Scope note source,Scope note source detail,AALSLH Nomenclature; Another citation,AN citation detail; More citation detail,Source1; Source 2,S1 detail; S2 detail,S1 ID; S2 ID,S1 note; S2 note
+Category 1: Colors,,,,,,,,,,,FN4.0,"Changed from ""Hues""; Edited definition",category,Definition: The color of a thing,,,,,,,,
+Primary Colors,,,,,,,,,,,FN3.0,,class,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",,,,,,,,
+Blue,,,,,,,,,,,FN4.0,,subclass,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",,,,,,,,
+Dark blue,,,,,,,,,,,FN4.0,,primary object term,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",,,,,,,,
+Navy blue,,,,,,,,,,,FN4.0,,secondary object term,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",,,,,,,,
+Starless Night Blue,,,,,,,,,,,FN4.0,,tertiary object term,"This is all fake data for use in testing the CollectionSpace converter tool, and not part of any true controlled vocabulary",,,,,,,,

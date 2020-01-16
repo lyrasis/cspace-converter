@@ -21,23 +21,33 @@ module CollectionSpace
 
           # conceptTermGroupList
           term_data = {
-            'historicalStatus' => attributes['historicalstatus'],
-            'termDisplayName' => attributes['termdisplayname'],
-            'termLanguage' => CSXML::Helpers.get_vocab('languages', attributes['termlanguage']),
-            'termPrefForLang' => attributes['termprefforlang'],
-            'termSource' => CSXML::Helpers.get_authority(
-              'citationauthorities',
-              'citation',
-              attributes['termsource']
-            ),
-            'termSourceID' => attributes['termsourceid'],
-            'termSourceNote' => attributes['termsourcenote'],
-            'termStatus' => attributes['termstatus'],
-            'termType' => attributes['termtype']
+            'termdisplayname' => 'termDisplayName',
+            'termname' => 'termName',
+            'termqualifier' => 'termQualifier',
+            'termstatus' => 'termStatus',
+            'termtype' => 'termType',
+            'termflag' => 'termFlag',
+            'historicalstatus' => 'historicalStatus',
+            'termlanguage' => 'termLanguage',
+            'termprefforlang' => 'termPrefForLang',
+            'termsource' => 'termSource',
+            'termsourcedetail' => 'termSourceDetail',
+            'termsourceid' => 'termSourceID',
+            'termsourcenote' => 'termSourceNote'
           }
-          CSXML.add_group_list xml, 'conceptTerm', [term_data]
+          term_transforms = {
+            'termsource' => {'authority' => ['citationauthorities', 'citation']},
+            'termflag' => {'vocab' => 'concepttermflag'},
+            'termlanguage' => {'vocab' => 'languages'},
+            'termprefforlang' => {'special' => 'boolean'}
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'conceptTerm',
+            term_data,
+            term_transforms
+            )
 
-          CSXML.add xml, 'termDisplayName', attributes['termDisplayName']
 
           CSXML.add_repeat xml, 'conceptRecordTypes', [{
             'conceptRecordType' => CSURN.get_vocab_urn('concepttype', attributes['conceptrecordtype'])

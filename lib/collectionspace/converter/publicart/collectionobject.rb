@@ -59,7 +59,7 @@ module CollectionSpace
           oname_transforms = {
             'objectname' => {'authority' => ['conceptauthorities', 'worktype']}
           }
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'objectName',
             oname_data,
@@ -74,7 +74,7 @@ module CollectionSpace
           mat_transforms = {
             'material' => {'authority' => ['conceptauthorities', 'material_ca']}
           }
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'material',
             mat_data,
@@ -117,7 +117,7 @@ module CollectionSpace
             'publicartproductionpersonperson' => {'authority' => ['personauthorities', 'person']},
             'publicartproductionpersonorganization' => {'authority' => ['orgauthorities', 'organization']}
           }
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'publicartProductionPerson',
             ppp_data,

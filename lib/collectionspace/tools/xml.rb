@@ -154,7 +154,7 @@ module CollectionSpace
 
       # convenience method to handle pre-processing of non-nested GroupList
       # see add_nested_group_list comments below for info on arguments not explained here
-      def self.prep_and_add_single_level_group_list(
+      def self.add_single_level_group_list(
         xml,
         attributes,
         key, # String; used to name GroupList
@@ -673,7 +673,7 @@ module CollectionSpace
               title_transforms['titlelanguage'] = {'vocab' => 'languages'}
             end
             title_data['titletype'] = 'titleType' if attributes['titleType']
-            CSXML.prep_and_add_single_level_group_list(
+            CSXML.add_single_level_group_list(
               xml, attributes,
               'title',
               title_data,
