@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/collectionspace/cspace-converter.svg?branch=master)](https://travis-ci.com/collectionspace/cspace-converter) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
-Migrate data into CollectionSpace from CSV files.
+Migrate data to CollectionSpace.
 
 ## Getting Started
 
@@ -49,6 +49,16 @@ docker run --name mongo -d -p 27017:27017 mongo:3.2
 You should be able to access MongDB on `http://localhost:27017`.
 
 If you prefer to run Mongo traditionally follow the installation docs online.
+
+You can dump and restore the database with Mongo Tools:
+
+```bash
+sudo apt-get install mongo-tools # ubuntu
+mongodump --archive=data/dump/cspace_converter_development.gz
+mongorestore --archive=data/dump/cspace_converter_development.gz
+```
+
+[Robo3T](https://robomongo.org/download) is recommended for a GUI client.
 
 ## Setup CSV Data to be Imported
 

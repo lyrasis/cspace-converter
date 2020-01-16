@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="materials">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-12-02T12:36:13.935Z</createdAt>
+    <updatedBy>admin@materials.collectionspace.org</updatedBy>
+    <createdBy>admin@materials.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>2000</tenantId>
+    <refName>urn:cspace:materials.collectionspace.org:materialauthorities:name(material):item:name(PlastiPaste1575290173936)'Plasti-Paste'</refName>
+    <uri>/materialauthorities/54b05c47-19b6-42d0-a0b6/items/cb89532d-4d8b-4a0a-91eb</uri>
+    <updatedAt>2019-12-02T12:36:13.935Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:materials_common xmlns:ns2="http://collectionspace.org/services/material" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <lifecycleComponentGroupList>
+      <lifecycleComponentGroup>
+        <lifecycleComponent>urn:cspace:materials.collectionspace.org:vocabularies:name(lifecyclecomponents):item:name(biodegradable)'Biodegradable'</lifecycleComponent>
+        <lifecycleComponentNote>Lifecycle component note text 1</lifecycleComponentNote>
+      </lifecycleComponentGroup>
+      <lifecycleComponentGroup>
+        <lifecycleComponent>urn:cspace:materials.collectionspace.org:vocabularies:name(lifecyclecomponents):item:name(recyclable)'Recyclable'</lifecycleComponent>
+        <lifecycleComponentNote>Lifecycle component note text 2</lifecycleComponentNote>
+      </lifecycleComponentGroup>
+    </lifecycleComponentGroupList>
+    <materialProductionOrganizationGroupList>
+      <materialProductionOrganizationGroup>
+        <materialProductionOrganizationRole>urn:cspace:materials.collectionspace.org:vocabularies:name(materialproductionrole):item:name(distributor)'distributor'</materialProductionOrganizationRole>
+        <materialProductionOrganization>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(RobbinsMusicCorporation1575278773480)'Robbins Music Corporation'</materialProductionOrganization>
+      </materialProductionOrganizationGroup>
+      <materialProductionOrganizationGroup>
+        <materialProductionOrganizationRole>urn:cspace:materials.collectionspace.org:vocabularies:name(materialproductionrole):item:name(manufacturer)'manufacturer'</materialProductionOrganizationRole>
+        <materialProductionOrganization>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation1575278793560)'Admiral Corporation'</materialProductionOrganization>
+      </materialProductionOrganizationGroup>
+    </materialProductionOrganizationGroupList>
+    <smartMaterialPropertyGroupList>
+      <smartMaterialPropertyGroup>
+        <smartMaterialPropertyNote>Smart material property note text 1</smartMaterialPropertyNote>
+        <smartMaterialPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(dichroic)'dichroic'</smartMaterialPropertyType>
+      </smartMaterialPropertyGroup>
+      <smartMaterialPropertyGroup>
+        <smartMaterialPropertyNote>Smart material property note text 2</smartMaterialPropertyNote>
+        <smartMaterialPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(photovoltaic)'photovoltaic'</smartMaterialPropertyType>
+      </smartMaterialPropertyGroup>
+    </smartMaterialPropertyGroupList>
+    <processNote>Process note text</processNote>
+    <propertyNote>Property note text</propertyNote>
+    <materialCompositionGroupList>
+      <materialCompositionGroup>
+        <materialCompositionGenericName>urn:cspace:materials.collectionspace.org:conceptauthorities:name(materialclassification):item:name(eggshell1575278483206)'eggshell'</materialCompositionGenericName>
+        <materialCompositionClassName>urn:cspace:materials.collectionspace.org:conceptauthorities:name(materialclassification):item:name(animal1575278452450)'animal'</materialCompositionClassName>
+        <materialCompositionFamilyName>urn:cspace:materials.collectionspace.org:conceptauthorities:name(materialclassification):item:name(biocomposite1575278388572)'biocomposite'</materialCompositionFamilyName>
+      </materialCompositionGroup>
+      <materialCompositionGroup>
+        <materialCompositionGenericName>urn:cspace:materials.collectionspace.org:conceptauthorities:name(materialclassification):item:name(cotton1575278490925)'cotton'</materialCompositionGenericName>
+        <materialCompositionClassName>urn:cspace:materials.collectionspace.org:conceptauthorities:name(materialclassification):item:name(plant1575278459518)'plant'</materialCompositionClassName>
+        <materialCompositionFamilyName>urn:cspace:materials.collectionspace.org:conceptauthorities:name(materialclassification):item:name(biocomposite1575278388572)'biocomposite'</materialCompositionFamilyName>
+      </materialCompositionGroup>
+    </materialCompositionGroupList>
+    <productionNote>Production note text</productionNote>
+    <materialCitationGroupList>
+      <materialCitationGroup>
+        <materialCitationSource>urn:cspace:materials.collectionspace.org:citationauthorities:name(citation):item:name(Book11575279005040)'Book 1'</materialCitationSource>
+        <materialCitationSourceDetail>Source detail text 1</materialCitationSourceDetail>
+      </materialCitationGroup>
+      <materialCitationGroup>
+        <materialCitationSource>urn:cspace:materials.collectionspace.org:citationauthorities:name(citation):item:name(Book111575279013850)'Book 11'</materialCitationSource>
+        <materialCitationSourceDetail>Source detail text 2</materialCitationSourceDetail>
+      </materialCitationGroup>
+    </materialCitationGroupList>
+    <additionalProcessGroupList>
+      <additionalProcessGroup>
+        <additionalProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(additionalprocesses):item:name(acetylation)'acetylation'</additionalProcess>
+        <additionalProcessNote>Additional process note text 1</additionalProcessNote>
+      </additionalProcessGroup>
+      <additionalProcessGroup>
+        <additionalProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(additionalprocesses):item:name(firing)'firing'</additionalProcess>
+        <additionalProcessNote>Additional process note text 2</additionalProcessNote>
+      </additionalProcessGroup>
+    </additionalProcessGroupList>
+    <opticalPropertyGroupList>
+      <opticalPropertyGroup>
+        <opticalPropertyNote>Optical property note text 1</opticalPropertyNote>
+        <opticalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(opticalproperties):item:name(iridescent)'iridescent'</opticalPropertyType>
+      </opticalPropertyGroup>
+      <opticalPropertyGroup>
+        <opticalPropertyNote>Optical property note text 2</opticalPropertyNote>
+        <opticalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(opticalproperties):item:name(prismatic)'prismatic'</opticalPropertyType>
+      </opticalPropertyGroup>
+    </opticalPropertyGroupList>
+    <refName>urn:cspace:materials.collectionspace.org:materialauthorities:name(material):item:name(PlastiPaste1575290173936)'Plasti-Paste'</refName>
+    <rapidPrototypingProcesses>
+      <rapidPrototypingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(printing)'printing'</rapidPrototypingProcess>
+      <rapidPrototypingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(weaving_3d)'weaving (3D)'</rapidPrototypingProcess>
+    </rapidPrototypingProcesses>
+    <typicalSizeGroupList>
+      <typicalSizeGroup>
+        <typicalSizeDimensionGroupList>
+          <typicalSizeDimensionGroup>
+            <dimension>length</dimension>
+            <value>2</value>
+            <measurementUnit>inches</measurementUnit>
+          </typicalSizeDimensionGroup>
+          <typicalSizeDimensionGroup>
+            <dimension>width</dimension>
+            <value>4</value>
+            <measurementUnit>inches</measurementUnit>
+          </typicalSizeDimensionGroup>
+        </typicalSizeDimensionGroupList>
+        <typicalSize>small</typicalSize>
+      </typicalSizeGroup>
+    </typicalSizeGroupList>
+    <rev>0</rev>
+    <csid>cb89532d-4d8b-4a0a-91eb</csid>
+    <formTypeGroupList>
+      <formTypeGroup>
+        <formType>urn:cspace:materials.collectionspace.org:vocabularies:name(materialformtype):item:name(block)'block'</formType>
+      </formTypeGroup>
+      <formTypeGroup>
+        <formType>urn:cspace:materials.collectionspace.org:vocabularies:name(materialformtype):item:name(cord)'cord'</formType>
+      </formTypeGroup>
+    </formTypeGroupList>
+    <discontinuedBy>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(MuseumoftheMovingImage1575278547032)'Museum of the Moving Image'</discontinuedBy>
+    <materialTermAttributionContributingGroupList>
+      <materialTermAttributionContributingGroup>
+        <materialTermAttributionContributingPerson>urn:cspace:materials.collectionspace.org:personauthorities:name(person):item:name(DavidCornwell1575279255716)'David Cornwell'</materialTermAttributionContributingPerson>
+        <materialTermAttributionContributingOrganization>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(UniversitelibredeBruxelles1575279210280)'Universite libre de Bruxelles'</materialTermAttributionContributingOrganization>
+        <materialTermAttributionContributingDate>2000-01-01T00:00:00.000Z</materialTermAttributionContributingDate>
+      </materialTermAttributionContributingGroup>
+      <materialTermAttributionContributingGroup>
+        <materialTermAttributionContributingPerson>urn:cspace:materials.collectionspace.org:personauthorities:name(person):item:name(ToukoLaaksonen1575279265263)'Touko Laaksonen'</materialTermAttributionContributingPerson>
+        <materialTermAttributionContributingOrganization>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(JewishWomensArchive1575279235556)'Jewish Women's Archive'</materialTermAttributionContributingOrganization>
+        <materialTermAttributionContributingDate>2000-01-01T00:00:00.000Z</materialTermAttributionContributingDate>
+      </materialTermAttributionContributingGroup>
+    </materialTermAttributionContributingGroupList>
+    <proposed>true</proposed>
+    <sensorialPropertyGroupList>
+      <sensorialPropertyGroup>
+        <sensorialPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(sensorialproperties):item:name(vision_colorfulness_low)'vision - colorfulness (low)'</sensorialPropertyType>
+        <sensorialPropertyNote>Sensorial property note text 1</sensorialPropertyNote>
+      </sensorialPropertyGroup>
+      <sensorialPropertyGroup>
+        <sensorialPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(sensorialproperties):item:name(taste_bitter)'taste - bitter'</sensorialPropertyType>
+        <sensorialPropertyNote>Sensorial property note 2</sensorialPropertyNote>
+      </sensorialPropertyGroup>
+    </sensorialPropertyGroupList>
+    <castingProcesses>
+      <castingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(castingprocesses):item:name(floating)'floating'</castingProcess>
+      <castingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(castingprocesses):item:name(slumping)'slumping'</castingProcess>
+    </castingProcesses>
+    <materialProductionPlaceGroupList>
+      <materialProductionPlaceGroup>
+        <materialProductionPlace>urn:cspace:materials.collectionspace.org:placeauthorities:name(place):item:name(NewYork1575278903984)'New York'</materialProductionPlace>
+        <materialProductionPlaceRole>urn:cspace:materials.collectionspace.org:vocabularies:name(materialproductionrole):item:name(origin)'origin'</materialProductionPlaceRole>
+      </materialProductionPlaceGroup>
+      <materialProductionPlaceGroup>
+        <materialProductionPlace>urn:cspace:materials.collectionspace.org:placeauthorities:name(place):item:name(NewHampshire1575278912758)'New Hampshire'</materialProductionPlace>
+        <materialProductionPlaceRole>urn:cspace:materials.collectionspace.org:vocabularies:name(materialproductionrole):item:name(distributor)'distributor'</materialProductionPlaceRole>
+      </materialProductionPlaceGroup>
+    </materialProductionPlaceGroupList>
+    <featuredApplicationGroupList>
+      <featuredApplicationGroup>
+        <featuredApplication>urn:cspace:materials.collectionspace.org:workauthorities:name(work):item:name(Work11575278950412)'Work 1'</featuredApplication>
+        <featuredApplicationNote>Featured application note text 1</featuredApplicationNote>
+      </featuredApplicationGroup>
+      <featuredApplicationGroup>
+        <featuredApplication>urn:cspace:materials.collectionspace.org:workauthorities:name(work):item:name(Work111575278960376)'Work 11'</featuredApplication>
+        <featuredApplicationNote>Featured application note text 2</featuredApplicationNote>
+      </featuredApplicationGroup>
+    </featuredApplicationGroupList>
+    <durabilityPropertyGroupList>
+      <durabilityPropertyGroup>
+        <durabilityPropertyNote>Durability property note text 1</durabilityPropertyNote>
+        <durabilityPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(durabilityproperties):item:name(abrasion_resistant)'abrasion resistant'</durabilityPropertyType>
+      </durabilityPropertyGroup>
+      <durabilityPropertyGroup>
+        <durabilityPropertyNote>Durability property note text 2</durabilityPropertyNote>
+        <durabilityPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(durabilityproperties):item:name(heat_resistant)'heat resistant'</durabilityPropertyType>
+      </durabilityPropertyGroup>
+    </durabilityPropertyGroupList>
+    <acousticalPropertyGroupList>
+      <acousticalPropertyGroup>
+        <acousticalPropertyNote>Acoustical property note text 1</acousticalPropertyNote>
+        <acousticalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_absorption_reflective)'sound absorption - reflective'</acousticalPropertyType>
+      </acousticalPropertyGroup>
+      <acousticalPropertyGroup>
+        <acousticalPropertyNote>Acoustical property note text 2</acousticalPropertyNote>
+        <acousticalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_absorption_neutral)'sound absorption - neutral'</acousticalPropertyType>
+      </acousticalPropertyGroup>
+    </acousticalPropertyGroupList>
+    <externalUrlGroupList>
+      <externalUrlGroup>
+        <externalUrl>www.test.example</externalUrl>
+        <externalUrlNote>External URL note 1</externalUrlNote>
+      </externalUrlGroup>
+      <externalUrlGroup>
+        <externalUrl>www.test2.example</externalUrl>
+        <externalUrlNote>External URL note 2</externalUrlNote>
+      </externalUrlGroup>
+    </externalUrlGroupList>
+    <description>Description text</description>
+    <additionalPropertyGroupList>
+      <additionalPropertyGroup>
+        <additionalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(additionalproperties):item:name(acoustic)'acoustic'</additionalPropertyType>
+        <additionalPropertyNote>Additional property note text 1</additionalPropertyNote>
+      </additionalPropertyGroup>
+      <additionalPropertyGroup>
+        <additionalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(additionalproperties):item:name(elastic)'elastic'</additionalPropertyType>
+        <additionalPropertyNote>Additional property note text 2</additionalPropertyNote>
+      </additionalPropertyGroup>
+    </additionalPropertyGroupList>
+    <publishToList>
+      <publishTo>urn:cspace:materials.collectionspace.org:vocabularies:name(publishto):item:name(dpla)'DPLA'</publishTo>
+      <publishTo>urn:cspace:materials.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'Omeka'</publishTo>
+    </publishToList>
+    <deformingProcesses>
+      <deformingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(deformingprocesses):item:name(aeration)'aeration'</deformingProcess>
+      <deformingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(deformingprocesses):item:name(melting)'melting'</deformingProcess>
+    </deformingProcesses>
+    <certificationCreditGroupList>
+      <certificationCreditGroup>
+        <certificationCreditNote>Certification credit note text 1</certificationCreditNote>
+        <certificationProgram>urn:cspace:materials.collectionspace.org:vocabularies:name(ecologicalcertifications):item:name(leed)'LEED'</certificationProgram>
+      </certificationCreditGroup>
+      <certificationCreditGroup>
+        <certificationCreditNote>Certification credit note text 2</certificationCreditNote>
+        <certificationProgram>urn:cspace:materials.collectionspace.org:vocabularies:name(ecologicalcertifications):item:name(leed)'LEED'</certificationProgram>
+      </certificationCreditGroup>
+    </certificationCreditGroupList>
+    <productionDate>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1/1/1995</dateDisplayDate>
+      <dateLatestScalarValue>1995-01-02T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>1995</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:materials.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>1995-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth/>
+    </productionDate>
+    <machiningProcesses>
+      <machiningProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(machiningprocesses):item:name(milling)'milling'</machiningProcess>
+      <machiningProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(machiningprocesses):item:name(grinding)'grinding'</machiningProcess>
+    </machiningProcesses>
+    <shortIdentifier>PlastiPaste1575290173936</shortIdentifier>
+    <materialTermGroupList>
+      <materialTermGroup>
+        <termSourceID>123456</termSourceID>
+        <termSourceDetail>Page 1</termSourceDetail>
+        <termSourceNote>Term source note text</termSourceNote>
+        <termFormattedDisplayName/>
+        <historicalStatus>current</historicalStatus>
+        <termType>descriptor</termType>
+        <termSource>urn:cspace:materials.collectionspace.org:citationauthorities:name(citation):item:name(BookOne1575278330354)'Book One'</termSource>
+        <termStatus>provisional</termStatus>
+        <termLanguage>urn:cspace:materials.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic'</termLanguage>
+        <termName>Plasti-Paste</termName>
+        <termQualifier>Term qualifier text</termQualifier>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>Plasti-Paste</termDisplayName>
+        <termFlag>urn:cspace:materials.collectionspace.org:vocabularies:name(materialtermflag):item:name(abbreviation)'abbreviation'</termFlag>
+      </materialTermGroup>
+    </materialTermGroupList>
+    <materialProductionPersonGroupList>
+      <materialProductionPersonGroup>
+        <materialProductionPerson>urn:cspace:materials.collectionspace.org:personauthorities:name(person):item:name(JoaquinCelestino1575278838092)'Joaquin Celestino'</materialProductionPerson>
+        <materialProductionPersonRole>urn:cspace:materials.collectionspace.org:vocabularies:name(materialproductionrole):item:name(distributor)'distributor'</materialProductionPersonRole>
+      </materialProductionPersonGroup>
+      <materialProductionPersonGroup>
+        <materialProductionPerson>urn:cspace:materials.collectionspace.org:personauthorities:name(person):item:name(RicoGalindez1575278851239)'Rico Galindez'</materialProductionPerson>
+        <materialProductionPersonRole>urn:cspace:materials.collectionspace.org:vocabularies:name(materialproductionrole):item:name(manufacturer)'manufacturer'</materialProductionPersonRole>
+      </materialProductionPersonGroup>
+    </materialProductionPersonGroupList>
+    <recycledContentGroupList>
+      <recycledContentGroup>
+        <recycledContent>10</recycledContent>
+        <recycledContentQualifier>Post-consumer</recycledContentQualifier>
+        <recycledContentHigh>20</recycledContentHigh>
+      </recycledContentGroup>
+      <recycledContentGroup>
+        <recycledContent>20</recycledContent>
+        <recycledContentQualifier>Post industrial</recycledContentQualifier>
+        <recycledContentHigh>30</recycledContentHigh>
+      </recycledContentGroup>
+    </recycledContentGroupList>
+    <embodiedEnergyGroupList>
+      <embodiedEnergyGroup>
+        <embodiedEnergyUnit>urn:cspace:materials.collectionspace.org:vocabularies:name(energyunits):item:name(MJ_per_kg)'MJ/kg'</embodiedEnergyUnit>
+        <embodiedEnergyNote>Embodied energy note text 1</embodiedEnergyNote>
+        <embodiedEnergyValue>1</embodiedEnergyValue>
+        <embodiedEnergyValueHigh>2</embodiedEnergyValueHigh>
+      </embodiedEnergyGroup>
+      <embodiedEnergyGroup>
+        <embodiedEnergyUnit>urn:cspace:materials.collectionspace.org:vocabularies:name(energyunits):item:name(tCO2)'tCO?'</embodiedEnergyUnit>
+        <embodiedEnergyNote>Embodied energy note text 2</embodiedEnergyNote>
+        <embodiedEnergyValue>2</embodiedEnergyValue>
+        <embodiedEnergyValueHigh>3</embodiedEnergyValueHigh>
+      </embodiedEnergyGroup>
+    </embodiedEnergyGroupList>
+    <commonForm>urn:cspace:materials.collectionspace.org:vocabularies:name(materialform):item:name(aggregate)'aggregate'</commonForm>
+    <inAuthority>54b05c47-19b6-42d0-a0b6</inAuthority>
+    <mechanicalPropertyGroupList>
+      <mechanicalPropertyGroup>
+        <mechanicalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(density)'density'</mechanicalPropertyType>
+        <mechanicalPropertyUnit/>
+        <mechanicalPropertyNote>Mechanical property note text 1</mechanicalPropertyNote>
+        <mechanicalPropertyValue/>
+      </mechanicalPropertyGroup>
+      <mechanicalPropertyGroup>
+        <mechanicalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(tensile_strength)'tensile strength'</mechanicalPropertyType>
+        <mechanicalPropertyUnit/>
+        <mechanicalPropertyNote>Mechanical property note text 2</mechanicalPropertyNote>
+        <mechanicalPropertyValue/>
+      </mechanicalPropertyGroup>
+    </mechanicalPropertyGroupList>
+    <additionalResourceGroupList>
+      <additionalResourceGroup>
+        <additionalResourceNote>External standard note 1</additionalResourceNote>
+        <additionalResource>urn:cspace:materials.collectionspace.org:vocabularies:name(materialresource):item:name(csi)'CSI'</additionalResource>
+      </additionalResourceGroup>
+      <additionalResourceGroup>
+        <additionalResourceNote>External standard note 2</additionalResourceNote>
+        <additionalResource>urn:cspace:materials.collectionspace.org:vocabularies:name(materialresource):item:name(granta)'Granta'</additionalResource>
+      </additionalResourceGroup>
+    </additionalResourceGroupList>
+    <sas>false</sas>
+    <moldingProcesses>
+      <moldingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(moldingprocesses):item:name(blow_molding)'blow molding'</moldingProcess>
+      <moldingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(moldingprocesses):item:name(injection_molding)'injection molding'</moldingProcess>
+    </moldingProcesses>
+    <joiningProcesses>
+      <joiningProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(joiningprocesses):item:name(felting)'felting'</joiningProcess>
+      <joiningProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(joiningprocesses):item:name(bonding)'bonding'</joiningProcess>
+    </joiningProcesses>
+    <ecologyNote>Material ecology note text</ecologyNote>
+    <electricalPropertyGroupList>
+      <electricalPropertyGroup>
+        <electricalPropertyNote>Electrical property note text 1</electricalPropertyNote>
+        <electricalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(electricalproperties):item:name(anti_static)'anti-static'</electricalPropertyType>
+      </electricalPropertyGroup>
+      <electricalPropertyGroup>
+        <electricalPropertyNote>Electrical property text note 2</electricalPropertyNote>
+        <electricalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(electricalproperties):item:name(electrical_resistivity_insulator)'electrical resistivity - insulator'</electricalPropertyType>
+      </electricalPropertyGroup>
+    </electricalPropertyGroupList>
+    <discontinued>yes</discontinued>
+    <formNote>Form note text</formNote>
+    <typicalUses>
+      <typicalUse>urn:cspace:materials.collectionspace.org:vocabularies:name(materialuse):item:name(packaging)'packaging'</typicalUse>
+      <typicalUse>urn:cspace:materials.collectionspace.org:vocabularies:name(materialuse):item:name(paving)'paving'</typicalUse>
+    </typicalUses>
+    <materialRecordTypes/>
+    <surfacingProcesses>
+      <surfacingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(acid_washing)'acid-washing'</surfacingProcess>
+      <surfacingProcess>urn:cspace:materials.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(etching)'etching'</surfacingProcess>
+    </surfacingProcesses>
+    <discontinuedDate>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1/1/2000</dateDisplayDate>
+      <dateLatestScalarValue>2000-01-02T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>2000</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:materials.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>2000-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth/>
+    </discontinuedDate>
+    <hygrothermalPropertyGroupList>
+      <hygrothermalPropertyGroup>
+        <hygrothermalPropertyUnit/>
+        <hygrothermalPropertyNote>Hygro-thermal property note text 1</hygrothermalPropertyNote>
+        <hygrothermalPropertyValue/>
+        <hygrothermalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(emissivity)'emissivity'</hygrothermalPropertyType>
+      </hygrothermalPropertyGroup>
+      <hygrothermalPropertyGroup>
+        <hygrothermalPropertyUnit/>
+        <hygrothermalPropertyNote>Hygro-thermal property note text 2</hygrothermalPropertyNote>
+        <hygrothermalPropertyValue/>
+        <hygrothermalPropertyType>urn:cspace:materials.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(porosity)'porosity'</hygrothermalPropertyType>
+      </hygrothermalPropertyGroup>
+    </hygrothermalPropertyGroupList>
+    <materialTermAttributionEditingGroupList>
+      <materialTermAttributionEditingGroup>
+        <materialTermAttributionEditingDate>2001-01-01T00:00:00.000Z</materialTermAttributionEditingDate>
+        <materialTermAttributionEditingOrganization>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(AmericanAllianceofMuseums1575279387700)'American Alliance of Museums'</materialTermAttributionEditingOrganization>
+        <materialTermAttributionEditingNote>Term editor note text 1</materialTermAttributionEditingNote>
+        <materialTermAttributionEditingPerson>urn:cspace:materials.collectionspace.org:personauthorities:name(person):item:name(RosemarieLangager1575279422782)'Rosemarie Langager'</materialTermAttributionEditingPerson>
+      </materialTermAttributionEditingGroup>
+      <materialTermAttributionEditingGroup>
+        <materialTermAttributionEditingDate>2002-01-01T00:00:00.000Z</materialTermAttributionEditingDate>
+        <materialTermAttributionEditingOrganization>urn:cspace:materials.collectionspace.org:orgauthorities:name(organization):item:name(MorganLibraryandMuseum1575279399747)'Morgan Library and Museum'</materialTermAttributionEditingOrganization>
+        <materialTermAttributionEditingNote>Term editor note text 2</materialTermAttributionEditingNote>
+        <materialTermAttributionEditingPerson>urn:cspace:materials.collectionspace.org:personauthorities:name(person):item:name(ConniJulson1575279431664)'Conni Julson'</materialTermAttributionEditingPerson>
+      </materialTermAttributionEditingGroup>
+    </materialTermAttributionEditingGroupList>
+  </ns2:materials_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d6a62dc0-fcfc-4166-875b-9a5f76579039</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@materials.collectionspace.org</userId>
+      <tenantId>2000</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

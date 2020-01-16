@@ -78,6 +78,13 @@ module CollectionSpace
           end
           values.flatten.compact
         end
+
+        def self.to_boolean(field)
+          return nil unless field
+
+          # TODO: boolean validation
+          field.downcase
+        end
       end
 
       class Acquisition < Record
@@ -417,6 +424,22 @@ module CollectionSpace
             identifier_field: 'shortIdentifier',
             path: "orgauthorities/urn:cspace:name(#{subtype})/items",
             schema: 'organizations',
+          }
+        end
+      end
+
+      class Osteology < Record
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'osteology', 'osteology', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'osteology',
+            identifier_field: 'InventoryID',
+            path: 'osteology',
+            schema: 'osteology',
           }
         end
       end

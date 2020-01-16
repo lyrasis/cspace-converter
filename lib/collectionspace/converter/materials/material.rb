@@ -14,289 +14,356 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
           CSXML.add_group_list xml, 'materialTerm', [
             {
+              "historicalStatus" => attributes["historicalstatus"],
               "termDisplayName" => attributes["termdisplayname"],
-              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
-              "termName" => attributes["term_name"],
-              "historicalStatus" => attributes["historical_status"],
-              "termFlag" => attributes["term_flag"],
-              "termLanguage" => attributes["term_language"],
-              "termPrefForLang" => attributes["term_pref_for_lang"],
-              "termQualifier" => attributes["term_qualifier"],
-              "termSource" => attributes["term_source"],
-              "termSourceID" => attributes["term_source_id"],
-              "termSourceDetail" => attributes["term_source_detail"],
-              "termSourceNote" => attributes["term_source_note"],
-              "termStatus" => attributes["term_status"],
+              "termName" => attributes["termname"],
+              "termFlag" => CSXML::Helpers.get_vocab('materialtermflag', attributes["termflag"]),
+              "termLanguage" => CSXML::Helpers.get_vocab('languages', attributes["termlanguage"]),
+              "termPrefForLang" => CSDR.to_boolean(attributes["termprefforlang"]),
+              "termQualifier" => attributes["termqualifier"],
+              "termSource" => CSXML::Helpers.get_authority('citationauthorities', 'citation', attributes["termsource"]),
+              "termSourceID" => attributes["termsourceid"],
+              "termSourceDetail" => attributes["termsourcedetail"],
+              "termSourceNote" => attributes["termsourcenote"],
+              "termStatus" => attributes["termstatus"],
+              "termType" => attributes["termtype"],
             }
           ]
+          # punlishTo
+          overall_publish = []
+          publish = CSDR.split_mvf attributes, 'publishto'
+          publish.each_with_index do |pb, index|
+            overall_publish << {"publishTo" => CSXML::Helpers.get_vocab('publishto', pb)}
+          end
+          CSXML.add_repeat xml, 'publishTo', overall_publish, 'List'
           # materialComposition
-          CSXML.add_group_list xml, 'materialComposition', [
-            {
-              "materialCompositionFamilyName" => attributes["material_composition_family_name"],
-              "materialCompositionClassName" => attributes["material_composition_class_name"],
-              "materialCompositionGenericName" => attributes["material_composition_generic_name"],
-
+          overall_composition = []
+          fname = CSDR.split_mvf attributes, 'materialcompositionfamilyname'
+          cname = CSDR.split_mvf attributes, 'materialcompositionclassname'
+          gname = CSDR.split_mvf attributes, 'materialcompositiongenericname'
+          fname.each_with_index do |famname, index|
+            overall_composition << {
+              "materialCompositionFamilyName" => CSXML::Helpers.get_authority(
+                'conceptauthorities', 'materialclassification', famname
+              ),
+              "materialCompositionClassName" => CSXML::Helpers.get_authority(
+                'conceptauthorities', 'materialclassification', cname[index]
+              ),
+              "materialCompositionGenericName" => CSXML::Helpers.get_authority(
+                'conceptauthorities', 'materialclassification', gname[index]
+              )
             }
-          ]
+          end
+          CSXML.add_group_list xml, 'materialComposition', overall_composition
           # description
           CSXML.add xml, 'description', attributes["description"]
+          # typicalUse
+          overall_use = []
+          typical = CSDR.split_mvf attributes, 'typicaluse'
+          typical.each_with_index do |tu, index|
+            overall_use << {"typicalUse" => CSXML::Helpers.get_vocab('materialuse', tu)}
+          end
+          CSXML.add_repeat xml, 'typicalUses', overall_use
           # Discontinued
-          CSXML.add_group xml, 'discontinued', { "discontinued" => attributes['birth_date_group'],
-            'discontinuedBy' => attributes['discontinued_by'],
-            'discontinuedDate' => attributes['discontinued_date'],
-            'dateAssociation' => attributes['date_association'],
-            'dateEarliestSingleYear' => attributes['date_earliest_single_year'],
-            'dateEarliestSingleMonth' => attributes['date_earliest_single_month'],
-            'dateEarliestSingleDay' => attributes['date_earliest_single_day'],
-            'dateEarliestSingleEra' => attributes['date_earliest_single_era'],
-            'dateEarliestSingleCertainty' => attributes['date_earliest_single_certainty'],
-            'dateEarliestSingleQualifier' => attributes['date_earliest_single_qualifier'],
-            'dateEarliestSingleQualifierValue' => attributes['date_earliest_single_qualifier_value'],
-            'DateEarliestSingleQualifierUnit' => attributes['date_earliest_single_qualifier_unit'],
-            'dateLatestSingleYear' => attributes['date_latest_single_year'],
-            'dateLatestSingleMonth' => attributes['date_latest_single_month'],
-            'dateLatestSingleDay' => attributes['date_latest_single_day'],
-            'dateLatestSingleEra' => attributes['date_latest_single_era'],
-            'dateLatestSingleCertainty' => attributes['date_latest_single_certainty'],
-            'dateLatestSingleQualifier' => attributes['date_latest_single_qualifier'],
-            'dateLatestSingleQualifierValue' => attributes['date_latest_single_qualifier_value'],
-            'DateLatestSingleQualifierUnit' => attributes['date_latest_single_qualifier_unit'],
-            'datePeriod' => attributes['date_period'],
-            'dateNote' => attributes['date_note'],
-          }
+          CSXML.add xml, 'discontinued', attributes["discontinued"]
+          CSXML::Helpers.add_organization xml, 'discontinuedBy', attributes["discontinuedby"]
+          # CSXML.add_repeat xml, 'discontinuedDate', [{
+          #   "dateDisplayDate" => CSDTP.parse(attributes["discontinueddate"]).display_date,
+          #   "dateEarliestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).earliest_scalar,
+          #   "dateLatestScalarValue" => CSDTP.parse(attributes["discontinueddate"]).latest_scalar,
+          # }]
           # Production date
-          CSXML.add_group xml, 'productionDate', {
-            'dateAssociation' => attributes['date_association'],
-            'dateEarliestSingleYear' => attributes['date_earliest_single_year'],
-            'dateEarliestSingleMonth' => attributes['date_earliest_single_month'],
-            'dateEarliestSingleDay' => attributes['date_earliest_single_day'],
-            'dateEarliestSingleEra' => attributes['date_earliest_single_era'],
-            'dateEarliestSingleCertainty' => attributes['date_earliest_single_certainty'],
-            'dateEarliestSingleQualifier' => attributes['date_earliest_single_qualifier'],
-            'dateEarliestSingleQualifierValue' => attributes['date_earliest_single_qualifier_value'],
-            'DateEarliestSingleQualifierUnit' => attributes['date_earliest_single_qualifier_unit'],
-            'dateLatestSingleYear' => attributes['date_latest_single_year'],
-            'dateLatestSingleMonth' => attributes['date_latest_single_month'],
-            'dateLatestSingleDay' => attributes['date_latest_single_day'],
-            'dateLatestSingleEra' => attributes['date_latest_single_era'],
-            'dateLatestSingleCertainty' => attributes['date_latest_single_certainty'],
-            'dateLatestSingleQualifier' => attributes['date_latest_single_qualifier'],
-            'dateLatestSingleQualifierValue' => attributes['date_latest_single_qualifier_value'],
-            'DateLatestSingleQualifierUnit' => attributes['date_latest_single_qualifier_unit'],
-            'datePeriod' => attributes['date_period'],
-            'dateNote' => attributes['date_note'],
-          }
+          # CSXML.add_repeat xml, 'productionDate', [{
+          #   "dateDisplayDate" => CSDTP.parse(attributes["productiondate"]).display_date,
+          #   "dateEarliestScalarValue" => CSDTP.parse(attributes["productiondate"]).earliest_scalar,
+          #   "dateLatestScalarValue" => CSDTP.parse(attributes["productiondate"]).latest_scalar,
+          # }]
           # productionNote
-          CSXML.add xml, 'productionNote', attributes["production_note"]
+          CSXML.add xml, 'productionNote', attributes["productionnote"]
           # materialProductionOrganization
-          CSXML.add_group_list xml, 'materialProductionOrganization', [
-            {
-              "materialProductionOrganization" => attributes["material_production_organization"],
-              "materialProductionOrganizationRole" => attributes["material_production_organization_role"],
-            }
-          ]
+          overall_prod_org = []
+          prod_org = CSDR.split_mvf attributes, 'materialproductionorganization'
+          prod_role = CSDR.split_mvf attributes, 'materialproductionorganizationrole'
+          prod_org.each_with_index do |prdorg, index|
+            overall_prod_org << {"materialProductionOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', prdorg), "materialProductionOrganizationRole" => CSXML::Helpers.get_vocab('materialproductionrole', prod_role[index])}
+          end
+          CSXML.add_group_list xml, 'materialProductionOrganization', overall_prod_org
           # materialProductionPerson
-          CSXML.add_group_list xml, 'materialProductionPerson', [
-            {
-              "materialProductionPerson" => attributes["material_production_person"],
-              "materialProductionPersonRole" => attributes["material_production_person_role"],
-            }
-          ]
+          overall_prod_person = []
+          prod_person = CSDR.split_mvf attributes, 'materialproductionperson'
+          prod_person_role = CSDR.split_mvf attributes, 'materialproductionpersonrole'
+          prod_person.each_with_index do |prdpers, index|
+            overall_prod_person << {"materialProductionPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', prdpers), "materialProductionPersonRole" => CSXML::Helpers.get_vocab('materialproductionrole', prod_person_role[index])}
+          end
+          CSXML.add_group_list xml, 'materialProductionPerson', overall_prod_person
           # materialProductionPlace
-          CSXML.add_group_list xml, 'materialProductionPlace', [
-            {
-              "materialProductionPlace" => attributes["material_production_place"],
-              "materialProductionPlaceRole" => attributes["material_production_place_role"],
-            }
-          ]
+          overall_prod_place = []
+          prod_place = CSDR.split_mvf attributes, 'materialproductionplace'
+          prod_place_role = CSDR.split_mvf attributes, 'materialproductionplacerole'
+          prod_place.each_with_index do |prdplc, index|
+            overall_prod_place << {"materialProductionPlace" => CSXML::Helpers.get_authority('placeauthorities', 'place', prdplc), "materialProductionPlaceRole" => CSXML::Helpers.get_vocab('materialproductionrole', prod_place_role[index])}
+          end
+          CSXML.add_group_list xml, 'materialProductionPlace', overall_prod_place
           # featuredApplication
-          CSXML.add_group_list xml, 'featuredApplication', [
-            {
-              "featuredApplication" => attributes["featured_application"],
-              "featuredApplicationNote" => attributes["featured_application_note"],
-            }
-          ]
+          featured_application = []
+          featuredapp = CSDR.split_mvf attributes, 'featuredapplication'
+          featuredappnote = CSDR.split_mvf attributes, 'featuredapplicationnote'
+          featuredapp.each_with_index do |ftapp, index|
+            featured_application << {"featuredApplication" => CSXML::Helpers.get_authority('workauthorities', 'work', ftapp), "featuredApplicationNote" => featuredappnote[index]}
+          end
+          CSXML.add_group_list xml, 'featuredApplication', featured_application
           # materialCitation
-          CSXML.add_group_list xml, 'materialCitation', [
-            {
-              "materialCitationSource" => attributes["material_citation_source"],
-              "materialCitationSourceDetail" => attributes["material_citation_source_detail"],
-            }
-          ]
+          material_citation = []
+          mat_cit = CSDR.split_mvf attributes, 'materialcitationsource'
+          mat_cit_detail = CSDR.split_mvf attributes, 'materialcitationsourcedetail'
+          mat_cit.each_with_index do |matcit, index|
+            material_citation << {"materialCitationSource" => CSXML::Helpers.get_authority('citationauthorities', 'citation', matcit), "materialCitationSourceDetail" => mat_cit_detail[index]}
+          end
+          CSXML.add_group_list xml, 'materialCitation', material_citation
           # externalUrl
-          CSXML.add_group_list xml, 'externalUrl', [
-            {
-              "externalUrl" => attributes["external_url"],
-              "externalUrlNote" => attributes["external_url_note"],
-            }
-          ]
+          external_url = []
+          ext_url = CSDR.split_mvf attributes, 'externalurl'
+          ext_url_note = CSDR.split_mvf attributes, 'externalurlnote'
+          ext_url.each_with_index do |exturl, index|
+            external_url << {"externalUrl" => exturl, "externalUrlNote" => ext_url_note[index]}
+          end 
+          CSXML.add_group_list xml, 'externalUrl', external_url
           # additionalResource
-          CSXML.add_group_list xml, 'additionalResource', [
-            {
-              "additionalResource" => attributes["additional_resource"],
-              "additionalResourceNote" => attributes["additional_resource_note"],
-            }
-          ]
+          additional_resource = []
+          additionalresource = CSDR.split_mvf attributes, 'additionalresource'
+          additionalresourcenote = CSDR.split_mvf attributes, 'additionalresourcenote'
+          additionalresource.each_with_index do |addres, index|
+            additional_resource << {"additionalResource" => CSXML::Helpers.get_vocab('materialresource', addres), "additionalResourceNote" => additionalresourcenote[index]}
+          end 
+          CSXML.add_group_list xml, 'additionalResource', additional_resource
           # materialTermAttributionContributing
+          mta_contributing = []
+          mtaco = CSDR.split_mvf attributes, 'materialtermattributioncontributingorganization'
+          mtacp = CSDR.split_mvf attributes, 'materialtermattributioncontributingperson'
+          mtacd = CSDR.split_mvf attributes, 'materialtermattributioncontributingdate'
+          mtaco.each_with_index do |contriborg, index|
+            mta_contributing << {"materialTermAttributionContributingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', contriborg), "materialTermAttributionContributingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtacp[index]), "materialTermAttributionContributingDate" => CSDTP.parse(mtacd[index]).earliest_scalar}
+          end 
+          CSXML.add_group_list xml, 'materialTermAttributionContributing', mta_contributing
+          # materialTermAttributionEditing
+          mta_editing = []
+          mtaeo = CSDR.split_mvf attributes, 'materialtermattributioneditingorganization'
+          mtaep = CSDR.split_mvf attributes, 'materialtermattributioneditingperson'
+          mtaed = CSDR.split_mvf attributes, 'materialtermattributioneditingdate'
+          mtaen = CSDR.split_mvf attributes, 'materialtermattributioneditingnote'
+          mtaeo.each_with_index do |editborg, index|
+            mta_editing << {"materialTermAttributionEditingOrganization" => CSXML::Helpers.get_authority('orgauthorities', 'organization', editborg), "materialTermAttributionEditingPerson" => CSXML::Helpers.get_authority('personauthorities', 'person', mtaep[index]), "materialTermAttributionEditingDate" => CSDTP.parse(mtaed[index]).earliest_scalar, "materialTermAttributionEditingNote" => mtaen[index]}
+          end 
+          CSXML.add_group_list xml, 'materialTermAttributionEditing', mta_editing
           CSXML.add_group_list xml, 'materialTermAttributionContributing', [
             {
+              "materialTermAttributionContributingDate" => attributes["material_term_attribution_contributing_date"],
               "materialTermAttributionContributingOrganization" => attributes["material_term_attribution_contributing_organization"],
               "materialTermAttributionContributingPerson" => attributes["material_term_attribution_contributing_person"],
-              "materialTermAttributionContributingDate" => attributes["material_term_attribution_contributing_date"],
             }
           ]
           # materialTermAttributionEditing
           CSXML.add_group_list xml, 'materialTermAttributionEditing', [
             {
+              "materialTermAttributionEditingDate" => attributes["material_term_attribution_editing_date"],
+              "materialTermAttributionEditingNote" => attributes["material_term_attribution_editing_note"],
               "materialTermAttributionEditingOrganization" => attributes["material_term_attribution_editing_organization"],
               "materialTermAttributionEditingPerson" => attributes["material_term_attribution_editing_person"],
-              "materialTermAttributionEditingNote" => attributes["material_term_attribution_editing_note"],
-              "materialTermAttributionEditingDate" => attributes["material_term_attribution_editing_date"],
             }
           ]
           # commonForm
-          CSXML.add xml, 'commonForm', attributes["common_form"]
+          CSXML.add xml, 'commonForm', CSXML::Helpers.get_vocab('materialform', attributes["commonform"])
           # formType
-          CSXML.add xml, 'formType', attributes["form_type"]
+          overall_form = []
+          formtype = CSDR.split_mvf attributes, 'formtype'
+          formtype.each_with_index do |ft, index|
+            overall_form << {"formType" => CSXML::Helpers.get_vocab('materialformtype', ft)}
+          end
+          CSXML.add_group_list xml, 'formType', overall_form
           # typicalSize
-          CSXML.add_group_list xml, 'typicalSize', [
-            {
-              "typicalSize" => attributes["typical_size"],
-            }
-          ]
           #dimensions
+          typicalsize = []
           dimensions = []
           dims = split_mvf attributes, 'dimension'
           values = split_mvf attributes, 'value'
-          unit = attributes["unit"]
+          unit = split_mvf attributes["measurementunit"]
           dims.each_with_index do |dim, index|
-            dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit }
+            dimensions << {"dimension" => dim, "value" => values[index], "measurementUnit" => unit[index]}
           end
-          CSXML.add_group_list xml, 'dimension', dimensions
+          typicalsize << {"typicalSize" => attributes["typicalsize"]}
+          # CSXML.add_group_list xml, 'typicalSize', typicalsize, 'typicalSizeDimension', dimensions
           # formNote
-          CSXML.add xml, 'formNote', attributes["form_note"]
+          CSXML.add xml, 'formNote', attributes["formnote"]
           # acousticalProperty
-          CSXML.add_group_list xml, 'acousticalProperty', [
-            {
-              "acousticalPropertyType" => attributes["acoustical_property_type"],
-              "acousticalPropertyNote" => attributes["acoustical_property_note"],
-            }
-          ]
+          acousticproperty = []
+          propertytype = CSDR.split_mvf attributes, 'acousticalpropertytype'
+          propertynote = CSDR.split_mvf attributes, 'acousticalpropertynote'
+          propertytype.each_with_index do |pt, index|
+            acousticproperty << {"acousticalPropertyType" => CSXML::Helpers.get_vocab('acousticalproperties', pt), "acousticalPropertyNote" => propertynote[index]}
+          end
+          CSXML.add_group_list xml, 'acousticalProperty', acousticproperty
           # durabilityProperty
-          CSXML.add_group_list xml, 'durabilityProperty', [
-            {
-              "durabilityPropertyType" => attributes["durability_property_type"],
-              "durabilityPropertyNote" => attributes["durability_property_note"],
-            }
-          ]
+          durabilityproperty = []
+          dbpropertytype = CSDR.split_mvf attributes, 'durabilitypropertytype'
+          dbpropertynote = CSDR.split_mvf attributes, 'durabilitypropertynote'
+          dbpropertytype.each_with_index do |dpt, index|
+            durabilityproperty << {"durabilityPropertyType" => CSXML::Helpers.get_vocab('durabilityproperties', dpt), "durabilityPropertyNote" => dbpropertynote[index]}
+          end
+          CSXML.add_group_list xml, 'durabilityProperty', durabilityproperty
           # electricalProperty
-          CSXML.add_group_list xml, 'electricalProperty', [
-            {
-              "electricalPropertyType" => attributes["electrical_property_type"],
-              "electricalPropertyNote" => attributes["electrical_property_note"],
-            }
-          ]
+          electricalproperty = []
+          epropertytype = CSDR.split_mvf attributes, 'electricalpropertytype'
+          epropertynote = CSDR.split_mvf attributes, 'electricalpropertynote'
+          epropertytype.each_with_index do |ept, index|
+            electricalproperty << {"electricalPropertyType" => CSXML::Helpers.get_vocab('electricalproperties', ept), "electricalPropertyNote" => epropertynote[index]}
+          end
+          CSXML.add_group_list xml, 'electricalProperty', electricalproperty
           # hygrothermalProperty
-          CSXML.add_group_list xml, 'hygrothermalProperty', [
-            {
-              "hygrothermalPropertyType" => attributes["hygrothermal_property_type"],
-              "hygrothermalPropertyNote" => attributes["hygrothermal_property_note"],
-            }
-          ]
+          hygrothermalproperty = []
+          hypropertytype = CSDR.split_mvf attributes, 'hygrothermalpropertytype'
+          hypropertynote = CSDR.split_mvf attributes, 'hygrothermalpropertynote'
+          hypropertytype.each_with_index do |hpt, index|
+            hygrothermalproperty << {"hygrothermalPropertyType" => CSXML::Helpers.get_vocab('hygrothermalproperties', hpt), "hygrothermalPropertyNote" => hypropertynote[index]}
+          end
+          CSXML.add_group_list xml, 'hygrothermalProperty', hygrothermalproperty
           # mechanicalProperty
-          CSXML.add_group_list xml, 'mechanicalProperty', [
-            {
-              "mechanicalPropertyType" => attributes["mechanical_property_type"],
-              "mechanicalPropertyNote" => attributes["mechanical_property_note"],
-            }
-          ]
+          mechanicalproperty = []
+          mcpropertytype = CSDR.split_mvf attributes, 'mechanicalpropertytype'
+          mcpropertynote = CSDR.split_mvf attributes, 'mechanicalpropertynote'
+          mcpropertytype.each_with_index do |mpt, index|
+            mechanicalproperty << {"mechanicalPropertyType" => CSXML::Helpers.get_vocab('mechanicalproperties',  mpt), "mechanicalPropertyNote" => mcpropertynote[index]}
+          end 
+          CSXML.add_group_list xml, 'mechanicalProperty', mechanicalproperty
           # opticalProperty
-          CSXML.add_group_list xml, 'opticalProperty', [
-            {
-              "opticalPropertyType" => attributes["optical_property_type"],
-              "opticalPropertyNote" => attributes["optical_property_note"],
-            }
-          ]
+          opticalproperty = []
+          opropertytype = CSDR.split_mvf attributes, 'opticalpropertytype'
+          opropertynote = CSDR.split_mvf attributes, 'opticalpropertynote'
+          opropertytype.each_with_index do |opt, index|
+            opticalproperty << {"opticalPropertyType" => CSXML::Helpers.get_vocab('opticalproperties', opt), "opticalPropertyNote" => opropertynote[index]}
+          end 
+          CSXML.add_group_list xml, 'opticalProperty', opticalproperty
           # sensorialProperty
-          CSXML.add_group_list xml, 'sensorialProperty', [
-            {
-              "sensorialPropertyType" => attributes["sensorial_property_type"],
-              "sensorialPropertyNote" => attributes["sensorial_property_note"],
-            }
-          ]
-            # smartMaterialProperty
-          CSXML.add_group_list xml, 'smartMaterialProperty', [
-            {
-              "smartMaterialPropertyType" => attributes["smart_material_property_type"],
-              "smartMaterialPropertyNote" => attributes["smart_material_property_note"],
-            }
-          ]
-            # additionalProperty
-          CSXML.add_group_list xml, 'additionalProperty', [
-            {
-              "additionalPropertyType" => attributes["additional_property_type"],
-              "additionalPropertyNote" => attributes["additional_property_note"],
-            }
-          ]
+          sensorialproperty = []
+          spropertytype = CSDR.split_mvf attributes, 'sensorialpropertytype'
+          spropertynote = CSDR.split_mvf attributes, 'sensorialpropertynote'
+          spropertytype.each_with_index do |spt, index|
+            sensorialproperty << {"sensorialPropertyType" => CSXML::Helpers.get_vocab('sensorialproperties', spt), "sensorialPropertyNote" => spropertynote[index]}
+          end 
+          CSXML.add_group_list xml, 'sensorialProperty', sensorialproperty
+          # smartMaterialProperty
+          smartproperty = []
+          smartpropertytype = CSDR.split_mvf attributes, 'smartmaterialpropertytype'
+          smartpropertynote = CSDR.split_mvf attributes, 'smartmaterialpropertynote'
+          smartpropertytype.each_with_index do |smpt, index|
+            smartproperty << {"smartMaterialPropertyType" => CSXML::Helpers.get_vocab('smartmaterialproperties', smpt), "smartMaterialPropertyNote" => smartpropertynote[index]}
+          end 
+          CSXML.add_group_list xml, 'smartMaterialProperty', smartproperty
+          # additionalProperty
+          additionalproperty = []
+          additionalpropertytype = CSDR.split_mvf attributes, 'additionalpropertytype'
+          additionalpropertynote = CSDR.split_mvf attributes, 'additionalpropertynote'
+          additionalpropertytype.each_with_index do |apt, index|
+            additionalproperty << {"additionalPropertyType" => CSXML::Helpers.get_vocab('additionalproperties', apt), "additionalPropertyNote" => additionalpropertynote[index]}
+          end
+          CSXML.add_group_list xml, 'additionalProperty', additionalproperty
           # propertyNote
-          CSXML.add xml, 'propertyNote', attributes["property_note"]
+          CSXML.add xml, 'propertyNote', attributes["propertynote"]
           # recycledContent
-          CSXML.add_group_list xml, 'recycledContent', [
-            {
-              "recycledContent" => attributes["recycled_content"],
-              "recycledContentHigh" => attributes["recycled_content_high"],
-              "recycledContentQualifier" => attributes["recycled_content_qualifier"],
-
-            }
-          ]
+          recycledcontent = []
+          rc = CSDR.split_mvf attributes, 'recycledcontent'
+          recycledcontenthigh = CSDR.split_mvf attributes, 'recycledcontenthigh'
+          recycledcontentqualifier = CSDR.split_mvf attributes, 'recycledcontentqualifier'
+          rc.each_with_index do |rct, index|
+            recycledcontent << {"recycledContent" => rct, "recycledContentHigh" => recycledcontenthigh[index], "recycledContentQualifier" => recycledcontentqualifier[index]}
+          end
+          CSXML.add_group_list xml, 'recycledContent', recycledcontent
           # lifecycleComponent
-          CSXML.add_group_list xml, 'lifecycleComponent', [
-            {
-              "lifecycleComponent" => attributes["lifecycle_component"],
-              "lifecycleComponentNote" => attributes["lifecycle_component_note"],
-            }
-          ]
+          lifecyclecomponent = []
+          lc = CSDR.split_mvf attributes, 'lifecyclecomponent'
+          lcnote = CSDR.split_mvf attributes, 'lifecyclecomponentnote'
+          lc.each_with_index do |lct, index|
+            lifecyclecomponent << {"lifecycleComponent" => CSXML::Helpers.get_vocab('lifecyclecomponents', lct), "lifecycleComponentNote" => lcnote[index]}
+          end
+          CSXML.add_group_list xml, 'lifecycleComponent', lifecyclecomponent
           # embodiedEnergy
-          CSXML.add_group_list xml, 'embodiedEnergy', [
-            {
-              "embodiedEnergyValue" => attributes["embodied_energy_value"],
-              "embodiedEnergyValueHigh" => attributes["embodied_energy_value_high"],
-              "embodiedEnergyUnit" => attributes["embodied_energy_unit"],
-              "embodiedEnergyNote" => attributes["embodied_energy_note"],
-            }
-          ]
+          embodiedenergy = []
+          ev = CSDR.split_mvf attributes, 'embodiedenergyvalue'
+          evh = CSDR.split_mvf attributes, 'embodiedenergyvaluehigh'
+          eu = CSDR.split_mvf attributes, 'embodiedenergyunit'
+          en = CSDR.split_mvf attributes, 'embodiedenergynote'
+          ev.each_with_index do |energyval, index|
+            embodiedenergy << {"embodiedEnergyValue" => energyval, "embodiedEnergyValueHigh" => evh[index], "embodiedEnergyUnit" => CSXML::Helpers.get_vocab('energyunits', eu[index]), "embodiedEnergyNote" => en[index]}
+          end
+          CSXML.add_group_list xml, 'embodiedEnergy', embodiedenergy
           # certificationCredit
-          CSXML.add_group_list xml, 'certificationCredit', [
-            {
-              "certificationProgram" => attributes["certification_program"],
-              "certificationCreditNote" => attributes["certification_credit_note"],
-            }
-          ]
+          certificationcredit = []
+          cp = CSDR.split_mvf attributes, 'certificationprogram'
+          ccn = CSDR.split_mvf attributes, 'certificationcreditnote'
+          cp.each_with_index do |cprog, index|
+            certificationcredit << {"certificationProgram" => CSXML::Helpers.get_vocab('ecologicalcertifications', cprog), "certificationCreditNote" => ccn[index]}
+          end
+          CSXML.add_group_list xml, 'certificationCredit', certificationcredit
           # ecologyNote
-          CSXML.add xml, 'ecologyNote', attributes["ecology_note"]
+          CSXML.add xml, 'ecologyNote', attributes["ecologynote"]
           # castingProcess
-          CSXML.add xml, 'castingProcess', attributes["casting_process"]
+          castingprocesses = []
+          castingprocess = CSDR.split_mvf attributes, 'castingprocess'
+          castingprocess.each_with_index do |cp, index|
+            castingprocesses << {"castingProcess" => CSXML::Helpers.get_vocab('castingprocesses', cp)}
+          end
+          CSXML.add_repeat xml, 'castingProcesses', castingprocesses
           # deformingProcess
-          CSXML.add xml, 'deformingProcess', attributes["deforming_process"]
+          deformingprocesses = []
+          deformingprocess = CSDR.split_mvf attributes, 'deformingprocess'
+          deformingprocess.each_with_index do |dfp, index|
+            deformingprocesses << {"deformingProcess" => CSXML::Helpers.get_vocab('deformingprocesses', dfp)}
+          end
+          CSXML.add_repeat xml, 'deformingProcesses', deformingprocesses
           # joiningProcess
-          CSXML.add xml, 'joiningProcess', attributes["joiningProcess"]
+          joiningprocesses = []
+          joiningprocess = CSDR.split_mvf attributes, 'joiningprocess'
+          joiningprocess.each_with_index do |jp, index|
+            joiningprocesses << {"joiningProcess" => CSXML::Helpers.get_vocab('joiningprocesses', jp)}
+          end
+          CSXML.add_repeat xml, 'joiningProcesses', joiningprocesses
           # machiningProcess
-          CSXML.add xml, 'machiningProcess', attributes["machining_process"]
+          machiningprocesses = []
+          machiningprocess = CSDR.split_mvf attributes, 'machiningprocess'
+          machiningprocess.each_with_index do |mcp, index|
+            machiningprocesses << {"machiningProcess" => CSXML::Helpers.get_vocab('machiningprocesses', mcp)}
+          end
+          CSXML.add_repeat xml, 'machiningProcesses', machiningprocesses
           # moldingProcess
-          CSXML.add xml, 'moldingProcess', attributes["molding_process"]
+          moldingprocesses = []
+          moldingprocess = CSDR.split_mvf attributes, 'moldingprocess'
+          moldingprocess.each_with_index do |mdp, index|
+            moldingprocesses << {"moldingProcess" => CSXML::Helpers.get_vocab('moldingprocesses', mdp)}
+          end
+          CSXML.add_repeat xml, 'moldingProcesses', moldingprocesses
           # rapidPrototypingProcess
-          CSXML.add xml, 'rapidPrototypingProcess', attributes["rapid_prototyping_process"]
+          rapidprototypingprocess = []
+          rprocess = CSDR.split_mvf attributes, 'rapidprototypingprocess'
+          rprocess.each_with_index do |rpp, index|
+            rapidprototypingprocess << {"rapidPrototypingProcess" => CSXML::Helpers.get_vocab('rapidprototypingprocesses', rpp)}
+          end
+          CSXML.add_repeat xml, 'rapidPrototypingProcesses', rapidprototypingprocess
           # surfacingProcess
-          CSXML.add xml, 'surfacingProcess', attributes["surfacing_process"]
+          surfacingprocesses = []
+          surfprocess = CSDR.split_mvf attributes, 'surfacingprocess'
+          surfprocess.each_with_index do |surfp, index|
+            surfacingprocesses << {"surfacingProcess" => CSXML::Helpers.get_vocab('surfacingprocesses', surfp)}
+          end
+          CSXML.add_repeat xml, 'surfacingProcesses', surfacingprocesses
           # additionalProcess
-          CSXML.add_group_list xml, 'additionalProcess', [
-            {
-              "additionalProcess" => attributes["additional_process"],
-              "additionalProcessNote" => attributes["additional_process_note"],
-            }
-          ]
+          additional = []
+          additionalprocess = CSDR.split_mvf attributes, 'additionalprocess'
+          additionalprocessnote = CSDR.split_mvf attributes, 'additionalprocessnote'
+          additionalprocess.each_with_index do |addp, index|
+            additional << {"additionalProcess" => CSXML::Helpers.get_vocab('additionalprocesses', addp), "additionalProcessNote" => additionalprocessnote[index]}
+          end
+          CSXML.add_group_list xml, 'additionalProcess', additional
           # processNote
-          CSXML.add xml, 'processNote', attributes["process_note"]
+          CSXML.add xml, 'processNote', attributes["processnote"]
         end
       end
     end

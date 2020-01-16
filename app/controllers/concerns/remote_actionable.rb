@@ -9,6 +9,14 @@ module RemoteActionable
     perform(:remote_ping, params[:category])
   end
 
+  def reset_cache
+    if Lookup.async?
+      CacheJob.perform_later
+    else
+      CacheJob.perform_now
+    end
+  end
+
   def transfer
     perform(:remote_transfer, params[:category])
   end
@@ -32,7 +40,7 @@ module RemoteActionable
       flash[flash_type_for_action(status.ok)] = status.message
     rescue Exception => ex
       logger.error("Connection error:\n#{ex.backtrace}")
-      flash[:error] = "Connection error:\n#{ex.message}\n#{ex.backtrace}"
+      flash[:error] = "Connection error:\n#{ex.message}"
     end
 
     redirect_to send("#{category.downcase}_path".to_sym, @object)

@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def collectionspace_domain
-    Rails.application.config.domain
+    Lookup.converter_domain
   end
 
   def collectionspace_username
@@ -22,6 +22,12 @@ module ApplicationHelper
 
   def converter_module
     Lookup.converter_module
+  end
+
+  def disabled_profiles
+    Lookup.module.registered_profiles.find_all do |_, profile|
+      !profile.fetch('enabled', false)
+    end.map{ |p| p[0] }
   end
 
   def path_for_batch_type(batch)
@@ -34,16 +40,10 @@ module ApplicationHelper
 
   def profiles
     profiles = []
-    Lookup.converter_class.registered_profiles.keys.sort.each do |profile|
+    Lookup.module.registered_profiles.keys.sort.each do |profile|
       profiles << [profile, profile, class: Lookup.converter_module]
     end
     profiles
-  end
-
-  def disabled_profiles
-    Lookup.converter_class.registered_profiles.find_all do |_, profile|
-      !profile.fetch('enabled', false)
-    end.map{ |p| p[0] }
   end
 
   def types
@@ -61,5 +61,4 @@ module ApplicationHelper
     date = ENV.fetch('BUILD_DATE', Date.today)
     "Version: #{version} (#{date})"
   end
-
 end

@@ -1,9 +1,10 @@
 class Batch
   include Mongoid::Document
   include Mongoid::Locker
+  before_destroy :cleanup, if: proc { |b| b.type == 'import' }
+  validates :name, uniqueness: { scope: :type }, if: proc { |b| b.type == 'import' }
   validates_presence_of :key
   validates_uniqueness_of :key
-  before_destroy { |batch| DataObject.where(import_batch: batch.name).destroy_all }
 
   field :key,       type: String
   field :category,  type: String
@@ -16,6 +17,9 @@ class Batch
   field :start,     type: DateTime, default: Time.now
   field :end,       type: DateTime
 
+  index({ name: 1, type: 1 }, { name: 'name_type_index' })
+  index({ key: 1 }, { name: 'key_index', unique: true })
+
   # lock fields
   field :locking_name, type: String
   field :locked_at,    type: Time
@@ -25,6 +29,11 @@ class Batch
     sparse: true,
     unique: true
   )
+
+  def cleanup
+    Batch.where(name: name, :type.ne => 'import').destroy_all
+    DataObject.where(import_batch: name).destroy_all
+  end
 
   def self.retrieve(key)
     Batch.where(key: key).first

@@ -1,6 +1,6 @@
 class CacheService
   def self.authorities
-    Lookup.converter_class.registered_authorities
+    Lookup.module.registered_authorities
   end
 
   def self.cache_dir
@@ -21,7 +21,10 @@ class CacheService
       'name',
       'identifier',
       'parent_refname',
-      'parent_rev'
+      'parent_rev',
+      'type',
+      'subtype',
+      'key'
     ]
   end
 
@@ -41,11 +44,13 @@ class CacheService
 
   def self.download(headers, endpoints)
     endpoints.each do |endpoint|
+      Rails.logger.debug "Processing endpoint: #{endpoint}"
       $collectionspace_client.all(endpoint).each do |list|
         list_refname = list['refName']
         list_rev     = list['rev']
         next if CacheObject.skip_list?(list_refname, list_rev)
 
+        Rails.logger.debug "Processing list: #{list_refname}, #{list_rev}"
         $collectionspace_client.config.include_deleted = true
         $collectionspace_client.all("#{list['uri']}/items").each do |item|
           refname, name, identifier, wfstate = item.values_at(*headers)
@@ -62,7 +67,7 @@ class CacheService
             name: name,
             identifier: identifier,
             parent_refname: list_refname,
-            parent_rev: list_rev
+            parent_rev: list_rev.to_i
           )
         end
         $collectionspace_client.config.include_deleted = false
@@ -71,28 +76,36 @@ class CacheService
   end
 
   def self.export
-    FileUtils.rm_f cache_file
-
     Rails.logger.info "Exporting cache: #{cache_file}"
 
+    cache_tmp_file = "#{cache_file}.#{Time.now.to_i}.tmp"
     headers = CacheService.csv_headers
-    CSV.open(cache_file, 'a') do |csv|
+    CSV.open(cache_tmp_file, 'a') do |csv|
       csv << headers
     end
 
     CacheObject.all.each do |object|
-      CSV.open(cache_file, 'a') do |csv|
+      CSV.open(cache_tmp_file, 'a') do |csv|
         csv << object.attributes.values_at(*headers)
       end
     end
+    FileUtils.mv cache_tmp_file, cache_file
   end
 
   def self.import
     return unless File.file? cache_file
+    return unless CacheObject.count.zero?
 
     Rails.logger.info "Loading cache: #{cache_file}"
-    CSV.foreach(cache_file, headers: true) do |row|
-      CacheObject.create(row.to_hash)
+    tracker = 1
+    SmarterCSV.process(File.open(cache_file, 'r:bom|utf-8'), {
+      chunk_size: 100,
+      convert_values_to_numeric: true,
+      required_headers: csv_headers.map(&:to_sym)
+    }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+      Rails.logger.debug("Processing chunk: #{tracker}")
+      CacheObject.collection.insert_many(chunk)
+      tracker += 1
     end
   end
 

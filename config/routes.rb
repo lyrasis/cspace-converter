@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'procedures/:id/transfer',    to: 'procedure_objects#transfer'
   post 'procedures/:id/update',      to: 'procedure_objects#update'
   post 'nuke',                       to: 'sites#nuke', as: 'nuke'
+  post 'recache',                    to: 'sites#recache', as: 'recache'
   get  'relationships',              to: 'relationship_objects#index'
   get  'relationships/:id',          to: 'relationship_objects#show', as: 'relationship'
   post 'relationships/:id/ping',     to: 'relationship_objects#ping'

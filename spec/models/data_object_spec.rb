@@ -24,10 +24,6 @@ RSpec.describe DataObject do
       expect(data_object_ok).to be_valid
     end
 
-    it "has the converter class" do
-      expect(data_object_ok.converter_class).to eq Lookup.converter_class
-    end
-
     it "has the converter module" do
       data_object_ok.save
       expect(data_object_ok.converter_module).to eq Lookup.converter_module

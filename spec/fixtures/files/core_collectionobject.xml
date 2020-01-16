@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-12-12T20:42:41.325Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(35acbd5a-b01f-4099-9f96)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/35acbd5a-b01f-4099-9f96</uri>
+    <updatedAt>2019-12-12T20:58:19.405Z</updatedAt>
+  </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
       <scalarValuesComputed/>
@@ -58,9 +68,12 @@
     </objectProductionDateGroupList>
     <contentConcepts/>
     <assocEventPlaces/>
+    <phase>adult</phase>
     <assocActivityGroupList/>
+    <editionNumber>Two</editionNumber>
     <objectProductionReasons/>
     <assocPlaceGroupList/>
+    <copyNumber>One</copyNumber>
     <objectNameList>
       <objectNameGroup>
         <objectNameType/>
@@ -71,8 +84,19 @@
         <objectNameLevel/>
         <objectNameLanguage/>
       </objectNameGroup>
+      <objectNameGroup>
+        <objectNameType/>
+        <objectNameSystem/>
+        <objectName>Sheet music</objectName>
+        <objectNameCurrency/>
+        <objectNameNote/>
+        <objectNameLevel/>
+        <objectNameLanguage/>
+      </objectNameGroup>
     </objectNameList>
-    <styles/>
+    <styles>
+      <style>fauve</style>
+    </styles>
     <materialGroupList>
       <materialGroup>
         <materialName/>
@@ -94,7 +118,45 @@
     <responsibleDepartments>
       <responsibleDepartment>prints-drawings</responsibleDepartment>
     </responsibleDepartments>
-    <textualInscriptionGroupList/>
+    <textualInscriptionGroupList>
+      <textualInscriptionGroup>
+        <inscriptionContentScript/>
+        <inscriptionContentInscriber>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</inscriptionContentInscriber>
+        <inscriptionContentTransliteration/>
+        <inscriptionContentType/>
+        <inscriptionContentDateGroup>
+          <scalarValuesComputed/>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate/>
+          <dateLatestScalarValue/>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay/>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear/>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth/>
+          <dateEarliestSingleEra/>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue/>
+          <dateLatestMonth/>
+        </inscriptionContentDateGroup>
+        <inscriptionContent/>
+        <inscriptionContentTranslation/>
+        <inscriptionContentInterpretation/>
+        <inscriptionContentPosition/>
+        <inscriptionContentLanguage/>
+        <inscriptionContentMethod>incised</inscriptionContentMethod>
+      </textualInscriptionGroup>
+    </textualInscriptionGroupList>
     <objectNumber>20CS.001.0001</objectNumber>
     <fieldColEventNames>
       <fieldColEventName>Kindergarten</fieldColEventName>
@@ -109,9 +171,11 @@
     </objectProductionPlaceGroupList>
     <referenceGroupList/>
     <assocDateGroupList/>
+    <fieldCollectionFeature>Field collection feature text.</fieldCollectionFeature>
     <briefDescriptions>
       <briefDescription>Ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit.</briefDescription>
     </briefDescriptions>
+    <sex>male</sex>
     <contentLanguages/>
     <recordStatus>approved</recordStatus>
     <numberOfObjects>1</numberOfObjects>
@@ -123,23 +187,62 @@
             <titleTranslation>Un Homme</titleTranslation>
             <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(fra)'French'</titleTranslationLanguage>
           </titleTranslationSubGroup>
+          <titleTranslationSubGroup>
+            <titleTranslation>Hombre</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spa)'Spanish'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
         </titleTranslationSubGroupList>
         <titleType/>
         <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
         <title>A Man</title>
       </titleGroup>
+      <titleGroup>
+        <titleTranslationSubGroupList>
+          <titleTranslationSubGroup>
+            <titleTranslation>Une Femme</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(fra)'French'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
+          <titleTranslationSubGroup>
+            <titleTranslation>Fraulein</titleTranslation>
+            <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(deu)'German'</titleTranslationLanguage>
+          </titleTranslationSubGroup>
+        </titleTranslationSubGroupList>
+        <titleType/>
+        <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
+        <title>A Woman</title>
+      </titleGroup>
     </titleGroupList>
+    <fieldCollectionNote>Field collection note text.</fieldCollectionNote>
     <assocConceptGroupList/>
     <usageGroupList/>
     <assocCulturalContextGroupList/>
-    <otherNumberList/>
+    <otherNumberList>
+      <otherNumber>
+        <numberType>lender</numberType>
+        <numberValue>123456</numberValue>
+      </otherNumber>
+      <otherNumber>
+        <numberType>obsolete</numberType>
+        <numberValue>98765</numberValue>
+      </otherNumber>
+    </otherNumberList>
     <objectProductionPeopleGroupList>
       <objectProductionPeopleGroup>
         <objectProductionPeople>Sample Culture</objectProductionPeople>
-        <objectProductionPeopleRole/>
+        <objectProductionPeopleRole>Production people role text.</objectProductionPeopleRole>
+      </objectProductionPeopleGroup>
+      <objectProductionPeopleGroup>
+        <objectProductionPeople>Sample Culture 2</objectProductionPeople>
+        <objectProductionPeopleRole>Production people role text2</objectProductionPeopleRole>
       </objectProductionPeopleGroup>
     </objectProductionPeopleGroupList>
-    <assocPeopleGroupList/>
+    <assocPeopleGroupList>
+      <assocPeopleGroup>
+        <assocPeople>Native American</assocPeople>
+        <assocPeopleNote/>
+        <assocPeopleType>assocPeopleTypeOne</assocPeopleType>
+      </assocPeopleGroup>
+    </assocPeopleGroupList>
     <assocEventOrganizations/>
     <contentPeoples/>
     <measuredPartGroupList>
@@ -173,7 +276,14 @@
     <contentObjectGroupList/>
     <ownershipDateGroupList/>
     <collection>permanent-collection</collection>
-    <technicalAttributeGroupList/>
+    <objectProductionNote>Production note text.</objectProductionNote>
+    <technicalAttributeGroupList>
+      <technicalAttributeGroup>
+        <technicalAttribute>record-speed</technicalAttribute>
+        <technicalAttributeMeasurementUnit/>
+        <technicalAttributeMeasurement/>
+      </technicalAttributeGroup>
+    </technicalAttributeGroupList>
     <nonTextualInscriptionGroupList/>
     <assocEventPersons/>
     <objectProductionPersonGroupList>
@@ -183,7 +293,7 @@
       </objectProductionPersonGroup>
     </objectProductionPersonGroupList>
     <contentPersons>
-      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(InokeAloha1573637385742)'Inoke Aloha'</contentPerson>
+      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(InokeAloha590526035)'Inoke Aloha'</contentPerson>
     </contentPersons>
     <fieldCollectionSources/>
     <contentEventNameGroupList/>
@@ -192,11 +302,13 @@
     <objectProductionOrganizationGroupList>
       <objectProductionOrganizationGroup>
         <objectProductionOrganizationRole>distributor</objectProductionOrganizationRole>
-        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation131699749)'Admiral Corporation'</objectProductionOrganization>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation3241207369)'Admiral Corporation'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
     <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
-    <publishToList/>
+    <publishToList>
+      <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'omeka'</publishTo>
+    </publishToList>
     <assocOrganizationGroupList/>
     <contentOrganizations/>
     <contentPlaces/>
@@ -226,8 +338,15 @@
       <dateEarliestScalarValue/>
       <dateLatestMonth/>
     </contentDateGroup>
-    <objectStatusList/>
-    <objectComponentGroupList/>
+    <objectStatusList>
+      <objectStatus>copy</objectStatus>
+    </objectStatusList>
+    <objectComponentGroupList>
+      <objectComponentGroup>
+        <objectComponentInformation/>
+        <objectComponentName>blade</objectComponentName>
+      </objectComponentGroup>
+    </objectComponentGroupList>
     <comments>
       <comment>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</comment>
     </comments>
@@ -238,8 +357,21 @@
         <technique>pen and ink</technique>
       </techniqueGroup>
     </techniqueGroupList>
-    <inventoryStatusList/>
+    <inventoryStatusList>
+      <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(accessioned)'accessioned'</inventoryStatus>
+      <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(destroyed)'destroyed'</inventoryStatus>
+    </inventoryStatusList>
     <contentPositions/>
-    <forms/>
+    <forms>
+      <form>dry</form>
+    </forms>
   </ns2:collectionobjects_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
 </document>

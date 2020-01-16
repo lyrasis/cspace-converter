@@ -26,17 +26,13 @@ class DataObject
     collection_space_objects << cspace_object if cspace_object.valid?
   end
 
-  def converter_class
-    Lookup.converter_class
-  end
-
   def delimiter
     Rails.application.config.csv_mvf_delimiter
   end
 
   def module_and_profile_exist
     begin
-      converter_class.registered_profiles.fetch(converter_profile)
+      Lookup.module.registered_profiles.fetch(converter_profile)
     rescue Exception => ex
       errors.add(:invalid_module_or_profile, ex.backtrace)
     end
@@ -46,7 +42,7 @@ class DataObject
     write_attribute :converter_module, Lookup.converter_module.capitalize
   end
 
-  def add_authority(type:, subtype:, name:, identifier: nil, from_procedure: false)
+  def add_authority(type:, subtype:, name:, identifier: nil, stub: false)
     converter = nil
     data = {}
     data[:batch]            = import_batch
@@ -57,7 +53,7 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = name
 
-    if from_procedure
+    if stub
       converter = Lookup.default_authority_class(type)
       content_data = {
         "shortidentifier" => identifier,
@@ -148,7 +144,7 @@ class DataObject
     add_cspace_object(data, csv_data)
   end
 
-  def add_vocabulary(type:, subtype:, name:, identifier: nil, from_procedure: false)
+  def add_vocabulary(type:, subtype:, name:, identifier: nil, stub: false)
     converter = Lookup.default_vocabulary_class
     data = {}
     data[:batch]            = import_batch
@@ -159,7 +155,7 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = name
 
-    if from_procedure
+    if stub
       content_data = {
         "shortidentifier" => name.downcase,
         "displayname"     => name,

@@ -7,11 +7,11 @@ class TransferJob < ActiveJob::Base
 
     CollectionSpaceObject.batch_size(
       ENV.fetch('CSPACE_CONVERTER_TRANSFER_BATCH_SIZE', 25)
-    ).where(type: type, batch: batch_name).each do |object|
+    ).where(type: type, batch: batch_name).pluck(:id).each do |id|
       if Lookup.async?
-        RemoteJob.perform_later(action_method, key, object.id.to_s)
+        RemoteJob.perform_later(action_method, key, id.to_s)
       else
-        RemoteJob.perform_now(action_method, key, object.id.to_s)
+        RemoteJob.perform_now(action_method, key, id.to_s)
       end
     end
   end
