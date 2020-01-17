@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
   let(:attributes) { get_attributes('core', 'authconcept_nomenclature_terms.csv') }
-  let(:coreconcept) { CoreConcept.new(attributes, config: {identifier: 'Censer1579204122108'} ) }
+  let(:coreconcept) { CoreConcept.new(attributes, config: {identifier: 'termDisplayName'} ) }
   #let(:coreconcept) { CoreConcept.new(Lookup.profile_defaults('nomenclature').merge(attributes)) }
   let(:doc) { Nokogiri::XML(coreconcept.convert, nil, 'UTF-8') }
   let(:record) { get_fixture('core_concept_nomenclature_full.xml') }
