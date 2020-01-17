@@ -49,10 +49,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
     '/document/*/shortIdentifier']}
 
   it "Maps core concept attributes correctly" do
-    puts doc
     test_converter(doc, record, xpaths)
-#    puts "\n\nCORE CONCEPT:"
-#    puts doc
   end
 end
 
