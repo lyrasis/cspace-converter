@@ -379,8 +379,10 @@ module CollectionSpace
               value = Helpers.to_boolean(value)
             when 'behrensmeyer_translate'
               value = Helpers.behrensmeyer_translate(value)
-            when 'unstructured_date'
-              value = CSDTP.parse_unstructured_date(value)
+            when 'unstructured_date_string'
+              value = CSDTP.parse_unstructured_date_string(value)
+            when 'unstructured_date_stamp'
+              value = CSDTP.parse_unstructured_date_stamp(value)
             end
           end
 

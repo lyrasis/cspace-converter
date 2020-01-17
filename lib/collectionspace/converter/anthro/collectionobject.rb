@@ -156,7 +156,7 @@ module CollectionSpace
           annotation_transforms = {
             'annotationauthor' => {'authority' => ['personauthorities', 'person']},
             'annotationtype' => {'vocab' => 'annotationtype'},
-            'annotationdate' => {'special' => 'unstructured_date'}
+            'annotationdate' => {'special' => 'unstructured_date_string'}
           }
 
           CSXML.add_single_level_group_list(
