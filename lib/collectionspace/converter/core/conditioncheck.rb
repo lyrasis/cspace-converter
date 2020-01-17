@@ -19,19 +19,19 @@ module CollectionSpace
           CSXML.add xml, 'conditionChecker', CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["conditioncheckerorganization"])
           CSXML.add xml, 'objectAuditCategory', attributes["objectauditcategory"]
        
-          overall_completeness = {
-            'completeness' => 'completeness',
-            'completenessnote' => 'completenessNote',
-            'completenessdate' => 'completenessDate'
-          }
+          # overall_completeness = {
+          #   'completeness' => 'completeness',
+          #   'completenessnote' => 'completenessNote',
+          #   'completenessdate' => 'completenessDate'
+          # }
         
-          CSXML.add_group_list_with_structured_date(
-            xml,
-            attributes,
-            'completeness',
-            overall_completeness,
-            list_suffix: 'GroupList'
-          ) rescue nil
+          # CSXML.add_group_list_with_structured_date(
+          #   xml,
+          #   attributes,
+          #   'completeness',
+          #   overall_completeness,
+          #   list_suffix: 'GroupList'
+          # ) rescue nil
 =begin
           overall_completeness = []
           completeness = CSDR.split_mvf attributes, 'completeness'
@@ -71,7 +71,7 @@ module CollectionSpace
           hazarddate = CSDR.split_mvf attributes, 'hazarddate'
           hazardnote = CSDR.split_mvf attributes, 'hazardnote'  
           hazard.each_with_index do |hzd, index|
-            overall_hazard << {"hazard" => hzd, "hazardDate" => CSDTP.parse(techdate[index]).earliest_scalar, "hazardNote" => hazardnote[index]}
+            overall_hazard << {"hazard" => hzd, "hazardDate" => CSDTP.parse(hazarddate[index]).earliest_scalar, "hazardNote" => hazardnote[index]}
           end
           CSXML.add_group_list xml, 'hazard', overall_hazard
           CSXML.add xml, 'displayRecommendations', attributes["displayrecommendations"]
