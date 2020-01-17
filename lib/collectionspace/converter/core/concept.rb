@@ -19,6 +19,21 @@ module CollectionSpace
         def self.map(xml, attributes, config)
           CSXML.add xml, 'shortIdentifier', config[:identifier]
 
+          pairs = {
+            'scopenote' => 'scopeNote',
+            'scopenotesource' => 'scopeNoteSource',
+            'scopenotesourcedetail' => 'scopeNoteSourceDetail',
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs)
+          
+          repeats = {
+            'conceptrecordtype' => ['conceptRecordTypes', 'conceptRecordType']
+          }
+          repeat_transforms = {
+            'conceptrecordtype' => {'vocab' => 'concepttype'}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
+
           # conceptTermGroupList
           term_data = {
             'termdisplayname' => 'termDisplayName',
@@ -48,12 +63,28 @@ module CollectionSpace
             term_transforms
             )
 
+          # citationGroupList
+          citation_data = {
+            'citationsource' => 'citationSource',
+            'citationsourcedetail' => 'citationSourceDetail',
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'citation',
+            citation_data
+          )
 
-          CSXML.add_repeat xml, 'conceptRecordTypes', [{
-            'conceptRecordType' => CSURN.get_vocab_urn('concepttype', attributes['conceptrecordtype'])
-          }] if attributes['conceptrecordtype']
-          
-          CSXML.add xml, 'scopeNote', attributes['scopenote']
+          # additionalSourceGroupList
+          src_data = {
+            'additionalsource' => 'additionalSource',
+            'additionalsourcenote' => 'additionalSourceNote',
+            'additionalsourcedetail' => 'additionalSourceDetail',
+            'additionalsourceid' => 'additionalSourceID'}
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'additionalSource',
+            src_data
+          )
         end
       end
     end

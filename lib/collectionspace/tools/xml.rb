@@ -179,6 +179,7 @@ module CollectionSpace
         end
 
         groups = CSXML::Helpers.flatten_mvfs(all)
+
         CSXML.add_group_list(xml, key, groups, list_suffix: list_suffix, group_suffix: group_suffix)
       end
 
@@ -365,9 +366,9 @@ module CollectionSpace
             replacements.each{ |r|
               case r['type']
               when 'plain'
-                value = value.gsub!(r['find'], r['replace'])
+                value = value.gsub(r['find'], r['replace'])
               when 'regexp'
-                value = value.gsub!(Regexp.new(r['find']), r['replace'])
+                value = value.gsub(Regexp.new(r['find']), r['replace'])
               end
             }
           end
@@ -384,7 +385,9 @@ module CollectionSpace
           end
 
           # do not create vocab/authority URNs for blank values
-          unless value.empty?
+          if value.empty?
+            value = ''
+          else
             if config.keys.include?('vocab')
               vocab = config['vocab']
               value = Helpers.get_vocab(vocab, value)
@@ -700,9 +703,7 @@ module CollectionSpace
         def self.flatten_mvfs(mvfhash)
           fieldgroups = []
           # remove completely empty fields
-          emptyfields = []
-          mvfhash.each{ |k, v| emptyfields << k if v[:values].empty? }
-          emptyfields.each{ |field| mvfhash.delete(field) }
+          mvfhash.reject!{ |k, v| k if v[:values].empty? }
 
           fvhash = {}
           mvfhash.each{ |csvheader, vhash|
@@ -715,7 +716,10 @@ module CollectionSpace
             end
           }
 
-          fvhash.each{ |k, v| v.reject!{ |e| e.empty? } }
+          # remove empty values in fields populated by multiple columns
+          multicolumn = multicolumn_fields(mvfhash)
+          fvhash.each{ |k, v| v.reject!{ |e| e.empty? } if multicolumn.include?(k) }
+
 
           # populate a hash with the lengths of all the fields, with one
           #  field name recorded per length value, so we can select one
@@ -730,6 +734,16 @@ module CollectionSpace
             fieldgroups << fieldgroup
           }
           return fieldgroups
+        end
+
+        # returns list of CS field names where the field gets populated from
+        #  more than one csv column
+        def self.multicolumn_fields(mvfhash)
+          fields = mvfhash.map{ |k, v| v[:field] }
+          h = {}
+          fields.each{ |f| h.keys.include?(f) ? h[f] += 1 : h[f] = 1 }
+          h.select!{ |k, v| k if v > 1}
+          return h.keys
         end
 
         def self.add_vocab(xml, field, vocabulary, value)
