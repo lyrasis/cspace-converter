@@ -51,11 +51,11 @@
         <legalReqsHeldNumber>Legal license requirements held number text 1.</legalReqsHeldNumber>
       </legalReqsHeldGroup>
       <legalReqsHeldGroup>
-        <legalReqsHeld>Legal lLegal license requirements held text 2.</legalReqsHeld>
+        <legalReqsHeld>Legal license requirements held text 2.</legalReqsHeld>
         <legalReqsHeldBeginDate>2000-09-02T00:00:00.000Z</legalReqsHeldBeginDate>
         <legalReqsHeldRenewDate>2000-11-02T00:00:00.000Z</legalReqsHeldRenewDate>
         <legalReqsHeldEndDate>2000-10-02T00:00:00.000Z</legalReqsHeldEndDate>
-        <legalReqsHeldNumber>LeLegal license requirements held number text 2.</legalReqsHeldNumber>
+        <legalReqsHeldNumber>Legal license requirements held number text 2.</legalReqsHeldNumber>
       </legalReqsHeldGroup>
     </legalReqsHeldGroupList>
     <conditionCheckNote>Condition check assessment note text.</conditionCheckNote>
