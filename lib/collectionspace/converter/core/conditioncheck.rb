@@ -8,8 +8,38 @@ module CollectionSpace
             CoreConditionCheck.map(xml, attributes)
           end
         end
+  
+        def self.pairs
+          {
+            'conditioncheckrefnumber' => 'conditionCheckRefNumber',
+            'conditioncheckassessmentdate' => 'conditionCheckAssessmentDate',
+            'conditioncheckmethod' => 'conditionCheckMethod',
+            'conditionchecknote' => 'conditionCheckNote',
+            'conditioncheckreason' => 'conditionCheckReason',
+            'conditioncheckerperson' => 'conditionChecker',
+            'conditioncheckerorganization' => 'conditionChecker',
+            'objectauditcategory' => 'objectAuditCategory'
+          }
+        end
+
+        def self.simple_groups
+          {
+          }
+        end
+
+        def self.simple_repeats
+          {
+          }
+        end
+
+        def self.simple_repeat_lists
+          {
+          }
+        end
+
 
         def self.map(xml, attributes)
+<<<<<<< HEAD
           CSXML.add xml, 'conditionCheckRefNumber', attributes["conditioncheckrefnumber"]
           CSXML.add xml, 'conditionCheckAssessmentDate', CSDTP.parse(attributes['conditioncheckassessmentdate']).earliest_scalar
           CSXML.add xml, 'conditionCheckMethod', attributes["conditioncheckmethod"]
@@ -24,6 +54,18 @@ module CollectionSpace
           #   'completenessnote' => 'completenessNote',
           #   'completenessdate' => 'completenessDate'
           # }
+=======
+          CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
+          CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
+          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)
+          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeat_lists, 'List')
+
+          overall_completeness = {
+            'completeness' => 'completeness',
+            'completenessnote' => 'completenessNote',
+            'completenessdate' => 'completenessDate'
+          }
+>>>>>>> updating fields
         
           # CSXML.add_group_list_with_structured_date(
           #   xml,
