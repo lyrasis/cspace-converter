@@ -18,7 +18,17 @@ module CollectionSpace
             'conditioncheckreason' => 'conditionCheckReason',
             'conditioncheckerperson' => 'conditionChecker',
             'conditioncheckerorganization' => 'conditionChecker',
-            'objectauditcategory' => 'objectAuditCategory'
+            'objectauditcategory' => 'objectAuditCategory',
+            'conservationtreatmentpriority' => 'conservationTreatmentPriority',
+            'nextconditioncheckdate' => 'nextConditionCheckDate',
+            'displayrecommendations' => 'displayRecommendations',
+            'envrecommendations' => 'envRecommendations',
+            'handlingrecommendations' => 'handlingRecommendations',
+            'packingrecommendations' => 'packingRecommendations',
+            'securityrecommendations' => 'securityRecommendations',
+            'specialrequirements' => 'specialRequirements',
+            'storagerequirements' => 'storageRequirements',
+            'legalrequirements' => 'legalRequirements'
           }
         end
 
@@ -39,7 +49,14 @@ module CollectionSpace
 
 
         def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
+          CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs, 
+          pairstransforms = {
+            'conditioncheckassessmentdate' => {'special' => 'unstructured_date_stamp'},
+            'conditioncheckerperson' => {'authority' => ['personauthorities', 'person']},
+            'conditioncheckerorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'nextconditioncheckdate' => {'special' => 'unstructured_date_stamp'},
+            
+          })
           CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
           CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)
           CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeat_lists, 'List')
@@ -49,13 +66,17 @@ module CollectionSpace
             'completenessnote' => 'completenessNote',
             'completenessdate' => 'completenessDate'
           }
+  
+          completenesstransforms = {
+            'completenessdate' => {'special' => 'unstructured_date_string'}
+          }
         
-          CSXML.add_group_list(
+          CSXML.prep_and_add_single_level_group_list(
             xml,
             attributes,
             'completeness',
             overall_completeness,
-            group_suffix: 'Group'
+            completenesstransforms
           ) 
 =begin
           overall_completeness = []
@@ -75,7 +96,6 @@ module CollectionSpace
             overall_condition << {"condition" => cndtn, "conditionNote" => conditionnote[index], "conditionDate" => CSDTP.parse(conditiondate[index]).earliest_scalar}
           end
           CSXML.add_group_list xml, 'conditionCheck', overall_condition
-          CSXML.add xml, 'conservationTreatmentPriority', attributes["conservationtreatmentpriority"]
           overall_env = []
           envnote = CSDR.split_mvf attributes, 'envconditionnote'
           envdate = CSDR.split_mvf attributes, 'envconditionnotedate'
@@ -83,7 +103,6 @@ module CollectionSpace
             overall_env << {"envConditionNote" => env, "envConditionNoteDate" => CSDTP.parse(envdate[index]).earliest_scalar}
           end
           CSXML.add_group_list xml, 'envConditionNote', overall_env
-          CSXML.add xml, 'nextConditionCheckDate', CSDTP.parse(attributes['nextconditioncheckdate']).earliest_scalar
           overall_tech = []
           techassessment = CSDR.split_mvf attributes, 'techassessment'
           techdate = CSDR.split_mvf attributes, 'techassessmentdate'      
@@ -99,13 +118,6 @@ module CollectionSpace
             overall_hazard << {"hazard" => hzd, "hazardDate" => CSDTP.parse(techdate[index]).earliest_scalar, "hazardNote" => hazardnote[index]}
           end
           CSXML.add_group_list xml, 'hazard', overall_hazard
-          CSXML.add xml, 'displayRecommendations', attributes["displayrecommendations"]
-          CSXML.add xml, 'envRecommendations', attributes["envrecommendations"]
-          CSXML.add xml, 'handlingRecommendations', attributes["handlingrecommendations"]
-          CSXML.add xml, 'packingRecommendations', attributes["packingrecommendations"]
-          CSXML.add xml, 'securityRecommendations', attributes["securityrecommendations"]
-          CSXML.add xml, 'specialRequirements', attributes["specialrequirements"]
-          CSXML.add xml, 'storageRequirements', attributes["storagerequirements"]
           overall_salvage = []
           salvagecode = CSDR.split_mvf attributes, 'salvageprioritycode'
           salvagedate = CSDR.split_mvf attributes, 'salvageprioritycodedate'        
@@ -113,7 +125,6 @@ module CollectionSpace
             overall_salvage << {"salvagePriorityCode" => slvg, "salvagePriorityCodeDate" => CSDTP.parse(salvagedate[index]).earliest_scalar}
           end
           CSXML.add_group_list xml, 'salvagePriorityCode', overall_salvage
-          CSXML.add xml, 'legalRequirements', attributes["legalrequirements"]
           overall_legal = []
           reqsheld = CSDR.split_mvf attributes, 'legalreqsheld'
           begindate = CSDR.split_mvf attributes, 'legalreqsheldbegindate'
