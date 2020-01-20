@@ -73,7 +73,11 @@ module CollectionSpace
         end
       end
 
-      def self.parse_unstructured_date(date_string)
+      def self.parse_unstructured_date_stamp(date_string)
+        parse(date_string).earliest_scalar
+      end
+      
+      def self.parse_unstructured_date_string(date_string)
         case date_string
         when /^\d{4}-\d{1,2}-\d{1,2}$/
           return date_string
