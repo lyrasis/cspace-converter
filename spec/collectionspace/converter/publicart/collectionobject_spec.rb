@@ -55,7 +55,6 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
       it 'maps materials to material concepts' do
         xpath = "/document/#{common}/materialGroupList/materialGroup[1]/material"
         result = get_text(doc, xpath)
-        puts "RESULT: #{result}"
         expect(result).to include('conceptauthorities:name(material_ca)')
         
       end
