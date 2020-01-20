@@ -65,7 +65,6 @@ module CollectionSpace
           conditiontransforms = {
             'conditiondate' => {'special' => 'unstructured_date_stamp'}
           }
-
           CSXML.prep_and_add_single_level_group_list(
             xml,
             attributes,
