@@ -8,7 +8,7 @@ module CollectionSpace
             CoreConditionCheck.map(xml, attributes)
           end
         end
-  
+
         def self.pairs
           {
             'conditioncheckrefnumber' => 'conditionCheckRefNumber',
@@ -16,131 +16,149 @@ module CollectionSpace
             'conditioncheckmethod' => 'conditionCheckMethod',
             'conditionchecknote' => 'conditionCheckNote',
             'conditioncheckreason' => 'conditionCheckReason',
-            'conditioncheckerperson' => 'conditionChecker',
-            'conditioncheckerorganization' => 'conditionChecker',
-            'objectauditcategory' => 'objectAuditCategory'
+            'objectauditcategory' => 'objectAuditCategory',
+            'conservationtreatmentpriority' => 'conservationTreatmentPriority',
+            'nextconditioncheckdate' => 'nextConditionCheckDate',
+            'displayrecommendations' => 'displayRecommendations',
+            'envrecommendations' => 'envRecommendations',
+            'handlingrecommendations' => 'handlingRecommendations',
+            'packingrecommendations' => 'packingRecommendations',
+            'securityrecommendations' => 'securityRecommendations',
+            'specialrequirements' => 'specialRequirements',
+            'storagerequirements' => 'storageRequirements',
+            'legalrequirements' => 'legalRequirements'
           }
         end
-
-        def self.simple_groups
-          {
-          }
-        end
-
-        def self.simple_repeats
-          {
-          }
-        end
-
-        def self.simple_repeat_lists
-          {
-          }
-        end
-
 
         def self.map(xml, attributes)
-<<<<<<< HEAD
-          CSXML.add xml, 'conditionCheckRefNumber', attributes["conditioncheckrefnumber"]
-          CSXML.add xml, 'conditionCheckAssessmentDate', CSDTP.parse(attributes['conditioncheckassessmentdate']).earliest_scalar
-          CSXML.add xml, 'conditionCheckMethod', attributes["conditioncheckmethod"]
-          CSXML.add xml, 'conditionCheckNote', attributes["conditionchecknote"]
-          CSXML.add xml, 'conditionCheckReason', attributes["conditioncheckreason"]
-          CSXML.add xml, 'conditionChecker', CSXML::Helpers.get_authority('personauthorities', 'person', attributes["conditioncheckerperson"])
-          CSXML.add xml, 'conditionChecker', CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["conditioncheckerorganization"])
-          CSXML.add xml, 'objectAuditCategory', attributes["objectauditcategory"]
-       
-          # overall_completeness = {
-          #   'completeness' => 'completeness',
-          #   'completenessnote' => 'completenessNote',
-          #   'completenessdate' => 'completenessDate'
-          # }
-=======
-          CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
-          CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
-          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)
-          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeat_lists, 'List')
+          CSXML::Helpers.add_pairs(xml, attributes, CoreConditionCheck.pairs,
+          pairstransforms = {
+            'conditioncheckassessmentdate' => {'special' => 'unstructured_date_stamp'},
+            'nextconditioncheckdate' => {'special' => 'unstructured_date_stamp'}
+          }) rescue nil
+          CSXML::Helpers.add_person xml, 'conditionChecker', attributes["conditioncheckerperson"] if attributes["conditioncheckerperson"]
+          CSXML::Helpers.add_organization xml, 'conditionChecker', attributes["conditioncheckerorganization"] if attributes["conditioncheckerorganization"]
 
           overall_completeness = {
             'completeness' => 'completeness',
             'completenessnote' => 'completenessNote',
             'completenessdate' => 'completenessDate'
           }
->>>>>>> updating fields
-        
-          # CSXML.add_group_list_with_structured_date(
-          #   xml,
-          #   attributes,
-          #   'completeness',
-          #   overall_completeness,
-          #   list_suffix: 'GroupList'
-          # ) rescue nil
-=begin
-          overall_completeness = []
-          completeness = CSDR.split_mvf attributes, 'completeness'
-          completenessnote = CSDR.split_mvf attributes, 'completenessnote'
-          completenessdate = CSDR.split_mvf attributes, 'completenessdate'
-          completeness.each_with_index do |cmplt, index|
-            overall_completeness << {"completeness" => cmplt, "completenessNote" => completenessnote[index], "completenessDate" => CSDTP.parse(completenessdate[index]).earliest_scalar}
-          end
-          CSXML.add_group_list xml, 'completeness', overall_completeness
-=end
-          overall_condition = []
-          condition = CSDR.split_mvf attributes, 'condition'
-          conditiondate = CSDR.split_mvf attributes, 'conditiondate' 
-          conditionnote = CSDR.split_mvf attributes, 'conditionnote'
-          condition.each_with_index do |cndtn, index|
-            overall_condition << {"condition" => cndtn, "conditionNote" => conditionnote[index], "conditionDate" => CSDTP.parse(conditiondate[index]).earliest_scalar}
-          end
-          CSXML.add_group_list xml, 'conditionCheck', overall_condition
-          CSXML.add xml, 'conservationTreatmentPriority', attributes["conservationtreatmentpriority"]
-          overall_env = []
-          envnote = CSDR.split_mvf attributes, 'envconditionnote'
-          envdate = CSDR.split_mvf attributes, 'envconditionnotedate'
-          envnote.each_with_index do |env, index|
-            overall_env << {"envConditionNote" => env, "envConditionNoteDate" => CSDTP.parse(envdate[index]).earliest_scalar}
-          end
-          CSXML.add_group_list xml, 'envConditionNote', overall_env
-          CSXML.add xml, 'nextConditionCheckDate', CSDTP.parse(attributes['nextconditioncheckdate']).earliest_scalar
-          overall_tech = []
-          techassessment = CSDR.split_mvf attributes, 'techassessment'
-          techdate = CSDR.split_mvf attributes, 'techassessmentdate'      
-          techassessment.each_with_index do |tch, index|
-            overall_tech << {"techAssessment" => tch, "techAssessmentDate" => CSDTP.parse(techdate[index]).earliest_scalar}
-          end
-          CSXML.add_group_list xml, 'techAssessment', overall_tech
-          overall_hazard = []
-          hazard = CSDR.split_mvf attributes, 'hazard'
-          hazarddate = CSDR.split_mvf attributes, 'hazarddate'
-          hazardnote = CSDR.split_mvf attributes, 'hazardnote'  
-          hazard.each_with_index do |hzd, index|
-            overall_hazard << {"hazard" => hzd, "hazardDate" => CSDTP.parse(hazarddate[index]).earliest_scalar, "hazardNote" => hazardnote[index]}
-          end
-          CSXML.add_group_list xml, 'hazard', overall_hazard
-          CSXML.add xml, 'displayRecommendations', attributes["displayrecommendations"]
-          CSXML.add xml, 'envRecommendations', attributes["envrecommendations"]
-          CSXML.add xml, 'handlingRecommendations', attributes["handlingrecommendations"]
-          CSXML.add xml, 'packingRecommendations', attributes["packingrecommendations"]
-          CSXML.add xml, 'securityRecommendations', attributes["securityrecommendations"]
-          CSXML.add xml, 'specialRequirements', attributes["specialrequirements"]
-          CSXML.add xml, 'storageRequirements', attributes["storagerequirements"]
-          overall_salvage = []
-          salvagecode = CSDR.split_mvf attributes, 'salvageprioritycode'
-          salvagedate = CSDR.split_mvf attributes, 'salvageprioritycodedate'        
-          salvagecode.each_with_index do |slvg, index|
-            overall_salvage << {"salvagePriorityCode" => slvg, "salvagePriorityCodeDate" => CSDTP.parse(salvagedate[index]).earliest_scalar}
-          end
-          CSXML.add_group_list xml, 'salvagePriorityCode', overall_salvage
-          CSXML.add xml, 'legalRequirements', attributes["legalrequirements"]
-          overall_legal = []
-          reqsheld = CSDR.split_mvf attributes, 'legalreqsheld'
-          begindate = CSDR.split_mvf attributes, 'legalreqsheldbegindate'
-          endate = CSDR.split_mvf attributes, 'legalreqsheldenddate'
-          renewdate = CSDR.split_mvf attributes, 'legalreqsheldrenewdate'
-          reqsnumber = CSDR.split_mvf attributes, 'legalreqsheldnumber'
-          reqsheld.each_with_index do |lgl, index|
-            overall_legal << {"legalReqsHeld" => lgl, "legalReqsHeldBeginDate" => CSDTP.parse(begindate[index]).earliest_scalar, "legalReqsHeldRenewDate" => CSDTP.parse(renewdate[index]).earliest_scalar, "legalReqsHeldEndDate" => CSDTP.parse(endate[index]).earliest_scalar, "legalReqsHeldNumber" => reqsnumber[index]}
-          end
-          CSXML.add_group_list xml, 'legalReqsHeld', overall_legal
+
+          completenesstransforms = {
+            'completenessdate' => {'special' => 'unstructured_date_string'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'completeness',
+            overall_completeness,
+            completenesstransforms
+          )
+          overall_condition = {
+            'condition' => 'condition',
+            'conditionnote' => 'conditionNote',
+            'conditiondate' => 'conditionDate'
+          }
+
+          conditiontransforms = {
+            'conditiondate' => {'special' => 'unstructured_date_stamp'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'conditionCheck',
+            overall_condition,
+            conditiontransforms
+          )
+          overall_env = {
+            'envconditionnote' => 'envConditionNote',
+            'envconditionnotedate' => 'envConditionNoteDate'
+          }
+
+          envtransforms = {
+            'envconditionnotedate' => {'special' => 'unstructured_date_stamp'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'envConditionNote',
+            overall_env,
+            envtransforms
+          )
+          overall_tech = {
+            'techassessment' => 'techAssessment',
+            'techassessmentdate' => 'techAssessmentDate'
+          }
+
+          techtransforms = {
+            'techassessmentdate' => {'special' => 'unstructured_date_stamp'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'techAssessment',
+            overall_tech,
+            techtransforms
+          )
+          overall_hazard = {
+            'hazard' => 'hazard',
+            'hazarddate' => 'hazardDate',
+            'hazardnote' => 'hazardNote'
+          }
+
+          hazardtransforms = {
+            'hazarddate' => {'special' => 'unstructured_date_stamp'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'hazard',
+            overall_hazard,
+            hazardtransforms
+          )
+          overall_salvage = {
+            'salvageprioritycode' => 'salvagePriorityCode',
+            'salvageprioritycodedate' => 'salvagePriorityCodeDate'
+          }
+
+          salvagetransforms = {
+            'salvageprioritycodedate' => {'special' => 'unstructured_date_stamp'}
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'salvagePriorityCode',
+            overall_salvage,
+            salvagetransforms
+          ) rescue nil
+          overall_legal = {
+            'legalreqsheld' => 'legalReqsHeld',
+            'legalreqsheldbegindate' => 'legalReqsHeldBeginDate',
+            'legalreqsheldenddate' => 'legalReqsHeldEndDate',
+            'legalreqsheldrenewdate' => 'legalReqsHeldRenewDate',
+            'legalreqsheldnumber' => 'legalReqsHeldNumber'
+          }
+
+          legaltransforms = {
+            'legalreqsheldbegindate' => {'special' => 'unstructured_date_stamp'},
+            'legalreqsheldenddate' => {'special' => 'unstructured_date_stamp'},
+            'legalreqsheldrenewdate' => {'special' => 'unstructured_date_stamp'},
+          }
+
+          CSXML.prep_and_add_single_level_group_list(
+            xml,
+            attributes,
+            'legalReqsHeld',
+            overall_legal,
+            legaltransforms
+          )
         end
       end
     end
