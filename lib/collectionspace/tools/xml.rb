@@ -92,10 +92,10 @@ module CollectionSpace
       For now, the details of how to split up the elements within the subgroup are left in the module
       (e.g. anthro > mortuary groups)
 
-      ***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes****
-
-      The element(s) in the outer/first array = the set of sub_group(s) for each parent group.
-      The element(s) in the inner array(s) = the individual values for each subgroup
+      ***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes***
+      Outer array - holds it all together
+      Inner arrays - hold the value or values for the subgroup for each of the `elements` hashes
+      Hashes within inner arrays - One per value in subgroup in an element
 =end
       def self.add_group_list(
         xml, key, elements = [], sub_key = false, sub_elements = [],
@@ -107,12 +107,12 @@ module CollectionSpace
       )
         return unless elements.any?
 
-        # puts "\n\nKEY: #{key}"
-        # puts "ELEMENTS:"
-        # pp(elements)
-        # puts "SUBKEY: #{sub_key}"
-        # puts "SUBELEMENTS:"
-        # pp(sub_elements)
+#         puts "\n\nKEY: #{key}"
+#         puts "ELEMENTS:"
+#         pp(elements)
+#         puts "SUBKEY: #{sub_key}"
+#         puts "SUBELEMENTS:"
+#         pp(sub_elements)
 
         xml.send("#{key}#{list_suffix}".to_sym) {
           elements.each_with_index do |element, index|
@@ -121,19 +121,23 @@ module CollectionSpace
 
               if sub_key && include_subgrouplist_level
                 xml.send("#{sub_key}#{sublist_suffix}".to_sym) {
-                  sub_elements[index].each do |sub_element|
-                    xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
-                      sub_element.each {|k, v| xml.send(k.to_sym, v)}
-                    }
+                  unless sub_elements.empty?
+                    sub_elements[index].each do |sub_element|
+                      xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
+                        sub_element.each {|k, v| xml.send(k.to_sym, v)}
+                      }
+                    end
                   end
                 }
               elsif sub_key && !include_subgrouplist_level
-                sub_elements[index].each do |sub_element|
+                unless sub_elements.empty?
+                  sub_elements[index].each{ |sub_element|
                   xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
                     sub_element.each {|k, v|
                       xml.send(k.to_sym, v)}
                   }
-                end
+                  }
+                  end
               elsif sub_elements
                 next unless sub_elements[index]
 
@@ -188,6 +192,21 @@ module CollectionSpace
       #   topGroup
       #     someDateGroup
       #       structured date fields
+      # topKey - String. In combination with list_suffix and group_suffix, used to create names of
+      #   parent CSpace fields (StringGroupList and StringGroup, for example)
+      # all_elements - Hash. Keys = attribute/CSV header value. Value = Target CSpace field name
+      # date_field - base name of CSpace field to be treated as structured date. For example
+      #   date_field: 'osteoAgeEstimateDate' and subgroup_suffix: 'Group' will produce CSpace field
+      #   'osteoAgeEstimateDateGroup' containing all the structured date fields.
+      # transforms - Hash. See cspace-converter wiki page about transforms for details on format
+      # list_suffix - String. Appended to topKey to create top-level field
+      # group_suffix - String. Appended to topKey to create top-level groups
+      # sublist_suffix - String. Appended to date_field to create top-level nested date grouplist
+      # subgroup_suffix - String. Appended to date_field to create field containing the structured
+      #   date fields for a given date
+      # include_subgrouplist_level - Boolean. If false, `someDateGroup` is a direct child of `topGroup`.
+      #   If true, you'd get `topGroupList > topGroup > someDateGroupList > someDateGroup`, depending on
+      #   your *_suffix parameter values.
       def self.add_group_list_with_structured_date(
         xml,
         attributes,
@@ -201,7 +220,9 @@ module CollectionSpace
         subgroup_suffix: '',
         include_subgrouplist_level: false
       )
+
         all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
+
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
         end
@@ -217,15 +238,15 @@ module CollectionSpace
         end
 
         groups = CSXML::Helpers.flatten_mvfs(all)
-        date_groups = []
 
+        date_groups = []
         groups.each{ |fhash|
           if fhash[date_field]
             date_groups << [CSDTP.fields_for(CSDTP.parse(fhash[date_field]))]
             fhash.delete(date_field)
           end
         }
-
+        
         CSXML.add_group_list(
           xml, topKey, groups, date_field, date_groups,
           list_suffix: list_suffix, group_suffix: group_suffix,
@@ -432,12 +453,6 @@ module CollectionSpace
 
         def self.behrensmeyer_translate(value)
           lookup = {
-            '0' => '0 - no cracking or flaking on bone surface',
-            '1' => '1 - longitudinal and/or mosaic cracking present on surface',
-            '2' => '2 - longitudinal cracks, exfoliation on surface',
-            '3' => '3 - fibrous texture, extensive exfoliation',
-            '4' => '4 - coarsely fibrous texture, splinters of bone loose on the surface, open cracks',
-            '5' => '5 - bone crumbling in situ, large splinters',
             0 => '0 - no cracking or flaking on bone surface',
             1 => '1 - longitudinal and/or mosaic cracking present on surface',
             2 => '2 - longitudinal cracks, exfoliation on surface',
@@ -445,6 +460,8 @@ module CollectionSpace
             4 => '4 - coarsely fibrous texture, splinters of bone loose on the surface, open cracks',
             5 => '5 - bone crumbling in situ, large splinters'
           }
+          string_keys = lookup.keys.map{ |e| e.to_s }
+          value = value.to_i if string_keys.include?(value)
           lookup.fetch(value, value)
         end
 
@@ -547,12 +564,7 @@ module CollectionSpace
             pair_values[fieldname] = value
           }
 
-          pair_values.each{ |f, val| CSXML.add(xml, f, val) }
-          # pairs.each do |field, attribute|
-          #   field = "#{field}_" if reserved?(field)
-          #   value 
-          #   CSXML.add(xml, field, attributes[attribute])
-          # end
+          pair_values.each{ |field_name, value| CSXML.add(xml, field_name, value) }
         end
 
         def self.add_person(xml, field, value)
@@ -588,6 +600,13 @@ module CollectionSpace
           end
         end
 
+        # Convenience method to handle the addition of fields not themselves part of a field
+        #  group, which may have repeated values
+        # repeats = Hash. Key = String. Attribute/CSV header value. Value = Array. Element 0
+        #   is parent (usually plural or list) field name. Element 1 is child (repeated value)
+        #   field name.
+        # transforms = Hash. See cspace-converter wiki page on transforms for more details. This
+        #   parameter may be omitted if no transforms are required.
         def self.add_repeats(xml, attributes, repeats, transforms = {})
           return unless repeats
 

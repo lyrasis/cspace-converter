@@ -121,61 +121,61 @@
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>2010/1/1</dateDisplayDate>
-          <dateLatestScalarValue>2010-01-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateDisplayDate/>
+          <dateLatestScalarValue/>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
           <dateLatestEra/>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear>2010</dateEarliestSingleYear>
+          <dateEarliestSingleYear/>
           <dateLatestCertainty/>
           <dateAssociation/>
           <dateLatestDay/>
-          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
-          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateEarliestSingleMonth/>
+          <dateEarliestSingleEra/>
           <dateLatestYear/>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
-          <dateEarliestScalarValue>2010-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateEarliestScalarValue/>
           <dateLatestMonth/>
         </osteoAgeEstimateDateGroup>
         <osteoAgeEstimateUpper>25</osteoAgeEstimateUpper>
-        <osteoAgeEstimateAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(OliverioValentino1574683831762)'Oliverio Valentino'</osteoAgeEstimateAnalyst>
+        <osteoAgeEstimateAnalyst/>
         <osteoAgeEstimateNote>Age estimate note text 1</osteoAgeEstimateNote>
       </osteoAgeEstimateGroup>
       <osteoAgeEstimateGroup>
         <osteoAgeEstimateLower>25</osteoAgeEstimateLower>
-        <osteoAgeEstimateVerbatim>late twenties</osteoAgeEstimateVerbatim>
+        <osteoAgeEstimateVerbatim/>
         <osteoAgeEstimateDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>2010/2/1</dateDisplayDate>
-          <dateLatestScalarValue>2010-02-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateDisplayDate/>
+          <dateLatestScalarValue/>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
           <dateLatestEra/>
-          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleDay/>
           <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear>2010</dateEarliestSingleYear>
+          <dateEarliestSingleYear/>
           <dateLatestCertainty/>
           <dateAssociation/>
           <dateLatestDay/>
-          <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
-          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateEarliestSingleMonth/>
+          <dateEarliestSingleEra/>
           <dateLatestYear/>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
-          <dateEarliestScalarValue>2010-02-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateEarliestScalarValue/>
           <dateLatestMonth/>
         </osteoAgeEstimateDateGroup>
         <osteoAgeEstimateUpper>30</osteoAgeEstimateUpper>
-        <osteoAgeEstimateAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(GabrielSolares1574683843262)'Gabriel Solares'</osteoAgeEstimateAnalyst>
+        <osteoAgeEstimateAnalyst/>
         <osteoAgeEstimateNote>Age estimate note text 2</osteoAgeEstimateNote>
       </osteoAgeEstimateGroup>
     </osteoAgeEstimateGroupList>

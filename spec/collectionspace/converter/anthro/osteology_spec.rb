@@ -182,7 +182,8 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateVerbatim",
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateLower",
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateUpper",
-          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateDisplayDate",
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[2]/osteoAgeEstimateDateGroup/dateDisplayDate",
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[1]/osteoAgeEstimateDateGroup/dateDisplayDate",
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateEarliestScalarValue",
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateLatestScalarValue",
           { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[1]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
@@ -195,7 +196,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
         end
       end #context without verbatim age column
 
-      context 'only one verbatim age value' do
+      context 'only one verbatim age value without proper multivalue delimiter in CSV' do
         let(:attributes) { get_attributes_by_row('anthro', 'osteology_anthro_sparse2.csv', 6) }
         let(:doc) { get_doc(anthroosteology) }
         let(:record) { get_fixture('anthro_osteology_sparse2_1.xml') }
@@ -219,27 +220,43 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
       context 'no verbatim, analyst, or date columns for ageEstimate' do
         let(:attributes) { get_attributes_by_row('anthro', 'osteology_anthro_sparse3.csv', 3) }
         let(:doc) { get_doc(anthroosteology) }
-        let(:record) { get_fixture('anthro_osteology_sparse1.xml') }
+        let(:record) { get_fixture('anthro_osteology_sparse3_1.xml') }
         let(:xpaths) {[
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateLower",
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateUpper",
-          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateDisplayDate",
-          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateEarliestScalarValue",
-          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateLatestScalarValue",
-          { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[1]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
-          { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[2]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
           "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateNote"
         ]}
 
         it "Maps attributes correctly" do
           test_converter(doc, record, xpaths)
         end
+
         it 'osteoAgeEstimateVerbatim is empty' do
           xpath = "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateVerbatim"
           conv_text = get_text(doc, xpath)
           expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
         end
-      end #blank verbatim age cell
+
+        it 'structured date fields are empty' do
+          xpath = "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateDisplayDate"
+          conv_text = get_text(doc, xpath)
+          expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+
+          xpath = "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateEarliestScalarValue"
+          conv_text = get_text(doc, xpath)
+          expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+
+          xpath = "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateLatestScalarValue"
+          conv_text = get_text(doc, xpath)
+          expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+        end
+
+        it 'analyst fields are empty' do
+          xpath = "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[1]/osteoAgeEstimateAnalyst"
+          conv_text = get_text(doc, xpath)
+          expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+        end
+      end #no verbatim, analyst, or date columns for ageEstimate
 
     end #context in file with...
 end

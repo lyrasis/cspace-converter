@@ -45,8 +45,8 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
     '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSource',
     '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceNote',
     '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceDetail',
-    '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceID',
-    '/document/*/shortIdentifier']}
+    '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceID'
+    ]}
 
   it "Maps core concept attributes correctly" do
     test_converter(doc, record, xpaths)

@@ -27,7 +27,7 @@ RSpec.describe Lookup do
       ).to eq 'Core'
     end
 
-    it "returns the converter remote host" do
+    xit "returns the converter remote host" do
       expect(
       Lookup.converter_remote_host
       ).to eq 'localhost'

@@ -76,10 +76,6 @@ RSpec.describe CSXML::Helpers do
     expect(doc(xml).xpath('/simpleGroupList/simpleGroup/simple').text).to eq('This is a simple group value!')
   end
 
-  xit "can 'add simple repeats' correctly" do
-    # TODO
-  end
-
   it "can 'add title' only correctly" do
     CSXML::Helpers.add_title(xml, attributes_title_only)
     expect(doc(xml).xpath('/titleGroupList/titleGroup/title').text).to eq('El gato!')
