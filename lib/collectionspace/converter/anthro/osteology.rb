@@ -60,27 +60,29 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           CSXML.add xml, 'InventoryID', attributes['inventoryid']
-          estimatedate = []
-          osteoageestimate = []
-          verbatim = CSDR.split_mvf attributes, 'osteoageestimateverbatim'
-          age_lower = CSDR.split_mvf attributes, 'osteoageestimatelower'
-          age_upper = CSDR.split_mvf attributes, 'osteoageestimateupper'
-          age_analyst = CSDR.split_mvf attributes, 'osteoageestimateanalyst'
-          age_note = CSDR.split_mvf attributes, 'osteoageestimatenote'
-          age_date = CSDR.split_mvf attributes, 'osteoageestimatedategroup'
-          verbatim.each_with_index do |vbtm, index|
-            osteoageestimate << {
-              "osteoAgeEstimateVerbatim" => vbtm,
-              "osteoAgeEstimateLower" => age_lower[index],
-              "osteoAgeEstimateUpper" => age_upper[index],
-              "osteoAgeEstimateAnalyst" =>  CSXML::Helpers.get_authority('personauthorities', 'person', age_analyst[index]),
-              "osteoAgeEstimateNote" => age_note[index]
-            }
-            estimatedate << {
-              "osteoAgeEstimateDateGroup" => CSDTP.fields_for(CSDTP.parse(age_date[index]))
-            }
-          end
-          CSXML.add_group_list xml, 'osteoAgeEstimate', osteoageestimate, false, estimatedate
+
+          osteoagedata = {
+            'osteoageestimateverbatim' => 'osteoAgeEstimateVerbatim',
+            'osteoageestimatelower' => 'osteoAgeEstimateLower',
+            'osteoageestimateupper' => 'osteoAgeEstimateUpper',
+            'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
+            'osteoageestimatenote' => 'osteoAgeEstimateNote',
+            'osteoageestimatedate' => 'osteoAgeEstimateDate'
+          }
+          osteoage_transforms = {
+            'osteoageestimateanalyst' => {'authority' => ['personauthorities', 'person']}
+          }
+
+          CSXML.add_group_list_with_structured_date(
+            xml,
+            attributes,
+            'osteoAgeEstimate',
+            osteoagedata,
+            'osteoAgeEstimateDate',
+            osteoage_transforms,
+            subgroup_suffix: 'Group'
+          )
+
           determinationdates = []
           sexdetermination = []
           sex_determination = CSDR.split_mvf attributes, 'sexdetermination'
