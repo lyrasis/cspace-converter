@@ -52,6 +52,7 @@ module CollectionSpace
           CSXML.add_repeat xml, 'entryMethods', [ { 'entryMethod' => CSXML::Helpers.get_vocab('entrymethod', attributes["entrymethod"]) }]
           CSXML.add_repeat xml, 'fieldCollectionMethods', [{ 'fieldCollectionMethod' => CSXML::Helpers.get_vocab('collectionmethod', attributes["fieldcollectionmethod"]) }]
           CSXML.add_repeat xml, 'fieldCollectionSources', [{ 'fieldCollectionSource' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["fieldcollectionsourceperson"])}] if attributes["fieldcollectionsourceperson"]
+=begin
           fieldcollect = []
           fieldcollectorperson = CSDR.split_mvf attributes, 'fieldcollectorsperson'
           fieldcollectororg = CSDR.split_mvf attributes, 'fieldcollectorsorganization'
@@ -60,11 +61,10 @@ module CollectionSpace
             fieldcollect <<  {"fieldCollector" =>  CSXML::Helpers.get_authority('orgauthorities', 'organization', fieldcollectororg[index])}
           end
           CSXML.add_repeat xml, 'fieldCollectors', fieldcollect
-
-=begin
-          overall_fieldcollectors = {
-            'fieldcollectorsorganization' => 'fieldCollector',
-            'fieldcollectorsperson' => 'fieldCollector'
+=end
+          overall_fieldcollectors << {
+            'fieldcollectorsorganization' => ['fieldCollectors', 'fieldCollector'],
+            'fieldcollectorsperson' => ['fieldCollectors', 'fieldCollector']
           }
 
           fieldcollectorstransforms = {
@@ -78,7 +78,6 @@ module CollectionSpace
             overall_fieldcollectors,
             fieldcollectorstransforms
           )
-=end
           fceventname = []
           eventname = CSDR.split_mvf attributes, 'fieldcollectioneventname'
           eventname.each_with_index do |fcen, index|
