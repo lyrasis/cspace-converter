@@ -216,5 +216,30 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
         end
       end #context without verbatim age column
 
+      context 'no verbatim, analyst, or date columns for ageEstimate' do
+        let(:attributes) { get_attributes_by_row('anthro', 'osteology_anthro_sparse3.csv', 3) }
+        let(:doc) { get_doc(anthroosteology) }
+        let(:record) { get_fixture('anthro_osteology_sparse1.xml') }
+        let(:xpaths) {[
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateLower",
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateUpper",
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateDisplayDate",
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateEarliestScalarValue",
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateDateGroup/dateLatestScalarValue",
+          { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[1]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+          { xpath: "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup[2]/osteoAgeEstimateAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+          "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateNote"
+        ]}
+
+        it "Maps attributes correctly" do
+          test_converter(doc, record, xpaths)
+        end
+        it 'osteoAgeEstimateVerbatim is empty' do
+          xpath = "/document/#{p}/osteoAgeEstimateGroupList/osteoAgeEstimateGroup/osteoAgeEstimateVerbatim"
+          conv_text = get_text(doc, xpath)
+          expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+        end
+      end #blank verbatim age cell
+
     end #context in file with...
 end
