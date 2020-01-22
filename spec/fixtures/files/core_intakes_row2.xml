@@ -8,7 +8,7 @@
     <tenantId>1</tenantId>
     <refName>urn:cspace:core.collectionspace.org:intakes:id(60bc6b28-c81c-4a5e-8094)</refName>
     <uri>/intakes/60bc6b28-c81c-4a5e-8094</uri>
-    <updatedAt>2020-01-22T22:02:47.069Z</updatedAt>
+    <updatedAt>2020-01-22T23:09:03.295Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:intakes_common xmlns:ns2="http://collectionspace.org/services/intake" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDate>2000-03-01T00:00:00.000Z</fieldCollectionDate>
@@ -89,7 +89,22 @@
     <conditionCheckNote>Condition check assessment note text.</conditionCheckNote>
     <entryNote>Entry note text.</entryNote>
     <insuranceRenewalDate>2000-04-01T00:00:00.000Z</insuranceRenewalDate>
-    <approvalGroupList/>
+    <approvalGroupList>
+      <approvalGroup>
+        <approvalStatus>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(approved)'approved'</approvalStatus>
+        <approvalGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(board_of_trustees)'board of trustees'</approvalGroup>
+        <approvalNote>App note 1</approvalNote>
+        <approvalDate>2000-02-15T00:00:00.000Z</approvalDate>
+        <approvalIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(CarlaCurator1579734402984)'Carla Curator'</approvalIndividual>
+      </approvalGroup>
+      <approvalGroup>
+        <approvalStatus>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(not_required)'not required'</approvalStatus>
+        <approvalGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(collection_committee)'collection committee'</approvalGroup>
+        <approvalNote/>
+        <approvalDate/>
+        <approvalIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(CarlCurator1579734487879)'Carl Curator'</approvalIndividual>
+      </approvalGroup>
+    </approvalGroupList>
     <conditionCheckDate>2000-06-01T00:00:00.000Z</conditionCheckDate>
     <fieldCollectionSources>
       <fieldCollectionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ElbertinaLana1579727043725)'Elbertina Lana'</fieldCollectionSource>

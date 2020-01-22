@@ -563,7 +563,7 @@ module CollectionSpace
               end
             end
 
-            pair_values[fieldname] = value
+            pair_values[fieldname] = value unless value.nil?
           }
 
           pair_values.each{ |field_name, value| CSXML.add(xml, field_name, value) }
@@ -622,10 +622,14 @@ module CollectionSpace
                 values = values.map{ |value| CSXML::Helpers.apply_transforms(transforms, csvheader, value) }
               end
             end
-            unless collapsed_repeats.has_key?(fields[0])
-              collapsed_repeats[fields[0]] = {'childField' => fields[1], 'values' => []}
+
+            parent = reserved?(fields[0]) ? "#{fields[0]}_" : fields[0]
+            child = reserved?(fields[1]) ? "#{fields[1]}_" : fields[1]
+            
+            unless collapsed_repeats.has_key?(parent)
+              collapsed_repeats[parent] = {'childField' => child, 'values' => []}
             end
-            values.each{ |v| collapsed_repeats[fields[0]]['values'] << v }
+            values.each{ |v| collapsed_repeats[parent]['values'] << v }
           }
 
 

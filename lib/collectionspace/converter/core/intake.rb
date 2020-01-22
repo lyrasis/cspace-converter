@@ -37,8 +37,6 @@ module CollectionSpace
               'depositororganization' => 'depositor',
               'valuerperson' => 'valuer',
               'valuerorganization' => 'valuer',
-              'insurerperson' => 'insurer',
-              'insurerorganization' => 'insurer',
               'normallocationstorage' => 'normalLocation',
               'normallocationplace' => 'normalLocation',
               'normallocationorganization' => 'normalLocation'
@@ -56,8 +54,6 @@ module CollectionSpace
             'depositororganization' => {'authority' => ['orgauthorities', 'organization']},
             'valuerperson' => {'authority' => ['personauthorities', 'person']},
             'valuerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'insurerperson' => {'authority' => ['personauthorities', 'person']},
-            'insurerorganization' => {'authority' => ['orgauthorities', 'organization']},
             'normallocationstorage' => {'authority' => ['locationauthorities', 'location']},
             'normallocationplace' => {'authority' => ['placeauthorities', 'place']},
             'normallocationorganization' => {'authority' => ['orgauthorities', 'organization']},
@@ -73,6 +69,8 @@ module CollectionSpace
             'fieldcollectororganization' => ['fieldCollectors', 'fieldCollector'],
             'fieldcollectorperson' => ['fieldCollectors', 'fieldCollector'],
             'fieldcollectionsource' => ['fieldCollectionSources', 'fieldCollectionSource'],
+            'insurerorganization' => ['insurers', 'insurer'],
+            'insurerperson' => ['insurers', 'insurer'],
             'conditioncheckerorassessororganization' => ['conditionCheckersOrAssessors', 'conditionCheckerOrAssessor'],
             'conditioncheckerorassessorperson' => ['conditionCheckersOrAssessors', 'conditionCheckerOrAssessor']
           }
@@ -84,32 +82,55 @@ module CollectionSpace
             'fieldcollectorperson' => {'authority' => ['personauthorities', 'person']}, 
             'fieldcollectororganization' => {'authority' => ['orgauthorities', 'organization']},
             'fieldcollectionsource' => {'authority' => ['personauthorities', 'person']},
+            'insurerorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'insurerperson' => {'authority' => ['personauthorities', 'person']},
             'conditioncheckerorassessororganization' => {'authority' => ['orgauthorities', 'organization']},
             'conditioncheckerorassessorperson' => {'authority' => ['personauthorities', 'person']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
 
-
+          # currentLocationGroupList
           current_location = {
             'currentlocationnote' => 'currentLocationNote',
             'currentlocationfitness' => 'currentLocationFitness',
             'currentlocationstorage' => 'currentLocation',
             'currentlocationplace' => 'currentLocation',
-            'currentlocationorganization' => 'currentLocation'          }
-
+            'currentlocationorganization' => 'currentLocation'
+          }
           currentlocationtransforms = {
             'currentlocationfitness' => {'vocab' => 'conditionfitness'},
             'currentlocationstorage' => {'authority' => ['locationauthorities', 'location']},
             'currentlocationplace' => {'authority' => ['placeauthorities', 'place']},
             'currentlocationorganization' => {'authority' => ['orgauthorities', 'organization']}
           }
-
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'currentLocation',
             current_location,
             currentlocationtransforms
+          )
+
+          # approvalGroupList
+          app_data = {
+            'approvalstatus' => 'approvalStatus',
+            'approvalgroup' => 'approvalGroup',
+            'approvalnote' => 'approvalNote',
+            'approvaldate' => 'approvalDate',
+            'approvalindividual' => 'approvalIndividual'
+          }
+          app_transforms = {
+            'approvalstatus' => {'vocab' => 'deaccessionapprovalstatus'},
+            'approvalgroup' => {'vocab' => 'deaccessionapprovalgroup'},
+            'approvaldate' => {'special' => 'unstructured_date_stamp'},
+            'approvalindividual' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'approval',
+            app_data,
+            app_transforms
           )
         end
       end
