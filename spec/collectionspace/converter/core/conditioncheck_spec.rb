@@ -11,7 +11,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConditionCheck do
     '/document/*/conditionCheckMethod',
     '/document/*/conditionCheckNote',
     '/document/*/conditionCheckReason',
-    #{ xpath: '/document/*/conditionChecker', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/conditionChecker', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/objectAuditCategory',
     '/document/*/completenessGroupList/completenessGroup/completenessDate',
     '/document/*/completenessGroupList/completenessGroup/completeness',
@@ -29,6 +29,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConditionCheck do
     '/document/*/hazardGroupList/hazardGroup/hazardDate',
     '/document/*/hazardGroupList/hazardGroup/hazardNote',
     '/document/*/displayRecommendations',
+    '/document/*/envRecommendations',
     '/document/*/handlingRecommendations',
     '/document/*/packingRecommendations',
     '/document/*/securityRecommendations',
@@ -41,7 +42,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConditionCheck do
     '/document/*/legalReqsHeldGroupList/legalReqsHeldGroup/legalReqsHeldBeginDate',
     '/document/*/legalReqsHeldGroupList/legalReqsHeldGroup/legalReqsHeldRenewDate',
     '/document/*/legalReqsHeldGroupList/legalReqsHeldGroup/legalReqsHeldEndDate',
-    '/document/*/legalReqsHeldGroupList/legalReqsHeldGroup/legalReqsHeldNumber',
+    '/document/*/legalReqsHeldGroupList/legalReqsHeldGroup/legalReqsHeldNumber'
   ]}
 
   it "Maps attributes correctly" do
