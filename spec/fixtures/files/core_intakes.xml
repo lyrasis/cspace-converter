@@ -19,6 +19,8 @@
     <fieldCollectors>
       <fieldCollector>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(TridentinoMuseodiScienzeNaturali1578521877735)'Tridentino Museo di Scienze Naturali'</fieldCollector>
       <fieldCollector>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(WatermillCenter1578521890091)'Watermill Center'</fieldCollector>
+      <fieldCollector>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1578483411533)'Ilze Bergs'</fieldCollector>
+      <fieldCollector>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MarikaLaimitis1579609922785)'Marika Laimitis'</fieldCollector>
     </fieldCollectors>
     <valuer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1578483427415)'Tina Lauva'</valuer>
     <normalLocation>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(AR1Unit31578522466194)'A:R1:Unit 3'</normalLocation>
@@ -38,6 +40,8 @@
     <insurers>
       <insurer>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(TridentinoMuseodiScienzeNaturali1578521877735)'Tridentino Museo di Scienze Naturali'</insurer>
       <insurer>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(WatermillCenter1578521890091)'Watermill Center'</insurer>
+      <insurer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1578483411533)'Ilze Bergs'</insurer>
+      <insurer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MarikaLaimitis1579609922785)'Marika Laimitis'</insurer>
     </insurers>
     <currentOwner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1578521291753)'John Mellon'</currentOwner>
     <conditionCheckReferenceNumber>Condition check assessment reference number text.</conditionCheckReferenceNumber>
@@ -64,7 +68,7 @@
       <currentLocationGroup>
         <currentLocationNote>Current location note text 3.</currentLocationNote>
         <currentLocationFitness>urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(suitable)'Suitable'</currentLocationFitness>
-        <currentLocation/>
+        <currentLocation>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(Africa1579613150255)'Africa'</currentLocation>
       </currentLocationGroup>
     </currentLocationGroupList>
     <fieldCollectionPlace>Field collection place text.</fieldCollectionPlace>
