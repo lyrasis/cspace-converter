@@ -1,4 +1,7 @@
 module Helpers
+  # returns the first data row in the CSV
+  # type = String. Cspace profile/subdirectory in data directory
+  # file = String. Filename of CSV file in data directory
   def get_attributes(type, file)
     SmarterCSV.process(File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
       chunk_size: 1,
@@ -8,6 +11,11 @@ module Helpers
     end
   end
 
+  # returns specified row of data from the CSV
+  # type = String. Cspace profile/subdirectory in data directory
+  # file = String. Filename of CSV file in data directory
+  # rownum = Integer. CSV row number, count starting from 1 and including header row.
+  #  This lets you use the row number you see when you are looking at the data in Excel.
   def get_attributes_by_row(type, file, rownum)
     SmarterCSV.process(File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
       chunk_size: rownum - 1,
@@ -49,12 +57,18 @@ module Helpers
     xpaths.each do |xpath|
       puts xpath
       doc_text = get_text(doc, xpath)
-#      puts doc
       record_text = get_text(record, xpath)
+<<<<<<< HEAD
      unless doc_text == record_text
        puts "CONVERTER RESULT: #{doc_text}"
        puts "EXPECTED RESULT: #{record_text}"
      end
+=======
+      unless doc_text == record_text
+        puts "CONVERTER RESULT for #{xpath}: #{doc_text}"
+        puts "EXPECTED RESULT for #{xpath}: #{record_text}"
+      end
+>>>>>>> master
       expect(doc_text).not_to be_empty, -> { "Xpath for doc was empty: #{xpath}" }
       expect(record_text).not_to be_empty, -> { "Xpath for record was empty: #{xpath}" }
       expect(doc_text).to eq(record_text), -> { "Xpath match failure: #{xpath}\n#{doc_text}\n#{record_text}" }
