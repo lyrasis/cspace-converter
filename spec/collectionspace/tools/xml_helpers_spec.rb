@@ -76,10 +76,6 @@ RSpec.describe CSXML::Helpers do
     expect(doc(xml).xpath('/simpleGroupList/simpleGroup/simple').text).to eq('This is a simple group value!')
   end
 
-  xit "can 'add simple repeats' correctly" do
-    # TODO
-  end
-
   it "can 'add title' only correctly" do
     CSXML::Helpers.add_title(xml, attributes_title_only)
     expect(doc(xml).xpath('/titleGroupList/titleGroup/title').text).to eq('El gato!')
@@ -160,19 +156,43 @@ RSpec.describe CSXML::Helpers do
       'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
       'aa' => {:values => ['', '', '11 - 12'], :field => 'fieldOne'},
       'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
-      'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'}
+      'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'},
+      'd' => {:values => ['', 'v1', 'v2'], :field => 'fieldFour'}
     } }
     let(:result) { [
-      {'fieldOne' => '9 - 10', 'fieldTwo' => 'cat', 'fieldThree' => 'goat'},
-      {'fieldOne' => '10 - 11', 'fieldTwo' => 'bat', 'fieldThree' => 'moat'},
-      {'fieldOne' => '11 - 12', 'fieldTwo' => 'rat', 'fieldThree' => 'stoat'},
+      {'fieldOne' => '9 - 10', 'fieldTwo' => 'cat', 'fieldThree' => 'goat', 'fieldFour' => ''},
+      {'fieldOne' => '10 - 11', 'fieldTwo' => 'bat', 'fieldThree' => 'moat', 'fieldFour' => 'v1'},
+      {'fieldOne' => '11 - 12', 'fieldTwo' => 'rat', 'fieldThree' => 'stoat', 'fieldFour' => 'v2'},
     ]}
 
     it 'flattens fieldgroup hash properly' do
       expect(CSXML::Helpers.flatten_mvfs(fghash1)).to eq(result)
     end
   end
-  
+
+  describe '#multicolumn_fields' do
+    it 'returns array of multicolumn field names present' do
+      h = {
+        'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
+        'aa' => {:values => ['', '', '11 - 12'], :field => 'fieldOne'},
+        'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
+        'bb' => {:values => %w[cat bat rat], :field => 'fieldTwo'},
+        'bbb' => {:values => %w[cat bat rat], :field => 'fieldTwo'},
+        'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'},
+      }
+      expect(CSXML::Helpers.multicolumn_fields(h)).to eq(['fieldOne', 'fieldTwo'])
+    end
+
+    it 'returns empty array if no multicolumn fields present' do
+      h = {
+        'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
+        'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
+        'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'},
+      }
+      expect(CSXML::Helpers.multicolumn_fields(h)).to eq([])
+    end
+  end
+
 
   describe '#apply_transforms' do
     let(:transforms) { {

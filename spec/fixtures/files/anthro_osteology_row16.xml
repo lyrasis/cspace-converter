@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="osteology">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-01-21T23:43:53.310Z</createdAt>
+    <updatedBy>admin@anthro.collectionspace.org</updatedBy>
+    <createdBy>admin@anthro.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1500</tenantId>
+    <refName>urn:cspace:anthro.collectionspace.org:osteology:id(f492cf0d-d2b1-4b4b-9788)</refName>
+    <uri>/osteology/f492cf0d-d2b1-4b4b-9788</uri>
+    <updatedAt>2020-01-21T23:43:53.310Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:osteology_anthropology xmlns:ns2="http://collectionspace.org/services/osteology/domain/anthropology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <cranialDeformationPresent>false</cranialDeformationPresent>
+    <trepanationPresent>false</trepanationPresent>
+    <cranialDeformationCategories/>
+    <trepanationGroupList/>
+  </ns2:osteology_anthropology>
+  <ns2:osteology_common xmlns:ns2="http://collectionspace.org/services/osteology" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <InventoryID>OST2001.015</InventoryID>
+    <mortuaryTreatment>urn:cspace:anthro.collectionspace.org:vocabularies:name(mortuarytreatment):item:name(cremated)'cremated'</mortuaryTreatment>
+    <sexDeterminationGroupList>
+      <sexDeterminationGroup>
+        <sexDetermination>Unknown</sexDetermination>
+        <sexDeterminationDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>1/1/2014</dateDisplayDate>
+          <dateLatestScalarValue>2014-01-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2014</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2014-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </sexDeterminationDateGroup>
+        <sexDeterminationAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(DzonsZvirbulis1579650065957)'Dzons Zvirbulis'</sexDeterminationAnalyst>
+        <sexDeterminationNote/>
+      </sexDeterminationGroup>
+    </sexDeterminationGroupList>
+    <completeness>urn:cspace:anthro.collectionspace.org:vocabularies:name(osteocompleteness):item:name(skull)'skull only'</completeness>
+    <osteoAgeEstimateGroupList>
+      <osteoAgeEstimateGroup>
+        <osteoAgeEstimateLower>1</osteoAgeEstimateLower>
+        <osteoAgeEstimateVerbatim>infant</osteoAgeEstimateVerbatim>
+        <osteoAgeEstimateDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>1/1/2014</dateDisplayDate>
+          <dateLatestScalarValue>2014-01-02T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2014</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2014-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </osteoAgeEstimateDateGroup>
+        <osteoAgeEstimateUpper>9.9</osteoAgeEstimateUpper>
+        <osteoAgeEstimateAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(KesaraNieto1579650028747)'Kesara Nieto'</osteoAgeEstimateAnalyst>
+        <osteoAgeEstimateNote>1-9.9 yrs. (?)</osteoAgeEstimateNote>
+      </osteoAgeEstimateGroup>
+    </osteoAgeEstimateGroupList>
+    <NotesOnElementInventory>Skull is represented by 2 calcined mandible fragments. Age is approximately 1-9.9 years.</NotesOnElementInventory>
+    <inventoryDate>2015-02-01T00:00:00.000Z</inventoryDate>
+    <completenessNote>teeth-only</completenessNote>
+    <InventoryIsComplete>true</InventoryIsComplete>
+    <molarsPresent>true</molarsPresent>
+    <inventoryAnalyst>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(MisaoFujimoto1579650186316)'Misao Fujimoto'</inventoryAnalyst>
+  </ns2:osteology_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>c3dafbc6-f220-40b8-9f1a-6e1a64dead9a</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@anthro.collectionspace.org</userId>
+      <tenantId>1500</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
