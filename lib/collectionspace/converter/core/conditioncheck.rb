@@ -46,10 +46,10 @@ module CollectionSpace
           }
 
           completenesstransforms = {
-            'completenessdate' => {'special' => 'unstructured_date_string'}
+            'completenessdate' => {'special' => 'unstructured_date_stamp'}
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'completeness',
@@ -65,7 +65,8 @@ module CollectionSpace
           conditiontransforms = {
             'conditiondate' => {'special' => 'unstructured_date_stamp'}
           }
-          CSXML.prep_and_add_single_level_group_list(
+
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'conditionCheck',
@@ -81,7 +82,7 @@ module CollectionSpace
             'envconditionnotedate' => {'special' => 'unstructured_date_stamp'}
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'envConditionNote',
@@ -97,7 +98,7 @@ module CollectionSpace
             'techassessmentdate' => {'special' => 'unstructured_date_stamp'}
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'techAssessment',
@@ -114,7 +115,7 @@ module CollectionSpace
             'hazarddate' => {'special' => 'unstructured_date_stamp'}
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'hazard',
@@ -130,7 +131,7 @@ module CollectionSpace
             'salvageprioritycodedate' => {'special' => 'unstructured_date_stamp'}
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'salvagePriorityCode',
@@ -151,7 +152,7 @@ module CollectionSpace
             'legalreqsheldrenewdate' => {'special' => 'unstructured_date_stamp'},
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'legalReqsHeld',
