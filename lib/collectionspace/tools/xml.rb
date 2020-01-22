@@ -588,6 +588,8 @@ module CollectionSpace
         def self.add_repeats(xml, attributes, repeats, transforms = {})
           return unless repeats
 
+          collapsed_repeats = {}
+
           repeats.each{ |csvheader, fields|
             values = CSDR.split_mvf(attributes, csvheader)
             unless transforms.empty?
@@ -595,14 +597,19 @@ module CollectionSpace
                 values = values.map{ |value| CSXML::Helpers.apply_transforms(transforms, csvheader, value) }
               end
             end
+            unless collapsed_repeats.has_key?(fields[0])
+              collapsed_repeats[fields[0]] = {'childField' => fields[1], 'values' => []}
+            end
+            values.each{ |v| collapsed_repeats[fields[0]]['values'] << v }
+          }
 
-            parent = fields[0]
-            child = fields[1]
-
-            xml.send(parent.to_sym) {
-              values.each{ |value| xml.send(child.to_sym, value)}
+          collapsed_repeats.each{ |plural, hash|
+            xml.send(plural.to_sym) {
+              hash['values'].each{ |value|
+                xml.send(hash['childField'].to_sym, value)
               }
             }
+          }
         end
 
         def self.add_simple_repeats(xml, attributes, repeats, key_suffix = '')
