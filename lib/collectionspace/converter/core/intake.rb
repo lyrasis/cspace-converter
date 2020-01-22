@@ -28,10 +28,19 @@ module CollectionSpace
             'insurancereferencenumber' => 'insuranceReferenceNumber',
             'insurancerenewaldate' => 'insuranceRenewalDate',
             'locationdate' => 'locationDate',
-            
-            
-            
-            
+            'conditioncheckdate' => 'conditionCheckDate',
+            'conditionchecknote' => 'conditionCheckNote',
+            'conditioncheckreferencenumber' => 'conditionCheckReferenceNumber'
+          }
+        end
+
+        def self.repeats
+          { 
+            'entrymethod' => ['entryMethods', 'entryMethod'],
+            'fieldcollectionmethod' => ['fieldCollectionMethods', 'fieldCollectionMethod'],
+            'fieldcollectioneventname' => ['fieldCollectionEventNames', 'fieldCollectionEventName'],
+            'conditioncheckmethod' => ['conditionCheckMethods', 'conditionCheckMethod'],
+            'conditioncheckreason' => ['conditionCheckReasons', 'conditionCheckReason']
           }
         end
 
@@ -44,13 +53,18 @@ module CollectionSpace
             'locationdate' => {'special' => 'unstructured_date_stamp'},
 
           }) rescue nil
-          #CSXML::Helpers.add_simple_repeats(xml, attributes, CoreIntake.simple_repeats)
+          CSXML::Helpers.add_repeats(xml, attributes, CoreIntake.repeats,
+          repeatstransforms = {
+            'entrymethod' => {'vocab' => 'entrymethod'},
+            'fieldcollectionmethod' => {'vocab' => 'collectionmethod'},
+            'conditioncheckmethod' => {'vocab' => 'conditioncheckmethod'},
+            'conditioncheckreason' => {'vocab' => 'conditioncheckreason'}
+
+          }) 
           CSXML.add xml, 'currentOwner', CSXML::Helpers.get_authority('personauthorities', 'person', attributes["currentownerperson"]) if attributes["currentownerperson"]
           CSXML.add xml, 'currentOwner', CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["currentownerorganization"]) if attributes["currentownerorganization"]
           CSXML.add xml, 'depositor', CSXML::Helpers.get_authority('personauthorities', 'person', attributes["depositorperson"]) if attributes["depositorperson"]
           CSXML.add xml, 'depositor', CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["depositororganization"]) if attributes["depositororganization"]
-          CSXML.add_repeat xml, 'entryMethods', [ { 'entryMethod' => CSXML::Helpers.get_vocab('entrymethod', attributes["entrymethod"]) }]
-          CSXML.add_repeat xml, 'fieldCollectionMethods', [{ 'fieldCollectionMethod' => CSXML::Helpers.get_vocab('collectionmethod', attributes["fieldcollectionmethod"]) }]
           CSXML.add_repeat xml, 'fieldCollectionSources', [{ 'fieldCollectionSource' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["fieldcollectionsourceperson"])}] if attributes["fieldcollectionsourceperson"]
 =begin
           fieldcollect = []
@@ -62,7 +76,7 @@ module CollectionSpace
           end
           CSXML.add_repeat xml, 'fieldCollectors', fieldcollect
 =end
-          overall_fieldcollectors << {
+          overall_fieldcollectors = {
             'fieldcollectorsorganization' => ['fieldCollectors', 'fieldCollector'],
             'fieldcollectorsperson' => ['fieldCollectors', 'fieldCollector']
           }
@@ -78,12 +92,6 @@ module CollectionSpace
             overall_fieldcollectors,
             fieldcollectorstransforms
           )
-          fceventname = []
-          eventname = CSDR.split_mvf attributes, 'fieldcollectioneventname'
-          eventname.each_with_index do |fcen, index|
-            fceventname << {"fieldCollectionEventName" =>  fcen}
-          end
-          CSXML.add_repeat xml, 'fieldCollectionEventNames', fceventname
           CSXML.add xml, 'valuer', CSXML::Helpers.get_authority('personauthorities', 'person', attributes["valuerperson"]) if attributes["valuerperson"]
           CSXML.add xml, 'valuer', CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes["valuerorganization"]) if attributes["valuerorganization"]
           insurers = []
@@ -116,9 +124,50 @@ module CollectionSpace
           )
           CSXML.add xml, 'normalLocation', CSXML::Helpers.get_authority('locationauthorities', 'location', attributes["normallocationstorage"]) if attributes["normallocationstorage"]
           CSXML.add xml, 'normalLocation', CSXML::Helpers.get_authority('placeauthorities', 'place', attributes["normalLocationplace"]) if attributes["normalLocationplace"]
+          checkmethods = {
+            'conditioncheckmethod' => ['conditionCheckMethods', 'conditionCheckMethod']
+          }
 
- 
+          checkmethodstransforms = {
+            'conditioncheckmethod' => {'vocab' => 'conditioncheckmethod'}
+          }
 
+          CSXML::Helpers.add_repeats(
+            xml,
+            attributes,
+            checkmethods,
+            checkmethodstransforms
+          )
+          checkreasons = {
+            'conditioncheckreason' => ['conditionCheckReasons', 'conditionCheckReason']
+          }
+
+          checkreasonstransforms = {
+            'conditioncheckreason' => {'vocab' => 'conditioncheckreason'}
+          }
+
+          CSXML::Helpers.add_repeats(
+            xml,
+            attributes,
+            checkreasons,
+            checkreasonstransforms
+          )
+          checkers = {
+            'conditioncheckerorassessorperson' => ['conditionCheckersOrAssessors', 'conditionCheckersOrAssessor'],
+            'conditioncheckerorassessororganization' => ['conditionCheckersOrAssessors', 'conditionCheckersOrAssessor'] 
+          }
+
+          checkerstransforms = {
+            'conditioncheckerorassessororganization' => {'authority' => ['orgauthorities', 'organization']},
+            'conditioncheckerorassessorperson' => {'authority' => ['personauthorities', 'person']}
+          }
+
+          CSXML::Helpers.add_repeats(
+            xml,
+            attributes,
+            checkers,
+            checkerstransforms
+          )
         end
       end
     end
