@@ -257,6 +257,50 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroOsteology do
           expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
         end
       end #no verbatim, analyst, or date columns for ageEstimate
-
     end #context in file with...
+    
+    context 'no values for groupLists' do
+      let(:attributes) { get_attributes_by_row('anthro', 'osteology_anthro_all.csv', 16) }
+      let(:doc) { get_doc(anthroosteology) }
+      let(:record) { get_fixture('anthro_osteology_all_row16.xml') }
+
+      it 'cranialDeformationPresent to be empty' do
+        xpath = "/document/#{ext}/cranialDeformationPresent"
+        conv_text = get_text(doc, xpath)
+        expect(conv_text).to be_empty
+      end
+
+      it 'trepanationPresent to be empty' do
+        xpath = "/document/#{ext}/trepanationPresent"
+        conv_text = get_text(doc, xpath)
+        expect(conv_text).to be_empty
+      end
+
+      it 'cranialDeformationCategories is empty' do
+        xpath = "/document/#{ext}/cranialDeformationCategories"
+        conv_text = get_text(doc, xpath)
+        expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+      end
+
+      it 'trepanationGroupList is empty' do
+        xpath = "/document/#{ext}/trepanationGroupList"
+        conv_text = get_text(doc, xpath)
+        expect(conv_text).to be_empty, -> { "Xpath for doc was populated: #{xpath}" }
+      end
+    end #no values for groupLists
+
+    context 'required fields only' do
+      let(:attributes) { get_attributes_by_row('anthro', 'osteology_anthro_all.csv', 17) }
+      let(:doc) { get_doc(anthroosteology) }
+      let(:record) { get_fixture('anthro_osteology_row17.xml') }
+    let(:xpaths) {[
+      "/document/#{p}/InventoryID",
+      { xpath: "/document/#{p}/inventoryAnalyst", transform: ->(text) { CSURN.parse(text)[:label] } },
+      "/document/#{p}/inventoryDate",
+    ]}
+
+      it 'required fields are populated' do
+        test_converter(doc, record, xpaths)        
+      end
+    end #no values for groupLists
 end

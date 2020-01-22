@@ -446,8 +446,8 @@ module CollectionSpace
           when 'f'
             return 'false'
           else
-            Rails.logger.warn("#{value} cannot be converted to boolean in FIELD/ROW")
-            return value
+            Rails.logger.warn("#{value} cannot be converted to boolean in FIELD/ROW. Defaulting to false")
+            return 'false'
           end
         end
 
@@ -474,7 +474,7 @@ module CollectionSpace
         def self.add_authorities(xml, field, authority_type, authority, values = [], method)
           values = values.compact.map do |value|
             {
-                field => CSURN.get_authority_urn(authority_type, authority, value),
+              field => CSURN.get_authority_urn(authority_type, authority, value),
             }
           end
           return unless values.any?
@@ -558,7 +558,9 @@ module CollectionSpace
             value = attributes[csvheader]
 
             unless transforms.empty?
-              value = CSXML::Helpers.apply_transforms(transforms, csvheader, value) if transforms.keys.include?(csvheader)
+              unless value.nil?
+                value = CSXML::Helpers.apply_transforms(transforms, csvheader, value) if transforms.keys.include?(csvheader)
+              end
             end
 
             pair_values[fieldname] = value
@@ -717,6 +719,8 @@ module CollectionSpace
           # remove completely empty fields
           mvfhash.reject!{ |k, v| k if v[:values].empty? }
 
+          return [] if mvfhash.empty?
+          
           fvhash = {}
           mvfhash.each{ |csvheader, vhash|
             values = vhash[:values]

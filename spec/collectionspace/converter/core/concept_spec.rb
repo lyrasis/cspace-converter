@@ -2,8 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
   let(:attributes) { get_attributes('core', 'authconcept_nomenclature_terms.csv') }
-  let(:coreconcept) { CoreConcept.new(attributes, config: {identifier: 'termDisplayName'} ) }
-  #let(:coreconcept) { CoreConcept.new(Lookup.profile_defaults('nomenclature').merge(attributes)) }
+  let(:coreconcept) { CoreConcept.new(attributes, {identifier: 'TESTIDENTIFIERVALUE'}) }
   let(:doc) { Nokogiri::XML(coreconcept.convert, nil, 'UTF-8') }
   let(:record) { get_fixture('core_concept_nomenclature_full.xml') }
   let(:xpaths) {[
@@ -46,10 +45,16 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConcept do
     '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceNote',
     '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceDetail',
     '/document/*/additionalSourceGroupList/additionalSourceGroup/additionalSourceID'
-    ]}
+  ]}
 
   it "Maps core concept attributes correctly" do
     test_converter(doc, record, xpaths)
+  end
+
+  it "sets shortIdentifier" do
+    xpath = '/document/*/shortIdentifier'
+    conv_text = get_text(doc, xpath)
+    expect(conv_text).to eq('TESTIDENTIFIERVALUE')
   end
 end
 
