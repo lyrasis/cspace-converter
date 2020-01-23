@@ -16,7 +16,6 @@ module CollectionSpace
               'currentownerorganization' => 'currentOwner',
               'depositororganization' => 'depositor',
               'depositorperson' => 'depositor',
-              'exitdategroup' => 'exitDateGroup',
               'exitnote' => 'exitNote',
               'exitquantity' => 'exitQuantity',
               'exitreason' => 'exitReason',
@@ -61,6 +60,7 @@ module CollectionSpace
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
           CSXML::Helpers.add_repeats(xml, attributes, repeats)
+          CSXML::Helpers.add_date_group(xml, 'exitDate', 'exitdategroup')
           #deacApprovalGroupList
           approval = {
             'deaccessionapprovalgroup' => 'deaccessionApprovalGroup',
