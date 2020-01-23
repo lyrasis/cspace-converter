@@ -10,48 +10,75 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes)
-          CSXML.add xml, 'exitNumber', attributes["exitnumber"]
-          CSXML::Helpers.add_person xml, 'currentOwner', attributes["currentowner"]
-          CSXML::Helpers.add_organization xml, 'currentOwner', attributes["currentownerorg"]
-          CSXML::Helpers.add_person xml, 'depositor', attributes["depositor"]
-          CSXML::Helpers.add_organization xml, 'depositor', attributes["depositororg"]
-          CSXML.add_repeat xml, 'exitMethods', [{'exitMethod' => attributes['exitmethod']}]
-          CSXML.add xml, 'exitNote', attributes["exitnote"]
-          CSXML.add xml, 'exitReason', attributes["exitreason"]
-          CSXML.add xml, 'packingNote', attributes["packingnote"]
-          CSXML.add xml, 'displosalNewObjectNumber', attributes["displosalnewobjectnumber"]
-          approval = []
-          approvalgroup = split_mvf attributes, 'deaccessionapprovalgroup'
-          approvalstatus = split_mvf attributes, 'deaccessionapprovalstatus'
-          approvaldate = split_mvf attributes, 'deaccessionapprovaldate'
-          approvalgroup.each_with_index do |grp, index|
-            approval << {
-              "deaccessionApprovalGroup" => CSXML::Helpers.get_vocab(
-                'deaccessionapprovalgroup', grp
-              ),
-              "deaccessionApprovalStatus" => CSXML::Helpers.get_vocab(
-                'deaccessionapprovalstatus', approvalstatus[index]
-              ),
-              "deaccessionApprovalDate" => CSDTP.parse(approvaldate[index]).earliest_scalar
+          pairs = {
+              'exitnumber' => 'exitNumber',
+              'currentownerperson' => 'currentOwner',
+              'currentownerorganization' => 'currentOwner',
+              'depositororganization' => 'depositor',
+              'depositorperson' => 'depositor',
+              'exitdategroup' => 'exitDateGroup',
+              'exitnote' => 'exitNote',
+              'exitquantity' => 'exitQuantity',
+              'exitreason' => 'exitReason',
+              'packingnote' => 'packingNote',
+              'displosalnewobjectnumber' => 'displosalNewObjectNumber',
+              'deaccessionauthorizer' => 'deaccessionAuthorizer',
+              'authorizationdate' => 'authorizationDate',
+              'deaccessiondate' => 'deaccessionDate',
+              'disposaldate' => 'disposalDate',
+              'disposalmethod' => 'disposalMethod',
+              'disposalreason' => 'displosalReason',
+              'disposalprovisos' => 'displosalProvisos',
+              'disposalproposedrecipientperson' => 'disposalProposedRecipient',
+              'disposalproposedrecipientorganization' => 'disposalProposedRecipient',
+              'disposalrecipientperson' => 'disposalRecipient',
+              'disposalrecipientorganization' => 'disposalRecipient',
+              'disposalnote' => 'displosalNote',
+              'disposalcurrency' => 'disposalCurrency',
+              'disposalvalue' => 'displosalValue',
+              'groupdisposalcurrency' => 'groupDisposalCurrency',
+              'groupdisposalvalue' => 'groupDisplosalValue'
             }
-          end
-          CSXML.add_group_list xml, 'deacApproval', approval
-          CSXML::Helpers.add_person xml, 'deaccessionAuthorizer', attributes["deaccessionauthorizer"]
-          CSXML.add xml, 'authorizationDate', CSDTP.parse(attributes['authorizationdate']).earliest_scalar
-          CSXML.add xml, 'deaccessionDate', CSDTP.parse(attributes['deaccessiondate']).earliest_scalar
-          CSXML.add xml, 'disposalDate', CSDTP.parse(attributes['disposaldate']).earliest_scalar
-          CSXML.add xml, 'disposalMethod', CSXML::Helpers.get_vocab('disposalmethod', attributes["disposalmethod"])
-          CSXML.add xml, 'displosalReason', attributes["disposalreason"]
-          CSXML.add xml, 'displosalProvisos', attributes["disposalprovisos"]
-          CSXML::Helpers.add_person xml, 'disposalProposedRecipient', attributes["disposalproposedrecipient"]
-          CSXML::Helpers.add_organization xml, 'disposalProposedRecipient', attributes["disposalproposedrecipientorg"]
-          CSXML::Helpers.add_person xml, 'disposalRecipient', attributes["disposalrecipient"]
-          CSXML::Helpers.add_organization xml, 'disposalRecipient', attributes["disposalrecipientorg"]
-          CSXML.add xml, 'displosalNote', attributes["disposalnote"]
-          CSXML.add xml, 'disposalCurrency', CSXML::Helpers.get_vocab('currency', attributes['disposalcurrency'])
-          CSXML.add xml, 'displosalValue', attributes['disposalvalue']
-          CSXML.add xml, 'groupDisposalCurrency', CSXML::Helpers.get_vocab('currency', attributes['groupdisposalcurrency'])
-          CSXML.add xml, 'groupDisplosalValue', attributes['groupdisposalvalue']
+          pairstransforms = {
+            'currentownerperson' => {'authority' => ['personauthorities', 'person']},
+            'currentownerorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'depositororganization' => {'authority' => ['orgauthorities', 'organization']},
+            'depositorperson' => {'authority' => ['personauthorities', 'person']},
+            'deaccessionauthorizer' => {'authority' => ['personauthorities', 'person']},
+            'authorizationdate' => {'special' => 'unstructured_date_stamp'},
+            'deaccessiondate' => {'special' => 'unstructured_date_stamp'},
+            'disposaldate' => {'special' => 'unstructured_date_stamp'},
+            'disposalmethod' => {'vocab' => 'disposalmethod'},
+            'disposalproposedrecipientperson' => {'authority' => ['personauthorities', 'person']},
+            'disposalproposedrecipientorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'disposalrecipientperson' => {'authority' => ['personauthorities', 'person']},
+            'disposalrecipientorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'disposalcurrency' => {'vocab' => 'currency'},
+            'groupdisposalcurrency' => {'vocab' => 'currency'}
+          }
+          repeats = { 
+            'exitmethod' => ['exitMethods', 'exitMethod'],
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats)
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+          #deacApprovalGroupList
+          approval = {
+            'deaccessionapprovalgroup' => 'deaccessionApprovalGroup',
+            'deaccessionapprovalstatus' => 'deaccessionApprovalStatus',
+            'deaccessionapprovaldate' => 'deaccessionApprovalDate'
+          }
+          approvaltransforms = {
+            'deaccessionapprovalgroup' => {'vocab' => 'deaccessionapprovalgroup'},
+            'deaccessionapprovalstatus' => {'vocab' => 'deaccessionapprovalstatus'},
+            'deaccessionapprovaldate' => {'special' => 'unstructured_date_stamp'},
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'deacApproval',
+            approval,
+            approvaltransforms
+          )
         end
       end
     end
