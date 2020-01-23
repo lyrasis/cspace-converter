@@ -563,7 +563,7 @@ module CollectionSpace
               end
             end
 
-            pair_values[fieldname] = value
+            pair_values[fieldname] = value unless value.nil?
           }
 
           pair_values.each{ |field_name, value| CSXML.add(xml, field_name, value) }
@@ -612,6 +612,8 @@ module CollectionSpace
         def self.add_repeats(xml, attributes, repeats, transforms = {})
           return unless repeats
 
+          collapsed_repeats = {}
+
           repeats.each{ |csvheader, fields|
             values = CSDR.split_mvf(attributes, csvheader)
             
@@ -621,13 +623,23 @@ module CollectionSpace
               end
             end
 
-            parent = fields[0]
+            parent = reserved?(fields[0]) ? "#{fields[0]}_" : fields[0]
             child = reserved?(fields[1]) ? "#{fields[1]}_" : fields[1]
+            
+            unless collapsed_repeats.has_key?(parent)
+              collapsed_repeats[parent] = {'childField' => child, 'values' => []}
+            end
+            values.each{ |v| collapsed_repeats[parent]['values'] << v }
+          }
 
-            xml.send(parent.to_sym) {
-              values.each{ |value| xml.send(child.to_sym, value)}
+
+          collapsed_repeats.each{ |plural, hash|
+            xml.send(plural.to_sym) {
+              hash['values'].each{ |value|
+                xml.send(hash['childField'].to_sym, value)
               }
             }
+          }
         end
 
         def self.add_taxon(xml, field, value)
