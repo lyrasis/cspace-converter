@@ -127,6 +127,20 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
           test_converter(doc, record, xpaths)
         end
       end #  context 'sample data row 2'
+
+      context 'sample data row 7 - objectNumber only' do
+        let(:attributes) { get_attributes_by_row('anthro', 'collectionobject_partial.csv', 7) }
+        let(:anthrocollectionobject) { AnthroCollectionObject.new(attributes) }
+        let(:doc) { get_doc(anthrocollectionobject) }
+        let(:record) { get_fixture('anthro_collectionobject_row7.xml') }
+        let(:xpaths) {[
+          "/document/*/objectNumber"
+        ]}
+
+        it "Maps attributes correctly" do
+          test_converter(doc, record, xpaths)
+        end
+      end
     end # describe #map
 
   

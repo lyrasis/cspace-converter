@@ -34,31 +34,23 @@ module CollectionSpace
           }
         end
 
-        def self.simple_repeats
-          {
-            'briefdescription' => 'briefDescriptions',
-            'comments' => 'comments',
-            'fieldcollectioneventname' => 'fieldColEventNames',
-            'form' => 'forms',
-            'responsibledepartment' => 'responsibleDepartments',
-            'style' => 'styles',
-            'color' => 'colors'
-          }
-        end
-
-        def self.simple_repeat_lists
-          {
-            'objectstatus' => 'objectStatus'
-          }
-        end
-
         def self.map(xml, attributes)
           CSXML::Helpers.add_title(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
           CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
-          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeats)
-          CSXML::Helpers.add_simple_repeats(xml, attributes, CoreCollectionObject.simple_repeat_lists, 'List')
 
+          repeats = {
+            'briefdescription' => ['briefDescriptions', 'briefDescription'],
+            'comments' => ['comments', 'comment'],
+            'fieldcollectioneventname' => ['fieldColEventNames', 'fieldColEventName'],
+            'form' => ['forms', 'form'],
+            'responsibledepartment' => ['responsibleDepartments', 'responsibleDepartment'],
+            'style' => ['styles', 'style'],
+            'color' => ['colors', 'color'],
+            'objectstatus' => ['objectStatusList', 'objectStatus'],
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats)
+          
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
           CSXML::Helpers.add_date_group_list(
             xml, 'objectProductionDate', [CSDTP.parse(attributes['productiondate'])]
