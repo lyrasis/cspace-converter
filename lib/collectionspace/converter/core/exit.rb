@@ -59,8 +59,8 @@ module CollectionSpace
           repeats = { 
             'exitmethod' => ['exitMethods', 'exitMethod'],
           }
-          CSXML::Helpers.add_repeats(xml, attributes, repeats)
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+          CSXML::Helpers.add_repeats(xml, attributes, repeats)
           #deacApprovalGroupList
           approval = {
             'deaccessionapprovalgroup' => 'deaccessionApprovalGroup',
