@@ -26,7 +26,9 @@ module CollectionSpace
             'securityrecommendations' => 'securityRecommendations',
             'specialrequirements' => 'specialRequirements',
             'storagerequirements' => 'storageRequirements',
-            'legalrequirements' => 'legalRequirements'
+            'legalrequirements' => 'legalRequirements',
+            'conditioncheckerperson' => 'conditionChecker',
+            'conditioncheckerorganization' => 'conditionChecker'
           }
         end
 
@@ -34,10 +36,10 @@ module CollectionSpace
           CSXML::Helpers.add_pairs(xml, attributes, CoreConditionCheck.pairs,
           pairstransforms = {
             'conditioncheckassessmentdate' => {'special' => 'unstructured_date_stamp'},
-            'nextconditioncheckdate' => {'special' => 'unstructured_date_stamp'}
-          }) rescue nil
-          CSXML::Helpers.add_person xml, 'conditionChecker', attributes["conditioncheckerperson"] if attributes["conditioncheckerperson"]
-          CSXML::Helpers.add_organization xml, 'conditionChecker', attributes["conditioncheckerorganization"] if attributes["conditioncheckerorganization"]
+            'nextconditioncheckdate' => {'special' => 'unstructured_date_stamp'},
+            'conditioncheckerperson' => {'authority' => ['personauthorities', 'person']},
+            'conditioncheckerorganization' => {'authority' => ['orgauthorities', 'organization']}
+          })
 
           overall_completeness = {
             'completeness' => 'completeness',
@@ -137,7 +139,7 @@ module CollectionSpace
             'salvagePriorityCode',
             overall_salvage,
             salvagetransforms
-          ) rescue nil
+          ) 
           overall_legal = {
             'legalreqsheld' => 'legalReqsHeld',
             'legalreqsheldbegindate' => 'legalReqsHeldBeginDate',
