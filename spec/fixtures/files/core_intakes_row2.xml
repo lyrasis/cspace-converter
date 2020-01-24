@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="intakes">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-01-21T16:31:43.203Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:intakes:id(60bc6b28-c81c-4a5e-8094)</refName>
+    <uri>/intakes/60bc6b28-c81c-4a5e-8094</uri>
+    <updatedAt>2020-01-22T23:09:03.295Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:intakes_common xmlns:ns2="http://collectionspace.org/services/intake" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <fieldCollectionDate>2000-03-01T00:00:00.000Z</fieldCollectionDate>
+    <fieldCollectionNote>Field collection note text.</fieldCollectionNote>
+    <conditionCheckersOrAssessors>
+      <conditionCheckerOrAssessor>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(SeattleUniversity1578523065563)'Seattle University'</conditionCheckerOrAssessor>
+      <conditionCheckerOrAssessor>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TohakuAzuma1579721636722)'Tohaku Azuma'</conditionCheckerOrAssessor>
+    </conditionCheckersOrAssessors>
+    <fieldCollectors>
+      <fieldCollector>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(TridentinoMuseodiScienzeNaturali1578521877735)'Tridentino Museo di Scienze Naturali'</fieldCollector>
+      <fieldCollector>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(WatermillCenter1578521890091)'Watermill Center'</fieldCollector>
+      <fieldCollector>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1578483411533)'Ilze Bergs'</fieldCollector>
+      <fieldCollector>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MarikaLaimitis1579609922785)'Marika Laimitis'</fieldCollector>
+    </fieldCollectors>
+    <valuer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1578483427415)'Tina Lauva'</valuer>
+    <normalLocation>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(AR1Unit31578522466194)'A:R1:Unit 3'</normalLocation>
+    <valuationReferenceNumber>Valuation reference number text.</valuationReferenceNumber>
+    <fieldCollectionMethods>
+      <fieldCollectionMethod>urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(borehole)'borehole'</fieldCollectionMethod>
+      <fieldCollectionMethod>urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(metaldetector)'metal detector'</fieldCollectionMethod>
+    </fieldCollectionMethods>
+    <insuranceNote>Insurance note text.</insuranceNote>
+    <packingNote>Packing note text.</packingNote>
+    <returnDate>2000-02-01T00:00:00.000Z</returnDate>
+    <depositorsRequirements>Depositor's requirements text.</depositorsRequirements>
+    <insuranceReferenceNumber>Insurance reference number text.</insuranceReferenceNumber>
+    <entryMethods>
+      <entryMethod>urn:cspace:core.collectionspace.org:vocabularies:name(entrymethod):item:name(foundondoorstep)'Found on doorstep'</entryMethod>
+      <entryMethod>urn:cspace:core.collectionspace.org:vocabularies:name(entrymethod):item:name(inperson)'In person'</entryMethod>
+    </entryMethods>
+    <insurancePolicyNumber>Insurance policy number text.</insurancePolicyNumber>
+    <insurers>
+      <insurer>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(TridentinoMuseodiScienzeNaturali1578521877735)'Tridentino Museo di Scienze Naturali'</insurer>
+      <insurer>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(WatermillCenter1578521890091)'Watermill Center'</insurer>
+      <insurer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1578483411533)'Ilze Bergs'</insurer>
+      <insurer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MarikaLaimitis1579609922785)'Marika Laimitis'</insurer>
+    </insurers>
+    <currentOwner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1578521291753)'John Mellon'</currentOwner>
+    <conditionCheckReferenceNumber>Condition check assessment reference number text.</conditionCheckReferenceNumber>
+    <conditionCheckReasons>
+      <conditionCheckReason>urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(conservation)'Conservation'</conditionCheckReason>
+      <conditionCheckReason>urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(damagedintransit)'Damaged in transit'</conditionCheckReason>
+    </conditionCheckReasons>
+    <entryReason>enquiry</entryReason>
+    <conditionCheckMethods>
+      <conditionCheckMethod>urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckmethod):item:name(observed)'Observed'</conditionCheckMethod>
+      <conditionCheckMethod>urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckmethod):item:name(xrayed)'X-Rayed'</conditionCheckMethod>
+    </conditionCheckMethods>
+    <fieldCollectionEventNames>
+      <fieldCollectionEventName>Field collection event name text 1.</fieldCollectionEventName>
+      <fieldCollectionEventName>Field collection event name 2.</fieldCollectionEventName>
+    </fieldCollectionEventNames>
+    <entryDate>2000-01-01T00:00:00.000Z</entryDate>
+    <fieldCollectionNumber>Field collection number text.</fieldCollectionNumber>
+    <currentLocationGroupList>
+      <currentLocationGroup>
+        <currentLocationNote>Current location note text 1.</currentLocationNote>
+        <currentLocationFitness>urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(dangerous)'Dangerous'</currentLocationFitness>
+        <currentLocation>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(BuildingA1578522169466)'Building A'</currentLocation>
+      </currentLocationGroup>
+      <currentLocationGroup>
+        <currentLocationNote/>
+        <currentLocationFitness>urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(reasonable)'Reasonable'</currentLocationFitness>
+        <currentLocation>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(ARoom11578522197030)'A:Room 1'</currentLocation>
+      </currentLocationGroup>
+      <currentLocationGroup>
+        <currentLocationNote>Current location note text 3.</currentLocationNote>
+        <currentLocationFitness/>
+        <currentLocation>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(Africa1578522245061)'Africa'</currentLocation>
+      </currentLocationGroup>
+      <currentLocationGroup>
+        <currentLocationNote>Current location note text 4.</currentLocationNote>
+        <currentLocationFitness>urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(suitable)'Suitable'</currentLocationFitness>
+        <currentLocation>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(OaklandMuseumofCalifornia1579006073282)'Oakland Museum of California'</currentLocation>
+      </currentLocationGroup>
+    </currentLocationGroupList>
+    <fieldCollectionPlace>Field collection place text.</fieldCollectionPlace>
+    <conditionCheckNote>Condition check assessment note text.</conditionCheckNote>
+    <entryNote>Entry note text.</entryNote>
+    <insuranceRenewalDate>2000-04-01T00:00:00.000Z</insuranceRenewalDate>
+    <approvalGroupList>
+      <approvalGroup>
+        <approvalStatus>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(approved)'approved'</approvalStatus>
+        <approvalGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(board_of_trustees)'board of trustees'</approvalGroup>
+        <approvalNote>App note 1</approvalNote>
+        <approvalDate>2000-02-15T00:00:00.000Z</approvalDate>
+        <approvalIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(CarlaCurator1579734402984)'Carla Curator'</approvalIndividual>
+      </approvalGroup>
+      <approvalGroup>
+        <approvalStatus>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(not_required)'not required'</approvalStatus>
+        <approvalGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(collection_committee)'collection committee'</approvalGroup>
+        <approvalNote/>
+        <approvalDate/>
+        <approvalIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(CarlCurator1579734487879)'Carl Curator'</approvalIndividual>
+      </approvalGroup>
+    </approvalGroupList>
+    <conditionCheckDate>2000-06-01T00:00:00.000Z</conditionCheckDate>
+    <fieldCollectionSources>
+      <fieldCollectionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ElbertinaLana1579727043725)'Elbertina Lana'</fieldCollectionSource>
+      <fieldCollectionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(LucenaMedina1579727057294)'Lucena Medina'</fieldCollectionSource>
+    </fieldCollectionSources>
+    <entryNumber>IN2000.001</entryNumber>
+    <depositor>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(ArtInstituteofChicago1578521306413)'Art Institute of Chicago'</depositor>
+    <locationDate>2000-05-01T00:00:00.000Z</locationDate>
+  </ns2:intakes_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
