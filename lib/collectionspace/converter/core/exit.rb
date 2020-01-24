@@ -60,7 +60,7 @@ module CollectionSpace
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
           CSXML::Helpers.add_repeats(xml, attributes, repeats)
-          CSXML::Helpers.add_date_group(xml, 'exitDate', 'exitdategroup')
+          CSXML::Helpers.add_date_group(xml, 'exitDate', CSDTP.parse(attributes['exitdategroup']))
           #deacApprovalGroupList
           approval = {
             'deaccessionapprovalgroup' => 'deaccessionApprovalGroup',
