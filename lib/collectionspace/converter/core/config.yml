@@ -1,6 +1,5 @@
 ---
 registered_authorities:
-  - citationauthorities
   - conceptauthorities
   - locationauthorities
   - orgauthorities
@@ -68,25 +67,49 @@ registered_profiles:
           vocabulary_subtype: languages
   conditioncheck:
     type: Procedures
-    enabled: true
     config:
       ConditionCheck:
-        identifier: conditioncheckrefnumber
-        title: conditioncheckrefnumber
+        identifier: conditioncheckreferencenumber
+        title: conditioncheckreferencenumber
       Authorities:
         - name_field: conditionchecker
           authority_type: Person
           authority_subtype: person
   exhibition:
     type: Procedures
+    enabled: true
     config:
       Exhibition:
         identifier: exhibitionnumber
         title: exhibitionnumber
       Authorities:
-        - name_field: organizer
+        - name_field: organizerorganization
           authority_type: Organization
           authority_subtype: organization
+        - name_field: organizerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: venueorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: venueplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: venuestoragelocation
+          authority_type: Location
+          authority_subtype: location
+        - name_field: exhibitionpersonperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: exhibitionpersonorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: sponsororganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: sponsorperson
+          authority_type: Person
+          authority_subtype: person
   group:
     type: Procedures
     enabled: true
@@ -110,37 +133,12 @@ registered_profiles:
     config: {}
   intake:
     type: Procedures
-    enabled: true
     config:
       Intake:
-        identifier: entrynumber
-        title: entrynumber
+        identifier: intakeentrynumber
+        title: intakeentrynumber
       Authorities:
-        - name_field: currentowner
-          authority_type: Person
-          authority_subtype: person
-        - name_field: depositor
-          authority_type: Person
-          authority_subtype: person
-        - name_field: fieldcollectionsource
-          authority_type: Person
-          authority_subtype: person
-        - name_field: fieldCollectors
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: valuer
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: insurer
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: currentlocation
-          authority_type: Place
-          authority_subtype: place
-        - name_field: normallocation
-          authority_type: Place
-          authority_subtype: place
-        - name_field: conditioncheckerorassessor
+        - name_field: current_owner
           authority_type: Person
           authority_subtype: person
   loanin:
@@ -206,29 +204,12 @@ registered_profiles:
           authority_subtype: person
   nomenclature:
     type: Authorities
-    enabled: true
-    required_headers:
-      - termdisplayname
     defaults:
-      historicalstatus: current
       termlanguage: English
-      termprefforlang: true
-      termsource: AASLH Nomenclature
-      termstatus: accepted
-      termtype: descriptor
     config:
       name_field: termdisplayname
       authority_type: Concept
       authority_subtype: nomenclature
-      Nomenclature:
-        identifier: termdisplayname
-      Authorities:
-        - name_field: termsource
-          authority_type: Citation
-          authority_subtype: citation
-      Vocabularies:
-        - name_field: termlanguage
-          vocabulary_subtype: languages
   objectexit:
     type: Procedures
     enabled: true
