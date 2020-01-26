@@ -1,5 +1,6 @@
 ---
 registered_authorities:
+  - citationauthorities
   - conceptauthorities
   - locationauthorities
   - orgauthorities
