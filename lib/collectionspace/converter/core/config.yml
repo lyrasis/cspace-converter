@@ -68,10 +68,11 @@ registered_profiles:
           vocabulary_subtype: languages
   conditioncheck:
     type: Procedures
+    enabled: true
     config:
       ConditionCheck:
-        identifier: conditioncheckreferencenumber
-        title: conditioncheckreferencenumber
+        identifier: conditioncheckrefnumber
+        title: conditioncheckrefnumber
       Authorities:
         - name_field: conditionchecker
           authority_type: Person
