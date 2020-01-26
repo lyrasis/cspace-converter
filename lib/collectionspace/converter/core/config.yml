@@ -77,7 +77,7 @@ registered_profiles:
         - name_field: conditionchecker
           authority_type: Person
           authority_subtype: person
-   conservation:
+  conservation:
     type: Procedures
     enabled: true
     config:
