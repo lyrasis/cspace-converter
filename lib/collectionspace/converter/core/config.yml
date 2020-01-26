@@ -138,10 +138,10 @@ registered_profiles:
     enabled: true
     config:
       Intake:
-        identifier: intakeentrynumber
-        title: intakeentrynumber
+        identifier: entrynumber
+        title: entrynumber
       Authorities:
-        - name_field: currentowner	      
+        - name_field: currentowner
           authority_type: Person
           authority_subtype: person
         - name_field: depositor
