@@ -66,7 +66,7 @@ module CollectionSpace
             'venue',
             venuedata,
             venuetransforms
-          )
+	    )
 
           workingdata = {
             'workinggroupnote' => 'workingGroupNote',
