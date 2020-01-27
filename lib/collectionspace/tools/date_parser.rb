@@ -40,7 +40,8 @@ module CollectionSpace
 
       def self.parse(date_string, end_date_string = nil)
         begin
-          date_string    = date_string.strip
+          unprocessed_date_string = date_string
+          date_string = date_string.strip
           date_increment = :day
           if date_string =~ /^\d{4}$/
             date_string = "#{date_string}-01-01"
@@ -55,8 +56,8 @@ module CollectionSpace
 
           date = StructuredDate.new
           date.parsed_datetime = parsed_earliest_date
-          date.date_string = date_string
-          date.display_date = date_string
+          date.date_string = unprocessed_date_string
+          date.display_date = unprocessed_date_string
 
           date.earliest_day = parsed_earliest_date.day
           date.earliest_month = parsed_earliest_date.month
