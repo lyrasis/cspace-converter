@@ -17,9 +17,7 @@ module CollectionSpace
             'planningnote' => 'planningNote',
             'curatorialnote' => 'curatorialNote',
             'generalnote' => 'generalNote',
-            'boilerplatetext' => 'boilerplateText',
-            'galleryrotationname' => 'galleryRotationName',
-            'galleryrotationnote' => 'galleryRotationNote',
+            'boilerplatetext' => 'boilerplateText'
             
           }
         end
@@ -46,9 +44,6 @@ module CollectionSpace
             'sponsororganization' => {'authority' => ['orgauthorities', 'organization']},
             'sponsorperson' => {'authority' => ['personauthorities', 'person']}
           })
-          CSXML::Helpers.add_date_group(xml, 'galleryRotationStartDate', CSDTP.parse(attributes['galleryrotationstartdategroup']))
-          CSXML::Helpers.add_date_group(xml, 'galleryRotationEndDate', CSDTP.parse(attributes['galleryrotationenddategroup']))
-
           venuedata = {
             'venueorganization' => 'venue',
             'venueplace' => 'venue',
@@ -82,7 +77,6 @@ module CollectionSpace
           }
           exhibitionpersondata = [
             'exhibitionPersonRole',
-            'exhibitionPerson',
             'exhibitionPerson'
           ]
           eptransforms = {
@@ -99,6 +93,17 @@ module CollectionSpace
             eptransforms,
             sublist_suffix: 'GroupList',
             subgroup_suffix: 'Group'
+          )
+          galleryrotationdata = {
+            'galleryrotationnote' => 'galleryRotationNote',
+            'galleryrotationname' => 'galleryRotationName',
+            'galleryrotationstartdategroup' => 'galleryRotationStartDateGroup'
+          }
+          CSXML.add_group_list_with_structured_date(
+            xml, attributes,
+            'galleryRotation',
+            galleryrotationdata,
+            'galleryRotationStartDateGroup'
           )
           exhibitionreferencedata = {
             'exhibitionreference' => 'exhibitionReference',
