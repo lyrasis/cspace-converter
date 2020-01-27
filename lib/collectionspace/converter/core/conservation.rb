@@ -111,7 +111,8 @@ module CollectionSpace
           desttransforms = {
             'sampleby' => {'authority' => ['personauthorities', 'person']},
             'destanalysisapproveddate' => {'special' => 'unstructured_date_stamp'},
-            'sampledate' => {'special' => 'unstructured_date_stamp'}
+            'sampledate' => {'special' => 'unstructured_date_stamp'},
+            'samplereturned' => {'special' => 'boolean'},
           }
           CSXML.add_single_level_group_list( 
             xml,
