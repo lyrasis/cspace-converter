@@ -75,28 +75,30 @@ module CollectionSpace
 
           workingdata = {
             'workinggroupnote' => 'workingGroupNote',
-            'workinggrouptitle' => 'workingGroupTitle'
-          }
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'working',
-            workingdata
-          )
-          exhibitionpersondata = {
+            'workinggrouptitle' => 'workingGroupTitle',
             'exhibitionpersonrole' => 'exhibitionPersonRole',
             'exhibitionpersonorganization' => 'exhibitionPerson',
             'exhibitionpersonperson' => 'exhibitionPerson'
           }
+          exhibitionpersondata = [
+            'exhibitionPersonRole',
+            'exhibitionPerson',
+            'exhibitionPerson'
+          ]
           eptransforms = {
             'exhibitionpersonorganization' => {'authority' => ['orgauthorities', 'organization']},
             'exhibitionpersonperson' => {'authority' => ['personauthorities', 'person']},
             'exhibitionpersonrole' => {'vocab' => 'exhibitionpersonrole'}
           }
-          CSXML.add_single_level_group_list(
+          CSXML.add_nested_group_lists(
             xml, attributes,
+            'working',
+            workingdata,
             'exhibitionPerson',
             exhibitionpersondata,
-            eptransforms
+            eptransforms,
+            sublist_suffix: 'GroupList',
+            subgroup_suffix: 'Group'
           )
           exhibitionreferencedata = {
             'exhibitionreference' => 'exhibitionReference',
