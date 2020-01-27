@@ -32,10 +32,10 @@
       <scalarValuesComputed>true</scalarValuesComputed>
       <dateEarliestSingleCertainty/>
       <dateEarliestSingleQualifierUnit/>
-      <dateDisplayDate/>
+      <dateDisplayDate>1906</dateDisplayDate>
       <dateLatestScalarValue/>
       <dateEarliestSingleQualifierValue/>
-      <datePeriod>1906</datePeriod>
+      <datePeriod/>
       <dateLatestEra/>
       <dateEarliestSingleDay/>
       <dateEarliestSingleQualifier/>
@@ -70,7 +70,7 @@
         <deaccessionApprovalIndividual/>
       </deacApprovalGroup>
     </deacApprovalGroupList>
-    <displosalProvisos>disposal provisos text   </displosalProvisos>
+    <displosalProvisos>disposal provisos text</displosalProvisos>
     <disposalRecipient>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(FitzwilliamMuseum1572856572410)'Fitzwilliam Museum'</disposalRecipient>
     <deaccessionDate>2000-02-01T00:00:00.000Z</deaccessionDate>
     <displosalNewObjectNumber>new object number 1</displosalNewObjectNumber>

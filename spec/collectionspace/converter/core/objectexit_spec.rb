@@ -9,7 +9,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreObjectExit do
     '/document/*/exitNumber',
     { xpath: '/document/*/currentOwner', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/depositor', transform: ->(text) { CSURN.parse(text)[:label] } },
-    '/document/*/exitDateGroup',
+    '/document/*/exitDateGroup/dateDisplayDate',
     '/document/*/exitMethods/exitMethod',
     '/document/*/exitNote',
     '/document/*/exitQuantity',
