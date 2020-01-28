@@ -8,11 +8,34 @@ RSpec.describe CSDTP do
     let(:hyphenated_date) { '1905-1907' }
     let(:usa_date) { '11/02/1980' }
     let(:short_month_or_day_date) { '2010/1/1' }
+    let(:ca_date) { 'ca. 1950' }
+    let(:text_date) { 'Early 20th century' }
 
     it "can return an empty date when no date provided" do
       date = CSDTP.parse(nil)
       expect(date.class).to eq CollectionSpace::Tools::StructuredDate
       expect(date.parsed_datetime).to be nil
+    end
+
+    context 'when approximate date or textual date string given' do
+      let(:ca_date_parsed) { CSDTP.parse(ca_date) }
+      let(:text_date_parsed) {CSDTP.parse(text_date) }
+      
+      it "returns structured date" do
+        pp(ca_date_parsed)
+        pp(CSDTP.fields_for(ca_date_parsed))
+           
+      expect(ca_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+      expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+    end
+    it "scalarValuesComputed = false" do
+      expect(ca_date_parsed.computed).to be false
+      expect(text_date_parsed.computed).to be false
+    end
+    it "dateDisplayDate = the date string passed in" do
+      expect(ca_date_parsed.display_date).to eq(ca_date)
+      expect(text_date_parsed.display_date).to eq(text_date)
+    end
     end
 
     it "can parse a basic date" do
