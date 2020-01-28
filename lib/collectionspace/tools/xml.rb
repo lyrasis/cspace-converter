@@ -300,11 +300,10 @@ module CollectionSpace
 
         top_groups = CSXML::Helpers.flatten_mvfs(all)
         child_groups = []
-
         top_groups.each_with_index{ |tg, index|
           child_group_splits = {}
           child_fields.each{ |field|
-            child_group_splits[field] = {:values => tg[field].split('^^'), :field => field}
+            child_group_splits[field] = {:values => tg[field].split('^^'), :field => field} if tg[field]
             tg.delete(field) if tg[field]
             all.delete(field) if all[field]
           }
@@ -404,6 +403,10 @@ module CollectionSpace
               value = CSDTP.parse_unstructured_date_string(value)
             when 'unstructured_date_stamp'
               value = CSDTP.parse_unstructured_date_stamp(value)
+            when 'upcase_first_char'
+              value = value.sub(/^(.)(.*)/){ $1.upcase << $2 }
+            when 'downcase_first_char'
+              value = value.sub(/^(.)(.*)/){ $1.downcase << $2 }
             end
           end
 

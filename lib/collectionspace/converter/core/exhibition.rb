@@ -160,7 +160,9 @@ module CollectionSpace
 
           }
           exhibitionobjecttransforms = {
-            'exhibitionobjectconscheckdate' => {'special' => 'unstructured_date_stamp'}
+            'exhibitionobjectconstreatment' => {'special' => 'upcase_first_char'},
+            'exhibitionobjectconscheckdate' => {'special' => 'unstructured_date_stamp'},
+            'exhibitionobjectmount' => {'special' => 'upcase_first_char'},
           }
           CSXML.add_single_level_group_list(
             xml, attributes,
