@@ -64,7 +64,7 @@ module CollectionSpace
               DateTime.parse(end_date_string) : parsed_earliest_date + 1.send(date_increment)
             date = StructuredDate.new
 
-            date.computed = true
+            date.computed = 'true'
             date.parsed_datetime = parsed_earliest_date
             date.date_string = unprocessed_date_string
             date.display_date = unprocessed_date_string
@@ -81,7 +81,7 @@ module CollectionSpace
             date
         rescue StandardError
           date = StructuredDate.new
-          date.computed = false
+          date.computed = 'false'
           date.display_date = unprocessed_date_string
           date
         end
