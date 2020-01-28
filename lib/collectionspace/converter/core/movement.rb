@@ -9,25 +9,54 @@ module CollectionSpace
           end
         end
 
+         def self.pairs
+          {
+            'movementreferencenumber' => 'movementReferenceNumber',
+            'normallocationstorage' => 'normalLocation',
+            'normallocationorganization' => 'normalLocation',
+            'currentlocationstorage' => 'currentLocation',
+            'currentlocationorganization' => 'currentLocation',
+            'currentlocationfitness' => 'currentLocationFitness',
+            'currentlocationnote' => 'currentLocationNote',
+            'locationdate' => 'locationDate',
+            'reasonformove' => 'reasonForMove',
+            'movementcontact' => 'movementContact',
+            'plannedremovaldate' => 'plannedRemovalDate',
+            'removaldate' => 'removalDate',
+            'movementnote' => 'movementNote',
+            'inventoryactionrequired' => 'inventoryActionRequired',
+            'frequencyforinventory' => 'frequencyForInventory',
+            'inventorydate' => 'inventoryDate',
+            'nextinventorydate' => 'nextInventoryDate',
+            'inventorynote' => 'inventoryNote'
+          }
+        end
+
+        def self.repeats
+          { 
+            'movementmethod' => ['movementMethods', 'movementMethod'],
+            'inventorycontact' => ['inventoryContactList', 'inventoryContact']
+          }
+        end
+
         def self.map(xml, attributes)
-          CSXML.add xml, 'movementReferenceNumber', attributes["movementreferencenumber"]
-          CSXML::Helpers.add_location xml, 'normalLocation', attributes['normallocation']
-          CSXML::Helpers.add_location xml, 'currentLocation', attributes['currentlocation']
-          CSXML.add xml, 'currentLocationFitness', attributes["currentlocationfitness"]
-          CSXML.add xml, 'currentLocationNote', attributes["currentlocationnote"]
-          CSXML.add xml, 'locationDate', CSDTP.parse(attributes['locationdate']).earliest_scalar
-          CSXML.add xml, 'reasonForMove', attributes["reasonformove"]
-          CSXML::Helpers.add_person xml, 'movementContact', attributes["movementcontact"]
-          CSXML.add_repeat xml, 'movementMethods', [{'movementMethod' => attributes['movementmethod']}]
-          CSXML.add xml, 'plannedRemovalDate', CSDTP.parse(attributes['plannedremovaldate']).earliest_scalar
-          CSXML.add xml, 'removalDate', CSDTP.parse(attributes['removaldate']).earliest_scalar
-          CSXML.add xml, 'movementNote', attributes["movementnote"]
-          CSXML.add xml, 'inventoryActionRequired', attributes["inventoryactionrequired"]
-          CSXML.add xml, 'frequencyForInventory', attributes["frequencyforinventory"]
-          CSXML.add xml, 'inventoryDate', CSDTP.parse(attributes['inventorydate']).earliest_scalar
-          CSXML.add xml, 'nextInventoryDate', CSDTP.parse(attributes['nextinventorydate']).earliest_scalar
-          CSXML.add_repeat xml, 'inventoryContact', [{'inventoryContact' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes["inventorycontact"])}], 'List'
-          CSXML.add xml, 'inventoryNote', attributes["inventorynote"]
+          CSXML::Helpers.add_pairs(xml, attributes, CoreMovement.pairs,
+          pairstransforms = {
+            'normallocationstorage' => {'authority' => ['locationauthorities', 'location']},
+            'normallocationorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'currentlocationstorage' => {'authority' => ['locationauthorities', 'location']},
+            'currentlocationorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'locationdate' => {'special' => 'unstructured_date_stamp'},
+            'plannedremovaldate' => {'special' => 'unstructured_date_stamp'},
+            'removaldate' => {'special' => 'unstructured_date_stamp'},
+            'inventorydate' => {'special' => 'unstructured_date_stamp'},
+            'nextinventorydate' => {'special' => 'unstructured_date_stamp'},
+            'movementcontact' => {'authority' => ['personauthorities', 'person']}
+          })
+          CSXML::Helpers.add_repeats(xml, attributes, CoreMovement.repeats,
+          repeatstransforms = {
+            'inventorycontact' => {'authority' => ['personauthorities', 'person']}
+          })
         end
       end
     end
