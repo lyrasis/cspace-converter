@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="loansout">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2019-11-05T13:38:57.300Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:loansout:id(9b63d234-29b5-4afd-b8e8)</refName>
+    <uri>/loansout/9b63d234-29b5-4afd-b8e8</uri>
+    <updatedAt>2019-11-05T13:38:57.300Z</updatedAt>
+  </ns2:collectionspace_core>
   <ns2:loansout_common xmlns:ns2="http://collectionspace.org/services/loanout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <borrowersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RichardMiller1572960909534)'Richard Miller'</borrowersAuthorizer>
     <specialConditionsOfLoan>special conditions text</specialConditionsOfLoan>
@@ -13,11 +23,14 @@
     <borrowersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1572960934581)'Tina Lauva'</borrowersContact>
     <loanStatusGroupList>
       <loanStatusGroup>
-        <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(agreed)'Agreed'</loanStatus>
+        <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(agreed)'agreed'</loanStatus>
         <loanStatusDate>2000-01-01T00:00:00.000Z</loanStatusDate>
-        <loanStatusNote>note text</loanStatusNote>
-        <loanIndividual/>
-        <loanGroup/>
+        <loanStatusNote>note text 1</loanStatusNote>
+      </loanStatusGroup>
+      <loanStatusGroup>
+        <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(authorized)'authorized'</loanStatus>
+        <loanStatusDate>2000-01-02T00:00:00.000Z</loanStatusDate>
+        <loanStatusNote>note text 2</loanStatusNote>
       </loanStatusGroup>
     </loanStatusGroupList>
     <loanOutNumber>OL20CS.001</loanOutNumber>
@@ -25,4 +38,12 @@
     <loanReturnDate>2001-02-01T00:00:00.000Z</loanReturnDate>
     <lendersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MuminaDoud1572960975972)'Mu'mina Doud'</lendersContact>
   </ns2:loansout_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>7c8b7fb7-ac3c-477c-a137-d9b6d4ea9f4f</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
 </document>
