@@ -35,7 +35,7 @@ module CollectionSpace
         def self.map(xml, attributes)
           repeats = {
               'materialgenericcolor' => ['materialGenericColors', 'materialGenericColor'],
-              'physicaldescription' => ['materialPhysicalDescriptions', 'materialPhysicalDescription']
+              'materialphysicaldescription' => ['materialPhysicalDescriptions', 'materialPhysicalDescription']
             }
           repeatstransforms = {
             'materialgenericcolor' => {'vocab' => 'materialgenericcolor'},
