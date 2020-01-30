@@ -9,26 +9,55 @@ module CollectionSpace
           end
         end
 
+        def self.pairs
+          {
+            'loanoutnumber' => 'loanOutNumber',
+            'borrower' => 'borrower',
+            'borrowersauthorizer' => 'borrowersAuthorizer',
+            'borrowersauthorizationdate' => 'borrowersAuthorizationDate',
+            'borrowerscontact' => 'borrowersContact',
+            'lendersauthorizer' => 'lendersAuthorizer',
+            'lendersauthorizationdate' => 'lendersAuthorizationDate',
+            'lenderscontact' => 'lendersContact',
+            'loanoutdate' => 'loanOutDate',
+            'loanreturndate' => 'loanReturnDate',
+            'loanrenewalapplicationdate' => 'loanRenewalApplicationDate',
+            'specialconditionsofloan' => 'specialConditionsOfLoan',
+            'loanoutnote' => 'loanOutNote',
+            'loanpurpose' => 'loanPurpose'
+          }
+        end
+
         def self.map(xml, attributes)
-          CSXML.add xml, 'loanOutNumber', attributes["loanoutnumber"]
-          CSXML::Helpers.add_organization xml, 'borrower', attributes["borrower"]
-          CSXML::Helpers.add_person xml, 'borrowersAuthorizer', attributes["borrowersauthorizer"]
-          CSXML.add xml, 'borrowersAuthorizationDate', CSDTP.parse(attributes['borrowersauthorizationdate']).earliest_scalar
-          CSXML::Helpers.add_person xml, 'borrowersContact', attributes["borrowerscontact"]
-          CSXML::Helpers.add_person xml, 'lendersAuthorizer', attributes["lendersauthorizer"]
-          CSXML.add xml, 'lendersAuthorizationDate', CSDTP.parse(attributes["lendersauthorizationdate"]).earliest_scalar
-          CSXML::Helpers.add_person xml, 'lendersContact', attributes["lenderscontact"]
-          CSXML.add xml, 'loanOutDate', CSDTP.parse(attributes["loanoutdate"]).earliest_scalar
-          CSXML.add xml, 'loanReturnDate', CSDTP.parse(attributes["loanreturndate"]).earliest_scalar
-          CSXML.add xml, 'loanRenewalApplicationDate', CSDTP.parse(attributes["loanrenewalapplicationdate"]).earliest_scalar
-          CSXML.add xml, 'specialConditionsOfLoan', attributes["specialconditionsofloan"]
-          CSXML.add xml, 'loanOutNote', scrub_fields([attributes["loanoutnote"]])
-          CSXML.add xml, 'loanPurpose', attributes["loanpurpose"]
-          CSXML.add_group_list xml, 'loanStatus', [{
-            "loanStatus" =>  CSXML::Helpers.get_vocab('loanoutstatus', attributes["loanstatus"]),
-            "loanStatusDate" => CSDTP.parse(attributes["loanstatusdate"]).earliest_scalar,
-            "loanStatusNote" => attributes["loanstatusnote"]
-          }]
+          CSXML::Helpers.add_pairs(xml, attributes, CoreLoanOut.pairs,
+          pairstransforms = {
+            'borrower' => {'authority' => ['orgauthorities', 'organization']},
+            'borrowersauthorizer' => {'authority' => ['personauthorities', 'person']},
+            'borrowersauthorizationdate' => {'special' => 'unstructured_date_stamp'},
+            'borrowerscontact' => {'authority' => ['personauthorities', 'person']},
+            'lendersauthorizer' => {'authority' => ['personauthorities', 'person']},
+            'lendersauthorizationdate' => {'special' => 'unstructured_date_stamp'},
+            'lenderscontact' => {'authority' => ['personauthorities', 'person']},
+            'loanoutdate' => {'special' => 'unstructured_date_stamp'},
+            'loanreturndate' => {'special' => 'unstructured_date_stamp'},
+            'loanrenewalapplicationdate' => {'special' => 'unstructured_date_stamp'}
+          })
+          loanstatusdata = {
+            'loanstatus' => 'loanStatus',
+            'loanstatusdate' => 'loanStatusDate',
+            'loanstatusnote' => 'loanStatusNote'
+          }
+          loanstatustransforms = {
+            'loanstatus' => {'vocab' => 'loanoutstatus'},
+            'loanstatusdate' => {'special' => 'unstructured_date_stamp'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'loanStatus',
+            loanstatusdata,
+            loanstatustransforms
+          )
         end
       end
     end
