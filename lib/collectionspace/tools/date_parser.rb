@@ -42,7 +42,7 @@ module CollectionSpace
 
       def self.parse(date_string, end_date_string = nil)
         begin
-          unprocessed_date_string = date_string.clone
+          unprocessed_date_string = date_string
           date_string = date_string.strip
           date_increment = :day
           if date_string =~ /^\d{4}$/

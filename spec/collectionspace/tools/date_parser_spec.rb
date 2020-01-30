@@ -29,8 +29,8 @@ RSpec.describe CSDTP do
       expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
     end
     it "scalarValuesComputed = false" do
-      expect(ca_date_parsed.computed).to be false
-      expect(text_date_parsed.computed).to be false
+      expect(ca_date_parsed.computed).to eq 'false'
+      expect(text_date_parsed.computed).to eq 'false'
     end
     it "dateDisplayDate = the date string passed in" do
       expect(ca_date_parsed.display_date).to eq(ca_date)
