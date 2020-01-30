@@ -77,6 +77,29 @@ registered_profiles:
         - name_field: conditionchecker
           authority_type: Person
           authority_subtype: person
+  conservation:
+    type: Procedures
+    enabled: true
+    config:
+      Conservation:
+        identifier: conservationnumber
+        title: conservationnumber
+      Authorities:
+        - name_field: conservator
+          authority_type: Person
+          authority_subtype: person
+        - name_field: otherparty
+          authority_type: Person
+          authority_subtype: person
+        - name_field: approvedby
+          authority_type: Person
+          authority_subtype: person
+        - name_field: researcher
+          authority_type: Person
+          authority_subtype: person
+        - name_field: sampleby
+          authority_type: Person
+          authority_subtype: person
   exhibition:
     type: Procedures
     enabled: true

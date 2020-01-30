@@ -218,7 +218,9 @@ RSpec.describe CSXML::Helpers do
       'e' => {'special' => 'boolean' },
       'f' => {'special' => 'behrensmeyer_translate',
               'vocab' => 'behrensmeyer'
-             }
+             },
+      'g' => {'special' => 'upcase_first_char'},
+      'h' => {'special' => 'downcase_first_char'}
     } }
 
     let(:resa) { CSXML::Helpers.apply_transforms(transforms, 'a', '9 - 10') }
@@ -229,7 +231,9 @@ RSpec.describe CSXML::Helpers do
     let(:rese) { CSXML::Helpers.apply_transforms(transforms, 'e', 'True') }
     let(:resf) { CSXML::Helpers.apply_transforms(transforms, 'f', '3') }
     let(:b_urn) { CSXML::Helpers.get_vocab('behrensmeyer', CSXML::Helpers.behrensmeyer_translate('3')) }
-
+    let(:resg) { CSXML::Helpers.apply_transforms(transforms, 'g', 'bear') }
+    let(:resh) { CSXML::Helpers.apply_transforms(transforms, 'h', 'Bear') }
+    
     it 'applies transforms properly' do
       expect(resa).to include('9-10')
       expect(resa).to include(':vocabularies:name(agerange):')
@@ -240,6 +244,8 @@ RSpec.describe CSXML::Helpers do
       expect(resdd).to eq('1999-09-09T00:00:00.000Z')
       expect(rese).to eq('true')
       expect(resf).to eq(b_urn)
+      expect(resg).to eq('Bear')
+      expect(resh).to eq('bear')
     end
     
   end

@@ -20,7 +20,7 @@
         <exhibitionObjectCase>Case text 1.</exhibitionObjectCase>
         <exhibitionObjectConsCheckDate>2000-06-01T00:00:00.000Z</exhibitionObjectConsCheckDate>
         <exhibitionObjectMount>Needed</exhibitionObjectMount>
-        <exhibitionObjectSeqNum>Sequence number text 1.;</exhibitionObjectSeqNum>
+        <exhibitionObjectSeqNum>Sequence number text 1.</exhibitionObjectSeqNum>
         <exhibitionObjectNote>Note text 1.</exhibitionObjectNote>
         <exhibitionObjectRotation>Rotation text 1.</exhibitionObjectRotation>
       </exhibitionObjectGroup>
@@ -33,7 +33,7 @@
         <exhibitionObjectConsCheckDate>2000-06-02T00:00:00.000Z</exhibitionObjectConsCheckDate>
         <exhibitionObjectMount>Done</exhibitionObjectMount>
         <exhibitionObjectSeqNum>Sequence number text 2.</exhibitionObjectSeqNum>
-        <exhibitionObjectNote>Note text 2. </exhibitionObjectNote>
+        <exhibitionObjectNote>Note text 2.</exhibitionObjectNote>
         <exhibitionObjectRotation>Rotation text 2.</exhibitionObjectRotation>
       </exhibitionObjectGroup>
     </exhibitionObjectGroupList>
@@ -148,7 +148,7 @@
           <dateLatestMonth/>
         </galleryRotationEndDateGroup>
         <galleryRotationNote>Gallery rotation note text 2.</galleryRotationNote>
-        <galleryRotationName>Gallery rotation name text 2. </galleryRotationName>
+        <galleryRotationName>Gallery rotation name text 2.</galleryRotationName>
         <galleryRotationStartDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
