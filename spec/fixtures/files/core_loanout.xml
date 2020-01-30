@@ -33,7 +33,7 @@
         <loanStatusNote>note text 2</loanStatusNote>
       </loanStatusGroup>
     </loanStatusGroupList>
-    <loanOutNumber>OL20CS.001</loanOutNumber>
+    <loanOutNumber>Jan22_1_OL20CS.001</loanOutNumber>
     <borrowersAuthorizationDate>1999-01-01T00:00:00.000Z</borrowersAuthorizationDate>
     <loanReturnDate>2001-02-01T00:00:00.000Z</loanReturnDate>
     <lendersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MuminaDoud1572960975972)'Mu'mina Doud'</lendersContact>
