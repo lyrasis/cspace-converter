@@ -61,10 +61,7 @@ module CollectionSpace
             'ownerorganization' => {'authority' => ['orgauthorities', 'organization']}
           })
           CSXML::Helpers.add_date_group(xml, 'accessionDate', CSDTP.parse(attributes['accessiondategroup']))
-          acqdate = CSDR.split_mvf attributes, 'acquisitiondategroup'
-          acqdate.each_with_index do |acqd, index|
-            CSXML::Helpers.add_date_group_list(xml, 'acquisitionDate', [CSDTP.parse(acqd)])
-          end
+          CSXML::Helpers.add_date_group_list(xml, 'acquisitionDate', [CSDTP.parse(attributes['acquisitiondategroup'])])
           acquistionfunding = []
           fundingcurrency = CSDR.split_mvf attributes, 'acquisitionfundingcurrency'
           fundingvalue = CSDR.split_mvf attributes, 'acquisitionfundingvalue'
