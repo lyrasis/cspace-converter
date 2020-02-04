@@ -59,7 +59,8 @@ RSpec.describe CollectionSpace::Converter::Core::CoreExhibition do
   ]}
 
   context 'For maximally populuated record' do
-  it "Maps attributes correctly" do
+    it "Maps attributes correctly" do
+    puts doc
     test_converter(doc, record, xpaths)
   end
   end

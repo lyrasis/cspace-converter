@@ -97,13 +97,14 @@ module CollectionSpace
           galleryrotationdata = {
             'galleryrotationnote' => 'galleryRotationNote',
             'galleryrotationname' => 'galleryRotationName',
-            'galleryrotationstartdategroup' => 'galleryRotationStartDateGroup'
+            'galleryrotationstartdate' => 'galleryRotationStartDate',
+            'galleryrotationenddate' => 'galleryRotationEndDate'
           }
           CSXML.add_group_list_with_structured_date(
             xml, attributes,
             'galleryRotation',
             galleryrotationdata,
-            'galleryRotationStartDateGroup'
+            ['galleryRotationStartDate', 'galleryRotationEndDate']
           )
           exhibitionreferencedata = {
             'exhibitionreference' => 'exhibitionReference',

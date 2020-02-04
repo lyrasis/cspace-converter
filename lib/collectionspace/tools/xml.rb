@@ -192,10 +192,11 @@ module CollectionSpace
       #   topGroup
       #     someDateGroup
       #       structured date fields
+      
       # topKey - String. In combination with list_suffix and group_suffix, used to create names of
       #   parent CSpace fields (StringGroupList and StringGroup, for example)
       # all_elements - Hash. Keys = attribute/CSV header value. Value = Target CSpace field name
-      # date_field - base name of CSpace field to be treated as structured date. For example
+      # date_fields - Array. Elements are the base namesof CSpace fields to be treated as structured dates. For example
       #   date_field: 'osteoAgeEstimateDate' and subgroup_suffix: 'Group' will produce CSpace field
       #   'osteoAgeEstimateDateGroup' containing all the structured date fields.
       # transforms - Hash. See cspace-converter wiki page about transforms for details on format
@@ -212,7 +213,7 @@ module CollectionSpace
         attributes,
         topKey,
         all_elements, # { 'csvheader' => 'fieldName' }
-        date_field,
+        date_fields,
         transforms = {},
         list_suffix: 'GroupList',
         group_suffix: 'Group',
@@ -241,10 +242,14 @@ module CollectionSpace
 
         date_groups = []
         groups.each{ |fhash|
+          puts "FHASH"
+          pp(fhash)
+          date_fields.each{ |date_field|
           if fhash[date_field]
             date_groups << [CSDTP.fields_for(CSDTP.parse(fhash[date_field]))]
             fhash.delete(date_field)
           end
+          }
         }
         
         CSXML.add_group_list(
