@@ -32,100 +32,97 @@ module CollectionSpace
           end #run(wrapper: "document") do |xml|
         end #def convert
 
-            def redefined_fields
-              @redefined = [
-                'responsibledepartment',
-                'objectname',
-                'objectnamenote',
-                'material',
-                'materialcomponentnote'
-              ]
-              super
-            end
+        def redefined_fields
+          @redefined = [
+            'responsibledepartment',
+            'objectname',
+            'objectnamenote',
+            'material',
+            'materialcomponentnote'
+          ]
+          super
+        end
 
-            def self.map_common_overrides(xml, attributes)
-              repeats = {
-                'responsibledepartment' => ['responsibleDepartments', 'responsibleDepartment']
-              }
-              repeat_transforms = {
-                'responsibledepartment' => {'vocab' => 'program'}
-              }
-              CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
+        def self.map_common_overrides(xml, attributes)
+          repeats = {
+            'responsibledepartment' => ['responsibleDepartments', 'responsibleDepartment']
+          }
+          repeat_transforms = {
+            'responsibledepartment' => {'vocab' => 'program'}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
 
-              oname_data = {
-                'objectname' => 'objectName',
-                'objectnamenote' => 'objectNameNote'
-              }
-              oname_transforms = {
-                'objectname' => {'authority' => ['conceptauthorities', 'worktype']}
-              }
-              CSXML.prep_and_add_single_level_group_list(
-                xml, attributes,
-                'objectName',
-                oname_data,
-                oname_transforms,
-                list_suffix: 'List'
-              )
+          oname_data = {
+            'objectname' => 'objectName',
+            'objectnamenote' => 'objectNameNote'
+          }
+          oname_transforms = {
+            'objectname' => {'authority' => ['conceptauthorities', 'worktype']}
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'objectName',
+            oname_data,
+            oname_transforms,
+            list_suffix: 'List'
+          )
 
-              mat_data = {
-                'material' => 'material',
-                'materialcomponentnote' => 'materialComponentNote'
-              }
-              mat_transforms = {
-                'material' => {'authority' => ['conceptauthorities', 'material_ca']}   
-              }
-              CSXML.prep_and_add_single_level_group_list(
-                xml, attributes,
-                'material',
-                mat_data,
-                mat_transforms
-              )
-            end
-            
-            def self.map(xml, attributes)
-              repeats = {
-                'publicartcollection' => ['publicartCollections', 'publicartCollection']
-              }
-              repeat_transforms = {
-                'publicartcollection' => {'authority' => ['orgauthorities', 'organization']}
-              }
-              CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
+          mat_data = {
+            'material' => 'material',
+            'materialcomponentnote' => 'materialComponentNote'
+          }
+          mat_transforms = {
+            'material' => {'authority' => ['conceptauthorities', 'material_ca']}
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'material',
+            mat_data,
+            mat_transforms
+          )
+        end
 
-              ppd_data = {
-                'publicartproductiondate' => 'publicartProductionDate',
-                'publicartproductiondatetype' => 'publicartProductionDateType'
-              }
-              ppd_transforms = {
-                'publicartproductiondatetype' => {'vocab' => 'proddatetype'}
-              }
-              CSXML.add_group_list_with_structured_date(
-                xml,
-                attributes,
-                'publicartProductionDate',
-                ppd_data,
-                'publicartProductionDate',
-                ppd_transforms
-                )
+        def self.map(xml, attributes)
+          repeats = {
+            'publicartcollection' => ['publicartCollections', 'publicartCollection']
+          }
+          repeat_transforms = {
+            'publicartcollection' => {'authority' => ['orgauthorities', 'organization']}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
 
-
-              ppp_data = {
-                'publicartproductionpersontype' => 'publicartProductionPersonType',
-                'publicartproductionpersonrole' => 'publicartProductionPersonRole',
-                'publicartproductionpersonperson' => 'publicartProductionPerson',
-                'publicartproductionpersonorganization' => 'publicartProductionPerson'
-              }
-              ppp_transforms = {
-                'publicartproductionpersonrole' => {'vocab' => 'prodpersonrole'},
-                'publicartproductionpersonperson' => {'authority' => ['personauthorities', 'person']},
-                'publicartproductionpersonorganization' => {'authority' => ['orgauthorities', 'organization']}
-              }
-              CSXML.prep_and_add_single_level_group_list(
-                xml, attributes,
-                'publicartProductionPerson',
-                ppp_data,
-                ppp_transforms
-              )
-
+          ppd_data = {
+            'publicartproductiondate' => 'publicartProductionDate',
+            'publicartproductiondatetype' => 'publicartProductionDateType'
+          }
+          ppd_transforms = {
+            'publicartproductiondatetype' => {'vocab' => 'proddatetype'}
+          }
+          CSXML.add_group_list_with_structured_date(
+            xml,
+            attributes,
+            'publicartProductionDate',
+            ppd_data,
+            'publicartProductionDate',
+            ppd_transforms
+          )
+          ppp_data = {
+            'publicartproductionpersontype' => 'publicartProductionPersonType',
+            'publicartproductionpersonrole' => 'publicartProductionPersonRole',
+            'publicartproductionpersonperson' => 'publicartProductionPerson',
+            'publicartproductionpersonorganization' => 'publicartProductionPerson'
+          }
+          ppp_transforms = {
+            'publicartproductionpersonrole' => {'vocab' => 'prodpersonrole'},
+            'publicartproductionpersonperson' => {'authority' => ['personauthorities', 'person']},
+            'publicartproductionpersonorganization' => {'authority' => ['orgauthorities', 'organization']}
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'publicartProductionPerson',
+            ppp_data,
+            ppp_transforms
+          )
         end # def self.map
       end # class PublicArtCollectionObject
     end #module PublicArt

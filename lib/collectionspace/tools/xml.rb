@@ -25,7 +25,6 @@ module CollectionSpace
       end
 
 =begin
-
       IF GROUP IS SINGLE VALUED, you can pass like this:
       add_group_list(xml, "objectComponent",
       [{"objectComponentName" => attributes["objectcomponentname"]}]
@@ -93,47 +92,52 @@ module CollectionSpace
       For now, the details of how to split up the elements within the subgroup are left in the module
       (e.g. anthro > mortuary groups)
 
-      ***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes****
-
-      The element(s) in the outer/first array = the set of sub_group(s) for each parent group.
-      The element(s) in the inner array(s) = the individual values for each subgroup
+      ***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes***
+      Outer array - holds it all together
+      Inner arrays - hold the value or values for the subgroup for each of the `elements` hashes
+      Hashes within inner arrays - One per value in subgroup in an element
 =end
-def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements = [],
-                        list_suffix: 'GroupList',
-                        group_suffix: 'Group',
-                        sublist_suffix: 'SubGroupList',
-                        subgroup_suffix: 'SubGroup',
-                        include_subgrouplist_level: true
-                        )
-  return unless elements.any?
+      def self.add_group_list(
+        xml, key, elements = [], sub_key = false, sub_elements = [],
+        list_suffix: 'GroupList',
+        group_suffix: 'Group',
+        sublist_suffix: 'SubGroupList',
+        subgroup_suffix: 'SubGroup',
+        include_subgrouplist_level: true
+      )
+        return unless elements.any?
 
-  # puts "\n\nKEY: #{key}"
-  # puts "ELEMENTS:"
-  # pp(elements)
-  # puts "SUBKEY: #{sub_key}"
-  # puts "SUBELEMENTS:"
-  # pp(sub_elements)
+#         puts "\n\nKEY: #{key}"
+#         puts "ELEMENTS:"
+#         pp(elements)
+#         puts "SUBKEY: #{sub_key}"
+#         puts "SUBELEMENTS:"
+#         pp(sub_elements)
 
         xml.send("#{key}#{list_suffix}".to_sym) {
           elements.each_with_index do |element, index|
             xml.send("#{key}#{group_suffix}".to_sym) {
               element.each {|k, v| xml.send(k.to_sym, v)}
-              
+
               if sub_key && include_subgrouplist_level
                 xml.send("#{sub_key}#{sublist_suffix}".to_sym) {
-                  sub_elements[index].each do |sub_element|
-                    xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
-                      sub_element.each {|k, v| xml.send(k.to_sym, v)}
-                    }
+                  unless sub_elements.empty?
+                    sub_elements[index].each do |sub_element|
+                      xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
+                        sub_element.each {|k, v| xml.send(k.to_sym, v)}
+                      }
+                    end
                   end
                 }
               elsif sub_key && !include_subgrouplist_level
-                sub_elements[index].each do |sub_element|
+                unless sub_elements.empty?
+                  sub_elements[index].each{ |sub_element|
                   xml.send("#{sub_key}#{subgroup_suffix}".to_sym) {
                     sub_element.each {|k, v|
                       xml.send(k.to_sym, v)}
                   }
-                end
+                  }
+                  end
               elsif sub_elements
                 next unless sub_elements[index]
 
@@ -154,7 +158,7 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
 
       # convenience method to handle pre-processing of non-nested GroupList
       # see add_nested_group_list comments below for info on arguments not explained here
-      def self.prep_and_add_single_level_group_list(
+      def self.add_single_level_group_list(
         xml,
         attributes,
         key, # String; used to name GroupList
@@ -163,7 +167,6 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         list_suffix: 'GroupList',
         group_suffix: 'Group'
       )
-
         all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{key} Group have uneven numbers of values")
@@ -181,7 +184,6 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
 
         groups = CSXML::Helpers.flatten_mvfs(all)
 
-        
         CSXML.add_group_list(xml, key, groups, list_suffix: list_suffix, group_suffix: group_suffix)
       end
 
@@ -190,6 +192,21 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
       #   topGroup
       #     someDateGroup
       #       structured date fields
+      # topKey - String. In combination with list_suffix and group_suffix, used to create names of
+      #   parent CSpace fields (StringGroupList and StringGroup, for example)
+      # all_elements - Hash. Keys = attribute/CSV header value. Value = Target CSpace field name
+      # date_field - base name of CSpace field to be treated as structured date. For example
+      #   date_field: 'osteoAgeEstimateDate' and subgroup_suffix: 'Group' will produce CSpace field
+      #   'osteoAgeEstimateDateGroup' containing all the structured date fields.
+      # transforms - Hash. See cspace-converter wiki page about transforms for details on format
+      # list_suffix - String. Appended to topKey to create top-level field
+      # group_suffix - String. Appended to topKey to create top-level groups
+      # sublist_suffix - String. Appended to date_field to create top-level nested date grouplist
+      # subgroup_suffix - String. Appended to date_field to create field containing the structured
+      #   date fields for a given date
+      # include_subgrouplist_level - Boolean. If false, `someDateGroup` is a direct child of `topGroup`.
+      #   If true, you'd get `topGroupList > topGroup > someDateGroupList > someDateGroup`, depending on
+      #   your *_suffix parameter values.
       def self.add_group_list_with_structured_date(
         xml,
         attributes,
@@ -203,8 +220,9 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         subgroup_suffix: '',
         include_subgrouplist_level: false
       )
-        
+
         all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
+
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
         end
@@ -220,8 +238,8 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         end
 
         groups = CSXML::Helpers.flatten_mvfs(all)
-        date_groups = []
 
+        date_groups = []
         groups.each{ |fhash|
           if fhash[date_field]
             date_groups << [CSDTP.fields_for(CSDTP.parse(fhash[date_field]))]
@@ -229,12 +247,12 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
           end
         }
         
-        CSXML.add_group_list(xml, topKey, groups,
-                             date_field, date_groups,
-                             list_suffix: list_suffix, group_suffix: group_suffix,
-                             sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
-                             include_subgrouplist_level: include_subgrouplist_level
-                             )
+        CSXML.add_group_list(
+          xml, topKey, groups, date_field, date_groups,
+          list_suffix: list_suffix, group_suffix: group_suffix,
+          sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
+          include_subgrouplist_level: include_subgrouplist_level
+        )
       end #def self.add_group_list_with_structured_date
 
       # convenience method to handle pre-processing of nested GroupLists and sending them
@@ -296,12 +314,12 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
           child_groups << CSXML::Helpers.flatten_mvfs(child_group_splits)
         }
 
-        
-        CSXML.add_group_list(xml, topKey, top_groups, childKey, child_groups,
-                             list_suffix: list_suffix, group_suffix: group_suffix,
-                             sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
-                             include_subgrouplist_level: include_subgrouplist_level
-                            )
+        CSXML.add_group_list(
+          xml, topKey, top_groups, childKey, child_groups,
+          list_suffix: list_suffix, group_suffix: group_suffix,
+          sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
+          include_subgrouplist_level: include_subgrouplist_level
+        )
       end
 
       # key_suffix handles the case that the list child element is not the key without "List"
@@ -351,7 +369,6 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
       end
 
       module Helpers
-
         # applies various transformations to field values being prepared for a
         #  FieldGroupList. Handles:
         #   - find/replaces (plain or regexp)
@@ -370,9 +387,9 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             replacements.each{ |r|
               case r['type']
               when 'plain'
-                value = value.gsub!(r['find'], r['replace'])
+                value = value.gsub(r['find'], r['replace'])
               when 'regexp'
-                value = value.gsub!(Regexp.new(r['find']), r['replace'])
+                value = value.gsub(Regexp.new(r['find']), r['replace'])
               end
             }
           end
@@ -383,25 +400,29 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
               value = Helpers.to_boolean(value)
             when 'behrensmeyer_translate'
               value = Helpers.behrensmeyer_translate(value)
-            when 'unstructured_date'
-              value = CSDTP.parse_unstructured_date(value)
+            when 'unstructured_date_string'
+              value = CSDTP.parse_unstructured_date_string(value)
+            when 'unstructured_date_stamp'
+              value = CSDTP.parse_unstructured_date_stamp(value)
             end
           end
 
           # do not create vocab/authority URNs for blank values
-          unless value.empty?
+          if value.empty?
+            value = ''
+          else
             if config.keys.include?('vocab')
               vocab = config['vocab']
               value = Helpers.get_vocab(vocab, value)
             end
-            
+
             if config.keys.include?('authority')
               authority_type = config['authority'][0]
               authority_name = config['authority'][1]
               value = Helpers.get_authority(authority_type, authority_name, value)
             end
           end
-            return value
+          value
         end
 
         def self.to_boolean(value)
@@ -425,19 +446,13 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
           when 'f'
             return 'false'
           else
-            Rails.logger.warn("#{value} cannot be converted to boolean in FIELD/ROW")
-            return value
+            Rails.logger.warn("#{value} cannot be converted to boolean in FIELD/ROW. Defaulting to false")
+            return 'false'
           end
         end
-        
+
         def self.behrensmeyer_translate(value)
           lookup = {
-            '0' => '0 - no cracking or flaking on bone surface',
-            '1' => '1 - longitudinal and/or mosaic cracking present on surface',
-            '2' => '2 - longitudinal cracks, exfoliation on surface',
-            '3' => '3 - fibrous texture, extensive exfoliation',
-            '4' => '4 - coarsely fibrous texture, splinters of bone loose on the surface, open cracks',
-            '5' => '5 - bone crumbling in situ, large splinters',
             0 => '0 - no cracking or flaking on bone surface',
             1 => '1 - longitudinal and/or mosaic cracking present on surface',
             2 => '2 - longitudinal cracks, exfoliation on surface',
@@ -445,13 +460,11 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             4 => '4 - coarsely fibrous texture, splinters of bone loose on the surface, open cracks',
             5 => '5 - bone crumbling in situ, large splinters'
           }
-          if lookup.keys.include?(value)
-            return lookup[value]
-          else
-            return value
-          end
+          string_keys = lookup.keys.map{ |e| e.to_s }
+          value = value.to_i if string_keys.include?(value)
+          lookup.fetch(value, value)
         end
-        
+
         def self.add_authority(xml, field, authority_type, authority, value)
           return unless value
 
@@ -461,7 +474,7 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         def self.add_authorities(xml, field, authority_type, authority, values = [], method)
           values = values.compact.map do |value|
             {
-                field => CSURN.get_authority_urn(authority_type, authority, value),
+              field => CSURN.get_authority_urn(authority_type, authority, value),
             }
           end
           return unless values.any?
@@ -545,19 +558,15 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             value = attributes[csvheader]
 
             unless transforms.empty?
-              value = CSXML::Helpers.apply_transforms(transforms, csvheader, value) if transforms.keys.include?(csvheader)
+              unless value.nil?
+                value = CSXML::Helpers.apply_transforms(transforms, csvheader, value) if transforms.keys.include?(csvheader)
+              end
             end
-            
-            pair_values[fieldname] = value
+
+            pair_values[fieldname] = value unless value.nil?
           }
 
-          pair_values.each{ |f, val| CSXML.add(xml, f, val) }
-          
-          # pairs.each do |field, attribute|
-          #   field = "#{field}_" if reserved?(field)
-          #   value 
-          #   CSXML.add(xml, field, attributes[attribute])
-          # end
+          pair_values.each{ |field_name, value| CSXML.add(xml, field_name, value) }
         end
 
         def self.add_person(xml, field, value)
@@ -593,34 +602,44 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
           end
         end
 
+        # Convenience method to handle the addition of fields not themselves part of a field
+        #  group, which may have repeated values
+        # repeats = Hash. Key = String. Attribute/CSV header value. Value = Array. Element 0
+        #   is parent (usually plural or list) field name. Element 1 is child (repeated value)
+        #   field name.
+        # transforms = Hash. See cspace-converter wiki page on transforms for more details. This
+        #   parameter may be omitted if no transforms are required.
         def self.add_repeats(xml, attributes, repeats, transforms = {})
           return unless repeats
 
+          collapsed_repeats = {}
+
           repeats.each{ |csvheader, fields|
             values = CSDR.split_mvf(attributes, csvheader)
+            
             unless transforms.empty?
               if transforms.keys.include?(csvheader)
                 values = values.map{ |value| CSXML::Helpers.apply_transforms(transforms, csvheader, value) }
               end
             end
 
-            parent = fields[0]
-            child = fields[1]
+            parent = reserved?(fields[0]) ? "#{fields[0]}_" : fields[0]
+            child = reserved?(fields[1]) ? "#{fields[1]}_" : fields[1]
+            
+            unless collapsed_repeats.has_key?(parent)
+              collapsed_repeats[parent] = {'childField' => child, 'values' => []}
+            end
+            values.each{ |v| collapsed_repeats[parent]['values'] << v }
+          }
 
-            xml.send(parent.to_sym) {
-              values.each{ |value| xml.send(child.to_sym, value)}
+
+          collapsed_repeats.each{ |plural, hash|
+            xml.send(plural.to_sym) {
+              hash['values'].each{ |value|
+                xml.send(hash['childField'].to_sym, value)
               }
             }
-        end
-
-        def self.add_simple_repeats(xml, attributes, repeats, key_suffix = '')
-          return unless repeats
-
-          repeats.each do |attribute, field|
-            values = safe_split(field, attributes, attribute)
-            
-            CSXML.add_repeat(xml, field, values, key_suffix)
-          end
+          }
         end
 
         def self.add_taxon(xml, field, value)
@@ -628,6 +647,8 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         end
 
         def self.add_title_with_translation(xml, attributes)
+          return unless attributes['title']
+
           title_data = {
             'title' => 'title'
           }
@@ -665,9 +686,10 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             sublist_suffix: 'SubGroupList'
           )
         end
-        
 
         def self.add_title(xml, attributes)
+          return unless attributes['title']
+
           if attributes["titletranslation"]
             add_title_with_translation(xml, attributes)
           else
@@ -680,7 +702,7 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
               title_transforms['titlelanguage'] = {'vocab' => 'languages'}
             end
             title_data['titletype'] = 'titleType' if attributes['titleType']
-            CSXML.prep_and_add_single_level_group_list(
+            CSXML.add_single_level_group_list(
               xml, attributes,
               'title',
               title_data,
@@ -707,10 +729,10 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
         def self.flatten_mvfs(mvfhash)
           fieldgroups = []
           # remove completely empty fields
-          emptyfields = []
-          mvfhash.each{ |k, v| emptyfields << k if v[:values].empty? }
-          emptyfields.each{ |field| mvfhash.delete(field) }
+          mvfhash.reject!{ |k, v| k if v[:values].empty? }
 
+          return [] if mvfhash.empty?
+          
           fvhash = {}
           mvfhash.each{ |csvheader, vhash|
             values = vhash[:values]
@@ -722,7 +744,10 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             end
           }
 
-          fvhash.each{ |k, v| v.reject!{ |e| e.empty? } }
+          # remove empty values in fields populated by multiple columns
+          multicolumn = multicolumn_fields(mvfhash)
+          fvhash.each{ |k, v| v.reject!{ |e| e.empty? } if multicolumn.include?(k) }
+
 
           # populate a hash with the lengths of all the fields, with one
           #  field name recorded per length value, so we can select one
@@ -737,6 +762,16 @@ def self.add_group_list(xml, key, elements = [], sub_key = false, sub_elements =
             fieldgroups << fieldgroup
           }
           return fieldgroups
+        end
+
+        # returns list of CS field names where the field gets populated from
+        #  more than one csv column
+        def self.multicolumn_fields(mvfhash)
+          fields = mvfhash.map{ |k, v| v[:field] }
+          h = {}
+          fields.each{ |f| h.keys.include?(f) ? h[f] += 1 : h[f] = 1 }
+          h.select!{ |k, v| k if v > 1}
+          return h.keys
         end
 
         def self.add_vocab(xml, field, vocabulary, value)

@@ -1,5 +1,6 @@
 ---
 registered_authorities:
+  - citationauthorities
   - conceptauthorities
   - locationauthorities
   - orgauthorities
@@ -67,12 +68,36 @@ registered_profiles:
           vocabulary_subtype: languages
   conditioncheck:
     type: Procedures
+    enabled: true
     config:
       ConditionCheck:
-        identifier: conditioncheckreferencenumber
-        title: conditioncheckreferencenumber
+        identifier: conditioncheckrefnumber
+        title: conditioncheckrefnumber
       Authorities:
         - name_field: conditionchecker
+          authority_type: Person
+          authority_subtype: person
+  conservation:
+    type: Procedures
+    enabled: true
+    config:
+      Conservation:
+        identifier: conservationnumber
+        title: conservationnumber
+      Authorities:
+        - name_field: conservator
+          authority_type: Person
+          authority_subtype: person
+        - name_field: otherparty
+          authority_type: Person
+          authority_subtype: person
+        - name_field: approvedby
+          authority_type: Person
+          authority_subtype: person
+        - name_field: researcher
+          authority_type: Person
+          authority_subtype: person
+        - name_field: sampleby
           authority_type: Person
           authority_subtype: person
   exhibition:
@@ -108,12 +133,37 @@ registered_profiles:
     config: {}
   intake:
     type: Procedures
+    enabled: true
     config:
       Intake:
-        identifier: intakeentrynumber
-        title: intakeentrynumber
+        identifier: entrynumber
+        title: entrynumber
       Authorities:
-        - name_field: current_owner
+        - name_field: currentowner
+          authority_type: Person
+          authority_subtype: person
+        - name_field: depositor
+          authority_type: Person
+          authority_subtype: person
+        - name_field: fieldcollectionsource
+          authority_type: Person
+          authority_subtype: person
+        - name_field: fieldCollectors
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: valuer
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: insurer
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: currentlocation
+          authority_type: Place
+          authority_subtype: place
+        - name_field: normallocation
+          authority_type: Place
+          authority_subtype: place
+        - name_field: conditioncheckerorassessor
           authority_type: Person
           authority_subtype: person
   loanin:
@@ -179,12 +229,29 @@ registered_profiles:
           authority_subtype: person
   nomenclature:
     type: Authorities
+    enabled: true
+    required_headers:
+      - termdisplayname
     defaults:
+      historicalstatus: current
       termlanguage: English
+      termprefforlang: true
+      termsource: AASLH Nomenclature
+      termstatus: accepted
+      termtype: descriptor
     config:
       name_field: termdisplayname
       authority_type: Concept
       authority_subtype: nomenclature
+      Nomenclature:
+        identifier: termdisplayname
+      Authorities:
+        - name_field: termsource
+          authority_type: Citation
+          authority_subtype: citation
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
   objectexit:
     type: Procedures
     enabled: true

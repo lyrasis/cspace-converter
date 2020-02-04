@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="concepts">
+  <ns2:concepts_common xmlns:ns2="http://collectionspace.org/services/concept" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <rev>1</rev>
+    <conceptRecordTypes>
+      <conceptRecordType>urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(category)'category'</conceptRecordType>
+    </conceptRecordTypes>
+    <sas>false</sas>
+    <csid>3a17e7d2-8a0a-4214-ae2c</csid>
+    <citationGroupList/>
+    <conceptTermGroupList>
+      <conceptTermGroup>
+        <termSourceID>FN4.0</termSourceID>
+        <termSourceDetail/>
+        <termSourceNote>Changed from "Hues"; Edited definition</termSourceNote>
+        <termFormattedDisplayName/>
+        <historicalStatus>current</historicalStatus>
+        <termType>descriptor</termType>
+        <termSource>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(AASLHNomenclature1574291654436)'AASLH Nomenclature'</termSource>
+        <termStatus>accepted</termStatus>
+        <termLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</termLanguage>
+        <termName/>
+        <termQualifier/>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>Category 1: Colors</termDisplayName>
+        <termFlag/>
+      </conceptTermGroup>
+    </conceptTermGroupList>
+    <additionalSourceGroupList/>
+    <proposed>true</proposed>
+    <shortIdentifier>Category1Colors1572462538231</shortIdentifier>
+    <refName>urn:cspace:core.collectionspace.org:conceptauthorities:name(nomenclature):item:name(Category1Colors1572462538231)'Category 1: Colors'</refName>
+    <inAuthority>9c1f9e72-6cca-4f57-9040</inAuthority>
+    <scopeNote>Definition: The color of a thing</scopeNote>
+  </ns2:concepts_common>
+</document>

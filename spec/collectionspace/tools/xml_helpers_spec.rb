@@ -76,10 +76,6 @@ RSpec.describe CSXML::Helpers do
     expect(doc(xml).xpath('/simpleGroupList/simpleGroup/simple').text).to eq('This is a simple group value!')
   end
 
-  xit "can 'add simple repeats' correctly" do
-    # TODO
-  end
-
   it "can 'add title' only correctly" do
     CSXML::Helpers.add_title(xml, attributes_title_only)
     expect(doc(xml).xpath('/titleGroupList/titleGroup/title').text).to eq('El gato!')
@@ -160,19 +156,43 @@ RSpec.describe CSXML::Helpers do
       'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
       'aa' => {:values => ['', '', '11 - 12'], :field => 'fieldOne'},
       'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
-      'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'}
+      'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'},
+      'd' => {:values => ['', 'v1', 'v2'], :field => 'fieldFour'}
     } }
     let(:result) { [
-      {'fieldOne' => '9 - 10', 'fieldTwo' => 'cat', 'fieldThree' => 'goat'},
-      {'fieldOne' => '10 - 11', 'fieldTwo' => 'bat', 'fieldThree' => 'moat'},
-      {'fieldOne' => '11 - 12', 'fieldTwo' => 'rat', 'fieldThree' => 'stoat'},
+      {'fieldOne' => '9 - 10', 'fieldTwo' => 'cat', 'fieldThree' => 'goat', 'fieldFour' => ''},
+      {'fieldOne' => '10 - 11', 'fieldTwo' => 'bat', 'fieldThree' => 'moat', 'fieldFour' => 'v1'},
+      {'fieldOne' => '11 - 12', 'fieldTwo' => 'rat', 'fieldThree' => 'stoat', 'fieldFour' => 'v2'},
     ]}
 
     it 'flattens fieldgroup hash properly' do
       expect(CSXML::Helpers.flatten_mvfs(fghash1)).to eq(result)
     end
   end
-  
+
+  describe '#multicolumn_fields' do
+    it 'returns array of multicolumn field names present' do
+      h = {
+        'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
+        'aa' => {:values => ['', '', '11 - 12'], :field => 'fieldOne'},
+        'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
+        'bb' => {:values => %w[cat bat rat], :field => 'fieldTwo'},
+        'bbb' => {:values => %w[cat bat rat], :field => 'fieldTwo'},
+        'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'},
+      }
+      expect(CSXML::Helpers.multicolumn_fields(h)).to eq(['fieldOne', 'fieldTwo'])
+    end
+
+    it 'returns empty array if no multicolumn fields present' do
+      h = {
+        'a' => {:values => ['9 - 10', '10 - 11', ''], :field => 'fieldOne'},
+        'b' => {:values => %w[cat bat rat], :field => 'fieldTwo'},	
+        'c' => {:values => %w[goat moat stoat], :field => 'fieldThree'},
+      }
+      expect(CSXML::Helpers.multicolumn_fields(h)).to eq([])
+    end
+  end
+
 
   describe '#apply_transforms' do
     let(:transforms) { {
@@ -193,7 +213,8 @@ RSpec.describe CSXML::Helpers do
                               'replace' => 'caprine \1',
                               'type' => 'regexp'}]
              },
-      'd' => {'special' => 'unstructured_date'},
+      'd' => {'special' => 'unstructured_date_string'},
+      'dd' => {'special' => 'unstructured_date_stamp'},
       'e' => {'special' => 'boolean' },
       'f' => {'special' => 'behrensmeyer_translate',
               'vocab' => 'behrensmeyer'
@@ -204,6 +225,7 @@ RSpec.describe CSXML::Helpers do
     let(:resb) { CSXML::Helpers.apply_transforms(transforms, 'b', 'cat bat rat sat') }
     let(:resc) { CSXML::Helpers.apply_transforms(transforms, 'c', 'goat123') }
     let(:resd) { CSXML::Helpers.apply_transforms(transforms, 'd', '9/9/1999') }
+    let(:resdd) { CSXML::Helpers.apply_transforms(transforms, 'dd', '9/9/1999') }
     let(:rese) { CSXML::Helpers.apply_transforms(transforms, 'e', 'True') }
     let(:resf) { CSXML::Helpers.apply_transforms(transforms, 'f', '3') }
     let(:b_urn) { CSXML::Helpers.get_vocab('behrensmeyer', CSXML::Helpers.behrensmeyer_translate('3')) }
@@ -215,6 +237,7 @@ RSpec.describe CSXML::Helpers do
       expect(resb).to include(':placeauthorities:name(place):')
       expect(resc).to eq('caprine 123')
       expect(resd).to eq('1999-09-09')
+      expect(resdd).to eq('1999-09-09T00:00:00.000Z')
       expect(rese).to eq('true')
       expect(resf).to eq(b_urn)
     end
