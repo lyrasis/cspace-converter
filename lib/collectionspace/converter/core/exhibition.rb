@@ -18,8 +18,8 @@ module CollectionSpace
             'curatorialnote' => 'curatorialNote',
             'generalnote' => 'generalNote',
             'boilerplatetext' => 'boilerplateText'
-            
           }
+
           pairstransforms = {
             'type' => {'vocab' => 'exhibitiontype'},
           }
@@ -110,12 +110,6 @@ module CollectionSpace
             galleryrotationdata,
             galleryrotation_transforms
             )
-          # CSXML.add_group_list_with_structured_date(
-          #   xml, attributes,
-          #   'galleryRotation',
-          #   galleryrotationdata,
-          #   ['galleryRotationStartDate', 'galleryRotationEndDate']
-          # )
 
           # exhibitionReferenceGroupList, exhibitionReferenceGroup
           exhibitionreferencedata = {

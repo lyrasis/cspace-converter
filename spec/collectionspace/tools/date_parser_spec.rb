@@ -22,20 +22,18 @@ RSpec.describe CSDTP do
       let(:text_date_parsed) {CSDTP.parse(text_date) }
       
       it "returns structured date" do
-        pp(ca_date_parsed)
-        pp(CSDTP.fields_for(ca_date_parsed))
-           
-      expect(ca_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
-      expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
-    end
-    it "scalarValuesComputed = false" do
-      expect(ca_date_parsed.computed).to eq 'false'
-      expect(text_date_parsed.computed).to eq 'false'
-    end
-    it "dateDisplayDate = the date string passed in" do
-      expect(ca_date_parsed.display_date).to eq(ca_date)
-      expect(text_date_parsed.display_date).to eq(text_date)
-    end
+        expect(ca_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+        expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+      end
+
+      it "scalarValuesComputed = false" do
+        expect(ca_date_parsed.computed).to eq 'false'
+        expect(text_date_parsed.computed).to eq 'false'
+      end
+      it "dateDisplayDate = the date string passed in" do
+        expect(ca_date_parsed.display_date).to eq(ca_date)
+        expect(text_date_parsed.display_date).to eq(text_date)
+      end
     end
 
     it "can parse a basic date" do
