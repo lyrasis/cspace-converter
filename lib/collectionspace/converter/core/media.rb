@@ -27,7 +27,7 @@ module CollectionSpace
           CSXML::Helpers.add_person xml, 'creator', attributes["creator"] if attributes["creatortype"] == "person"
           CSXML::Helpers.add_organization xml, 'creator', attributes["creator"] if attributes["creatortype"] == "organization"
           CSXML::Helpers.add_date_group_list(
-            xml, 'date', [CSDTP.parse(attributes['date'])]
+            xml, 'date', attributes['date']
           )
           CSXML.add xml, 'description', scrub_fields([attributes["description"]])
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)

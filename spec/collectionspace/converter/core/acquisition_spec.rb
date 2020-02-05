@@ -4,9 +4,10 @@ RSpec.describe CollectionSpace::Converter::Core::CoreAcquisition do
   let(:attributes) { get_attributes('core', 'acquisition_core_all.csv') }
   let(:coreacquisition) { CoreAcquisition.new(attributes) }
   let(:doc) { get_doc(coreacquisition) }
-  let(:record) { get_fixture('core_acquisition_row1.xml') }
+  let(:record) { get_fixture('core_acquisition_row2.xml') }
   let(:xpaths) {[
     { xpath: '/document/*/acquisitionAuthorizer', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionAuthorizer', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/acquisitionReferenceNumber',
     '/document/*/acquisitionAuthorizerDate',
     '/document/*/accessionDateGroup/scalarValuesComputed',
@@ -23,7 +24,10 @@ RSpec.describe CollectionSpace::Converter::Core::CoreAcquisition do
     { xpath: '/document/*/acquisitionFundingList/acquisitionFunding[2]/acquisitionFundingCurrency', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/acquisitionFundingList/acquisitionFunding[2]/acquisitionFundingCurrency', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/acquisitionFundingList/acquisitionFunding/acquisitionFundingValue',
-    { xpath: '/document/*/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionFundingList/acquisitionFunding[1]/acquisitionFundingSource', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionFundingList/acquisitionFunding[1]/acquisitionFundingSource', transform: ->(text) { CSURN.parse(text)[:subtype] } },    
+    { xpath: '/document/*/acquisitionFundingList/acquisitionFunding[2]/acquisitionFundingSource', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionFundingList/acquisitionFunding[2]/acquisitionFundingSource', transform: ->(text) { CSURN.parse(text)[:subtype] } },    
     '/document/*/acquisitionFundingList/acquisitionFunding/acquisitionFundingSourceProvisos',
     '/document/*/acquisitionMethod',
     '/document/*/acquisitionNote',
@@ -33,7 +37,10 @@ RSpec.describe CollectionSpace::Converter::Core::CoreAcquisition do
     { xpath: '/document/*/owners/owner[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     { xpath: '/document/*/owners/owner[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/owners/owner[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/acquisitionSources/acquisitionSource', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionSources/acquisitionSource[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionSources/acquisitionSource[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/acquisitionSources/acquisitionSource[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/acquisitionSources/acquisitionSource[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/creditLine',
     { xpath: '/document/*/groupPurchasePriceCurrency', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/groupPurchasePriceValue',
@@ -63,16 +70,16 @@ RSpec.describe CollectionSpace::Converter::Core::CoreAcquisition do
     '/document/*/approvalGroupList/approvalGroup/approvalNote',
   ]}
 
-  context 'sample data row 1' do
-  it "Maps attributes correctly" do
+  context 'sample data row 2' do
+    it "Maps attributes correctly" do
     test_converter(doc, record, xpaths)
   end
  end
-  context 'sample data row 32' do
-      let(:attributes) { get_attributes_by_row('core', 'acquisition_core_all.csv', 32) }
+  context 'sample data row 3' do
+      let(:attributes) { get_attributes_by_row('core', 'acquisition_core_all.csv', 3) }
       let(:coreacquisition) { CoreAcquisition.new(attributes) }
       let(:doc) { get_doc(coreacquisition) }
-      let(:record) { get_fixture('core_acquisition_row31.xml') }
+      let(:record) { get_fixture('core_acquisition_row3.xml') }
       let(:xpaths) {[
         '/document/*/acquisitionReferenceNumber',
       ]}

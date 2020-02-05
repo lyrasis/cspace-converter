@@ -9,8 +9,8 @@ module CollectionSpace
           end
         end
 
-         def self.pairs
-          {
+       def self.map(xml, attributes)
+         pairs = {
             'acquisitionreferencenumber' => 'acquisitionReferenceNumber',
             'acquisitionauthorizer' => 'acquisitionAuthorizer',
             'acquisitionauthorizerdate' => 'acquisitionAuthorizerDate',
@@ -31,19 +31,6 @@ module CollectionSpace
             'originalobjectpurchasepricevalue' => 'originalObjectPurchasePriceValue',
             'transferoftitlenumber' => 'transferOfTitleNumber'
           }
-        end
-
-       def self.repeats
-          { 
-            'ownerperson' => ['owners', 'owner'],
-            'ownerorganization' => ['owners', 'owner'],
-            'acquisitionsource' => ['acquisitionSources', 'acquisitionSource'],
-            'fieldcollectioneventname' => ['fieldCollectionEventNames', 'fieldCollectionEventName']
-          }
-        end 
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreAcquisition.pairs,
           pairstransforms = {
             'acquisitionauthorizer' => {'authority' => ['personauthorities', 'person']},
             'acquisitionauthorizerdate' => {'special' => 'unstructured_date_stamp'},
@@ -52,26 +39,50 @@ module CollectionSpace
             'objectpurchaseofferpricecurrency' => {'vocab' => 'currency'},
             'objectpurchasepricecurrency' => {'vocab' => 'currency'},
             'originalobjectpurchasepricecurrency' => {'vocab' => 'currency'}
-          })
-          CSXML::Helpers.add_repeats(xml, attributes, CoreAcquisition.repeats,
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+
+          repeats = { 
+            'ownerperson' => ['owners', 'owner'],
+            'ownerorganization' => ['owners', 'owner'],
+            'acquisitionsourceperson' => ['acquisitionSources', 'acquisitionSource'],
+            'acquisitionsourceorganization' => ['acquisitionSources', 'acquisitionSource'],
+            'fieldcollectioneventname' => ['fieldCollectionEventNames', 'fieldCollectionEventName']
+          }
           repeatstransforms = {
-            'acquisitionsource' => {'authority' => ['personauthorities', 'person']},
+            'acquisitionsourceperson' => {'authority' => ['personauthorities', 'person']},
+            'acquisitionsourceorganization' => {'authority' => ['orgauthorities', 'organization']},
             'ownerperson' => {'authority' => ['personauthorities', 'person']},
             'ownerorganization' => {'authority' => ['orgauthorities', 'organization']}
-          })
-          CSXML::Helpers.add_date_group(xml, 'accessionDate', CSDTP.parse(attributes['accessiondategroup']))
-          CSXML::Helpers.add_date_group_list(xml, 'acquisitionDate', [CSDTP.parse(attributes['acquisitiondategroup'])])
-          acquistionfunding = []
-          fundingcurrency = CSDR.split_mvf attributes, 'acquisitionfundingcurrency'
-          fundingvalue = CSDR.split_mvf attributes, 'acquisitionfundingvalue'
-          fundingsourceorg = CSDR.split_mvf attributes, 'acquisitionfundingsourceorganization'
-          fundingsourceperson = CSDR.split_mvf attributes, 'acquisitionfundingsourceperson' 
-          fundingsourceprov = CSDR.split_mvf attributes, 'acquisitionfundingsourceprovisos'
-          fundingcurrency.each_with_index do |fc, index|
-            acquistionfunding << {"acquisitionFundingCurrency" => CSXML::Helpers.get_vocab('currency', fc), "acquisitionFundingValue" => fundingvalue[index], "acquisitionFundingSource" => CSXML::Helpers.get_authority('orgauthorities', 'organization', fundingsourceorg[index]), "acquisitionFundingSourceProvisos" => fundingsourceprov[index]} if fundingsourceorg[index]
-            acquistionfunding << {"acquisitionFundingCurrency" => CSXML::Helpers.get_vocab('currency', fc), "acquisitionFundingValue" => fundingvalue[index], "acquisitionFundingSource" => CSXML::Helpers.get_authority('personauthorities', 'person', fundingsourceperson[index]), "acquisitionFundingSourceProvisos" => fundingsourceprov[index]} if fundingsourceperson[index]
-          end
-          CSXML.add_list xml, 'acquisitionFunding', acquistionfunding
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+          
+          CSXML::Helpers.add_date_group(xml, 'accessionDate', CSDTP.parse(attributes['accessiondate']))
+
+          CSXML::Helpers.add_date_group_list(xml, 'acquisitionDate', attributes['acquisitiondate'])
+
+
+          funding_data = {
+            'acquisitionfundingcurrency' => 'acquisitionFundingCurrency',
+            'acquisitionfundingvalue' => 'acquisitionFundingValue',
+            'acquisitionfundingsourceorganization' => 'acquisitionFundingSource',
+            'acquisitionfundingsourceperson' => 'acquisitionFundingSource',
+            'acquisitionfundingsourceprovisos' => 'acquisitionFundingSourceProvisos',
+          }
+          funding_transforms = {
+            'acquisitionfundingcurrency' => {'vocab' => 'currency'},
+            'acquisitionfundingsourceorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'acquisitionfundingsourceperson' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'acquisitionFunding',
+            funding_data,
+            funding_transforms,
+            list_suffix: 'List',
+            group_suffix: ''
+          )
+
           app_data = {
             'approvalstatus' => 'approvalStatus',
             'approvalgroup' => 'approvalGroup',

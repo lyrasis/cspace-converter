@@ -25,7 +25,7 @@ module CollectionSpace
       end
 
 =begin
-===GROUPS===
+==GROUPS===
 The elements argument should be an array of hashes, as follows:
 
 elements = [{'technique' => 'pen and ink', 'techniqueType' => 'type1'},
@@ -424,17 +424,61 @@ Hashes within inner arrays - One per value in subgroup in an element
           add_authorities xml, field, 'conceptauthorities', 'concept', values, method
         end
 
+        # Adds a single value structured date field group at the top level of the document
+        # arguments:
+        #  xml - the XML document
+        #  field - String. The base name of the the date field group
+        #  date - CSDTP StructuredDate. Run `CSDTP.parse(value)` on this before passing
+        #         it as a parameter
+        #  suffix - Optional, will default to 'Group'. String. Added to end of field to create
+        #           top-level field name
+        # This:
+        #  CSXML::Helpers.add_date_group(xml, 'thisDate', '1999-09-09')
+        #
+        # Will produce:
+        #
+        # <thisDateGroup>
+        #   ...structured date fields for 1999-09-09...
+        # </thisDateGroup>
+        #
+        # This:
+        #  CSXML::Helpers.add_date_group(xml, 'thisDate', '1999-09-09', '')
+        #
+        # Will produce:
+        #
+        # <thisDate>
+        #   ...structured date fields for 1999-09-09...
+        # </thisDate>
         def self.add_date_group(xml, field, date, suffix = 'Group')
           return unless date.display_date
-
           CSXML.add_group(xml, field, CSDTP.fields_for(date), suffix)
         end
 
+        # arguments:
+        #  xml - the XML document
+        #  field - String. The base name of the date field group list to be created
+        #  dates - String. Raw values from the incoming data
+        #
+        # This:
+        #  CSXML::Helpers.add_date_group_list(xml, 'thisDate', '1999-09-09; 2010-12-22')
+        #
+        # Will produce:
+        #
+        # <thisDateGroupList>
+        #  <thisDateGroup>
+        #   ...structured date fields for 1999-09-09...
+        #  </thisDateGroup>
+        #  <thisDateGroup>
+        #   ...structured date fields for 2010-12-22...
+        #  </thisDateGroup>
+        # </thisDateGroupList>
         def self.add_date_group_list(xml, field, dates)
-          dates = dates.map { |d| CSDTP.fields_for(d) }.compact
+          dates = CSDH.split_value(dates)
+          dates = dates.map{ |d| CSDTP.parse(d) }.compact
+          dates = dates.map{ |d| CSDTP.fields_for(d) }
           CSXML.add_group_list xml, field, dates
         end
-
+        
         def self.add_location(xml, field, value)
           add_authority xml, field, 'locationauthorities', 'location', value
         end
