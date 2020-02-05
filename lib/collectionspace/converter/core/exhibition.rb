@@ -9,8 +9,8 @@ module CollectionSpace
           end
         end
 
-        def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'exhibitionnumber' => 'exhibitionNumber',
             'title' => 'title',
             'type' => 'type',
@@ -20,30 +20,27 @@ module CollectionSpace
             'boilerplatetext' => 'boilerplateText'
             
           }
-        end
+          pairstransforms = {
+            'type' => {'vocab' => 'exhibitiontype'},
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
 
-        def self.repeats
-          {
+          repeats = {
             'organizerorganization' => ['organizers', 'organizer'],
             'organizerperson' => ['organizers', 'organizer'],
             'sponsororganization' => ['sponsors', 'sponsor'],
             'sponsorperson' => ['sponsors', 'sponsor']
 
           }
-        end
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreExhibition.pairs,
-          pairstransforms = {
-            'type' => {'vocab' => 'exhibitiontype'},
-          })
-          CSXML::Helpers.add_repeats(xml, attributes, CoreExhibition.repeats,
           repeatstransforms = {
             'organizerorganization' => {'authority' => ['orgauthorities', 'organization']},
             'organizerperson' => {'authority' => ['personauthorities', 'person']},
             'sponsororganization' => {'authority' => ['orgauthorities', 'organization']},
             'sponsorperson' => {'authority' => ['personauthorities', 'person']}
-          })
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+
+          # venueGroupList, venueGroup
           venuedata = {
             'venueorganization' => 'venue',
             'venueplace' => 'venue',
@@ -68,6 +65,7 @@ module CollectionSpace
             venuetransforms
           )
 
+          # workingGroupList, workingGroup, exhibitionPersonGroupList, exhibitionPersonGroup
           workingdata = {
             'workinggroupnote' => 'workingGroupNote',
             'workinggrouptitle' => 'workingGroupTitle',
@@ -94,18 +92,32 @@ module CollectionSpace
             sublist_suffix: 'GroupList',
             subgroup_suffix: 'Group'
           )
+
+          # galleryRotationGroupList, galleryRotationGroup
           galleryrotationdata = {
             'galleryrotationnote' => 'galleryRotationNote',
             'galleryrotationname' => 'galleryRotationName',
-            'galleryrotationstartdate' => 'galleryRotationStartDate',
-            'galleryrotationenddate' => 'galleryRotationEndDate'
+            'galleryrotationstartdate' => 'galleryRotationStartDateGroup',
+            'galleryrotationenddate' => 'galleryRotationEndDateGroup'
           }
-          CSXML.add_group_list_with_structured_date(
+          galleryrotation_transforms = {
+            'galleryrotationstartdate' => {'special' => 'structured_date'},
+            'galleryrotationenddate' => {'special' => 'structured_date'}
+          }
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'galleryRotation',
             galleryrotationdata,
-            ['galleryRotationStartDate', 'galleryRotationEndDate']
-          )
+            galleryrotation_transforms
+            )
+          # CSXML.add_group_list_with_structured_date(
+          #   xml, attributes,
+          #   'galleryRotation',
+          #   galleryrotationdata,
+          #   ['galleryRotationStartDate', 'galleryRotationEndDate']
+          # )
+
+          # exhibitionReferenceGroupList, exhibitionReferenceGroup
           exhibitionreferencedata = {
             'exhibitionreference' => 'exhibitionReference',
             'exhibitionreferencenote' => 'exhibitionReferenceNote',
@@ -121,6 +133,8 @@ module CollectionSpace
             exhibitionreferencedata,
             ertransforms
           )
+
+          # exhibitionSectionGroupList, exhibitionSectionGroup
           exhibitionsectiondata = {
             'exhibitionsectionname' => 'exhibitionSectionName',
             'exhibitionsectionobjects' => 'exhibitionSectionObjects',
@@ -132,6 +146,8 @@ module CollectionSpace
             'exhibitionSection',
             exhibitionsectiondata,
           )
+
+          # exhibitionStatusGroupList, exhibitionStatusGroup 
           exhibitionstatusdata = {
             'exhibitionstatus' => 'exhibitionStatus',
             'exhibitionstatusdate' => 'exhibitionStatusDate',
@@ -147,6 +163,8 @@ module CollectionSpace
             exhibitionstatusdata,
             exhibitionstatustransforms
           )
+
+          # exhibitionObjectGroupList, exhibitionObjectGroup
           exhibitionobjectdata = {
             'exhibitionobjectnumber' => 'exhibitionObjectNumber',
             'exhibitionobjectname' => 'exhibitionObjectName',
