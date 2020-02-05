@@ -25,77 +25,66 @@ module CollectionSpace
       end
 
 =begin
-      IF GROUP IS SINGLE VALUED, you can pass like this:
-      add_group_list(xml, "objectComponent",
-      [{"objectComponentName" => attributes["objectcomponentname"]}]
+===GROUPS===
+The elements argument should be an array of hashes, as follows:
 
-      and it will produce:
+elements = [{'technique' => 'pen and ink', 'techniqueType' => 'type1'},
+            {'technique' => 'drypoint', 'techniqueType' => 'type1'}]
 
-      <objectComponentGroupList>
-      <objectComponentGroup>
-      <objectComponentName>blade</objectComponentName>
-      </objectComponentGroup>
-      </objectComponentGroupList>
+add_group_list(xml, 'technique', elements)
 
-      IF GROUP IS MULTIVALUED, the elements argument must be an array of hashes, as follows:
+...will produce:
 
-      [{'technique' => 'pen and ink', 'techniqueType' => 'type1'},
-      {'technique' => 'drypoint', 'techniqueType' => 'type1'}]
+<techniqueGroupList>
+  <techniqueGroup>
+    <techniqueType>type1</techniqueType>
+    <technique>pen and ink</technique>
+  </techniqueGroup>
+  <techniqueGroup>
+    <techniqueType>type1</techniqueType>
+    <technique>drypoint</technique>
+  </techniqueGroup>
+</techniqueGroupList>
 
-      Called with key = 'technique', this will produce:
+===SUBGROUPS===
+Given a sub_key and sub_elements argument that is an *array of arrays of value hashes*,
+this can create multivalued group lists that are children of multivalued group lists, such as...
 
-      <techniqueGroupList>
-      <techniqueGroup>
-      <techniqueType>type1</techniqueType>
-      <technique>pen and ink</technique>
-      </techniqueGroup>
-      <techniqueGroup>
-      <techniqueType>type1</techniqueType>
-      <technique>drypoint</technique>
-      </techniqueGroup>
-      </techniqueGroupList>
+commingledRemainsGroupList
+ commingledRemainsGroup
+  mortuaryTreatementGroupList
+   mortuaryTreatmentGroup
+    mortuaryTreatment
+    mortuaryTreatmentNote
+   mortuaryTreatmentGroup
+    mortuaryTreatment
+    mortuaryTreatmentNote
+ commingledRemainsGroup
+  mortuaryTreatementGroupList
+   mortuaryTreatmentGroup
+    mortuaryTreatment
+    mortuaryTreatmentNote
+   mortuaryTreatmentGroup
+    mortuaryTreatment
+    mortuaryTreatmentNote
 
-      It seems the whole point of group lists is to structure multi-valued information, so
-      IN GENERAL IT SEEMS LIKE A GOOD IDEA TO USE THE 2ND FORM INSTEAD OF THE 1ST
+Modeling this type of data in the CSV is a bit tricky. For now I have structured the CSV data for
+these fields as follows: 
 
-      ===SUBGROUPS===
-      Given a sub_key and sub_elements argument that is an *array of arrays of value hashes*,
-      this can create multivalued group lists that are children of multivalued group lists, such as...
+mortuaryTreatment,burned/unburned bone mixture^^embalmed;excarnated^^mummified
+mortuaryTreatmentNote,mtnote1^^mtnote2;mtnote3^^mtnote4
 
-      commingledRemainsGroupList
-      commingledRemainsGroup
-      mortuaryTreatementGroupList
-      mortuaryTreatmentGroup
-      mortuaryTreatment
-      mortuaryTreatmentNote
-      mortuaryTreatmentGroup
-      mortuaryTreatment
-      mortuaryTreatmentNote
-      commingledRemainsGroup
-      mortuaryTreatementGroupList
-      mortuaryTreatmentGroup
-      mortuaryTreatment
-      mortuaryTreatmentNote
-      mortuaryTreatmentGroup
-      mortuaryTreatment
-      mortuaryTreatmentNote
+The values for each commingledRemainsGroup are separated by ';'
+Within each commingledRemainsGroup, the mortuaryTreatmentGroup values are separated by '^^'
 
-      Modeling this type of data in the CSV is a bit tricky. For now I have structured the CSV data for
-      these fields as follows: 
+For now, the details of how to split up the elements within the subgroup are left in the module
+(e.g. anthro > mortuary groups)
 
-      mortuaryTreatment,burned/unburned bone mixture^^embalmed;excarnated^^mummified
-      mortuaryTreatmentNote,mtnote1^^mtnote2;mtnote3^^mtnote4
+***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes***
+Outer array - holds it all together
+Inner arrays - hold the value or values for the subgroup for each of the `elements` hashes
+Hashes within inner arrays - One per value in subgroup in an element
 
-      The values for each commingledRemainsGroup are separated by ';'
-      Within each commingledRemainsGroup, the mortuaryTreatmentGroup values are separated by '^^'
-
-      For now, the details of how to split up the elements within the subgroup are left in the module
-      (e.g. anthro > mortuary groups)
-
-      ***The important thing to note is the sub_elements argument here now requires *an array of arrays of hashes***
-      Outer array - holds it all together
-      Inner arrays - hold the value or values for the subgroup for each of the `elements` hashes
-      Hashes within inner arrays - One per value in subgroup in an element
 =end
       def self.add_group_list(
         xml, key, elements = [], sub_key = false, sub_elements = [],
@@ -107,17 +96,24 @@ module CollectionSpace
       )
         return unless elements.any?
 
-#         puts "\n\nKEY: #{key}"
-#         puts "ELEMENTS:"
-#         pp(elements)
-#         puts "SUBKEY: #{sub_key}"
-#         puts "SUBELEMENTS:"
-#         pp(sub_elements)
+        #puts "\nELEMENTS FOR KEY: #{key}:"
+        #pp(elements)
+        #         puts "SUBKEY: #{sub_key}"
+        #         puts "SUBELEMENTS:"
+        #         pp(sub_elements)
 
         xml.send("#{key}#{list_suffix}".to_sym) {
           elements.each_with_index do |element, index|
             xml.send("#{key}#{group_suffix}".to_sym) {
-              element.each {|k, v| xml.send(k.to_sym, v)}
+              element.each {|k, v|
+                if v.is_a?(String)
+                  xml.send(k.to_sym, v)
+                elsif v.is_a?(Hash)
+                  xml.send(k.to_sym) {
+                    v.each{ |hk, hv| xml.send(hk.to_sym, hv) }
+                    }
+                end
+              }
 
               if sub_key && include_subgrouplist_level
                 xml.send("#{sub_key}#{sublist_suffix}".to_sym) {
@@ -187,74 +183,6 @@ module CollectionSpace
         CSXML.add_group_list(xml, key, groups, list_suffix: list_suffix, group_suffix: group_suffix)
       end
 
-      # convenience method to build the following structure:
-      # topGroupList
-      #   topGroup
-      #     someDateGroup
-      #       structured date fields
-      # topKey - String. In combination with list_suffix and group_suffix, used to create names of
-      #   parent CSpace fields (StringGroupList and StringGroup, for example)
-      # all_elements - Hash. Keys = attribute/CSV header value. Value = Target CSpace field name
-      # date_field - base name of CSpace field to be treated as structured date. For example
-      #   date_field: 'osteoAgeEstimateDate' and subgroup_suffix: 'Group' will produce CSpace field
-      #   'osteoAgeEstimateDateGroup' containing all the structured date fields.
-      # transforms - Hash. See cspace-converter wiki page about transforms for details on format
-      # list_suffix - String. Appended to topKey to create top-level field
-      # group_suffix - String. Appended to topKey to create top-level groups
-      # sublist_suffix - String. Appended to date_field to create top-level nested date grouplist
-      # subgroup_suffix - String. Appended to date_field to create field containing the structured
-      #   date fields for a given date
-      # include_subgrouplist_level - Boolean. If false, `someDateGroup` is a direct child of `topGroup`.
-      #   If true, you'd get `topGroupList > topGroup > someDateGroupList > someDateGroup`, depending on
-      #   your *_suffix parameter values.
-      def self.add_group_list_with_structured_date(
-        xml,
-        attributes,
-        topKey,
-        all_elements, # { 'csvheader' => 'fieldName' }
-        date_field,
-        transforms = {},
-        list_suffix: 'GroupList',
-        group_suffix: 'Group',
-        sublist_suffix: '',
-        subgroup_suffix: '',
-        include_subgrouplist_level: false
-      )
-
-        all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
-
-        unless CSXML::Helpers.mvfs_even?(all)
-          Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
-        end
-
-        unless transforms.empty?
-          transforms.keys.each{ |csvheader|
-            if all[csvheader]
-              newvals = []
-              all[csvheader][:values].each{ |v| newvals << Helpers.apply_transforms(transforms, csvheader, v) }
-              all[csvheader][:values] = newvals
-            end
-          }
-        end
-
-        groups = CSXML::Helpers.flatten_mvfs(all)
-
-        date_groups = []
-        groups.each{ |fhash|
-          if fhash[date_field]
-            date_groups << [CSDTP.fields_for(CSDTP.parse(fhash[date_field]))]
-            fhash.delete(date_field)
-          end
-        }
-        
-        CSXML.add_group_list(
-          xml, topKey, groups, date_field, date_groups,
-          list_suffix: list_suffix, group_suffix: group_suffix,
-          sublist_suffix: sublist_suffix, subgroup_suffix: subgroup_suffix,
-          include_subgrouplist_level: include_subgrouplist_level
-        )
-      end #def self.add_group_list_with_structured_date
-
       # convenience method to handle pre-processing of nested GroupLists and sending them
       #  to add_group_list
       #  transforms hash format is:
@@ -300,11 +228,10 @@ module CollectionSpace
 
         top_groups = CSXML::Helpers.flatten_mvfs(all)
         child_groups = []
-
         top_groups.each_with_index{ |tg, index|
           child_group_splits = {}
           child_fields.each{ |field|
-            child_group_splits[field] = {:values => tg[field].split('^^'), :field => field}
+            child_group_splits[field] = {:values => tg[field].split('^^'), :field => field} if tg[field]
             tg.delete(field) if tg[field]
             all.delete(field) if all[field]
           }
@@ -400,10 +327,16 @@ module CollectionSpace
               value = Helpers.to_boolean(value)
             when 'behrensmeyer_translate'
               value = Helpers.behrensmeyer_translate(value)
+            when 'structured_date'
+              value = CSDTP.fields_for(CSDTP.parse(value))
             when 'unstructured_date_string'
               value = CSDTP.parse_unstructured_date_string(value)
             when 'unstructured_date_stamp'
               value = CSDTP.parse_unstructured_date_stamp(value)
+            when 'upcase_first_char'
+              value = value.sub(/^(.)(.*)/){ $1.upcase << $2 }
+            when 'downcase_first_char'
+              value = value.sub(/^(.)(.*)/){ $1.downcase << $2 }
             end
           end
 
