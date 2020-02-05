@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2019-12-12T17:25:48.200Z</createdAt>
+    <createdAt>2020-02-04T23:23:17.382Z</createdAt>
     <updatedBy>admin@cspace.ohiohistory.org</updatedBy>
     <createdBy>admin@cspace.ohiohistory.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1885</tenantId>
-    <refName>urn:cspace:cspace.ohiohistory.org:collectionobjects:id(d04a2ed4-f2cd-4493-9185)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/d04a2ed4-f2cd-4493-9185</uri>
-    <updatedAt>2019-12-12T17:25:48.200Z</updatedAt>
+    <refName>urn:cspace:cspace.ohiohistory.org:collectionobjects:id(418d0a41-d98b-4681-9503)'20CS.001.0005'</refName>
+    <uri>/collectionobjects/418d0a41-d98b-4681-9503</uri>
+    <updatedAt>2020-02-04T23:23:17.382Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -45,70 +45,36 @@
     <assocActivityGroupList/>
     <objectProductionReasons/>
     <assocPlaceGroupList/>
-    <objectNameList>
-      <objectNameGroup>
-        <objectNameType/>
-        <objectNameSystem/>
-        <objectName>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(nomenclature):item:name(HumanRemainsSHVtYW5SZW1haW5z)'Human Remains'</objectName>
-        <objectNameCurrency/>
-        <objectNameNote/>
-        <objectNameLevel/>
-        <objectNameLanguage/>
-      </objectNameGroup>
-      <objectNameGroup>
-        <objectNameType/>
-        <objectNameSystem/>
-        <objectName>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(nomenclature):item:name(PostcranialRemainsonly1570769080596)'Postcranial Remains (only)'</objectName>
-        <objectNameCurrency/>
-        <objectNameNote/>
-        <objectNameLevel/>
-        <objectNameLanguage/>
-      </objectNameGroup>
-    </objectNameList>
+    <objectNameList/>
     <styles/>
     <materialGroupList/>
     <assocObjectGroupList/>
     <fieldCollectors/>
-    <responsibleDepartments />
+    <responsibleDepartments/>
     <textualInscriptionGroupList/>
-    <objectNumber>20CS.001.0001</objectNumber>
+    <objectNumber>20CS.001.0005</objectNumber>
     <fieldColEventNames/>
     <colors/>
     <contentScripts/>
     <objectProductionPlaceGroupList/>
     <referenceGroupList/>
     <assocDateGroupList/>
-    <fieldCollectionFeature/>
     <briefDescriptions/>
     <contentLanguages/>
     <recordStatus>new</recordStatus>
     <assocPersonGroupList/>
     <titleGroupList/>
-    <fieldCollectionNote/>
     <assocConceptGroupList/>
     <usageGroupList/>
     <assocCulturalContextGroupList/>
     <otherNumberList/>
     <objectProductionPeopleGroupList/>
-    <assocPeopleGroupList>
-      <assocPeopleGroup>
-        <assocPeople>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(ethculture):item:name(NativeAmerican1570588437766)'Native American'</assocPeople>
-        <assocPeopleNote/>
-        <assocPeopleType/>
-      </assocPeopleGroup>
-      <assocPeopleGroup>
-        <assocPeople>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(ethculture):item:name(Batak1573742907129)'Batak'</assocPeople>
-        <assocPeopleNote/>
-        <assocPeopleType/>
-      </assocPeopleGroup>
-    </assocPeopleGroupList>
+    <assocPeopleGroupList/>
     <assocEventOrganizations/>
     <contentPeoples/>
     <measuredPartGroupList/>
     <contentObjectGroupList/>
     <ownershipDateGroupList/>
-    <collection/>
-    <objectProductionNote/>
     <technicalAttributeGroupList/>
     <nonTextualInscriptionGroupList/>
     <assocEventPersons/>
@@ -119,7 +85,9 @@
     <ownersReferences/>
     <viewersReferences/>
     <objectProductionOrganizationGroupList/>
-    <publishToList/>
+    <publishToList>
+      <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(none)'None'</publishTo>
+    </publishToList>
     <assocOrganizationGroupList/>
     <contentOrganizations/>
     <contentPlaces/>
@@ -154,7 +122,9 @@
     <comments/>
     <assocEventPeoples/>
     <techniqueGroupList/>
-    <inventoryStatusList/>
+    <inventoryStatusList>
+      <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(unknown)'unknown'</inventoryStatus>
+    </inventoryStatusList>
     <contentPositions/>
     <forms/>
   </ns2:collectionobjects_common>
@@ -163,29 +133,13 @@
     <culturalCareNotes/>
   </ns2:collectionobjects_culturalcare>
   <ns2:collectionobjects_ohc xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/ohc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <descriptionLevel>urn:cspace:cspace.ohiohistory.org:vocabularies:name(descriptionlevel):item:name(item)'item'</descriptionLevel>
-    <namedTimePeriods>
-      <namedTimePeriod>urn:cspace:cspace.ohiohistory.org:vocabularies:name(namedtimeperiods):item:name(prehistoric)'Pre-contact'</namedTimePeriod>
-      <namedTimePeriod>urn:cspace:cspace.ohiohistory.org:vocabularies:name(namedtimeperiods):item:name(woodland)'Woodland'</namedTimePeriod>
-    </namedTimePeriods>
+    <namedTimePeriods/>
     <categoryGroupList/>
-    <oaiSiteGroupList>
-      <oaiSiteGroup>
-        <oaiCollectionPlace>urn:cspace:cspace.ohiohistory.org:placeauthorities:name(place):item:name(33AD231569949125826)'33 AD 23'</oaiCollectionPlace>
-        <oaiLocVerbatim/>
-      </oaiSiteGroup>
-    </oaiSiteGroupList>
+    <oaiSiteGroupList/>
     <apparelSizes/>
   </ns2:collectionobjects_ohc>
   <ns2:collectionobjects_annotation xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/annotation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <annotationGroupList>
-      <annotationGroup>
-        <annotationAuthor/>
-        <annotationDate/>
-        <annotationType/>
-        <annotationNote/>
-      </annotationGroup>
-    </annotationGroupList>
+    <annotationGroupList/>
   </ns2:collectionobjects_annotation>
   <ns2:collectionobjects_nagpra xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/nagpra" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <nagpraReportFiledDate>
@@ -213,6 +167,7 @@
       <dateEarliestScalarValue/>
       <dateLatestMonth/>
     </nagpraReportFiledDate>
+    <nagpraReportFiled>false</nagpraReportFiled>
     <graveAssocCodes/>
     <repatriationNotes/>
     <nagpraCategories/>
@@ -221,81 +176,7 @@
   </ns2:collectionobjects_nagpra>
   <ns2:collectionobjects_anthro xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/anthro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <ethnoFileCodes/>
-    <localityGroupList>
-      <localityGroup>
-        <vCoordSys/>
-        <geoRefSource/>
-        <coordUncertaintyUnit/>
-        <minElevation/>
-        <localitySource/>
-        <coordPrecision/>
-        <geoRefDateGroup>
-          <scalarValuesComputed/>
-          <dateEarliestSingleCertainty/>
-          <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate/>
-          <dateLatestScalarValue/>
-          <dateEarliestSingleQualifierValue/>
-          <datePeriod/>
-          <dateLatestEra/>
-          <dateEarliestSingleDay/>
-          <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear/>
-          <dateLatestCertainty/>
-          <dateAssociation/>
-          <dateLatestDay/>
-          <dateEarliestSingleMonth/>
-          <dateEarliestSingleEra/>
-          <dateLatestYear/>
-          <dateLatestQualifierUnit/>
-          <dateNote/>
-          <dateLatestQualifierValue/>
-          <dateLatestQualifier/>
-          <dateEarliestScalarValue/>
-          <dateLatestMonth/>
-        </geoRefDateGroup>
-        <decimalLatitude/>
-        <geoRefencedBy/>
-        <vElevation/>
-        <distanceAboveSurfaceUnit/>
-        <fieldLocCounty/>
-        <vSpatialReferenceSystem/>
-        <vLatitude/>
-        <collectionPlace/>
-        <minDepth/>
-        <fieldLocHigherGeography/>
-        <geoRefProtocol/>
-        <vDepth/>
-        <collectionLocationVerbatim/>
-        <taxonomicRange/>
-        <vLongitude/>
-        <localitySourceDetail/>
-        <footprintWKT/>
-        <localityNote/>
-        <decimalLongitude/>
-        <geodeticDatum/>
-        <pointRadiusSpatialFit/>
-        <geoRefRemarks/>
-        <fieldLocCountry/>
-        <fieldLocState/>
-        <maxDistanceAboveSurface/>
-        <fieldLocVerbatim/>
-        <geoRefPlaceName/>
-        <minDistanceAboveSurface/>
-        <maxDepth/>
-        <vOtherCoords/>
-        <vDistanceAboveSurface/>
-        <footprintSRS/>
-        <fieldLocPlace/>
-        <depthUnit/>
-        <footprintSpatialFit/>
-        <coordUncertainty/>
-        <vCoordinates/>
-        <geoRefVerificationStatus/>
-        <elevationUnit/>
-        <maxElevation/>
-      </localityGroup>
-    </localityGroupList>
+    <localityGroupList/>
     <commingledRemainsGroupList/>
     <anthroOwnershipGroupList/>
   </ns2:collectionobjects_anthro>
@@ -306,4 +187,12 @@
     <localityGroupList/>
     <typeSpecimenGroupList/>
   </ns2:collectionobjects_naturalhistory_extension>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>771a6647-d10b-4857-8637-b5b978ffaf5a</accountId>
+      <screenName>Converter Tool</screenName>
+      <userId>converter@lyrasistechnology.org</userId>
+      <tenantId>1885</tenantId>
+    </account>
+  </ns2:account_permission>
 </document>
