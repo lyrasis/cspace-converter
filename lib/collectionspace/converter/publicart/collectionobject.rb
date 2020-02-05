@@ -96,14 +96,14 @@ module CollectionSpace
             'publicartproductiondatetype' => 'publicartProductionDateType'
           }
           ppd_transforms = {
+            'publicartproductiondate' => {'special' => 'structured_date'},
             'publicartproductiondatetype' => {'vocab' => 'proddatetype'}
           }
-          CSXML.add_group_list_with_structured_date(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'publicartProductionDate',
             ppd_data,
-            'publicartProductionDate',
             ppd_transforms
           )
           ppp_data = {
