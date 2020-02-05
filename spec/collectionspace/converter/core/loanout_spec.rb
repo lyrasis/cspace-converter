@@ -19,7 +19,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreLoanOut do
     '/document/*/loanOutNote',
     '/document/*/loanPurpose',
     { xpath: '/document/*/loanStatusGroupList/loanStatusGroup/loanStatus', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    #'/document/*/loanStatusGroupList/loanStatusGroup/loanStatusDate',
+    '/document/*/loanStatusGroupList/loanStatusGroup/loanStatusDate',
     '/document/*/loanStatusGroupList/loanStatusGroup/loanStatusNote',
   ]}
 

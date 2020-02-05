@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-01-29T11:44:01.310Z</createdAt>
+    <createdAt>2020-01-29T13:30:03.175Z</createdAt>
     <updatedBy>admin@materials.collectionspace.org</updatedBy>
     <createdBy>admin@materials.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>2000</tenantId>
-    <refName>urn:cspace:materials.collectionspace.org:collectionobjects:id(c7b78f54-68ea-464d-abe9)'DM2001.001.0001'</refName>
-    <uri>/collectionobjects/c7b78f54-68ea-464d-abe9</uri>
-    <updatedAt>2020-01-29T11:54:14.318Z</updatedAt>
+    <refName>urn:cspace:materials.collectionspace.org:collectionobjects:id(7bb8f130-76dc-4121-bc4a)'DM2004.001.0021'</refName>
+    <uri>/collectionobjects/7bb8f130-76dc-4121-bc4a</uri>
+    <updatedAt>2020-01-29T13:30:03.175Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -73,22 +73,7 @@
     <assocPlaceGroupList/>
     <objectNameList/>
     <styles/>
-    <materialGroupList>
-      <materialGroup>
-        <materialName/>
-        <material>urn:cspace:materials.collectionspace.org:materialauthorities:name(material):item:name(PlastiPaste1580298330853)'Plasti-Paste'</material>
-        <materialComponent/>
-        <materialComponentNote/>
-        <materialSource/>
-      </materialGroup>
-      <materialGroup>
-        <materialName/>
-        <material>urn:cspace:materials.collectionspace.org:materialauthorities:name(material):item:name(FlexFoam1580298382589)'FlexFoam'</material>
-        <materialComponent/>
-        <materialComponentNote/>
-        <materialSource/>
-      </materialGroup>
-    </materialGroupList>
+    <materialGroupList/>
     <assocObjectGroupList/>
     <fieldCollectors/>
     <responsibleDepartments/>
@@ -131,12 +116,9 @@
         <inscriptionContentMethod/>
       </textualInscriptionGroup>
     </textualInscriptionGroupList>
-    <objectNumber>DM2001.001.0001</objectNumber>
+    <objectNumber>DM2004.001.0021</objectNumber>
     <fieldColEventNames/>
-    <colors>
-      <color>misty memories</color>
-      <color>violet dusk</color>
-    </colors>
+    <colors/>
     <contentScripts/>
     <objectProductionPlaceGroupList/>
     <referenceGroupList/>
@@ -171,57 +153,29 @@
         <assocDateType/>
       </assocDateGroup>
     </assocDateGroupList>
-    <briefDescriptions>
-      <briefDescription>tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam id leo in vitae turpis massa sed elementum tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse in est ante in nibh mauris cursus mattis</briefDescription>
-    </briefDescriptions>
+    <briefDescriptions/>
     <contentLanguages/>
-    <recordStatus>approved</recordStatus>
-    <numberOfObjects>1</numberOfObjects>
+    <recordStatus>new</recordStatus>
     <assocPersonGroupList/>
     <titleGroupList/>
     <assocConceptGroupList/>
     <usageGroupList/>
     <assocCulturalContextGroupList/>
-    <otherNumberList>
-      <otherNumber>
-        <numberType>lender</numberType>
-        <numberValue>12345</numberValue>
-      </otherNumber>
-      <otherNumber>
-        <numberType>obsolete</numberType>
-        <numberValue>452896</numberValue>
-      </otherNumber>
-    </otherNumberList>
+    <otherNumberList/>
     <objectProductionPeopleGroupList/>
     <assocPeopleGroupList/>
     <assocEventOrganizations/>
     <contentPeoples/>
     <measuredPartGroupList>
       <measuredPartGroup>
-        <dimensionSummary>1 x 2</dimensionSummary>
+        <dimensionSummary/>
         <measuredPart/>
-        <dimensionSubGroupList>
-          <dimensionSubGroup>
-            <dimensionNote/>
-            <valueQualifier/>
-            <valueDate/>
-            <measuredBy/>
-            <dimension>length</dimension>
-            <value>1</value>
-            <measurementMethod/>
-            <measurementUnit>inches</measurementUnit>
-          </dimensionSubGroup>
-          <dimensionSubGroup>
-            <dimensionNote/>
-            <valueQualifier/>
-            <valueDate/>
-            <measuredBy/>
-            <dimension>width</dimension>
-            <value>2</value>
-            <measurementMethod/>
-            <measurementUnit>inches</measurementUnit>
-          </dimensionSubGroup>
-        </dimensionSubGroupList>
+        <dimensionSubGroupList/>
+      </measuredPartGroup>
+      <measuredPartGroup>
+        <dimensionSummary/>
+        <measuredPart/>
+        <dimensionSubGroupList/>
       </measuredPartGroup>
     </measuredPartGroupList>
     <contentObjectGroupList/>
@@ -252,7 +206,6 @@
         <dateLatestMonth/>
       </ownershipDateGroup>
     </ownershipDateGroupList>
-    <collection>circulating</collection>
     <technicalAttributeGroupList/>
     <nonTextualInscriptionGroupList>
       <nonTextualInscriptionGroup>
@@ -297,10 +250,8 @@
     <ownersReferences/>
     <viewersReferences/>
     <objectProductionOrganizationGroupList/>
-    <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
     <publishToList>
-      <publishTo>urn:cspace:materials.collectionspace.org:vocabularies:name(publishto):item:name(all)'All'</publishTo>
-      <publishTo>urn:cspace:materials.collectionspace.org:vocabularies:name(publishto):item:name(materialorder)'Material Order'</publishTo>
+      <publishTo/>
     </publishToList>
     <assocOrganizationGroupList/>
     <contentOrganizations/>
@@ -331,70 +282,24 @@
       <dateEarliestScalarValue/>
       <dateLatestMonth/>
     </contentDateGroup>
-    <objectStatusList>
-      <objectStatus>fragment</objectStatus>
-      <objectStatus>product</objectStatus>
-    </objectStatusList>
+    <objectStatusList/>
     <objectComponentGroupList/>
     <comments/>
     <assocEventPeoples/>
     <techniqueGroupList/>
     <inventoryStatusList>
-      <inventoryStatus>urn:cspace:materials.collectionspace.org:vocabularies:name(inventorystatus):item:name(accessioned)'accessioned'</inventoryStatus>
-      <inventoryStatus>urn:cspace:materials.collectionspace.org:vocabularies:name(inventorystatus):item:name(destroyed)'destroyed'</inventoryStatus>
+      <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(unknown)'unknown'</inventoryStatus>
     </inventoryStatusList>
     <contentPositions/>
     <forms/>
   </ns2:collectionobjects_common>
   <ns2:collectionobjects_materials xmlns:ns2="http://collectionspace.org/services/collectionobject/local/materials" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <materialHandlingGroupList>
-      <materialHandlingGroup>
-        <handlingNote>wet</handlingNote>
-        <handling>urn:cspace:materials.collectionspace.org:vocabularies:name(materialhandling):item:name(aerogel)'aerogel'</handling>
-      </materialHandlingGroup>
-      <materialHandlingGroup>
-        <handlingNote>breakable</handlingNote>
-        <handling>urn:cspace:materials.collectionspace.org:vocabularies:name(materialhandling):item:name(fragile)'fragile'</handling>
-      </materialHandlingGroup>
-    </materialHandlingGroupList>
-    <materialFinishGroupList>
-      <materialFinishGroup>
-        <finishNote>finish note text</finishNote>
-        <finish>urn:cspace:materials.collectionspace.org:vocabularies:name(materialfinish):item:name(brushed)'brushed'</finish>
-      </materialFinishGroup>
-      <materialFinishGroup>
-        <finishNote>finish note text 2</finishNote>
-        <finish>urn:cspace:materials.collectionspace.org:vocabularies:name(materialfinish):item:name(lacquered)'lacquered'</finish>
-      </materialFinishGroup>
-    </materialFinishGroupList>
-    <materialPhysicalDescriptions>
-      <materialPhysicalDescription>mauris cursus mattis</materialPhysicalDescription>
-      <materialPhysicalDescription>cursus vitae congue</materialPhysicalDescription>
-    </materialPhysicalDescriptions>
-    <materialConditionGroupList>
-      <materialConditionGroup>
-        <conditionNote>good</conditionNote>
-        <condition>urn:cspace:materials.collectionspace.org:vocabularies:name(materialcondition):item:name(broken)'broken'</condition>
-      </materialConditionGroup>
-      <materialConditionGroup>
-        <conditionNote>fine</conditionNote>
-        <condition>urn:cspace:materials.collectionspace.org:vocabularies:name(materialcondition):item:name(broken)'broken'</condition>
-      </materialConditionGroup>
-    </materialConditionGroupList>
-    <materialGenericColors>
-      <materialGenericColor>urn:cspace:materials.collectionspace.org:vocabularies:name(materialgenericcolor):item:name(red)'red'</materialGenericColor>
-      <materialGenericColor>urn:cspace:materials.collectionspace.org:vocabularies:name(materialgenericcolor):item:name(brown)'brown'</materialGenericColor>
-    </materialGenericColors>
-    <materialContainerGroupList>
-      <materialContainerGroup>
-        <container>urn:cspace:materials.collectionspace.org:vocabularies:name(materialcontainer):item:name(bag)'bag'</container>
-        <containerNote>small</containerNote>
-      </materialContainerGroup>
-      <materialContainerGroup>
-        <container>urn:cspace:materials.collectionspace.org:vocabularies:name(materialcontainer):item:name(case)'case'</container>
-        <containerNote>medium</containerNote>
-      </materialContainerGroup>
-    </materialContainerGroupList>
+    <materialHandlingGroupList/>
+    <materialFinishGroupList/>
+    <materialPhysicalDescriptions/>
+    <materialConditionGroupList/>
+    <materialGenericColors/>
+    <materialContainerGroupList/>
   </ns2:collectionobjects_materials>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
     <account>
