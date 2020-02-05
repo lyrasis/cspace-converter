@@ -49,7 +49,6 @@ module CollectionSpace
             'acquisitionauthorizerdate' => {'special' => 'unstructured_date_stamp'},
             'grouppurchasepricecurrency' => {'vocab' => 'currency'},
             'objectofferpricecurrency' => {'vocab' => 'currency'},
-            'objectofferpricecurrency' => {'vocab' => 'currency'},
             'objectpurchaseofferpricecurrency' => {'vocab' => 'currency'},
             'objectpurchasepricecurrency' => {'vocab' => 'currency'},
             'originalobjectpurchasepricecurrency' => {'vocab' => 'currency'}
