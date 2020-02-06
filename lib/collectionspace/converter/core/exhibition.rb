@@ -110,13 +110,6 @@ module CollectionSpace
             galleryrotationdata,
             galleryrotation_transforms
             )
-          # CSXML.add_group_list_with_structured_date(
-          #   xml, attributes,
-          #   'galleryRotation',
-          #   galleryrotationdata,
-          #   ['galleryRotationStartDate', 'galleryRotationEndDate']
-          # )
-
           # exhibitionReferenceGroupList, exhibitionReferenceGroup
           exhibitionreferencedata = {
             'exhibitionreference' => 'exhibitionReference',
