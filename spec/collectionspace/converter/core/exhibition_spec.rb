@@ -30,9 +30,10 @@ RSpec.describe CollectionSpace::Converter::Core::CoreExhibition do
     { xpath: '/document/*/sponsors/sponsor[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/sponsors/sponsor[3]', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/galleryRotationGroupList/galleryRotationGroup/galleryRotationName',
-#    '/document/*/galleryRotationGroupList/galleryRotationGroup[1]/galleryRotationStartDateGroup/dateDisplayDate',
-#    '/document/*/galleryRotationGroupList/galleryRotationGroup[2]/galleryRotationStartDateGroup/dateDisplayDate',
-#    '/document/*/galleryRotationGroupList/galleryRotationGroup/galleryRotationEndDateGroup',
+    '/document/*/galleryRotationGroupList/galleryRotationGroup[1]/galleryRotationStartDateGroup/dateDisplayDate',
+    '/document/*/galleryRotationGroupList/galleryRotationGroup[2]/galleryRotationStartDateGroup/dateDisplayDate',
+    '/document/*/galleryRotationGroupList/galleryRotationGroup[1]/galleryRotationEndDateGroup/dateDisplayDate',
+    '/document/*/galleryRotationGroupList/galleryRotationGroup[2]/galleryRotationEndDateGroup/dateDisplayDate',
     '/document/*/galleryRotationGroupList/galleryRotationGroup/galleryRotationNote',
     { xpath: '/document/*/exhibitionReferenceGroupList/exhibitionReferenceGroup[1]/exhibitionReference', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/exhibitionReferenceGroupList/exhibitionReferenceGroup[2]/exhibitionReference', transform: ->(text) { CSURN.parse(text)[:label] } },
@@ -59,9 +60,9 @@ RSpec.describe CollectionSpace::Converter::Core::CoreExhibition do
   ]}
 
   context 'For maximally populuated record' do
-  it "Maps attributes correctly" do
-    test_converter(doc, record, xpaths)
-  end
+    it "Maps attributes correctly" do
+      test_converter(doc, record, xpaths)
+    end
   end
 
   context 'For minimally populated record' do

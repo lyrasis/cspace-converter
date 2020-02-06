@@ -215,6 +215,7 @@ RSpec.describe CSXML::Helpers do
              },
       'd' => {'special' => 'unstructured_date_string'},
       'dd' => {'special' => 'unstructured_date_stamp'},
+      'ddd' => {'special' => 'structured_date'},
       'e' => {'special' => 'boolean' },
       'f' => {'special' => 'behrensmeyer_translate',
               'vocab' => 'behrensmeyer'
@@ -228,11 +229,29 @@ RSpec.describe CSXML::Helpers do
     let(:resc) { CSXML::Helpers.apply_transforms(transforms, 'c', 'goat123') }
     let(:resd) { CSXML::Helpers.apply_transforms(transforms, 'd', '9/9/1999') }
     let(:resdd) { CSXML::Helpers.apply_transforms(transforms, 'dd', '9/9/1999') }
+    let(:resddd) { CSXML::Helpers.apply_transforms(transforms, 'ddd', '2011-11-02') }
     let(:rese) { CSXML::Helpers.apply_transforms(transforms, 'e', 'True') }
     let(:resf) { CSXML::Helpers.apply_transforms(transforms, 'f', '3') }
     let(:b_urn) { CSXML::Helpers.get_vocab('behrensmeyer', CSXML::Helpers.behrensmeyer_translate('3')) }
     let(:resg) { CSXML::Helpers.apply_transforms(transforms, 'g', 'bear') }
     let(:resh) { CSXML::Helpers.apply_transforms(transforms, 'h', 'Bear') }
+
+    let(:structured_date_fields) {
+      {"scalarValuesComputed"=>"true",
+       "dateDisplayDate"=>"2011-11-02",
+       "dateEarliestSingleYear"=>2011,
+       "dateEarliestSingleMonth"=>11,
+       "dateEarliestSingleDay"=>2,
+       "dateEarliestScalarValue"=>"2011-11-02T00:00:00.000Z",
+       "dateEarliestSingleEra"=>
+         "urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'",
+       "dateLatestYear"=>2011,
+       "dateLatestMonth"=>11,
+       "dateLatestDay"=>3,
+       "dateLatestScalarValue"=>"2011-11-03T00:00:00.000Z",
+       "dateLatestEra"=>
+         "urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'"}
+    }
     
     it 'applies transforms properly' do
       expect(resa).to include('9-10')
@@ -242,6 +261,7 @@ RSpec.describe CSXML::Helpers do
       expect(resc).to eq('caprine 123')
       expect(resd).to eq('1999-09-09')
       expect(resdd).to eq('1999-09-09T00:00:00.000Z')
+      expect(resddd).to eq(structured_date_fields)
       expect(rese).to eq('true')
       expect(resf).to eq(b_urn)
       expect(resg).to eq('Bear')
