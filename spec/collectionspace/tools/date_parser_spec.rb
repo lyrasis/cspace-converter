@@ -8,11 +8,34 @@ RSpec.describe CSDTP do
     let(:hyphenated_date) { '1905-1907' }
     let(:usa_date) { '11/02/1980' }
     let(:short_month_or_day_date) { '2010/1/1' }
+    let(:ca_date) { 'ca. 1950' }
+    let(:text_date) { 'Early 20th century' }
 
     it "can return an empty date when no date provided" do
       date = CSDTP.parse(nil)
       expect(date.class).to eq CollectionSpace::Tools::StructuredDate
       expect(date.parsed_datetime).to be nil
+    end
+
+    context 'when approximate date or textual date string given' do
+      let(:ca_date_parsed) { CSDTP.parse(ca_date) }
+      let(:text_date_parsed) {CSDTP.parse(text_date) }
+      
+      it "returns structured date" do
+        pp(ca_date_parsed)
+        pp(CSDTP.fields_for(ca_date_parsed))
+           
+      expect(ca_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+      expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+    end
+    it "scalarValuesComputed = false" do
+      expect(ca_date_parsed.computed).to eq 'false'
+      expect(text_date_parsed.computed).to eq 'false'
+    end
+    it "dateDisplayDate = the date string passed in" do
+      expect(ca_date_parsed.display_date).to eq(ca_date)
+      expect(text_date_parsed.display_date).to eq(text_date)
+    end
     end
 
     it "can parse a basic date" do
@@ -62,7 +85,7 @@ RSpec.describe CSDTP do
     end
   end #describe #parse
 
-  describe '#parse_unstructured_date' do
+  describe '#parse_unstructured_date_stamp' do
     let(:d1) { '2011-11-02' }
     let(:d2) { '2011/3/2' }
     let(:d3) { '2011/03/02' }
@@ -70,24 +93,51 @@ RSpec.describe CSDTP do
     let(:d5) { '3/2/1980' }
 
     it 'parses 2011-11-02 as 2011-11-02' do
-      expect(CSDTP.parse_unstructured_date(d1)).to eq('2011-11-02')
+      expect(CSDTP.parse_unstructured_date_stamp(d1)).to eq('2011-11-02T00:00:00.000Z')
     end
 
     it 'parses 2011/3/2 as 2011-03-02' do
-      expect(CSDTP.parse_unstructured_date(d2)).to eq('2011-03-02')
+      expect(CSDTP.parse_unstructured_date_stamp(d2)).to eq('2011-03-02T00:00:00.000Z')
     end
 
     it 'parses 2011/03/02 as 2011-03-02' do
-      expect(CSDTP.parse_unstructured_date(d3)).to eq('2011-03-02')
+      expect(CSDTP.parse_unstructured_date_stamp(d3)).to eq('2011-03-02T00:00:00.000Z')
     end
 
     it 'parses 11/02/1980 as 1980-11-02' do
-      expect(CSDTP.parse_unstructured_date(d4)).to eq('1980-11-02')
+      expect(CSDTP.parse_unstructured_date_stamp(d4)).to eq('1980-11-02T00:00:00.000Z')
     end
 
     it 'parses 3/2/1980 as 1980-03-02' do
-      expect(CSDTP.parse_unstructured_date(d5)).to eq('1980-03-02')
+      expect(CSDTP.parse_unstructured_date_stamp(d5)).to eq('1980-03-02T00:00:00.000Z')
+    end
+  end # describe '#parse_unstructured_date_stamp'
+  
+  describe '#parse_unstructured_date_string' do
+    let(:d1) { '2011-11-02' }
+    let(:d2) { '2011/3/2' }
+    let(:d3) { '2011/03/02' }
+    let(:d4) { '11/02/1980' }
+    let(:d5) { '3/2/1980' }
+
+    it 'parses 2011-11-02 as 2011-11-02' do
+      expect(CSDTP.parse_unstructured_date_string(d1)).to eq('2011-11-02')
     end
 
-  end # describe '#parse_unstructured_date'
+    it 'parses 2011/3/2 as 2011-03-02' do
+      expect(CSDTP.parse_unstructured_date_string(d2)).to eq('2011-03-02')
+    end
+
+    it 'parses 2011/03/02 as 2011-03-02' do
+      expect(CSDTP.parse_unstructured_date_string(d3)).to eq('2011-03-02')
+    end
+
+    it 'parses 11/02/1980 as 1980-11-02' do
+      expect(CSDTP.parse_unstructured_date_string(d4)).to eq('1980-11-02')
+    end
+
+    it 'parses 3/2/1980 as 1980-03-02' do
+      expect(CSDTP.parse_unstructured_date_string(d5)).to eq('1980-03-02')
+    end
+  end # describe '#parse_unstructured_date_string'
 end

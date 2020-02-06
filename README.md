@@ -28,7 +28,7 @@ by creating a `.env.local` file with custom settings.
 
 ```bash
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_BASE_URI=http://core.dev.collectionspace.org/cspace-services
+export CSPACE_CONVERTER_BASE_URI=https://core.dev.collectionspace.org/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
 export CSPACE_CONVERTER_MODULE=Core
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
@@ -133,7 +133,7 @@ Then to transfer:
 ./bin/rake remote:get[collectionobjects]
 
 # get a record
-./bin/rake remote:get[/collecitonobjects/$CSID]
+./bin/rake remote:get[collectionobjects/$CSID]
 ```
 
 ### Using the console

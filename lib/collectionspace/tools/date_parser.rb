@@ -3,6 +3,7 @@ require 'active_support/core_ext/date_time'
 module CollectionSpace
   module Tools
     StructuredDate = Struct.new(
+      :computed,
       :parsed_datetime,
       :date_string,
       :display_date,
@@ -22,8 +23,9 @@ module CollectionSpace
       def self.fields_for(date)
         return nil if !date.respond_to?(:display_date) || date.display_date.nil?
 
+        
         {
-          'scalarValuesComputed' => 'true',
+          'scalarValuesComputed' => date.computed,
           'dateDisplayDate' => date.display_date,
           'dateEarliestSingleYear' => date.earliest_year,
           'dateEarliestSingleMonth' => date.earliest_month,
@@ -40,7 +42,8 @@ module CollectionSpace
 
       def self.parse(date_string, end_date_string = nil)
         begin
-          date_string    = date_string.strip
+          unprocessed_date_string = date_string
+          date_string = date_string.strip
           date_increment = :day
           if date_string =~ /^\d{4}$/
             date_string = "#{date_string}-01-01"
@@ -49,31 +52,46 @@ module CollectionSpace
             date_string = parse_us_date(date_string)
           end
 
-          parsed_earliest_date = DateTime.parse(date_string)
-          parsed_latest_date = end_date_string ?
-            DateTime.parse(end_date_string) : parsed_earliest_date + 1.send(date_increment)
+          phrase_date_signals = %w[early late cent st nd rd th]
+          phrase_date_signals.each{ |s|
+            if date_string.downcase[s]
+              date_string = ''
+              break
+            end
+          }
+            parsed_earliest_date = DateTime.parse(date_string)
+            parsed_latest_date = end_date_string ?
+              DateTime.parse(end_date_string) : parsed_earliest_date + 1.send(date_increment)
+            date = StructuredDate.new
 
-          date = StructuredDate.new
-          date.parsed_datetime = parsed_earliest_date
-          date.date_string = date_string
-          date.display_date = date_string
+            date.computed = 'true'
+            date.parsed_datetime = parsed_earliest_date
+            date.date_string = unprocessed_date_string
+            date.display_date = unprocessed_date_string
 
-          date.earliest_day = parsed_earliest_date.day
-          date.earliest_month = parsed_earliest_date.month
-          date.earliest_year = parsed_earliest_date.year
-          date.earliest_scalar = parsed_earliest_date.iso8601(3).sub('+00:00', "Z")
+            date.earliest_day = parsed_earliest_date.day
+            date.earliest_month = parsed_earliest_date.month
+            date.earliest_year = parsed_earliest_date.year
+            date.earliest_scalar = parsed_earliest_date.iso8601(3).sub('+00:00', "Z")
 
-          date.latest_day = parsed_latest_date.day
-          date.latest_month = parsed_latest_date.month
-          date.latest_year = parsed_latest_date.year
-          date.latest_scalar = parsed_latest_date.iso8601(3).sub('+00:00', "Z")
-          date
+            date.latest_day = parsed_latest_date.day
+            date.latest_month = parsed_latest_date.month
+            date.latest_year = parsed_latest_date.year
+            date.latest_scalar = parsed_latest_date.iso8601(3).sub('+00:00', "Z")
+            date
         rescue StandardError
-          StructuredDate.new
+          date = StructuredDate.new
+          date.computed = 'false'
+          date.display_date = unprocessed_date_string
+          date
         end
       end
 
-      def self.parse_unstructured_date(date_string)
+      def self.parse_unstructured_date_stamp(date_string)
+        parse(date_string).earliest_scalar
+      end
+      
+      def self.parse_unstructured_date_string(date_string)
         case date_string
         when /^\d{4}-\d{1,2}-\d{1,2}$/
           return date_string
@@ -95,7 +113,6 @@ module CollectionSpace
         day = "%02d" % m[2]
         return "#{year}-#{month}-#{day}"
       end
-      
     end
   end
 end

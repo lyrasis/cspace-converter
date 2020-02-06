@@ -33,32 +33,70 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes)
-          CSXML.add_group_list xml, "materialCondition", [{
-            "conditionNote" => attributes["conditionnote"],
-            "condition" => CSXML::Helpers.get_vocab('materialcondition', attributes["condition"])
-          }]
-          CSXML.add_group_list xml, "materialContainer", [{
-            "containerNote" => attributes["containernote"],
-            "container" => CSXML::Helpers.get_vocab('materialcontainer', attributes["container"])
-          }]
-          overall = []
-          handling = CSDR.split_mvf attributes, 'handling'
-          note = CSDR.split_mvf attributes, 'handlingnote'
-          handling.each_with_index do |handl, index|
-            overall << { "handling" => CSXML::Helpers.get_vocab('materialhandling', handl), "handlingNote" => note[index]}
-          end
-          CSXML.add_group_list xml, "materialHandling", overall
-          CSXML.add_group_list xml, "materialFinish", [{
-            "finishNote" => attributes["finishnote"],
-            "finish" => CSXML::Helpers.get_vocab('materialfinish', attributes["finish"])
-          }]
-          CSXML.add_repeat xml, 'materialGenericColors', [{
-            "materialGenericColor" => CSXML::Helpers.get_vocab('materialgenericcolor', attributes["materialgenericcolor"])
-          }]
-          CSXML.add_repeat xml, 'materialPhysicalDescriptions', [{
-            "materialPhysicalDescription" => attributes["physicaldescription"]
-          }]
-
+          repeats = {
+              'materialgenericcolor' => ['materialGenericColors', 'materialGenericColor'],
+              'materialphysicaldescription' => ['materialPhysicalDescriptions', 'materialPhysicalDescription']
+            }
+          repeatstransforms = {
+            'materialgenericcolor' => {'vocab' => 'materialgenericcolor'},
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+          materialconditiondata = {
+            'conditionnote' => 'conditionNote',
+            'condition' => 'condition'
+          }
+          materialconditiontransforms = {
+            'condition' => {'vocab' => 'materialcondition'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'materialCondition',
+            materialconditiondata,
+            materialconditiontransforms
+          )
+          materialcontainerdata = {
+            'containernote' => 'containerNote',
+            'container' => 'container'
+          }
+          materialcontainertransforms = {
+            'container' => {'vocab' => 'materialcontainer'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'materialContainer',
+            materialcontainerdata,
+            materialcontainertransforms
+          )
+          materialhandlingdata = {
+            'handling' => 'handling',
+            'handlingnote' => 'handlingNote'
+          }
+          materialhandlingtransforms = {
+            'handling' => {'vocab' => 'materialhandling'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'materialHandling',
+            materialhandlingdata,
+            materialhandlingtransforms
+          )
+          materialfinishdata = {
+            'finishnote' => 'finishNote',
+            'finish' => 'finish'
+          }
+          materialfinishtransforms = {
+            'finish' => {'vocab' => 'materialfinish'}
+          } 
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'materialFinish',
+            materialfinishdata,
+            materialfinishtransforms
+          )    
         end
       end
     end

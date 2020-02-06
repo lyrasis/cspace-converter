@@ -63,7 +63,7 @@ module CollectionSpace
             'objectproductionpeoplearchculture' =>  {'authority' => ['conceptauthorities', 'archculture']},
             'objectproductionpeoplerole' => {'vocab' => 'prodpeoplerole'}
           }
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'objectProductionPeople',
             opp_data,
@@ -86,7 +86,7 @@ module CollectionSpace
             'fieldlocplace' => { 'authority' => ['placeauthorities', 'place'] }
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'locality',
             locality_data,
@@ -156,10 +156,10 @@ module CollectionSpace
           annotation_transforms = {
             'annotationauthor' => {'authority' => ['personauthorities', 'person']},
             'annotationtype' => {'vocab' => 'annotationtype'},
-            'annotationdate' => {'special' => 'unstructured_date'}
+            'annotationdate' => {'special' => 'unstructured_date_string'}
           }
 
-          CSXML.prep_and_add_single_level_group_list(
+          CSXML.add_single_level_group_list(
             xml, attributes,
             'annotation',
             annotation_data,

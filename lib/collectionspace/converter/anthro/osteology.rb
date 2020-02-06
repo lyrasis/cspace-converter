@@ -28,47 +28,99 @@ module CollectionSpace
         end
 
         def self.extension(xml, attributes)
-          CSXML.add xml, 'Notes_DentalPathology', attributes['notes_dentalpathology']
-          CSXML.add xml, 'Notes_CranialPathology', attributes['notes_cranialpathology']
-          CSXML.add xml, 'Notes_PostcranialPathology', attributes['notes_postcranialpathology']
-          CSXML.add xml, 'Notes_CulturalModifications', attributes['notes_culturalmodifications']
-          CSXML.add xml, 'Notes_NHTaphonomicAlterations', attributes['notes_nhtaphonomicalterations']
-          CSXML.add xml, 'Notes_CuratorialSuffixing', attributes['notes_curatorialsuffixing']
-          CSXML.add xml, 'cranialDeformationPresent', CSDR.to_boolean(attributes['cranialdeformationpresent'])
-          cranial_deform = []
-          deform_cat = CSDR.split_mvf attributes, 'cranialdeformationcategory'
-          deform_cat.each_with_index do |dfct, index|
-            cranial_deform << {"cranialDeformationCategory" => CSXML::Helpers.get_vocab('cranialdeformationcategory', dfct)}
-          end
-          CSXML.add_repeat xml, 'cranialDeformationCategories', cranial_deform
-          CSXML.add xml, 'cranialDeformationNote', attributes['cranialdeformationnote']
-          CSXML.add xml, 'trepanationPresent', CSDR.to_boolean(attributes['trepanationpresent'])
-          overall_trepanation = []
-          trepanation_location = CSDR.split_mvf attributes, 'trepanationlocation'
-          trepanation_certainty = CSDR.split_mvf attributes, 'trepanationcertainty'
-          dim_max = CSDR.split_mvf attributes, 'trepanationdimensionmax'
-          dim_min = CSDR.split_mvf attributes, 'trepanationdimensionmin'
-          trepanation_technique = CSDR.split_mvf attributes, 'trepanationtechnique'
-          trepanation_healing = CSDR.split_mvf attributes, 'trepanationhealing'
-          trepanation_note = CSDR.split_mvf attributes, 'trepanationnote'
-          trepanation_location.each_with_index do |trplc, index|
-            overall_trepanation << {"trepanationLocation" => trplc, "trepanationCertainty" => CSXML::Helpers.get_vocab('trepanationcertainty', trepanation_certainty[index]), "trepanationDimensionMax" => dim_max[index], "trepanationDimensionMin" => dim_min[index], "trepanationTechnique" => CSXML::Helpers.get_vocab('trepanationtechnique', trepanation_technique[index]), "trepanationHealing" => CSXML::Helpers.get_vocab('trepanationhealing', trepanation_healing[index]), "trepanationNote" => trepanation_note[index]}
-          end
-          CSXML.add_group_list xml, 'trepanation', overall_trepanation
-          CSXML.add xml, 'trepanationGeneralNote', attributes['trepanationgeneralnote']
+          pairs = {
+            'notes_dentalpathology' => 'Notes_DentalPathology',
+            'cranialdeformationnote' => 'cranialDeformationNote',
+            'cranialdeformationpresent' => 'cranialDeformationPresent',
+            'notes_nhtaphonomicalterations' => 'Notes_NHTaphonomicAlterations',
+            'notes_culturalmodifications' => 'Notes_CulturalModifications',
+            'notes_curatorialsuffixing' => 'Notes_CuratorialSuffixing',
+            'notes_postcranialpathology' => 'Notes_PostcranialPathology',
+            'notes_cranialpathology' => 'Notes_CranialPathology',
+            'trepanationgeneralnote' => 'trepanationGeneralNote',
+            'trepanationpresent' => 'trepanationPresent'
+          }
+          pair_transforms = {
+            'cranialdeformationpresent' => {'special' => 'boolean'},
+            'trepanationpresent' => {'special' => 'boolean'}
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pair_transforms)
+
+          repeats = {
+            'cranialdeformationcategory' => ['cranialDeformationCategories', 'cranialDeformationCategory']
+          }
+          repeat_transforms = {
+            'cranialdeformationcategory' => {'vocab' => 'cranialdeformationcategory'}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
+
+          # trepanationGroupList
+          trep_data = {
+            'trepanationnote' => 'trepanationNote',
+            'trepanationcertainty' => 'trepanationCertainty',
+            'trepanationlocation' => 'trepanationLocation',
+            'trepanationdimensionmin' => 'trepanationDimensionMin',
+            'trepanationtechnique' => 'trepanationTechnique',
+            'trepanationhealing' => 'trepanationHealing',
+            'trepanationdimensionmax' => 'trepanationDimensionMax'
+          }
+          trep_transforms = {
+            'trepanationcertainty' => {'vocab' => 'trepanationcertainty'},
+            'trepanationtechnique' => {'vocab' => 'trepanationtechnique'},
+            'trepanationhealing' => {'vocab' => 'trepanationhealing'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'trepanation',
+            trep_data,
+            trep_transforms
+          )
+          
         end
 
         def self.map(xml, attributes)
-          CSXML.add xml, 'InventoryID', attributes['inventoryid']
+          pairs = {
+            'inventoryid' => 'InventoryID',
+            'mortuarytreatment' => 'mortuaryTreatment',
+            'behrensmeyersinglelower' => 'behrensmeyerSingleLower',
+            'behrensmeyerupper' => 'behrensmeyerUpper',
+            'completeness' => 'completeness',
+            'dentitionnote' => 'dentitionNote',
+            'dentitionscore' => 'dentitionScore',
+            'notesonelementinventory' => 'NotesOnElementInventory',
+            'pathologynote' => 'pathologyNote',
+            'inventorydate' => 'inventoryDate',
+            'mortuarytreatmentnote' => 'mortuaryTreatmentNote',
+            'completenessnote' => 'completenessNote',
+            'inventoryiscomplete' => 'InventoryIsComplete',
+            'molarspresent' => 'molarsPresent',
+            'inventoryanalyst' => 'inventoryAnalyst'
+          }
+          pair_transforms = {
+            'mortuarytreatment' => {'vocab' => 'mortuarytreatment'},
+            'behrensmeyersinglelower' => {'special' => 'behrensmeyer_translate',
+                                          'vocab' => 'behrensmeyer'},
+            'behrensmeyerupper' => {'special' => 'behrensmeyer_translate',
+                                          'vocab' => 'behrensmeyer'},
+            'completeness' => {'vocab' => 'osteocompleteness'},
+            'dentitionscore' => {'vocab' => 'dentitionscore'},
+            'inventorydate' => {'special' => 'unstructured_date_stamp'},
+            'inventoryiscomplete' => {'special' => 'boolean'},
+            'molarspresent' => {'special' => 'boolean'},
+            'inventoryanalyst' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pair_transforms)
 
+          # osteoAgeEstimateGroupList
           osteoagedata = {
-          'osteoageestimateverbatim' => 'osteoAgeEstimateVerbatim',
-          'osteoageestimatelower' => 'osteoAgeEstimateLower',
-          'osteoageestimateupper' => 'osteoAgeEstimateUpper',
-          'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
-          'osteoageestimatenote' => 'osteoAgeEstimateNote',
-          'osteoageestimatedate' => 'osteoAgeEstimateDate'
-        }
+            'osteoageestimateverbatim' => 'osteoAgeEstimateVerbatim',
+            'osteoageestimatelower' => 'osteoAgeEstimateLower',
+            'osteoageestimateupper' => 'osteoAgeEstimateUpper',
+            'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
+            'osteoageestimatenote' => 'osteoAgeEstimateNote',
+            'osteoageestimatedate' => 'osteoAgeEstimateDate'
+          }
           osteoage_transforms = {
             'osteoageestimateanalyst' => {'authority' => ['personauthorities', 'person']}
           }
@@ -80,40 +132,29 @@ module CollectionSpace
             osteoagedata,
             'osteoAgeEstimateDate',
             osteoage_transforms,
-            subgroup_suffix: 'Group')
+            subgroup_suffix: 'Group'
+          )
 
-          determinationdates = []
-          sexdetermination = []
-          sex_determination = CSDR.split_mvf attributes, 'sexdetermination'
-          determination_analyst = CSDR.split_mvf attributes, 'sexdeterminationanalyst'
-          determination_note = CSDR.split_mvf attributes, 'sexdeterminationnote'
-          determination_date = CSDR.split_mvf attributes, 'sexdeterminationdategroup'
-          sex_determination.each_with_index do |sxd, index|
-            sexdetermination << {
-              "sexDetermination" => sxd,
-              "sexDeterminationAnalyst" => CSXML::Helpers.get_authority('personauthorities', 'person', determination_analyst[index]),
-              "sexDeterminationNote" => determination_note[index],
-            }
-            determinationdates << {
-              "sexDeterminationDateGroup" => CSDTP.fields_for(CSDTP.parse(determination_date[index]))
-
-            }
-          end
-          CSXML.add_group_list xml, 'sexDetermination', sexdetermination, false, determinationdates
-          CSXML.add xml, 'completeness', CSXML::Helpers.get_vocab('osteocompleteness',  attributes['completeness'])
-          CSXML.add xml, 'completenessNote', attributes['completenessnote']
-          CSXML.add xml, 'molarsPresent', CSDR.to_boolean(attributes['molarspresent'])
-          CSXML.add xml, 'dentitionScore', CSXML::Helpers.get_vocab('dentitionscore',  attributes['dentitionscore'])
-          CSXML.add xml, 'dentitionNote', attributes['dentitionnote']
-          CSXML.add xml, 'mortuaryTreatment', CSXML::Helpers.get_vocab('mortuarytreatment',  attributes['mortuarytreatment'])
-          CSXML.add xml, 'mortuaryTreatmentNote', attributes['mortuarytreatmentnote']
-          CSXML.add xml, 'behrensmeyerSingleLower', CSXML::Helpers.get_vocab('behrensmeyer',  attributes['behrensmeyersinglelower'])
-          CSXML.add xml, 'behrensmeyerUpper', CSXML::Helpers.get_vocab('behrensmeyer',  attributes['behrensmeyerupper'])
-          CSXML.add xml, 'NotesOnElementInventory', attributes['notesonelementinventory']
-          CSXML.add xml, 'pathologyNote', attributes['pathologynote']
-          CSXML.add xml, 'InventoryIsComplete', CSDR.to_boolean(attributes['inventoryiscomplete'])
-          CSXML.add xml, 'inventoryAnalyst', CSXML::Helpers.get_authority('personauthorities', 'person',  attributes['inventoryanalyst'])
-          CSXML.add xml, 'inventoryDate', CSDTP.parse(attributes['inventorydate']).earliest_scalar
+          # sexDeterminationGroupList
+          sd_data = {
+            'sexdetermination' => 'sexDetermination',
+            'sexdeterminationdate' => 'sexDeterminationDate',
+            'sexdeterminationanalyst' => 'sexDeterminationAnalyst',
+            'sexdeterminationnote' => 'sexDeterminationNote'
+          }
+          sd_transforms = {
+            'sexdeterminationanalyst' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_group_list_with_structured_date(
+            xml,
+            attributes,
+            'sexDetermination',
+            sd_data,
+            'sexDeterminationDate',
+            sd_transforms,
+            subgroup_suffix: 'Group'
+          )
+          
         end
       end
     end
