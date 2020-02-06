@@ -56,12 +56,11 @@ module CollectionSpace
             'ownerorganization' => {'authority' => ['orgauthorities', 'organization']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
-          
+          #accessionDateGroup 
           CSXML::Helpers.add_date_group(xml, 'accessionDate', CSDTP.parse(attributes['accessiondate']))
-
+          #acquisitionDateGroupList
           CSXML::Helpers.add_date_group_list(xml, 'acquisitionDate', attributes['acquisitiondate'])
-
-
+          #acquisitionFundingList
           funding_data = {
             'acquisitionfundingcurrency' => 'acquisitionFundingCurrency',
             'acquisitionfundingvalue' => 'acquisitionFundingValue',
@@ -82,7 +81,7 @@ module CollectionSpace
             list_suffix: 'List',
             group_suffix: ''
           )
-
+          #approvalGroupList
           app_data = {
             'approvalstatus' => 'approvalStatus',
             'approvalgroup' => 'approvalGroup',
