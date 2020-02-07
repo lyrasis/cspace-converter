@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="exhibitions">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-01-14T13:04:58.992Z</createdAt>
+    <createdAt>2020-02-07T22:36:00.906Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:exhibitions:id(e81c37e8-2ef5-47fc-9194)</refName>
-    <uri>/exhibitions/e81c37e8-2ef5-47fc-9194</uri>
-    <updatedAt>2020-01-14T13:41:44.706Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:exhibitions:id(40a00586-a36c-46bc-ae99)</refName>
+    <uri>/exhibitions/40a00586-a36c-46bc-ae99</uri>
+    <updatedAt>2020-02-07T22:36:00.906Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:exhibitions_common xmlns:ns2="http://collectionspace.org/services/exhibition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <exhibitionObjectGroupList>
@@ -76,22 +76,22 @@
           <dateLatestScalarValue>2000-04-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>4</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-04-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>4</dateLatestMonth>
         </galleryRotationEndDateGroup>
         <galleryRotationNote>Gallery rotation note text 1.</galleryRotationNote>
         <galleryRotationName>Gallery rotation name text 1.</galleryRotationName>
@@ -103,22 +103,22 @@
           <dateLatestScalarValue>2000-03-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>3</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-03-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>3</dateLatestMonth>
         </galleryRotationStartDateGroup>
       </galleryRotationGroup>
       <galleryRotationGroup>
@@ -130,22 +130,22 @@
           <dateLatestScalarValue>2000-04-03T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>2</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>3</dateLatestDay>
           <dateEarliestSingleMonth>4</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-04-02T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>4</dateLatestMonth>
         </galleryRotationEndDateGroup>
         <galleryRotationNote>Gallery rotation note text 2.</galleryRotationNote>
         <galleryRotationName>Gallery rotation name text 2.</galleryRotationName>
@@ -157,22 +157,22 @@
           <dateLatestScalarValue>2000-03-03T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>2</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>3</dateLatestDay>
           <dateEarliestSingleMonth>3</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-03-02T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>3</dateLatestMonth>
         </galleryRotationStartDateGroup>
       </galleryRotationGroup>
     </galleryRotationGroupList>
@@ -200,7 +200,7 @@
     <organizers>
       <organizer>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(TridentinoMuseodiScienzeNaturali1578521877735)'Tridentino Museo di Scienze Naturali'</organizer>
       <organizer>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(WatermillCenter1579007066285)'Watermill Center'</organizer>
-      <organizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JosephMoore1579006883786)'Joseph Moore'</organizer>
+      <organizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JosephMoore1579006883218)'Joseph Moore'</organizer>
     </organizers>
     <exhibitionSectionGroupList>
       <exhibitionSectionGroup>
@@ -225,16 +225,17 @@
             <exhibitionPersonRole>urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(conservator)'Conservator'</exhibitionPersonRole>
             <exhibitionPerson>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(PrincetonUniversityArtMuseum1578314067124)'Princeton University Art Museum'</exhibitionPerson>
           </exhibitionPersonGroup>
-          <exhibitionPersonGroup>
-            <exhibitionPersonRole>urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(curator)'Curator'</exhibitionPersonRole>
-            <exhibitionPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RosemarieLangager1579006409580)'Rosemarie Langager'</exhibitionPerson>
-          </exhibitionPersonGroup>
         </exhibitionPersonGroupList>
         <workingGroupTitle>Working group title 1</workingGroupTitle>
       </workingGroup>
       <workingGroup>
         <workingGroupNote>Working group note text 2.</workingGroupNote>
-        <exhibitionPersonGroupList/>
+        <exhibitionPersonGroupList>
+          <exhibitionPersonGroup>
+            <exhibitionPersonRole>urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(curator)'Curator'</exhibitionPersonRole>
+            <exhibitionPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RosemarieLangager1579006409580)'Rosemarie Langager'</exhibitionPerson>
+          </exhibitionPersonGroup>
+        </exhibitionPersonGroupList>
         <workingGroupTitle>Working group title 2</workingGroupTitle>
       </workingGroup>
     </workingGroupList>
@@ -242,7 +243,7 @@
   </ns2:exhibitions_common>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
     <account>
-      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
       <screenName>Administrator</screenName>
       <userId>admin@core.collectionspace.org</userId>
       <tenantId>1</tenantId>
