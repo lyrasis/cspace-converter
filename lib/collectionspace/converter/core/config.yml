@@ -102,14 +102,39 @@ registered_profiles:
           authority_subtype: person
   exhibition:
     type: Procedures
+    enabled: true
     config:
       Exhibition:
         identifier: exhibitionnumber
         title: exhibitionnumber
       Authorities:
-        - name_field: organizer
+        - name_field: organizerorganization
           authority_type: Organization
           authority_subtype: organization
+        - name_field: organizerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: venueorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: venueplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: venuestoragelocation
+          authority_type: Location
+          authority_subtype: location
+        - name_field: exhibitionpersonperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: exhibitionpersonorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: sponsororganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: sponsorperson
+          authority_type: Person
+          authority_subtype: person
   group:
     type: Procedures
     enabled: true

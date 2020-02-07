@@ -66,36 +66,67 @@ RSpec.describe CSXML do
       '/accessionDateGroup/dateLatestDay').text).to eq('10?')
   end
 
-  it "can 'add group list' correctly" do
-    key = 'objectProductionDate'
-    elements = [
-      {
-        "scalarValuesComputed" => true,
-        "dateEarliestSingleDay" => structured_date.earliest_day,
-        "dateEarliestScalarValue" => structured_date.earliest_scalar,
-        "dateLatestScalarValue" => structured_date.latest_scalar,
-        "dateLatestDay" => structured_date.latest_day,
-      },
-      {
-        "scalarValuesComputed" => false,
-      }
-    ]
-    CSXML.add_group_list(xml, key, elements)
+  describe 'add_group_list' do
+    context 'when single level group list' do
+      context 'AND when no structure date groups included' do
+        let(:key) { 'venue' }
+        let(:elements) { [
+            {
+              'venue' => 'Venue name 1',
+              'venueAttendance' => '123'
+            },
+            {
+              'venue' => 'Venue name 2',
+              'venueAttendance' => '321'
+            }
+          ] }
 
-    expect(doc(xml).xpath(
-      '/objectProductionDateGroupList/objectProductionDateGroup[1]/scalarValuesComputed').text).to eq('true')
-    expect(doc(xml).xpath(
-      '/objectProductionDateGroupList/objectProductionDateGroup[2]/scalarValuesComputed').text).to eq('false')
+        it "sets default fieldnames and values correctly" do
+          CSXML.add_group_list(xml, key, elements)
+          expect(doc(xml).xpath('venueGroupList/venueGroup[1]/venue').text).to eq('Venue name 1')
+          expect(doc(xml).xpath('venueGroupList/venueGroup[2]/venue').text).to eq('Venue name 2')
+          expect(doc(xml).xpath('venueGroupList/venueGroup[1]/venueAttendance').text).to eq('123')
+          expect(doc(xml).xpath('venueGroupList/venueGroup[2]/venueAttendance').text).to eq('321')
+        end
+        it "sets specifiedfieldnames and values correctly" do
+          CSXML.add_group_list(xml, key, elements, list_suffix: 'List', group_suffix: 'Grp')
+          expect(doc(xml).xpath('venueList/venueGrp[1]/venue').text).to eq('Venue name 1')
+          expect(doc(xml).xpath('venueList/venueGrp[2]/venue').text).to eq('Venue name 2')
+          expect(doc(xml).xpath('venueList/venueGrp[1]/venueAttendance').text).to eq('123')
+          expect(doc(xml).xpath('venueList/venueGrp[2]/venueAttendance').text).to eq('321')
+        end
+      end
+    end
 
-    expect(doc(xml).xpath(
-      '/objectProductionDateGroupList/objectProductionDateGroup[1]/dateEarliestScalarValue').text).to eq("1971-01-01T00:00:00.000Z")
-    expect(doc(xml).xpath(
-      '/objectProductionDateGroupList/objectProductionDateGroup[1]/dateLatestScalarValue').text).to eq("1972-01-01T00:00:00.000Z")
-  end
+              
+          # key = 'objectProductionDate'
+          # elements = [
+          #   {
+          #     "scalarValuesComputed" => true,
+          #     "dateEarliestSingleDay" => structured_date.earliest_day,
+          #     "dateEarliestScalarValue" => structured_date.earliest_scalar,
+          #     "dateLatestScalarValue" => structured_date.latest_scalar,
+          #     "dateLatestDay" => structured_date.latest_day,
+          #   },
+          #   {
+          #     "scalarValuesComputed" => false,
+          #   }
+          # ]
+          # CSXML.add_group_list(xml, key, elements)
 
-  it "can 'add group list' without sub key and with sub elements correctly" do
-    key = 'publicartProductionDate'
-    elements = [
+          # expect(doc(xml).xpath(
+          #   '/objectProductionDateGroupList/objectProductionDateGroup[1]/scalarValuesComputed').text).to eq('true')
+          # expect(doc(xml).xpath(
+          #   '/objectProductionDateGroupList/objectProductionDateGroup[2]/scalarValuesComputed').text).to eq('false')
+
+          # expect(doc(xml).xpath(
+          #   '/objectProductionDateGroupList/objectProductionDateGroup[1]/dateEarliestScalarValue').text).to eq("1971-01-01T00:00:00.000Z")
+          # expect(doc(xml).xpath(
+          #   '/objectProductionDateGroupList/objectProductionDateGroup[1]/dateLatestScalarValue').text).to eq("1972-01-01T00:00:00.000Z")
+
+    it "can 'add group list' without sub key and with sub elements correctly" do
+      key = 'publicartProductionDate'
+      elements = [
       {
         "publicartProductionDateType" => "Commission",
       },
@@ -130,6 +161,7 @@ RSpec.describe CSXML do
       '/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDate/scalarValuesComputed').text).to eq('false')
     expect(doc(xml).xpath(
       '/publicartProductionDateGroupList/publicartProductionDateGroup[2]/publicartProductionDateType').text).to eq('Purchase')
+  end
   end
 
   describe "Contact" do

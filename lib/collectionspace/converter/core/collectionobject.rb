@@ -63,7 +63,7 @@ module CollectionSpace
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
           
           CSXML::Helpers.add_date_group_list(
-            xml, 'objectProductionDate', [CSDTP.parse(attributes['productiondate'])]
+            xml, 'objectProductionDate', attributes['productiondate']
           )
           
           textualinscriptiondata = {
