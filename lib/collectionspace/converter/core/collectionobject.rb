@@ -9,8 +9,8 @@ module CollectionSpace
           end
         end
 
-        def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'objectnumber' => 'objectNumber',
             'numberofobjects' => 'numberOfObjects',
             'collection' => 'collection',
@@ -21,24 +21,18 @@ module CollectionSpace
             'sex' => 'sex',
             'productionnote' => 'objectProductionNote',
             'fieldcollectionnote' => 'fieldCollectionNote',
-            'fieldcollectionfeature' => 'fieldCollectionFeature'
+            'fieldcollectionfeature' => 'fieldCollectionFeature',
+            'distinguishingfeatures' => 'distinguishingFeatures'
           }
-        end
-
-        def self.simple_groups
-          {
+          CSXML::Helpers.add_title(xml, attributes)
+          CSXML::Helpers.add_pairs(xml, attributes, pairs)
+          simple_groups = {
             'material' => 'material',
             'productionplace' => 'objectProductionPlace',
             'techattribute' => 'technicalAttribute',
-            'technique' => 'technique',
+            'technique' => 'technique'
           }
-        end
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_title(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreCollectionObject.pairs)
-          CSXML::Helpers.add_simple_groups(xml, attributes, CoreCollectionObject.simple_groups)
-
+          CSXML::Helpers.add_simple_groups(xml, attributes, simple_groups)
           repeats = {
             'briefdescription' => ['briefDescriptions', 'briefDescription'],
             'comments' => ['comments', 'comment'],
@@ -59,13 +53,13 @@ module CollectionSpace
             'publishto' => {'vocab' => 'publishto'}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
-          
+          #measuredPartGroupList, measuredPartGroup 
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
-          
+          #objectProductionDateGroupList, objectProductionDateGroup 
           CSXML::Helpers.add_date_group_list(
             xml, 'objectProductionDate', [CSDTP.parse(attributes['productiondate'])]
           )
-          
+          #textualInscriptionGroupList,textualInscriptionGroup 
           textualinscriptiondata = {
             'inscriber' => 'inscriptionContentInscriber',
             'method' => 'inscriptionContentMethod'
@@ -80,7 +74,7 @@ module CollectionSpace
             textualinscriptiondata,
             textualinscriptiontransforms
           )
-
+          #objectProductionOrganizationGroupList, objectProductionOrganizationGroup
           objectprodorgdata = {
             'productionorg' => 'objectProductionOrganization',
             'organizationrole' => 'objectProductionOrganizationRole'
@@ -95,7 +89,7 @@ module CollectionSpace
             objectprodorgdata,
             objectprodorgtransforms
           )
-
+          #objectProductionPersonGroupList, objectProductionPersonGroup
           objectprodpersondata = {
             'productionperson' => 'objectProductionPerson',
             'personrole' => 'objectProductionPersonRole'
@@ -121,14 +115,14 @@ module CollectionSpace
             'objectProductionPeople',
             objectprodpeopledata,
           )
-        
+          #objectNameList, objectNameGroup
           object_name = []
           objectname = CSDR.split_mvf attributes, 'objectname'
           objectname.each_with_index do |obj, index|
             object_name << {"objectName" => obj}
           end
           CSXML.add_list xml, 'objectName', object_name, 'Group'
-
+          #otherNumberList, otherNumber
           other_number = []
           numbervalue = CSDR.split_mvf attributes, 'numbervalue'
           numbertype = CSDR.split_mvf attributes, 'numbertype'
@@ -136,7 +130,7 @@ module CollectionSpace
             other_number << {"numberValue" => numval, "numberType" => numbertype[index]}
           end
           CSXML.add_list xml, 'otherNumber', other_number
-
+          #assocPeopleGroupList, assocPeopleGroup
           assocpeopledata = {
             'assocpeople' => 'assocPeople',
             'assocpeopletype' => 'assocPeopleType'
@@ -147,6 +141,7 @@ module CollectionSpace
             'assocPeople',
             assocpeopledata,
           )
+          #objectComponentGroupList, objectComponentGroup
           objectcompdata = {
             'objectcomponentname' => 'objectComponentName'
           }
