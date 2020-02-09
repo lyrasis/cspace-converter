@@ -9,10 +9,11 @@ module CollectionSpace
           end
         end
 
-        def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'loanoutnumber' => 'loanOutNumber',
-            'borrower' => 'borrower',
+            'borrowerorganization' => 'borrower',
+            'borrowerperson' => 'borrower',
             'borrowersauthorizer' => 'borrowersAuthorizer',
             'borrowersauthorizationdate' => 'borrowersAuthorizationDate',
             'borrowerscontact' => 'borrowersContact',
@@ -26,12 +27,9 @@ module CollectionSpace
             'loanoutnote' => 'loanOutNote',
             'loanpurpose' => 'loanPurpose'
           }
-        end
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreLoanOut.pairs,
           pairstransforms = {
-            'borrower' => {'authority' => ['orgauthorities', 'organization']},
+            'borrowerorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'borrowerperson' => {'authority' => ['personauthorities', 'person']},
             'borrowersauthorizer' => {'authority' => ['personauthorities', 'person']},
             'borrowersauthorizationdate' => {'special' => 'unstructured_date_stamp'},
             'borrowerscontact' => {'authority' => ['personauthorities', 'person']},
@@ -41,15 +39,21 @@ module CollectionSpace
             'loanoutdate' => {'special' => 'unstructured_date_stamp'},
             'loanreturndate' => {'special' => 'unstructured_date_stamp'},
             'loanrenewalapplicationdate' => {'special' => 'unstructured_date_stamp'}
-          })
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+          #loanStatusGroupList, loanStatusGroup
           loanstatusdata = {
             'loanstatus' => 'loanStatus',
             'loanstatusdate' => 'loanStatusDate',
-            'loanstatusnote' => 'loanStatusNote'
+            'loanstatusnote' => 'loanStatusNote',
+            'loanindividual' => 'loanIndividual',
+            'loangroup' => 'loanGroup'
           }
           loanstatustransforms = {
             'loanstatus' => {'vocab' => 'loanoutstatus'},
-            'loanstatusdate' => {'special' => 'unstructured_date_stamp'}
+            'loanstatusdate' => {'special' => 'unstructured_date_stamp'},
+            'loanindividual' => {'authority' => ['personauthorities', 'person']},
+            'loangroup' => {'vocab' => 'deaccessionapprovalgroup'}
           }
           CSXML.add_single_level_group_list(
             xml,
