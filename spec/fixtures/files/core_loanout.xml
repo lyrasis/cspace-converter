@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="loansout">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2019-11-05T13:38:57.300Z</createdAt>
+    <createdAt>2020-02-09T14:00:20.858Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:loansout:id(9b63d234-29b5-4afd-b8e8)</refName>
-    <uri>/loansout/9b63d234-29b5-4afd-b8e8</uri>
-    <updatedAt>2019-11-05T13:38:57.300Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:loansout:id(f99837b5-2c2d-4d1d-8ef0)</refName>
+    <uri>/loansout/f99837b5-2c2d-4d1d-8ef0</uri>
+    <updatedAt>2020-02-09T14:04:37.122Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:loansout_common xmlns:ns2="http://collectionspace.org/services/loanout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <borrowersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RichardMiller1572960909534)'Richard Miller'</borrowersAuthorizer>
+    <borrowersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RichardMiller100939547)'Richard Miller'</borrowersAuthorizer>
     <specialConditionsOfLoan>special conditions text</specialConditionsOfLoan>
-    <borrower>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(NewYorkUniversity1572960893152)'New York University'</borrower>
-    <lendersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ClementineEgge1572599649165)'Clementine Egge'</lendersAuthorizer>
+    <borrower>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(NewYorkUniversity265588762)'New York University'</borrower>
+    <lendersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ClementineEgge2993679866)'Clementine Egge'</lendersAuthorizer>
     <lendersAuthorizationDate>1999-02-01T00:00:00.000Z</lendersAuthorizationDate>
     <loanOutNote>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</loanOutNote>
     <loanRenewalApplicationDate>2000-03-01T00:00:00.000Z</loanRenewalApplicationDate>
     <loanOutDate>2000-02-01T00:00:00.000Z</loanOutDate>
     <loanPurpose>exhibition</loanPurpose>
-    <borrowersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1572960934581)'Tina Lauva'</borrowersContact>
+    <borrowersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva293003238)'Tina Lauva'</borrowersContact>
     <loanStatusGroupList>
       <loanStatusGroup>
         <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(agreed)'agreed'</loanStatus>
         <loanStatusDate>2000-01-01T00:00:00.000Z</loanStatusDate>
         <loanStatusNote>note text 1</loanStatusNote>
+        <loanIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ClementineEgge1581257064644)'Clementine Egge'</loanIndividual>
+        <loanGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(board_of_trustees)'board of trustees'</loanGroup>
       </loanStatusGroup>
       <loanStatusGroup>
         <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(authorized)'authorized'</loanStatus>
         <loanStatusDate>2000-01-02T00:00:00.000Z</loanStatusDate>
         <loanStatusNote>note text 2</loanStatusNote>
+        <loanIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MuminaDoud1581257074135)'Mu'mina Doud'</loanIndividual>
+        <loanGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(collection_committee)'collection committee'</loanGroup>
       </loanStatusGroup>
     </loanStatusGroupList>
     <loanOutNumber>Jan22_1_OL20CS.001</loanOutNumber>
     <borrowersAuthorizationDate>1999-01-01T00:00:00.000Z</borrowersAuthorizationDate>
     <loanReturnDate>2001-02-01T00:00:00.000Z</loanReturnDate>
-    <lendersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MuminaDoud1572960975972)'Mu'mina Doud'</lendersContact>
+    <lendersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MuminaDoud402771623)'Mu'mina Doud'</lendersContact>
   </ns2:loansout_common>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
     <account>
-      <accountId>7c8b7fb7-ac3c-477c-a137-d9b6d4ea9f4f</accountId>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
       <screenName>Administrator</screenName>
       <userId>admin@core.collectionspace.org</userId>
       <tenantId>1</tenantId>
