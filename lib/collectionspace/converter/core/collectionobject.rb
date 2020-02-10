@@ -36,7 +36,8 @@ module CollectionSpace
             'ownershipexchangepricecurrency' => 'ownershipExchangePriceCurrency',
             'ownershipexchangepricevalue' => 'ownershipExchangePriceValue',
             'contentdescription' => 'contentDescription',
-            'contentdategroup' => 'contentDateGroup'
+            'contentdategroup' => 'contentDateGroup',
+            'contentnote' => 'contentNote'
           }
           pairs_transforms = {
             'agequalifier' => {'vocab' => 'agequalifier'},
