@@ -26,9 +26,7 @@ module CollectionSpace
         end
 
         def redefined_fields
-          @redefined = [
-            'redefinedfield'
-          ]
+          @redefined.concat(['redefinedfield'])
           super
         end
 
