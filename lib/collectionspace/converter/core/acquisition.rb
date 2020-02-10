@@ -9,73 +9,99 @@ module CollectionSpace
           end
         end
 
-        def self.map(xml, attributes)
-          CSXML.add xml, 'acquisitionReferenceNumber', attributes["acquisitionreferencenumber"]
-
-          CSXML.add_group xml, 'accessionDate', {
-            "dateDisplayDate" => CSDTP.parse(attributes["accessiondategroup"]).display_date,
-            "dateEarliestScalarValue" => CSDTP.parse(attributes["accessiondategroup"]).earliest_scalar,
-            "dateLatestScalarValue" => CSDTP.parse(attributes["accessiondategroup"]).latest_scalar,
+       def self.map(xml, attributes)
+         pairs = {
+            'acquisitionreferencenumber' => 'acquisitionReferenceNumber',
+            'acquisitionauthorizer' => 'acquisitionAuthorizer',
+            'acquisitionauthorizerdate' => 'acquisitionAuthorizerDate',
+            'acquisitionmethod' => 'acquisitionMethod',
+            'acquisitionnote' => 'acquisitionNote',
+            'acquisitionprovisos' => 'acquisitionProvisos',
+            'acquisitionreason' => 'acquisitionReason',
+            'creditline' => 'creditLine',
+            'grouppurchasepricecurrency' => 'groupPurchasePriceCurrency',
+            'grouppurchasepricevalue' => 'groupPurchasePriceValue',
+            'objectofferpricecurrency' => 'objectOfferPriceCurrency',
+            'objectofferpricevalue' => 'objectOfferPriceValue',
+            'objectpurchaseofferpricecurrency' => 'objectPurchaseOfferPriceCurrency',
+            'objectpurchaseofferpricevalue' => 'objectPurchaseOfferPriceValue',
+            'objectpurchasepricecurrency' => 'objectPurchasePriceCurrency',
+            'objectpurchasepricevalue' => 'objectPurchasePriceValue',
+            'originalobjectpurchasepricecurrency' => 'originalObjectPurchasePriceCurrency',
+            'originalobjectpurchasepricevalue' => 'originalObjectPurchasePriceValue',
+            'transferoftitlenumber' => 'transferOfTitleNumber'
           }
+          pairstransforms = {
+            'acquisitionauthorizer' => {'authority' => ['personauthorities', 'person']},
+            'acquisitionauthorizerdate' => {'special' => 'unstructured_date_stamp'},
+            'grouppurchasepricecurrency' => {'vocab' => 'currency'},
+            'objectofferpricecurrency' => {'vocab' => 'currency'},
+            'objectpurchaseofferpricecurrency' => {'vocab' => 'currency'},
+            'objectpurchasepricecurrency' => {'vocab' => 'currency'},
+            'originalobjectpurchasepricecurrency' => {'vocab' => 'currency'}
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
 
-          CSXML::Helpers.add_person xml, 'acquisitionAuthorizer', attributes["acquisitionauthorizer"]
-          CSXML.add xml, 'acquisitionAuthorizerDate', CSDTP.parse(attributes['acquisitionauthorizerdate']).earliest_scalar
-
-          CSXML.add_group_list xml, 'acquisitionDate', [{
-            "dateDisplayDate" => CSDTP.parse(attributes["acquisitiondategroup"]).display_date,
-            "dateEarliestScalarValue" => CSDTP.parse(attributes["acquisitiondategroup"]).earliest_scalar,
-            "dateLatestScalarValue" => CSDTP.parse(attributes["acquisitiondategroup"]).latest_scalar,
-          }]
-
-          funding_currency = CSXML::Helpers.get_vocab('currency', attributes['acquisitionfundingcurrency'])
-          funding_source = CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes['acquisitionfundingsource'])
-          CSXML.add_list xml, 'acquisitionFunding', [{
-            'acquisitionFundingCurrency' => funding_currency,
-            'acquisitionFundingValue' => attributes['acquisitionfundingvalue'],
-            'acquisitionFundingSource' => funding_source,
-            'acquisitionFundingSourceProvisos' => attributes['acquisitionfundingsourceprovisos'],
-          }]
-          CSXML.add xml, 'acquisitionMethod', attributes['acquisitionmethod']
-          CSXML.add xml, 'acquisitionNote', attributes["acquisitionnote"]
-          CSXML.add xml, 'acquisitionProvisos', attributes["acquisitionprovisos"]
-          CSXML.add xml, 'acquisitionReason', attributes["acquisitionreason"]
-
-          owners = []
-          owners << { 'owner' => CSXML::Helpers.get_authority('personauthorities', 'person', attributes['ownerperson']) } if attributes['ownerperson']
-          owners << { 'owner' => CSXML::Helpers.get_authority('orgauthorities', 'organization', attributes['ownerorganization']) } if attributes['ownerorganization']
-          CSXML.add_repeat xml, 'owners', owners
-
-          CSXML.add_repeat xml, 'acquisitionSources', [
-            {
-              'acquisitionSource' => CSXML::Helpers.get_authority(
-                'personauthorities', 'person', attributes['acquisitionsource']
-              )
-            }
-          ]
-          CSXML.add xml, 'creditLine', attributes["creditline"]
-
-          currency = CSXML::Helpers.get_vocab('currency', attributes['grouppurchasepricecurrency'])
-          CSXML.add xml, 'groupPurchasePriceCurrency', currency
-          CSXML.add xml, 'groupPurchasePriceValue', attributes['grouppurchasepricevalue']
-
-          offer_currency = CSXML::Helpers.get_vocab('currency', attributes['objectofferpricecurrency'])
-          CSXML.add xml, 'objectOfferPriceCurrency', offer_currency
-          CSXML.add xml, 'objectOfferPriceValue', attributes['objectofferpricevalue']
-
-          object_purchase_offer_currency = CSXML::Helpers.get_vocab('currency', attributes['objectpurchaseofferpricecurrency'])
-          CSXML.add xml, 'objectPurchaseOfferPriceCurrency', object_purchase_offer_currency
-          CSXML.add xml, 'objectPurchaseOfferPriceValue', attributes['objectpurchaseofferpricevalue']
-
-          object_purchase_currency = CSXML::Helpers.get_vocab('currency', attributes['objectpurchasepricecurrency'])
-          CSXML.add xml, 'objectPurchasePriceCurrency', object_purchase_currency
-          CSXML.add xml, 'objectPurchasePriceValue', attributes['objectpurchasepricevalue']
-
-          original_object_currency = CSXML::Helpers.get_vocab('currency', attributes['originalobjectpurchasepricecurrency'])
-          CSXML.add xml, 'originalObjectPurchasePriceCurrency', original_object_currency
-          CSXML.add xml, 'originalObjectPurchasePriceValue', attributes['originalobjectpurchasepricevalue']
-
-          CSXML.add xml, 'transferOfTitleNumber', attributes['transferoftitlenumber']
-          CSXML.add_repeat xml, 'fieldCollectionEventNames', [{'fieldCollectionEventName' => attributes['fieldcollectioneventname']}]
+          repeats = { 
+            'ownerperson' => ['owners', 'owner'],
+            'ownerorganization' => ['owners', 'owner'],
+            'acquisitionsourceperson' => ['acquisitionSources', 'acquisitionSource'],
+            'acquisitionsourceorganization' => ['acquisitionSources', 'acquisitionSource'],
+            'fieldcollectioneventname' => ['fieldCollectionEventNames', 'fieldCollectionEventName']
+          }
+          repeatstransforms = {
+            'acquisitionsourceperson' => {'authority' => ['personauthorities', 'person']},
+            'acquisitionsourceorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'ownerperson' => {'authority' => ['personauthorities', 'person']},
+            'ownerorganization' => {'authority' => ['orgauthorities', 'organization']}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+          #accessionDateGroup 
+          CSXML::Helpers.add_date_group(xml, 'accessionDate', CSDTP.parse(attributes['accessiondate']))
+          #acquisitionDateGroupList
+          CSXML::Helpers.add_date_group_list(xml, 'acquisitionDate', attributes['acquisitiondate'])
+          #acquisitionFundingList
+          funding_data = {
+            'acquisitionfundingcurrency' => 'acquisitionFundingCurrency',
+            'acquisitionfundingvalue' => 'acquisitionFundingValue',
+            'acquisitionfundingsourceorganization' => 'acquisitionFundingSource',
+            'acquisitionfundingsourceperson' => 'acquisitionFundingSource',
+            'acquisitionfundingsourceprovisos' => 'acquisitionFundingSourceProvisos',
+          }
+          funding_transforms = {
+            'acquisitionfundingcurrency' => {'vocab' => 'currency'},
+            'acquisitionfundingsourceorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'acquisitionfundingsourceperson' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'acquisitionFunding',
+            funding_data,
+            funding_transforms,
+            list_suffix: 'List',
+            group_suffix: ''
+          )
+          #approvalGroupList
+          app_data = {
+            'approvalstatus' => 'approvalStatus',
+            'approvalgroup' => 'approvalGroup',
+            'approvalnote' => 'approvalNote',
+            'approvaldate' => 'approvalDate',
+            'approvalindividual' => 'approvalIndividual'
+          }
+          app_transforms = {
+            'approvalstatus' => {'vocab' => 'deaccessionapprovalstatus'},
+            'approvalgroup' => {'vocab' => 'deaccessionapprovalgroup'},
+            'approvaldate' => {'special' => 'unstructured_date_stamp'},
+            'approvalindividual' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'approval',
+            app_data,
+            app_transforms
+          )
         end
       end
     end

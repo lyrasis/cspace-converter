@@ -63,7 +63,7 @@ module CollectionSpace
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
           
           CSXML::Helpers.add_date_group_list(
-            xml, 'objectProductionDate', [CSDTP.parse(attributes['productiondate'])]
+            xml, 'objectProductionDate', attributes['productiondate']
           )
           
           textualinscriptiondata = {
@@ -110,7 +110,7 @@ module CollectionSpace
             objectprodpersondata,
             objectprodpersontransforms
           )
-          # not simple because 'objectProductionPeople' singularized as 'objectProductionPerson'
+
           objectprodpeopledata = {
             'productionpeople' => 'objectProductionPeople',
             'productionpeoplerole' => 'objectProductionPeopleRole'
@@ -121,21 +121,42 @@ module CollectionSpace
             'objectProductionPeople',
             objectprodpeopledata,
           )
-        
-          object_name = []
-          objectname = CSDR.split_mvf attributes, 'objectname'
-          objectname.each_with_index do |obj, index|
-            object_name << {"objectName" => obj}
-          end
-          CSXML.add_list xml, 'objectName', object_name, 'Group'
 
-          other_number = []
-          numbervalue = CSDR.split_mvf attributes, 'numbervalue'
-          numbertype = CSDR.split_mvf attributes, 'numbertype'
-          numbervalue.each_with_index do |numval, index|
-            other_number << {"numberValue" => numval, "numberType" => numbertype[index]}
-          end
-          CSXML.add_list xml, 'otherNumber', other_number
+          # objectNameList, objectNameGroup
+          obj_name_data = {
+            'objectnametype' => 'objectNameType',
+            'objectnamesystem' => 'objectNameSystem',
+            'objectname' => 'objectName',
+            'objectnamecurrency' => 'objectNameCurrency',
+            'objectnamenote' => 'objectNameNote',
+            'objectnamelevel' => 'objectNameLevel',
+            'objectnamelanguage' => 'objectNameLanguage'
+          }
+          obj_name_transforms = {
+            'objectnamelanguage' => {'vocab' => 'languages'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'objectName',
+            obj_name_data,
+            obj_name_transforms,
+            list_suffix: 'List'
+          )
+
+          # otherNumberList, otherNumber
+          other_number_data = {
+            'numbervalue' => 'numberValue',
+            'numbertype' => 'numberType'
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'otherNumber',
+            other_number_data,
+            list_suffix: 'List',
+            group_suffix: ''
+          )
 
           assocpeopledata = {
             'assocpeople' => 'assocPeople',
@@ -147,6 +168,7 @@ module CollectionSpace
             'assocPeople',
             assocpeopledata,
           )
+
           objectcompdata = {
             'objectcomponentname' => 'objectComponentName'
           }

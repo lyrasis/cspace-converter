@@ -18,8 +18,8 @@ module CollectionSpace
             'curatorialnote' => 'curatorialNote',
             'generalnote' => 'generalNote',
             'boilerplatetext' => 'boilerplateText'
-            
           }
+
           pairstransforms = {
             'type' => {'vocab' => 'exhibitiontype'},
           }
@@ -110,6 +110,7 @@ module CollectionSpace
             galleryrotationdata,
             galleryrotation_transforms
             )
+
           # exhibitionReferenceGroupList, exhibitionReferenceGroup
           exhibitionreferencedata = {
             'exhibitionreference' => 'exhibitionReference',
