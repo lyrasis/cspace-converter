@@ -70,7 +70,9 @@ module CollectionSpace
             'contentlanguage' => ['contentLanguages', 'contentLanguage'],
             'contentactivity' => ['contentActivities', 'contentActivity'],
             'contentposition' => ['contentPositions', 'contentPosition'], 
-            'contentconcept' => ['contentConcepts', 'contentConcept']
+            'contentconceptassociated' => ['contentConcepts', 'contentConcept'],
+            'contentconceptmaterial' => ['contentConcepts', 'contentConcept']
+            
           }
           repeatstransforms = {
             'contentperson' => {'authority' => ['personauthorities', 'person']},
@@ -81,7 +83,9 @@ module CollectionSpace
             'ownerorganization' => {'authority' => ['orgauthorities', 'organization']},
             'ownershipdate' => {'special' => 'structured_date'},
             'contentorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'contentlanguage' => {'vocab' => 'languages'}
+            'contentlanguage' => {'vocab' => 'languages'},
+            'contentconceptassociated' => {'authority' => ['conceptauthorities', 'concept']},
+            'contentconceptmaterial' => {'authority' => ['conceptauthorities', 'material_ca']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           #measuredPartGroupList, measuredPartGroup 
