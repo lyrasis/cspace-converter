@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="objectexit">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-09T16:18:12.503Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:objectexit:id(1e3e9a95-1539-4a28-ac42)</refName>
+    <uri>/objectexit/1e3e9a95-1539-4a28-ac42</uri>
+    <updatedAt>2020-02-09T16:18:12.503Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:objectexit_common xmlns:ns2="http://collectionspace.org/services/objectexit" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <exitMethods/>
+    <exitDateGroup>
+      <scalarValuesComputed>false</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate/>
+      <dateLatestScalarValue/>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay/>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear/>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth/>
+      <dateEarliestSingleEra/>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue/>
+      <dateLatestMonth/>
+    </exitDateGroup>
+    <deacApprovalGroupList/>
+    <exitNumber>MF_3_EX20CS.031</exitNumber>
+  </ns2:objectexit_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
