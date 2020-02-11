@@ -7,12 +7,13 @@ class ImportService
       @profile = profile
     end
 
-    def add_authority(name_field:, type:, subtype:, stub: false)
+    def add_authority(name_field:, type:, subtype:, mapper: nil)
       display_name = object.csv_data[name_field]
       return unless display_name
 
       service = Lookup.record_class(type).service(subtype)[:id]
       names_for(display_name).each do |name|
+        stub = mapper.nil? ? true : false
         id = identifier_for(:authority, service, subtype, name, stub)
         next if id.nil?
 
@@ -21,7 +22,7 @@ class ImportService
           subtype: subtype,
           name: name,
           identifier: id,
-          stub: stub
+          mapper: mapper
         )
         object.save!
       end
@@ -36,7 +37,7 @@ class ImportService
           name_field: name_field,
           type: type,
           subtype: subtype,
-          stub: true
+          mapper: nil
         )
       end
     end
@@ -126,6 +127,7 @@ class ImportService
 
       config = Lookup.profile_config(profile)
       add_authority(
+        mapper: config['mapper'],
         name_field: config['name_field'],
         type: config['authority_type'],
         subtype: config['authority_subtype']

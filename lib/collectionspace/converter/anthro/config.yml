@@ -13,6 +13,7 @@ registered_profiles:
       - objectnumber
     config:
       CollectionObject:
+        mapper: AnthroCollectionObject
         identifier: objectnumber
         title: objectnumber
       Authorities: []
@@ -21,6 +22,7 @@ registered_profiles:
     type: Procedures
     config:
       Nagpra:
+        mapper: AnthroNagpra
         identifier: claimnumber
         title: claimnumber
       Authorities: []
@@ -31,6 +33,7 @@ registered_profiles:
       - inventoryid
     config:
       Osteology:
+        mapper: AnthroOsteology
         identifier: inventoryid
         title: inventoryid
       Authorities:
@@ -49,6 +52,7 @@ registered_profiles:
     required_headers:
       - termdisplayname
     config:
+      mapper: AnthroTaxon
       name_field: termdisplayname
       authority_type: Taxon
       authority_subtype: taxon

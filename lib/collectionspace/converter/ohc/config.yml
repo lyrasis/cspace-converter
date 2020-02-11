@@ -19,11 +19,95 @@ registered_procedures:
 registered_profiles:
   acquisition:
     type: Procedures
+    enabled: false
+    required_headers:
+      - acquisitionreferencenumber
     config:
       Acquisition:
+        mapper: CoreAcquisition
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
-        - name_field: ownerorganization
+        - name_field: acquisitionauthorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerPerson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerOrganization
           authority_type: Organization
           authority_subtype: organization
+  cataloging:
+    type: Procedures
+    enabled: true
+    required_headers:
+      - objectnumber
+    config:
+      CollectionObject:
+        mapper: OHCCollectionObject
+        identifier: objectnumber
+        title: objectnumber
+      Authorities:
+        - name_field: contentperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inscriber
+          authority_type: Person
+          authority_subtype: person
+        - name_field: productionperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: productionorg
+          authority_type: Organization
+          authority_subtype: organization
+      Vocabularies:
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
+  movement:
+    type: Procedures
+    enabled: true
+    required_headers:
+      - movementreferencenumber
+    config:
+      Movement:
+        mapper: CoreMovement
+        identifier: movementreferencenumber
+        title: movementreferencenumber
+      Authorities:
+        - name_field: movementcontact
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inventorycontact
+          authority_type: Person
+          authority_subtype: person
+  osteology:
+    type: Procedures
+    enabled: true
+    required_headers:
+      - inventoryid
+    config:
+      Osteology:
+        mapper: AnthroOsteology
+        identifier: inventoryid
+        title: inventoryid
+      Authorities:
+        - name_field: sexdeterminationanalyst
+          authority_type: Person
+          authority_subtype: person
+        - name_field: osteoageestimateanalyst
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inventoryanalyst
+          authority_type: Person
+          authority_subtype: person
+  relationships:
+    type: Relationships
+    enabled: true
+    required_headers:
+      - subjectdocumenttype
+      - subjectidentifier
+      - objectdocumenttype
+      - objectidentifier
+    config: {}
