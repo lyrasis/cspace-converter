@@ -16,6 +16,7 @@ registered_profiles:
     enabled: true
     config:
       CollectionObject:
+        mapper: MaterialsCollectionObject
         identifier: objectnumber
         title: objectnumber
       Authorities:
@@ -26,6 +27,7 @@ registered_profiles:
     type: Authorities
     enabled: true
     config:
+      mapper: MaterialsMaterial
       name_field: termdisplayname
       authority_type: Material
       authority_subtype: material
@@ -33,6 +35,7 @@ registered_profiles:
     type: Procedures
     config:
       Media:
+        mapper: MaterialsMedia
         identifier: identificationnumber
         title: identificationnumber
       Authorities:
@@ -44,6 +47,7 @@ registered_profiles:
   person:
     type: Authorities
     config:
+      mapper: CorePerson
       name_field: displayname
       authority_type: Person
       authority_subtype: person

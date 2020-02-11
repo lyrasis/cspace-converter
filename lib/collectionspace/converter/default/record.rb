@@ -19,7 +19,7 @@ module CollectionSpace
         end
 
         def redefined_fields
-          @redefined.each_with_object({}) { |k, h| h[k] = nil }
+          @redefined.uniq.each_with_object({}) { |k, h| h[k] = nil }
         end
 
         def run(document, service, common)

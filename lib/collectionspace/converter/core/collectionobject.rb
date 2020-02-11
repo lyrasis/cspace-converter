@@ -37,7 +37,10 @@ module CollectionSpace
             'ownershipexchangepricevalue' => 'ownershipExchangePriceValue',
             'contentdescription' => 'contentDescription',
             'contentdategroup' => 'contentDateGroup',
-            'contentnote' => 'contentNote'
+            'contentnote' => 'contentNote',
+            'assoceventname' => 'assocEventName',
+            'assoceventnametype' => 'assocEventNameType',
+            'assoceventnote' => 'assocEventNote'
           }
           pairs_transforms = {
             'agequalifier' => {'vocab' => 'agequalifier'},
@@ -71,8 +74,11 @@ module CollectionSpace
             'contentactivity' => ['contentActivities', 'contentActivity'],
             'contentposition' => ['contentPositions', 'contentPosition'], 
             'contentconceptassociated' => ['contentConcepts', 'contentConcept'],
-            'contentconceptmaterial' => ['contentConcepts', 'contentConcept']
-            
+            'contentconceptmaterial' => ['contentConcepts', 'contentConcept'],
+            'assoceventorganization' => ['assocEventOrganizations', 'assocEventOrganization'],
+            'assoceventpeople' => ['assocEventPeoples', 'assocEventPeople'],
+            'assoceventperson' => ['assocEventPersons', 'assocEventPerson'],
+            'assoceventplace' => ['assocEventPlaces', 'assocEventPlace']
           }
           repeatstransforms = {
             'contentperson' => {'authority' => ['personauthorities', 'person']},
@@ -85,7 +91,9 @@ module CollectionSpace
             'contentorganization' => {'authority' => ['orgauthorities', 'organization']},
             'contentlanguage' => {'vocab' => 'languages'},
             'contentconceptassociated' => {'authority' => ['conceptauthorities', 'concept']},
-            'contentconceptmaterial' => {'authority' => ['conceptauthorities', 'material_ca']}
+            'contentconceptmaterial' => {'authority' => ['conceptauthorities', 'material_ca']},
+            'assoceventorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'assoceventperson' => {'authority' => ['personauthorities', 'person']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           #measuredPartGroupList, measuredPartGroup 
@@ -309,6 +317,130 @@ module CollectionSpace
             attributes,
             'contentObject',
             contentobject_data
+          )
+          #assocActivityGroupList, assocActivityGroup
+          assocactivity_data = {
+            'assocactivity' => 'assocActivity',
+            'assocactivitytype' => 'assocActivityType',
+            'assocactivitynote' => 'assocActivityNote'
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocActivity',
+            assocactivity_data
+          )
+          #assocObjectGroupList, assocObjectGroup
+          assocobject_data = {
+            'assocobject' => 'assocObject',
+            'assooObjectnote' => 'assocObjectNote',
+            'assocobjecttype' => 'assocObjectType'
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocObject',
+            assocobject_data
+          )
+          #assocConceptGroupList, assocConceptGroup
+          assocconcept_data = {
+            'assocconcept' => 'assocConcept',
+            'assocconceptnote' => 'assocConceptNote',
+            'assocconcepttype' => 'assocConceptType'
+          }
+          assocconcept_transforms = {
+            'assocconcept' => {'authority' => ['conceptauthorities', 'concept']} 
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocConcept',
+            assocconcept_data,
+            assocconcept_transforms
+          )
+          #assocCulturalContextGroupList, assocCulturalContextGroup
+          assocculturalcontext_data = {
+            'assocculturalcontext' => 'assocCulturalContext',
+            'assocculturalcontextnote' => 'assocCulturalContextNote',
+            'assocculturalcontexttype' => 'assocCulturalContextType'
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocCulturalContext',
+            assocculturalcontext_data
+          )
+          #assocOrganizationGroupList, assocOrganizationGroup
+          assocorganization_data = {
+            'assocorganization' => 'assocOrganization',
+            'assocorganizationtype' => 'assocOrganizationType',
+            'assocorganizationnote' => 'assocOrganizationNote'
+          }
+          assocorganization_transforms = {
+            'assocorganization' => {'authority' => ['orgauthorities', 'organization']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocOrganization',
+            assocorganization_data,
+            assocorganization_transforms
+          )
+          #assocPeopleGroupList, assocPeopleGroup
+          assocpeople_data = {
+            'assocpeople' => 'assocPeople',
+            'assocpeoplenote' => 'assocPeopleNote',
+            'assocpeopletype' => 'assocPeopleType'
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocPeople',
+            assocpeople_data
+          )
+          #assocPersonGroupList, assocPersonGroup
+          assocperson_data = {
+            'assocperson' => 'assocPerson',
+            'assocpersontype' => 'assocPersonType',
+            'assocpersonnote' => 'assocPersonNote'
+          }
+          assocperson_transforms = {
+            'assocperson' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocPerson',
+            assocperson_data,
+            assocperson_transforms
+          )
+          #assocPlaceGroupList, assocPlaceGroup
+          assocplace_data = {
+            'assocplace' => 'assocPlace',
+            'assocplacenote' => 'assocPlaceNote',
+            'assocplacetype' => 'assocPlaceType'
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocPlace',
+            assocplace_data
+          )
+          #assocDateGroupList, assocDateGroup
+          assocdate_data = {
+            'assocdatenote' => 'assocDateNote',
+            'assocdatetype' => 'assocDateType',
+            'assocstructureddategroup' => 'assocStructuredDateGroup'
+          }
+          assocdate_transforms = {
+            'assocstructureddategroup' => {'special' => 'structured_date'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocDate',
+            assocdate_data,
+            assocdate_transforms
           )
         end
       end

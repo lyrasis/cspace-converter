@@ -119,40 +119,36 @@ module CollectionSpace
             'osteoageestimateupper' => 'osteoAgeEstimateUpper',
             'osteoageestimateanalyst' => 'osteoAgeEstimateAnalyst',
             'osteoageestimatenote' => 'osteoAgeEstimateNote',
-            'osteoageestimatedate' => 'osteoAgeEstimateDate'
+            'osteoageestimatedate' => 'osteoAgeEstimateDateGroup'
           }
           osteoage_transforms = {
-            'osteoageestimateanalyst' => {'authority' => ['personauthorities', 'person']}
+            'osteoageestimateanalyst' => {'authority' => ['personauthorities', 'person']},
+            'osteoageestimatedate' => {'special' => 'structured_date' }
           }
-
-          CSXML.add_group_list_with_structured_date(
-            xml,
-            attributes,
+          CSXML.add_single_level_group_list(
+            xml, attributes,
             'osteoAgeEstimate',
             osteoagedata,
-            'osteoAgeEstimateDate',
-            osteoage_transforms,
-            subgroup_suffix: 'Group'
+            osteoage_transforms
           )
 
           # sexDeterminationGroupList
           sd_data = {
             'sexdetermination' => 'sexDetermination',
-            'sexdeterminationdate' => 'sexDeterminationDate',
+            'sexdeterminationdate' => 'sexDeterminationDateGroup',
             'sexdeterminationanalyst' => 'sexDeterminationAnalyst',
             'sexdeterminationnote' => 'sexDeterminationNote'
           }
           sd_transforms = {
-            'sexdeterminationanalyst' => {'authority' => ['personauthorities', 'person']}
+            'sexdeterminationanalyst' => {'authority' => ['personauthorities', 'person']},
+            'sexdeterminationdate' => {'special' => 'structured_date'}
           }
-          CSXML.add_group_list_with_structured_date(
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'sexDetermination',
             sd_data,
-            'sexDeterminationDate',
-            sd_transforms,
-            subgroup_suffix: 'Group'
+            sd_transforms
           )
           
         end

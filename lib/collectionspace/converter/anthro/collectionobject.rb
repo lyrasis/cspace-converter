@@ -45,10 +45,10 @@ module CollectionSpace
         end
 
         def redefined_fields
-          @redefined = [
+          @redefined.concat([
             'objectproductionpeople',
             'objectproductionpeoplerole'
-          ]
+          ])
           super
         end
 

@@ -42,7 +42,7 @@ class DataObject
     write_attribute :converter_module, Lookup.converter_module.capitalize
   end
 
-  def add_authority(type:, subtype:, name:, identifier: nil, stub: false)
+  def add_authority(type:, subtype:, name:, identifier: nil, mapper: nil)
     converter = nil
     data = {}
     data[:batch]            = import_batch
@@ -53,7 +53,7 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = name
 
-    if stub
+    if mapper.nil?
       converter = Lookup.default_authority_class(type)
       content_data = {
         "shortidentifier" => identifier,
@@ -61,7 +61,7 @@ class DataObject
         "termtype"        => "#{CSIDF.authority_term_type(type)}Term",
       }
     else
-      converter    = Lookup.authority_class(type)
+      converter    = mapper.constantize
       content_data = csv_data
     end
 
@@ -130,7 +130,7 @@ class DataObject
   end
 
   def add_procedure(procedure, attributes)
-    converter = Lookup.procedure_class(procedure)
+    converter = attributes["mapper"].constantize
     data = {}
     data[:batch]            = import_batch
     data[:profile]          = converter_profile

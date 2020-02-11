@@ -22,20 +22,18 @@ RSpec.describe CSDTP do
       let(:text_date_parsed) {CSDTP.parse(text_date) }
       
       it "returns structured date" do
-        pp(ca_date_parsed)
-        pp(CSDTP.fields_for(ca_date_parsed))
-           
-      expect(ca_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
-      expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
-    end
-    it "scalarValuesComputed = false" do
-      expect(ca_date_parsed.computed).to eq 'false'
-      expect(text_date_parsed.computed).to eq 'false'
-    end
-    it "dateDisplayDate = the date string passed in" do
-      expect(ca_date_parsed.display_date).to eq(ca_date)
-      expect(text_date_parsed.display_date).to eq(text_date)
-    end
+        expect(ca_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+        expect(text_date_parsed.class).to eq CollectionSpace::Tools::StructuredDate
+      end
+
+      it "scalarValuesComputed = false" do
+        expect(ca_date_parsed.computed).to eq 'false'
+        expect(text_date_parsed.computed).to eq 'false'
+      end
+      it "dateDisplayDate = the date string passed in" do
+        expect(ca_date_parsed.display_date).to eq(ca_date)
+        expect(text_date_parsed.display_date).to eq(text_date)
+      end
     end
 
     it "can parse a basic date" do
@@ -140,4 +138,27 @@ RSpec.describe CSDTP do
       expect(CSDTP.parse_unstructured_date_string(d5)).to eq('1980-03-02')
     end
   end # describe '#parse_unstructured_date_string'
+
+  describe '#fields_for' do
+    let(:d1) { CSDTP.parse('2011-11-02') }
+    let(:result) {
+      {"scalarValuesComputed"=>"true",
+       "dateDisplayDate"=>"2011-11-02",
+       "dateEarliestSingleYear"=>2011,
+       "dateEarliestSingleMonth"=>11,
+       "dateEarliestSingleDay"=>2,
+       "dateEarliestScalarValue"=>"2011-11-02T00:00:00.000Z",
+       "dateEarliestSingleEra"=>
+         "urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'",
+       "dateLatestYear"=>2011,
+       "dateLatestMonth"=>11,
+       "dateLatestDay"=>3,
+       "dateLatestScalarValue"=>"2011-11-03T00:00:00.000Z",
+       "dateLatestEra"=>
+         "urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'"}
+    }
+    it 'returns hash' do
+      expect(CSDTP.fields_for(d1)).to eq(result)
+    end
+  end
 end
