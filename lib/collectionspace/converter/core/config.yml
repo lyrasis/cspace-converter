@@ -27,6 +27,7 @@ registered_profiles:
       - acquisitionreferencenumber
     config:
       Acquisition:
+        mapper: CoreAcquisition
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
@@ -46,6 +47,7 @@ registered_profiles:
       - objectnumber
     config:
       CollectionObject:
+        mapper: CoreCollectionObject
         identifier: objectnumber
         title: objectnumber
       Authorities:
@@ -71,6 +73,7 @@ registered_profiles:
     enabled: true
     config:
       ConditionCheck:
+        mapper: CoreConditionCheck
         identifier: conditioncheckrefnumber
         title: conditioncheckrefnumber
       Authorities:
@@ -82,6 +85,7 @@ registered_profiles:
     enabled: true
     config:
       Conservation:
+        mapper: CoreConservation
         identifier: conservationnumber
         title: conservationnumber
       Authorities:
@@ -105,6 +109,7 @@ registered_profiles:
     enabled: true
     config:
       Exhibition:
+        mapper: CoreExhibition
         identifier: exhibitionnumber
         title: exhibitionnumber
       Authorities:
@@ -142,6 +147,7 @@ registered_profiles:
       - title
     config:
       Group:
+        mapper: Group
         identifier: title
         title: title
       Authorities:
@@ -161,6 +167,7 @@ registered_profiles:
     enabled: true
     config:
       Intake:
+        mapper: CoreIntake
         identifier: entrynumber
         title: entrynumber
       Authorities:
@@ -195,6 +202,7 @@ registered_profiles:
     type: Procedures
     config:
       LoanIn:
+        mapper: CoreLoanIn
         identifier: loaninnumber
         title: loaninnumber
       Authorities:
@@ -214,6 +222,7 @@ registered_profiles:
       - loanoutnumber
     config:
       LoanOut:
+        mapper: CoreLoanOut
         identifier: loanoutnumber
         title: loanoutnumber
       Authorities:
@@ -233,6 +242,7 @@ registered_profiles:
       - identificationnumber
     config:
       Media:
+        mapper: CoreMedia
         identifier: identificationnumber
         title: identificationnumber
       Authorities: []
@@ -243,6 +253,7 @@ registered_profiles:
       - movementreferencenumber
     config:
       Movement:
+        mapper: CoreMovement
         identifier: movementreferencenumber
         title: movementreferencenumber
       Authorities:
@@ -265,11 +276,10 @@ registered_profiles:
       termstatus: accepted
       termtype: descriptor
     config:
+      mapper: CoreConcept
       name_field: termdisplayname
       authority_type: Concept
       authority_subtype: nomenclature
-      Nomenclature:
-        identifier: termdisplayname
       Authorities:
         - name_field: termsource
           authority_type: Citation
@@ -284,6 +294,7 @@ registered_profiles:
       - exitnumber
     config:
       ObjectExit:
+        mapper: CoreObjectExit
         identifier: exitnumber
         title: exitnumber
       Authorities:
@@ -301,6 +312,7 @@ registered_profiles:
     defaults:
       termtype: descriptor
     config:
+      mapper: CorePerson
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
@@ -322,6 +334,7 @@ registered_profiles:
       - referencenumber
     config:
       UseOfCollection:
+        mapper: CoreUseOfCollection
         identifier: referencenumber
         title: referencenumber
       Authorities: []
@@ -329,6 +342,7 @@ registered_profiles:
     type: Procedures
     config:
       ValuationControl:
+        mapper: CoreValuationControl
         identifier: valuationcontrolreferencenumber
         title: valuationcontrolreferencenumber
       Authorities:
