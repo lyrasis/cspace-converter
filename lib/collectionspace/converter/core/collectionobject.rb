@@ -139,7 +139,8 @@ module CollectionSpace
           #textualInscriptionGroupList,textualInscriptionGroup 
           textualinscriptiondata = {
             'inscriptioncontent' => 'inscriptionContent',
-            'inscriptioncontentinscriber' => 'inscriptionContentInscriber',
+            'inscriptioncontentinscriberperson' => 'inscriptionContentInscriber',
+            'inscriptioncontentinscriberorganization' => 'inscriptionContentInscriber',
             'inscriptioncontentlanguage' => 'inscriptionContentLanguage',
             'inscriptioncontentdategroup' => 'inscriptionContentDateGroup',
             'inscriptioncontentposition' => 'inscriptionContentPosition',
@@ -151,7 +152,8 @@ module CollectionSpace
             'inscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
           }
           textualinscriptiontransforms = {
-            'inscriptioncontentinscriber' => {'authority' => ['personauthorities', 'person']},
+            'inscriptioncontentinscriberperson' => {'authority' => ['personauthorities', 'person']},
+            'inscriptioncontentinscriberorganization' => {'authority' => ['orgauthorities', 'organization']},
             'inscriptioncontentlanguage' => {'vocab' => 'languages'},
             'inscriptioncontentdategroup' => {'special' => 'structured_date'}
           }
@@ -161,6 +163,29 @@ module CollectionSpace
             'textualInscription',
             textualinscriptiondata,
             textualinscriptiontransforms
+          )
+          #nonTextualInscriptionGroupList, nonTextualInscriptionGroup
+          nontextualinscriptiondata = {
+            'inscriptiondescription' => 'inscriptionDescription',
+            'inscriptiondescriptioninscriberperson' => 'inscriptionDescriptionInscriber',
+            'inscriptiondescriptioninscriberorganization' => 'inscriptionDescriptionInscriber',
+            'inscriptiondescriptiondategroup' => 'inscriptionDescriptionDateGroup',
+            'inscriptiondescriptionposition' => 'inscriptionDescriptionPosition',
+            'inscriptiondescriptiontype' => 'inscriptionDescriptionType',
+            'inscriptiondescriptionmethod' => 'inscriptionDescriptionMethod',
+            'inscriptiondescriptioninterpretation' => 'inscriptionDescriptionInterpretation',
+          }
+          nontextualinscriptiontransforms = {
+            'inscriptiondescriptioninscriberperson' => {'authority' => ['personauthorities', 'person']},
+            'inscriptiondescriptioninscriberorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'inscriptiondescriptiondategroup' => {'special' => 'structured_date'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'nontextualInscription',
+            nontextualinscriptiondata,
+            nontextualinscriptiontransforms
           )
           #objectProductionOrganizationGroupList, objectProductionOrganizationGroup
           objectprodorgdata = {
