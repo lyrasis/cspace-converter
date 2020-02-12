@@ -40,12 +40,24 @@ module CollectionSpace
             'contentnote' => 'contentNote',
             'assoceventname' => 'assocEventName',
             'assoceventnametype' => 'assocEventNameType',
-            'assoceventnote' => 'assocEventNote'
+            'assoceventnote' => 'assocEventNote',
+            'ownerspersonalexperience' => 'ownersPersonalExperience',
+            'ownerspersonalresponse' => 'ownersPersonalResponse',
+            'ownerscontributionnote' => 'ownersContributionNote',
+            'viewersrole' => 'viewersRole',
+            'viewerspersonalexperience' => 'viewersPersonalExperience',
+            'viewerspersonalresponse' => 'viewersPersonalResponse',
+            'viewerscontributionnote' => 'viewersContributionNote',
+            'fieldcollectiondategroup' => 'fieldCollectionDateGroup',
+            'fieldcollectionplace' => 'fieldCollectionPlace',
+            'fieldcollectionnumber' => 'fieldCollectionNumber'
           }
           pairs_transforms = {
             'agequalifier' => {'vocab' => 'agequalifier'},
             'ownershipexchangepricecurrency' => {'vocab' => 'currency'},
-            'contentdategroup' => {'special' => 'structured_date'}
+            'contentdategroup' => {'special' => 'structured_date'},
+            'fieldcollectiondategroup' => {'special' => 'structured_date'},
+            'fieldcollectionplace' => {'authority' => ['placeauthorities', 'place']}
           }
           CSXML::Helpers.add_title(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
@@ -78,7 +90,13 @@ module CollectionSpace
             'assoceventorganization' => ['assocEventOrganizations', 'assocEventOrganization'],
             'assoceventpeople' => ['assocEventPeoples', 'assocEventPeople'],
             'assoceventperson' => ['assocEventPersons', 'assocEventPerson'],
-            'assoceventplace' => ['assocEventPlaces', 'assocEventPlace']
+            'assoceventplace' => ['assocEventPlaces', 'assocEventPlace'],
+            'ownersreference' => ['ownersReferences', 'ownersReference'],
+            'viewersreference' => ['viewersReferences', 'viewersReference'],
+            'fieldcollectionmethod' => ['fieldCollectionMethods', 'fieldCollectionMethod'],
+            'fieldcollectionsource' => ['fieldCollectionSources', 'fieldCollectionSource'],
+            'fieldcollectorperson' => ['fieldCollectors', 'fieldCollector'],
+            'fieldcollectororganization' => ['fieldCollectors', 'fieldCollector']
           }
           repeatstransforms = {
             'contentperson' => {'authority' => ['personauthorities', 'person']},
@@ -93,7 +111,11 @@ module CollectionSpace
             'contentconceptassociated' => {'authority' => ['conceptauthorities', 'concept']},
             'contentconceptmaterial' => {'authority' => ['conceptauthorities', 'material_ca']},
             'assoceventorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'assoceventperson' => {'authority' => ['personauthorities', 'person']}
+            'assoceventperson' => {'authority' => ['personauthorities', 'person']},
+            'fieldcollectionmethod' => {'vocab' => 'collectionmethod'},
+            'fieldcollectionsource' => {'authority' => ['personauthorities', 'person']},
+            'fieldcollectorperson' => {'authority' => ['personauthorities', 'person']},
+            'fieldcollectororganization' => {'authority' => ['orgauthorities', 'organization']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           #measuredPartGroupList, measuredPartGroup 
@@ -441,6 +463,21 @@ module CollectionSpace
             'assocDate',
             assocdate_data,
             assocdate_transforms
+          )
+          #referenceGroupList, referenceGroup
+          referencegroup_data = {
+            'reference' => 'reference',
+            'referencenote' => 'referenceNote',
+          }
+          referencegroup_transforms = {
+            'reference' => {'authority' => ['citationauthorities', 'citation']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'reference',
+            referencegroup_data,
+            referencegroup_transforms
           )
         end
       end
