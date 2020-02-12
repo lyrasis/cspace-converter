@@ -145,7 +145,7 @@ module CollectionSpace
             'inscriptioncontentposition' => 'inscriptionContentPosition',
             'inscriptioncontentscript' => 'inscriptionContentScript',
             'inscriptioncontenttype' => 'inscriptionContentType',
-            'method' => 'inscriptionContentMethod',
+            'inscriptioncontentmethod' => 'inscriptionContentMethod',
             'inscriptioncontentinterpretation' => 'inscriptionContentInterpretation',
             'inscriptioncontenttranslation' => 'inscriptionContentTranslation',
             'inscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
