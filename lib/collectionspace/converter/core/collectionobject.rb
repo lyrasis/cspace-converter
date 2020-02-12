@@ -169,7 +169,7 @@ module CollectionSpace
           #objectProductionPersonGroupList, objectProductionPersonGroup
           objectprodpersondata = {
             'objectproductionperson' => 'objectProductionPerson',
-            'objectpersonrole' => 'objectProductionPersonRole'
+            'objectproductionpersonrole' => 'objectProductionPersonRole'
           }
           objectprodpersontransforms = {
             'productionperson' => {'authority' => ['personauthorities', 'person']}
