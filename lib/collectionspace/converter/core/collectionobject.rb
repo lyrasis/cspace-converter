@@ -226,17 +226,6 @@ module CollectionSpace
             list_suffix: 'List',
             group_suffix: ''
           )
-          #assocPeopleGroupList, assocPeopleGroup
-          assocpeopledata = {
-            'assocpeople' => 'assocPeople',
-            'assocpeopletype' => 'assocPeopleType'
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'assocPeople',
-            assocpeopledata,
-          )
           #objectComponentGroupList, objectComponentGroup
           objectcompdata = {
             'objectcomponentname' => 'objectComponentName',
