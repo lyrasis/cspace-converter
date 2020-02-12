@@ -138,12 +138,12 @@
     <assocObjectGroupList>
       <assocObjectGroup>
         <assocObject>Associated object 1</assocObject>
-        <assocObjectNote/>
+        <assocObjectNote>Associated object Note 1</assocObjectNote>
         <assocObjectType>Associated object Type 1</assocObjectType>
       </assocObjectGroup>
       <assocObjectGroup>
         <assocObject>Associated object 2</assocObject>
-        <assocObjectNote/>
+        <assocObjectNote>Associated object Note 2</assocObjectNote>
         <assocObjectType>Associated object Type 2</assocObjectType>
       </assocObjectGroup>
     </assocObjectGroupList>
