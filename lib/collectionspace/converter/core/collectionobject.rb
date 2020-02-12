@@ -344,7 +344,7 @@ module CollectionSpace
           #assocObjectGroupList, assocObjectGroup
           assocobject_data = {
             'assocobject' => 'assocObject',
-            'assooObjectnote' => 'assocObjectNote',
+            'assocobjectnote' => 'assocObjectNote',
             'assocobjecttype' => 'assocObjectType'
           }
           CSXML.add_single_level_group_list(
