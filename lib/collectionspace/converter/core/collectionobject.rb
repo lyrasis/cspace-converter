@@ -157,7 +157,7 @@ module CollectionSpace
             'objectproductionorganizationrole' => 'objectProductionOrganizationRole'
           }
           objectprodorgtransforms = {
-            'productionorg' => {'authority' => ['orgauthorities', 'organization']}
+            'objectproductionorganization' => {'authority' => ['orgauthorities', 'organization']}
           }
           CSXML.add_single_level_group_list(
             xml,
