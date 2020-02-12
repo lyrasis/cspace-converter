@@ -172,7 +172,7 @@ module CollectionSpace
             'objectproductionpersonrole' => 'objectProductionPersonRole'
           }
           objectprodpersontransforms = {
-            'productionperson' => {'authority' => ['personauthorities', 'person']}
+            'objectproductionperson' => {'authority' => ['personauthorities', 'person']}
           }
           CSXML.add_single_level_group_list(
             xml,
