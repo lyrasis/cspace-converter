@@ -138,11 +138,22 @@ module CollectionSpace
 =end
           #textualInscriptionGroupList,textualInscriptionGroup 
           textualinscriptiondata = {
-            'inscriber' => 'inscriptionContentInscriber',
-            'method' => 'inscriptionContentMethod'
+            'inscriptioncontent' => 'inscriptionContent',
+            'inscriptioncontentinscriber' => 'inscriptionContentInscriber',
+            'inscriptioncontentlanguage' => 'inscriptionContentLanguage',
+            'inscriptioncontentdategroup' => 'inscriptionContentDateGroup',
+            'inscriptioncontentposition' => 'inscriptionContentPosition',
+            'inscriptioncontentscript' => 'inscriptionContentScript',
+            'inscriptioncontenttype' => 'inscriptionContentType',
+            'method' => 'inscriptionContentMethod',
+            'inscriptioncontentinterpretation' => 'inscriptionContentInterpretation',
+            'inscriptioncontenttranslation' => 'inscriptionContentTranslation',
+            'inscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
           }
           textualinscriptiontransforms = {
-            'inscriber' => {'authority' => ['personauthorities', 'person']}
+            'inscriptioncontentinscriber' => {'authority' => ['personauthorities', 'person']},
+            'inscriptioncontentlanguage' => {'vocab' => 'languages'},
+            'inscriptioncontentdategroup' => {'special' => 'structured_date'}
           }
           CSXML.add_single_level_group_list(
             xml,
