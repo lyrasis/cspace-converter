@@ -530,11 +530,11 @@
     <objectProductionOrganizationGroupList>
       <objectProductionOrganizationGroup>
         <objectProductionOrganizationRole>distributor</objectProductionOrganizationRole>
-        <objectProductionOrganization>Admiral Corporation</objectProductionOrganization>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation1581518578183)'Admiral Corporation'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
       <objectProductionOrganizationGroup>
         <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
-        <objectProductionOrganization>Berkley Publising Group</objectProductionOrganization>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581518588655)'Berkley Publising Group'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
     <viewersContributionNote>Viewer's contribution note</viewersContributionNote>
