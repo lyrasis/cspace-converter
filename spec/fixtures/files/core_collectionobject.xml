@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-02-12T11:25:41.326Z</createdAt>
+    <createdAt>2020-02-13T08:52:49.878Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(fae75c7b-026c-410f-a2b8)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/fae75c7b-026c-410f-a2b8</uri>
-    <updatedAt>2020-02-12T11:25:41.326Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(082078f8-fd8f-4171-942b)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/082078f8-fd8f-4171-942b</uri>
+    <updatedAt>2020-02-13T09:10:32.626Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -157,41 +157,78 @@
     </responsibleDepartments>
     <textualInscriptionGroupList>
       <textualInscriptionGroup>
-        <inscriptionContentScript/>
+        <inscriptionContentScript>palmer-method</inscriptionContentScript>
         <inscriptionContentInscriber>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</inscriptionContentInscriber>
-        <inscriptionContentTransliteration/>
-        <inscriptionContentType/>
+        <inscriptionContentTransliteration>Inscription content Transliteration 1</inscriptionContentTransliteration>
+        <inscriptionContentType>brand</inscriptionContentType>
         <inscriptionContentDateGroup>
-          <scalarValuesComputed/>
+          <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate/>
-          <dateLatestScalarValue/>
+          <dateDisplayDate>2003</dateDisplayDate>
+          <dateLatestScalarValue>2004-01-01T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
-          <dateEarliestSingleDay/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear/>
+          <dateEarliestSingleYear>2003</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
-          <dateEarliestSingleMonth/>
-          <dateEarliestSingleEra/>
-          <dateLatestYear/>
+          <dateLatestDay>1</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2004</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
-          <dateEarliestScalarValue/>
-          <dateLatestMonth/>
+          <dateEarliestScalarValue>2003-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>1</dateLatestMonth>
         </inscriptionContentDateGroup>
-        <inscriptionContent/>
-        <inscriptionContentTranslation/>
-        <inscriptionContentInterpretation/>
-        <inscriptionContentPosition/>
-        <inscriptionContentLanguage/>
+        <inscriptionContent>Inscription content Text 1</inscriptionContent>
+        <inscriptionContentTranslation>Inscription content Translation 1</inscriptionContentTranslation>
+        <inscriptionContentInterpretation>Interpretation Text 1</inscriptionContentInterpretation>
+        <inscriptionContentPosition>front</inscriptionContentPosition>
+        <inscriptionContentLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic'</inscriptionContentLanguage>
         <inscriptionContentMethod>incised</inscriptionContentMethod>
+      </textualInscriptionGroup>
+      <textualInscriptionGroup>
+        <inscriptionContentScript>rustic-capitals</inscriptionContentScript>
+        <inscriptionContentInscriber>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(InscriberOrg528118632)'Inscriber Org'</inscriptionContentInscriber>
+        <inscriptionContentTransliteration>Inscription content Transliteration 2</inscriptionContentTransliteration>
+        <inscriptionContentType>decoration</inscriptionContentType>
+        <inscriptionContentDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2004</dateDisplayDate>
+          <dateLatestScalarValue>2005-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2004</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>1</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2005</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2004-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>1</dateLatestMonth>
+        </inscriptionContentDateGroup>
+        <inscriptionContent>Inscription content Text 2</inscriptionContent>
+        <inscriptionContentTranslation>Inscription content Translation 2</inscriptionContentTranslation>
+        <inscriptionContentInterpretation>Interpretation Text 2</inscriptionContentInterpretation>
+        <inscriptionContentPosition>outside</inscriptionContentPosition>
+        <inscriptionContentLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(hye)'Armenian'</inscriptionContentLanguage>
+        <inscriptionContentMethod>Inscription content Method 2</inscriptionContentMethod>
       </textualInscriptionGroup>
     </textualInscriptionGroupList>
     <objectNumber>20CS.001.0001</objectNumber>
@@ -483,7 +520,74 @@
         <technicalAttributeMeasurement>78</technicalAttributeMeasurement>
       </technicalAttributeGroup>
     </technicalAttributeGroupList>
-    <nonTextualInscriptionGroupList/>
+    <nonTextualInscriptionGroupList>
+      <nonTextualInscriptionGroup>
+        <inscriptionDescriptionDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2001</dateDisplayDate>
+          <dateLatestScalarValue>2002-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2001</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>31</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2001</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2001-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>12</dateLatestMonth>
+        </inscriptionDescriptionDateGroup>
+        <inscriptionDescription>Inscription description 1</inscriptionDescription>
+        <inscriptionDescriptionInscriber>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(NonTextualInscriberPerson1581526319830)'Non Textual Inscriber Person'</inscriptionDescriptionInscriber>
+        <inscriptionDescriptionInterpretation>Non Textual Inscription Interpretation 1</inscriptionDescriptionInterpretation>
+        <inscriptionDescriptionPosition>verso</inscriptionDescriptionPosition>
+        <inscriptionDescriptionMethod>Non Textual Inscription Method 1</inscriptionDescriptionMethod>
+        <inscriptionDescriptionType>estate-stamp</inscriptionDescriptionType>
+      </nonTextualInscriptionGroup>
+      <nonTextualInscriptionGroup>
+        <inscriptionDescriptionDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2002</dateDisplayDate>
+          <dateLatestScalarValue>2003-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2002</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>31</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2002</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2002-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>12</dateLatestMonth>
+        </inscriptionDescriptionDateGroup>
+        <inscriptionDescription>Inscription description 2</inscriptionDescription>
+        <inscriptionDescriptionInscriber>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(NonTextualInscriberOrganization1581526430874)'Non Textual Inscriber Organization'</inscriptionDescriptionInscriber>
+        <inscriptionDescriptionInterpretation>Non Textual Inscription Interpretation 2</inscriptionDescriptionInterpretation>
+        <inscriptionDescriptionPosition>base</inscriptionDescriptionPosition>
+        <inscriptionDescriptionMethod>Non Textual Inscription Method 2</inscriptionDescriptionMethod>
+        <inscriptionDescriptionType>maker's-mark</inscriptionDescriptionType>
+      </nonTextualInscriptionGroup>
+    </nonTextualInscriptionGroupList>
     <assocEventPersons>
       <assocEventPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Associatedeventperson11581451304462)'Associated event person 1'</assocEventPerson>
       <assocEventPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Associatedeventperson21581451314243)'Associated event person 2'</assocEventPerson>
@@ -537,6 +641,7 @@
         <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581518588655)'Berkley Publising Group'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
+    <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
     <viewersContributionNote>Viewer's contribution note</viewersContributionNote>
     <publishToList>
       <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'omeka'</publishTo>
