@@ -340,15 +340,19 @@ registered_profiles:
       Authorities: []
   valuationcontrol:
     type: Procedures
+    enabled: true
     config:
       ValuationControl:
         mapper: CoreValuationControl
-        identifier: valuationcontrolreferencenumber
-        title: valuationcontrolreferencenumber
+        identifier: valuationcontrolrefnumber
+        title: valuationcontrolrefnumber
       Authorities:
-        - name_field: source
+        - name_field: valuesourceperson
           authority_type: Person
           authority_subtype: person
+        - name_field: valuesourceorganization
+          authority_type: Organization
+          authority_subtype: organization
   vocabularies:
     type: Vocabularies
     enabled: true
