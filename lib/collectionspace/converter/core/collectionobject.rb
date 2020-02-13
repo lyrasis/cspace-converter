@@ -166,14 +166,14 @@ module CollectionSpace
           )
           #nonTextualInscriptionGroupList, nonTextualInscriptionGroup
           nontextualinscriptiondata = {
+            'inscriptiondescriptiondategroup' => 'inscriptionDescriptionDateGroup',
             'inscriptiondescription' => 'inscriptionDescription',
             'inscriptiondescriptioninscriberperson' => 'inscriptionDescriptionInscriber',
             'inscriptiondescriptioninscriberorganization' => 'inscriptionDescriptionInscriber',
-            'inscriptiondescriptiondategroup' => 'inscriptionDescriptionDateGroup',
-            'inscriptiondescriptionposition' => 'inscriptionDescriptionPosition',
-            'inscriptiondescriptiontype' => 'inscriptionDescriptionType',
-            'inscriptiondescriptionmethod' => 'inscriptionDescriptionMethod',
             'inscriptiondescriptioninterpretation' => 'inscriptionDescriptionInterpretation',
+            'inscriptiondescriptionposition' => 'inscriptionDescriptionPosition',
+            'inscriptiondescriptionmethod' => 'inscriptionDescriptionMethod',
+            'inscriptiondescriptiontype' => 'inscriptionDescriptionType'
           }
           nontextualinscriptiontransforms = {
             'inscriptiondescriptioninscriberperson' => {'authority' => ['personauthorities', 'person']},
@@ -183,7 +183,7 @@ module CollectionSpace
           CSXML.add_single_level_group_list(
             xml,
             attributes,
-            'nontextualInscription',
+            'nonTextualInscription',
             nontextualinscriptiondata,
             nontextualinscriptiontransforms
           )
