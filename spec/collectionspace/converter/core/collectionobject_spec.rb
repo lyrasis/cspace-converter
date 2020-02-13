@@ -198,7 +198,16 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     { xpath: '/document/*/fieldCollectors/fieldCollector[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/fieldCollectors/fieldCollector[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/fieldCollectionNumber',
-    
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescription',
+    { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[1]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[1]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[2]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[2]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionDateGroup/dateDisplayDate',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionPosition',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionType',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionMethod',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionInterpretation',
   ]}
   
   context 'For maximally populuated record' do
