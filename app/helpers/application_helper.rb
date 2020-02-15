@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def path_for_batch_type(batch)
-    if batch.type == 'TransferJob'
+    if batch.type == 'remote_transfer'
       return batches_path
     else
       return objects_path(batch: batch.name)
@@ -44,6 +44,10 @@ module ApplicationHelper
       profiles << [profile, profile, class: Lookup.converter_module]
     end
     profiles
+  end
+
+  def transfer_statuses_for(object)
+    object.transfer_statuses.order(created_at: :desc).limit(3)
   end
 
   def types

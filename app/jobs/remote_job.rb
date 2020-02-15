@@ -10,6 +10,10 @@ class RemoteJob < ActiveJob::Base
     rescue StandardError
       status = RemoteActionService::Status.new
     end
+    object.transfer_statuses.create(
+      transfer_status: status.ok,
+      transfer_message: status.message
+    )
     batch = Batch.retrieve(key)
     batch.with_lock do
       batch.processed += 1

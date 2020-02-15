@@ -38,6 +38,12 @@
       </div>
     </div>
 
+    <% if object.transfer_statuses && object.transfer_statuses.any? %>
+      <%= render partial: 'shared/transfer_status',
+          :locals => { :transfer_statuses => transfer_statuses_for(object) }
+      %>
+    <% end %>
+
     <div class="row">
       <div class="col-md-12">
         <p class="text-muted">Document</p>
