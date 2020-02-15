@@ -27,17 +27,16 @@ module RemoteActionable
 
   private
 
-  def flash_type_for_action(ok)
-    ok ? :notice : :error
-  end
-
   def perform(action_method, category)
     @object  = CollectionSpaceObject.where(category: category).where(id: params[:id]).first
     service  = RemoteActionService.new(@object)
 
     begin
       status = service.send(action_method)
-      flash[flash_type_for_action(status.ok)] = status.message
+      @object.transfer_statuses.create(
+        transfer_status: status.ok,
+        transfer_message: status.message
+      )
     rescue Exception => ex
       logger.error("Connection error:\n#{ex.backtrace}")
       flash[:error] = "Connection error:\n#{ex.message}"

@@ -2,6 +2,7 @@ class CollectionSpaceObject
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  has_many :transfer_statuses, autosave: true, dependent: :destroy
   belongs_to :data_object, counter_cache: true
   validate   :identifier_is_unique_per_type
   validates_uniqueness_of :fingerprint
