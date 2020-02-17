@@ -200,6 +200,7 @@ registered_profiles:
           authority_subtype: person
   loanin:
     type: Procedures
+    enabled: true
     config:
       LoanIn:
         mapper: CoreLoanIn
@@ -212,9 +213,12 @@ registered_profiles:
         - name_field: borrowersauthorizer
           authority_type: Person
           authority_subtype: person
-        - name_field: lender
+        - name_field: lenderorganization
           authority_type: Organization
           authority_subtype: organization
+        - name_field: lenderperson
+          authority_type: Person
+          authority_subtype: person
   loanout:
     type: Procedures
     enabled: true
