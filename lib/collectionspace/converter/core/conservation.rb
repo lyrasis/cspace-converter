@@ -9,8 +9,8 @@ module CollectionSpace
           end
         end
 
-        def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'conservationnumber' => 'conservationNumber',
             'treatmentpurpose' => 'treatmentPurpose',
             'fabricationnote' => 'fabricationNote',
@@ -26,17 +26,6 @@ module CollectionSpace
             'analysismethod' => 'analysisMethod',
             'analysisresults' => 'analysisResults'
           }
-        end
-
-        def self.repeats
-          { 
-            'conservator' => ['conservators', 'conservator']
-          }
-        end
- 
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreConservation.pairs,
           pairstransforms = {
             'treatmentpurpose' => {'vocab' => 'treatmentpurpose'},
             'approvedby' => {'authority' => ['personauthorities', 'person']},
@@ -45,11 +34,17 @@ module CollectionSpace
             'treatmentenddate' => {'special' => 'unstructured_date_stamp'},
             'researcher' => {'authority' => ['personauthorities', 'person']},
             'proposedanalysisdate' => {'special' => 'unstructured_date_stamp'}
-          })
-          CSXML::Helpers.add_repeats(xml, attributes, CoreConservation.repeats,
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+
+          repeats = {
+            'conservator' => ['conservators', 'conservator']
+          }
           repeatstransforms = {
             'conservator' => {'authority' => ['personauthorities', 'person']}
-          })
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+          #conservationStatusGroupList, conservationStatusGroup
           conservation_status = {
             'status' => 'status',
             'statusdate' => 'statusDate'
@@ -65,6 +60,7 @@ module CollectionSpace
             conservation_status,
             conservation_statustransforms
           )
+          #otherPartyGroupList, otherPartyGroup
           other_party = { 
             'otherparty' => 'otherParty',
             'otherpartyrole' => 'otherPartyRole',
@@ -81,6 +77,7 @@ module CollectionSpace
             other_party,
             other_partytransforms
           )
+          #examinationGroupList, examinationGroup
           overall_examination = {        
             'examinationstaff' => 'examinationStaff',
             'examinationphase' => 'examinationPhase',
@@ -99,6 +96,7 @@ module CollectionSpace
             overall_examination,
             examinationtransforms
           )
+          #destAnalysisGroupList, destAnalysisGroup
           dest = {
             'sampleby' => 'sampleBy',
             'destanalysisapprovalnote' => 'destAnalysisApprovalNote',
