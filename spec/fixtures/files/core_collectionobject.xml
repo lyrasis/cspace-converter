@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-02-13T08:52:49.878Z</createdAt>
+    <createdAt>2020-02-17T11:38:31.448Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(082078f8-fd8f-4171-942b)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/082078f8-fd8f-4171-942b</uri>
-    <updatedAt>2020-02-13T09:10:32.626Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(b142e595-93a7-4c00-93f7)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/b142e595-93a7-4c00-93f7</uri>
+    <updatedAt>2020-02-17T11:38:31.448Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
-      <scalarValuesComputed/>
+      <scalarValuesComputed>true</scalarValuesComputed>
       <dateEarliestSingleCertainty/>
       <dateEarliestSingleQualifierUnit/>
-      <dateDisplayDate/>
-      <dateLatestScalarValue/>
+      <dateDisplayDate>2002</dateDisplayDate>
+      <dateLatestScalarValue>2003-01-01T00:00:00.000Z</dateLatestScalarValue>
       <dateEarliestSingleQualifierValue/>
       <datePeriod/>
-      <dateLatestEra/>
-      <dateEarliestSingleDay/>
+      <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
       <dateEarliestSingleQualifier/>
-      <dateEarliestSingleYear/>
+      <dateEarliestSingleYear>2002</dateEarliestSingleYear>
       <dateLatestCertainty/>
       <dateAssociation/>
-      <dateLatestDay/>
-      <dateEarliestSingleMonth/>
-      <dateEarliestSingleEra/>
-      <dateLatestYear/>
+      <dateLatestDay>1</dateLatestDay>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear>2003</dateLatestYear>
       <dateLatestQualifierUnit/>
       <dateNote/>
       <dateLatestQualifierValue/>
       <dateLatestQualifier/>
-      <dateEarliestScalarValue/>
-      <dateLatestMonth/>
+      <dateEarliestScalarValue>2002-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth>1</dateLatestMonth>
     </fieldCollectionDateGroup>
     <owners>
       <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(OwnerPerson171768469)'Owner Person 1'</owner>
@@ -48,7 +48,58 @@
       <contentActivity>Content Activity Text 1</contentActivity>
       <contentActivity>Content Activity Text 2</contentActivity>
     </contentActivities>
-    <objectProductionDateGroupList/>
+    <objectProductionDateGroupList>
+      <objectProductionDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2015</dateDisplayDate>
+        <dateLatestScalarValue>2016-01-01T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+        <dateEarliestSingleDay/>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear/>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth/>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2015-01-01T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </objectProductionDateGroup>
+      <objectProductionDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2016</dateDisplayDate>
+        <dateLatestScalarValue>2017-01-01T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+        <dateEarliestSingleDay/>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear/>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth/>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2016-01-01T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </objectProductionDateGroup>
+    </objectProductionDateGroupList>
     <contentConcepts>
       <contentConcept>urn:cspace:core.collectionspace.org:conceptauthorities:name(concept):item:name(SampleAssociatedConcept3136298375)'Sample Associated Concept'</contentConcept>
       <contentConcept>urn:cspace:core.collectionspace.org:conceptauthorities:name(material_ca):item:name(SampleMaterialConcept3974751537)'Sample Material Concept'</contentConcept>
@@ -504,7 +555,58 @@
         <contentObject>Content Object name text 2</contentObject>
       </contentObjectGroup>
     </contentObjectGroupList>
-    <ownershipDateGroupList/>
+    <ownershipDateGroupList>
+      <ownershipDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2015</dateDisplayDate>
+        <dateLatestScalarValue>2016-01-01T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+        <dateEarliestSingleDay/>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear/>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth/>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2015-01-01T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </ownershipDateGroup>
+      <ownershipDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2016</dateDisplayDate>
+        <dateLatestScalarValue>2017-01-01T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+        <dateEarliestSingleDay/>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear/>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth/>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2016-01-01T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </ownershipDateGroup>
+    </ownershipDateGroupList>
     <collection>permanent-collection</collection>
     <distinguishingFeatures>Distinguishing features Text</distinguishingFeatures>
     <objectProductionNote>Production note text.</objectProductionNote>
@@ -536,16 +638,16 @@
           <dateEarliestSingleYear>2001</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay>31</dateLatestDay>
+          <dateLatestDay>1</dateLatestDay>
           <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear>2001</dateLatestYear>
+          <dateLatestYear>2002</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2001-01-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth>12</dateLatestMonth>
+          <dateLatestMonth>1</dateLatestMonth>
         </inscriptionDescriptionDateGroup>
         <inscriptionDescription>Inscription description 1</inscriptionDescription>
         <inscriptionDescriptionInscriber>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(NonTextualInscriberPerson1581526319830)'Non Textual Inscriber Person'</inscriptionDescriptionInscriber>
@@ -569,16 +671,16 @@
           <dateEarliestSingleYear>2002</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay>31</dateLatestDay>
+          <dateLatestDay>1</dateLatestDay>
           <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear>2002</dateLatestYear>
+          <dateLatestYear>2003</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2002-01-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth>12</dateLatestMonth>
+          <dateLatestMonth>1</dateLatestMonth>
         </inscriptionDescriptionDateGroup>
         <inscriptionDescription>Inscription description 2</inscriptionDescription>
         <inscriptionDescriptionInscriber>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(NonTextualInscriberOrganization1581526430874)'Non Textual Inscriber Organization'</inscriptionDescriptionInscriber>
@@ -638,10 +740,9 @@
       </objectProductionOrganizationGroup>
       <objectProductionOrganizationGroup>
         <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
-        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581518588655)'Berkley Publising Group'</objectProductionOrganization>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581279667128)'Berkley Publising Group'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
-    <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
     <viewersContributionNote>Viewer's contribution note</viewersContributionNote>
     <publishToList>
       <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'omeka'</publishTo>
@@ -680,29 +781,29 @@
     <ownershipExchangePriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</ownershipExchangePriceCurrency>
     <contentDescription>Content Description Sample Text.</contentDescription>
     <contentDateGroup>
-      <scalarValuesComputed/>
+      <scalarValuesComputed>true</scalarValuesComputed>
       <dateEarliestSingleCertainty/>
       <dateEarliestSingleQualifierUnit/>
-      <dateDisplayDate/>
-      <dateLatestScalarValue/>
+      <dateDisplayDate>2015/05/11</dateDisplayDate>
+      <dateLatestScalarValue>2015-05-12T00:00:00.000Z</dateLatestScalarValue>
       <dateEarliestSingleQualifierValue/>
       <datePeriod/>
-      <dateLatestEra/>
-      <dateEarliestSingleDay/>
+      <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+      <dateEarliestSingleDay>11</dateEarliestSingleDay>
       <dateEarliestSingleQualifier/>
-      <dateEarliestSingleYear/>
+      <dateEarliestSingleYear>2015</dateEarliestSingleYear>
       <dateLatestCertainty/>
       <dateAssociation/>
-      <dateLatestDay/>
-      <dateEarliestSingleMonth/>
-      <dateEarliestSingleEra/>
-      <dateLatestYear/>
+      <dateLatestDay>12</dateLatestDay>
+      <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear>2015</dateLatestYear>
       <dateLatestQualifierUnit/>
       <dateNote/>
       <dateLatestQualifierValue/>
       <dateLatestQualifier/>
-      <dateEarliestScalarValue/>
-      <dateLatestMonth/>
+      <dateEarliestScalarValue>2015-05-11T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth>5</dateLatestMonth>
     </contentDateGroup>
     <objectStatusList>
       <objectStatus>copy</objectStatus>
