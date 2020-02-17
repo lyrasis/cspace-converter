@@ -1,6 +1,7 @@
 title,responsibleDepartment,owner,scopeNote,groupEarliestSingleDate,groupLatestDate
-"Group Title One",antiquities,"Lisa Anderson","scope note text",2000/01/01,2000/12/31
-"Group Title Two","decorative arts","Mary Ann Evans","scope note text",2001/01/01,2001/12/31
-"Group Title Three",ethnography,"Amandine Dupin","scope note text",2002/01/01,2002/12/31
-"Group Title Four",herpetology,"Karen Blixen","scope note text",2003/01/01,2003/12/31
-"Group Title Five",photographs,"Stephen King","scope note text",2004/01/01,2004/12/31
+Group Title One,antiquities,Lisa Anderson,scope note text,2000/01/01,2000/12/31
+Group Title Two,decorative arts,Mary Ann Evans,scope note text,2001/01/01,2001/12/31
+Group Title Three,ethnography,Amandine Dupin,scope note text,2002/01/01,2002/12/31
+Group Title Four,herpetology,Karen Blixen,scope note text,2003/01/01,2003/12/31
+Group Title Five,photographs,Stephen King,scope note text,2004/01/01,2004/12/31
+Group Title Six,,,,,

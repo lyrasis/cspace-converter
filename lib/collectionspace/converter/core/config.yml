@@ -147,7 +147,7 @@ registered_profiles:
       - title
     config:
       Group:
-        mapper: Group
+        mapper: CoreGroup
         identifier: title
         title: title
       Authorities:
