@@ -116,23 +116,20 @@ module CollectionSpace
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
           #objectProductionDateGroupList, objectProductionDateGroup
           CSXML::Helpers.add_date_group_list(
-            xml, 'objectProduction', attributes['objectproductiondate']
+            xml, 'objectProductionDate', attributes['objectproductiondate']
           )
-=begin
           #contentDateGroup
           CSXML::Helpers.add_date_group(
-            xml, 'content', attributes['contentdategroup']
+            xml, 'contentDate', CSDTP.parse(attributes['contentdategroup'])
           )
           #fieldCollectionDateGroup
           CSXML::Helpers.add_date_group(
-            xml, 'fieldCollection', attributes['fieldcollectiondategroup']
+            xml, 'fieldCollectionDate', CSDTP.parse(attributes['fieldcollectiondategroup'])
           )
-=end
           #ownershipDateGroupList, ownershipDateGroup
           CSXML::Helpers.add_date_group_list(
-            xml, 'ownership', attributes['ownershipdate']
+            xml, 'ownershipDate', attributes['ownershipdate']
           )
- 
           #textualInscriptionGroupList,textualInscriptionGroup 
           textualinscriptiondata = {
             'inscriptioncontent' => 'inscriptionContent',
