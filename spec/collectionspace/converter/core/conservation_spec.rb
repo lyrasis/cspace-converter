@@ -16,7 +16,8 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConservation do
     { xpath: '/document/*/otherPartyGroupList/otherPartyGroup[1]/otherParty', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/otherPartyGroupList/otherPartyGroup[2]/otherParty', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/otherPartyGroupList/otherPartyGroup/otherPartyNote',
-    { xpath: '/document/*/otherPartyGroupList/otherPartyGroup/otherPartyRole', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: '/document/*/otherPartyGroupList/otherPartyGroup[1]/otherPartyRole', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: '/document/*/otherPartyGroupList/otherPartyGroup[2]/otherPartyRole', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     { xpath: '/document/*/examinationGroupList/examinationGroup[1]/examinationStaff', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/examinationGroupList/examinationGroup[2]/examinationStaff', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/examinationGroupList/examinationGroup/examinationDate',
@@ -46,8 +47,21 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConservation do
     '/document/*/analysisResults',
   ]}
 
-  it "Maps attributes correctly" do
-    test_converter(doc, record, xpaths)
+  context 'For maximally populuated record' do
+    it "Maps attributes correctly" do
+      test_converter(doc, record, xpaths)
+    end
+  end
+  context 'For minimally populated record' do
+    let(:attributes) { get_attributes_by_row('core', 'conservation_core_all.csv', 22) }
+    let(:doc) { Nokogiri::XML(coreconservation.convert, nil, 'UTF-8') }
+    let(:record) { get_fixture('core_conservation_row22.xml') }
+    let(:xpath_required) {[
+      '/document/*/conservationNumber'
+    ]}
+
+    it 'Maps required field(s) correctly without falling over' do
+      test_converter(doc, record, xpath_required)
+    end
   end
 end
-
