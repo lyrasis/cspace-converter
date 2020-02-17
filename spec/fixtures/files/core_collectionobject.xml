@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2019-12-12T20:42:41.325Z</createdAt>
+    <createdAt>2020-02-13T08:52:49.878Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(35acbd5a-b01f-4099-9f96)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/35acbd5a-b01f-4099-9f96</uri>
-    <updatedAt>2019-12-12T20:58:19.405Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(082078f8-fd8f-4171-942b)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/082078f8-fd8f-4171-942b</uri>
+    <updatedAt>2020-02-13T09:10:32.626Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -36,150 +36,323 @@
       <dateEarliestScalarValue/>
       <dateLatestMonth/>
     </fieldCollectionDateGroup>
-    <owners/>
-    <fieldCollectionMethods/>
-    <contentActivities/>
-    <objectProductionDateGroupList>
-      <objectProductionDateGroup>
-        <scalarValuesComputed>true</scalarValuesComputed>
-        <dateEarliestSingleCertainty/>
-        <dateEarliestSingleQualifierUnit/>
-        <dateDisplayDate>2015-01-01</dateDisplayDate>
-        <dateLatestScalarValue>2016-01-01T00:00:00.000Z</dateLatestScalarValue>
-        <dateEarliestSingleQualifierValue/>
-        <datePeriod/>
-        <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
-        <dateEarliestSingleDay>1</dateEarliestSingleDay>
-        <dateEarliestSingleQualifier/>
-        <dateEarliestSingleYear>2015</dateEarliestSingleYear>
-        <dateLatestCertainty/>
-        <dateAssociation/>
-        <dateLatestDay>1</dateLatestDay>
-        <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
-        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-        <dateLatestYear>2016</dateLatestYear>
-        <dateLatestQualifierUnit/>
-        <dateNote/>
-        <dateLatestQualifierValue/>
-        <dateLatestQualifier/>
-        <dateEarliestScalarValue>2015-01-01T00:00:00.000Z</dateEarliestScalarValue>
-        <dateLatestMonth>1</dateLatestMonth>
-      </objectProductionDateGroup>
-    </objectProductionDateGroupList>
-    <contentConcepts/>
-    <assocEventPlaces/>
+    <owners>
+      <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(OwnerPerson171768469)'Owner Person 1'</owner>
+      <owner>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(OwnerOrganization11519906579)'Owner Organization 1'</owner>
+    </owners>
+    <fieldCollectionMethods>
+      <fieldCollectionMethod>urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(commissioned)'commissioned'</fieldCollectionMethod>
+      <fieldCollectionMethod>urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(excavation)'excavation'</fieldCollectionMethod>
+    </fieldCollectionMethods>
+    <contentActivities>
+      <contentActivity>Content Activity Text 1</contentActivity>
+      <contentActivity>Content Activity Text 2</contentActivity>
+    </contentActivities>
+    <objectProductionDateGroupList/>
+    <contentConcepts>
+      <contentConcept>urn:cspace:core.collectionspace.org:conceptauthorities:name(concept):item:name(SampleAssociatedConcept3136298375)'Sample Associated Concept'</contentConcept>
+      <contentConcept>urn:cspace:core.collectionspace.org:conceptauthorities:name(material_ca):item:name(SampleMaterialConcept3974751537)'Sample Material Concept'</contentConcept>
+    </contentConcepts>
+    <ownersContributionNote>Owner's contribution note Text.</ownersContributionNote>
+    <assocEventPlaces>
+      <assocEventPlace>Associated event place Text 1</assocEventPlace>
+      <assocEventPlace>Associated event place Text 2</assocEventPlace>
+    </assocEventPlaces>
     <phase>adult</phase>
-    <assocActivityGroupList/>
+    <assocEventName>Associated event Text</assocEventName>
+    <assocActivityGroupList>
+      <assocActivityGroup>
+        <assocActivity>Associated activity 1</assocActivity>
+        <assocActivityType>Associated activity Type 1</assocActivityType>
+        <assocActivityNote>Associated activity Note 1</assocActivityNote>
+      </assocActivityGroup>
+      <assocActivityGroup>
+        <assocActivity>Associated activity 2</assocActivity>
+        <assocActivityType>Associated activity Type 2</assocActivityType>
+        <assocActivityNote>Associated activity Note 2</assocActivityNote>
+      </assocActivityGroup>
+    </assocActivityGroupList>
+    <ownershipExchangeNote>Ownership Exchange Note Text</ownershipExchangeNote>
+    <ownershipExchangeMethod>exchange</ownershipExchangeMethod>
     <editionNumber>Two</editionNumber>
-    <objectProductionReasons/>
-    <assocPlaceGroupList/>
+    <fieldCollectionPlace>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(FieldcollectionplaceText1581505490126)'Field collection place Text'</fieldCollectionPlace>
+    <objectProductionReasons>
+      <objectProductionReason>Production Reason 1</objectProductionReason>
+      <objectProductionReason>Production Reason 2</objectProductionReason>
+    </objectProductionReasons>
+    <assocPlaceGroupList>
+      <assocPlaceGroup>
+        <assocPlaceNote>Associated place Note 1</assocPlaceNote>
+        <assocPlace>Associated place 1</assocPlace>
+        <assocPlaceType>Associated place Type 1</assocPlaceType>
+      </assocPlaceGroup>
+      <assocPlaceGroup>
+        <assocPlaceNote>Associated place Note 2</assocPlaceNote>
+        <assocPlace>Associated place 2</assocPlace>
+        <assocPlaceType>Associated place Type 2</assocPlaceType>
+      </assocPlaceGroup>
+    </assocPlaceGroupList>
+    <ageQualifier>urn:cspace:core.collectionspace.org:vocabularies:name(agequalifier):item:name(olderthan)'older than'</ageQualifier>
     <copyNumber>One</copyNumber>
     <objectNameList>
       <objectNameGroup>
-        <objectNameType/>
-        <objectNameSystem/>
+        <objectNameType>classified</objectNameType>
+        <objectNameSystem>art-and-architecture-thesaurus</objectNameSystem>
         <objectName>drawing</objectName>
-        <objectNameCurrency/>
-        <objectNameNote/>
-        <objectNameLevel/>
-        <objectNameLanguage/>
+        <objectNameCurrency>current</objectNameCurrency>
+        <objectNameNote>Object Name Note text 1</objectNameNote>
+        <objectNameLevel>group</objectNameLevel>
+        <objectNameLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic'</objectNameLanguage>
       </objectNameGroup>
       <objectNameGroup>
-        <objectNameType/>
-        <objectNameSystem/>
+        <objectNameType>taxonomic</objectNameType>
+        <objectNameSystem>nomenclature</objectNameSystem>
         <objectName>Sheet music</objectName>
-        <objectNameCurrency/>
-        <objectNameNote/>
-        <objectNameLevel/>
-        <objectNameLanguage/>
+        <objectNameCurrency>archaic</objectNameCurrency>
+        <objectNameNote>Object Name Note text 2</objectNameNote>
+        <objectNameLevel>subgroup</objectNameLevel>
+        <objectNameLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</objectNameLanguage>
       </objectNameGroup>
     </objectNameList>
     <styles>
       <style>fauve</style>
+      <style>style text</style>
     </styles>
+    <physicalDescription>Physical Description Text</physicalDescription>
     <materialGroupList>
       <materialGroup>
-        <materialName/>
+        <materialName>Material Name 1</materialName>
         <material>marker</material>
-        <materialComponent/>
-        <materialComponentNote/>
-        <materialSource/>
+        <materialComponent>Material component text 1</materialComponent>
+        <materialComponentNote>Material Component Note 1</materialComponentNote>
+        <materialSource>Material Source 1</materialSource>
       </materialGroup>
       <materialGroup>
-        <materialName/>
+        <materialName>Material Name 2</materialName>
         <material>paper</material>
-        <materialComponent/>
-        <materialComponentNote/>
-        <materialSource/>
+        <materialComponent>Material component text 2</materialComponent>
+        <materialComponentNote>Material Component Note 2</materialComponentNote>
+        <materialSource>Material Source 2</materialSource>
       </materialGroup>
     </materialGroupList>
-    <assocObjectGroupList/>
-    <fieldCollectors/>
+    <assocObjectGroupList>
+      <assocObjectGroup>
+        <assocObject>Associated object 1</assocObject>
+        <assocObjectNote>Associated object Note 1</assocObjectNote>
+        <assocObjectType>Associated object Type 1</assocObjectType>
+      </assocObjectGroup>
+      <assocObjectGroup>
+        <assocObject>Associated object 2</assocObject>
+        <assocObjectNote>Associated object Note 2</assocObjectNote>
+        <assocObjectType>Associated object Type 2</assocObjectType>
+      </assocObjectGroup>
+    </assocObjectGroupList>
+    <fieldCollectors>
+      <fieldCollector>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(FieldcollectorPerson1581505434404)'Field collector Person'</fieldCollector>
+      <fieldCollector>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(FieldcollectorOrganization1581505445310)'Field collector Organization'</fieldCollector>
+    </fieldCollectors>
     <responsibleDepartments>
       <responsibleDepartment>prints-drawings</responsibleDepartment>
+      <responsibleDepartment>decorative-arts</responsibleDepartment>
     </responsibleDepartments>
     <textualInscriptionGroupList>
       <textualInscriptionGroup>
-        <inscriptionContentScript/>
+        <inscriptionContentScript>palmer-method</inscriptionContentScript>
         <inscriptionContentInscriber>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</inscriptionContentInscriber>
-        <inscriptionContentTransliteration/>
-        <inscriptionContentType/>
+        <inscriptionContentTransliteration>Inscription content Transliteration 1</inscriptionContentTransliteration>
+        <inscriptionContentType>brand</inscriptionContentType>
         <inscriptionContentDateGroup>
-          <scalarValuesComputed/>
+          <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate/>
-          <dateLatestScalarValue/>
+          <dateDisplayDate>2003</dateDisplayDate>
+          <dateLatestScalarValue>2004-01-01T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
-          <dateEarliestSingleDay/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear/>
+          <dateEarliestSingleYear>2003</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
-          <dateEarliestSingleMonth/>
-          <dateEarliestSingleEra/>
-          <dateLatestYear/>
+          <dateLatestDay>1</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2004</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
-          <dateEarliestScalarValue/>
-          <dateLatestMonth/>
+          <dateEarliestScalarValue>2003-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>1</dateLatestMonth>
         </inscriptionContentDateGroup>
-        <inscriptionContent/>
-        <inscriptionContentTranslation/>
-        <inscriptionContentInterpretation/>
-        <inscriptionContentPosition/>
-        <inscriptionContentLanguage/>
+        <inscriptionContent>Inscription content Text 1</inscriptionContent>
+        <inscriptionContentTranslation>Inscription content Translation 1</inscriptionContentTranslation>
+        <inscriptionContentInterpretation>Interpretation Text 1</inscriptionContentInterpretation>
+        <inscriptionContentPosition>front</inscriptionContentPosition>
+        <inscriptionContentLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic'</inscriptionContentLanguage>
         <inscriptionContentMethod>incised</inscriptionContentMethod>
+      </textualInscriptionGroup>
+      <textualInscriptionGroup>
+        <inscriptionContentScript>rustic-capitals</inscriptionContentScript>
+        <inscriptionContentInscriber>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(InscriberOrg528118632)'Inscriber Org'</inscriptionContentInscriber>
+        <inscriptionContentTransliteration>Inscription content Transliteration 2</inscriptionContentTransliteration>
+        <inscriptionContentType>decoration</inscriptionContentType>
+        <inscriptionContentDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2004</dateDisplayDate>
+          <dateLatestScalarValue>2005-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2004</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>1</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2005</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2004-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>1</dateLatestMonth>
+        </inscriptionContentDateGroup>
+        <inscriptionContent>Inscription content Text 2</inscriptionContent>
+        <inscriptionContentTranslation>Inscription content Translation 2</inscriptionContentTranslation>
+        <inscriptionContentInterpretation>Interpretation Text 2</inscriptionContentInterpretation>
+        <inscriptionContentPosition>outside</inscriptionContentPosition>
+        <inscriptionContentLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(hye)'Armenian'</inscriptionContentLanguage>
+        <inscriptionContentMethod>Inscription content Method 2</inscriptionContentMethod>
       </textualInscriptionGroup>
     </textualInscriptionGroupList>
     <objectNumber>20CS.001.0001</objectNumber>
     <fieldColEventNames>
       <fieldColEventName>Kindergarten</fieldColEventName>
+      <fieldColEventName>Field collection event name Text 2</fieldColEventName>
     </fieldColEventNames>
-    <colors/>
-    <contentScripts/>
+    <ownersPersonalExperience>Owner's personal experience Text.</ownersPersonalExperience>
+    <colors>
+      <color>red</color>
+      <color>blue</color>
+    </colors>
+    <contentScripts>
+      <contentScript>gothic-script</contentScript>
+      <contentScript>palmer-method</contentScript>
+    </contentScripts>
+    <ownershipAccess>limited</ownershipAccess>
     <objectProductionPlaceGroupList>
       <objectProductionPlaceGroup>
-        <objectProductionPlaceRole/>
+        <objectProductionPlaceRole>Production Place Role Text 1</objectProductionPlaceRole>
         <objectProductionPlace>Louisville, KY</objectProductionPlace>
       </objectProductionPlaceGroup>
+      <objectProductionPlaceGroup>
+        <objectProductionPlaceRole>Production Place Role Text 2</objectProductionPlaceRole>
+        <objectProductionPlace>Production Place 2</objectProductionPlace>
+      </objectProductionPlaceGroup>
     </objectProductionPlaceGroupList>
-    <referenceGroupList/>
-    <assocDateGroupList/>
+    <referenceGroupList>
+      <referenceGroup>
+        <reference>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(ReferenceInforText11581500381094)'Reference Infor Text 1'</reference>
+        <referenceNote>Reference Infor Note 1</referenceNote>
+      </referenceGroup>
+      <referenceGroup>
+        <reference>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(ReferenceInforText21581500388903)'Reference Infor Text 2'</reference>
+        <referenceNote>Reference Infor Note 2</referenceNote>
+      </referenceGroup>
+    </referenceGroupList>
+    <assocDateGroupList>
+      <assocDateGroup>
+        <assocDateNote>Associated date Note 1</assocDateNote>
+        <assocStructuredDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2000</dateDisplayDate>
+          <dateLatestScalarValue>2001-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2000</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>1</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2001</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2000-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>1</dateLatestMonth>
+        </assocStructuredDateGroup>
+        <assocDateType>Associated date Type 1</assocDateType>
+      </assocDateGroup>
+      <assocDateGroup>
+        <assocDateNote>Associated date Note 2</assocDateNote>
+        <assocStructuredDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2001</dateDisplayDate>
+          <dateLatestScalarValue>2002-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2001</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>1</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2002</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2001-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>1</dateLatestMonth>
+        </assocStructuredDateGroup>
+        <assocDateType>Associated date Type 2</assocDateType>
+      </assocDateGroup>
+    </assocDateGroupList>
     <fieldCollectionFeature>Field collection feature text.</fieldCollectionFeature>
     <briefDescriptions>
       <briefDescription>Ut consequat semper viverra nam libero justo laoreet sit amet cursus sit amet dictum sit.</briefDescription>
+      <briefDescription>Gravida cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus mauris vitae.</briefDescription>
     </briefDescriptions>
+    <fieldCollectionNumber>Field collection number Text</fieldCollectionNumber>
     <sex>male</sex>
-    <contentLanguages/>
+    <contentLanguages>
+      <contentLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic'</contentLanguage>
+      <contentLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(zho)'Chinese'</contentLanguage>
+    </contentLanguages>
+    <ownershipPlace>Ownership Place Text</ownershipPlace>
     <recordStatus>approved</recordStatus>
     <numberOfObjects>1</numberOfObjects>
-    <assocPersonGroupList/>
+    <assocPersonGroupList>
+      <assocPersonGroup>
+        <assocPersonNote>Associated person Note 1</assocPersonNote>
+        <assocPersonType>Associated person type 1</assocPersonType>
+        <assocPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Associatedperson11581451165611)'Associated person 1'</assocPerson>
+      </assocPersonGroup>
+      <assocPersonGroup>
+        <assocPersonNote>Associated person Note 2</assocPersonNote>
+        <assocPersonType>Associated person type 2</assocPersonType>
+        <assocPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Associatedperson21581451172541)'Associated person 2'</assocPerson>
+      </assocPersonGroup>
+    </assocPersonGroupList>
+    <viewersPersonalResponse>Viewer's personal response Text</viewersPersonalResponse>
     <titleGroupList>
       <titleGroup>
         <titleTranslationSubGroupList>
@@ -192,7 +365,7 @@
             <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spa)'Spanish'</titleTranslationLanguage>
           </titleTranslationSubGroup>
         </titleTranslationSubGroupList>
-        <titleType/>
+        <titleType>collection</titleType>
         <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
         <title>A Man</title>
       </titleGroup>
@@ -207,15 +380,48 @@
             <titleTranslationLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(deu)'German'</titleTranslationLanguage>
           </titleTranslationSubGroup>
         </titleTranslationSubGroupList>
-        <titleType/>
+        <titleType>generic</titleType>
         <titleLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</titleLanguage>
         <title>A Woman</title>
       </titleGroup>
     </titleGroupList>
+    <objectHistoryNote>Object History Note Text.</objectHistoryNote>
     <fieldCollectionNote>Field collection note text.</fieldCollectionNote>
-    <assocConceptGroupList/>
-    <usageGroupList/>
-    <assocCulturalContextGroupList/>
+    <assocEventNote>Associated event note Text</assocEventNote>
+    <assocConceptGroupList>
+      <assocConceptGroup>
+        <assocConcept>urn:cspace:core.collectionspace.org:conceptauthorities:name(concept):item:name(Associatedconcept11581450962683)'Associated concept 1'</assocConcept>
+        <assocConceptNote>Associated concept Note 1</assocConceptNote>
+        <assocConceptType>Associated concept Type 1</assocConceptType>
+      </assocConceptGroup>
+      <assocConceptGroup>
+        <assocConcept>urn:cspace:core.collectionspace.org:conceptauthorities:name(concept):item:name(Associatedconcept21581450971020)'Associated concept 2'</assocConcept>
+        <assocConceptNote>Associated concept Note 2</assocConceptNote>
+        <assocConceptType>Associated concept Type 2</assocConceptType>
+      </assocConceptGroup>
+    </assocConceptGroupList>
+    <usageGroupList>
+      <usageGroup>
+        <usageNote>Usage Note Text 1</usageNote>
+        <usage>Usage 1</usage>
+      </usageGroup>
+      <usageGroup>
+        <usageNote>Usage Note Text 2</usageNote>
+        <usage>Usage 2</usage>
+      </usageGroup>
+    </usageGroupList>
+    <assocCulturalContextGroupList>
+      <assocCulturalContextGroup>
+        <assocCulturalContextNote>Associated cultural affinity Note 1</assocCulturalContextNote>
+        <assocCulturalContext>Associated cultural affinity 1</assocCulturalContext>
+        <assocCulturalContextType>Associated cultural affinity Type 1</assocCulturalContextType>
+      </assocCulturalContextGroup>
+      <assocCulturalContextGroup>
+        <assocCulturalContextNote>Associated cultural affinity Note 2</assocCulturalContextNote>
+        <assocCulturalContext>Associated cultural affinity 2</assocCulturalContext>
+        <assocCulturalContextType>Associated cultural affinity Type 2</assocCulturalContextType>
+      </assocCulturalContextGroup>
+    </assocCulturalContextGroupList>
     <otherNumberList>
       <otherNumber>
         <numberType>lender</numberType>
@@ -226,6 +432,7 @@
         <numberValue>98765</numberValue>
       </otherNumber>
     </otherNumberList>
+    <ownersPersonalResponse>Owner's personal response Text.</ownersPersonalResponse>
     <objectProductionPeopleGroupList>
       <objectProductionPeopleGroup>
         <objectProductionPeople>Sample Culture</objectProductionPeople>
@@ -239,12 +446,25 @@
     <assocPeopleGroupList>
       <assocPeopleGroup>
         <assocPeople>Native American</assocPeople>
-        <assocPeopleNote/>
+        <assocPeopleNote>Associated people Note 1</assocPeopleNote>
         <assocPeopleType>assocPeopleTypeOne</assocPeopleType>
       </assocPeopleGroup>
+      <assocPeopleGroup>
+        <assocPeople>American</assocPeople>
+        <assocPeopleNote>Associated people Note 2</assocPeopleNote>
+        <assocPeopleType>assocPeopleTypetwo</assocPeopleType>
+      </assocPeopleGroup>
     </assocPeopleGroupList>
-    <assocEventOrganizations/>
-    <contentPeoples/>
+    <ageUnit>months</ageUnit>
+    <assocEventOrganizations>
+      <assocEventOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(Associatedeventorganization11581451339510)'Associated event organization 1'</assocEventOrganization>
+      <assocEventOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(Associatedeventorganization21581451346793)'Associated event organization 2'</assocEventOrganization>
+    </assocEventOrganizations>
+    <assocEventNameType>Associated event Type Text</assocEventNameType>
+    <contentPeoples>
+      <contentPeople>Content People Text 1</contentPeople>
+      <contentPeople>Content People Text 2</contentPeople>
+    </contentPeoples>
     <measuredPartGroupList>
       <measuredPartGroup>
         <dimensionSummary>8.5 x 11</dimensionSummary>
@@ -252,67 +472,213 @@
         <dimensionSubGroupList>
           <dimensionSubGroup>
             <dimensionNote/>
-            <valueQualifier/>
-            <valueDate/>
+            <valueQualifier>Qualifier Text 1; Qualifier Text 2</valueQualifier>
+            <valueDate>2000-02-02T00:00:00.000Z</valueDate>
             <measuredBy/>
             <dimension>height</dimension>
             <value>8.5</value>
-            <measurementMethod/>
+            <measurementMethod>sliding calipers;measuring tape (cloth)</measurementMethod>
             <measurementUnit>inches</measurementUnit>
           </dimensionSubGroup>
           <dimensionSubGroup>
             <dimensionNote/>
-            <valueQualifier/>
-            <valueDate/>
+            <valueQualifier>Qualifier Text 1; Qualifier Text 2</valueQualifier>
+            <valueDate>2000-02-02T00:00:00.000Z</valueDate>
             <measuredBy/>
             <dimension>width</dimension>
             <value>11</value>
-            <measurementMethod/>
+            <measurementMethod>sliding calipers;measuring tape (cloth)</measurementMethod>
             <measurementUnit>inches</measurementUnit>
           </dimensionSubGroup>
         </dimensionSubGroupList>
       </measuredPartGroup>
     </measuredPartGroupList>
-    <contentObjectGroupList/>
+    <ownershipExchangePriceValue>145</ownershipExchangePriceValue>
+    <contentObjectGroupList>
+      <contentObjectGroup>
+        <contentObjectType>furniture</contentObjectType>
+        <contentObject>Content Object name text 1</contentObject>
+      </contentObjectGroup>
+      <contentObjectGroup>
+        <contentObjectType>food</contentObjectType>
+        <contentObject>Content Object name text 2</contentObject>
+      </contentObjectGroup>
+    </contentObjectGroupList>
     <ownershipDateGroupList/>
     <collection>permanent-collection</collection>
+    <distinguishingFeatures>Distinguishing features Text</distinguishingFeatures>
     <objectProductionNote>Production note text.</objectProductionNote>
     <technicalAttributeGroupList>
       <technicalAttributeGroup>
         <technicalAttribute>record-speed</technicalAttribute>
-        <technicalAttributeMeasurementUnit/>
-        <technicalAttributeMeasurement/>
+        <technicalAttributeMeasurementUnit>rpm</technicalAttributeMeasurementUnit>
+        <technicalAttributeMeasurement>metal</technicalAttributeMeasurement>
+      </technicalAttributeGroup>
+      <technicalAttributeGroup>
+        <technicalAttribute>magnetic-tape-type</technicalAttribute>
+        <technicalAttributeMeasurementUnit>rpm</technicalAttributeMeasurementUnit>
+        <technicalAttributeMeasurement>78</technicalAttributeMeasurement>
       </technicalAttributeGroup>
     </technicalAttributeGroupList>
-    <nonTextualInscriptionGroupList/>
-    <assocEventPersons/>
+    <nonTextualInscriptionGroupList>
+      <nonTextualInscriptionGroup>
+        <inscriptionDescriptionDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2001</dateDisplayDate>
+          <dateLatestScalarValue>2002-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2001</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>31</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2001</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2001-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>12</dateLatestMonth>
+        </inscriptionDescriptionDateGroup>
+        <inscriptionDescription>Inscription description 1</inscriptionDescription>
+        <inscriptionDescriptionInscriber>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(NonTextualInscriberPerson1581526319830)'Non Textual Inscriber Person'</inscriptionDescriptionInscriber>
+        <inscriptionDescriptionInterpretation>Non Textual Inscription Interpretation 1</inscriptionDescriptionInterpretation>
+        <inscriptionDescriptionPosition>verso</inscriptionDescriptionPosition>
+        <inscriptionDescriptionMethod>Non Textual Inscription Method 1</inscriptionDescriptionMethod>
+        <inscriptionDescriptionType>estate-stamp</inscriptionDescriptionType>
+      </nonTextualInscriptionGroup>
+      <nonTextualInscriptionGroup>
+        <inscriptionDescriptionDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2002</dateDisplayDate>
+          <dateLatestScalarValue>2003-01-01T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>1</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2002</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay>31</dateLatestDay>
+          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2002</dateLatestYear>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2002-01-01T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>12</dateLatestMonth>
+        </inscriptionDescriptionDateGroup>
+        <inscriptionDescription>Inscription description 2</inscriptionDescription>
+        <inscriptionDescriptionInscriber>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(NonTextualInscriberOrganization1581526430874)'Non Textual Inscriber Organization'</inscriptionDescriptionInscriber>
+        <inscriptionDescriptionInterpretation>Non Textual Inscription Interpretation 2</inscriptionDescriptionInterpretation>
+        <inscriptionDescriptionPosition>base</inscriptionDescriptionPosition>
+        <inscriptionDescriptionMethod>Non Textual Inscription Method 2</inscriptionDescriptionMethod>
+        <inscriptionDescriptionType>maker's-mark</inscriptionDescriptionType>
+      </nonTextualInscriptionGroup>
+    </nonTextualInscriptionGroupList>
+    <assocEventPersons>
+      <assocEventPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Associatedeventperson11581451304462)'Associated event person 1'</assocEventPerson>
+      <assocEventPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Associatedeventperson21581451314243)'Associated event person 2'</assocEventPerson>
+    </assocEventPersons>
+    <ownershipCategory>company</ownershipCategory>
     <objectProductionPersonGroupList>
       <objectProductionPersonGroup>
         <objectProductionPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</objectProductionPerson>
         <objectProductionPersonRole>artist</objectProductionPersonRole>
       </objectProductionPersonGroup>
+      <objectProductionPersonGroup>
+        <objectProductionPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RichardJAnobile1581279393239)'Richard J. Anobile'</objectProductionPerson>
+        <objectProductionPersonRole>author</objectProductionPersonRole>
+      </objectProductionPersonGroup>
     </objectProductionPersonGroupList>
+    <viewersRole>Viewer's role Text</viewersRole>
     <contentPersons>
       <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(InokeAloha590526035)'Inoke Aloha'</contentPerson>
+      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</contentPerson>
     </contentPersons>
-    <fieldCollectionSources/>
-    <contentEventNameGroupList/>
-    <ownersReferences/>
-    <viewersReferences/>
+    <fieldCollectionSources>
+      <fieldCollectionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Fieldcollectionsource11581505467183)'Field collection source 1'</fieldCollectionSource>
+      <fieldCollectionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Fieldcollectionsource21581505478121)'Field collection source 2'</fieldCollectionSource>
+    </fieldCollectionSources>
+    <contentEventNameGroupList>
+      <contentEventNameGroup>
+        <contentEventName>Sample Event 1</contentEventName>
+        <contentEventNameType>Sample Event type 1</contentEventNameType>
+      </contentEventNameGroup>
+      <contentEventNameGroup>
+        <contentEventName>Sample Event 2</contentEventName>
+        <contentEventNameType>Sample Event type 2</contentEventNameType>
+      </contentEventNameGroup>
+    </contentEventNameGroupList>
+    <ownersReferences>
+      <ownersReference>Owner's reference Text 1</ownersReference>
+      <ownersReference>Owner's reference Text 2</ownersReference>
+    </ownersReferences>
+    <viewersReferences>
+      <viewersReference>Viewer's reference Text 1</viewersReference>
+      <viewersReference>Viewer's reference Text 2</viewersReference>
+    </viewersReferences>
+    <contentNote>Content Note Text</contentNote>
     <objectProductionOrganizationGroupList>
       <objectProductionOrganizationGroup>
         <objectProductionOrganizationRole>distributor</objectProductionOrganizationRole>
-        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation3241207369)'Admiral Corporation'</objectProductionOrganization>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation1581518578183)'Admiral Corporation'</objectProductionOrganization>
+      </objectProductionOrganizationGroup>
+      <objectProductionOrganizationGroup>
+        <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581518588655)'Berkley Publising Group'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
     <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
+    <viewersContributionNote>Viewer's contribution note</viewersContributionNote>
     <publishToList>
       <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'omeka'</publishTo>
+      <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(dpla)'DPLA'</publishTo>
     </publishToList>
-    <assocOrganizationGroupList/>
-    <contentOrganizations/>
-    <contentPlaces/>
-    <contentOtherGroupList/>
+    <assocOrganizationGroupList>
+      <assocOrganizationGroup>
+        <assocOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(Associatedorganization11581451043755)'Associated organization 1'</assocOrganization>
+        <assocOrganizationType>Associated organization Type 1</assocOrganizationType>
+        <assocOrganizationNote>Associated organization Note 1</assocOrganizationNote>
+      </assocOrganizationGroup>
+      <assocOrganizationGroup>
+        <assocOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(Associatedorganization21581451049846)'Associated organization 2'</assocOrganization>
+        <assocOrganizationType>Associated organization Type 2</assocOrganizationType>
+        <assocOrganizationNote>Associated organization Note 2</assocOrganizationNote>
+      </assocOrganizationGroup>
+    </assocOrganizationGroupList>
+    <contentOrganizations>
+      <contentOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(SampleOrganization3230669631)'Sample Organization'</contentOrganization>
+      <contentOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(SampleOrganization22058716675)'Sample Organization 2'</contentOrganization>
+    </contentOrganizations>
+    <contentPlaces>
+      <contentPlace>Content Place Text 1</contentPlace>
+      <contentPlace>Content Place Text 2</contentPlace>
+    </contentPlaces>
+    <contentOtherGroupList>
+      <contentOtherGroup>
+        <contentOtherType>Other Type 1</contentOtherType>
+        <contentOther>Other Name Text 1</contentOther>
+      </contentOtherGroup>
+      <contentOtherGroup>
+        <contentOtherType>Other Type 2</contentOtherType>
+        <contentOther>Other Name Text 2</contentOther>
+      </contentOtherGroup>
+    </contentOtherGroupList>
+    <ownershipExchangePriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</ownershipExchangePriceCurrency>
+    <contentDescription>Content Description Sample Text.</contentDescription>
     <contentDateGroup>
       <scalarValuesComputed/>
       <dateEarliestSingleCertainty/>
@@ -340,35 +706,54 @@
     </contentDateGroup>
     <objectStatusList>
       <objectStatus>copy</objectStatus>
+      <objectStatus>forgery</objectStatus>
     </objectStatusList>
     <objectComponentGroupList>
       <objectComponentGroup>
-        <objectComponentInformation/>
+        <objectComponentInformation>Object Information Component Information Text 1</objectComponentInformation>
         <objectComponentName>blade</objectComponentName>
+      </objectComponentGroup>
+      <objectComponentGroup>
+        <objectComponentInformation>Object Information Component Information Text 2</objectComponentInformation>
+        <objectComponentName>handle</objectComponentName>
       </objectComponentGroup>
     </objectComponentGroupList>
     <comments>
       <comment>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</comment>
+      <comment>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</comment>
     </comments>
-    <assocEventPeoples/>
+    <assocEventPeoples>
+      <assocEventPeople>Associated event people text 1</assocEventPeople>
+      <assocEventPeople>Associated event people text 2</assocEventPeople>
+    </assocEventPeoples>
     <techniqueGroupList>
       <techniqueGroup>
-        <techniqueType/>
+        <techniqueType>Technique Type Text 1</techniqueType>
         <technique>pen and ink</technique>
+      </techniqueGroup>
+      <techniqueGroup>
+        <techniqueType>Technique Type Text 2</techniqueType>
+        <technique>lithography</technique>
       </techniqueGroup>
     </techniqueGroupList>
     <inventoryStatusList>
       <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(accessioned)'accessioned'</inventoryStatus>
       <inventoryStatus>urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(destroyed)'destroyed'</inventoryStatus>
     </inventoryStatusList>
-    <contentPositions/>
+    <viewersPersonalExperience>Viewer's personal experience Text</viewersPersonalExperience>
+    <contentPositions>
+      <contentPosition>back</contentPosition>
+      <contentPosition>bottom</contentPosition>
+    </contentPositions>
+    <age>21</age>
     <forms>
       <form>dry</form>
+      <form>thin-section</form>
     </forms>
   </ns2:collectionobjects_common>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
     <account>
-      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
       <screenName>Administrator</screenName>
       <userId>admin@core.collectionspace.org</userId>
       <tenantId>1</tenantId>
