@@ -36,7 +36,6 @@ module CollectionSpace
             'ownershipexchangepricecurrency' => 'ownershipExchangePriceCurrency',
             'ownershipexchangepricevalue' => 'ownershipExchangePriceValue',
             'contentdescription' => 'contentDescription',
-            'contentdategroup' => 'contentDateGroup',
             'contentnote' => 'contentNote',
             'assoceventname' => 'assocEventName',
             'assoceventnametype' => 'assocEventNameType',
@@ -48,15 +47,12 @@ module CollectionSpace
             'viewerspersonalexperience' => 'viewersPersonalExperience',
             'viewerspersonalresponse' => 'viewersPersonalResponse',
             'viewerscontributionnote' => 'viewersContributionNote',
-            'fieldcollectiondategroup' => 'fieldCollectionDateGroup',
             'fieldcollectionplace' => 'fieldCollectionPlace',
             'fieldcollectionnumber' => 'fieldCollectionNumber'
           }
           pairs_transforms = {
             'agequalifier' => {'vocab' => 'agequalifier'},
             'ownershipexchangepricecurrency' => {'vocab' => 'currency'},
-            'contentdategroup' => {'special' => 'structured_date'},
-            'fieldcollectiondategroup' => {'special' => 'structured_date'},
             'fieldcollectionplace' => {'authority' => ['placeauthorities', 'place']}
           }
           CSXML::Helpers.add_title(xml, attributes)
@@ -77,7 +73,6 @@ module CollectionSpace
             'objectproductiondate' => ['objectProductionDateGroupList', 'objectProductionDateGroup'],
             'ownerperson' => ['owners', 'owner'],
             'ownerorganization' => ['owners', 'owner'],
-            'ownershipdate' => ['ownershipDateGroupList', 'ownershipDateGroup'],
             'contentpeople' => ['contentPeoples', 'contentPeople'],
             'contentplace' => ['contentPlaces', 'contentPlace'],
             'contentscript' => ['contentScripts', 'contentScript'],
@@ -105,7 +100,6 @@ module CollectionSpace
             'objectproductiondate' => {'special' => 'structured_date'},
             'ownerperson' => {'authority' => ['personauthorities', 'person']},
             'ownerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'ownershipdate' => {'special' => 'structured_date'},
             'contentorganization' => {'authority' => ['orgauthorities', 'organization']},
             'contentlanguage' => {'vocab' => 'languages'},
             'contentconceptassociated' => {'authority' => ['conceptauthorities', 'concept']},
@@ -120,22 +114,25 @@ module CollectionSpace
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           #measuredPartGroupList, measuredPartGroup 
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
-          #objectProductionDateGroupList, objectProductionDateGroup 
+          #objectProductionDateGroupList, objectProductionDateGroup
+          CSXML::Helpers.add_date_group_list(
+            xml, 'objectProduction', attributes['objectproductiondate']
+          )
 =begin
-          objectproductiondate_data = {
-            'objectproductiondate' => 'objectProductionDate',
-          }
-          objectproductiondate_transforms = {
-            'objectproductiondate' => {'special' => 'structured_date'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'objectProductionDate',
-            objectproductiondate_data,
-            objectproductiondate_transforms
+          #contentDateGroup
+          CSXML::Helpers.add_date_group(
+            xml, 'content', attributes['contentdategroup']
+          )
+          #fieldCollectionDateGroup
+          CSXML::Helpers.add_date_group(
+            xml, 'fieldCollection', attributes['fieldcollectiondategroup']
           )
 =end
+          #ownershipDateGroupList, ownershipDateGroup
+          CSXML::Helpers.add_date_group_list(
+            xml, 'ownership', attributes['ownershipdate']
+          )
+ 
           #textualInscriptionGroupList,textualInscriptionGroup 
           textualinscriptiondata = {
             'inscriptioncontent' => 'inscriptionContent',
