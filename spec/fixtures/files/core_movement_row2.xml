@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="movements">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-18T12:28:24.258Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:movements:id(d82ddd68-62db-4c3e-83d9)</refName>
+    <uri>/movements/d82ddd68-62db-4c3e-83d9</uri>
+    <updatedAt>2020-02-18T12:28:24.258Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:movements_common xmlns:ns2="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <inventoryContactList/>
+    <movementMethods/>
+    <currentLocation>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(AR2U3Shelf11235615889)'A:R2:U3:Shelf 1'</currentLocation>
+  </ns2:movements_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
