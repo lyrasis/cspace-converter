@@ -1,0 +1,32 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="conditionchecks">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-18T08:37:35.388Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:conditionchecks:id(754f9083-18d2-4b1a-aa8e)</refName>
+    <uri>/conditionchecks/754f9083-18d2-4b1a-aa8e</uri>
+    <updatedAt>2020-02-18T08:37:35.388Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:conditionchecks_common xmlns:ns2="http://collectionspace.org/services/conditioncheck" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <salvagePriorityCodeGroupList/>
+    <conditionCheckGroupList/>
+    <conditionCheckRefNumber>CC2000.021</conditionCheckRefNumber>
+    <legalReqsHeldGroupList/>
+    <techAssessmentGroupList/>
+    <hazardGroupList/>
+    <completenessGroupList/>
+    <envConditionNoteGroupList/>
+  </ns2:conditionchecks_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
