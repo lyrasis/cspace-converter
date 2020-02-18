@@ -72,8 +72,21 @@ RSpec.describe CollectionSpace::Converter::Core::CoreIntake do
     '/document/*/locationDate',
   ]}
 
-  it "Maps attributes correctly" do
-    test_converter(doc, record, xpaths)
+  context 'For maximally populuated record' do
+    it "Maps attributes correctly" do
+      test_converter(doc, record, xpaths)
+    end
+  end
+  context 'For minimally populated record' do
+    let(:attributes) { get_attributes_by_row('core', 'intake_core_all.csv', 22) }
+    let(:doc) { Nokogiri::XML(coreintake.convert, nil, 'UTF-8') }
+    let(:record) { get_fixture('core_intakes_row22.xml') }
+    let(:xpath_required) {[
+      '/document/*/entryNumber'
+    ]}
+
+    it 'Maps required field(s) correctly without falling over' do
+      test_converter(doc, record, xpath_required)
+    end
   end
 end
-
