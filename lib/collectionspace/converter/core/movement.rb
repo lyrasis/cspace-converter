@@ -9,8 +9,8 @@ module CollectionSpace
           end
         end
 
-         def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'movementreferencenumber' => 'movementReferenceNumber',
             'normallocationstorage' => 'normalLocation',
             'normallocationorganization' => 'normalLocation',
@@ -30,17 +30,6 @@ module CollectionSpace
             'nextinventorydate' => 'nextInventoryDate',
             'inventorynote' => 'inventoryNote'
           }
-        end
-
-        def self.repeats
-          { 
-            'movementmethod' => ['movementMethods', 'movementMethod'],
-            'inventorycontact' => ['inventoryContactList', 'inventoryContact']
-          }
-        end
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreMovement.pairs,
           pairstransforms = {
             'normallocationstorage' => {'authority' => ['locationauthorities', 'location']},
             'normallocationorganization' => {'authority' => ['orgauthorities', 'organization']},
@@ -52,11 +41,16 @@ module CollectionSpace
             'inventorydate' => {'special' => 'unstructured_date_stamp'},
             'nextinventorydate' => {'special' => 'unstructured_date_stamp'},
             'movementcontact' => {'authority' => ['personauthorities', 'person']}
-          })
-          CSXML::Helpers.add_repeats(xml, attributes, CoreMovement.repeats,
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+          repeats = {
+            'movementmethod' => ['movementMethods', 'movementMethod'],
+            'inventorycontact' => ['inventoryContactList', 'inventoryContact'] 
+          }
           repeatstransforms = {
             'inventorycontact' => {'authority' => ['personauthorities', 'person']}
-          })
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
         end
       end
     end
