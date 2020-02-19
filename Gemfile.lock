@@ -138,6 +138,9 @@ GEM
     minitest (5.13.0)
     mongo (2.10.2)
       bson (>= 4.4.2, < 5.0.0)
+    mongo_session_store (3.2.0)
+      actionpack (>= 4.0)
+      mongo (~> 2.0)
     mongoid (5.1.6)
       activemodel (~> 4.0)
       mongo (~> 2.1)
@@ -284,6 +287,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-mongoid
+  mongo_session_store
   mongoid (~> 5.1.0)
   mongoid-locker
   pry-rails
