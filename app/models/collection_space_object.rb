@@ -110,6 +110,8 @@ class CollectionSpaceObject
   end
 
   def ping
+    return if ENV['CSPACE_CONVERTER_BASE_URI'] =~ /localhost/
+
     if Lookup.async?
       PingJob.perform_later(id.to_s)
     else
