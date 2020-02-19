@@ -12,10 +12,13 @@ namespace :import do
       )
 
       SmarterCSV.process(File.open(config[:filename], 'r:bom|utf-8'), {
-          chunk_size: 100,
-          convert_values_to_numeric: false,
-          required_headers: Lookup.profile_headers(config[:profile])
-        }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+        auto_row_sep_chars: 10_000,
+        chunk_size: 100,
+        convert_values_to_numeric: false,
+        required_headers: Lookup.profile_headers(config[:profile]),
+        # TODO: evaluate performance with large csv
+        row_sep: :auto
+      }.merge(Rails.application.config.csv_parser_options)) do |chunk|
         job_class.perform_now(config, chunk)
       end
       Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."
