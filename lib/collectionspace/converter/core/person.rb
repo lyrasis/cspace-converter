@@ -26,44 +26,66 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes, config)
+          pairs = {
+            'birthplace' => 'birthPlace',
+            'deathplace' => 'deathPlace',
+            'gender' => 'gender',
+            'bionote' => 'bioNote',
+            'namenote' => 'nameNote'
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs)
+    
+          repeats = { 
+            'group' => ['groups', 'group'],
+            'nationality' => ['nationalities', 'nationality'],
+            'occupation' => ['occupations', 'occupation'],
+            'schoolorstyle' => ['schoolsOrStyles', 'schoolOrStyle'],
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats)
+
+
           CSXML.add xml, 'shortIdentifier', config[:identifier]
-          CSXML.add_group_list xml, 'personTerm', [
-            {
-              "title" => attributes["title"],
-              "initials" => attributes["initials"],
-              "foreName" => attributes["forename"],
-              "surName" => attributes["surname"],
-              "nameAdditions" => attributes["nameadditions"],
-              "middleName" => attributes["middlename"],
-              "salutation" => attributes["salutation"],
-              "termDisplayName" => attributes["termdisplayname"],
-              "termLanguage" => CSXML::Helpers.get_vocab('languages', attributes["termlanguage"]),
-              "termName" => attributes["termname"],
-              "termPrefForLang" => attributes.fetch("termprefforlang", '').downcase,
-              "termQualifier" => attributes["termqualifier"],
-              "termSource" => CSXML::Helpers.get_vocab('citation', attributes["termsource"]),
-              "termSourceID" => attributes["termsourceid"],
-              "termSourceDetail" => attributes["termsourcedetail"],
-              "termSourceNote" => attributes["termsourcenote"],
-              "termStatus" => attributes["termstatus"],
-              "termType" => CSXML::Helpers.get_vocab('persontermtype', attributes["termtype"]),
-            }
-          ]
-          CSXML.add xml, 'birthPlace', attributes["birthplace"]
+          #personTermGroupList, personTermGroup
+          personterm_data = {
+            "title"  => "title", 
+	    "initials" => "initials",
+	    "forename" => "foreName",
+	    "surname" => "surName",
+	    "nameadditions" => "nameAdditions",
+	    "middlename" => "middleName",
+	    "salutation" => "salutation",
+	    "termdisplayname" => "termDisplayName",
+	    "termlanguage" => "termLanguage",
+	    "termname" => "termName",
+	    "termprefforlang" => "termPrefForLang",
+	    "termqualifier" => "termQualifier",
+	    "termsource" => "termSource",
+	    "termsourceid" => "termSourceID",
+	    "termsourcedetail" => "termSourceDetail",
+	    "termsourcenote" => "termSourceNote",
+ 	    "termstatus" => "termStatus",
+	    "termtype" => "termType"
+	  }
+          personterm_transforms = {
+            'termlanguage' => {'vocab' => 'languages'},
+            'termsource' => {'vocab' => 'citation'},
+            'termtype' => {'vocab' => 'persontermtype'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'personTerm',
+            personterm_data,
+            personterm_transforms
+          )
+          #birthDateGroup
           CSXML::Helpers.add_date_group(
             xml, 'birthDate', CSDTP.parse(attributes['birthdategroup'])
           )
+          #deathDateGroup
           CSXML::Helpers.add_date_group(
             xml, 'deathDate', CSDTP.parse(attributes['deathdategroup'])
           )
-          CSXML.add xml, 'deathPlace', attributes["deathplace"]
-          CSXML.add_repeat xml, 'groups', [{'group' => attributes['group']}]
-          CSXML.add_repeat xml, 'nationalities', [{'nationality' => attributes['nationality']}]
-          CSXML.add xml, 'gender', attributes["gender"]
-          CSXML.add_repeat xml, 'occupations', [{'occupation' => attributes['occupation']}]
-          CSXML.add_repeat xml, 'schoolsOrStyles', [{'schoolOrStyle' => attributes['schoolorstyle']}]
-          CSXML.add xml, 'bioNote', attributes["bionote"]
-          CSXML.add xml, 'nameNote', attributes["namenote"]
         end
       end
     end
