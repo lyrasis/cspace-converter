@@ -341,7 +341,7 @@ Hashes within inner arrays - One per value in subgroup in an element
           end
 
           # do not create vocab/authority URNs for blank values
-          if value.empty?
+          if value.blank?
             value = ''
           else
             if config.keys.include?('vocab')
