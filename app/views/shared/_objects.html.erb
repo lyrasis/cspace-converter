@@ -29,7 +29,7 @@
             <tbody>
               <% objects.entries.each.with_index do |object, i| %>
                 <tr>
-                  <td><%= link_to object.identifier, send("#{type}_path".to_sym, object) %></td>
+                  <td><%= link_to object.identifier, send("#{object.category.downcase}_path".to_sym, object) %></td>
                   <td><%= object.type %></td>
                   <td><%= object.csid %></td>
                   <td><%= object.data_object.import_batch %></td>

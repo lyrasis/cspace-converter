@@ -31,10 +31,10 @@ module ApplicationHelper
   end
 
   def path_for_batch_type(batch)
-    if batch.type == 'remote_transfer'
-      return batches_path
+    if batch.type != 'import'
+      File.join('batches', batch.name, batch.for)
     else
-      return objects_path(batch: batch.name)
+      objects_path(batch: batch.name)
     end
   end
 

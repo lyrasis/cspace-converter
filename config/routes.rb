@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'authorities/:id/transfer',   to: 'authority_objects#transfer'
   post 'authorities/:id/update',     to: 'authority_objects#update'
   get 'batches',                     to: 'batches#index'
+  get 'batches/:batch/:for',         to: 'batches#show'
   delete 'batches/:id',              to: 'batches#destroy', as: :batch
   get 'cache',                       to: 'cache_objects#index'
   get 'connection',                  to: 'sites#connection', as: 'connection'
