@@ -1,5 +1,6 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+module ApplicationHelper
   def batches
     DataObject.pluck('import_batch').uniq
   end
@@ -27,12 +28,12 @@ module ApplicationHelper
   def disabled_profiles
     Lookup.module.registered_profiles.find_all do |_, profile|
       !profile.fetch('enabled', false)
-    end.map{ |p| p[0] }
+    end.map { |p| p[0] }
   end
 
   def path_for_batch_type(batch)
     if batch.type != 'import'
-      File.join('batches', batch.name, batch.for)
+      URI.encode(File.join('batches', batch.name, batch.for))
     else
       objects_path(batch: batch.name)
     end
