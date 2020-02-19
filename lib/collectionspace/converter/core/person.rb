@@ -64,12 +64,14 @@ module CollectionSpace
 	    "termsourcedetail" => "termSourceDetail",
 	    "termsourcenote" => "termSourceNote",
  	    "termstatus" => "termStatus",
-	    "termtype" => "termType"
+	    "termtype" => "termType",
+            "termflag" => "termFlag"
 	  }
           personterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
             'termsource' => {'vocab' => 'citation'},
-            'termtype' => {'vocab' => 'persontermtype'}
+            'termtype' => {'vocab' => 'persontermtype'},
+            'termflag' => {'vocab' => 'persontermflag'}
           }
           CSXML.add_single_level_group_list(
             xml,
