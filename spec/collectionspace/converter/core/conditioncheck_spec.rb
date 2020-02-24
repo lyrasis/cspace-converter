@@ -45,8 +45,22 @@ RSpec.describe CollectionSpace::Converter::Core::CoreConditionCheck do
     '/document/*/legalReqsHeldGroupList/legalReqsHeldGroup/legalReqsHeldNumber'
   ]}
 
-  it "Maps attributes correctly" do
-    test_converter(doc, record, xpaths)
+  context 'For maximally populuated record' do
+    it "Maps attributes correctly" do
+      test_converter(doc, record, xpaths)
+    end
+  end
+
+  context 'For minimally populated record' do
+    let(:attributes) { get_attributes_by_row('core', 'conditioncheck_core_all.csv', 22) }
+    let(:doc) { Nokogiri::XML(coreconditioncheck.convert, nil, 'UTF-8') }
+    let(:record) { get_fixture('core_condition_check_row22.xml') }
+    let(:xpath_required) {[
+      '/document/*/conditionCheckRefNumber'
+    ]}
+
+    it 'Maps required field(s) correctly without falling over' do
+      test_converter(doc, record, xpath_required)
+    end
   end
 end
-
