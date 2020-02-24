@@ -13,6 +13,7 @@ class ImportJob < ActiveJob::Base
     }
 
     rows.each do |data|
+      # TODO: RowValidator.new(profile[:validate], data)
       attributes[:csv_data] = data
       if Lookup.async?
         RowJob.perform_later(attributes, config[:key])

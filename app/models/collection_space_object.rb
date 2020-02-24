@@ -39,6 +39,7 @@ class CollectionSpaceObject
   def generate_content!(data = nil)
     data ||= data_object.csv_data
     config = converter.constantize.service(subtype)
+    config[:identifier_field] = identifier_field
     config[:identifier] = identifier
     config[:title] = title
     data = Lookup.profile_defaults(profile).merge(data)

@@ -46,6 +46,10 @@ Steps:
 ./remote.sh transfer LoanOut loanout1
 ./remote.sh delete LoanOut loanout1
 
+./import.sh data/core/lmi_core_all.csv lmi1 movement
+./remote.sh transfer Movement lmi1
+./remote.sh delete Movement lmi1
+
 ./import.sh data/core/mediahandling_core_all.csv media1 media
 ./remote.sh transfer Media media1
 ### MEDIA UPDATE EXAMPLE
