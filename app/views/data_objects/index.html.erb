@@ -6,11 +6,24 @@
     <%= render partial: 'shared/title', :locals => { :title => 'Objects' } %>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-9">
         <%= page_entries_info @objects, entry_name: 'object' %>
-        <span class="errors" style="float: right;">
-          <%= link_to "Filter Errors", current_page_params.merge(errors: true) %>
-        </span>
+      </div>
+      <div class="col-md-3">
+        <%= form_for :filters,
+                      path: request.path,
+                      method: :get,
+                      html: { id: 'filters', class: 'form-inline' } do |f|
+        %>
+          <%= f.label 'Filter errors:', class: 'form-check-label', for: 'errors' %>
+          <%=
+            check_box_tag 'errors',
+            params.fetch(:errors, false).to_s, # value
+            params.fetch(:errors, false).to_s == 'true', # checked
+            class: 'form-check-input'
+          %>
+          <%= submit_tag 'Apply', name: nil, class: 'btn btn-info' %>
+        <% end %>
       </div>
     </div>
 

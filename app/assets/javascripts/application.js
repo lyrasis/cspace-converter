@@ -26,6 +26,11 @@ ready = function() {
     var filename      = parts[parts.length - 1];
     $('.file span').replaceWith('<p class="file-selected">' + filename + '</p>');
   });
+
+  // filter errors
+  $("input[id='errors']").on('change', function(){
+    $(this).val(this.checked ? 'true' : 'false');
+  })
 };
 
 // turbolinks friendly
