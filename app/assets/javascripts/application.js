@@ -28,7 +28,7 @@ ready = function() {
   });
 
   // filter errors
-  $("input[id='errors']").on('change', function(){
+  $("input[id='errors']").on('click', function(){
     $(this).val(this.checked ? 'true' : 'false');
   })
 };
