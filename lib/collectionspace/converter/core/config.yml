@@ -23,6 +23,7 @@ registered_profiles:
   acquisition:
     type: Procedures
     enabled: true
+    identify_by_column: acquisitionreferencenumber
     required_headers:
       - acquisitionreferencenumber
     config:
@@ -43,6 +44,7 @@ registered_profiles:
   cataloging:
     type: Procedures
     enabled: true
+    identify_by_column: objectnumber
     required_headers:
       - objectnumber
     config:
@@ -71,6 +73,9 @@ registered_profiles:
   conditioncheck:
     type: Procedures
     enabled: true
+    identify_by_column: conditioncheckrefnumber
+    required_headers:
+      - conditioncheckrefnumber
     config:
       ConditionCheck:
         mapper: CoreConditionCheck
@@ -83,6 +88,9 @@ registered_profiles:
   conservation:
     type: Procedures
     enabled: true
+    identify_by_column: conservationnumber
+    required_headers:
+      - conservationnumber
     config:
       Conservation:
         mapper: CoreConservation
@@ -107,6 +115,9 @@ registered_profiles:
   exhibition:
     type: Procedures
     enabled: true
+    identify_by_column: exhibitionnumber
+    required_headers:
+      - exhibitionnumber
     config:
       Exhibition:
         mapper: CoreExhibition
@@ -143,6 +154,7 @@ registered_profiles:
   group:
     type: Procedures
     enabled: true
+    identify_by_column: title
     required_headers:
       - title
     config:
@@ -165,6 +177,9 @@ registered_profiles:
   intake:
     type: Procedures
     enabled: true
+    identify_by_column: entrynumber
+    required_headers:
+      - entrynumber
     config:
       Intake:
         mapper: CoreIntake
@@ -201,6 +216,9 @@ registered_profiles:
   loanin:
     type: Procedures
     enabled: true
+    identify_by_column: loaninnumber
+    required_headers:
+      - loaninnumber
     config:
       LoanIn:
         mapper: CoreLoanIn
@@ -222,6 +240,7 @@ registered_profiles:
   loanout:
     type: Procedures
     enabled: true
+    identify_by_column: loanoutnumber
     required_headers:
       - loanoutnumber
     config:
@@ -242,6 +261,7 @@ registered_profiles:
   media:
     type: Procedures
     enabled: true
+    identify_by_column: identificationnumber
     required_headers:
       - identificationnumber
     config:
@@ -253,6 +273,7 @@ registered_profiles:
   movement:
     type: Procedures
     enabled: true
+    identify_by_column: movementreferencenumber
     required_headers:
       - movementreferencenumber
     config:
@@ -270,6 +291,7 @@ registered_profiles:
   nomenclature:
     type: Authorities
     enabled: true
+    identify_by_column: termdisplayname
     required_headers:
       - termdisplayname
     defaults:
@@ -294,6 +316,7 @@ registered_profiles:
   objectexit:
     type: Procedures
     enabled: true
+    identify_by_column: exitnumber
     required_headers:
       - exitnumber
     config:
@@ -311,6 +334,7 @@ registered_profiles:
   person:
     type: Authorities
     enabled: true
+    identify_by_column: termdisplayname
     required_headers:
       - termdisplayname
     defaults:
@@ -334,6 +358,7 @@ registered_profiles:
   useofcollection:
     type: Procedures
     enabled: true
+    identify_by_column: referencenumber
     required_headers:
       - referencenumber
     config:
@@ -345,6 +370,9 @@ registered_profiles:
   valuationcontrol:
     type: Procedures
     enabled: true
+    identify_by_column: valuationcontrolrefnumber
+    required_headers:
+      - valuationcontrolrefnumber
     config:
       ValuationControl:
         mapper: CoreValuationControl
@@ -360,6 +388,7 @@ registered_profiles:
   vocabularies:
     type: Vocabularies
     enabled: true
+    identify_by_column: displayname
     required_headers:
       - displayname
       - vocabulary

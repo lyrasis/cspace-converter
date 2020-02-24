@@ -68,20 +68,24 @@ module CollectionSpace
         module_class(procedure)
       end
 
-      def self.profile_config(profile)
-        self.module.registered_profiles[profile]['config']
+      def self.profile(name)
+        self.module.registered_profiles[name]
       end
 
-      def self.profile_defaults(profile)
-        self.module.registered_profiles[profile].fetch('defaults', {})
+      def self.profile_config(name)
+        self.module.registered_profiles[name]['config']
       end
 
-      def self.profile_headers(profile)
-        self.module.registered_profiles[profile].fetch('required_headers', []).map(&:to_sym)
+      def self.profile_defaults(name)
+        self.module.registered_profiles[name].fetch('defaults', {})
       end
 
-      def self.profile_type(profile)
-        self.module.registered_profiles[profile]['type']
+      def self.profile_headers(name)
+        self.module.registered_profiles[name].fetch('required_headers', []).map(&:to_sym)
+      end
+
+      def self.profile_type(name)
+        self.module.registered_profiles[name]['type']
       end
 
       def self.record_class(type)
