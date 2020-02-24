@@ -10,13 +10,13 @@ RSpec.describe ImportService::Base do
   end
 
   it 'can create a dataobject' do
-    service = ImportService::Base.new(profile, data)
+    service = ImportService::Base.new(data)
     service.create_object
     expect(DataObject.where(data).count).to eq 1
   end
 
   it 'cannot process from base' do
-    service = ImportService::Base.new(profile, data)
+    service = ImportService::Base.new(data)
     expect { service.process }.to raise_error
   end
 end

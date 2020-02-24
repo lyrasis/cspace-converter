@@ -1,10 +1,11 @@
 class ImportService
   class Base
-    attr_reader :data, :object, :profile
-    def initialize(profile, data)
+    attr_reader :config, :data, :object
+    def initialize(data)
       @data    = data
       @object  = nil
-      @profile = profile
+      # profile config
+      @config = Lookup.profile_config(@data[:converter_profile])
     end
 
     def add_authority(name_field:, type:, subtype:, mapper: nil)
@@ -125,7 +126,6 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      config = Lookup.profile_config(profile)
       add_authority(
         mapper: config['mapper'],
         name_field: config['name_field'],
@@ -149,7 +149,6 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      config = Lookup.profile_config(profile)
       config.each do |procedure, attributes|
         next if ['Authorities', 'Vocabularies'].include?(procedure)
 
@@ -173,7 +172,6 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      config = Lookup.profile_config(profile)
       add_vocabulary(
         name_field: config['name_field'],
         subtype: object.csv_data['vocabulary']

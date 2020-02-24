@@ -11,14 +11,15 @@ class DataObject
 
   before_validation :set_module
 
-  field :converter_module,  type: String # ex: Core
-  field :converter_profile, type: String # ex: cataloging
-  field :csv_data,          type: Hash
-  field :import_batch,      type: String # ex: cat1
-  field :import_file,       type: String # ex: cat1.csv
-  field :import_message,    type: String, default: 'ok'
-  field :import_status,     type: Integer, default: 1
-  field :import_category,   type: String # ex: Procedures
+  field :converter_module,   type: String # ex: Core
+  field :converter_profile,  type: String # ex: cataloging
+  field :csv_data,           type: Hash
+  field :identify_by_column, type: String
+  field :import_batch,       type: String # ex: cat1
+  field :import_file,        type: String # ex: cat1.csv
+  field :import_message,     type: String, default: 'ok'
+  field :import_status,      type: Integer, default: 1
+  field :import_category,    type: String # ex: Procedures
 
   def add_cspace_object(cspace_object_data, content_data)
     cspace_object = CollectionSpaceObject.new(cspace_object_data)

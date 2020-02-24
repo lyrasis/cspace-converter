@@ -4,10 +4,7 @@ class RowJob < ActiveJob::Base
   def perform(attributes, key)
     import_status = 1
     begin
-      service = Lookup.import_service(attributes[:import_category]).new(
-        attributes[:converter_profile],
-        attributes
-      )
+      service = Lookup.import_service(attributes[:import_category]).new(attributes)
       logger.debug "Importing row: #{attributes.inspect}"
       service.create_object
       service.process
