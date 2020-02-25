@@ -6,15 +6,21 @@
     <%= render partial: 'shared/title', :locals => { :title => 'Objects' } %>
 
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-6">
         <%= page_entries_info @objects, entry_name: 'object' %>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-6">
         <%= form_for :filters,
                       path: request.path,
                       method: :get,
                       html: { id: 'filters', class: 'form-inline' } do |f|
         %>
+          <%= f.label 'Batch:', class: 'form-check-label', for: 'batch' %>
+          <%=
+            select_tag 'batch',
+            options_for_select(batches, params[:batch]),
+            include_blank: true
+          %>
           <%= f.label 'Filter errors:', class: 'form-check-label', for: 'errors' %>
           <%=
             check_box_tag 'errors',
@@ -22,7 +28,6 @@
             params.fetch(:errors, false).to_s == 'true', # checked
             class: 'form-check-input'
           %>
-          <%= hidden_field_tag :batch, params[:batch] if params[:batch].present? %>
           <%= submit_tag 'Apply', name: nil, class: 'btn btn-info' %>
         <% end %>
       </div>
