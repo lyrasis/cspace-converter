@@ -5,7 +5,6 @@ class RowJob < ActiveJob::Base
     import_status = 1
     begin
       service = Lookup.import_service(attributes[:import_category]).new(attributes)
-      logger.debug "Importing row: #{attributes.inspect}"
       service.create_object
       service.process
       if service.object.collection_space_objects.count.zero?
