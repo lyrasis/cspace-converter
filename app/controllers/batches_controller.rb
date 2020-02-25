@@ -1,5 +1,6 @@
-class BatchesController < ApplicationController
+# frozen_string_literal: true
 
+class BatchesController < ApplicationController
   def index
     @objects = Batch.order_by(start: :desc).page params[:page]
   end
@@ -18,4 +19,9 @@ class BatchesController < ApplicationController
     redirect_to batches_path
   end
 
+  def types_for_batch
+    @types = CollectionSpaceObject.where(
+      batch: params[:batch]
+    ).order_by(type: 'asc').pluck(:type).uniq
+  end
 end

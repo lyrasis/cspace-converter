@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post 'relationships/:id/update',   to: 'relationship_objects#update'
   get  'transfer',                   to: 'transfers#new'
   post 'transfer',                   to: 'transfers#create'
+  get 'types_for_batch',             to: 'batches#types_for_batch'
   get  'vocabularies',               to: 'vocabulary_objects#index'
   get  'vocabularies/:id',           to: 'vocabulary_objects#show', as: 'vocabulary'
   post 'vocabularies/:id/ping',      to: 'vocabulary_objects#ping'
