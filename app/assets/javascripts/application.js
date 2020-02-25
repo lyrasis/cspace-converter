@@ -28,13 +28,15 @@ ready = function() {
   });
 
   // set the types for transfer based on selected batch
-  var batch = document.getElementById('batch');
-  batch.addEventListener('change', function(){
-    $.ajax({
-      url: "/types_for_batch?batch=" + batch.value,
-      type: "GET"
-    })
-  });
+  if($('#transfer').length) {
+    var batch = document.getElementById('batch');
+    batch.addEventListener('change', function(){
+      $.ajax({
+        url: "/types_for_batch?batch=" + batch.value,
+        type: "GET"
+      })
+    });
+  }
 
   // filter errors
   $("input[id='errors']").on('click', function(){
