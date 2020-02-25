@@ -51,10 +51,6 @@ module ApplicationHelper
     object.transfer_statuses.order(created_at: :desc).limit(3)
   end
 
-  def types
-    CollectionSpaceObject.pluck('type').uniq
-  end
-
   def short_date(date)
     return '' unless date
 
