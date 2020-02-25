@@ -22,6 +22,7 @@
             params.fetch(:errors, false).to_s == 'true', # checked
             class: 'form-check-input'
           %>
+          <%= hidden_field_tag :batch, params[:batch] if params[:batch].present? %>
           <%= submit_tag 'Apply', name: nil, class: 'btn btn-info' %>
         <% end %>
       </div>
@@ -49,7 +50,7 @@
                   <td><%= object.import_batch %></td>
                   <td><%= object.converter_module %></td>
                   <td><%= object.converter_profile %></td>
-                  <td><%= status_for(object) %></td>
+                  <td class="<%= status_class(object) %>"><%= status(object) %></td>
                   <td><%= short_date object.created_at %></td>
                   <td><%= short_date object.updated_at %></td>
                 </tr>
