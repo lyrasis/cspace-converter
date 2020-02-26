@@ -52,12 +52,12 @@ RSpec.describe CSXML::Helpers do
   it "can 'add measured part group list' correctly" do
     CSXML::Helpers.add_measured_part_group_list(xml, attributes_measured_part_group_list)
     expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/measuredPart').text).to eq('frame')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSummary').text).to eq('8.5 x 11')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/measuredBy').text).to eq("#{person_refname}#{person_refname}")
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[1]/dimension').text).to eq('height')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[1]/value').text).to eq('8.5')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[2]/dimension').text).to eq('width')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[2]/value').text).to eq('11')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSummary').text).to eq('8.5 x 11')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSubGroupList/dimensionSubGroup/measuredBy').text).to eq(person_refname)
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSubGroupList/dimensionSubGroup/dimension').text).to eq('height')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSubGroupList/dimensionSubGroup/value').text).to eq('8.5')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[2]/dimensionSubGroupList/dimensionSubGroup/dimension').text).to eq('width')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[2]/dimensionSubGroupList/dimensionSubGroup/value').text).to eq('11')
   end
 
   it "can 'add pairs' correctly" do
@@ -108,10 +108,6 @@ RSpec.describe CSXML::Helpers do
 
   it "can identify reserved field names correctly" do
     expect(CSXML::Helpers.reserved?('comment')).to be true
-  end
-
-  xit "can safe split correctly" do
-    # TODO
   end
 
   it "can get short identifier for authority" do
