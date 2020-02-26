@@ -495,35 +495,48 @@ Hashes within inner arrays - One per value in subgroup in an element
           add_authorities xml, field, 'materialauthorities', 'material', values, method
         end
 
+        #measuredPartGroupList, measuredPartGroup, dimensionSubGroupList, dimensionSubGroup 
         def self.add_measured_part_group_list(xml, attributes)
-          overall_data = {
-            "measuredPart" => attributes["measuredpart"],
-            "dimensionSummary" => attributes["dimensionsummary"],
+           measuredpartdata = {
+            'measuredpart' => 'measuredPart',
+            'dimensionsummary' => 'dimensionSummary',
+            'dimension' => 'dimension',
+            'value' => 'value',
+            'measurementunit' => 'measurementUnit',
+            'measuredby' => 'measuredBy',
+            'measuredbyperson' => 'measuredBy',
+            'measuredbyorganization' => 'measuredBy',
+            'measurementmethod' => 'measurementMethod',
+            'valuedate' => 'valueDate',
+            'valuequalifier' => 'valueQualifier',
+            'dimensionnote' => 'dimensionNote'
+
           }
-          dimensions = []
-          dims = CSDR.split_mvf attributes, 'dimension'
-          values = CSDR.split_mvf attributes, 'value'
-          unit = CSDR.split_mvf attributes, 'measurementunit'
-          by = CSXML::Helpers.get_authority(
-            'personauthorities', 'person', attributes["measuredby"]
+          dimensionsdata = [
+            'dimension',
+            'value',
+            'measurementUnit',
+            'measuredBy',
+            'measurementMethod',
+            'valueDate',
+            'valueQualifier',
+            'dimensionNote'
+          ]
+          dimensionstransforms = {
+            'measuredby' => {'authority' => ['personauthorities', 'person']},
+            'measuredbyperson' => {'authority' => ['personauthorities', 'person']},
+            'measuredbyorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'valuedate' => {'special' => 'unstructured_date_stamp'}
+          }
+          CSXML.add_nested_group_lists(
+            xml, attributes,
+            'measuredPart',
+            measuredpartdata,
+            'dimension',
+            dimensionsdata,
+            dimensionstransforms
           )
-          method = attributes["measurementmethod"]
-          date = CSDTP.parse(attributes["valuedate"]).earliest_scalar
-          qualifier = attributes["valuequalifier"]
-          note = attributes["dimensionnote"]
-          dims.each_with_index do |dim, index|
-            dimensions << {
-              "dimension" => dim,
-              "value" => values[index],
-              "measurementUnit" => unit[index],
-              "measuredBy" => by,
-              "measurementMethod" => method,
-              "valueDate" => date,
-              "valueQualifier" => qualifier,
-              "dimensionNote" => note
-            }
-          end
-          CSXML.add_group_list xml, 'measuredPart', [overall_data], 'dimension', [dimensions]
+
         end
 
         def self.add_pairs(xml, attributes, pairs, transforms={})
