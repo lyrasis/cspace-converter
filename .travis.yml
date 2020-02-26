@@ -1,5 +1,13 @@
-dist: trusty
+dist: bionic
 language: ruby
+env:
+  global:
+    - MOZ_HEADLESS=1
+addons:
+  apt:
+    packages:
+      - firefox
+      - firefox-geckodriver
 script:
   - bundle exec rspec
 services:

@@ -32,6 +32,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.4'
+  gem 'selenium-webdriver'
   gem 'webmock'
 end
 

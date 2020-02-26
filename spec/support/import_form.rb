@@ -2,7 +2,7 @@ class ImportForm
   include Capybara::DSL
 
   def visit_page
-    visit('import')
+    visit('/import')
     self
   end
 
