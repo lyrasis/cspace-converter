@@ -504,6 +504,8 @@ Hashes within inner arrays - One per value in subgroup in an element
             'value' => 'value',
             'measurementunit' => 'measurementUnit',
             'measuredby' => 'measuredBy',
+            'measuredbyperson' => 'measuredBy',
+            'measuredbyorganization' => 'measuredBy',
             'measurementmethod' => 'measurementMethod',
             'valuedate' => 'valueDate',
             'valuequalifier' => 'valueQualifier',
@@ -522,6 +524,8 @@ Hashes within inner arrays - One per value in subgroup in an element
           ]
           dimensionstransforms = {
             'measuredby' => {'authority' => ['personauthorities', 'person']},
+            'measuredbyperson' => {'authority' => ['personauthorities', 'person']},
+            'measuredbyorganization' => {'authority' => ['orgauthorities', 'organization']},
             'valuedate' => {'special' => 'unstructured_date_stamp'}
           }
           CSXML.add_nested_group_lists(
