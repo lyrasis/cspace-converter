@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-02-17T11:38:31.448Z</createdAt>
+    <createdAt>2020-02-26T11:35:12.776Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(b142e595-93a7-4c00-93f7)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/b142e595-93a7-4c00-93f7</uri>
-    <updatedAt>2020-02-17T11:38:31.448Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(677dde8e-25bd-417f-9b4a)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/677dde8e-25bd-417f-9b4a</uri>
+    <updatedAt>2020-02-26T11:40:45.951Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -523,23 +523,59 @@
         <dimensionSubGroupList>
           <dimensionSubGroup>
             <dimensionNote/>
-            <valueQualifier>Qualifier Text 1; Qualifier Text 2</valueQualifier>
+            <valueQualifier>Qualifier Text 1</valueQualifier>
             <valueDate>2000-02-02T00:00:00.000Z</valueDate>
-            <measuredBy/>
+            <measuredBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</measuredBy>
             <dimension>height</dimension>
             <value>8.5</value>
-            <measurementMethod>sliding calipers;measuring tape (cloth)</measurementMethod>
+            <measurementMethod>sliding_calipers</measurementMethod>
             <measurementUnit>inches</measurementUnit>
           </dimensionSubGroup>
           <dimensionSubGroup>
             <dimensionNote/>
-            <valueQualifier>Qualifier Text 1; Qualifier Text 2</valueQualifier>
-            <valueDate>2000-02-02T00:00:00.000Z</valueDate>
-            <measuredBy/>
+            <valueQualifier>Qualifier Text 2</valueQualifier>
+            <valueDate>2000-02-03T00:00:00.000Z</valueDate>
+            <measuredBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</measuredBy>
             <dimension>width</dimension>
             <value>11</value>
-            <measurementMethod>sliding calipers;measuring tape (cloth)</measurementMethod>
+            <measurementMethod>measuring_tape_cloth</measurementMethod>
             <measurementUnit>inches</measurementUnit>
+          </dimensionSubGroup>
+        </dimensionSubGroupList>
+      </measuredPartGroup>
+      <measuredPartGroup>
+        <dimensionSummary>11 x 8.5 x .5</dimensionSummary>
+        <measuredPart>framed</measuredPart>
+        <dimensionSubGroupList>
+          <dimensionSubGroup>
+            <dimensionNote/>
+            <valueQualifier>Qualifier Text 1</valueQualifier>
+            <valueDate>2000-02-04T00:00:00.000Z</valueDate>
+            <measuredBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</measuredBy>
+            <dimension>height</dimension>
+            <value>11</value>
+            <measurementMethod>spreading_calipers</measurementMethod>
+            <measurementUnit>inches</measurementUnit>
+          </dimensionSubGroup>
+          <dimensionSubGroup>
+            <dimensionNote/>
+            <valueQualifier>Qualifier Text 2</valueQualifier>
+            <valueDate>2000-02-05T00:00:00.000Z</valueDate>
+            <measuredBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</measuredBy>
+            <dimension>width</dimension>
+            <value>8.5</value>
+            <measurementMethod>microscopy_reticule</measurementMethod>
+            <measurementUnit>inches</measurementUnit>
+          </dimensionSubGroup>
+          <dimensionSubGroup>
+            <dimensionNote/>
+            <valueQualifier>Qualifier Text 3</valueQualifier>
+            <valueDate>2000-02-06T00:00:00.000Z</valueDate>
+            <measuredBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</measuredBy>
+            <dimension>depth</dimension>
+            <value>0.5</value>
+            <measurementMethod>ruler</measurementMethod>
+            <measurementUnit>meters</measurementUnit>
           </dimensionSubGroup>
         </dimensionSubGroupList>
       </measuredPartGroup>
@@ -743,6 +779,7 @@
         <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581279667128)'Berkley Publising Group'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
+    <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
     <viewersContributionNote>Viewer's contribution note</viewersContributionNote>
     <publishToList>
       <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'omeka'</publishTo>
