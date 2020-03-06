@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="locations">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-03-06T11:40:47.172Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(MST111583494847174)'MST:11'</refName>
+    <uri>/locationauthorities/014a6efe-63b4-4978-8427/items/5979aab8-dbd4-47ce-b7bd</uri>
+    <updatedAt>2020-03-06T13:16:08.553Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:locations_common xmlns:ns2="http://collectionspace.org/services/location" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <rev>1</rev>
+    <sas>false</sas>
+    <csid>5979aab8-dbd4-47ce-b7bd</csid>
+    <conditionGroupList/>
+    <proposed>true</proposed>
+    <shortIdentifier>MST111583494847174</shortIdentifier>
+    <refName>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(MST111583494847174)'MST:11'</refName>
+    <inAuthority>014a6efe-63b4-4978-8427</inAuthority>
+    <locTermGroupList>
+      <locTermGroup>
+        <termSourceID/>
+        <termSourceDetail/>
+        <termSourceNote/>
+        <termFormattedDisplayName/>
+        <termType/>
+        <termSource/>
+        <termStatus/>
+        <termLanguage/>
+        <termName/>
+        <termQualifier/>
+        <termPrefForLang>false</termPrefForLang>
+        <termDisplayName>MST:11</termDisplayName>
+        <termFlag/>
+      </locTermGroup>
+    </locTermGroupList>
+  </ns2:locations_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
