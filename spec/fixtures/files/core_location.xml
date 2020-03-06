@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="locations">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-03-05T09:53:56.574Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(MST11583402036574)'MST:1'</refName>
+    <uri>/locationauthorities/014a6efe-63b4-4978-8427/items/fe11f3ee-88b1-4d68-b144</uri>
+    <updatedAt>2020-03-05T09:53:56.574Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:locations_common xmlns:ns2="http://collectionspace.org/services/location" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <rev>0</rev>
+    <address>Location address text</address>
+    <sas>false</sas>
+    <csid>fe11f3ee-88b1-4d68-b144</csid>
+    <conditionGroupList>
+      <conditionGroup>
+        <conditionNote>Condition note text 1</conditionNote>
+        <conditionNoteDate>2000-01-01T00:00:00.000Z</conditionNoteDate>
+      </conditionGroup>
+      <conditionGroup>
+        <conditionNote>Condition note text 2</conditionNote>
+        <conditionNoteDate>2000-01-02T00:00:00.000Z</conditionNoteDate>
+      </conditionGroup>
+    </conditionGroupList>
+    <locationType>urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(room)'Room'</locationType>
+    <proposed>true</proposed>
+    <shortIdentifier>MST11583402036574</shortIdentifier>
+    <securityNote>Security note text</securityNote>
+    <refName>urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(MST11583402036574)'MST:1'</refName>
+    <inAuthority>014a6efe-63b4-4978-8427</inAuthority>
+    <locTermGroupList>
+      <locTermGroup>
+        <termSourceID>Term source ID 1</termSourceID>
+        <termSourceDetail>Term source detail 1</termSourceDetail>
+        <termSourceNote>Term source note 1</termSourceNote>
+        <termFormattedDisplayName/>
+        <termType>descriptor</termType>
+        <termSource>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(Termsourcetext11583396547587)'Term source text 1'</termSource>
+        <termStatus>accepted</termStatus>
+        <termLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</termLanguage>
+        <termName>Main Storage Room 1</termName>
+        <termQualifier>Qualifier text 1</termQualifier>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>MST:1</termDisplayName>
+        <termFlag/>
+      </locTermGroup>
+      <locTermGroup>
+        <termSourceID>Term source ID 2</termSourceID>
+        <termSourceDetail>Term source detail 2</termSourceDetail>
+        <termSourceNote>Term source note 2</termSourceNote>
+        <termFormattedDisplayName/>
+        <termType>alternate descriptor</termType>
+        <termSource>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(Termsourcetext21583396712086)'Term source text 2'</termSource>
+        <termStatus>rejected</termStatus>
+        <termLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</termLanguage>
+        <termName>Main Storage 1</termName>
+        <termQualifier>Qualifier text 2</termQualifier>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>MST:One</termDisplayName>
+        <termFlag/>
+      </locTermGroup>
+    </locTermGroupList>
+    <accessNote>Location access note text</accessNote>
+  </ns2:locations_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
