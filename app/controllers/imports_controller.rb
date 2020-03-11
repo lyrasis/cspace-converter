@@ -25,7 +25,7 @@ class ImportsController < ApplicationController
         for: config[:profile],
         name: config[:batch],
         start: Time.now,
-        total: CSV.read(file.path, headers: true).length
+        total: Lookup.csv_row_count(file.path)
       )
 
       ::SmarterCSV.process(File.open(file.path, 'r:bom|utf-8'), {
