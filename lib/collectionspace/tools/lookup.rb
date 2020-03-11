@@ -92,6 +92,12 @@ module CollectionSpace
         "#{CONVERTER_DEFAULT}::#{type}".constantize
       end
 
+      def self.csv_row_count(csv)
+        SmarterCSV.process(File.open(csv, 'r:bom|utf-8'), {
+          auto_row_sep_chars: 10_000, row_sep: :auto
+        }).count
+      end
+
       def self.service_class
         "#{CONVERTER_TOOLS}::Service".constantize
       end

@@ -8,7 +8,7 @@ namespace :import do
         for: config[:profile],
         name: config[:batch],
         start: Time.now,
-        total: CSV.read(config[:filename], headers: true).length
+        total: Lookup.csv_row_count(config[:filename])
       )
 
       SmarterCSV.process(File.open(config[:filename], 'r:bom|utf-8'), {
