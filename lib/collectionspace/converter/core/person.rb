@@ -65,7 +65,8 @@ module CollectionSpace
 	    "termsourcenote" => "termSourceNote",
  	    "termstatus" => "termStatus",
 	    "termtype" => "termType",
-            "termflag" => "termFlag"
+            "termflag" => "termFlag",
+            "termdisplaynamenonpreferred" => "termFormattedDisplayName"
 	  }
           personterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
