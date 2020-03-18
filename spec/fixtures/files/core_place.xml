@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="places">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-03-09T09:06:15.932Z</createdAt>
+    <createdAt>2020-03-18T13:18:13.704Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
-    <tenantId>1</tenantId>                                                                                                                                                                                                                   
-    <refName>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(CountryOne1583744775940)'Country One'</refName>                                                                                                      
-    <uri>/placeauthorities/838dbc1c-12f0-45fa-9a26/items/84623c7c-1db9-418e-829a</uri>                                                                                                                                                       
-    <updatedAt>2020-03-09T09:20:28.731Z</updatedAt>                                                                                                                                                                                          
-  </ns2:collectionspace_core>                                                                                                                                                                                                                
-  <ns2:places_common xmlns:ns2="http://collectionspace.org/services/place" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">                                                                                                            
-    <vUnitofMeasure>acres</vUnitofMeasure>                                                                                                                                                                                                   
-    <vCoordSys>altitude-depth</vCoordSys>                                                                                                                                                                                                    
-    <placeNote>Place note text</placeNote>                                                                                                                                                                                                   
-    <minElevationInMeters>1</minElevationInMeters>                                                                                                                                                                                           
-    <vElevation>100'</vElevation>                                                                                                                                                                                                            
-    <vSpatialReferenceSystem>epsg4326-wgs84</vSpatialReferenceSystem>                                                                                                                                                                        
-    <addrGroupList>                                                                                                                                                                                                                          
-      <addrGroup>                                                                                                                                                                                                                            
-        <addressCountry>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry11583503357526)'Address Country 1'</addressCountry>                                                                         
-        <addressCounty/>                                                                                                                                                                                                                     
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(CountryOne993122060)'Country One'</refName>
+    <uri>/placeauthorities/838dbc1c-12f0-45fa-9a26/items/08621677-b42c-4970-8b30</uri>
+    <updatedAt>2020-03-18T13:18:13.704Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:places_common xmlns:ns2="http://collectionspace.org/services/place" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <vUnitofMeasure>acres</vUnitofMeasure>
+    <vCoordSys>altitude-depth</vCoordSys>
+    <placeNote>Place note text</placeNote>
+    <minElevationInMeters>1</minElevationInMeters>
+    <vElevation>100'</vElevation>
+    <vSpatialReferenceSystem>epsg4326-wgs84</vSpatialReferenceSystem>
+    <addrGroupList>
+      <addrGroup>
+        <addressCountry>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry11583503357526)'Address Country 1'</addressCountry>
+        <addressCounty/>
         <addressPlace2>Address Line 2A</addressPlace2>
         <addressPlace1>Address Line 1A</addressPlace1>
         <addressType>urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(business)'business'</addressType>
@@ -40,7 +40,7 @@
       </addrGroup>
     </addrGroupList>
     <vLatitude>43°11′41″N</vLatitude>
-    <shortIdentifier>CountryOne1583744775940</shortIdentifier>
+    <shortIdentifier>CountryOne993122060</shortIdentifier>
     <placeSource>Place source text</placeSource>
     <placeGeoRefGroupList>
       <placeGeoRefGroup>
@@ -57,22 +57,22 @@
           <dateLatestScalarValue>2000-05-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-05-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>5</dateLatestMonth>
         </geoRefDateGroup>
         <decimalLatitude>43.19472222</decimalLatitude>
         <geodeticDatum>epsg4326-wgs84</geodeticDatum>
@@ -96,25 +96,25 @@
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
           <dateDisplayDate>5/2/2000</dateDisplayDate>
-          <dateLatestScalarValue/>
+          <dateLatestScalarValue>2000-05-03T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
-          <dateEarliestSingleDay/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+          <dateEarliestSingleDay>2</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear/>
+          <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
-          <dateEarliestSingleMonth/>
-          <dateEarliestSingleEra/>
-          <dateLatestYear/>
+          <dateLatestDay>3</dateLatestDay>
+          <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
-          <dateEarliestScalarValue/>
-          <dateLatestMonth/>
+          <dateEarliestScalarValue>2000-05-02T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth>5</dateLatestMonth>
         </geoRefDateGroup>
         <decimalLatitude>42.99083333</decimalLatitude>
         <geodeticDatum>unknown</geodeticDatum>
@@ -129,8 +129,8 @@
       </placeGeoRefGroup>
     </placeGeoRefGroupList>
     <inAuthority>838dbc1c-12f0-45fa-9a26</inAuthority>
-    <refName>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(CountryOne1583744775940)'Country One'</refName>
-    <rev>11</rev>
+    <refName>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(CountryOne993122060)'Country One'</refName>
+    <rev>0</rev>
     <sas>false</sas>
     <vDepth>Very deep</vDepth>
     <placeOwnerGroupList>
@@ -145,22 +145,22 @@
           <dateLatestScalarValue>2000-02-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </placeOwnerGroup>
       <placeOwnerGroup>
@@ -174,22 +174,22 @@
           <dateLatestScalarValue>2000-02-03T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>2</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>3</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-02T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </placeOwnerGroup>
       <placeOwnerGroup>
@@ -203,26 +203,26 @@
           <dateLatestScalarValue>2000-02-04T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>3</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>4</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-03T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </placeOwnerGroup>
       <placeOwnerGroup>
-        <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(NorihideMita4030634729)'Norihide Mita'</owner>
+        <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(NorihideMita1583503109554)'Norihide Mita'</owner>
         <ownershipNote>Ownership note 4</ownershipNote>
         <ownershipDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
@@ -232,27 +232,27 @@
           <dateLatestScalarValue>2000-02-05T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>4</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>5</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-04T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </placeOwnerGroup>
     </placeOwnerGroupList>
     <vLongitude>70°52′30″W</vLongitude>
-    <csid>84623c7c-1db9-418e-829a</csid>
+    <csid>08621677-b42c-4970-8b30</csid>
     <maxDepthInMeters>2</maxDepthInMeters>
     <minDistanceAboveSurfaceInMeters>1</minDistanceAboveSurfaceInMeters>
     <vCoordSourceRefId>Coordinate source detail text</vCoordSourceRefId>
@@ -267,7 +267,7 @@
         <termSourceID>Unique ID 1</termSourceID>
         <termSourceDetail>Term source detail 1</termSourceDetail>
         <termSourceNote>Term source note 1</termSourceNote>
-        <termFormattedDisplayName/>
+        <termFormattedDisplayName>Country 1</termFormattedDisplayName>
         <nameDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
@@ -276,22 +276,22 @@
           <dateLatestScalarValue>2000-01-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-01-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>1</dateLatestMonth>
         </nameDateGroup>
         <historicalStatus>current</historicalStatus>
         <termType>common</termType>
@@ -305,49 +305,6 @@
         <nameAbbrev>COne</nameAbbrev>
         <termDisplayName>Country One</termDisplayName>
         <termFlag>urn:cspace:core.collectionspace.org:vocabularies:name(placetermflag):item:name(official)'official name'</termFlag>
-      </placeTermGroup>
-      <placeTermGroup>
-        <termSourceID>Unique ID 2</termSourceID>
-        <termSourceDetail>Term source detail 2</termSourceDetail>
-        <termSourceNote>Term source note 2</termSourceNote>
-        <termFormattedDisplayName/>
-        <nameDateGroup>
-          <scalarValuesComputed>true</scalarValuesComputed>
-          <dateEarliestSingleCertainty/>
-          <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate>1/2/2000</dateDisplayDate>
-          <dateLatestScalarValue>2000-01-03T00:00:00.000Z</dateLatestScalarValue>
-          <dateEarliestSingleQualifierValue/>
-          <datePeriod/>
-          <dateLatestEra/>
-          <dateEarliestSingleDay>2</dateEarliestSingleDay>
-          <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear>2000</dateEarliestSingleYear>
-          <dateLatestCertainty/>
-          <dateAssociation/>
-          <dateLatestDay/>
-          <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
-          <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
-          <dateLatestQualifierUnit/>
-          <dateNote/>
-          <dateLatestQualifierValue/>
-          <dateLatestQualifier/>
-          <dateEarliestScalarValue>2000-01-02T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
-        </nameDateGroup>
-        <historicalStatus>historical</historicalStatus>
-        <termType>spelling-variant</termType>
-        <termSource>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(BookTwo1583502862766)'Book Two'</termSource>
-        <nameNote>Place name note 2</nameNote>
-        <termStatus>rejected</termStatus>
-        <termLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</termLanguage>
-        <termName/>
-        <termQualifier>Term qualifier text 2</termQualifier>
-        <termPrefForLang>false</termPrefForLang>
-        <nameAbbrev>C1</nameAbbrev>
-        <termDisplayName>Country 1</termDisplayName>
-        <termFlag>urn:cspace:core.collectionspace.org:vocabularies:name(placetermflag):item:name(pseudonym)'pseudonym'</termFlag>
       </placeTermGroup>
     </placeTermGroupList>
     <maxDistanceAboveSurfaceInMeters>2</maxDistanceAboveSurfaceInMeters>

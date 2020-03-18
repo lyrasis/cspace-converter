@@ -48,7 +48,7 @@ module CollectionSpace
  	    "termstatus" => "termStatus",
 	    "termtype" => "termType",
             "termflag" => "termFlag",
-            "termdisplaynamenonpreferred" => "termDisplayName",
+            "termdisplaynamenonpreferred" => "termFormattedDisplayName",
             "namedategroup" => "nameDateGroup",
             "historicalstatus" => "historicalStatus",
             "namenote" => "nameNote",
