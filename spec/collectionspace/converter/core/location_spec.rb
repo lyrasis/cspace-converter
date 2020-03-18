@@ -7,22 +7,17 @@ RSpec.describe CollectionSpace::Converter::Core::CoreLocation do
   let(:record) { get_fixture('core_location.xml') }
   let(:xpaths) {[
     "/document/*/locTermGroupList/locTermGroup/termDisplayName",
-    { xpath: "/document/*/locTermGroupList/locTermGroup[1]/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/*/locTermGroupList/locTermGroup[1]/termLanguage", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    { xpath: "/document/*/locTermGroupList/locTermGroup[2]/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/*/locTermGroupList/locTermGroup[2]/termLanguage", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
+    { xpath: "/document/*/locTermGroupList/locTermGroup/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     "/document/*/locTermGroupList/locTermGroup/termPrefForLang",
     "/document/*/locTermGroupList/locTermGroup/termType",
     "/document/*/locTermGroupList/locTermGroup/termQualifier",
-    { xpath: "/document/*/locTermGroupList/locTermGroup[1]/termSource", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/*/locTermGroupList/locTermGroup[1]/termSource", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/*/locTermGroupList/locTermGroup[2]/termSource", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/*/locTermGroupList/locTermGroup[2]/termSource", transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: "/document/*/locTermGroupList/locTermGroup/termSource", transform: ->(text) { CSURN.parse(text)[:label] } },
     "/document/*/locTermGroupList/locTermGroup/termSourceID",
     "/document/*/locTermGroupList/locTermGroup/termSourceDetail",
     "/document/*/locTermGroupList/locTermGroup/termSourceNote",
     "/document/*/locTermGroupList/locTermGroup/termStatus",
     "/document/*/locTermGroupList/locTermGroup/termName",
+    "/document/*/locTermGroupList/locTermGroup/termFormattedDisplayName",
     "/document/*/locationType",
     "/document/*/accessNote",
     "/document/*/address",
@@ -36,9 +31,9 @@ RSpec.describe CollectionSpace::Converter::Core::CoreLocation do
     end
   end
   context 'For minimally populated record' do
-    let(:attributes) { get_attributes_by_row('core', 'location_core_all.csv', 16) }
+    let(:attributes) { get_attributes_by_row('core', 'location_core_all.csv', 7) }
     let(:doc) { Nokogiri::XML(corelocation.convert, nil, 'UTF-8') }
-    let(:record) { get_fixture('core_location_row16.xml') }
+    let(:record) { get_fixture('core_location_row7.xml') }
     let(:xpath_required) {[
       "/document/*/locTermGroupList/locTermGroup/termDisplayName"
     ]}

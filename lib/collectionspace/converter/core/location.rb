@@ -35,7 +35,7 @@ module CollectionSpace
  	    "termstatus" => "termStatus",
 	    "termtype" => "termType",
             "termflag" => "termFlag",
-            "termdisplaynamenonpreferred" => "termDisplayName"
+            "termdisplaynamenonpreferred" => "termFormattedDisplayName"
 	  }
           locterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
