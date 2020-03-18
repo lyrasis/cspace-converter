@@ -22,6 +22,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePlace do
     "/document/*/placeTermGroupList/placeTermGroup/nameNote",
     "/document/*/placeTermGroupList/placeTermGroup/historicalStatus",
     "/document/*/placeTermGroupList/placeTermGroup/nameDateGroup/dateDisplayDate",
+    "/document/*/placeTermGroupList/placeTermGroup/termFormattedDisplayName",
     "/document/*/placeType",
     { xpath: "/document/*/placeOwnerGroupList/placeOwnerGroup[1]/owner", transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: "/document/*/placeOwnerGroupList/placeOwnerGroup[1]/owner", transform: ->(text) { CSURN.parse(text)[:subtype] } },
