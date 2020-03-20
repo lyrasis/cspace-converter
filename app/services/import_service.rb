@@ -1,18 +1,20 @@
 class ImportService
   class Base
-    attr_reader :data, :object, :profile
-    def initialize(profile, data)
+    attr_reader :config, :data, :object
+    def initialize(data)
       @data    = data
       @object  = nil
-      @profile = profile
+      # profile config
+      @config = Lookup.profile_config(@data[:converter_profile])
     end
 
-    def add_authority(name_field:, type:, subtype:, stub: false)
+    def add_authority(name_field:, type:, subtype:, mapper: nil)
       display_name = object.csv_data[name_field]
       return unless display_name
 
       service = Lookup.record_class(type).service(subtype)[:id]
       names_for(display_name).each do |name|
+        stub = mapper.nil? ? true : false
         id = identifier_for(:authority, service, subtype, name, stub)
         next if id.nil?
 
@@ -21,7 +23,7 @@ class ImportService
           subtype: subtype,
           name: name,
           identifier: id,
-          stub: stub
+          mapper: mapper
         )
         object.save!
       end
@@ -36,7 +38,7 @@ class ImportService
           name_field: name_field,
           type: type,
           subtype: subtype,
-          stub: true
+          mapper: nil
         )
       end
     end
@@ -124,8 +126,8 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      config = Lookup.profile_config(profile)
       add_authority(
+        mapper: config['mapper'],
         name_field: config['name_field'],
         type: config['authority_type'],
         subtype: config['authority_subtype']
@@ -147,7 +149,6 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      config = Lookup.profile_config(profile)
       config.each do |procedure, attributes|
         next if ['Authorities', 'Vocabularies'].include?(procedure)
 
@@ -171,7 +172,6 @@ class ImportService
     def process
       raise 'Data Object has not been created' unless object
 
-      config = Lookup.profile_config(profile)
       add_vocabulary(
         name_field: config['name_field'],
         subtype: object.csv_data['vocabulary']

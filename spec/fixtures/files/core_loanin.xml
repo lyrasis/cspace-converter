@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="loansin">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-13T11:29:03.197Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:loansin:id(54ee7fc9-be5f-44b2-9ed5)</refName>
+    <uri>/loansin/54ee7fc9-be5f-44b2-9ed5</uri>
+    <updatedAt>2020-02-13T11:37:13.802Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:loansin_common xmlns:ns2="http://collectionspace.org/services/loanin" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <borrowersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IsraelHayre1581593681024)'Israel Hayre'</borrowersAuthorizer>
+    <loanInDate>2000-04-01T00:00:00.000Z</loanInDate>
+    <loanRenewalApplicationDate>2000-06-01T00:00:00.000Z</loanRenewalApplicationDate>
+    <loanInConditions>Loan in conditions text.</loanInConditions>
+    <loanPurpose>exhibition</loanPurpose>
+    <borrowersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JoaquinCelestino1581593617139)'Joaquin Celestino'</borrowersContact>
+    <loanInNumber>LI2000.001</loanInNumber>
+    <loanStatusGroupList>
+      <loanStatusGroup>
+        <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(agreed)'Agreed'</loanStatus>
+        <loanStatusDate>2000-01-01T00:00:00.000Z</loanStatusDate>
+        <loanStatusNote>Loan status note 1</loanStatusNote>
+        <loanIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(NadeemFarhat1581593373905)'Nadeem Farhat'</loanIndividual>
+        <loanGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(board_of_trustees)'board of trustees'</loanGroup>
+      </loanStatusGroup>
+      <loanStatusGroup>
+        <loanStatus>urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(authorized)'Authorized'</loanStatus>
+        <loanStatusDate>2000-01-02T00:00:00.000Z</loanStatusDate>
+        <loanStatusNote>Loan status note 2</loanStatusNote>
+        <loanIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KaamilMir1581593382883)'Kaamil Mir'</loanIndividual>
+        <loanGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(collection_committee)'collection committee'</loanGroup>
+      </loanStatusGroup>
+    </loanStatusGroupList>
+    <lenderGroupList>
+      <lenderGroup>
+        <lender>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(GemeentemuseumdenHaag1581593438643)'Gemeentemuseum den Haag'</lender>
+        <lendersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KonradusKronbergs1581593472063)'Konradus Kronbergs'</lendersAuthorizer>
+        <lendersAuthorizationDate>2000-02-01T00:00:00.000Z</lendersAuthorizationDate>
+        <lendersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KahanuLuahoomae1581593521234)'Kahanu Luahoomae'</lendersContact>
+      </lenderGroup>
+      <lenderGroup>
+        <lender>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ChikafusaNakayama1581593448738)'Chikafusa Nakayama'</lender>
+        <lendersAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(OtomarsVitols1581593486771)'Otomars Vitols'</lendersAuthorizer>
+        <lendersAuthorizationDate>2000-02-02T00:00:00.000Z</lendersAuthorizationDate>
+        <lendersContact>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IosifPyatosin1581593530391)'Iosif Pyatosin'</lendersContact>
+      </lenderGroup>
+    </lenderGroupList>
+    <loanInNote>Loan in note text.</loanInNote>
+    <borrowersAuthorizationDate>2000-03-01T00:00:00.000Z</borrowersAuthorizationDate>
+    <loanReturnDate>2000-05-01T00:00:00.000Z</loanReturnDate>
+  </ns2:loansin_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

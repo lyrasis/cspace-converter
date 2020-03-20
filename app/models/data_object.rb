@@ -11,14 +11,15 @@ class DataObject
 
   before_validation :set_module
 
-  field :converter_module,  type: String # ex: Core
-  field :converter_profile, type: String # ex: cataloging
-  field :csv_data,          type: Hash
-  field :import_batch,      type: String # ex: cat1
-  field :import_file,       type: String # ex: cat1.csv
-  field :import_message,    type: String, default: 'ok'
-  field :import_status,     type: Integer, default: 1
-  field :import_category,   type: String # ex: Procedures
+  field :converter_module,   type: String # ex: Core
+  field :converter_profile,  type: String # ex: cataloging
+  field :csv_data,           type: Hash
+  field :identify_by_column, type: String
+  field :import_batch,       type: String # ex: cat1
+  field :import_file,        type: String # ex: cat1.csv
+  field :import_message,     type: String, default: 'ok'
+  field :import_status,      type: Integer, default: 1
+  field :import_category,    type: String # ex: Procedures
 
   def add_cspace_object(cspace_object_data, content_data)
     cspace_object = CollectionSpaceObject.new(cspace_object_data)
@@ -42,7 +43,7 @@ class DataObject
     write_attribute :converter_module, Lookup.converter_module.capitalize
   end
 
-  def add_authority(type:, subtype:, name:, identifier: nil, stub: false)
+  def add_authority(type:, subtype:, name:, identifier: nil, mapper: nil)
     converter = nil
     data = {}
     data[:batch]            = import_batch
@@ -53,7 +54,7 @@ class DataObject
     data[:identifier]       = identifier
     data[:title]            = name
 
-    if stub
+    if mapper.nil?
       converter = Lookup.default_authority_class(type)
       content_data = {
         "shortidentifier" => identifier,
@@ -61,7 +62,7 @@ class DataObject
         "termtype"        => "#{CSIDF.authority_term_type(type)}Term",
       }
     else
-      converter    = Lookup.authority_class(type)
+      converter    = mapper.constantize
       content_data = csv_data
     end
 
@@ -130,7 +131,7 @@ class DataObject
   end
 
   def add_procedure(procedure, attributes)
-    converter = Lookup.procedure_class(procedure)
+    converter = attributes["mapper"].constantize
     data = {}
     data[:batch]            = import_batch
     data[:profile]          = converter_profile

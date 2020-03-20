@@ -52,12 +52,12 @@ RSpec.describe CSXML::Helpers do
   it "can 'add measured part group list' correctly" do
     CSXML::Helpers.add_measured_part_group_list(xml, attributes_measured_part_group_list)
     expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/measuredPart').text).to eq('frame')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSummary').text).to eq('8.5 x 11')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup/measuredBy').text).to eq("#{person_refname}#{person_refname}")
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[1]/dimension').text).to eq('height')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[1]/value').text).to eq('8.5')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[2]/dimension').text).to eq('width')
-    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup/dimensionSubGroupList/dimensionSubGroup[2]/value').text).to eq('11')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSummary').text).to eq('8.5 x 11')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSubGroupList/dimensionSubGroup/measuredBy').text).to eq(person_refname)
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSubGroupList/dimensionSubGroup/dimension').text).to eq('height')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[1]/dimensionSubGroupList/dimensionSubGroup/value').text).to eq('8.5')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[2]/dimensionSubGroupList/dimensionSubGroup/dimension').text).to eq('width')
+    expect(doc(xml).xpath('/measuredPartGroupList/measuredPartGroup[2]/dimensionSubGroupList/dimensionSubGroup/value').text).to eq('11')
   end
 
   it "can 'add pairs' correctly" do
@@ -108,10 +108,6 @@ RSpec.describe CSXML::Helpers do
 
   it "can identify reserved field names correctly" do
     expect(CSXML::Helpers.reserved?('comment')).to be true
-  end
-
-  xit "can safe split correctly" do
-    # TODO
   end
 
   it "can get short identifier for authority" do
@@ -215,10 +211,13 @@ RSpec.describe CSXML::Helpers do
              },
       'd' => {'special' => 'unstructured_date_string'},
       'dd' => {'special' => 'unstructured_date_stamp'},
+      'ddd' => {'special' => 'structured_date'},
       'e' => {'special' => 'boolean' },
       'f' => {'special' => 'behrensmeyer_translate',
               'vocab' => 'behrensmeyer'
-             }
+             },
+      'g' => {'special' => 'upcase_first_char'},
+      'h' => {'special' => 'downcase_first_char'}
     } }
 
     let(:resa) { CSXML::Helpers.apply_transforms(transforms, 'a', '9 - 10') }
@@ -226,10 +225,30 @@ RSpec.describe CSXML::Helpers do
     let(:resc) { CSXML::Helpers.apply_transforms(transforms, 'c', 'goat123') }
     let(:resd) { CSXML::Helpers.apply_transforms(transforms, 'd', '9/9/1999') }
     let(:resdd) { CSXML::Helpers.apply_transforms(transforms, 'dd', '9/9/1999') }
+    let(:resddd) { CSXML::Helpers.apply_transforms(transforms, 'ddd', '2011-11-02') }
     let(:rese) { CSXML::Helpers.apply_transforms(transforms, 'e', 'True') }
     let(:resf) { CSXML::Helpers.apply_transforms(transforms, 'f', '3') }
     let(:b_urn) { CSXML::Helpers.get_vocab('behrensmeyer', CSXML::Helpers.behrensmeyer_translate('3')) }
+    let(:resg) { CSXML::Helpers.apply_transforms(transforms, 'g', 'bear') }
+    let(:resh) { CSXML::Helpers.apply_transforms(transforms, 'h', 'Bear') }
 
+    let(:structured_date_fields) {
+      {"scalarValuesComputed"=>"true",
+       "dateDisplayDate"=>"2011-11-02",
+       "dateEarliestSingleYear"=>2011,
+       "dateEarliestSingleMonth"=>11,
+       "dateEarliestSingleDay"=>2,
+       "dateEarliestScalarValue"=>"2011-11-02T00:00:00.000Z",
+       "dateEarliestSingleEra"=>
+         "urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'",
+       "dateLatestYear"=>2011,
+       "dateLatestMonth"=>11,
+       "dateLatestDay"=>3,
+       "dateLatestScalarValue"=>"2011-11-03T00:00:00.000Z",
+       "dateLatestEra"=>
+         "urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'"}
+    }
+    
     it 'applies transforms properly' do
       expect(resa).to include('9-10')
       expect(resa).to include(':vocabularies:name(agerange):')
@@ -238,8 +257,11 @@ RSpec.describe CSXML::Helpers do
       expect(resc).to eq('caprine 123')
       expect(resd).to eq('1999-09-09')
       expect(resdd).to eq('1999-09-09T00:00:00.000Z')
+      expect(resddd).to eq(structured_date_fields)
       expect(rese).to eq('true')
       expect(resf).to eq(b_urn)
+      expect(resg).to eq('Bear')
+      expect(resh).to eq('bear')
     end
     
   end

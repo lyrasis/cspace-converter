@@ -34,7 +34,7 @@
                 <tr>
                   <td><%= batch.type %></td>
                   <td><%= batch.for %></td>
-                  <td><%= link_to batch.name, path_for_batch_type(batch) %></td>
+                  <td><%= link_to batch.name, path_for_batch_type(batch), 'data-turbolinks': 'false' %></td>
                   <td><%= batch.processed %></td>
                   <td><%= batch.failed %></td>
                   <td><%= batch.total %></td>

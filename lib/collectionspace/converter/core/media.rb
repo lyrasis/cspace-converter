@@ -9,36 +9,52 @@ module CollectionSpace
           end
         end
 
-        def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'identificationnumber' => 'identificationNumber',
             'title' => 'title',
             'copyrightstatement' => 'copyrightStatement',
             'coverage' => 'coverage',
             'source' => 'source',
             'sourceurl' => 'externalUrl',
-          }
-        end
+            'contributorperson' => 'contributor',
+            'contributororganization' => 'contributor',
+            'creatorperson' => 'creator',
+            'creatororganization' => 'creator',
+            'description' => 'description',
+            'publisherperson' => 'publisher',
+            'publisherorganization' => 'publisher',
+            'rightsholderperson' => 'rightsHolder',
+            'rightsholderorganization' => 'rightsHolder',
 
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreMedia.pairs)
-          CSXML::Helpers.add_person xml, 'contributor', attributes["contributor"] if attributes["contributortype"] == "person"
-          CSXML::Helpers.add_organization xml, 'contributor', attributes["contributor"] if attributes["contributortype"] == "organization"
-          CSXML::Helpers.add_person xml, 'creator', attributes["creator"] if attributes["creatortype"] == "person"
-          CSXML::Helpers.add_organization xml, 'creator', attributes["creator"] if attributes["creatortype"] == "organization"
+          }
+          pairstransforms = {
+            'contributorperson' => {'authority' => ['personauthorities', 'person']},
+            'contributororganization' => {'authority' => ['orgauthorities', 'organization']},
+            'creatorperson' => {'authority' => ['personauthorities', 'person']},
+            'creatororganization' => {'authority' => ['orgauthorities', 'organization']},
+            'publisherperson' => {'authority' => ['personauthorities', 'person']},
+            'publisherorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'rightsholderperson' => {'authority' => ['personauthorities', 'person']},
+            'rightsholderorganization' => {'authority' => ['orgauthorities', 'organization']},
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
+          repeats = { 
+            'type' => ['typeList', 'type'],
+            'language' => ['languageList', 'language'],
+            'subject' => ['subjectList', 'subject'],
+            'relation' => ['relationList', 'relation'],
+          }
+          repeatstransforms = {
+            'language' => {'vocab' => 'languages'}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+          #dateGroupList, dateGroup
           CSXML::Helpers.add_date_group_list(
-            xml, 'date', [CSDTP.parse(attributes['date'])]
+            xml, 'date', attributes["date"]
           )
-          CSXML.add xml, 'description', scrub_fields([attributes["description"]])
+          #measuredPartGroupList, measuredPartGroup, dimensionSubGroupList, dimensionSubGroup
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
-          CSXML.add_repeat xml, 'language', [{'language' => CSXML::Helpers.get_vocab('languages', attributes["language"])}], 'List'
-          CSXML::Helpers.add_person xml, 'publisher', attributes["publisher"] if attributes["publishertype"] == "person"
-          CSXML::Helpers.add_organization xml, 'publisher', attributes["publisher"] if attributes["publishertype"] == "organization"
-          CSXML.add_repeat xml, 'relation', [{'relation' => attributes['relation']}], 'List'
-          CSXML::Helpers.add_person xml, 'rightsHolder', attributes["rightsholder"] if attributes["rightsholdertype"] == "person"
-          CSXML::Helpers.add_organization xml, 'rightsHolder', attributes["rightsholder"] if attributes["rightsholdertype"] == "organization"
-          CSXML.add_repeat xml, 'subject', [{'subject' => attributes['subject']}], 'List'
-          CSXML.add_repeat xml, 'type', [{'type' => attributes['type']}], 'List'
         end
       end
     end

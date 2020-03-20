@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="conservation">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-01-08T11:40:55.290Z</createdAt>
+    <createdAt>2020-02-17T13:53:10.933Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:conservation:id(798de8f0-e92a-45f9-8434)</refName>
-    <uri>/conservation/798de8f0-e92a-45f9-8434</uri>
-    <updatedAt>2020-01-08T11:49:28.433Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:conservation:id(09edc96c-b075-4dae-8ad7)</refName>
+    <uri>/conservation/09edc96c-b075-4dae-8ad7</uri>
+    <updatedAt>2020-02-17T13:53:10.933Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:conservation_common xmlns:ns2="http://collectionspace.org/services/conservation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <treatmentStartDate>2000-04-01T00:00:00.000Z</treatmentStartDate>
     <conservationStatusGroupList>
       <conservationStatusGroup>
-        <statusDate>2000-01-01T00:00:00.000Z</statusDate>                                                                                                                                                                                    
-        <status>urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysisapproved)'Analysis approved'</status>                                                                                            
-      </conservationStatusGroup>                                                                                                                                                                                                             
-      <conservationStatusGroup>                                                                                                                                                                                                              
-        <statusDate>2000-02-01T00:00:00.000Z</statusDate>                                                                                                                                                                                    
-        <status>urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysiscomplete)'Analysis complete'</status>                                                                                            
-      </conservationStatusGroup>                                                                                                                                                                                                             
-    </conservationStatusGroupList>                                                                                                                                                                                                           
-    <analysisResults>Analytical results text.</analysisResults>                                                                                                                                                                              
-    <researcher>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MaksimilanBogatyryov1578483743620)'Maksimilan Bogatyryov'</researcher>                                                                          
-    <proposedAnalysis>Proposed analysis text.</proposedAnalysis>                                                                                                                                                                             
-    <approvedBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KaineheKimo1578483693106)'Kainehe Kimo'</approvedBy>                                                                                            
-    <conservators>                                                                                                                                                                                                                           
-      <conservator>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1578483411533)'Ilze Bergs'</conservator>                                                                                            
-      <conservator>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1578483427415)'Tina Lauva'</conservator>                                                                                            
-    </conservators>                                                                                                                                                                                                                          
+        <statusDate>2000-01-01T00:00:00.000Z</statusDate>
+        <status>urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysisapproved)'Analysis approved'</status>
+      </conservationStatusGroup>
+      <conservationStatusGroup>
+        <statusDate>2000-02-01T00:00:00.000Z</statusDate>
+        <status>urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysiscomplete)'Analysis complete'</status>
+      </conservationStatusGroup>
+    </conservationStatusGroupList>
+    <analysisResults>Analytical results text.</analysisResults>
+    <researcher>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MaksimilanBogatyryov2351520161)'Maksimilan Bogatyryov'</researcher>
+    <proposedAnalysis>Proposed analysis text.</proposedAnalysis>
+    <approvedBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KaineheKimo4195223418)'Kainehe Kimo'</approvedBy>
+    <conservators>
+      <conservator>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs2196969754)'Ilze Bergs'</conservator>
+      <conservator>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(TinaLauva293003238)'Tina Lauva'</conservator>
+    </conservators>
     <fabricationNote>Fabrication note text.</fabricationNote>
     <destAnalysisGroupList>
       <destAnalysisGroup>
-        <sampleBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(HermioneMilbourne1578483844422)'Hermione Milbourne'</sampleBy>
+        <sampleBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(HermioneMilbourne3362333422)'Hermione Milbourne'</sampleBy>
         <destAnalysisApprovalNote>Destructive analysis approval note text 1.</destAnalysisApprovalNote>
         <sampleDescription>Destructive analysis sample description text 1.</sampleDescription>
         <destAnalysisApprovedDate>2000-07-01T00:00:00.000Z</destAnalysisApprovedDate>
@@ -42,7 +42,7 @@
         <sampleReturnedLocation>Destructive analysis sample returned location text 1.</sampleReturnedLocation>
       </destAnalysisGroup>
       <destAnalysisGroup>
-        <sampleBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IsadoraDamonCowles1578484024824)'Isadora Damon-Cowles'</sampleBy>
+        <sampleBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(IsadoraDamonCowles2017765924)'Isadora Damon-Cowles'</sampleBy>
         <destAnalysisApprovalNote>Destructive analysis approval note text 2.</destAnalysisApprovalNote>
         <sampleDescription>Destructive analysis sample description text 2.</sampleDescription>
         <destAnalysisApprovedDate>2000-07-02T00:00:00.000Z</destAnalysisApprovedDate>
@@ -59,26 +59,26 @@
     <treatmentPurpose>urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(appraisal)'Appraisal'</treatmentPurpose>
     <otherPartyGroupList>
       <otherPartyGroup>
-        <otherParty>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RinjiSato1578483461302)'Rinji Sato'</otherParty>
+        <otherParty>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RinjiSato4234410043)'Rinji Sato'</otherParty>
         <otherPartyNote>Other party note text 1.</otherPartyNote>
         <otherPartyRole>urn:cspace:core.collectionspace.org:vocabularies:name(otherpartyrole):item:name(conservator)'Conservator'</otherPartyRole>
       </otherPartyGroup>
       <otherPartyGroup>
-        <otherParty>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(OgiKido1578483470417)'Ogi Kido'</otherParty>
+        <otherParty>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(OgiKido1072612613)'Ogi Kido'</otherParty>
         <otherPartyNote>Other party note text 2.</otherPartyNote>
         <otherPartyRole>urn:cspace:core.collectionspace.org:vocabularies:name(otherpartyrole):item:name(technician)'Technician'</otherPartyRole>
       </otherPartyGroup>
     </otherPartyGroupList>
     <examinationGroupList>
       <examinationGroup>
-        <examinationStaff>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ShaamikhSafar1578483524327)'Shaamikh Safar'</examinationStaff>
+        <examinationStaff>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ShaamikhSafar1399604352)'Shaamikh Safar'</examinationStaff>
         <examinationDate>2000-02-01T00:00:00.000Z</examinationDate>
         <examinationPhase>urn:cspace:core.collectionspace.org:vocabularies:name(examinationphase):item:name(aftertreatment)'after treatment'</examinationPhase>
         <examinationNote>Exam notes text 1.</examinationNote>
       </examinationGroup>
       <examinationGroup>
-        <examinationStaff>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KaamilMir1578483634252)'Kaamil Mir'</examinationStaff>
-        <examinationDate/>
+        <examinationStaff>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(KaamilMir1581593382883)'Kaamil Mir'</examinationStaff>
+        <examinationDate>2000-02-02T00:00:00.000Z</examinationDate>
         <examinationPhase>urn:cspace:core.collectionspace.org:vocabularies:name(examinationphase):item:name(beforetreatment)'before treatment'</examinationPhase>
         <examinationNote>Exam notes text 2.</examinationNote>
       </examinationGroup>
@@ -88,7 +88,7 @@
   </ns2:conservation_common>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
     <account>
-      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
       <screenName>Administrator</screenName>
       <userId>admin@core.collectionspace.org</userId>
       <tenantId>1</tenantId>

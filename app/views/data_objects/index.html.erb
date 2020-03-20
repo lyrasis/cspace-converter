@@ -6,11 +6,30 @@
     <%= render partial: 'shared/title', :locals => { :title => 'Objects' } %>
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <%= page_entries_info @objects, entry_name: 'object' %>
-        <span class="errors" style="float: right;">
-          <%= link_to "Filter Errors", current_page_params.merge(errors: true) %>
-        </span>
+      </div>
+      <div class="col-md-6">
+        <%= form_for :filters,
+                      path: request.path,
+                      method: :get,
+                      html: { id: 'filters', class: 'form-inline' } do |f|
+        %>
+          <%= f.label 'Batch:', class: 'form-check-label', for: 'batch' %>
+          <%=
+            select_tag 'batch',
+            options_for_select(batches, params[:batch]),
+            include_blank: true
+          %>
+          <%= f.label 'Filter errors:', class: 'form-check-label', for: 'errors' %>
+          <%=
+            check_box_tag 'errors',
+            params.fetch(:errors, false).to_s, # value
+            params.fetch(:errors, false).to_s == 'true', # checked
+            class: 'form-check-input'
+          %>
+          <%= submit_tag 'Apply', name: nil, class: 'btn btn-info' %>
+        <% end %>
       </div>
     </div>
 
@@ -32,11 +51,11 @@
             <tbody>
               <% @objects.entries.each.with_index do |object, i| %>
                 <tr>
-                  <td><%= link_to object.id, object_path(object) %></td>
+                  <td><%= link_to identifier_for(object), object_path(object) %></td>
                   <td><%= object.import_batch %></td>
                   <td><%= object.converter_module %></td>
                   <td><%= object.converter_profile %></td>
-                  <td><%= object.import_status %></td>
+                  <td class="<%= status_class(object) %>"><%= status(object) %></td>
                   <td><%= short_date object.created_at %></td>
                   <td><%= short_date object.updated_at %></td>
                 </tr>

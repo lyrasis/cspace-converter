@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="acquisitions">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-05T18:32:00.893Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:acquisitions:id(226967a1-efab-4d1c-8a4b)</refName>
+    <uri>/acquisitions/226967a1-efab-4d1c-8a4b</uri>
+    <updatedAt>2020-02-05T19:40:50.298Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:acquisitions_common xmlns:ns2="http://collectionspace.org/services/acquisition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <acquisitionNote>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</acquisitionNote>
+    <objectPurchaseOfferPriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(EUR)'Euro'</objectPurchaseOfferPriceCurrency>
+    <acquisitionReferenceNumber>20CS.001</acquisitionReferenceNumber>
+    <owners>
+      <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMaycroft1947809957)'John Maycroft'</owner>
+      <owner>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(MaryMaycroft1580927151933)'Mary Maycroft'</owner>
+      <owner>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(PrincetonUniversityArtMuseum1578314067124)'Princeton University Art Museum'</owner>
+    </owners>
+    <objectOfferPriceValue>387</objectOfferPriceValue>
+    <acquisitionDateGroupList>
+      <acquisitionDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2015/11/15</dateDisplayDate>
+        <dateLatestScalarValue>2015-11-16T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra/>
+        <dateEarliestSingleDay>15</dateEarliestSingleDay>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear>2015</dateEarliestSingleYear>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth>11</dateEarliestSingleMonth>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2015-11-15T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </acquisitionDateGroup>
+      <acquisitionDateGroup>
+        <scalarValuesComputed>true</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate>2015/11/17</dateDisplayDate>
+        <dateLatestScalarValue>2015-11-18T00:00:00.000Z</dateLatestScalarValue>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra/>
+        <dateEarliestSingleDay>17</dateEarliestSingleDay>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear>2015</dateEarliestSingleYear>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth>11</dateEarliestSingleMonth>
+        <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue>2015-11-17T00:00:00.000Z</dateEarliestScalarValue>
+        <dateLatestMonth/>
+      </acquisitionDateGroup>
+    </acquisitionDateGroupList>
+    <groupPurchasePriceValue>123</groupPurchasePriceValue>
+    <acquisitionAuthorizer>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(AnnmariNyhus2704395487)'Annmari Nyhus'</acquisitionAuthorizer>
+    <creditLine>Gift of John Maycroft</creditLine>
+    <acquisitionReason>eu volutpat odio facilisis mauris sit amet massa vitae tortor</acquisitionReason>
+    <acquisitionSources>
+      <acquisitionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMaycroft1947809957)'John Maycroft'</acquisitionSource>
+      <acquisitionSource>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(PrincetonUniversityArtMuseum1578314067124)'Princeton University Art Museum'</acquisitionSource>
+    </acquisitionSources>
+    <accessionDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>2015/01/02</dateDisplayDate>
+      <dateLatestScalarValue>2015-01-03T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay>2</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>2015</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>2015-01-02T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth/>
+    </accessionDateGroup>
+    <groupPurchasePriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(EUR)'Euro'</groupPurchasePriceCurrency>
+    <acquisitionProvisos>auctor urna nunc id cursus metus aliquam eleifend mi in</acquisitionProvisos>
+    <acquisitionFundingList>
+      <acquisitionFunding>
+        <acquisitionFundingSourceProvisos>aliquam sem fringilla ut morbi</acquisitionFundingSourceProvisos>
+        <acquisitionFundingCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(DKK)'Danish Krone'</acquisitionFundingCurrency>
+        <acquisitionFundingValue>1444</acquisitionFundingValue>
+        <acquisitionFundingSource>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(InstituteofMuseumandLibraryServices1579007003327)'Institute of Museum and Library Services'</acquisitionFundingSource>
+      </acquisitionFunding>
+      <acquisitionFunding>
+        <acquisitionFundingSourceProvisos>tincidunt augue interdum velit euismod</acquisitionFundingSourceProvisos>
+        <acquisitionFundingCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</acquisitionFundingCurrency>
+        <acquisitionFundingValue>1321</acquisitionFundingValue>
+        <acquisitionFundingSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(AlessiaTrelstad1580926897633)'Alessia Trelstad'</acquisitionFundingSource>
+      </acquisitionFunding>
+    </acquisitionFundingList>
+    <fieldCollectionEventNames>
+      <fieldCollectionEventName>Field Collection Event 1</fieldCollectionEventName>
+      <fieldCollectionEventName>Field Collection Event 2</fieldCollectionEventName>
+    </fieldCollectionEventNames>
+    <acquisitionMethod>gift</acquisitionMethod>
+    <originalObjectPurchasePriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(USD)'US Dollar'</originalObjectPurchasePriceCurrency>
+    <objectPurchasePriceValue>111</objectPurchasePriceValue>
+    <objectOfferPriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(DKK)'Danish Krone'</objectOfferPriceCurrency>
+    <transferOfTitleNumber>20068873</transferOfTitleNumber>
+    <originalObjectPurchasePriceValue>14</originalObjectPurchasePriceValue>
+    <objectPurchaseOfferPriceValue>234</objectPurchaseOfferPriceValue>
+    <acquisitionAuthorizerDate>2015-12-15T00:00:00.000Z</acquisitionAuthorizerDate>
+    <objectPurchasePriceCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(EUR)'Euro'</objectPurchasePriceCurrency>
+    <approvalGroupList>
+      <approvalGroup>
+        <approvalStatus>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(approved)'approved'</approvalStatus>
+        <approvalGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(board_of_trustees)'board of trustees'</approvalGroup>
+        <approvalNote>App note 1</approvalNote>
+        <approvalDate>2020-02-01T00:00:00.000Z</approvalDate>
+        <approvalIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JaneDoe1580927411860)'Jane Doe'</approvalIndividual>
+      </approvalGroup>
+      <approvalGroup>
+        <approvalStatus>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(not_required)'not required'</approvalStatus>
+        <approvalGroup>urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(collection_committee)'collection committee'</approvalGroup>
+        <approvalNote>App note 2</approvalNote>
+        <approvalDate>2020-02-04T00:00:00.000Z</approvalDate>
+        <approvalIndividual>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(RichMiles1580927440272)'Rich Miles'</approvalIndividual>
+      </approvalGroup>
+    </approvalGroupList>
+  </ns2:acquisitions_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>7968b9e7-805a-4b96-8340-cc1d0c1edc20</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

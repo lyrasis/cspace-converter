@@ -9,8 +9,8 @@ module CollectionSpace
           end
         end
 
-        def self.pairs
-          {
+        def self.map(xml, attributes)
+          pairs = {
             'conditioncheckrefnumber' => 'conditionCheckRefNumber',
             'conditioncheckassessmentdate' => 'conditionCheckAssessmentDate',
             'conditioncheckmethod' => 'conditionCheckMethod',
@@ -30,17 +30,14 @@ module CollectionSpace
             'conditioncheckerperson' => 'conditionChecker',
             'conditioncheckerorganization' => 'conditionChecker'
           }
-        end
-
-        def self.map(xml, attributes)
-          CSXML::Helpers.add_pairs(xml, attributes, CoreConditionCheck.pairs,
           pairstransforms = {
             'conditioncheckassessmentdate' => {'special' => 'unstructured_date_stamp'},
             'nextconditioncheckdate' => {'special' => 'unstructured_date_stamp'},
             'conditioncheckerperson' => {'authority' => ['personauthorities', 'person']},
             'conditioncheckerorganization' => {'authority' => ['orgauthorities', 'organization']}
-          })
-
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)       
+          #completenessGroupList, completenessGroup
           overall_completeness = {
             'completeness' => 'completeness',
             'completenessnote' => 'completenessNote',
@@ -58,6 +55,7 @@ module CollectionSpace
             overall_completeness,
             completenesstransforms
           )
+          #conditionCheckGroupList, conditionCheckGroup
           overall_condition = {
             'condition' => 'condition',
             'conditionnote' => 'conditionNote',
@@ -75,6 +73,7 @@ module CollectionSpace
             overall_condition,
             conditiontransforms
           )
+          #envConditionNoteGroupList, envConditionNoteGroup
           overall_env = {
             'envconditionnote' => 'envConditionNote',
             'envconditionnotedate' => 'envConditionNoteDate'
@@ -91,6 +90,7 @@ module CollectionSpace
             overall_env,
             envtransforms
           )
+          #techAssessmentGroupList, techAssessmentGroup
           overall_tech = {
             'techassessment' => 'techAssessment',
             'techassessmentdate' => 'techAssessmentDate'
@@ -107,6 +107,7 @@ module CollectionSpace
             overall_tech,
             techtransforms
           )
+          #hazardGroupList, hazardGroup
           overall_hazard = {
             'hazard' => 'hazard',
             'hazarddate' => 'hazardDate',
@@ -124,6 +125,7 @@ module CollectionSpace
             overall_hazard,
             hazardtransforms
           )
+          #salvagePriorityCodeGroupList, salvagePriorityCodeGroup
           overall_salvage = {
             'salvageprioritycode' => 'salvagePriorityCode',
             'salvageprioritycodedate' => 'salvagePriorityCodeDate'
@@ -139,7 +141,8 @@ module CollectionSpace
             'salvagePriorityCode',
             overall_salvage,
             salvagetransforms
-          ) 
+          )
+          #legalReqsHeldGroupList, legalReqsHeldGroup
           overall_legal = {
             'legalreqsheld' => 'legalReqsHeld',
             'legalreqsheldbegindate' => 'legalReqsHeldBeginDate',

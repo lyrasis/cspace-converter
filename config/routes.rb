@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'authorities/:id/transfer',   to: 'authority_objects#transfer'
   post 'authorities/:id/update',     to: 'authority_objects#update'
   get 'batches',                     to: 'batches#index'
+  get 'batches/:batch/:for',         to: 'batches#show'
   delete 'batches/:id',              to: 'batches#destroy', as: :batch
   get 'cache',                       to: 'cache_objects#index'
   get 'connection',                  to: 'sites#connection', as: 'connection'
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
   post 'relationships/:id/update',   to: 'relationship_objects#update'
   get  'transfer',                   to: 'transfers#new'
   post 'transfer',                   to: 'transfers#create'
+  get 'types_for_batch',             to: 'batches#types_for_batch'
   get  'vocabularies',               to: 'vocabulary_objects#index'
   get  'vocabularies/:id',           to: 'vocabulary_objects#show', as: 'vocabulary'
   post 'vocabularies/:id/ping',      to: 'vocabulary_objects#ping'

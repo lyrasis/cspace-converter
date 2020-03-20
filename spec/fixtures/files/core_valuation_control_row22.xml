@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="valuationcontrols">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-13T17:10:10.843Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:valuationcontrols:id(c1756ee1-c30d-4183-8e96)</refName>
+    <uri>/valuationcontrols/c1756ee1-c30d-4183-8e96</uri>
+    <updatedAt>2020-02-13T17:10:10.843Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:valuationcontrols_common xmlns:ns2="http://collectionspace.org/services/valuationcontrol" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <valuationcontrolRefNumber>VAL2000.021</valuationcontrolRefNumber>
+    <valueAmountsList/>
+  </ns2:valuationcontrols_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

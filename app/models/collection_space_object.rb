@@ -2,6 +2,7 @@ class CollectionSpaceObject
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  has_many :transfer_statuses, autosave: true, dependent: :destroy
   belongs_to :data_object, counter_cache: true
   validate   :identifier_is_unique_per_type
   validates_uniqueness_of :fingerprint
@@ -38,6 +39,7 @@ class CollectionSpaceObject
   def generate_content!(data = nil)
     data ||= data_object.csv_data
     config = converter.constantize.service(subtype)
+    config[:identifier_field] = identifier_field
     config[:identifier] = identifier
     config[:title] = title
     data = Lookup.profile_defaults(profile).merge(data)
@@ -109,6 +111,8 @@ class CollectionSpaceObject
   end
 
   def ping
+    return if ENV['CSPACE_CONVERTER_BASE_URI'] =~ /localhost/
+
     if Lookup.async?
       PingJob.perform_later(id.to_s)
     else

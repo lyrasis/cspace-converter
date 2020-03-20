@@ -1,5 +1,6 @@
-module ApplicationHelper
+# frozen_string_literal: true
 
+module ApplicationHelper
   def batches
     DataObject.pluck('import_batch').uniq
   end
@@ -27,14 +28,14 @@ module ApplicationHelper
   def disabled_profiles
     Lookup.module.registered_profiles.find_all do |_, profile|
       !profile.fetch('enabled', false)
-    end.map{ |p| p[0] }
+    end.map { |p| p[0] }
   end
 
   def path_for_batch_type(batch)
-    if batch.type == 'TransferJob'
-      return batches_path
+    if batch.type != 'import'
+      URI.encode(File.join('batches', batch.name, batch.for))
     else
-      return objects_path(batch: batch.name)
+      objects_path(batch: batch.name)
     end
   end
 
@@ -46,8 +47,8 @@ module ApplicationHelper
     profiles
   end
 
-  def types
-    CollectionSpaceObject.pluck('type').uniq
+  def transfer_statuses_for(object)
+    object.transfer_statuses.order(created_at: :desc).limit(3)
   end
 
   def short_date(date)

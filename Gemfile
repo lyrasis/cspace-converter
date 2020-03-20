@@ -12,6 +12,7 @@ gem 'kaminari'
 gem 'kaminari-mongoid'
 gem 'mongoid', '~> 5.1.0'
 gem 'mongoid-locker'
+gem "mongo_session_store"
 gem 'puma'
 gem 'rails', '4.2.8'
 gem 'rake'
@@ -31,6 +32,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.4'
+  gem 'selenium-webdriver'
+  gem 'webmock'
 end
 
 group :development do

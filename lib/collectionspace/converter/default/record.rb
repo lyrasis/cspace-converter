@@ -19,7 +19,7 @@ module CollectionSpace
         end
 
         def redefined_fields
-          @redefined.each_with_object({}) { |k, h| h[k] = nil }
+          @redefined.uniq.each_with_object({}) { |k, h| h[k] = nil }
         end
 
         def run(document, service, common)
@@ -170,41 +170,66 @@ module CollectionSpace
       class Contact
         ::Contact = CollectionSpace::Converter::Default::Contact
         def self.map(xml, attributes)
-          CSXML.add_group_list xml, 'email', [
-            {
-              "email" => attributes["email"],
-              "emailType" => attributes["emailtype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'telephoneNumber', [
-            {
-              "telephoneNumber" => attributes["telephonenumber"],
-              "telephoneNumberType" => attributes["telephonenumbertype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'faxNumber', [
-            {
-              "faxNumber" => attributes["faxnumber"],
-              "faxNumberType" => attributes["faxnumbertype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'webAddress', [
-            {
-              "webAddress" => attributes["webaddress"],
-              "webAddressType" => attributes["webaddresstype"],
-            }
-          ]
-          CSXML.add_group_list xml, 'address', [
-            {
-              "addressType" => attributes["addresstype"],
-              "addressPlace1" => attributes["addressplace1"],
-              "addressPlace2" => attributes["addressplace2"],
-              "addressMunicipality" => attributes["addressmunicipality"],
-              "addressStateOrProvince" => attributes["addressstateorprovince"],
-              "addressPostCode" => attributes["addresspostcode"],
-              "addressCountry" => attributes["addresscountry"],
-            }
-          ]
+	  #emailGroupList, emailGroup
+          email_data = {
+            'email' => 'email',
+            'emailtype' => 'emailType'
+          }
+          
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'email',
+            email_data
+          )
+          #telephoneNumberGroupList, telephoneNumberGroup
+          telephone_data = {
+            'telephonenumber' => 'telephoneNumber',
+            'telephonenumbertype' => 'telephoneNumberType'
+          }
+          
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'telephoneNumber',
+            telephone_data
+          )
+          #faxNumberGroupList, faxNumberGroup
+          fax_data = {
+            'faxnumber' => 'faxNumber',
+            'faxnumbertype' => 'faxNumberType'
+          }
+          
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'faxNumber',
+            fax_data
+          )
+          #webAddressGroupList, webAddressGroup
+          webaddress_data = {
+            'webaddress' => 'webAddress',
+            'webaddresstype' => 'webAddressType'
+          }
+          
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'webAddress',
+            webaddress_data
+          )
+          #addressGroupList, addressGroup
+          address_data = {
+            'addresstype' => 'addressType',
+            'addressplace1' => 'addressPlace1',
+            'addressplace2' => 'addressPlace2',
+            'addressmunicipality' => 'addressMunicipality',
+            'addressstateorprovince' => 'addressStateOrProvince',
+            'addresspostcode' => 'addressPostCode',
+            'addresscountry' => 'addressCountry'
+          }
+          
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'address',
+            address_data
+          )
         end
       end
 

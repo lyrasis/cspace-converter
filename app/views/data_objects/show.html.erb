@@ -4,7 +4,7 @@
 
   <div class="col-md-10">
 
-    <%= render partial: 'shared/title', :locals => { :title => @object.id } %>
+    <%= render partial: 'shared/title', :locals => { :title => identifier_for(@object) } %>
 
     <div class="row">
       <div class="col-md-12">

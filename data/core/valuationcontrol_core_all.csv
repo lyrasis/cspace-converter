@@ -1,0 +1,22 @@
+valuationcontrolRefNumber,valueCurrency,valueAmount,valueDate,valueNote,valueRenewalDate,valueType,valueSourceOrganization,valueSourcePerson
+VAL2000.001,Canadian Dollar; Danish Krone,25;35,1/1/2000,Object valuation note text.,2/1/2000,Current Value,,Arshad Edris
+VAL2000.002,Canadian Dollar,10,1/2/2000,Object valuation note text.,2/2/2000,Original Value,,Shaamikh Safar
+VAL2000.003,Danish Krone,20,1/3/2000,Object valuation note text.,2/3/2000,Replacement Value,,Basheet Pashia
+VAL2000.004,Euro,30,1/4/2000,Object valuation note text.,2/4/2000,Current Value,,Kaamil Mir
+VAL2000.005,Pound Sterling,40,1/5/2000,Object valuation note text.,2/5/2000,Original Value,,Ghaaliya Basher
+VAL2000.006,Swedish Krona,50,1/6/2000,Object valuation note text.,2/6/2000,Replacement Value,,Hilmiyya Siddiqi
+VAL2000.007,Swiss Franc,60,1/7/2000,Object valuation note text.,2/7/2000,Current Value,,Hilmiyya Shafi
+VAL2000.008,US Dollar,70,1/8/2000,Object valuation note text.,2/8/2000,Original Value,,Hakeema Yousif
+VAL2000.009,Canadian Dollar,80,1/9/2000,Object valuation note text.,2/9/2000,Replacement Value,,Masroora Khan
+VAL2000.010,Danish Krone,90,1/10/2000,Object valuation note text.,2/10/2000,Current Value,,Shaafia Baddour
+VAL2000.011,Euro,100,1/11/2000,Object valuation note text.,2/11/2000,Original Value,Tridentino Museo di Scienze Naturali,
+VAL2000.012,Pound Sterling,110,1/12/2000,Object valuation note text.,2/12/2000,Replacement Value,San Francisco Museum of Modern Art,
+VAL2000.013,Swedish Krona,120,1/13/2000,Object valuation note text.,2/13/2000,Current Value,Canadian Heritage Information Network,
+VAL2000.014,Swiss Franc,130,1/14/2000,Object valuation note text.,2/14/2000,Original Value,Fitzwilliam Museum,
+VAL2000.015,US Dollar,140,1/15/2000,Object valuation note text.,2/15/2000,Replacement Value,Watermill Center,
+VAL2000.016,Canadian Dollar,150,1/16/2000,Object valuation note text.,2/16/2000,Current Value,Museum of Man,
+VAL2000.017,Danish Krone,160,1/17/2000,Object valuation note text.,2/17/2000,Original Value,Broad Art Foundation,
+VAL2000.018,Euro,170,1/18/2000,Object valuation note text.,2/18/2000,Replacement Value,Balboa Park Online Collaborative,
+VAL2000.019,Pound Sterling,180,1/19/2000,Object valuation note text.,2/19/2000,Current Value,Berkley Publishing Group,
+VAL2000.020,Swedish Krona,190,1/20/2000,Object valuation note text.,2/20/2000,Original Value,Paramount-Famous Lasky Corporation,
+VAL2000.021,,,,,,,,

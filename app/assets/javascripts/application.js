@@ -26,6 +26,22 @@ ready = function() {
     var filename      = parts[parts.length - 1];
     $('.file span').replaceWith('<p class="file-selected">' + filename + '</p>');
   });
+
+  // set the types for transfer based on selected batch
+  if($('#transfer').length) {
+    var batch = document.getElementById('batch');
+    batch.addEventListener('change', function(){
+      $.ajax({
+        url: "/types_for_batch?batch=" + batch.value,
+        type: "GET"
+      })
+    });
+  }
+
+  // filter errors
+  $("input[id='errors']").on('click', function(){
+    $(this).val(this.checked ? 'true' : 'false');
+  });
 };
 
 // turbolinks friendly

@@ -3,8 +3,11 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'spec_helper'
 require 'rspec/rails'
+require 'selenium-webdriver'
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'spec_helper'
 require_relative './helpers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -22,6 +25,16 @@ require_relative './helpers'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+Capybara.register_driver :headless_firefox do |app|
+  args = %w[-headless]
+  options = Selenium::WebDriver::Firefox::Options.new(args: args)
+  Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
+end
+
+Capybara.configure do |config|
+  config.javascript_driver = :headless_firefox
+end
 
 RSpec.configure do |config|
   config.include Helpers

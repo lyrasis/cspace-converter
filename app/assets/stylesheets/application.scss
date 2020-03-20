@@ -118,6 +118,21 @@ form .module {
   border-bottom: 1px solid #CCC;
 }
 
+#filters {
+  border: 1px solid #CCC;
+  float: right;
+  padding: 0.4rem;
+}
+
+#filters input {
+  margin-left: 1rem;
+}
+
+#filters select {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 table {
   margin-top: 0.5rem;
 }

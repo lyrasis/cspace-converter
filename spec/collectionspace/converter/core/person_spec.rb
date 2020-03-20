@@ -17,7 +17,10 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     "/document/#{p}/personTermGroupList/personTermGroup/salutation",
     "/document/#{p}/personTermGroupList/personTermGroup/title",
     "/document/#{p}/personTermGroupList/personTermGroup/nameAdditions",
-    { xpath: "/document/#{p}/personTermGroupList/personTermGroup/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: "/document/#{p}/personTermGroupList/personTermGroup[1]/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: "/document/#{p}/personTermGroupList/personTermGroup[1]/termLanguage", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
+    { xpath: "/document/#{p}/personTermGroupList/personTermGroup[2]/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: "/document/#{p}/personTermGroupList/personTermGroup[2]/termLanguage", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
     "/document/#{p}/personTermGroupList/personTermGroup/termPrefForLang",
     "/document/#{p}/personTermGroupList/personTermGroup/termType",
     "/document/#{p}/personTermGroupList/personTermGroup/termQualifier",
@@ -54,7 +57,22 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     "/document/#{ext}/addressGroupList/addressGroup/addressCountry",
   ]}
 
-  it "Maps attributes correctly" do
-    test_converter(doc, record, xpaths)
+  context 'For maximally populuated record' do
+    it "Maps attributes correctly" do
+      test_converter(doc, record, xpaths)
+    end
+  end
+
+  context 'For minimally populated record' do
+    let(:attributes) { get_attributes_by_row('core', 'authperson_core_all.csv', 3) }
+    let(:doc) { get_doc(coreperson) }
+    let(:record) { get_fixture('core_person_row3.xml') }
+    let(:xpath_required) {[
+      "/document/*/personTermGroupList/personTermGroup/termDisplayName"
+    ]}
+
+    it 'Maps required field(s) correctly without falling over' do
+      test_converter(doc, record, xpath_required)
+    end
   end
 end

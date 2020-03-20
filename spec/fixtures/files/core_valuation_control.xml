@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="valuationcontrols">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-13T16:13:07.968Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:valuationcontrols:id(55b352af-f55b-492c-a877)</refName>
+    <uri>/valuationcontrols/55b352af-f55b-492c-a877</uri>
+    <updatedAt>2020-02-13T16:13:54.225Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:valuationcontrols_common xmlns:ns2="http://collectionspace.org/services/valuationcontrol" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <valuationcontrolRefNumber>VAL2000.001</valuationcontrolRefNumber>
+    <valueAmountsList>
+      <valueAmounts>
+        <valueAmount>25</valueAmount>
+        <valueCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</valueCurrency>
+      </valueAmounts>
+      <valueAmounts>
+        <valueAmount>35</valueAmount>
+        <valueCurrency>urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(DKK)'Danish Krone'</valueCurrency>
+      </valueAmounts>
+    </valueAmountsList>
+    <valueRenewalDate>2000-02-01T00:00:00.000Z</valueRenewalDate>
+    <valueType>Current Value</valueType>
+    <valueNote>Object valuation note text.</valueNote>
+    <valueDate>2000-01-01T00:00:00.000Z</valueDate>
+    <valueSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(ArshadEdris1581610382573)'Arshad Edris'</valueSource>
+  </ns2:valuationcontrols_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

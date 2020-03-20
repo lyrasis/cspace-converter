@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="loansout">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-02-09T14:44:37.678Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:loansout:id(e16057d2-9ce2-425b-9d97)</refName>
+    <uri>/loansout/e16057d2-9ce2-425b-9d97</uri>
+    <updatedAt>2020-02-09T14:44:37.678Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:loansout_common xmlns:ns2="http://collectionspace.org/services/loanout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <loanStatusGroupList/>
+    <loanOutNumber>Jan22_1_OL20CS.031</loanOutNumber>
+  </ns2:loansout_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

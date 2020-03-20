@@ -2,13 +2,16 @@ class ImportForm
   include Capybara::DSL
 
   def visit_page
-    visit('/')
-    click_on('Import data')
+    visit('/import')
     self
   end
 
   def fill_in_with(params = {})
-    fill_in('Batch', with: params.fetch(:batch, 'abcxyz123'))
+    within('#import') do
+      fill_in('Batch', with: params.fetch(:batch, 'example1'))
+      select params.fetch(:profile, 'acquisition')
+      attach_file 'File', params.fetch(:file, nil)
+    end
     self
   end
 

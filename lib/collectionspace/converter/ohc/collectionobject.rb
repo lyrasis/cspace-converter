@@ -11,7 +11,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CoreCollectionObject.map(xml, clean_overridden_attributes)
+              CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
               OHCCollectionObject.map_common_overrides(xml, attributes)
             end
 
@@ -21,7 +21,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map(xml, clean_overridden_attributes)
+              AnthroCollectionObject.map(xml, attributes.merge(redefined_fields))
             end
 
             xml.send(
@@ -35,12 +35,8 @@ module CollectionSpace
           end
         end #def convert
 
-        # This is used instead of the redefined_fields method because using that method did not
-        #  work here, where ohc calls both anthro and core, and both ohc an anthro override different
-        #  core field conversion behavior. Using redefined_fields in ohc was resulting in only
-        #  anthro's overrides being applied. 
-        def clean_overridden_attributes
-          overridden = [
+        def redefined_fields
+          @redefined.concat([
             'assocpeople',
             'assocpeopletype',
             'assocpeoplenote',
@@ -51,10 +47,8 @@ module CollectionSpace
             'objectnamenote',
             'objectnamelevel',
             'objectnamelanguage'
-          ]
-          safe = attributes.clone
-          overridden.each{ |fieldname| safe.delete(fieldname) }
-          return safe
+          ])
+          super
         end
 
         def self.map_common_overrides(xml, attributes)

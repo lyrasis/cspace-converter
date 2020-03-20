@@ -1,0 +1,6 @@
+var type = document.getElementById("type");
+while (type.firstChild) type.removeChild(type.firstChild);
+
+<% @types.each do |t| %>
+  type.options[type.options.length] = new Option('<%= t %>', '<%= t %>')
+<% end %>
