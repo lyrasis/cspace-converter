@@ -12,6 +12,7 @@ module CollectionSpace
             ) do
               xml.parent.namespace = nil
               CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
+              AnthroCollectionObject.map_common_overrides(xml, attributes)
               OHCCollectionObject.map_common_overrides(xml, attributes)
             end
 
@@ -21,7 +22,25 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map(xml, attributes.merge(redefined_fields))
+              AnthroCollectionObject.map(xml, attributes)
+            end
+
+            xml.send(
+              "ns2:collectionobjects_annotation",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/annotation",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              AnthroCollectionObject.map_annotations(xml, attributes)
+            end
+
+            xml.send(
+              "ns2:collectionobjects_nagpra",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/nagpra",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              AnthroCollectionObject.map_nagpra(xml, attributes)
             end
 
             xml.send(
@@ -37,6 +56,7 @@ module CollectionSpace
 
         def redefined_fields
           @redefined.concat([
+            # by ohc
             'assocpeople',
             'assocpeopletype',
             'assocpeoplenote',
@@ -46,7 +66,7 @@ module CollectionSpace
             'objectnamecurrency',
             'objectnamenote',
             'objectnamelevel',
-            'objectnamelanguage'
+            'objectnamelanguage',
           ])
           super
         end

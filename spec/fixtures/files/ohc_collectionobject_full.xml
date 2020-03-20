@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="collectionobjects">
+    <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <createdAt>2020-03-20T18:40:59.686Z</createdAt>
+        <updatedBy>admin@cspace.ohiohistory.org</updatedBy>
+        <createdBy>admin@cspace.ohiohistory.org</createdBy>
+        <workflowState>project</workflowState>
+        <tenantId>1885</tenantId>
+        <refName>urn:cspace:cspace.ohiohistory.org:collectionobjects:id(6e1897c9-93df-407f-bcf1)'20CS.001.0001'</refName>
+        <uri>/collectionobjects/6e1897c9-93df-407f-bcf1</uri>
+        <updatedAt>2020-03-20T18:53:13.005Z</updatedAt>
+    </ns2:collectionspace_core>
+    <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <fieldCollectionDateGroup>
+            <scalarValuesComputed/>
+            <dateEarliestSingleCertainty/>
+            <dateEarliestSingleQualifierUnit/>
+            <dateDisplayDate/>
+            <dateLatestScalarValue/>
+            <dateEarliestSingleQualifierValue/>
+            <datePeriod/>
+            <dateLatestEra/>
+            <dateEarliestSingleDay/>
+            <dateEarliestSingleQualifier/>
+            <dateEarliestSingleYear/>
+            <dateLatestCertainty/>
+            <dateAssociation/>
+            <dateLatestDay/>
+            <dateEarliestSingleMonth/>
+            <dateEarliestSingleEra/>
+            <dateLatestYear/>
+            <dateLatestQualifierUnit/>
+            <dateNote/>
+            <dateLatestQualifierValue/>
+            <dateLatestQualifier/>
+            <dateEarliestScalarValue/>
+            <dateLatestMonth/>
+        </fieldCollectionDateGroup>
+        <owners/>
+        <fieldCollectionMethods/>
+        <contentActivities/>
+        <objectProductionDateGroupList/>
+        <contentConcepts/>
+        <assocEventPlaces/>
+        <assocActivityGroupList/>
+        <objectProductionReasons/>
+        <assocPlaceGroupList/>
+        <objectNameList>
+            <objectNameGroup>
+                <objectNameType/>
+                <objectNameSystem/>
+                <objectName>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(nomenclature):item:name(HumanRemainsSHVtYW5SZW1haW5z)'Human Remains'</objectName>
+                <objectNameCurrency/>
+                <objectNameNote/>
+                <objectNameLevel/>
+                <objectNameLanguage/>
+            </objectNameGroup>
+            <objectNameGroup>
+                <objectNameType/>
+                <objectNameSystem/>
+                <objectName>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(nomenclature):item:name(PostcranialRemainsonly1570769080596)'Postcranial Remains (only)'</objectName>
+                <objectNameCurrency/>
+                <objectNameNote/>
+                <objectNameLevel/>
+                <objectNameLanguage/>
+            </objectNameGroup>
+        </objectNameList>
+        <styles/>
+        <materialGroupList/>
+        <assocObjectGroupList/>
+        <fieldCollectors/>
+        <responsibleDepartments>
+            <responsibleDepartment>archaeology</responsibleDepartment>
+        </responsibleDepartments>
+        <textualInscriptionGroupList/>
+        <objectNumber>20CS.001.0001</objectNumber>
+        <fieldColEventNames/>
+        <colors/>
+        <contentScripts/>
+        <objectProductionPlaceGroupList/>
+        <referenceGroupList/>
+        <assocDateGroupList/>
+        <fieldCollectionFeature>Field collection feature text.</fieldCollectionFeature>
+        <briefDescriptions/>
+        <contentLanguages/>
+        <recordStatus>new</recordStatus>
+        <assocPersonGroupList/>
+        <titleGroupList/>
+        <fieldCollectionNote>Field collection note text.</fieldCollectionNote>
+        <assocConceptGroupList/>
+        <usageGroupList/>
+        <assocCulturalContextGroupList/>
+        <otherNumberList>
+            <otherNumber>
+                <numberType>FIPS Number</numberType>
+                <numberValue>123456</numberValue>
+            </otherNumber>
+            <otherNumber>
+                <numberType>SOD Number</numberType>
+                <numberValue>98765</numberValue>
+            </otherNumber>
+        </otherNumberList>
+        <objectProductionPeopleGroupList>
+            <objectProductionPeopleGroup>
+                <objectProductionPeople>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(ethculture):item:name(Batak1573742907129)'Batak'</objectProductionPeople>
+                <objectProductionPeopleRole>urn:cspace:cspace.ohiohistory.org:vocabularies:name(prodpeoplerole):item:name(traditionalMakers)'traditional makers'</objectProductionPeopleRole>
+            </objectProductionPeopleGroup>
+            <objectProductionPeopleGroup>
+                <objectProductionPeople>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(archculture):item:name(BlackfootQmxhY2tmb290)'Blackfoot'</objectProductionPeople>
+                <objectProductionPeopleRole>urn:cspace:cspace.ohiohistory.org:vocabularies:name(prodpeoplerole):item:name(archaeologicallyassigned1570588931626)'archaeologically assigned'</objectProductionPeopleRole>
+            </objectProductionPeopleGroup>
+        </objectProductionPeopleGroupList>
+        <assocPeopleGroupList>
+            <assocPeopleGroup>
+                <assocPeople>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(ethculture):item:name(NonNativeAmerican1584729474096)'Non-Native American'</assocPeople>
+                <assocPeopleNote/>
+                <assocPeopleType>Museum Determination</assocPeopleType>
+            </assocPeopleGroup>
+            <assocPeopleGroup>
+                <assocPeople>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(ethculture):item:name(AfricanAmerican1584729516075)'African American'</assocPeople>
+                <assocPeopleNote/>
+                <assocPeopleType>Museum Determination</assocPeopleType>
+            </assocPeopleGroup>
+        </assocPeopleGroupList>
+        <assocEventOrganizations/>
+        <contentPeoples/>
+        <measuredPartGroupList/>
+        <contentObjectGroupList/>
+        <ownershipDateGroupList/>
+        <collection>permanent-collection</collection>
+        <objectProductionNote>Production note text.</objectProductionNote>
+        <technicalAttributeGroupList/>
+        <nonTextualInscriptionGroupList/>
+        <assocEventPersons/>
+        <objectProductionPersonGroupList/>
+        <contentPersons/>
+        <fieldCollectionSources/>
+        <contentEventNameGroupList/>
+        <ownersReferences/>
+        <viewersReferences/>
+        <objectProductionOrganizationGroupList/>
+        <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
+        <publishToList>
+            <publishTo>urn:cspace:cspace.ohiohistory.org:vocabularies:name(publishto):item:name(GeneralResearcher1564412449500)'NAGPRA'</publishTo>
+        </publishToList>
+        <assocOrganizationGroupList/>
+        <contentOrganizations/>
+        <contentPlaces/>
+        <contentOtherGroupList/>
+        <contentDateGroup>
+            <scalarValuesComputed/>
+            <dateEarliestSingleCertainty/>
+            <dateEarliestSingleQualifierUnit/>
+            <dateDisplayDate/>
+            <dateLatestScalarValue/>
+            <dateEarliestSingleQualifierValue/>
+            <datePeriod/>
+            <dateLatestEra/>
+            <dateEarliestSingleDay/>
+            <dateEarliestSingleQualifier/>
+            <dateEarliestSingleYear/>
+            <dateLatestCertainty/>
+            <dateAssociation/>
+            <dateLatestDay/>
+            <dateEarliestSingleMonth/>
+            <dateEarliestSingleEra/>
+            <dateLatestYear/>
+            <dateLatestQualifierUnit/>
+            <dateNote/>
+            <dateLatestQualifierValue/>
+            <dateLatestQualifier/>
+            <dateEarliestScalarValue/>
+            <dateLatestMonth/>
+        </contentDateGroup>
+        <objectStatusList/>
+        <objectComponentGroupList/>
+        <comments>
+            <comment>This record contains sample data provided by CollectionSpace community members. While the record may reference real artworks, people, and organizations, the information should not be read as an accurate description of any artwork, person, or organization, or of relationships among them.</comment>
+        </comments>
+        <assocEventPeoples/>
+        <techniqueGroupList/>
+        <inventoryStatusList>
+            <inventoryStatus>urn:cspace:cspace.ohiohistory.org:vocabularies:name(inventorystatus):item:name(accessioned)'accessioned'</inventoryStatus>
+            <inventoryStatus>urn:cspace:cspace.ohiohistory.org:vocabularies:name(inventorystatus):item:name(destroyed)'destroyed'</inventoryStatus>
+        </inventoryStatusList>
+        <contentPositions/>
+        <forms/>
+    </ns2:collectionobjects_common>
+    <ns2:collectionobjects_culturalcare
+        xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/collectionobject"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <accessLimitationsGroupList/>
+        <culturalCareNotes/>
+    </ns2:collectionobjects_culturalcare>
+    <ns2:collectionobjects_ohc
+        xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/ohc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <descriptionLevel>urn:cspace:cspace.ohiohistory.org:vocabularies:name(descriptionlevel):item:name(item)'item'</descriptionLevel>
+        <namedTimePeriods>
+            <namedTimePeriod>urn:cspace:cspace.ohiohistory.org:vocabularies:name(namedtimeperiods):item:name(prehistoric)'Pre-contact'</namedTimePeriod>
+            <namedTimePeriod>urn:cspace:cspace.ohiohistory.org:vocabularies:name(namedtimeperiods):item:name(woodland)'Woodland'</namedTimePeriod>
+        </namedTimePeriods>
+        <categoryGroupList/>
+        <oaiSiteGroupList>
+            <oaiSiteGroup>
+                <oaiCollectionPlace>urn:cspace:cspace.ohiohistory.org:placeauthorities:name(place):item:name(33AD231580857686781)'33 AD 23'</oaiCollectionPlace>
+                <oaiLocVerbatim/>
+            </oaiSiteGroup>
+        </oaiSiteGroupList>
+        <apparelSizes/>
+    </ns2:collectionobjects_ohc>
+    <ns2:collectionobjects_annotation
+        xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/annotation"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <annotationGroupList>
+            <annotationGroup>
+                <annotationAuthor/>
+                <annotationDate/>
+                <annotationType>urn:cspace:cspace.ohiohistory.org:vocabularies:name(annotationtype):item:name(staffnote1536001217264)'staff note'</annotationType>
+                <annotationNote>Annotation number 1</annotationNote>
+            </annotationGroup>
+        </annotationGroupList>
+    </ns2:collectionobjects_annotation>
+    <ns2:collectionobjects_nagpra
+        xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/nagpra"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <nagpraReportFiledDate>
+            <scalarValuesComputed>true</scalarValuesComputed>
+            <dateEarliestSingleCertainty/>
+            <dateEarliestSingleQualifierUnit/>
+            <dateDisplayDate>10-01-2019</dateDisplayDate>
+            <dateLatestScalarValue>2019-10-02T00:00:00.000Z</dateLatestScalarValue>
+            <dateEarliestSingleQualifierValue/>
+            <datePeriod/>
+            <dateLatestEra/>
+            <dateEarliestSingleDay>1</dateEarliestSingleDay>
+            <dateEarliestSingleQualifier/>
+            <dateEarliestSingleYear>2019</dateEarliestSingleYear>
+            <dateLatestCertainty/>
+            <dateAssociation/>
+            <dateLatestDay/>
+            <dateEarliestSingleMonth>10</dateEarliestSingleMonth>
+            <dateEarliestSingleEra>urn:cspace:cspace.ohiohistory.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+            <dateLatestYear/>
+            <dateLatestQualifierUnit/>
+            <dateNote/>
+            <dateLatestQualifierValue/>
+            <dateLatestQualifier/>
+            <dateEarliestScalarValue>2019-10-01T00:00:00.000Z</dateEarliestScalarValue>
+            <dateLatestMonth/>
+        </nagpraReportFiledDate>
+        <nagpraReportFiled>true</nagpraReportFiled>
+        <graveAssocCodes/>
+        <repatriationNotes>
+            <repatriationNote>Repatriation note 1</repatriationNote>
+        </repatriationNotes>
+        <nagpraCategories>
+            <nagpraCategory>urn:cspace:cspace.ohiohistory.org:vocabularies:name(nagpracategory):item:name(subjectToNAGPRA)'subject to NAGPRA (unspec.)'</nagpraCategory>
+            <nagpraCategory>urn:cspace:cspace.ohiohistory.org:vocabularies:name(nagpracategory):item:name(nonNagpra)'not subject to NAGPRA'</nagpraCategory>
+        </nagpraCategories>
+        <nagpraReportFiledBy>urn:cspace:cspace.ohiohistory.org:personauthorities:name(person):item:name(AdaGartnerQWRhR2FydG5lcg)'Ada, Gartner'</nagpraReportFiledBy>
+        <nagpraCulturalDeterminations/>
+        <nagpraInventoryNames/>
+    </ns2:collectionobjects_nagpra>
+    <ns2:collectionobjects_anthro
+        xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/anthro"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <ethnoFileCodes/>
+        <localityGroupList>
+            <localityGroup>
+                <vCoordSys/>
+                <geoRefSource/>
+                <coordUncertaintyUnit/>
+                <minElevation/>
+                <localitySource/>
+                <coordPrecision/>
+                <geoRefDateGroup>
+                    <scalarValuesComputed/>
+                    <dateEarliestSingleCertainty/>
+                    <dateEarliestSingleQualifierUnit/>
+                    <dateDisplayDate/>
+                    <dateLatestScalarValue/>
+                    <dateEarliestSingleQualifierValue/>
+                    <datePeriod/>
+                    <dateLatestEra/>
+                    <dateEarliestSingleDay/>
+                    <dateEarliestSingleQualifier/>
+                    <dateEarliestSingleYear/>
+                    <dateLatestCertainty/>
+                    <dateAssociation/>
+                    <dateLatestDay/>
+                    <dateEarliestSingleMonth/>
+                    <dateEarliestSingleEra/>
+                    <dateLatestYear/>
+                    <dateLatestQualifierUnit/>
+                    <dateNote/>
+                    <dateLatestQualifierValue/>
+                    <dateLatestQualifier/>
+                    <dateEarliestScalarValue/>
+                    <dateLatestMonth/>
+                </geoRefDateGroup>
+                <decimalLatitude/>
+                <geoRefencedBy/>
+                <vElevation/>
+                <distanceAboveSurfaceUnit/>
+                <fieldLocCounty>York</fieldLocCounty>
+                <vSpatialReferenceSystem/>
+                <vLatitude/>
+                <collectionPlace/>
+                <minDepth/>
+                <fieldLocHigherGeography/>
+                <geoRefProtocol/>
+                <vDepth/>
+                <collectionLocationVerbatim/>
+                <taxonomicRange/>
+                <vLongitude/>
+                <localitySourceDetail/>
+                <footprintWKT/>
+                <localityNote>Sample locality note 1</localityNote>
+                <decimalLongitude/>
+                <geodeticDatum/>
+                <pointRadiusSpatialFit/>
+                <geoRefRemarks/>
+                <fieldLocCountry/>
+                <fieldLocState>PA</fieldLocState>
+                <maxDistanceAboveSurface/>
+                <fieldLocVerbatim/>
+                <geoRefPlaceName/>
+                <minDistanceAboveSurface/>
+                <maxDepth/>
+                <vOtherCoords/>
+                <vDistanceAboveSurface/>
+                <footprintSRS/>
+                <fieldLocPlace>urn:cspace:cspace.ohiohistory.org:placeauthorities:name(place):item:name(York1532550675848)'York County, Pennsylvania'</fieldLocPlace>
+                <depthUnit/>
+                <footprintSpatialFit/>
+                <coordUncertainty/>
+                <vCoordinates/>
+                <geoRefVerificationStatus/>
+                <elevationUnit/>
+                <maxElevation/>
+            </localityGroup>
+        </localityGroupList>
+        <commingledRemainsGroupList>
+            <commingledRemainsGroup>
+                <ageRange>urn:cspace:cspace.ohiohistory.org:vocabularies:name(agerange):item:name(adolescent_0_25)'adolescent 0-25%'</ageRange>
+                <behrensmeyerUpper>urn:cspace:cspace.ohiohistory.org:vocabularies:name(behrensmeyer):item:name(2)'2 - longitudinal cracks, exfoliation on surface'</behrensmeyerUpper>
+                <side/>
+                <behrensmeyerSingleLower>urn:cspace:cspace.ohiohistory.org:vocabularies:name(behrensmeyer):item:name(1)'1 - longitudinal and/or mosaic cracking present on surface'</behrensmeyerSingleLower>
+                <commingledRemainsNote>Commingled remains note 1</commingledRemainsNote>
+                <mortuaryTreatmentGroupList>
+                    <mortuaryTreatmentGroup>
+                        <mortuaryTreatment>urn:cspace:cspace.ohiohistory.org:vocabularies:name(mortuarytreatment):item:name(notcremated)'not cremated'</mortuaryTreatment>
+                        <mortuaryTreatmentNote/>
+                    </mortuaryTreatmentGroup>
+                </mortuaryTreatmentGroupList>
+                <sex/>
+                <count/>
+                <minIndividuals>1</minIndividuals>
+                <dentition/>
+                <bone/>
+            </commingledRemainsGroup>
+            <commingledRemainsGroup>
+                <ageRange>urn:cspace:cspace.ohiohistory.org:vocabularies:name(agerange):item:name(adult_0_25)'adult 0-25%'</ageRange>
+                <behrensmeyerUpper>urn:cspace:cspace.ohiohistory.org:vocabularies:name(behrensmeyer):item:name(3)'3 - fibrous texture, extensive exfoliation'</behrensmeyerUpper>
+                <side/>
+                <behrensmeyerSingleLower>urn:cspace:cspace.ohiohistory.org:vocabularies:name(behrensmeyer):item:name(1)'1 - longitudinal and/or mosaic cracking present on surface'</behrensmeyerSingleLower>
+                <commingledRemainsNote/>
+                <mortuaryTreatmentGroupList>
+                    <mortuaryTreatmentGroup>
+                        <mortuaryTreatment>urn:cspace:cspace.ohiohistory.org:vocabularies:name(mortuarytreatment):item:name(notcremated)'not cremated'</mortuaryTreatment>
+                        <mortuaryTreatmentNote>One adult is cremated, the other is not.</mortuaryTreatmentNote>
+                    </mortuaryTreatmentGroup>
+                </mortuaryTreatmentGroupList>
+                <sex/>
+                <count/>
+                <minIndividuals>2</minIndividuals>
+                <dentition/>
+                <bone/>
+            </commingledRemainsGroup>
+        </commingledRemainsGroupList>
+        <anthroOwnershipGroupList/>
+    </ns2:collectionobjects_anthro>
+    <ns2:collectionobjects_naturalhistory_extension
+        xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/naturalhistory_extension"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <associatedTaxaGroupList/>
+        <determinationHistoryGroupList/>
+        <taxonomicIdentGroupList/>
+        <localityGroupList/>
+        <typeSpecimenGroupList/>
+    </ns2:collectionobjects_naturalhistory_extension>
+    <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+        <account>
+            <accountId>6808b625-8730-4120-8d20-dc5ba4161803</accountId>
+            <screenName>Administrator</screenName>
+            <userId>admin@cspace.ohiohistory.org</userId>
+            <tenantId>1885</tenantId>
+        </account>
+    </ns2:account_permission>
+</document>
