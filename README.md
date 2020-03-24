@@ -132,8 +132,14 @@ Then to transfer:
 # provides a list of records
 ./bin/rake remote:get[collectionobjects]
 
-# get a record
+# get an object record
 ./bin/rake remote:get[collectionobjects/$CSID]
+
+# get list of concept authorities
+./bin/rake remote:get[conceptauthorities]
+
+# get a concept authority record
+./bin/rake remote:get[conceptauthorities/$AUTHORITY_CSID/items/$TERM_CSID]
 ```
 
 ### Using the console
