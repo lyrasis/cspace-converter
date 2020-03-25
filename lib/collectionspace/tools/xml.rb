@@ -328,7 +328,7 @@ Hashes within inner arrays - One per value in subgroup in an element
             when 'behrensmeyer_translate'
               value = Helpers.behrensmeyer_translate(value)
             when 'structured_date'
-              value = CSDTP.parse_unstructured_date_string(value)
+              value = CSDTP.fields_for(CSDTP.parse(value))
             when 'unstructured_date_string'
               value = CSDTP.parse_unstructured_date_string(value)
             when 'unstructured_date_stamp'
