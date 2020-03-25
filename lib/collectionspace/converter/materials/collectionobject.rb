@@ -11,7 +11,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
+              CoreCollectionObject.map_common(xml, attributes.merge(redefined_fields))
             end
 
             xml.send(
