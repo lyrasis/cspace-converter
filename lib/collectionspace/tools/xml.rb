@@ -328,7 +328,7 @@ Hashes within inner arrays - One per value in subgroup in an element
             when 'behrensmeyer_translate'
               value = Helpers.behrensmeyer_translate(value)
             when 'structured_date'
-              value = CSDTP.fields_for(CSDTP.parse(value))
+              value = CSDTP.parse_unstructured_date_string(value)
             when 'unstructured_date_string'
               value = CSDTP.parse_unstructured_date_string(value)
             when 'unstructured_date_stamp'
@@ -535,6 +535,32 @@ Hashes within inner arrays - One per value in subgroup in an element
             'dimension',
             dimensionsdata,
             dimensionstransforms
+          )
+
+        end
+
+        #typicalSizeGroupList, typicalSizeGroup, typicalSizeDimensionGroupList, typicalSizeDimensionGroup
+        def self.add_typical_size_group_list(xml, attributes)
+           typicalsizedata = {
+            'typicalsize' => 'typicalSize',
+            'dimension' => 'dimension',
+            'value' => 'value',
+            'measurementunit' => 'measurementUnit',
+
+          }
+          typicalsizedimensionsdata = [
+            'dimension',
+            'value',
+            'measurementUnit',
+          ]
+          CSXML.add_nested_group_lists(
+            xml, attributes,
+            'typicalSize',
+            typicalsizedata,
+            'typicalSizeDimension',
+            typicalsizedimensionsdata,
+            sublist_suffix: 'GroupList',
+            subgroup_suffix: 'Group'
           )
 
         end
