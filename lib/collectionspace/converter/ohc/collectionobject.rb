@@ -11,8 +11,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
-              OHCCollectionObject.map_common_overrides(xml, attributes)
+              OHCCollectionObject.map_common(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -21,7 +20,25 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map(xml, attributes.merge(redefined_fields))
+              OHCCollectionObject.map_anthro(xml, attributes)
+            end
+
+            xml.send(
+              "ns2:collectionobjects_annotation",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/annotation",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              OHCCollectionObject.map_annotation(xml, attributes)
+            end
+
+            xml.send(
+              "ns2:collectionobjects_nagpra",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/nagpra",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              OHCCollectionObject.map_nagpra(xml, attributes)
             end
 
             xml.send(
@@ -30,13 +47,14 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              OHCCollectionObject.map(xml, attributes)
+              OHCCollectionObject.map_ohc(xml, attributes)
             end
           end
         end #def convert
 
         def redefined_fields
           @redefined.concat([
+            # by ohc
             'assocpeople',
             'assocpeopletype',
             'assocpeoplenote',
@@ -46,12 +64,14 @@ module CollectionSpace
             'objectnamecurrency',
             'objectnamenote',
             'objectnamelevel',
-            'objectnamelanguage'
+            'objectnamelanguage',
           ])
           super
         end
 
-        def self.map_common_overrides(xml, attributes)
+        def self.map_common(xml, attributes, redefined)
+          AnthroCollectionObject.map_common(xml, attributes, redefined)
+
           # assocPeopleGroupList , assocPeopleGroup
           assocpeopledata = {
             'assocpeople' => 'assocPeople',
@@ -93,7 +113,20 @@ module CollectionSpace
           )
         end
 
-        def self.map(xml, attributes)
+        # EXTENTIONS
+        def self.map_annotation(xml, attributes)
+          AnthroCollectionObject.map_annotation(xml, attributes)
+        end
+
+        def self.map_anthro(xml, attributes)
+          AnthroCollectionObject.map_anthro(xml, attributes)
+        end
+
+        def self.map_nagpra(xml, attributes)
+          AnthroCollectionObject.map_nagpra(xml, attributes)
+        end
+
+        def self.map_ohc(xml, attributes)
           pairs = {
             'descriptionlevel' => 'descriptionLevel'
           }

@@ -13,7 +13,7 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-              CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
+              CoreCollectionObject.map_common(xml, attributes.merge(redefined_fields))
               PublicArtCollectionObject.map_common_overrides(xml, attributes)
             end
 

@@ -82,7 +82,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
     end #  context 'sample data row 2'
   end # describe #map
 
-  describe '#map_annotations' do
+  describe '#map_annotation' do
     let(:annotation) { 'collectionobjects_annotation' }
 
     context 'sample data row 2' do

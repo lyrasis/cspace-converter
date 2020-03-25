@@ -11,8 +11,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CoreCollectionObject.map(xml, attributes.merge(redefined_fields))
-              AnthroCollectionObject.map_common_overrides(xml, attributes)
+              AnthroCollectionObject.map_common(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -21,7 +20,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map(xml, attributes)
+              AnthroCollectionObject.map_anthro(xml, attributes)
             end
 
             xml.send(
@@ -30,7 +29,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_annotations(xml, attributes)
+              AnthroCollectionObject.map_annotation(xml, attributes)
             end
 
             xml.send(
@@ -52,7 +51,9 @@ module CollectionSpace
           super
         end
 
-        def self.map_common_overrides(xml, attributes)
+        def self.map_common(xml, attributes, redefined)
+          CoreCollectionObject.map_common(xml, attributes.merge(redefined))
+
           opp_data = {
             'objectproductionpeopleethnoculture' => 'objectProductionPeople',
             'objectproductionpeoplearchculture' => 'objectProductionPeople',
@@ -71,7 +72,8 @@ module CollectionSpace
           )
         end
 
-        def self.map(xml, attributes)
+        # EXTENSIONS
+        def self.map_anthro(xml, attributes)
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # localityGroupList
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -142,7 +144,7 @@ module CollectionSpace
           )
         end
 
-        def self.map_annotations(xml, attributes)
+        def self.map_annotation(xml, attributes)
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # annotationGroupList
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
