@@ -5,11 +5,11 @@ module CollectionSpace
         ::CoreCollectionObject = CollectionSpace::Converter::Core::CoreCollectionObject
         def convert
           run do |xml|
-            CoreCollectionObject.map(xml, attributes)
+            CoreCollectionObject.map_common(xml, attributes)
           end
         end
 
-        def self.map(xml, attributes)
+        def self.map_common(xml, attributes)
           pairs = {
             'objectnumber' => 'objectNumber',
             'numberofobjects' => 'numberOfObjects',
