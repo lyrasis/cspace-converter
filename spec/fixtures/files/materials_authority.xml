@@ -303,7 +303,7 @@
         <embodiedEnergyValueHigh>2</embodiedEnergyValueHigh>
       </embodiedEnergyGroup>
       <embodiedEnergyGroup>
-        <embodiedEnergyUnit>urn:cspace:materials.collectionspace.org:vocabularies:name(energyunits):item:name(tCO2)'tCO?'</embodiedEnergyUnit>
+        <embodiedEnergyUnit>urn:cspace:materials.collectionspace.org:vocabularies:name(energyunits):item:name(tCO2)'tCO2'</embodiedEnergyUnit>
         <embodiedEnergyNote>Embodied energy note text 2</embodiedEnergyNote>
         <embodiedEnergyValue>2</embodiedEnergyValue>
         <embodiedEnergyValueHigh>3</embodiedEnergyValueHigh>
