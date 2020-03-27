@@ -70,6 +70,19 @@ registered_profiles:
           vocabulary_subtype: languages
         - name_field: titletranslationlanguage
           vocabulary_subtype: languages
+  citation:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreCitation
+      name_field: termdisplayname
+      authority_type: Citation
+      authority_subtype: citation
+      Authorities: []
+      Vocabularies: []
   conditioncheck:
     type: Procedures
     enabled: true
@@ -331,6 +344,19 @@ registered_profiles:
         - name_field: currentowner
           authority_type: Person
           authority_subtype: person
+  organization:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreOrganization
+      name_field: termdisplayname
+      authority_type: Organization
+      authority_subtype: organization
+      Authorities: []
+      Vocabularies: []
   person:
     type: Authorities
     enabled: true
