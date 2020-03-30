@@ -72,16 +72,34 @@ data/core/
 ├── mymuseum_cataloging.csv
 ```
 
-There are sample data files available for testing for each supported
-Collectionspace profile.
+Note that where you save the CSV files is irrelevant. You can browse to any file on your computer using the Web UI, and provide a full path via the CLI. 
+
+In the `data` directory of this repo, there are sample data files available for testing for each supported
+Collectionspace profile. These files can also be used as templates for creating CSV data to import.
 
 ## Setup the cache
 
-To match csv fields to existing CollectionSpace authority and vocabulary terms:
+To match csv fields to existing CollectionSpace authority and vocabulary terms, populate the tool's cache. This requires Mongo to be running.
+
+A .csv copy of the cache is created in your machine's default user directory within `.cspace_converter` directory.
+
+### To start from scratch or start over:
 
 ```bash
-./reset.sh # ensure db empty and cache is refreshed, requires Mongo
+./reset.sh 
 ```
+
+This nukes any existing cache, re-creates the indexes, and downloads all authority and vocabulary terms.
+
+### To refresh existing cache: 
+
+``` bash
+./bin/rake cache:refresh
+```
+
+This will run through all vocabularies and authorities, caching new entries, updating edited entries, and removing deleted entries from the cache. 
+
+It will also update the .csv copy of the cache.
 
 ## Converter Tool Web UI
 
@@ -97,7 +115,7 @@ To execute jobs created using the UI run this command:
 ./bin/delayed_job run --exit-on-complete
 ```
 
-## Conveter Tool CLI
+## Converter Tool CLI
 
 ### Stage the data to MongoDB
 
