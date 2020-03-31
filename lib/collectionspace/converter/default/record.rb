@@ -103,6 +103,22 @@ module CollectionSpace
         end
       end
 
+      class Citation < Record
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'citations', 'citation', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'citationauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "citationauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'citations',
+          }
+        end
+      end
+
       class CollectionObject < Record
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
