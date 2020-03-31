@@ -344,19 +344,6 @@ registered_profiles:
         - name_field: currentowner
           authority_type: Person
           authority_subtype: person
-  organization:
-    type: Authorities
-    enabled: true
-    identify_by_column: termdisplayname
-    required_headers:
-      - termdisplayname
-    config:
-      mapper: CoreOrganization
-      name_field: termdisplayname
-      authority_type: Organization
-      authority_subtype: organization
-      Authorities: []
-      Vocabularies: []
   person:
     type: Authorities
     enabled: true
