@@ -1,7 +1,7 @@
 module CollectionSpace
   module Converter
     module Core
-      class CoreOrganization < Location
+      class CoreOrganization < Organization
         ::CoreOrganization = CollectionSpace::Converter::Core::CoreOrganization
         def convert
           run(wrapper: "document") do |xml|
