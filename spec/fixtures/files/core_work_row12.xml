@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="works">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-03-30T22:44:58.374Z</createdAt>
+    <updatedBy>admin@core.collectionspace.org</updatedBy>
+    <createdBy>admin@core.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1</tenantId>
+    <refName>urn:cspace:core.collectionspace.org:workauthorities:name(work):item:name(WorkEleven1585608298374)'Work Eleven'</refName>
+    <uri>/workauthorities/22b27b34-bf1a-4f17-8bdd/items/fe099fde-5c1c-498d-831f</uri>
+    <updatedAt>2020-03-30T22:44:58.374Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:works_common xmlns:ns2="http://collectionspace.org/services/work" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <workDateGroupList>
+      <workDateGroup>
+        <scalarValuesComputed>false</scalarValuesComputed>
+        <dateEarliestSingleCertainty/>
+        <dateEarliestSingleQualifierUnit/>
+        <dateDisplayDate/>
+        <dateLatestScalarValue/>
+        <dateEarliestSingleQualifierValue/>
+        <datePeriod/>
+        <dateLatestEra/>
+        <dateEarliestSingleDay/>
+        <dateEarliestSingleQualifier/>
+        <dateEarliestSingleYear/>
+        <dateLatestCertainty/>
+        <dateAssociation/>
+        <dateLatestDay/>
+        <dateEarliestSingleMonth/>
+        <dateEarliestSingleEra/>
+        <dateLatestYear/>
+        <dateLatestQualifierUnit/>
+        <dateNote/>
+        <dateLatestQualifierValue/>
+        <dateLatestQualifier/>
+        <dateEarliestScalarValue/>
+        <dateLatestMonth/>
+      </workDateGroup>
+    </workDateGroupList>
+    <rev>0</rev>
+    <sas>false</sas>
+    <csid>fe099fde-5c1c-498d-831f</csid>
+    <addrGroupList/>
+    <shortIdentifier>WorkEleven1585608298374</shortIdentifier>
+    <proposed>true</proposed>
+    <publisherGroupList/>
+    <workTermGroupList>
+      <workTermGroup>
+        <termSourceID/>
+        <termSourceDetail/>
+        <termSourceNote/>
+        <termFormattedDisplayName/>
+        <termType/>
+        <termSource/>
+        <termStatus/>
+        <termLanguage/>
+        <termName/>
+        <termQualifier/>
+        <termPrefForLang>false</termPrefForLang>
+        <termDisplayName>Work Eleven</termDisplayName>
+        <termFlag/>
+      </workTermGroup>
+    </workTermGroupList>
+    <creatorGroupList/>
+    <refName>urn:cspace:core.collectionspace.org:workauthorities:name(work):item:name(WorkEleven1585608298374)'Work Eleven'</refName>
+    <inAuthority>22b27b34-bf1a-4f17-8bdd</inAuthority>
+  </ns2:works_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>d884e854-a10b-49c8-87e7-e7a900ffdc52</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@core.collectionspace.org</userId>
+      <tenantId>1</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
