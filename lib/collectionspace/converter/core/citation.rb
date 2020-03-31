@@ -56,7 +56,9 @@ module CollectionSpace
             "publicationdate" => "publicationDate"
           }
           citationpublication_transforms = {
-            'publicationdate' => {'special' => 'structured_date'}
+            'publicationdate' => {'special' => 'structured_date'},
+            'publicationplace' => {'authority' => ['placeauthorities', 'place']},
+            'publisher' => {'authority' => ['orgauthorities', 'organization']}
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -74,7 +76,8 @@ module CollectionSpace
           }
           citationagent_transforms = {
             'agentorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'agentperson' => {'authority' => ['personauthorities', 'person']}
+            'agentperson' => {'authority' => ['personauthorities', 'person']},
+            'role' => {'vocab' => 'agentinfotype'}
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -87,8 +90,7 @@ module CollectionSpace
           citationresourceident_data = {
             "resourceident" => "resourceIdent",
             "capturedate" => "captureDate",
-            "type" => "type",
-            "note" => "note"
+            "type" => "type"
           }
           citationresourceident_transforms = {
             'type' => {'vocab' => 'resourceidtype'},
