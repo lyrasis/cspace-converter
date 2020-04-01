@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="persons">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-02-14T13:18:13.395Z</createdAt>
+    <createdAt>2020-03-04T12:13:15.673Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1581686293397)'John Mellon'</refName>
-    <uri>/personauthorities/0f6cddfa-32ce-4c25-9b2f/items/5ccd1da8-d00a-4059-b51c</uri>
-    <updatedAt>2020-02-19T12:23:07.628Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1754567186)'John Mellon'</refName>
+    <uri>/personauthorities/0f6cddfa-32ce-4c25-9b2f/items/6849a65a-871d-48c5-8a1f</uri>
+    <updatedAt>2020-03-17T15:05:32.489Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:persons_common xmlns:ns2="http://collectionspace.org/services/person" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <personRecordTypes/>
     <rev>2</rev>
     <sas>false</sas>
     <gender>male</gender>
-    <csid>5ccd1da8-d00a-4059-b51c</csid>
+    <csid>6849a65a-871d-48c5-8a1f</csid>
     <groups>
       <group>group text</group>
       <group>group text 2</group>
@@ -62,7 +62,7 @@
         <termSourceDetail>detail text</termSourceDetail>
         <surName>Mellon</surName>
         <termSourceNote>source text</termSourceNote>
-        <termFormattedDisplayName/>
+        <termFormattedDisplayName>J. T. Mellon</termFormattedDisplayName>
         <initials>JM</initials>
         <termType>urn:cspace:core.collectionspace.org:vocabularies:name(persontermtype):item:name(employee)'Employee'</termType>
         <title>Dr</title>
@@ -79,30 +79,8 @@
         <termDisplayName>John Mellon</termDisplayName>
         <termFlag>urn:cspace:core.collectionspace.org:vocabularies:name(persontermflag):item:name(birth)'birth name'</termFlag>
       </personTermGroup>
-      <personTermGroup>
-        <termSourceID>589</termSourceID>
-        <termSourceDetail>detail text 2</termSourceDetail>
-        <surName>Mellon</surName>
-        <termSourceNote>source text 2</termSourceNote>
-        <termFormattedDisplayName/>
-        <initials>JT</initials>
-        <termType>urn:cspace:core.collectionspace.org:vocabularies:name(persontermtype):item:name(donor)'Donor'</termType>
-        <title>Mr</title>
-        <termSource>urn:cspace:core.collectionspace.org:vocabularies:name(citation):item:name(book two)'Book Two'</termSource>
-        <foreName>John</foreName>
-        <nameAdditions>additions text 2</nameAdditions>
-        <termStatus>accepted</termStatus>
-        <termLanguage>urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(hye)'Armenian'</termLanguage>
-        <middleName>Tom</middleName>
-        <salutation>hello</salutation>
-        <termName>J. T. Mellon</termName>
-        <termQualifier>qualifier text 2</termQualifier>
-        <termPrefForLang>false</termPrefForLang>
-        <termDisplayName>J. T. Mellon</termDisplayName>
-        <termFlag>urn:cspace:core.collectionspace.org:vocabularies:name(persontermflag):item:name(pseudonym)'pseudonym'</termFlag>
-      </personTermGroup>
     </personTermGroupList>
-    <shortIdentifier>JohnMellon1581686293397</shortIdentifier>
+    <shortIdentifier>JohnMellon1754567186</shortIdentifier>
     <proposed>true</proposed>
     <deathPlace>Tel Aviv</deathPlace>
     <deathDateGroup>
@@ -131,7 +109,7 @@
       <dateLatestMonth>1</dateLatestMonth>
     </deathDateGroup>
     <inAuthority>0f6cddfa-32ce-4c25-9b2f</inAuthority>
-    <refName>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1581686293397)'John Mellon'</refName>
+    <refName>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1754567186)'John Mellon'</refName>
     <schoolsOrStyles>
       <schoolOrStyle>school text</schoolOrStyle>
       <schoolOrStyle>school text 2</schoolOrStyle>
@@ -166,7 +144,7 @@
         <telephoneNumberType>home</telephoneNumberType>
       </telephoneNumberGroup>
     </telephoneNumberGroupList>
-    <inItem>5ccd1da8-d00a-4059-b51c</inItem>
+    <inItem>6849a65a-871d-48c5-8a1f</inItem>
     <displayName>email@address 000-555-1212 123...</displayName>
     <emailGroupList>
       <emailGroup>
