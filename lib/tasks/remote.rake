@@ -1,4 +1,10 @@
 namespace :remote do
+  # bundle exec rake remote:all[acquisitions]
+  task :all, [:path] => :environment do |t, args|
+    path = args[:path]
+    $collectionspace_client.all(path).each { |item| puts item }
+  end
+
   task :delete, [:type, :batch] => :environment do |t, args|
     type       = args[:type]
     batch      = args[:batch]

@@ -68,6 +68,14 @@ registered_profiles:
           vocabulary_subtype: languages
         - name_field: titletranslationlanguage
           vocabulary_subtype: languages
+  hierarchies:
+    type: Hierarchies
+    enabled: true
+    required_headers:
+      - type
+      - narrower
+      - broader
+    config: {}
   movement:
     type: Procedures
     enabled: true
