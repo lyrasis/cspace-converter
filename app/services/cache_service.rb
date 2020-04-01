@@ -54,6 +54,8 @@ class CacheService
         $collectionspace_client.config.include_deleted = true
         $collectionspace_client.all("#{list['uri']}/items").each do |item|
           refname, name, identifier, wfstate = item.values_at(*headers)
+          next unless refname
+
           item = CacheObject.item?(refname)
           if wfstate == 'deleted'
             CacheObject.where(refname: refname).first.destroy if item
