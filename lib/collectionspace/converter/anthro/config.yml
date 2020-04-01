@@ -18,6 +18,14 @@ registered_profiles:
         title: objectnumber
       Authorities: []
       Vocabularies: []
+  hierarchies:
+    type: Hierarchies
+    enabled: true
+    required_headers:
+      - type
+      - narrower
+      - broader
+    config: {}
   nagpra:
     type: Procedures
     config:
