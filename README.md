@@ -177,8 +177,10 @@ CollectionSpaceObject.find_csid('CollectionObject', 'A 291/000004')
 
 # Get CSID from remote collectionObject
 # The string in the second line is the Identification number from the record.
+# This will return nil unless there is ONE matching collectionObject found
 service = Lookup.record_class('CollectionObject').service(nil)
 RemoteActionService.find_item_csid(service, 'A 1/000261')
+
 ```
 
 ### Clearing out data
