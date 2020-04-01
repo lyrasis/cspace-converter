@@ -168,8 +168,7 @@ Then to transfer:
 
 ``` ruby
 # See first existing DataObject
-p = DataObject.first
-puts p.inspect
+puts DataObject.first.inspect
 
 # Get CSID from cached collectionObject
 # The second parameter is the Identification number from the record.
@@ -180,7 +179,10 @@ CollectionSpaceObject.find_csid('CollectionObject', 'A 291/000004')
 # This will return nil unless there is ONE matching collectionObject found
 service = Lookup.record_class('CollectionObject').service(nil)
 RemoteActionService.find_item_csid(service, 'A 1/000261')
-
+# Or, to do this with an existing CollectionSpaceObject record
+obj = CollectionSpaceObject.where(identifier: '123456').first
+RemoteActionService.new(obj).remote_ping
+obj.csid
 ```
 
 ### Clearing out data
