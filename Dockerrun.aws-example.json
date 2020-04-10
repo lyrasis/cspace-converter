@@ -21,7 +21,7 @@
         },
         {
           "name": "CSPACE_CONVERTER_DB_NAME",
-          "value": "cspace_converter_core"
+          "value": "converter"
         },
         {
           "name": "CSPACE_CONVERTER_BASE_URI",

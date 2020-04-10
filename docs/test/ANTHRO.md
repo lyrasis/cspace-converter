@@ -18,6 +18,7 @@ Config:
 ```txt
 # DEVELOPMENT .env.local
 export CSPACE_CONVERTER_BASE_URI=https://anthro.dev.collectionspace.org/cspace-services
+export CSPACE_CONVERTER_DB_NAME=nightly_anthro
 export CSPACE_CONVERTER_DOMAIN=anthro.collectionspace.org
 export CSPACE_CONVERTER_MODULE=Anthro
 export CSPACE_CONVERTER_USERNAME=admin@anthro.collectionspace.org
