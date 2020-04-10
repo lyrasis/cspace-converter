@@ -20,6 +20,10 @@
           "value": "mongo"
         },
         {
+          "name": "CSPACE_CONVERTER_DB_NAME",
+          "value": "cspace_converter_core"
+        },
+        {
           "name": "CSPACE_CONVERTER_BASE_URI",
           "value": "INSERT_YOUR_VALUE_HERE"
         },
@@ -42,6 +46,10 @@
         {
           "name": "CSPACE_CONVERTER_PASSWORD",
           "value": "INSERT_YOUR_VALUE_HERE"
+        },
+        {
+          "name": "RAILS_ENV",
+          "value": "development"
         }
       ],
       "essential": true,
