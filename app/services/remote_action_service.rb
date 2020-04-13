@@ -64,7 +64,7 @@ class RemoteActionService
           object.update_attributes!(csid: nil, uri:  nil)
           status.good "Deleted: #{object.identifier}"
         else
-          status.bad "Error response: #{response.body}"
+          status.bad "Error response: #{response.result.body}"
         end
       rescue StandardError => err
         status.bad "Error during delete: #{err.message}"
@@ -91,7 +91,7 @@ class RemoteActionService
           object.update_attributes!(csid: csid, uri:  uri)
           status.good "Transferred: #{object.identifier}"
         else
-          status.bad "Error response: #{response.body}"
+          status.bad "Error response: #{response.result.body}"
         end
       rescue StandardError => err
         status.bad "Error during transfer: #{err.message}"
@@ -111,7 +111,7 @@ class RemoteActionService
         if response.result.success?
           status.good "Updated: #{object.identifier}"
         else
-          status.bad "Error response: #{response.body}"
+          status.bad "Error response: #{response.result.body}"
         end
       rescue StandardError => err
         status.bad "Error during update: #{err.message}"
