@@ -29,6 +29,7 @@ by creating a `.env.local` file with custom settings.
 ```bash
 # DEVELOPMENT .env.local
 export CSPACE_CONVERTER_BASE_URI=https://core.dev.collectionspace.org/cspace-services
+export CSPACE_CONVERTER_DB_NAME=nightly_core
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
 export CSPACE_CONVERTER_MODULE=Core
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
@@ -72,7 +73,7 @@ data/core/
 ├── mymuseum_cataloging.csv
 ```
 
-Note that where you save the CSV files is irrelevant. You can browse to any file on your computer using the Web UI, and provide a full path via the CLI. 
+Note that where you save the CSV files is irrelevant. You can browse to any file on your computer using the Web UI, and provide a full path via the CLI.
 
 In the `data` directory of this repo, there are sample data files available for testing for each supported
 Collectionspace profile. These files can also be used as templates for creating CSV data to import.
@@ -86,18 +87,18 @@ A .csv copy of the cache is created in your machine's default user directory wit
 ### To start from scratch or start over:
 
 ```bash
-./reset.sh 
+./reset.sh
 ```
 
 This nukes any existing cache, re-creates the indexes, and downloads all authority and vocabulary terms.
 
-### To refresh existing cache: 
+### To refresh existing cache:
 
 ``` bash
 ./bin/rake cache:refresh
 ```
 
-This will run through all vocabularies and authorities, caching new entries, updating edited entries, and removing deleted entries from the cache. 
+This will run through all vocabularies and authorities, caching new entries, updating edited entries, and removing deleted entries from the cache.
 
 It will also update the .csv copy of the cache.
 

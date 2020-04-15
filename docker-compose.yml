@@ -12,11 +12,13 @@ services:
     environment:
       CSPACE_CONVERTER_ASYNC_JOBS: 'true'
       CSPACE_CONVERTER_DB_HOST: mongo
+      CSPACE_CONVERTER_DB_NAME: nightly_core
       CSPACE_CONVERTER_BASE_URI: https://core.dev.collectionspace.org/cspace-services
       CSPACE_CONVERTER_DOMAIN: core.collectionspace.org
       CSPACE_CONVERTER_LOG_LEVEL: debug
       CSPACE_CONVERTER_MODULE: Core
       CSPACE_CONVERTER_USERNAME: admin@core.collectionspace.org
       CSPACE_CONVERTER_PASSWORD: Administrator
+      RAILS_ENV: development
   mongo:
     image: mongo:3.2

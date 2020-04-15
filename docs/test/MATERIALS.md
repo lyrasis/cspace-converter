@@ -18,6 +18,7 @@ Config:
 ```txt
 # DEVELOPMENT .env.local
 export CSPACE_CONVERTER_BASE_URI=https://materials.dev.collectionspace.org/cspace-services
+export CSPACE_CONVERTER_DB_NAME=nightly_materials
 export CSPACE_CONVERTER_DOMAIN=materials.collectionspace.org
 export CSPACE_CONVERTER_MODULE=Materials
 export CSPACE_CONVERTER_USERNAME=admin@materials.collectionspace.org

@@ -18,6 +18,7 @@ services:
     environment:
       CSPACE_CONVERTER_ASYNC_JOBS: 'true'
       CSPACE_CONVERTER_DB_HOST: mongo
+      CSPACE_CONVERTER_DB_NAME: nightly_core
       CSPACE_CONVERTER_BASE_URI: https://core.dev.collectionspace.org/cspace-services
       CSPACE_CONVERTER_DOMAIN: core.collectionspace.org
       CSPACE_CONVERTER_LOG_LEVEL: debug
