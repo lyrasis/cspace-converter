@@ -149,16 +149,16 @@ Then to transfer:
 
 ```bash
 # provides a list of records
-./bin/rake remote:get[collectionobjects]
+./bin/rake remote:client:get[collectionobjects]
 
 # get an object record
-./bin/rake remote:get[collectionobjects/$CSID]
+./bin/rake remote:client:get[collectionobjects/$CSID]
 
 # get list of concept authorities
-./bin/rake remote:get[conceptauthorities]
+./bin/rake remote:client:get[conceptauthorities]
 
 # get a concept authority record
-./bin/rake remote:get[conceptauthorities/$AUTHORITY_CSID/items/$TERM_CSID]
+./bin/rake remote:client:get[conceptauthorities/$AUTHORITY_CSID/items/$TERM_CSID]
 ```
 
 ### Using the console

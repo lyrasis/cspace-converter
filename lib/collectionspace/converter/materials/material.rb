@@ -5,13 +5,13 @@ module CollectionSpace
         ::MaterialsMaterial = CollectionSpace::Converter::Materials::MaterialsMaterial
         def convert
           run do |xml|
-            MaterialsMaterial.map(xml, attributes)
+            MaterialsMaterial.map(xml, attributes, config)
           end
         end
 
-        def self.map(xml, attributes)
+        def self.map(xml, attributes, config)
           # materialTerm
-          CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
+          # CSXML.add xml, 'shortIdentifier', config[:identifier]
           CSXML.add_group_list xml, 'materialTerm', [
             {
               "historicalStatus" => attributes["historicalstatus"],

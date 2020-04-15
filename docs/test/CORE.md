@@ -29,7 +29,7 @@ Steps:
 
 ```bash
 ./reset.sh # make sure we're empty
-./bin/rake remote:get[media] # test connection
+./bin/rake remote:client:get[media] # test connection
 
 ./import.sh data/core/acquisition_core_all.csv acquisition1 acquisition
 ./remote.sh transfer Acquisition acquisition1

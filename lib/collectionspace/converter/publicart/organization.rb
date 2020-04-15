@@ -14,7 +14,7 @@ module CollectionSpace
               xml.parent.namespace = nil
 
               # TODO: CoreOrganization
-              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
+              CSXML.add xml, 'shortIdentifier', config[:identifier]
 
               CSXML.add_group_list xml, 'orgTerm',
                                    [{

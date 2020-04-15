@@ -29,13 +29,17 @@ Steps:
 
 ```bash
 ./reset.sh # make sure we're empty
-./bin/rake remote:get[media] # test connection
+./bin/rake remote:client:get[media] # test connection
 
 ./import.sh data/materials/cataloging_materials_all.csv cataloging1 cataloging
 ./remote.sh transfer CollectionObject cataloging1
 ./remote.sh delete CollectionObject cataloging1
 
-./import.sh data/core/mediahandling_core_all.csv media1 media
+./import.sh data/materials/materials_authority.csv materials1 material
+./remote.sh transfer Material material1
+./remote.sh delete Material material1
+
+./import.sh data/materials/media_materials_all.csv media1 media
 ./remote.sh transfer Media media1
 ./remote.sh delete Media media1
 ```

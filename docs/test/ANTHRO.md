@@ -29,7 +29,7 @@ Steps:
 
 ```bash
 ./reset.sh # make sure we're empty
-./bin/rake remote:get[claims] # test connection
+./bin/rake remote:client:get[claims] # test connection
 
 ./import.sh data/anthro/$TODO.csv claims1 nagpra
 ./remote.sh transfer Nagpra claims1
