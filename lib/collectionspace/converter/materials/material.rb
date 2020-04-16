@@ -376,10 +376,14 @@ module CollectionSpace
             'recycledcontenthigh' => 'recycledContentHigh',
             'recycledcontentqualifier' => 'recycledContentQualifier'
           }
+          recycledcontent_transforms = {
+            'recycledcontentqualifier' => {'vocab' => 'recycledcontentqualifiers'} 
+          }
           CSXML.add_single_level_group_list(
             xml, attributes,
             'recycledContent',
-            recycledcontent_data
+            recycledcontent_data,
+            recycledcontent_transforms
           )
           #lifecycleComponentGroupList, lifecycleComponentGroup
           lifecyclecomponent_data = {
