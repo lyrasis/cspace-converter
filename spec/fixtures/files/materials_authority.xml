@@ -286,12 +286,12 @@
     <recycledContentGroupList>
       <recycledContentGroup>
         <recycledContent>10</recycledContent>
-        <recycledContentQualifier>Post-consumer</recycledContentQualifier>
+        <recycledContentQualifier>urn:cspace:materials.collectionspace.org:vocabularies:name(recycledcontentqualifiers):item:name(postconsumer)'Post-consumer'</recycledContentQualifier>
         <recycledContentHigh>20</recycledContentHigh>
       </recycledContentGroup>
       <recycledContentGroup>
         <recycledContent>20</recycledContent>
-        <recycledContentQualifier>Post industrial</recycledContentQualifier>
+        <recycledContentQualifier>urn:cspace:materials.collectionspace.org:vocabularies:name(recycledcontentqualifiers):item:name(postindustrial)'Post industrial'</recycledContentQualifier>
         <recycledContentHigh>30</recycledContentHigh>
       </recycledContentGroup>
     </recycledContentGroupList>
