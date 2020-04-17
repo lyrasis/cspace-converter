@@ -501,6 +501,22 @@ module CollectionSpace
         end
       end
 
+      class Work < Record
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'works', 'work', common
+        end
+
+        def self.service(subtype = nil)
+          {
+            id: 'workauthorities',
+            identifier_field: 'shortIdentifier',
+            path: "workauthorities/urn:cspace:name(#{subtype})/items",
+            schema: 'works',
+          }
+        end
+      end
+
       class Relationship < Record
         # override the default authority convert method inline
         def convert

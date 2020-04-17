@@ -6,6 +6,7 @@ registered_authorities:
   - orgauthorities
   - personauthorities
   - placeauthorities
+  - workauthorities
 registered_procedures:
   - Acquisition
   - CollectionObject
@@ -411,6 +412,19 @@ registered_profiles:
         - name_field: valuesourceorganization
           authority_type: Organization
           authority_subtype: organization
+  work:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreWork
+      name_field: termdisplayname
+      authority_type: Work
+      authority_subtype: work
+      Authorities: []
+      Vocabularies: []
   vocabularies:
     type: Vocabularies
     enabled: true
