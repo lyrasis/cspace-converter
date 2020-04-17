@@ -1,15 +1,11 @@
-termDisplayName,termStatus,termFlag,termSource,termSourceID,commonName,additionalTermDisplayName,additionalTermStatus
-"Indeterminate Magnoliopsida",accepted,valid,"ITIS",18063,"Flowering plant",Angiospermae,rejected
-"Omphalotus olearius",accepted,valid,,,"Jack-o-lantern fungus","Clitocybe olearius",rejected
-"Gymnopus dryophilus",accepted,valid,,,"Oak-loving Collybia","Collybia dryophila",rejected
-"Trichaptum abietinum",accepted,valid,,,"Poroid fungus","Hirschioporus abietinus",rejected
-"Euphydryas phaeton",accepted,invalid,"ITIS",778057,"Batlimore Checkerspot","melitae phaetona",rejected
-"Lycaena helloides",accepted,invalid,"ITIS",777800,"Purplish Copper"," chrysophanus helloides",rejected
-"Ladona deplanata",accepted,invalid,"ITIS",101882,"Blue Corporal"," libellula deplanata",rejected
-"Ascalapha odorata","under review",,,,"Black Witch Moth","erebus odora ",rejected
-"Plestiodon fasciatus","under review",,,,"Five-lined Skink","eumeces fasciatus ",rejected
-"Betula platyphylla","under review",,"ITIS",183538,"Asian White Birch","Betula mandshurica",rejected
-"Zerene cesonia","under review",,"ITIS",777746,"Southern Dogface Butterfly","Colias cesonia",rejected
-Actinolite,accepted,invalid,,"rock_mineral - NO ITIS entry",,,
-"Actinolite in chlorite",accepted,invalid,,"rock_mineral - NO ITIS entry",,,
-"Actinolite in talc",accepted,invalid,,"rock_mineral - NO ITIS entry",,,
+termDisplayName,termFormattedDisplayName,termFlag,termLanguage,termPrefForLang,termType,termQualifier,termSource,termSourceID,termSourceDetail,termSourceNote,termStatus,taxonomicStatus,taxonRank,taxonCurrency,taxonAuthor,taxonAuthorType,taxonYear,taxonCitation,taxonIsNamedHybrid,taxonNote,commonName,commonNameLanguage,commonNameSource,commonNameSourceDetail
+Taxon 1,Taxon One,valid,Ancient Greek , true,descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,provisional ,valid ,domain,current,Person One; Person Two,ascribed; parenthetical,2000,Citation One; Citation Two, true,Taxon note text,Taxon common name 1; Taxon common name 2,Arabic; Armenian,Common name source 1; Common name source 2,Common name source detail 1; Common name source detail 2
+Taxon 2,Taxon Two,invalid,Arabic, false,alternate descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,under review,invalid,kingdom,obsolete,Person Two,ascribed,2001,Citation Two, false,Taxon note text,Taxon common name 2,Chinese,Common name source,Common name source detail
+Taxon 3,Taxon Three,valid,Armenian, true,used for term,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,accepted,accepted,phylum,archaic,Person Three,parenthetical,2002,Citation Three, true,Taxon note text,Taxon common name 3,English,Common name source,Common name source detail
+Taxon 4,Taxon Four,valid,Chinese, false,descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,rejected,misapplied name,division,current,Person Four,ascribed,2003,Citation Four, false,Taxon note text,Taxon common name 1; Taxon common name 3,French,Common name source,Common name source detail
+Taxon 5,Taxon Five,invalid,English, true,alternate descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,provisional ,valid ,family,obsolete,Person Five,parenthetical,2004,Citation Five, true,Taxon note text,Taxon common name 4,German,Common name source,Common name source detail
+Taxon 6,Taxon Six,valid,French, false,used for term,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,under review,invalid,class,archaic,Person Six,ascribed,2005,Citation Six, false,Taxon note text,Taxon common name 5,Hebrew,Common name source,Common name source detail
+Taxon 7,Taxon Seven,valid,German, true,descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,accepted,accepted,order,current,Person Seven,parenthetical,2006,Citation Seven, true,Taxon note text,Taxon common name 1; Taxon common name 4,Indonesian,Common name source,Common name source detail
+Taxon 8,Taxon Eight,invalid,Hebrew, false,alternate descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,rejected,misapplied name,genus,obsolete,Person Eight,ascribed,2007,Citation Eight, false,Taxon note text,Taxon common name 6,Italian,Common name source,Common name source detail
+Taxon 9,Taxon Nine,valid,Indonesian, true,used for term,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,provisional ,valid ,species,archaic,Person Nine,parenthetical,2008,Citation Nine, true,Taxon note text,Taxon common name 7,Japanese,Common name source,Common name source detail
+Taxon 10,Taxon Ten,valid,Italian, false,descriptor,Term qualifier text,Term source text,Term source ID,Term source detail,Term source note,under review,invalid,domain,current,Person Ten,ascribed,2009,Citation Ten, false,Taxon note text,Taxon common name 1; Taxon common name 5,Korean,Common name source,Common name source detail
