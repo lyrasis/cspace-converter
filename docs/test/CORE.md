@@ -74,9 +74,21 @@ Steps:
 ./remote.sh transfer Concept nomenclature1
 ./remote.sh delete Concept nomenclature1
 
+./import.sh data/core/authorg_core_all.csv org1 organization
+./remote.sh transfer Organization org1
+./remote.sh delete Organization org1
+
 ./import.sh data/core/authperson_core_all.csv person1 person
 ./remote.sh transfer Person person1
 ./remote.sh delete Person person1
+
+./import.sh data/core/place_core_all.csv place1 place
+./remote.sh transfer Place place1
+./remote.sh delete Place place1
+
+./import.sh data/core/authwork_core_all.csv work1 work
+./remote.sh transfer Work work1
+./remote.sh delete Work work1
 
 ### Relationships
 
