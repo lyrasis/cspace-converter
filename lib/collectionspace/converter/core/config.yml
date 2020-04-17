@@ -331,6 +331,19 @@ registered_profiles:
         - name_field: currentowner
           authority_type: Person
           authority_subtype: person
+  place:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CorePlace
+      name_field: termdisplayname
+      authority_type: Place
+      authority_subtype: place
+      Authorities: []
+      Vocabularies: []
   person:
     type: Authorities
     enabled: true
