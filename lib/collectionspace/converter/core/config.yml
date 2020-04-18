@@ -358,17 +358,17 @@ registered_profiles:
         - name_field: currentowner
           authority_type: Person
           authority_subtype: person
-  place:
+  organization:
     type: Authorities
     enabled: true
     identify_by_column: termdisplayname
     required_headers:
       - termdisplayname
     config:
-      mapper: CorePlace
+      mapper: CoreOrganization
       name_field: termdisplayname
-      authority_type: Place
-      authority_subtype: place
+      authority_type: Organization
+      authority_subtype: organization
       Authorities: []
       Vocabularies: []
   person:
@@ -384,6 +384,19 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
+      Authorities: []
+      Vocabularies: []
+  place:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CorePlace
+      name_field: termdisplayname
+      authority_type: Place
+      authority_subtype: place
       Authorities: []
       Vocabularies: []
   relationships:
