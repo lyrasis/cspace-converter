@@ -31,27 +31,40 @@ module CollectionSpace
           pairs = {
             'dispositionpossibilitiesdiscussednote' => 'dispositionPossibilitiesDiscussedNote',
             'dispositionpossibilitiesdiscussed' => 'dispositionPossibilitiesDiscussed',
-            'surroundingtribescontacted' => 'surroundingTribesContactedNote',
-            'workingteamnotified' => 'workingTeamNotifiedNote',
-            'sitefileresearchcompleted' => 'siteFileResearchCompletedNote',
-            'accessionfileresearchcompleted' => 'accessionFileResearchCompletedNote',
-            'objectslocatedandcounted' => 'objectsLocatedAndCountedNote',
-            'objectsconsolidated' => 'objectsConsolidatedNote',
-            'objectsphotographed' => 'objectsPhotographedNote',
-            'registrationdocumentsdrafted' => 'registrationDocumentsDraftedNote',
-            'tribecontactedforpackingpreferences' => 'tribeContactedForPackingPreferencesNote',
-            'datearrangedfortransfer' => 'dateArrangedForTransferNote',
-            'objectsmarkedasdeaccessioned' => 'objectsMarkedAsDeaccessionedNote',
-            'documentsarchived' => 'documentsArchivedNote'
+            'surroundingtribescontactednote' => 'surroundingTribesContactedNote',
+            'surroundingtribescontacted' => 'surroundingTribesContacted',
+            'workingteamnotifiednote' => 'workingTeamNotifiedNote',
+            'workingteamnotified' => 'workingTeamNotified',
+            'sitefileresearchcompletednote' => 'siteFileResearchCompletedNote',
+            'sitefileresearchcompleted' => 'siteFileResearchCompleted',
+            'accessionfileresearchcompletednote' => 'accessionFileResearchCompletedNote',
+            'accessionfileresearchcompleted' => 'accessionFileResearchCompleted',
+            'objectslocatedandcountednote' => 'objectsLocatedAndCountedNote',
+            'objectslocatedandcounted' => 'objectsLocatedAndCounted',
+            'objectsconsolidatednote' => 'objectsConsolidatedNote',
+            'objectsconsolidated' => 'objectsConsolidated',
+            'objectsphotographednote' => 'objectsPhotographedNote',
+            'objectsphotographed' => 'objectsPhotographed',
+            'registrationdocumentsdraftednote' => 'registrationDocumentsDraftedNote',
+            'registrationdocumentsdrafted' => 'registrationDocumentsDrafted',
+            'tribecontactedforpackingpreferencesnote' => 'tribeContactedForPackingPreferencesNote',
+            'tribecontactedforpackingpreferences' => 'tribeContactedForPackingPreferences',
+            'datearrangedfortransfernote' => 'dateArrangedForTransferNote',
+            'datearrangedfortransfer' => 'dateArrangedForTransfer',
+            'objectsmarkedasdeaccessionednote' => 'objectsMarkedAsDeaccessionedNote',
+            'objectsmarkedasdeaccessioned' => 'objectsMarkedAsDeaccessioned',
+            'documentsarchivednote' => 'documentsArchivedNote',
+            'documentsarchived' => 'documentsArchived',
+            'nagpraclaimname' => 'nagpraClaimName'
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs)
           repeats = {
             'nagpraclaimtype' => ['nagpraClaimTypes', 'nagpraClaimType'],
             'nagpraclaimnote' => ['nagpraClaimNotes', 'nagpraClaimNote'],
-          },
+          }
           repeats_transforms = {
             'nagpraclaimtype' => {'vocab' => 'nagpraclaimtype'},
-          },
+          }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
           #nagpraClaimAltNameGroupList, nagpraClaimAltNameGroup
           nagpraclaimalt_data = {
@@ -141,7 +154,7 @@ module CollectionSpace
           )
           #nagpraClaimLocalRecGroupList, nagpraClaimLocalRecGroup
           nagpraclaimlocalrec_data = {
-            "nagpraclaimlocaleecdate"  => "nagpraClaimLocalRecDate",
+            "nagpraclaimlocalrecdate"  => "nagpraClaimLocalRecDate",
             "nagpraclaimlocalrecnote" => "nagpraClaimLocalRecNote"
           }
           nagpraclaimlocalrec_transforms = {
@@ -172,7 +185,7 @@ module CollectionSpace
           #nagpraClaimNatlRespGroupList, nagpraClaimNatlRespGroup
           nagpraclaimnatlresp_data = {
             "nagpraclaimnatlrespdate"  => "nagpraClaimNatlRespDate",
-            "nagpraclaiminitialresponsenote" => "nagpraClaimInitialResponseNote"
+            "nagpraclaimnatlrespnote" => "nagpraClaimNatlRespNote"
           }
           nagpraclaimnatlresp_transforms = {
             "nagpraclaimnatlrespdate" => {'special' => 'unstructured_date_stamp'}
@@ -234,8 +247,7 @@ module CollectionSpace
 
         def self.map(xml, attributes)
           pairs = {
-            'claimnumber' => 'claimNumber',
-            'nagpraclaimname' => 'nagpraClaimName'
+            'claimnumber' => 'claimNumber'
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs)
           #claimantGroupList, claimantGroup
