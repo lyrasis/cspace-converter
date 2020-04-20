@@ -158,7 +158,7 @@ module CollectionSpace
             "nagpraclaimlocalrecnote" => "nagpraClaimLocalRecNote"
           }
           nagpraclaimlocalrec_transforms = {
-            "nagpraclaimlocaleecdate" => {'special' => 'unstructured_date_stamp'}
+            "nagpraclaimlocalrecdate" => {'special' => 'unstructured_date_stamp'}
           }
           CSXML.add_single_level_group_list(
             xml,
