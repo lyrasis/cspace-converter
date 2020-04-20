@@ -257,7 +257,7 @@ module CollectionSpace
             "claimfiledbyorganization" => "claimFiledBy",
             "claimfiledonbehalfofperson" => "claimFiledOnBehalfOf",
             "claimfiledonbehalfoforganization" => "claimFiledOnBehalfOf",
-          },
+          }
           claimant_transforms = {
             "claimfiledbyperson" => {'authority' => ['personauthorities', 'person']},
             "claimfiledbyorganization" => {'authority' => ['orgauthorities', 'organization']},
@@ -275,7 +275,7 @@ module CollectionSpace
           claimreceived_data = {
             "claimreceivednote"  => "claimReceivedNote",
             "claimreceiveddate" => "claimReceivedDate"
-          },
+          }
           claimreceived_transforms = {
             "claimreceiveddate" => {'special' => 'unstructured_date_stamp'}
           }
