@@ -182,7 +182,7 @@ service = Lookup.record_class('CollectionObject').service(nil)
 RemoteActionService.find_item_csid(service, 'A 1/000261')
 # Or, to do this with an existing CollectionSpaceObject record
 obj = CollectionSpaceObject.where(identifier: '123456').first
-RemoteActionService.new(obj).remote_ping
+RemoteActionService.new(obj).ping
 obj.csid
 ```
 

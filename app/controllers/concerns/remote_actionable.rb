@@ -2,11 +2,11 @@ module RemoteActionable
   extend ActiveSupport::Concern
 
   def delete
-    perform(:remote_delete, params[:category])
+    perform(:delete, params[:category])
   end
 
   def ping
-    perform(:remote_ping, params[:category])
+    perform(:ping, params[:category])
   end
 
   def reset_cache
@@ -18,11 +18,11 @@ module RemoteActionable
   end
 
   def transfer
-    perform(:remote_transfer, params[:category])
+    perform(:transfer, params[:category])
   end
 
   def update
-    perform(:remote_update, params[:category])
+    perform(:update, params[:category])
   end
 
   private
@@ -34,7 +34,7 @@ module RemoteActionable
     begin
       status = service.send(action_method)
       @object.transfer_statuses.create(
-        transfer_status: status.ok,
+        transfer_status: status.success?,
         transfer_message: status.message
       )
     rescue Exception => ex

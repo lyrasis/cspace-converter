@@ -55,12 +55,12 @@ namespace :remote do
   namespace :service do
     # bundle exec rake remote:service:delete[CollectionObject,ABC.123]
     task :delete, [:type, :identifier] => :environment do |t, args|
-      request(args.fetch(:type), args.fetch(:identifier), :remote_delete)
+      request(args.fetch(:type), args.fetch(:identifier), :delete)
     end
 
     # bundle exec rake remote:service:ping[CollectionObject,ABC.123]
     task :ping, [:type, :identifier] => :environment do |t, args|
-      request(args.fetch(:type), args.fetch(:identifier), :remote_ping)
+      request(args.fetch(:type), args.fetch(:identifier), :ping)
     end
 
     # bundle exec rake remote:service:search[2020.1.1,CollectionObject]
@@ -75,12 +75,12 @@ namespace :remote do
 
     # bundle exec rake remote:service:transfer[CollectionObject,ABC.123]
     task :transfer, [:type, :identifier] => :environment do |t, args|
-      request(args.fetch(:type), args.fetch(:identifier), :remote_transfer)
+      request(args.fetch(:type), args.fetch(:identifier), :transfer)
     end
 
     # bundle exec rake remote:service:update[CollectionObject,ABC.123]
     task :update, [:type, :identifier] => :environment do |t, args|
-      request(args.fetch(:type), args.fetch(:identifier), :remote_update)
+      request(args.fetch(:type), args.fetch(:identifier), :update)
     end
 
     def request(type, identifier, action)
@@ -92,7 +92,7 @@ namespace :remote do
 
       status = RemoteActionService.new(obj).send(action)
       obj.transfer_statuses.create(
-        transfer_status: status.ok,
+        transfer_status: status.success?,
         transfer_message: status.message
       )
     end
