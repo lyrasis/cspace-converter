@@ -33,6 +33,7 @@ Steps:
 
 ./import.sh data/materials/cataloging_materials_all.csv cataloging1 cataloging
 ./remote.sh transfer CollectionObject cataloging1
+./remote.sh update CollectionObject cataloging1
 ./remote.sh delete CollectionObject cataloging1
 
 ./import.sh data/materials/materials_authority.csv materials1 material

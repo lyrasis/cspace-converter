@@ -4,22 +4,26 @@ class RemoteActionService
   attr_reader :object, :service
 
   class Status
-    attr_accessor :ok, :message
-    def initialize(ok: false, message: '')
-      @ok      = ok
+    attr_accessor :success, :message
+    def initialize(success: false, message: '')
+      @success = success
       @message = message
     end
 
     def bad(message)
-      @ok      = false
+      @success = false
       @message = message
       Rails.logger.error(message)
     end
 
     def good(message)
-      @ok      = true
+      @success = true
       @message = message
       Rails.logger.debug(message)
+    end
+
+    def success?
+      @success
     end
   end
 
@@ -54,7 +58,7 @@ class RemoteActionService
     end
   end
 
-  def remote_delete
+  def delete
     status = Status.new
     if object.has_csid_and_uri?
       Rails.logger.debug("Deleting: #{object.identifier}")
@@ -75,7 +79,7 @@ class RemoteActionService
     status
   end
 
-  def remote_transfer
+  def transfer
     status = Status.new
     unless object.has_csid_and_uri?
       Rails.logger.debug("Transferring: #{object.identifier}")
@@ -102,7 +106,7 @@ class RemoteActionService
     status
   end
 
-  def remote_update
+  def update
     status = Status.new
     if object.has_csid_and_uri?
       Rails.logger.debug("Updating: #{object.identifier}")
@@ -122,7 +126,7 @@ class RemoteActionService
     status
   end
 
-  def remote_ping
+  def ping
     status = Status.new
     message_string = "#{service[:path]} #{service[:schema]} #{service[:identifier_field]} #{object.identifier}"
     response = perform_search_request
