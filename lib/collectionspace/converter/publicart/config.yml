@@ -123,8 +123,12 @@ registered_profiles:
         identifier: movementreferencenumber
         title: movementreferencenumber
       Authorities:
-        Person:
-        - movementcontact
+        - name_field: movementcontact
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inventorycontact
+          authority_type: Person
+          authority_subtype: person
   objectexit:
     type: Procedures
     config:
