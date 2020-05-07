@@ -15,6 +15,15 @@ module CollectionSpace
             end
 
             xml.send(
+              "ns2:collectionobjects_culturalcare",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/culturalcare",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              AnthroCareCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+            end
+
+            xml.send(
                 "ns2:collectionobjects_anthro",
                 "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/anthro",
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
@@ -73,7 +82,11 @@ module CollectionSpace
         end
 
         # EXTENSIONS
-        def self.map_anthro(xml, attributes)
+        def self.map_cultural_care(xml, attributes, redefined)
+          CulturalCareCollectionObject.map_cultural_care(xml, attributes.merge(redefined))
+        end
+        
+          def self.map_anthro(xml, attributes)
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # localityGroupList
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
