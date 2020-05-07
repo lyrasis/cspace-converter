@@ -93,6 +93,31 @@ registered_profiles:
         - name_field: inventorycontact
           authority_type: Person
           authority_subtype: person
+  nomenclature:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    defaults:
+      historicalstatus: current
+      termlanguage: English
+      termprefforlang: true
+      termsource: AASLH Nomenclature
+      termstatus: accepted
+      termtype: descriptor
+    config:
+      mapper: CoreConcept
+      name_field: termdisplayname
+      authority_type: Concept
+      authority_subtype: nomenclature
+      Authorities:
+        - name_field: termsource
+          authority_type: Citation
+          authority_subtype: citation
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
   osteology:
     type: Procedures
     enabled: true
