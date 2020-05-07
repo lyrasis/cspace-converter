@@ -1,7 +1,13 @@
 <div class="row">
   <div class="col-md-12">
     <div class="page-header">
+      <% if defined?(type) && defined?(subtype) %>
+      <h1><%= title %> (<%= type =%> / <%= subtype =%>)</h1>
+      <% elsif defined?(type) %>
+      <h1><%= title %> (<%= type =%>)</h1>
+      <% else %>
       <h1><%= title %></h1>
+      <% end %>
     </div>
   </div>
 </div>
