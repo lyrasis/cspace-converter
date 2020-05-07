@@ -113,8 +113,13 @@ registered_profiles:
       Authorities: []
   movement:
     type: Procedures
+    enabled: true
+    identify_by_column: movementreferencenumber
+    required_headers:
+      - movementreferencenumber
     config:
       Movement:
+        mapper: PublicArtMovement
         identifier: movementreferencenumber
         title: movementreferencenumber
       Authorities:
