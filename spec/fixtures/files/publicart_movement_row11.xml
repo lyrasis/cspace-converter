@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="movements">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-07T06:12:14.328Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:movements:id(4805ef93-b70c-4a91-bb93)</refName>
+    <uri>/movements/4805ef93-b70c-4a91-bb93</uri>
+    <updatedAt>2020-05-07T06:12:14.328Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:movements_common xmlns:ns2="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <inventoryContactList/>
+    <movementMethods/>
+    <currentLocation>urn:cspace:publicart.collectionspace.org:locationauthorities:name(location):item:name(SampleLocationText91588831925061)'Sample Location Text 9'</currentLocation>
+    <movementReferenceNumber>LOC2020.1.10</movementReferenceNumber>
+  </ns2:movements_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
