@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="places">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-05-07T09:12:42.527Z</createdAt>
+    <createdAt>2020-05-08T18:38:31.381Z</createdAt>
     <updatedBy>admin@publicart.collectionspace.org</updatedBy>
     <createdBy>admin@publicart.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>5000</tenantId>
-    <refName>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CountryOne1588842762527)'Country One'</refName>
-    <uri>/placeauthorities/2330cbf0-9576-4c59-952a/items/a4aefbc7-0f43-4172-be9c</uri>
-    <updatedAt>2020-05-07T10:51:01.941Z</updatedAt>
+    <refName>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CountryOne993122060)'Country One'</refName>
+    <uri>/placeauthorities/2330cbf0-9576-4c59-952a/items/26bc570a-eeee-47d2-bb08</uri>
+    <updatedAt>2020-05-08T18:38:31.381Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:places_common xmlns:ns2="http://collectionspace.org/services/place" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <placeNote>Place note text</placeNote>
     <addrGroupList>
       <addrGroup>
-        <addressCountry>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry11588844205352)'Address Country 1'</addressCountry>
-        <addressCounty>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCounty11588848649086)'Address County 1'</addressCounty>
+        <addressCountry>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry11789119156)'Address Country 1'</addressCountry>
+        <addressCounty>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCounty1646992090)'Address County 1'</addressCounty>
         <addressPlace2>Address Line 2A</addressPlace2>
         <addressPlace1>Address Line 1A</addressPlace1>
         <addressType>urn:cspace:publicart.collectionspace.org:vocabularies:name(addresstype):item:name(business)'business'</addressType>
-        <addressMunicipality>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressMunicipality11588844079457)'Address Municipality 1	'</addressMunicipality>
+        <addressMunicipality>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressMunicipality12088592879)'Address Municipality 1'</addressMunicipality>
         <addressPostCode>Address Code 123</addressPostCode>
-        <addressStateOrProvince>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressProvince1588844153079)'Address Province'</addressStateOrProvince>
+        <addressStateOrProvince>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressProvince2614943901)'Address Province'</addressStateOrProvince>
       </addrGroup>
       <addrGroup>
-        <addressCountry>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry21588844209677)'Address Country 2'</addressCountry>
-        <addressCounty>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCounty21588848651985)'Address County 2'</addressCounty>
+        <addressCountry>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry22493673474)'Address Country 2'</addressCountry>
+        <addressCounty>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressCounty2892599694)'Address County 2'</addressCounty>
         <addressPlace2>Address Line 2B</addressPlace2>
         <addressPlace1>Address Line 1B</addressPlace1>
         <addressType>urn:cspace:publicart.collectionspace.org:vocabularies:name(addresstype):item:name(intersection)'intersection'</addressType>
-        <addressMunicipality>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressMunicipality21588844085295)'Address Municipality 2'</addressMunicipality>
+        <addressMunicipality>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressMunicipality23362101679)'Address Municipality 2'</addressMunicipality>
         <addressPostCode>Address Code 456</addressPostCode>
-        <addressStateOrProvince>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressState1588844157687)' Address State'</addressStateOrProvince>
+        <addressStateOrProvince>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(AddressState165435912)'Address State'</addressStateOrProvince>
       </addrGroup>
     </addrGroupList>
-    <shortIdentifier>CountryOne1588842762527</shortIdentifier>
+    <shortIdentifier>CountryOne993122060</shortIdentifier>
     <placeGeoRefGroupList>
       <placeGeoRefGroup>
         <geoRefProtocol>georeferencing-dummies</geoRefProtocol>
@@ -50,22 +50,22 @@
           <dateLatestScalarValue>2000-05-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-05-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>5</dateLatestMonth>
         </geoRefDateGroup>
         <decimalLatitude>43.19472222</decimalLatitude>
         <geodeticDatum>epsg4326-wgs84</geodeticDatum>
@@ -92,22 +92,22 @@
           <dateLatestScalarValue>2000-05-03T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>2</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>3</dateLatestDay>
           <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-05-02T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>5</dateLatestMonth>
         </geoRefDateGroup>
         <decimalLatitude>42.99083333</decimalLatitude>
         <geodeticDatum>unknown</geodeticDatum>
@@ -122,41 +122,11 @@
       </placeGeoRefGroup>
     </placeGeoRefGroupList>
     <inAuthority>2330cbf0-9576-4c59-952a</inAuthority>
-    <refName>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CountryOne1588842762527)'Country One'</refName>
-    <rev>31</rev>
+    <refName>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CountryOne993122060)'Country One'</refName>
+    <rev>0</rev>
     <sas>false</sas>
-    <placeOwnerGroupList>
-      <placeOwnerGroup>
-        <owner/>
-        <ownershipNote/>
-        <ownershipDateGroup>
-          <scalarValuesComputed>false</scalarValuesComputed>
-          <dateEarliestSingleCertainty/>
-          <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate/>
-          <dateLatestScalarValue/>
-          <dateEarliestSingleQualifierValue/>
-          <datePeriod/>
-          <dateLatestEra/>
-          <dateEarliestSingleDay/>
-          <dateEarliestSingleQualifier/>
-          <dateEarliestSingleYear/>
-          <dateLatestCertainty/>
-          <dateAssociation/>
-          <dateLatestDay/>
-          <dateEarliestSingleMonth/>
-          <dateEarliestSingleEra/>
-          <dateLatestYear/>
-          <dateLatestQualifierUnit/>
-          <dateNote/>
-          <dateLatestQualifierValue/>
-          <dateLatestQualifier/>
-          <dateEarliestScalarValue/>
-          <dateLatestMonth/>
-        </ownershipDateGroup>
-      </placeOwnerGroup>
-    </placeOwnerGroupList>
-    <csid>a4aefbc7-0f43-4172-be9c</csid>
+    <placeOwnerGroupList/>
+    <csid>26bc570a-eeee-47d2-bb08</csid>
     <proposed>true</proposed>
     <placeTermGroupList>
       <placeTermGroup>
@@ -172,26 +142,26 @@
           <dateLatestScalarValue>2000-01-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-01-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>1</dateLatestMonth>
         </nameDateGroup>
         <historicalStatus>current</historicalStatus>
         <termType>common</termType>
-        <termSource>urn:cspace:publicart.collectionspace.org:citationauthorities:name(citation):item:name(BookOne1588842801829)'Book One'</termSource>
+        <termSource>urn:cspace:publicart.collectionspace.org:citationauthorities:name(citation):item:name(BookOne1151348081)'Book One'</termSource>
         <nameNote>Place name note 1</nameNote>
         <termStatus>accepted</termStatus>
         <termLanguage>urn:cspace:publicart.collectionspace.org:vocabularies:name(languages):item:name(eng)'English'</termLanguage>
@@ -207,13 +177,14 @@
   <ns2:places_publicart xmlns:ns2="http://collectionspace.org/services/place/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <publicArtPlaceTypes>
       <publicArtPlaceType>urn:cspace:publicart.collectionspace.org:vocabularies:name(placetypes):item:name(country)'Country'</publicArtPlaceType>
+      <publicArtPlaceType>urn:cspace:publicart.collectionspace.org:vocabularies:name(placetypes):item:name(island)'Island'</publicArtPlaceType>
     </publicArtPlaceTypes>
     <placementEnvironment>indoor</placementEnvironment>
     <publicartPlaceOwnerGroupList>
       <publicartPlaceOwnerGroup>
-        <owner>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(UniversityofCalgary1588843518362)'University of Calgary	'</owner>
+        <owner>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(UniversityofCalgary4196044546)'University of Calgary'</owner>
         <ownerType>private</ownerType>
-        <ownershipNote>Ownership note 1	</ownershipNote>
+        <ownershipNote>Ownership note 1</ownershipNote>
         <ownershipDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
@@ -222,22 +193,22 @@
           <dateLatestScalarValue>2000-02-02T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>1</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>2</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-01T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </publicartPlaceOwnerGroup>
       <publicartPlaceOwnerGroup>
@@ -248,31 +219,31 @@
           <scalarValuesComputed>true</scalarValuesComputed>
           <dateEarliestSingleCertainty/>
           <dateEarliestSingleQualifierUnit/>
-          <dateDisplayDate> 2/2/2000</dateDisplayDate>
+          <dateDisplayDate>2/2/2000</dateDisplayDate>
           <dateLatestScalarValue>2000-02-03T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>2</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>3</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-02T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </publicartPlaceOwnerGroup>
       <publicartPlaceOwnerGroup>
-        <owner>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(ShiraiTanigawa1588843551048)'Shirai Tanigawa	'</owner>
-        <ownerType>public</ownerType>
+        <owner>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(ShiraiTanigawa4073271704)'Shirai Tanigawa'</owner>
+        <ownerType>private</ownerType>
         <ownershipNote>Ownership note 3</ownershipNote>
         <ownershipDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
@@ -282,27 +253,27 @@
           <dateLatestScalarValue>2000-02-04T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>3</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>4</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-03T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </publicartPlaceOwnerGroup>
       <publicartPlaceOwnerGroup>
         <owner>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(NorihideMita1588843556643)'Norihide Mita'</owner>
-        <ownerType>private</ownerType>
+        <ownerType>public</ownerType>
         <ownershipNote>Ownership note 4</ownershipNote>
         <ownershipDateGroup>
           <scalarValuesComputed>true</scalarValuesComputed>
@@ -312,27 +283,28 @@
           <dateLatestScalarValue>2000-02-05T00:00:00.000Z</dateLatestScalarValue>
           <dateEarliestSingleQualifierValue/>
           <datePeriod/>
-          <dateLatestEra/>
+          <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
           <dateEarliestSingleDay>4</dateEarliestSingleDay>
           <dateEarliestSingleQualifier/>
           <dateEarliestSingleYear>2000</dateEarliestSingleYear>
           <dateLatestCertainty/>
           <dateAssociation/>
-          <dateLatestDay/>
+          <dateLatestDay>5</dateLatestDay>
           <dateEarliestSingleMonth>2</dateEarliestSingleMonth>
           <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
-          <dateLatestYear/>
+          <dateLatestYear>2000</dateLatestYear>
           <dateLatestQualifierUnit/>
           <dateNote/>
           <dateLatestQualifierValue/>
           <dateLatestQualifier/>
           <dateEarliestScalarValue>2000-02-04T00:00:00.000Z</dateEarliestScalarValue>
-          <dateLatestMonth/>
+          <dateLatestMonth>2</dateLatestMonth>
         </ownershipDateGroup>
       </publicartPlaceOwnerGroup>
     </publicartPlaceOwnerGroupList>
     <placementTypes>
       <placementType>urn:cspace:publicart.collectionspace.org:vocabularies:name(placementtypes):item:name(airports)'airports'</placementType>
+      <placementType>urn:cspace:publicart.collectionspace.org:vocabularies:name(placementtypes):item:name(alleys)'alleys (streets)'</placementType>
     </placementTypes>
   </ns2:places_publicart>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
