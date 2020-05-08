@@ -30,7 +30,8 @@ module CollectionSpace
             'currentlocationorganization' => {'authority' => ['orgauthorities', 'organization']},
             'locationdate' => {'special' => 'unstructured_date_stamp'},
             'movementcontact' => {'authority' => ['personauthorities', 'person']},
-            'removaldate' => {'special' => 'unstructured_date_stamp'}
+            'removaldate' => {'special' => 'unstructured_date_stamp'},
+            'plannedremovaldate' => {'special' => 'unstructured_date_stamp'}
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
           repeats = {
