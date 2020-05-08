@@ -129,7 +129,7 @@ registered_profiles:
       Authorities:
         Organization:
         - currentowner
-   place:
+  place:
     type: Authorities
     enabled: true
     identify_by_column: termdisplayname
