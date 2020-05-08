@@ -1,0 +1,11 @@
+movementReferenceNumber,currentLocationPlace,currentLocationOrganization,currentLocationStorage,currentLocationFitness,currentLocationNote,locationDate,reasonForMove,movementMethod,movementContact,movementNote,plannedRemovalDate,removalDate
+LOC2020.1.1,Sample Location Text,,,suitable,Sample Note,2000-02-02,exhibition,handcarried;forklift,Sample Person,Movement Note.,2000-05-02,2000-06-14
+LOC2020.1.2,Sample Location Text 1,,,dangerous,Sample Note 1,2000-02-03,inventory,trolley,Sample Person 1,Movement Note.1,2000-05-03,2000-06-15
+LOC2020.1.3,,Sample Location Text 2,,temporary,Sample Note 2,2000-02-04,newstoragelocation,forklift,Sample Person 2,Movement Note.2,2000-05-04,2000-06-16
+LOC2020.1.4,Sample Location Text 3,,,unsuitable,Sample Note 3,2000-02-05,photography,handcarried,Sample Person 3,Movement Note.3,2000-05-05,2000-06-17
+LOC2020.1.5,,,Sample Location Text 4,temporary,Sample Note 4,2000-02-06,loan,trolley,Sample Person 4,Movement Note.4,2000-05-06,2000-06-18
+LOC2020.1.6,,,Sample Location Text 5,dangerous,Sample Note 5,2000-02-07,research,forklift,Sample Person 5,Movement Note.5,2000-05-07,2000-06-19
+LOC2020.1.7,,Sample Location Text 6,,suitable,Sample Note 6,2000-02-08,photography,handcarried,Sample Person 6,Movement Note.6,2000-05-08,2000-06-20
+LOC2020.1.8,Sample Location Text 7,,,unsuitable,Sample Note 7,2000-02-09,conservation,forklift,Sample Person 7,Movement Note.7,2000-05-09,2000-06-21
+LOC2020.1.9,,Sample Location Text 8,,temporary,Sample Note 8,2000-02-10,exhibition,trolley,Sample Person 8,Movement Note.8,2000-05-10,2000-06-22
+,,,Sample Location Text 9,,,,,,,,,
