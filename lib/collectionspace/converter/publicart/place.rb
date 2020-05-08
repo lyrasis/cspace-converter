@@ -45,7 +45,7 @@ module CollectionSpace
             "ownerperson" => "owner",
             "ownershipdategroup" => "ownershipDateGroup",
             "ownershipnote" => "ownershipNote",
-            "ownershiptype" => "ownershipType"
+            "ownertype" => "ownerType"
           }
           owner_transforms = {
             'ownerorganization' => {'authority' => ['orgauthorities', 'organization']},
@@ -55,7 +55,7 @@ module CollectionSpace
           CSXML.add_single_level_group_list(
             xml,
             attributes,
-            'placeOwner',
+            'publicartPlaceOwner',
             owner_data,
             owner_transforms
           )
