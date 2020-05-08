@@ -15,64 +15,72 @@ module CollectionSpace
             end
 
             xml.send(
-                "ns2:collectionobjects_anthro",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/anthro",
+              "ns2:collectionobjects_culturalcare",
+              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/culturalcare",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              xml.parent.namespace = nil
+              LhmcCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+            end
+
+            xml.send(
+                "ns2:collectionobjects_lhmc",
+                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/lhmc",
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              LhmcCollectionObject.map_anthro(xml, attributes)
+              LhmcCollectionObject.map_lhmc(xml, attributes)
             end
 
-            xml.send(
-              "ns2:collectionobjects_annotation",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/annotation",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
-            ) do
-              xml.parent.namespace = nil
-              LhmcCollectionObject.map_annotation(xml, attributes)
-            end
-
-            xml.send(
-              "ns2:collectionobjects_nagpra",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/nagpra",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
-            ) do
-              xml.parent.namespace = nil
-              LhmcCollectionObject.map_nagpra(xml, attributes)
-            end
           end
         end
 
         def redefined_fields
           @redefined.concat([
-            'objectproductionpeople',
-            'objectproductionpeoplerole'
+            'contentplace',
+            'inscriptioncontenttype',
+            'inscriptioncontentmethod',
+            'objectproductionplace',
+            'assocplace',
+            'ownershipplace'
           ])
           super
         end
 
+        # CORE
         def self.map_common(xml, attributes, redefined)
           CoreCollectionObject.map_common(xml, attributes.merge(redefined))
 
-          opp_data = {
-            'objectproductionpeopleethnoculture' => 'objectProductionPeople',
-            'objectproductionpeoplearchculture' => 'objectProductionPeople',
-            'objectproductionpeoplerole' => 'objectProductionPeopleRole'
+          #otherNumberList, otherNumber
+          othernumber_data = {
+            'numbervalue' => 'numberValue',
+            'numbertype' => 'numberType'
           }
-          opp_transforms = {
-            'objectproductionpeopleethnoculture' => {'authority' => ['conceptauthorities', 'ethculture']},
-            'objectproductionpeoplearchculture' =>  {'authority' => ['conceptauthorities', 'archculture']},
-            'objectproductionpeoplerole' => {'vocab' => 'prodpeoplerole'}
+          othernumber_transforms = {
+            'numbertype' => {'vocab' => 'numbertype'}
           }
           CSXML.add_single_level_group_list(
-            xml, attributes,
-            'objectProductionPeople',
-            opp_data,
-            opp_transforms
+            xml,
+            attributes,
+            'otherNumber',
+            othernumber_data,
+            othernumber_transforms,
+            list_suffix: 'List',
+            group_suffix: ''
           )
         end
 
+        # PROFILE
+        def self.map_lhmc(xml, attributes)
+          # no fields are added except for those from cultural care extension
+        end
+
         # EXTENSIONS
+        def self.map_cultural_care(xml, attributes, redefined)
+          CulturalCareCollectionObject.map_cultural_care(xml, attributes.merge(redefined))
+        end
+
+        
         def self.map_anthro(xml, attributes)
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # localityGroupList

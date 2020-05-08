@@ -20,7 +20,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCareCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+              AnthroCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
             end
 
             xml.send(
