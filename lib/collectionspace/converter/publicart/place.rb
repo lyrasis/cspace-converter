@@ -11,7 +11,7 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtPlace.map(xml, attributes)
+              PublicArtPlace.map(xml, attributes, config)
             end
 
             xml.send(
@@ -61,11 +61,12 @@ module CollectionSpace
           )
         end
 
-        def self.map(xml, attributes)
+        def self.map(xml, attributes, config)
           pairs = {
             'placenote' => 'placeNote',
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs)
+          CSXML.add xml, 'shortIdentifier', config[:identifier]
           #placeTermGroupList, placeTermGroup
           placeterm_data = {
 	    "termdisplayname" => "termDisplayName",
