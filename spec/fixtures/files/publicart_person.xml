@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="persons">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-09T17:37:08.733Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1589045828735)'John Mellon'</refName>
+    <uri>/personauthorities/18b799a6-4542-40ae-9e97/items/cf347216-831f-4d16-8c83</uri>
+    <updatedAt>2020-05-09T17:48:45.192Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:persons_common xmlns:ns2="http://collectionspace.org/services/person" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <personRecordTypes/>
+    <rev>12</rev>
+    <sas>false</sas>
+    <csid>cf347216-831f-4d16-8c83</csid>
+    <groups/>
+    <nationalities/>
+    <bioNote>Biographical Note Text</bioNote>
+    <occupations/>
+    <birthPlace>Algiers</birthPlace>
+    <birthDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1813</dateDisplayDate>
+      <dateLatestScalarValue>1814-01-01T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>1813</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay>31</dateLatestDay>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear>1813</dateLatestYear>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>1813-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth>12</dateLatestMonth>
+    </birthDateGroup>
+    <personTermGroupList>
+      <personTermGroup>
+        <termSourceID>123</termSourceID>
+        <termSourceDetail>detail text</termSourceDetail>
+        <surName>Mellon</surName>
+        <termSourceNote>source text</termSourceNote>
+        <termFormattedDisplayName/>
+        <initials>JM</initials>
+        <termType>urn:cspace:publicart.collectionspace.org:vocabularies:name(persontermtype):item:name(employee)'employee'</termType>
+        <title>Dr</title>
+        <termSource>urn:cspace:publicart.collectionspace.org:citationauthorities:name(citation):item:name(BookOne1588842801829)'Book One'</termSource>
+        <foreName>John</foreName>
+        <nameAdditions>additions text</nameAdditions>
+        <termStatus>provisional</termStatus>
+        <termLanguage>urn:cspace:publicart.collectionspace.org:vocabularies:name(languages):item:name(grc)'Ancient Greek'</termLanguage>
+        <middleName>Thomas</middleName>
+        <salutation>dear</salutation>
+        <termName>John Mellon</termName>
+        <termQualifier>qualifier text</termQualifier>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>John Mellon</termDisplayName>
+        <termFlag>urn:cspace:publicart.collectionspace.org:vocabularies:name(persontermflag):item:name(birth)'birth name'</termFlag>
+      </personTermGroup>
+    </personTermGroupList>
+    <shortIdentifier>JohnMellon1589045828735</shortIdentifier>
+    <proposed>true</proposed>
+    <deathPlace>Tel Aviv</deathPlace>
+    <deathDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1877</dateDisplayDate>
+      <dateLatestScalarValue>1878-01-01T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateLatestEra>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>1877</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay>31</dateLatestDay>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear>1877</dateLatestYear>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>1877-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth>12</dateLatestMonth>
+    </deathDateGroup>
+    <inAuthority>18b799a6-4542-40ae-9e97</inAuthority>
+    <refName>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(JohnMellon1589045828735)'John Mellon'</refName>
+    <schoolsOrStyles/>
+  </ns2:persons_common>
+  <ns2:persons_publicart xmlns:ns2="http://collectionspace.org/services/person/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <socialMediaGroupList>
+      <socialMediaGroup>
+        <socialMediaHandleType>urn:cspace:publicart.collectionspace.org:vocabularies:name(socialmediatype):item:name(facebook)'Facebook'</socialMediaHandleType>
+        <socialMediaHandle>Handle 1</socialMediaHandle>
+      </socialMediaGroup>
+      <socialMediaGroup>
+        <socialMediaHandleType>urn:cspace:publicart.collectionspace.org:vocabularies:name(socialmediatype):item:name(instagram)'Instagram'</socialMediaHandleType>
+        <socialMediaHandle>Handle 2</socialMediaHandle>
+      </socialMediaGroup>
+    </socialMediaGroupList>
+    <organizations>
+      <organization>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Organization11589046127131)'Organization 1'</organization>
+      <organization>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Organization21589046135926)'Organization 2'</organization>
+    </organizations>
+  </ns2:persons_publicart>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+  <ns2:contacts_common xmlns:ns2="http://collectionspace.org/services/contact" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <webAddressGroupList>
+      <webAddressGroup>
+        <webAddress>notaURL.atall</webAddress>
+        <webAddressType>business</webAddressType>
+      </webAddressGroup>
+      <webAddressGroup>
+        <webAddress>notaURL.atall</webAddress>
+        <webAddressType>personal</webAddressType>
+      </webAddressGroup>
+    </webAddressGroupList>
+    <telephoneNumberGroupList>
+      <telephoneNumberGroup>
+        <telephoneNumber>000-555-1212	</telephoneNumber>
+        <telephoneNumberType>business</telephoneNumberType>
+      </telephoneNumberGroup>
+      <telephoneNumberGroup>
+        <telephoneNumber>000-555-2121</telephoneNumber>
+        <telephoneNumberType>home</telephoneNumberType>
+      </telephoneNumberGroup>
+    </telephoneNumberGroupList>
+    <inItem>cf347216-831f-4d16-8c83</inItem>
+    <displayName>email@address 000-555-1212	 12...</displayName>
+    <emailGroupList>
+      <emailGroup>
+        <emailType>business</emailType>
+        <email>email@address</email>
+      </emailGroup>
+      <emailGroup>
+        <emailType>personal</emailType>
+        <email>email2@address</email>
+      </emailGroup>
+    </emailGroupList>
+    <faxNumberGroupList>
+      <faxNumberGroup>
+        <faxNumber>000-555-4545</faxNumber>
+        <faxNumberType>business</faxNumberType>
+      </faxNumberGroup>
+      <faxNumberGroup>
+        <faxNumber>000-555-5896</faxNumber>
+        <faxNumberType>home</faxNumberType>
+      </faxNumberGroup>
+    </faxNumberGroupList>
+    <addressGroupList>
+      <addressGroup>
+        <addressCountry>US</addressCountry>
+        <addressPlace2>Suite 100</addressPlace2>
+        <addressPlace1>123 Main Street</addressPlace1>
+        <addressType>business</addressType>
+        <addressMunicipality>Algiers</addressMunicipality>
+        <addressPostCode>70183</addressPostCode>
+        <addressStateOrProvince>LA</addressStateOrProvince>
+      </addressGroup>
+      <addressGroup>
+        <addressCountry>US</addressCountry>
+        <addressPlace2>Suite 200</addressPlace2>
+        <addressPlace1>321 Main Street</addressPlace1>
+        <addressType>home</addressType>
+        <addressMunicipality>Pretoria</addressMunicipality>
+        <addressPostCode>80052</addressPostCode>
+        <addressStateOrProvince>TX</addressStateOrProvince>
+      </addressGroup>
+    </addressGroupList>
+    <inAuthority>18b799a6-4542-40ae-9e97</inAuthority>
+  </ns2:contacts_common>
+</document>
