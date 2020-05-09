@@ -1,8 +1,14 @@
 ---
 registered_authorities:
+  - citationauthorities
+  - conceptauthorities
+  - locationauthorities
+  - orgauthorities
   - personauthorities
+  - placeauthorities
+  - workauthorities
 registered_procedures:
-  - 
+  - CollectionObject
 registered_profiles:
   cataloging:
     type: Procedures
@@ -14,8 +20,34 @@ registered_profiles:
         mapper: LhmcCollectionObject
         identifier: objectnumber
         title: objectnumber
-      Authorities: []
-      Vocabularies: []
+      Authorities: 
+        - name_field: assocplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: assocplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: contentplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: contentplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: objectproductionplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: objectproductionplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: ownershipplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: ownershipplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
+      Vocabularies:
+        - name_field: numbertype
+          vocabulary_subtype: numbertype
   hierarchies:
     type: Hierarchies
     enabled: true
