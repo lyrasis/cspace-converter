@@ -1,6 +1,7 @@
 module CollectionSpace
   module Converter
     module Default
+      ::Default = CollectionSpace::Converter::Default
       class Record
         ::CSDR = CollectionSpace::Converter::Default::Record
         attr_reader :attributes, :config

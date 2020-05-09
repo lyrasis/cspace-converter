@@ -25,12 +25,63 @@ RSpec.describe CollectionSpace::Converter::Lhmc::LhmcCollectionObject do
   
   describe '#map_common' do
     context 'when vocabulary or authority sources differ from core' do
-      it  'overrides different vocabulary and authority sources' do
+      it  'maps numberType to vocab' do
+        xpaths = [
+          { xpath: "/document/#{common}/otherNumberList/otherNumber[1]/numberType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/otherNumberList/otherNumber[2]/numberType", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
+        ]
+        test_converter(out2, xml2, xpaths)
       end
+
+      it  'maps contentPlace to correct authorities' do
+        xpaths = [
+          { xpath: "/document/#{common}/contentPlaces/contentPlace[1]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/contentPlaces/contentPlace[2]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+
+          { xpath: "/document/#{common}/contentPlaces/contentPlace[1]", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} },
+          { xpath: "/document/#{common}/contentPlaces/contentPlace[2]", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} },]
+      test_converter(out2, xml2, xpaths)
+    end
+
+      it  'maps objectProductionPlace to correct authorities' do
+        xpaths = [
+          { xpath: "/document/#{common}/objectProductionPlaceGroupList/objectProductionPlaceGroup[1]/objectProductionPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/objectProductionPlaceGroupList/objectProductionPlaceGroup[2]/objectProductionPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/objectProductionPlaceGroupList/objectProductionPlaceGroup[1]/objectProductionPlace", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} },
+          { xpath: "/document/#{common}/objectProductionPlaceGroupList/objectProductionPlaceGroup[2]/objectProductionPlace", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} },]
+      test_converter(out2, xml2, xpaths)
+    end
+      
+      it  'maps assocPlace to correct authorities' do
+        xpaths = [
+          { xpath: "/document/#{common}/assocPlaceGroupList/assocPlaceGroup[1]/assocPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/assocPlaceGroupList/assocPlaceGroup[2]/assocPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/assocPlaceGroupList/assocPlaceGroup[1]/assocPlace", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} },
+          { xpath: "/document/#{common}/assocPlaceGroupList/assocPlaceGroup[2]/assocPlace", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} },]
+        test_converter(out2, xml2, xpaths)
+      end
+
+      it  'maps assocPlace to correct authorities' do
+        xpaths = [
+          { xpath: "/document/#{common}/ownershipPlace", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/ownershipPlace", transform: ->(text) {CSURN.parse(text)[:subtype].downcase} }
+          ]
+        test_converter(out2, xml2, xpaths)
+        test_converter(out3, xml3, xpaths)
+      end
+
+    it  'maps numberValue properly' do
+      xpaths = [
+        "/document/#{common}/otherNumberList/otherNumber/numberValue"
+      ]
+      test_converter(out2, xml2, xpaths)
+    end
     end
 
     context 'when core field not included in LHMC is included' do
       it 'does not output field' do
+      xpath = "/document/#{common}/contentScripts/contentScript"
+      expect(get_text(out2, xpath)).to be_empty
       end
     end
   end
