@@ -57,13 +57,31 @@ registered_profiles:
         - conditionchecker
   exhibition:
     type: Procedures
+    enabled: true
+    identify_by_column: exhibitionnumber
+    required_headers:
+      - exhibitionnumber
     config:
       Exhibition:
+        mapper: PublicArtExhibition
         identifier: exhibitionnumber
         title: exhibitionnumber
       Authorities:
-        Organization:
-        - organizer
+        - name_field: organizerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: organizerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: venueorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: venueplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: venuestoragelocation
+          authority_type: Location
+          authority_subtype: location
   group:
     type: Procedures
     config:
