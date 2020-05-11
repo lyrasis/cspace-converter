@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="conservation">
+  <ns2:conservation_publicart xmlns:ns2="http://collectionspace.org/services/conservation/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-11T10:00:43.423Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:conservation:id(ad73e540-efe1-439a-9800)</refName>
+    <uri>/conservation/ad73e540-efe1-439a-9800</uri>
+    <updatedAt>2020-05-11T10:00:43.423Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:conservation_common xmlns:ns2="http://collectionspace.org/services/conservation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <conservationStatusGroupList/>
+    <conservators/>
+    <destAnalysisGroupList>
+      <destAnalysisGroup>
+        <sampleBy/>
+        <destAnalysisApprovalNote/>
+        <sampleDescription/>
+        <destAnalysisApprovedDate/>
+        <sampleDate/>
+        <sampleReturned>false</sampleReturned>
+        <sampleReturnedLocation/>
+      </destAnalysisGroup>
+    </destAnalysisGroupList>
+    <otherPartyGroupList/>
+    <examinationGroupList/>
+    <conservationNumber>CON2000.021</conservationNumber>
+  </ns2:conservation_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
