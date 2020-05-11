@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtValuationControl do
   let(:attributes) { get_attributes('publicart', 'valuationcontrol_publicart_all.csv') }
   let(:publicartvaluationcontrol) { PublicArtValuationControl.new(attributes) }
-  let(:doc) { Nokogiri::XML(publicartvaluationcontrol.convert, nil, 'UTF-8') }
+  let(:doc) { get_doc(publicartvaluationcontrol) }
   let(:record) { get_fixture('publicart_valuation.xml') }
   let(:p) { 'valuationcontrols_common' }
   let(:ext) { 'valuationcontrols_publicart' }
