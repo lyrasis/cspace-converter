@@ -55,6 +55,36 @@ registered_profiles:
       Authorities:
         Person:
         - conditionchecker
+  conservation:
+    type: Procedures
+    enabled: true
+    identify_by_column: conservationnumber
+    required_headers:
+      - conservationnumber
+    config:
+      Conservation:
+        mapper: CoreConservation
+        identifier: conservationnumber
+        title: conservationnumber
+      Authorities:
+        - name_field: conservatorperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: conservatororganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: otherpartyperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: otherpartyorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: approvedby
+          authority_type: Person
+          authority_subtype: person
+        - name_field: researcher
+          authority_type: Person
+          authority_subtype: person
   exhibition:
     type: Procedures
     config:
