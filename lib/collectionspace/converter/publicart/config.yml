@@ -131,10 +131,19 @@ registered_profiles:
         - currentowner
   valuationcontrol:
     type: Procedures
+    enabled: true
+    identify_by_column: valuationcontrolrefnumber
+    required_headers:
+      - valuationcontrolrefnumber
     config:
       ValuationControl:
-        identifier: valuationcontrolreferencenumber
-        title: valuationcontrolreferencenumber
+        mapper: PublicArtValuationControl
+        identifier: valuationcontrolrefnumber
+        title: valuationcontrolrefnumber
       Authorities:
-        Person:
-        - source
+        - name_field: valuesourceperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: valuesourceorganization
+          authority_type: Organization
+          authority_subtype: organization
