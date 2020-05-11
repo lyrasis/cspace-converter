@@ -1,7 +1,7 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtPerson < CorePerson
+      class PublicArtPerson < Person
         ::PublicArtPerson = CollectionSpace::Converter::PublicArt::PublicArtPerson
         def redefined_fields
           @redefined.concat([

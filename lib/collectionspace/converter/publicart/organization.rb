@@ -1,7 +1,7 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtOrganization < CoreOrganization
+      class PublicArtOrganization < Organization
         ::PublicArtOrganization = CollectionSpace::Converter::PublicArt::PublicArtOrganization
         def redefined_fields
           @redefined.concat([
@@ -10,9 +10,7 @@ module CollectionSpace
             'group',
             'function',
             # overridden by publicart
-            'foundingplace',
-            'foundingplacelocal',
-            'foundingplaceshared'
+            'foundingplace'
           ])
           super
         end
