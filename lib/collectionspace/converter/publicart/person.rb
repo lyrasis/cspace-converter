@@ -1,8 +1,21 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtPerson < Person
+      class PublicArtPerson < CorePerson
         ::PublicArtPerson = CollectionSpace::Converter::PublicArt::PublicArtPerson
+        def redefined_fields
+          @redefined.concat([
+            'gender',
+            'occupation',
+            'schoolorstyle',
+            'group',
+            'nationality',
+            'namenote',
+            'bionote'
+          ])
+          super
+        end
+        
         def convert
           run(wrapper: "document") do |xml|
             xml.send(
@@ -11,7 +24,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              PublicArtPerson.map(xml, attributes, config)
+              PublicArtPerson.map_common(xml, attributes, config, redefined_fields)
             end
 
             xml.send(
@@ -20,7 +33,8 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtPerson.extension(xml, attributes)
+              PublicArtPerson.map_publicart(xml, attributes)
+              PublicArtPerson.map_social_media(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -34,62 +48,11 @@ module CollectionSpace
           end
         end
 
-        def self.map(xml, attributes, config)
-          pairs = {
-            'birthplace' => 'birthPlace',
-            'deathplace' => 'deathPlace',
-            'bionote' => 'bioNote'
-          }
-          CSXML::Helpers.add_pairs(xml, attributes, pairs)
-
-          CSXML.add xml, 'shortIdentifier', config[:identifier]
-          #personTermGroupList, personTermGroup
-          personterm_data = {
-            "title"  => "title", 
-            "initials" => "initials",
-            "forename" => "foreName",
-            "surname" => "surName",
-            "nameadditions" => "nameAdditions",
-            "middlename" => "middleName",
-            "salutation" => "salutation",
-            "termdisplayname" => "termDisplayName",
-            "termlanguage" => "termLanguage",
-            "termname" => "termName",
-            "termprefforlang" => "termPrefForLang",
-            "termqualifier" => "termQualifier",
-            "termsource" => "termSource",
-            "termsourceid" => "termSourceID",
-            "termsourcedetail" => "termSourceDetail",
-            "termsourcenote" => "termSourceNote",
-            "termstatus" => "termStatus",
-            "termtype" => "termType",
-            "termflag" => "termFlag",
-            "termdisplaynamenonpreferred" => "termFormattedDisplayName"
-          }
-          personterm_transforms = {
-            'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'vocab' => 'citation'},
-            'termtype' => {'vocab' => 'persontermtype'},
-            'termflag' => {'vocab' => 'persontermflag'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'personTerm',
-            personterm_data,
-            personterm_transforms
-          )
-          #birthDateGroup
-          CSXML::Helpers.add_date_group(
-            xml, 'birthDate', CSDTP.parse(attributes['birthdategroup'])
-          )
-          #deathDateGroup
-          CSXML::Helpers.add_date_group(
-            xml, 'deathDate', CSDTP.parse(attributes['deathdategroup'])
-          )
+        def self.map_common(xml, attributes, config, redefined)
+          CorePerson.map_common(xml, attributes.merge(redefined), config)
         end
   
-        def self.extension(xml, attributes)
+        def self.map_publicart(xml, attributes)
           repeats = { 
             'organization' => ['organizations', 'organization']
           }
@@ -97,23 +60,12 @@ module CollectionSpace
             'organization' => {'authority' => ['orgauthorities', 'organization']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
-          #socialMediaGroupList, socialMediaGroup
-          socialmedia_data = {
-            "socialmediahandle" => "socialMediaHandle",
-            "socialmediahandletype" => "socialMediaHandleType",
-          }
-          socialmedia_transforms = {
-            'socialmediahandletype' => {'vocab' => 'socialmediatype'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'socialMedia',
-            socialmedia_data,
-            socialmedia_transforms
-          )
         end
 
+        def self.map_social_media(xml, attributes, redefined)
+          SocialMedia.map_social_media(xml, attributes.merge(redefined))
+        end
+        
       end
     end
   end

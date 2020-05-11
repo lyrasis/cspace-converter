@@ -11,7 +11,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CoreOrganization.map(xml, attributes, config)
+              CoreOrganization.map_common(xml, attributes, config)
             end
 
             xml.send(
@@ -25,7 +25,7 @@ module CollectionSpace
           end
         end
 
-        def self.map(xml, attributes, config)
+        def self.map_common(xml, attributes, config)
           pairs = {
             'foundingplace' => 'foundingPlace'
           }

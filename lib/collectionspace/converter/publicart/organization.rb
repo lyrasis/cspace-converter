@@ -1,8 +1,22 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtOrganization < Organization
+      class PublicArtOrganization < CoreOrganization
         ::PublicArtOrganization = CollectionSpace::Converter::PublicArt::PublicArtOrganization
+        def redefined_fields
+          @redefined.concat([
+            # not in publicart
+            'contactname',
+            'group',
+            'function',
+            # overridden by publicart
+            'foundingplace',
+            'foundingplacelocal',
+            'foundingplaceshared'
+          ])
+          super
+        end
+
         def convert
           run(wrapper: 'document') do |xml|
             xml.send(
@@ -11,7 +25,7 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtOrganization.map(xml, attributes, config)
+              PublicArtOrganization.map_common(xml, attributes, config, redefined_fields)
             end
 
             xml.send(
@@ -29,87 +43,41 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtOrganization.extension(xml, attributes)
+              PublicArtOrganization.map_publicart(xml, attributes)
+              PublicArtOrganization.map_social_media(xml, attributes, redefined_fields)
             end
           end
         end
 
 
-        def self.extension(xml, attributes)
+        def self.map_publicart(xml, attributes)
           pairs = {
-            'currentplace' => 'currentPlace'
+            'currentplace' => 'currentPlace',
+            'placementtype' => 'placementType'
           }
           pairs_transforms = {
-            'currentplace' => {'authority' => ['placeauthorities', 'place']}
+            'currentplace' => {'authority' => ['placeauthorities', 'place']},
+            'placementtype' => {'vocabulary' => 'placementtypes'}
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
-          #socialMediaGroupList, socialMediaGroup
-          socialmedia_data = {
-            "socialmediahandle" => "socialMediaHandle",
-            "socialmediahandletype" => "socialMediaHandleType",
-          }
-          socialmedia_transforms = {
-            'socialmediahandletype' => {'vocab' => 'socialmediatype'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'socialMedia',
-            socialmedia_data,
-            socialmedia_transforms
-          )
         end
 
-        def self.map(xml, attributes, config)
+        def self.map_social_media(xml, attributes, redefined)
+          SocialMedia.map_social_media(xml, attributes.merge(redefined))
+        end
+
+        def self.map_common(xml, attributes, config, redefined)
+          CoreOrganization.map_common(xml, attributes.merge(redefined), config)
+          
           pairs = {
-            'foundingplace' => 'foundingPlace'
+            'foundingplacelocal' => 'foundingPlace',
+            'foundingplaceshared' => 'foundingPlace'            
           }
           pairs_transforms = {
-            'foundingplace' => {'authority' => ['placeauthorities', 'place']}
+            'foundingplacelocal' => {'authority' => ['placeauthorities', 'place']},
+            'foundingplaceshared' => {'authority' => ['placeauthorities', 'place_shared']}
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
-          repeats = {
-            'historynote' => ['historyNotes', 'historyNote'],
-            'organizationrecordtype' => ['organizationRecordTypes', 'organizationRecordType']
-          }
-          repeats_transforms = {
-            'organizationrecordtype' => {'vocab' => 'organizationtype'}
-          }
-          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
-          #foundingDateGroup
-          CSXML::Helpers.add_date_group(xml, 'foundingDate', CSDTP.parse(attributes['foundingdate']))
-          #dissolutionDateGroup
-          CSXML::Helpers.add_date_group(xml, 'dissolutionDate', CSDTP.parse(attributes['dissolutiondate']))
-          CSXML.add xml, 'shortIdentifier', config[:identifier]
-          #orgTermGroupList, orgTermGroup
-          orgterm_data = {
-	    "termdisplayname" => "termDisplayName",
-	    "termlanguage" => "termLanguage",
-	    "termname" => "termName",
-	    "termprefforlang" => "termPrefForLang",
-	    "termqualifier" => "termQualifier",
-	    "termsource" => "termSource",
-	    "termsourceid" => "termSourceID",
-	    "termsourcedetail" => "termSourceDetail",
-	    "termsourcenote" => "termSourceNote",
- 	    "termstatus" => "termStatus",
-	    "termtype" => "termType",
-            "termflag" => "termFlag",
-            "mainbodyname" => "mainBodyName",
-            "additionstoname" => "additionsToName" 
-	  }
-          orgterm_transforms = {
-            'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'authority' => ['citationauthorities', 'citation']},
-            'termflag' => {'vocab' => 'orgtermflag'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'orgTerm',
-            orgterm_data,
-            orgterm_transforms
-          )
         end
       end
     end
