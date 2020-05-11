@@ -142,6 +142,19 @@ registered_profiles:
       authority_subtype: person
       Authorities: []
       Vocabularies: []
+  organization:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: PublicArtOrganization
+      name_field: termdisplayname
+      authority_type: Organization
+      authority_subtype: organization
+      Authorities: []
+      Vocabularies: []
   valuationcontrol:
     type: Procedures
     config:
