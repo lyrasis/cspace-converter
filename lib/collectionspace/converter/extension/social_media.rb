@@ -20,7 +20,6 @@ module CollectionSpace
               socialmedia_transforms
             )
           end
-          
         end
       end
     end
