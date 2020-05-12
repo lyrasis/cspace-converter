@@ -183,7 +183,7 @@ module CollectionSpace
 
         # EXTENSIONS
         def self.map_cultural_care(xml, attributes, redefined)
-          CulturalCareCollectionObject.map_cultural_care(xml, attributes.merge(redefined))
+          Extension.map_cultural_care(xml, attributes.merge(redefined))
         end
 
         
