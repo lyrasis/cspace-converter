@@ -24,38 +24,43 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtOrganization do
 
     context 'fields overridden by publicart' do
       context 'when local place' do
-      [
-        "/document/#{p}/foundingPlace"
-      ].each do |xpath|
-        context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
-          end
-          
-          it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+        [
+          "/document/#{p}/foundingPlace"
+        ].each do |xpath|
+          context "#{xpath}" do
+            it 'all values will be URNs' do
+              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            end
+            
+            it 'URNs match sample payload' do
+              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            end
           end
         end
-      end
       end
       context 'when shared place' do
         let(:attributes) { get_attributes_by_row('publicart', 'Org_auth_publicart.csv', 3) }
         let(:doc) { get_doc(publicartorganization) }
         let(:record) { get_fixture('publicart_organization_row2.xml') }
-      [
-        "/document/#{p}/foundingPlace"
-      ].each do |xpath|
-        context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
-          end
-          
-          it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+        [
+          "/document/#{p}/foundingPlace"
+        ].each do |xpath|
+          context "#{xpath}" do
+            it 'all values will be URNs' do
+              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            end
+            
+            it 'URNs match sample payload' do
+              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            end
           end
         end
       end
-      end
+    end
+
+    # I'm adding this to test whether I need to call this in publicart or whether it
+    #  can be handled by core
+    context 'when fields defined by contact subrecord' do
     end
   end
 

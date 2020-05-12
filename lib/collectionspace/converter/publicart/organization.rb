@@ -32,7 +32,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              Contact.map(xml, attributes)
+              PublicArtOrganization.map_contact(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -48,6 +48,10 @@ module CollectionSpace
         end
 
 
+        def self.map_contact(xml, attributes, redefined)
+          Contact.map_contact(xml, attributes.merge(redefined))
+        end
+        
         def self.map_publicart(xml, attributes)
           pairs = {
             'currentplace' => 'currentPlace',

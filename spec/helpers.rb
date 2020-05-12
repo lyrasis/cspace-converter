@@ -54,7 +54,7 @@ module Helpers
         vals << 'Not a URN'
       end
     end
-    vals.sort.join('; ')
+    vals.sort.join('; ').downcase
   end
   
   def test_base_basic_date(date)

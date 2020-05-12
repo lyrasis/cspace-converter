@@ -20,7 +20,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              Contact.map(xml, attributes)
+              Contact.map_contact(xml, attributes)
             end
           end
         end
