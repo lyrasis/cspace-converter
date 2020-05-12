@@ -57,11 +57,6 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtOrganization do
         end
       end
     end
-
-    # I'm adding this to test whether I need to call this in publicart or whether it
-    #  can be handled by core
-    context 'when fields defined by contact subrecord' do
-    end
   end
 
   describe 'map_publicart' do
@@ -83,5 +78,4 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtOrganization do
       end      
     end
   end
-
 end
