@@ -44,6 +44,19 @@ module Helpers
     end
   end
 
+  def urn_values(doc, xpath)
+    vals = []
+    doc.xpath(xpath).each do |element|
+      if element.text.start_with?('urn:')
+        parsed = CSURN.parse(element.text)
+        vals << [parsed[:type], parsed[:subtype], parsed[:label]].join(' - ')
+      else
+        vals << 'Not a URN'
+      end
+    end
+    vals.sort.join('; ').downcase
+  end
+
   def test_base_basic_date(date)
     expect(date.computed).to eq 'true'
     expect(date.parsed_datetime.to_s).to eq '2011-11-02T00:00:00+00:00'
