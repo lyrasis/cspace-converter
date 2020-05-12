@@ -76,7 +76,7 @@ module CollectionSpace
               # Follows the same pattern as above. Note that we are not overriding any culturalcare
               #  fields at this time, but we follow the same pattern a) for consistency; and
               #  b) to make it easy to ever override a culturalcare field
-              LhmcCollectionObject.map_cultural_care_collectionobject(xml, attributes, redefined_fields)
+              LhmcCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -182,8 +182,8 @@ module CollectionSpace
         end
 
         # EXTENSIONS
-        def self.map_cultural_care_collectionobject(xml, attributes, redefined)
-          CulturalCare.map_cultural_care_collectionobject(xml, attributes.merge(redefined))
+        def self.map_cultural_care(xml, attributes, redefined)
+          CulturalCare.map_cultural_care(xml, attributes.merge(redefined))
         end
 
       end #class LhmcCollectionObject

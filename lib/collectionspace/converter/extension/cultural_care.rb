@@ -4,7 +4,7 @@ module CollectionSpace
       module CulturalCare
         ::CulturalCare = CollectionSpace::Converter::Extension::CulturalCare
 
-        def self.map_cultural_care_collectionobject(xml, attributes)
+        def self.map_cultural_care(xml, attributes)
           repeats = {
             'culturalcarenote' => ['culturalCareNotes', 'culturalCareNote']
           }

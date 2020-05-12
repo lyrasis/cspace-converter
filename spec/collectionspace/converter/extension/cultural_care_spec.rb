@@ -6,7 +6,7 @@ RSpec.describe CollectionSpace::Converter::Extension::CulturalCare do
   let(:doc) { get_doc(co) }
   let(:record) { get_fixture('lhmc_collectionobject_row2.xml') }
 
-  describe 'map_cultural_care_collectionobject' do
+  describe 'map_cultural_care' do
     cc = 'collectionobject_culturalcare'
     context 'text field' do
       [
