@@ -13,6 +13,6 @@ describe ApplicationHelper do
     expect(helper.set_title('Mighty Poro', nil, nil)).to eq('Mighty Poro')
     expect(helper.set_title('Mighty Poro', '', '')).to eq('Mighty Poro')
     expect(helper.set_title('Mighty Poro', 'CollectionObect', '')).to eq('Mighty Poro (CollectionObect)')
-    expect(helper.set_title('Mighty Poro', 'Person', 'person')).to eq('Mighty Poro (Person) / (person)')
+    expect(helper.set_title('Mighty Poro', 'Person', 'person')).to eq('Mighty Poro (Person / person)')
   end
 end

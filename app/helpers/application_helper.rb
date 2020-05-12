@@ -49,7 +49,7 @@ module ApplicationHelper
 
   def set_title(title, type = nil, subtype = nil)
     if !type.blank? && !subtype.blank?
-      title = "#{title} (#{type}) / (#{subtype})"
+      title = "#{title} (#{type} / #{subtype})"
     elsif !type.blank?
       title = "#{title} (#{type})"
     end
