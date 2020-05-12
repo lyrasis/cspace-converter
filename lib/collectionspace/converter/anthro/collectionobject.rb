@@ -20,7 +20,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+              AnthroCollectionObject.map_cultural_care_collectionobject(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -82,8 +82,8 @@ module CollectionSpace
         end
 
         # EXTENSIONS
-        def self.map_cultural_care(xml, attributes, redefined)
-          CulturalCareCollectionObject.map_cultural_care(xml, attributes.merge(redefined))
+        def self.map_cultural_care_collectionobject(xml, attributes, redefined)
+          CulturalCare.map_cultural_care_collectionobject(xml, attributes.merge(redefined))
         end
         
           def self.map_anthro(xml, attributes)

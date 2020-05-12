@@ -6,7 +6,6 @@ registered_authorities:
   - orgauthorities
   - personauthorities
   - placeauthorities
-  - workauthorities
 registered_procedures:
   - CollectionObject
 registered_profiles:

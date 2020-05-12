@@ -1,6 +1,7 @@
 module CollectionSpace
   module Converter
     module Default
+      ::Default = CollectionSpace::Converter::Default
       def self.included(base)
         base.extend ClassMethods
       end

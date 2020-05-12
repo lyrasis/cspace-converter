@@ -18,7 +18,7 @@ module CollectionSpace
         # Then super calls the redefined_fields method definition from Default::Record, which
         #   returns a Hash where each key is an element of @redefined and all values are nil
 
-        # Later, we call the CoreCollectionObject and CulturalCareCollectionObject's .map_* methods.
+        # Later, we call the CoreCollectionObject and CulturalCare's .map_* methods.
         #  Instead of sending the actual attributes from the CSV in those calls, we merge this
         #  redefined_fields hash in with the real attributes hash, which replaces any existing data
         #  in the listed fields with nil. 
@@ -76,7 +76,7 @@ module CollectionSpace
               # Follows the same pattern as above. Note that we are not overriding any culturalcare
               #  fields at this time, but we follow the same pattern a) for consistency; and
               #  b) to make it easy to ever override a culturalcare field
-              LhmcCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+              LhmcCollectionObject.map_cultural_care_collectionobject(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -182,11 +182,10 @@ module CollectionSpace
         end
 
         # EXTENSIONS
-        def self.map_cultural_care(xml, attributes, redefined)
-          CulturalCareCollectionObject.map_cultural_care(xml, attributes.merge(redefined))
+        def self.map_cultural_care_collectionobject(xml, attributes, redefined)
+          CulturalCare.map_cultural_care_collectionobject(xml, attributes.merge(redefined))
         end
 
-        
       end #class LhmcCollectionObject
     end #module Lhmc
   end #module Converter

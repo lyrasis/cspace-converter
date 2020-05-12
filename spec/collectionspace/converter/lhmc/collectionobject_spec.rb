@@ -11,7 +11,6 @@ RSpec.describe CollectionSpace::Converter::Lhmc::LhmcCollectionObject do
 
   let(:common) { 'collectionobjects_common' }
   let(:lhmc) { 'collectionobjects_lhmc' }
-  let(:cc) { 'collectionobjects_culturalcare' }
   
   let(:attr2) { get_attributes('lhmc', 'collectionobject_partial.csv') }
   let(:co2) { LhmcCollectionObject.new(attr2) }
@@ -90,59 +89,7 @@ RSpec.describe CollectionSpace::Converter::Lhmc::LhmcCollectionObject do
     # placeholder for future tests if necessary
   end
 
-  describe '#map_cultural_care' do
-    it "Maps culturalCareNote correctly" do
-      xpaths = [
-        "/document/#{cc}/culturalCareNotes/culturalCareNote"
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-
-    it "Maps limitationDetails correctly" do
-      xpaths = [
-        "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup/limitationDetails"
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-    
-    it "Maps limitationLevel correctly" do
-      xpaths = [
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[1]/limitationLevel", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[2]/limitationLevel", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-
-    it "Maps limitationType correctly" do
-      xpaths = [
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[1]/limitationType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[2]/limitationType", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-
-    it "Maps requestDate correctly" do
-      xpaths = [
-      "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup/requestDate"
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-
-    it "Maps requester correctly" do
-      xpaths = [
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[1]/requester", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[2]/requester", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-
-    it "Maps requestOnBehalfOf correctly" do
-      xpaths = [
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[1]/requestOnBehalfOf", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-      { xpath: "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup[2]/requestOnBehalfOf", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
-      ]
-      test_converter(out2, xml2, xpaths)
-    end
-
+  describe '#map_cultural_care_collectionobject' do
+    # tested in /spec/collectionspace/converter/extension/cultural_care_spec.rb
   end
 end
