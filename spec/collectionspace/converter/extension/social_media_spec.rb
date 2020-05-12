@@ -1,12 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe CollectionSpace::Converter::Extensions::SocialMedia do
+RSpec.describe CollectionSpace::Converter::Extension::SocialMedia do
   let(:attributes) { get_attributes('publicart', 'Org_auth_publicart.csv') }
   let(:publicartorganization) { PublicArtOrganization.new(Lookup.profile_defaults('organization').merge(attributes)) }
   let(:doc) { get_doc(publicartorganization) }
   let(:record) { get_fixture('publicart_organization.xml') }
 
   describe 'map_social_media' do
+    # starring out namespace, since fields from this extension get put into
+    #  persons_publicart, organizations_publicart, or wherever they get used. 
     context 'text field' do
       [
         "/document/*/socialMediaGroupList/socialMediaGroup/socialMediaHandle"
@@ -36,4 +38,3 @@ RSpec.describe CollectionSpace::Converter::Extensions::SocialMedia do
       end
     end
   end
-

@@ -43,7 +43,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              Contact.map(xml, attributes)
+              PublicArtPerson.map_contact(xml, attributes, redefined_fields)
             end
           end
         end
@@ -66,6 +66,9 @@ module CollectionSpace
           SocialMedia.map_social_media(xml, attributes.merge(redefined))
         end
         
+        def self.map_contact(xml, attributes, redefined)
+          Contact.map_contact(xml, attributes.merge(redefined))
+        end        
       end
     end
   end

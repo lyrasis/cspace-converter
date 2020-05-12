@@ -1,11 +1,8 @@
 module CollectionSpace
   module Converter
-    module Extensions
+    module Extension
       module SocialMedia
-        ::SocialMedia = CollectionSpace::Converter::Extensions::SocialMedia
-        # since this extension gets used in records in both Organization and Person classes, it is not
-        #  subclassed to a specific record type class
-        
+        ::SocialMedia = CollectionSpace::Converter::Extension::SocialMedia
           def self.map_social_media(xml, attributes)
             #socialMediaGroupList, socialMediaGroup
             socialmedia_data = {

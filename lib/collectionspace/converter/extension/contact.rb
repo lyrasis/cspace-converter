@@ -1,8 +1,8 @@
 module CollectionSpace
   module Converter
-    module Extensions
+    module Extension
       module Contact
-        ::Contact = CollectionSpace::Converter::Extensions::Contact
+        ::Contact = CollectionSpace::Converter::Extension::Contact
         # since this extension gets used in records in both Organization and Person classes, it is not
         #  subclassed to a specific record type class
         

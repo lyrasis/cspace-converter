@@ -6,7 +6,6 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
   let(:doc) { get_doc(coreperson) }
   let(:record) { get_fixture('core_person.xml') }
   let(:p) { 'persons_common' }
-  let(:ext) { 'contacts_common' }
   let(:xpaths) {[
     "/document/#{p}/personTermGroupList/personTermGroup/termDisplayName",
     "/document/#{p}/personTermGroupList/personTermGroup/termName",
@@ -38,21 +37,6 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     "/document/#{p}/schoolsOrStyles/schoolOrStyle",
     "/document/#{p}/bioNote",
     "/document/#{p}/nameNote",
-    "/document/#{ext}/emailGroupList/emailGroup/email",
-    "/document/#{ext}/emailGroupList/emailGroup/emailType",
-    "/document/#{ext}/telephoneNumberGroupList/telephoneNumberGroup/telephoneNumber",
-    "/document/#{ext}/telephoneNumberGroupList/telephoneNumberGroup/telephoneNumberType",
-    "/document/#{ext}/faxNumberGroupList/faxNumberGroup/faxNumber",
-    "/document/#{ext}/faxNumberGroupList/faxNumberGroup/faxNumberType",
-    "/document/#{ext}/webAddressGroupList/webAddressGroup/webAddress",
-    "/document/#{ext}/webAddressGroupList/webAddressGroup/webAddressType",
-    "/document/#{ext}/addressGroupList/addressGroup/addressType",
-    "/document/#{ext}/addressGroupList/addressGroup/addressPlace1",
-    "/document/#{ext}/addressGroupList/addressGroup/addressPlace2",
-    "/document/#{ext}/addressGroupList/addressGroup/addressMunicipality",
-    "/document/#{ext}/addressGroupList/addressGroup/addressStateOrProvince",
-    "/document/#{ext}/addressGroupList/addressGroup/addressPostCode",
-    "/document/#{ext}/addressGroupList/addressGroup/addressCountry",
   ]}
 
   context 'For maximally populuated record' do

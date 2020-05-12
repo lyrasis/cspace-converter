@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CollectionSpace::Converter::Extensions::Contact do
+RSpec.describe CollectionSpace::Converter::Extension::Contact do
   let(:attributes) { get_attributes('publicart', 'Org_auth_publicart.csv') }
   let(:publicartorganization) { PublicArtOrganization.new(Lookup.profile_defaults('organization').merge(attributes)) }
   let(:doc) { get_doc(publicartorganization) }

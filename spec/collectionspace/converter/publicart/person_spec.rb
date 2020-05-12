@@ -29,23 +29,21 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPerson do
 
   describe 'map_publicart' do
     pa = 'persons_publicart'
+    # socialMedia fields are tested in extension/social_media_spec.rb
     context 'test' do
-    [
-      { xpath: "/document/#{pa}/socialMediaGroupList/socialMediaGroup[1]/socialMediaHandleType", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-      { xpath: "/document/#{pa}/socialMediaGroupList/socialMediaGroup[1]/socialMediaHandleType", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-      { xpath: "/document/#{pa}/socialMediaGroupList/socialMediaGroup[2]/socialMediaHandleType", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-      { xpath: "/document/#{pa}/socialMediaGroupList/socialMediaGroup[2]/socialMediaHandleType", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-      "/document/#{pa}/socialMediaGroupList/socialMediaGroup/socialMediaHandle",
-      { xpath: "/document/#{pa}/organizations/organization[1]", transform: ->(text) { CSURN.parse(text)[:label] } },
-      { xpath: "/document/#{pa}/organizations/organization[2]", transform: ->(text) { CSURN.parse(text)[:label] } },
-    ].each do |xpath|
-      context "#{xpath}" do
-        it 'matches sample payload' do
-          expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
+      [
+        "/document/#{pa}/organizations/organization"
+      ].each do |xpath|
+        context "#{xpath}" do
+          it 'all values will be URNs' do
+            expect(urn_values(doc, xpath)).not_to include('Not a URN')
+          end
+          
+          it 'URNs match sample payload' do
+            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+          end
         end
-        
       end
     end
   end
-end
 end
