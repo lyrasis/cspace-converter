@@ -3,15 +3,35 @@ module CollectionSpace
     module PublicArt
       class PublicArtPlace < Place
         ::PublicArtPlace = CollectionSpace::Converter::PublicArt::PublicArtPlace
+        def redefined_fields
+          @redefined.concat([
+            'vCoordinates',
+            'vLatitude',
+            'vLongitude',
+            'vCoordSys',
+            'vSpatialReferenceSystem',
+            'vElevation',
+            'vDepth',
+            'vDistanceAboveSurface',
+            'vUnitofMeasure',
+            # overridden by publicart
+            'addressMunicipality',
+            'addressStateOrProvince',
+            'addressCountry',
+            'geoReferencedBy'
+          ])
+          super
+        end
+
         def convert
-          run(wrapper: 'document') do |xml|
+          run(wrapper: "document") do |xml|
             xml.send(
-              'ns2:places_common',
-              'xmlns:ns2' => 'http://collectionspace.org/services/place',
-              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
+                "ns2:places_common",
+                "xmlns:ns2" => "http://collectionspace.org/services/place",
+                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              PublicArtPlace.map(xml, attributes, config)
+              PublicArtPlace.map_common(xml, attributes, config, redefined_fields)
             end
 
             xml.send(
@@ -20,12 +40,14 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtPlace.extension(xml, attributes)
+              PublicArtPlace.map_publicart(xml, attributes)
             end
+
           end
         end
 
-        def self.extension(xml, attributes)
+
+        def self.map_publicart(xml, attributes)
           pairs = {
             'placementenvironment' => 'placementEnvironment',
           }
@@ -60,62 +82,32 @@ module CollectionSpace
             owner_transforms
           )
         end
-
-        def self.map(xml, attributes, config)
-          pairs = {
-            'placenote' => 'placeNote',
-          }
-          CSXML::Helpers.add_pairs(xml, attributes, pairs)
-          CSXML.add xml, 'shortIdentifier', config[:identifier]
-          #placeTermGroupList, placeTermGroup
-          placeterm_data = {
-	    "termdisplayname" => "termDisplayName",
-	    "termlanguage" => "termLanguage",
-	    "termname" => "termName",
-	    "termprefforlang" => "termPrefForLang",
-	    "termqualifier" => "termQualifier",
-	    "termsource" => "termSource",
-	    "termsourceid" => "termSourceID",
-	    "termsourcedetail" => "termSourceDetail",
-	    "termsourcenote" => "termSourceNote",
- 	    "termstatus" => "termStatus",
-	    "termtype" => "termType",
-            "termflag" => "termFlag",
-            "namedategroup" => "nameDateGroup",
-            "historicalstatus" => "historicalStatus",
-            "namenote" => "nameNote",
-            "nameabbrev" => "nameAbbrev" 
-	  }
-          placeterm_transforms = {
-            'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'authority' => ['citationauthorities', 'citation']},
-            'namedategroup' => {'special' => 'structured_date'},
-            'termflag' => {'vocab' => 'placetermflag'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'placeTerm',
-            placeterm_data,
-            placeterm_transforms
-          )
+       
+        def self.map_common(xml, attributes, config, redefined)
+          CorePlace.map_common(xml, attributes.merge(redefined), config)
           #addrGroupList, addrGroup
           address_data = {
-            "addresscountry" => "addressCountry",
+            "addresscountrylocal" => "addressCountry",
+            "addresscountryshared" => "addressCountry",
+            "addressmunicipalitylocal" => "addressMunicipality",
+            "addressmunicipalityshared" => "addressMunicipality",
+            "addressstateorprovincelocal" => "addressStateOrProvince",
+            "addressstateorprovinceshared" => "addressStateOrProvince",
             "addresscounty" => "addressCounty",
             "addressplace2" => "addressPlace2",
             "addressplace1" => "addressPlace1",
             "addresstype" => "addressType",
-            "addressmunicipality" => "addressMunicipality",
-            "addresspostcode" => "addressPostCode",
-            "addressstateorprovince" => "addressStateOrProvince",
+            "addresspostcode" => "addressPostCode"
           }
           address_transforms = {
-            'addresscountry' => {'authority' => ['placeauthorities', 'place']},
+            'addresscountrylocal' => {'authority' => ['placeauthorities', 'place']},
+            'addresscountryshared' => {'authority' => ['placeauthorities', 'place_shared']},
+            'addressmunicipalitylocal' => {'authority' => ['placeauthorities', 'place']},
+            'addressmunicipalityshared' => {'authority' => ['placeauthorities', 'place_shared']},
+            'addressstateorprovincelocal' => {'authority' => ['placeauthorities', 'place']},
+            'addressstateorprovinceshared' => {'authority' => ['placeauthorities', 'place_shared']},
             'addresscounty' => {'authority' => ['placeauthorities', 'place']},
-            'addresstype' => {'vocab' => 'addresstype'},
-            'addressmunicipality' => {'authority' => ['placeauthorities', 'place']},
-            'addressstateorprovince' => {'authority' => ['placeauthorities', 'place']}
+            'addresstype' => {'vocab' => 'addresstype'}
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -136,18 +128,23 @@ module CollectionSpace
             'footprintsrs' => 'footprintSRS',
             'footprintspatialfit' => 'footprintSpatialFit',
             'georeferencedbyorganization' => 'geoReferencedBy',
-            'georeferencedbyperson' => 'geoReferencedBy',
             'georefdategroup' => 'geoRefDateGroup',
             'georefprotocol' => 'geoRefProtocol',
             'georefsource' => 'geoRefSource',
             'georefverificationstatus' => 'geoRefVerificationStatus',
             'georefremarks' => 'geoRefRemarks',
-            'georefplacename' => 'geoRefPlaceName' 
+            'georefplacename' => 'geoRefPlaceName',
+            'georeferencedbyorganizationlocal' => 'geoReferencedBy',
+            'georeferencedbyorganizationshared' => 'geoReferencedBy',
+            'georeferencedbypersonlocal' => 'geoReferencedBy',
+            'georeferencedbypersonshared' => 'geoReferencedBy',
 
           }
           placegeo_transforms = {
-            'georeferencedbyorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'georeferencedbyperson' => {'authority' => ['personauthorities', 'person']},
+            'georeferencedbyorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'georeferencedbyorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
+            'georeferencedbypersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'georeferencedbypersonshared' => {'authority' => ['personauthorities', 'person_shared']},
             'georefdategroup' => {'special' => 'structured_date'}
           }
           CSXML.add_single_level_group_list(
@@ -158,6 +155,7 @@ module CollectionSpace
             placegeo_transforms
           )
         end
+
       end
     end
   end
