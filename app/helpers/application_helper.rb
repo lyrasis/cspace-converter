@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def batches
-    DataObject.pluck('import_batch').uniq
+  def batches(criteria: { :processed.gt => 0 })
+    Batch.where(criteria.merge(type: 'import')).pluck('name').uniq
   end
 
   def category_path(category)

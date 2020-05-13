@@ -20,7 +20,7 @@ class RowJob < ActiveJob::Base
     batch = Batch.retrieve(key)
     batch.with_lock do
       batch.processed += 1
-      batch.failed += 1 if import_status.zero?
+      import_status.zero? ? batch.failed += 1 : batch.succeeded += 1
       batch.end = Time.now
       batch.save
     end
