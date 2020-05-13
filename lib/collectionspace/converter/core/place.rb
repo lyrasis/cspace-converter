@@ -5,11 +5,11 @@ module CollectionSpace
         ::CorePlace = CollectionSpace::Converter::Core::CorePlace
         def convert
           run do |xml|
-            CorePlace.map(xml, attributes, config)
+            CorePlace.map_common(xml, attributes, config)
           end
         end
 
-        def self.map(xml, attributes, config)
+        def self.map_common(xml, attributes, config)
           pairs = {
             'placetype' => 'placeType',
             'placenote' => 'placeNote',
@@ -89,6 +89,7 @@ module CollectionSpace
           #addrGroupList, addrGroup
           address_data = {
             "addresscountry" => "addressCountry",
+            "addresscounty" => "addressCounty",
             "addressplace2" => "addressPlace2",
             "addressplace1" => "addressPlace1",
             "addresstype" => "addressType",
@@ -98,6 +99,7 @@ module CollectionSpace
           }
           address_transforms = {
             'addresscountry' => {'authority' => ['placeauthorities', 'place']},
+            'addresscounty' => {'authority' => ['placeauthorities', 'place']},
             'addresstype' => {'vocab' => 'addresstype'},
             'addressmunicipality' => {'authority' => ['placeauthorities', 'place']},
             'addressstateorprovince' => {'authority' => ['placeauthorities', 'place']}
