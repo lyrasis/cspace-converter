@@ -3,6 +3,39 @@ module CollectionSpace
     module PublicArt
       class PublicArtExhibition < Exhibition
         ::PublicArtExhibition = CollectionSpace::Converter::PublicArt::PublicArtExhibition
+        def redefined_fields
+          @redefined.concat([
+            # not in publicart
+            'sponsor',
+            'workingGroupTitle',
+            'workingGroupNote',
+            'exhibitionPerson',
+            'exhibitionPersonRole',
+            'exhibitionReference',
+            'exhibitionReferenceType',
+            'exhibitionReferenceNote',
+            'exhibitionSectionName',
+            'exhibitionSectionLocation',
+            'exhibitionSectionObjects',
+            'exhibitionSectionNote',
+            'exhibitionStatus',
+            'exhibitionStatusDate',
+            'exhibitionStatusNote',
+            'exhibitionObjectNumber',
+            'exhibitionObjectName',
+            'exhibitionObjectConsCheckDate',
+            'exhibitionObjectConsTreatment',
+            'exhibitionObjectMount',
+            'exhibitionObjectSection',
+            'exhibitionObjectCase',
+            'exhibitionObjectSeqNum',
+            'exhibitionObjectRotation',
+            'exhibitionObjectNote'
+            # overridden by publicart
+          ])
+          super
+        end
+
         def convert
           run(wrapper: 'document') do |xml|
             xml.send(
@@ -11,7 +44,7 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtExhibition.map(xml, attributes)
+              PublicArtExhibition.map_common(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -20,82 +53,16 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtExhibition.extension(xml, attributes)
+              PublicArtExhibition.map_publicart(xml, attributes)
             end
           end
         end
-        def self.map(xml, attributes)
-          pairs = {
-            'exhibitionnumber' => 'exhibitionNumber',
-            'title' => 'title',
-            'type' => 'type',
-            'planningnote' => 'planningNote',
-            'curatorialnote' => 'curatorialNote',
-            'generalnote' => 'generalNote',
-            'boilerplatetext' => 'boilerplateText'
-          }
 
-          pairstransforms = {
-            'type' => {'vocab' => 'exhibitiontype'},
-          }
-          CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
-
-          repeats = {
-            'organizerorganization' => ['organizers', 'organizer'],
-            'organizerperson' => ['organizers', 'organizer'],
-
-          }
-          repeatstransforms = {
-            'organizerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'organizerperson' => {'authority' => ['personauthorities', 'person']},
-          }
-          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
-
-          # venueGroupList, venueGroup
-          venuedata = {
-            'venueorganization' => 'venue',
-            'venueplace' => 'venue',
-            'venuestoragelocation' => 'venue',
-            'venueopeningdate' => 'venueOpeningDate',
-            'venueclosingdate' => 'venueClosingDate',
-            'venueattendance' => 'venueAttendance',
-            'venueurl' => 'venueUrl'
-          }
-
-          venuetransforms = {
-            'venueorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'venueplace' => {'authority' => ['placeauthorities', 'place']},
-            'venuestoragelocation' => {'authority' => ['locationauthorities', 'location']},
-            'venueopeningdate' => {'special' => 'unstructured_date_stamp'},
-            'venueclosingdate' => {'special' => 'unstructured_date_stamp'},
-          }
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'venue',
-            venuedata,
-            venuetransforms
-	    )
-
-          # galleryRotationGroupList, galleryRotationGroup
-          galleryrotationdata = {
-            'galleryrotationnote' => 'galleryRotationNote',
-            'galleryrotationname' => 'galleryRotationName',
-            'galleryrotationstartdate' => 'galleryRotationStartDateGroup',
-            'galleryrotationenddate' => 'galleryRotationEndDateGroup'
-          }
-          galleryrotation_transforms = {
-            'galleryrotationstartdate' => {'special' => 'structured_date'},
-            'galleryrotationenddate' => {'special' => 'structured_date'}
-          }
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'galleryRotation',
-            galleryrotationdata,
-            galleryrotation_transforms
-          )
+        def self.map_common(xml, attributes, redefined)
+          CoreExhibition.map_common(xml, attributes.merge(redefined))
         end
 
-        def self.extension(xml, attributes)
+        def self.map_publicart(xml, attributes)
           #exhibitionSupportGroupList, exhibitionSupportGroup
           exhibitionsupport_data = {
             "exhibitionsupportnote" => "exhibitionSupportNote",
