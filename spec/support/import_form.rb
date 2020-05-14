@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImportForm
   include Capybara::DSL
 
@@ -19,5 +21,4 @@ class ImportForm
     click_on('Upload')
     self
   end
-
 end
