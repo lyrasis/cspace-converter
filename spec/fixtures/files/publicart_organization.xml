@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="organizations">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-08T19:39:52.732Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(InstituteofMuseumandLibraryServices1588966792732)'Institute of Museum and Library Services'</refName>
+    <uri>/orgauthorities/abb2151e-3eb5-4461-9699/items/2812890b-b9c3-465c-a2fb</uri>
+    <updatedAt>2020-05-08T20:09:09.297Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:organizations_common xmlns:ns2="http://collectionspace.org/services/organization" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <rev>16</rev>
+    <sas>false</sas>
+    <functions/>
+    <organizationRecordTypes>
+      <organizationRecordType>urn:cspace:publicart.collectionspace.org:vocabularies:name(organizationtype):item:name(corporatebody)'corporate body'</organizationRecordType>
+      <organizationRecordType>urn:cspace:publicart.collectionspace.org:vocabularies:name(organizationtype):item:name(federal_entity)'federal entity'</organizationRecordType>
+    </organizationRecordTypes>
+    <csid>2812890b-b9c3-465c-a2fb</csid>
+    <orgTermGroupList>
+      <orgTermGroup>
+        <termSourceID>Source ID text</termSourceID>
+        <mainBodyName>Institute of Museum and Library Services</mainBodyName>
+        <termSourceDetail>Source detail text</termSourceDetail>
+        <termSourceNote>Source note text</termSourceNote>
+        <termFormattedDisplayName/>
+        <termType>descriptor</termType>
+        <termSource>urn:cspace:publicart.collectionspace.org:citationauthorities:name(citation):item:name(Citation11588966769746)'Citation 1'</termSource>
+        <termStatus>provisional</termStatus>
+        <additionsToName>Additions to name text</additionsToName>
+        <termLanguage>urn:cspace:publicart.collectionspace.org:vocabularies:name(languages):item:name(grc)'Ancient Greek'</termLanguage>
+        <termName>IMLS</termName>
+        <termQualifier>Term qualifier text</termQualifier>
+        <termPrefForLang>true</termPrefForLang>
+        <termDisplayName>Institute of Museum and Library Services</termDisplayName>
+        <termFlag>urn:cspace:publicart.collectionspace.org:vocabularies:name(orgtermflag):item:name(official)'official name'</termFlag>
+      </orgTermGroup>
+    </orgTermGroupList>
+    <groups/>
+    <proposed>true</proposed>
+    <contactGroupList>
+      <contactGroup>
+        <contactEndDateGroup>
+          <scalarValuesComputed>false</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate/>
+          <dateLatestScalarValue/>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay/>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear/>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth/>
+          <dateEarliestSingleEra/>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue/>
+          <dateLatestMonth/>
+        </contactEndDateGroup>
+        <contactStatus/>
+        <contactName/>
+        <contactDateGroup>
+          <scalarValuesComputed>false</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate/>
+          <dateLatestScalarValue/>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay/>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear/>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth/>
+          <dateEarliestSingleEra/>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue/>
+          <dateLatestMonth/>
+        </contactDateGroup>
+        <contactRole/>
+      </contactGroup>
+    </contactGroupList>
+    <shortIdentifier>InstituteofMuseumandLibraryServices1588966792732</shortIdentifier>
+    <historyNotes>
+      <historyNote>History text 1</historyNote>
+      <historyNote>History text 2</historyNote>
+    </historyNotes>
+    <dissolutionDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1/1/2000</dateDisplayDate>
+      <dateLatestScalarValue>2000-01-02T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>2000</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>2000-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth/>
+    </dissolutionDateGroup>
+    <foundingPlace>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(Foundingplacetext1588966973632)'Founding place text'</foundingPlace>
+    <foundingDateGroup>
+      <scalarValuesComputed>true</scalarValuesComputed>
+      <dateEarliestSingleCertainty/>
+      <dateEarliestSingleQualifierUnit/>
+      <dateDisplayDate>1/1/2000</dateDisplayDate>
+      <dateLatestScalarValue>2000-01-02T00:00:00.000Z</dateLatestScalarValue>
+      <dateEarliestSingleQualifierValue/>
+      <datePeriod/>
+      <dateLatestEra/>
+      <dateEarliestSingleDay>1</dateEarliestSingleDay>
+      <dateEarliestSingleQualifier/>
+      <dateEarliestSingleYear>2000</dateEarliestSingleYear>
+      <dateLatestCertainty/>
+      <dateAssociation/>
+      <dateLatestDay/>
+      <dateEarliestSingleMonth>1</dateEarliestSingleMonth>
+      <dateEarliestSingleEra>urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+      <dateLatestYear/>
+      <dateLatestQualifierUnit/>
+      <dateNote/>
+      <dateLatestQualifierValue/>
+      <dateLatestQualifier/>
+      <dateEarliestScalarValue>2000-01-01T00:00:00.000Z</dateEarliestScalarValue>
+      <dateLatestMonth/>
+    </foundingDateGroup>
+    <inAuthority>abb2151e-3eb5-4461-9699</inAuthority>
+    <refName>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(InstituteofMuseumandLibraryServices1588966792732)'Institute of Museum and Library Services'</refName>
+  </ns2:organizations_common>
+  <ns2:organizations_publicart xmlns:ns2="http://collectionspace.org/services/organization/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <socialMediaGroupList>
+      <socialMediaGroup>
+        <socialMediaHandleType>urn:cspace:publicart.collectionspace.org:vocabularies:name(socialmediatype):item:name(facebook)'Facebook'</socialMediaHandleType>
+        <socialMediaHandle>Handle 1</socialMediaHandle>
+      </socialMediaGroup>
+      <socialMediaGroup>
+        <socialMediaHandleType>urn:cspace:publicart.collectionspace.org:vocabularies:name(socialmediatype):item:name(reddit)'Reddit'</socialMediaHandleType>
+        <socialMediaHandle>Handle 2</socialMediaHandle>
+      </socialMediaGroup>
+    </socialMediaGroupList>
+    <currentPlace>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CurrenPlaceText1588967306837)'Curren Place Text'</currentPlace>
+  </ns2:organizations_publicart>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+  <ns2:contacts_common xmlns:ns2="http://collectionspace.org/services/contact" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <webAddressGroupList>
+      <webAddressGroup>
+        <webAddress>www.address.com</webAddress>
+        <webAddressType>business</webAddressType>
+      </webAddressGroup>
+      <webAddressGroup>
+        <webAddress>www.address.org</webAddress>
+        <webAddressType>personal</webAddressType>
+      </webAddressGroup>
+    </webAddressGroupList>
+    <telephoneNumberGroupList>
+      <telephoneNumberGroup>
+        <telephoneNumber>12345</telephoneNumber>
+        <telephoneNumberType>business</telephoneNumberType>
+      </telephoneNumberGroup>
+      <telephoneNumberGroup>
+        <telephoneNumber>67890</telephoneNumber>
+        <telephoneNumberType>home</telephoneNumberType>
+      </telephoneNumberGroup>
+    </telephoneNumberGroupList>
+    <inItem>2812890b-b9c3-465c-a2fb</inItem>
+    <displayName>Email text 1 12345 Address Tex...</displayName>
+    <emailGroupList>
+      <emailGroup>
+        <emailType>business</emailType>
+        <email>Email text 1</email>
+      </emailGroup>
+      <emailGroup>
+        <emailType>personal</emailType>
+        <email>Email text 2</email>
+      </emailGroup>
+    </emailGroupList>
+    <faxNumberGroupList>
+      <faxNumberGroup>
+        <faxNumber>09876</faxNumber>
+        <faxNumberType>business</faxNumberType>
+      </faxNumberGroup>
+      <faxNumberGroup>
+        <faxNumber>54321</faxNumber>
+        <faxNumberType>home</faxNumberType>
+      </faxNumberGroup>
+    </faxNumberGroupList>
+    <addressGroupList>
+      <addressGroup>
+        <addressCountry>AF</addressCountry>
+        <addressPlace2>Address Text 3</addressPlace2>
+        <addressPlace1>Address Text 1</addressPlace1>
+        <addressType>business</addressType>
+        <addressMunicipality>Smallville</addressMunicipality>
+        <addressPostCode>12345</addressPostCode>
+        <addressStateOrProvince>AB</addressStateOrProvince>
+      </addressGroup>
+      <addressGroup>
+        <addressCountry>AL</addressCountry>
+        <addressPlace2>Address Text 4</addressPlace2>
+        <addressPlace1>Address Text 2</addressPlace1>
+        <addressType>home</addressType>
+        <addressMunicipality>Metropolis</addressMunicipality>
+        <addressPostCode>67890</addressPostCode>
+        <addressStateOrProvince>CD</addressStateOrProvince>
+      </addressGroup>
+    </addressGroupList>
+    <inAuthority>abb2151e-3eb5-4461-9699</inAuthority>
+  </ns2:contacts_common>
+</document>
