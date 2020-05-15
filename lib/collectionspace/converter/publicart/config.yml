@@ -63,7 +63,7 @@ registered_profiles:
       - conservationnumber
     config:
       Conservation:
-        mapper: CoreConservation
+        mapper: PublicArtConservation
         identifier: conservationnumber
         title: conservationnumber
       Authorities:
