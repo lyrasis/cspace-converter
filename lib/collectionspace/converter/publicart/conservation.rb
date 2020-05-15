@@ -3,6 +3,25 @@ module CollectionSpace
     module PublicArt
       class PublicArtConservation < Conservation
         ::PublicArtConservation = CollectionSpace::Converter::PublicArt::PublicArtConservation
+        def redefined_fields
+          @redefined.concat([
+            # not in publicart
+            'destAnalysisApprovedDate',
+            'destAnalysisApprovalNote',
+            'sampleBy',
+            'sampleDate',
+            'sampleDescription',
+            'sampleReturned',
+            'sampleReturnedLocation',
+            # overridden by publicart
+            'conservator',
+            'otherParty',
+            'examinationStaff',
+            'approvedBy',
+            'researcher' 
+          ])
+          super
+        end
         def convert
           run(wrapper: 'document') do |xml|
             xml.send(
@@ -11,7 +30,7 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtConservation.map(xml, attributes)
+              PublicArtConservation.map_common(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -20,77 +39,56 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtConservation.extension(xml, attributes)
+              PublicArtConservation.map_publicart(xml, attributes)
             end
           end
         end
 
-        def self.map(xml, attributes)
+        def self.map_common(xml, attributes, redefined)
+          CoreConservation.map_common(xml, attributes.merge(redefined))
           pairs = {
-            'conservationnumber' => 'conservationNumber',
-            'treatmentpurpose' => 'treatmentPurpose',
-            'fabricationnote' => 'fabricationNote',
-            'proposedtreatment' => 'proposedTreatment',
-            'approvedby' => 'approvedBy',
-            'approveddate' => 'approvedDate',
-            'treatmentstartdate' => 'treatmentStartDate',
-            'treatmentenddate' => 'treatmentEndDate',
-            'treatmentsummary' => 'treatmentSummary',
-            'proposedanalysis' => 'proposedAnalysis',
-            'researcher' => 'researcher',
-            'proposedanalysisdate' => 'proposedAnalysisDate',
-            'analysismethod' => 'analysisMethod',
-            'analysisresults' => 'analysisResults'
+            'approvedbylocal' => 'approvedBy',
+            'approvedbyshared' => 'approvedBy',
+            'researcherlocal' => 'researcher',
+            'researchershared' => 'researcher'
           }
           pairstransforms = {
-            'treatmentpurpose' => {'vocab' => 'treatmentpurpose'},
-            'approvedby' => {'authority' => ['personauthorities', 'person']},
-            'approveddate' => {'special' => 'unstructured_date_stamp'},
-            'treatmentstartdate' => {'special' => 'unstructured_date_stamp'},
-            'treatmentenddate' => {'special' => 'unstructured_date_stamp'},
-            'researcher' => {'authority' => ['personauthorities', 'person']},
-            'proposedanalysisdate' => {'special' => 'unstructured_date_stamp'}
+            'approvedbylocal' => {'authority' => ['personauthorities', 'person']},
+            'approvedbyshared' => {'authority' => ['personauthorities', 'person_shared']},
+            'researcherlocal' => {'authority' => ['personauthorities', 'person']},
+            'researchershared' => {'authority' => ['personauthorities', 'person_shared']}
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
-
           repeats = {
-            'conservatorperson' => ['conservators', 'conservator'],
-            'conservatororganization' => ['conservators', 'conservator']
+            'conservatorpersonlocal' => ['conservators', 'conservator'],
+            'conservatorpersonshared' => ['conservators', 'conservator'],
+            'conservatororganizationlocal' => ['conservators', 'conservator'],
+            'conservatororganizationshared' => ['conservators', 'conservator']
           }
           repeatstransforms = {
-            'conservatorperson' => {'authority' => ['personauthorities', 'person']},
-            'conservatororganization' => {'authority' => ['orgauthorities', 'organization']}
+            'conservatorpersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'conservatorpersonshared' => {'authority' => ['personauthorities', 'person_shared']},
+            'conservatororganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'conservatororganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
-          #conservationStatusGroupList, conservationStatusGroup
-          conservation_status = {
-            'status' => 'status',
-            'statusdate' => 'statusDate'
-          }
-          conservation_statustransforms = {
-            'status' => {'vocab' => 'conservationstatus'},
-            'statusdate' => {'special' => 'unstructured_date_stamp'}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'conservationStatus',
-            conservation_status,
-            conservation_statustransforms
-          )
           #otherPartyGroupList, otherPartyGroup
-          other_party = { 
-            'otherpartyperson' => 'otherParty',
-            'otherpartyorganization' => 'otherParty',
+          other_party = {
+            'otherpartypersonlocal' => 'otherParty',
+            'otherpartypersonshared' => 'otherParty',
+            'otherpartyorganizationlocal' => 'otherParty',
+            'otherpartyorganizationshared' => 'otherParty',
             'otherpartyrole' => 'otherPartyRole',
             'otherpartynote' => 'otherPartyNote'
           }
           other_partytransforms = {
-            'otherpartyperson' => {'authority' => ['personauthorities', 'person']},
-            'otherpartyorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'otherpartypersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'otherpartypersonshared' => {'authority' => ['personauthorities', 'person_shared']},
+            'otherpartyorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'otherpartyorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
             'otherpartyrole' => {'vocab' => 'otherpartyrole'}
           }
-          CSXML.add_single_level_group_list( 
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'otherParty',
@@ -98,18 +96,20 @@ module CollectionSpace
             other_partytransforms
           )
           #examinationGroupList, examinationGroup
-          overall_examination = {        
-            'examinationstaff' => 'examinationStaff',
+          overall_examination = {
+            'examinationstafflocal' => 'examinationStaff',
+            'examinationstaffshared' => 'examinationStaff',
             'examinationphase' => 'examinationPhase',
             'examinationdate' => 'examinationDate',
             'examinationnote' => 'examinationNote'
           }
           examinationtransforms = {
-            'examinationstaff' => {'authority' => ['personauthorities', 'person']},
+            'examinationstafflocal' => {'authority' => ['personauthorities', 'person']},
+            'examinationstaffshared' => {'authority' => ['personauthorities', 'person_shared']},
             'examinationdate' => {'special' => 'unstructured_date_stamp'},
             'examinationphase' => {'vocab' => 'examinationphase'}
           }
-          CSXML.add_single_level_group_list( 
+          CSXML.add_single_level_group_list(
             xml,
             attributes,
             'examination',
@@ -118,7 +118,7 @@ module CollectionSpace
           )
         end
    
-        def self.extension(xml, attributes)
+        def self.map_publicart(xml, attributes)
           pairs = {
             'treatmentstartdate' => 'proposedTreatmentStartDate',
             'treatmentenddate' => 'proposedTreatmentEndDate',
