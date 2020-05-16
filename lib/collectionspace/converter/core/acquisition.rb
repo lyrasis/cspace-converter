@@ -5,11 +5,11 @@ module CollectionSpace
         ::CoreAcquisition = CollectionSpace::Converter::Core::CoreAcquisition
         def convert
           run do |xml|
-            CoreAcquisition.map(xml, attributes)
+            CoreAcquisition.map_common(xml, attributes)
           end
         end
 
-       def self.map(xml, attributes)
+       def self.map_common(xml, attributes)
          pairs = {
             'acquisitionreferencenumber' => 'acquisitionReferenceNumber',
             'acquisitionauthorizer' => 'acquisitionAuthorizer',
