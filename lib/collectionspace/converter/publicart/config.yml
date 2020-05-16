@@ -20,14 +20,22 @@ registered_procedures:
 registered_profiles:
   acquisition:
     type: Procedures
+    enabled: true
+    identify_by_column: acquisitionreferencenumber
+    required_headers:
+      - acquisitionreferencenumber
     config:
       Acquisition:
+        mapper: PublicArtAcquisition
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
-        Person:
-        - acquisitionauthorizer
-        - owner
+        - name_field: acquisitionauthorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: owner
+          authority_type: Person
+          authority_subtype: person
   cataloging:
     type: Procedures
     config:
