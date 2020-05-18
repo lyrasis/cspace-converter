@@ -1,7 +1,7 @@
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtAcquisition < Acquisition
+      class PublicArtAcquisition < CoreAcquisition
         ::PublicArtAcquisition = CollectionSpace::Converter::PublicArt::PublicArtAcquisition
         def redefined_fields
           @redefined.concat([
