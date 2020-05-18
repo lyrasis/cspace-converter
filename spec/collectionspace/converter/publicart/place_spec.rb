@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
   let(:attributes) { get_attributes('publicart', 'place_authority.csv') }
-  let(:publicartplace) { publicartplace.new(Lookup.profile_defaults('place').merge(attributes)) }
+  let(:publicartplace) { PublicArtPlace.new(Lookup.profile_defaults('place').merge(attributes)) }
   let(:doc) { get_doc(publicartplace) }
   let(:record) { get_fixture('publicart_place.xml') }
 
@@ -42,7 +42,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
     end
 
     context 'fields overridden by publicart' do
-      context 'when local vocab/auth' do
+      context 'when local auth/vocab' do
         [
           "/document/#{p}/addrGroupList/addrGroup/addressMunicipality",
           "/document/#{p}/addrGroupList/addrGroup/addressStateOrProvince",
@@ -60,7 +60,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
           end
         end
       end
-      context 'when shared vocab/auth' do
+      context 'when shared auth/vocab' do
         let(:attributes) { get_attributes_by_row('publicart', 'place_authority.csv', 4) }
         let(:doc) { get_doc(publicartplace) }
         let(:record) { get_fixture('publicart_place_row4.xml') }
@@ -86,7 +86,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
 
   describe 'map_publicart' do
     pa = 'places_publicart'
-    context 'publicart fields' do
+    context 'authority/vocabulary fields' do
       [
         "/document/#{pa}/placementTypes/placementType",
         "/document/#{pa}/publicArtPlaceTypes/publicArtPlaceType",
