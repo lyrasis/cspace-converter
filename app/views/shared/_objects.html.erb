@@ -20,6 +20,7 @@
               <tr>
                 <th>Identifier</th>
                 <th>Type</th>
+                <th>Subtype</th>
                 <th>CSID</th>
                 <th>Batch</th>
                 <th>Created</th>
@@ -31,6 +32,7 @@
                 <tr>
                   <td><%= link_to object.identifier, send("#{object.category.downcase}_path".to_sym, object) %></td>
                   <td><%= object.type %></td>
+                  <td><%= object.subtype %></td>
                   <td><%= object.csid %></td>
                   <td><%= object.data_object.import_batch %></td>
                   <td><%= short_date object.created_at %></td>

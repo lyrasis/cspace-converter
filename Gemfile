@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'bootstrap', '>= 4.1.2'
@@ -10,9 +12,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-mongoid'
+gem 'mongo_session_store'
 gem 'mongoid', '~> 5.1.0'
 gem 'mongoid-locker'
-gem "mongo_session_store"
 gem 'puma'
 gem 'rails', '4.2.8'
 gem 'rake'
@@ -32,6 +34,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rb-readline'
   gem 'rspec-rails', '~> 3.4'
+  gem 'rubocop'
   gem 'selenium-webdriver'
   gem 'webmock'
 end

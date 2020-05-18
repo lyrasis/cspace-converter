@@ -11,7 +11,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              CorePerson.map(xml, attributes, config)
+              CorePerson.map_common(xml, attributes, config)
             end
 
             xml.send(
@@ -20,12 +20,12 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              Contact.map(xml, attributes)
+              Contact.map_contact(xml, attributes)
             end
           end
         end
 
-        def self.map(xml, attributes, config)
+        def self.map_common(xml, attributes, config)
           pairs = {
             'birthplace' => 'birthPlace',
             'deathplace' => 'deathPlace',

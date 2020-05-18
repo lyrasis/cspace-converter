@@ -9,52 +9,58 @@
       <div class="col-md-12">
 
         <%= form_tag('transfer', id: 'transfer') do %>
-          <div class="form-group row module">
-            <div class="col-md-12">
-              <p>Converter Module: <%= converter_module %></p>
-            </div>
+        <div class="form-group row module">
+          <div class="col-md-12">
+            <p>Converter Module: <%= converter_module %></p>
           </div>
-          <div class="form-group row">
-            <label for="remote_action" class="col-md-2 form-control-label">Action</label>
-            <div class="radio">
-              <label class="col-md-3 form-control-label radio-inline">
+        </div>
+        <div class="form-group row">
+          <label for="remote_action" class="col-md-2 form-control-label">Action</label>
+          <div class="radio">
+            <label class="col-md-3 form-control-label radio-inline">
               <div class="col-md-9">
                 <%= radio_button_tag 'remote_action', 'transfer', true %>Transfer
               </div>
-              </label>
-            </div>
-            <div class="radio">
-              <label class="col-md-3 form-control-label radio-inline">
+            </label>
+          </div>
+          <div class="radio">
+            <label class="col-md-3 form-control-label radio-inline">
               <div class="col-md-9">
                 <%= radio_button_tag 'remote_action', 'update', false %>Update
               </div>
-              </label>
-            </div>
-            <div class="radio">
-              <label class="col-md-3 form-control-label radio-inline">
+            </label>
+          </div>
+          <div class="radio">
+            <label class="col-md-3 form-control-label radio-inline">
               <div class="col-md-9">
                 <%= radio_button_tag 'remote_action', 'delete', false %>Delete
               </div>
-              </label>
-            </div>
+            </label>
           </div>
-          <div class="form-group row">
-            <label for="batch" class="col-md-2 form-control-label">Batch</label>
-            <div class="col-md-10">
-              <%= select_tag "batch", options_for_select(batches), include_blank: true, class: "c-select" %>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="batch" class="col-md-2 form-control-label">Batch</label>
+          <div class="col-md-10">
+            <%=
+                select_tag "batch",
+                  options_for_select(batches(criteria: {:succeeded.gt => 0})),
+                  include_blank: true,
+                  required: true,
+                  class: "c-select"
+              %>
           </div>
-          <div class="form-group row">
-            <label for="type" class="col-md-2 form-control-label">Type</label>
-            <div class="col-md-10">
-              <%= select_tag "type", options_for_select([]), class: "c-select" %>
-            </div>
+        </div>
+        <div class="form-group row">
+          <label for="type" class="col-md-2 form-control-label">Type</label>
+          <div class="col-md-10">
+            <%= select_tag "type", options_for_select([]), required: true, class: "c-select" %>
           </div>
-          <div class="form-group row">
-            <div class="col-md-offset-2 col-md-10">
-              <%= submit_tag 'Process', class: 'btn btn-secondary' %>
-            </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-offset-2 col-md-10">
+            <%= submit_tag 'Process', class: 'btn btn-secondary' %>
           </div>
+        </div>
         <% end %>
 
       </div>

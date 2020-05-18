@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-12">
     <div class="page-header">
-      <h1><%= title %></h1>
+      <h1><%= set_title(title, local_assigns.fetch(:type, nil), local_assigns.fetch(:subtype, nil)) %></h1>
     </div>
   </div>
 </div>

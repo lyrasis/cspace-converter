@@ -176,7 +176,7 @@ RSpec.describe CSXML do
     }}
     it "can map correctly" do
       x = builder do |xml|
-        Contact.map(xml, contact)
+        Contact.map_contact(xml, contact)
       end
       expect(doc(x).xpath('/root/emailGroupList/emailGroup/email').text).to eq contact['email']
     end

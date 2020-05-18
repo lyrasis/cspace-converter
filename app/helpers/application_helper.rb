@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def batches
-    DataObject.pluck('import_batch').uniq
+  def batches(criteria: { :processed.gt => 0 })
+    Batch.where(criteria.merge(type: 'import')).pluck('name').uniq
   end
 
   def category_path(category)
@@ -47,14 +47,23 @@ module ApplicationHelper
     profiles
   end
 
-  def transfer_statuses_for(object)
-    object.transfer_statuses.order(created_at: :desc).limit(3)
+  def set_title(title, type = nil, subtype = nil)
+    if !type.blank? && !subtype.blank?
+      title = "#{title} (#{type} / #{subtype})"
+    elsif !type.blank?
+      title = "#{title} (#{type})"
+    end
+    title
   end
 
   def short_date(date)
     return '' unless date
 
     date.to_s(:short)
+  end
+
+  def transfer_statuses_for(object)
+    object.transfer_statuses.order(created_at: :desc).limit(3)
   end
 
   def version
