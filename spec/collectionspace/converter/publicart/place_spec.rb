@@ -1,115 +1,111 @@
 require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
-  after(:all) do
-    ENV['CSPACE_CONVERTER_DOMAIN'] = 'core.collectionspace.org'
-  end
-
-  before(:all) do
-    ENV['CSPACE_CONVERTER_DOMAIN'] = 'publicart.collectionspace.org'
-  end
-
-  let(:publicartplace) { PublicArtPlace.new(attributes) }
-  let(:p) { 'places_common' }
-  let(:ext) { 'places_publicart' }
-
   let(:attributes) { get_attributes('publicart', 'place_authority.csv') }
+  let(:publicartplace) { publicartplace.new(Lookup.profile_defaults('place').merge(attributes)) }
   let(:doc) { get_doc(publicartplace) }
   let(:record) { get_fixture('publicart_place.xml') }
-  let(:xpaths) {[
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termDisplayName",
-    { xpath: "/document/#{p}/placeTermGroupList/placeTermGroup/termLanguage", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termPrefForLang",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termType",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termQualifier",
-    { xpath: "/document/#{p}/placeTermGroupList/placeTermGroup/termSource", transform: ->(text) { CSURN.parse(text)[:label] } },
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termSourceID",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termSourceDetail",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termSourceNote",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termStatus",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/termName",
-    { xpath: "/document/#{p}/placeTermGroupList/placeTermGroup/termFlag", transform: ->(text) { CSURN.parse(text)[:label] } },
-    "/document/#{p}/placeTermGroupList/placeTermGroup/nameAbbrev",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/nameNote",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/historicalStatus",
-    "/document/#{p}/placeTermGroupList/placeTermGroup/nameDateGroup/dateDisplayDate",
-    { xpath: "/document/#{ext}/publicArtPlaceTypes/publicArtPlaceType[1]", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/#{ext}/publicArtPlaceTypes/publicArtPlaceType[1]", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    { xpath: "/document/#{ext}/publicArtPlaceTypes/publicArtPlaceType[2]", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/#{ext}/publicArtPlaceTypes/publicArtPlaceType[2]", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    { xpath: "/document/#{ext}/placementTypes/placementType[1]", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/#{ext}/placementTypes/placementType[1]", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    { xpath: "/document/#{ext}/placementTypes/placementType[2]", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/#{ext}/placementTypes/placementType[2]", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    "/document/#{ext}/placementEnvironment",
-    { xpath: "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup[1]/owner", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup[1]/owner", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup[2]/owner", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup[2]/owner", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipNote",
-    "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipDateGroup/dateDisplayDate",
-    "/document/#{ext}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownerType",
-    "/document/#{p}/placeNote",
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressCountry", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressCountry", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressCountry", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressCountry", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressCounty", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressCounty", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressCounty", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressCounty", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    "/document/#{p}/addrGroupList/addrGroup/addressPlace2",
-    "/document/#{p}/addrGroupList/addrGroup/addressPlace1",
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressType", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressType", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressType", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressType", transform: ->(text) { CSURN.parse(text)[:subtype].downcase } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressMunicipality", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressMunicipality", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressMunicipality", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressMunicipality", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressStateOrProvince", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[1]/addressStateOrProvince", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressStateOrProvince", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/addrGroupList/addrGroup[2]/addressStateOrProvince", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    "/document/#{p}/addrGroupList/addrGroup/addressPostCode",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoRefProtocol",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoRefSource",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/coordPrecision",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/footprintWKT",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/decimalLongitude",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoRefDateGroup/dateDisplayDate",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/decimalLatitude",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geodeticDatum",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/pointRadiusSpatialFit",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoRefRemarks",
-    { xpath: "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup[1]/geoReferencedBy", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup[1]/geoReferencedBy", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup[2]/geoReferencedBy", transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup[2]/geoReferencedBy", transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoRefPlaceName",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/footprintSRS",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/footprintSpatialFit",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoRefVerificationStatus",
-    "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/coordUncertaintyInMeters"
-  ]}
- 
-  context 'For maximally populuated record' do
-    it "Maps attributes correctly" do
-      test_converter(doc, record, xpaths)
+
+  describe 'map_common' do
+    p = 'places_common'
+    context 'fields not included in publicart' do
+      [
+        "/document/#{p}/placeType",
+        "/document/#{p}/placeSource",
+        "/document/#{p}/placeOwnerGroupList/placeOwnerGroup/owner",
+        "/document/#{p}/placeOwnerGroupList/placeOwnerGroup/ownershipNote",
+        "/document/#{p}/vCoordinates",
+        "/document/#{p}/vLatitude",
+        "/document/#{p}/vLongitude",
+        "/document/#{p}/vCoordSys",
+        "/document/#{p}/vSpatialReferenceSystem",
+        "/document/#{p}/vElevation",
+        "/document/#{p}/vDepth",
+        "/document/#{p}/vDistanceAboveSurface",
+        "/document/#{p}/vUnitofMeasure",
+        "/document/#{p}/minElevationInMeters",
+        "/document/#{p}/maxElevationInMeters",
+        "/document/#{p}/minDepthInMeters",
+        "/document/#{p}/maxDepthInMeters",
+        "/document/#{p}/minDistanceAboveSurfaceInMeters",
+        "/document/#{p}/maxDistanceAboveSurfaceInMeters",
+        "/document/#{p}/vCoordSource",
+        "/document/#{p}/vCoordSourceRefId",
+        "/document/#{p}/placeOwnerGroupList/placeOwnerGroup/ownershipDateGroup/dateDisplayDate",
+      ].each do |xpath|
+        context "for xpath: #{xpath}" do
+          it 'is empty' do
+            expect(get_text(doc, xpath)).to be_empty
+          end
+        end
+      end
+    end
+
+    context 'fields overridden by publicart' do
+      context 'when local vocab/auth' do
+        [
+          "/document/#{p}/addrGroupList/addrGroup/addressMunicipality",
+          "/document/#{p}/addrGroupList/addrGroup/addressStateOrProvince",
+          "/document/#{p}/addrGroupList/addrGroup/addressCountry",
+          "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoReferencedBy",
+        ].each do |xpath|
+          context "#{xpath}" do
+            it 'all values will be URNs' do
+              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            end
+            
+            it 'URNs match sample payload' do
+              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            end
+          end
+        end
+      end
+      context 'when shared vocab/auth' do
+        let(:attributes) { get_attributes_by_row('publicart', 'place_authority.csv', 4) }
+        let(:doc) { get_doc(publicartplace) }
+        let(:record) { get_fixture('publicart_place_row4.xml') }
+        [
+          "/document/#{p}/addrGroupList/addrGroup/addressMunicipality",
+          "/document/#{p}/addrGroupList/addrGroup/addressStateOrProvince",
+          "/document/#{p}/addrGroupList/addrGroup/addressCountry",
+          "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoReferencedBy",
+        ].each do |xpath|
+          context "#{xpath}" do
+            it 'all values will be URNs' do
+              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            end
+            
+            it 'URNs match sample payload' do
+              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            end
+          end
+        end
+      end
     end
   end
 
-  context 'For minimally populated record' do
-    let(:attributes) { get_attributes_by_row('publicart', 'place_authority.csv', 3) }
-    let(:doc) { Nokogiri::XML(publicartplace.convert, nil, 'UTF-8') }
-    let(:record) { get_fixture('publicart_place_row3.xml') }
-    let(:xpath_required) {[
-      "/document/*/placeTermGroupList/placeTermGroup/termDisplayName"
-    ]}
-
-    it 'Maps required field(s) correctly without falling over' do
-      test_converter(doc, record, xpath_required)
+  describe 'map_publicart' do
+    pa = 'places_publicart'
+    context 'publicart fields' do
+      [
+        "/document/#{pa}/placementTypes/placementType",
+        "/document/#{pa}/publicArtPlaceTypes/publicArtPlaceType",
+        "/document/#{pa}/placementEnvironment",
+        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/owner",
+        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownerType",
+        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipNote",
+        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipDateGroup/dateDisplayDate"
+      ].each do |xpath|
+        context "#{xpath}" do
+          it 'all values will be URNs' do
+            expect(urn_values(doc, xpath)).not_to include('Not a URN')
+          end
+          
+          it 'URNs match sample payload' do
+            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+          end
+        end
+      end      
     end
   end
 end
