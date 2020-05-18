@@ -49,16 +49,17 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource"
         ].each do |xpath|
           context "#{xpath}" do
+            let(:docurns) { urn_values(doc, xpath) }
             it 'is not empty' do
               expect(get_text(doc, xpath)).to_not be_empty
             end
 
             it 'values are URNs' do
-              expect(urn_values(doc, xpath)).not_to include('not a urn')
+              expect(docurns).not_to include('not a urn')
             end
             
             it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+              expect(docurns).to eq(urn_values(record, xpath))
             end
           end
         end
@@ -69,13 +70,14 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingValue",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSourceProvisos"
         ].each do |xpath|
-          context "xpath: #{xpath}" do
+          context "#{xpath}" do
+            let(:doctext) { get_text(doc, xpath) }
             it 'is not empty' do
-              expect(get_text(doc, xpath)).to_not be_empty
+              expect(doctext).to_not be_empty
             end
             
             it 'matches sample payload' do
-              expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
+              expect(doctext).to eq(get_text(record, xpath))
             end
           end
         end
@@ -91,15 +93,21 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         "/document/#{pa}/acquisitionDates/acquisitionDate",
       ].each do |xpath|
         context "#{xpath}" do
-            it 'is not empty' do
-              expect(get_text(doc, xpath)).to_not be_empty
-            end
-            
-            it 'matches sample payload' do
-              expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
-            end
+          let(:doctext) { get_text(doc, xpath) }
+          it 'is not empty' do
+            expect(doctext).to_not be_empty
+          end
+          
+          it 'matches sample payload' do
+            expect(doctext).to eq(get_text(record, xpath))
+          end
         end
       end
     end
+  end
+
+  describe 'map_commission' do
+    # since we are not overriding anything in this extension, test coverage
+    #  is in extension/commission_spec.rb
   end
 end
