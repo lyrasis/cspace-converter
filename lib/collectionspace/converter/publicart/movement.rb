@@ -38,13 +38,13 @@ module CollectionSpace
         def self.map_common(xml, attributes, redefined)
           CoreMovement.map_common(xml, attributes.merge(redefined))
           pairs = {
-            'currentlocationstorage' => 'currentLocation',
-            'currentlocationorganization' => 'currentLocation',
-            'currentlocationplace' => 'currentLocation',
+            'currentlocationstoragelocal' => 'currentLocation',
+            'currentlocationorganizationlocal' => 'currentLocation',
+            'currentlocationplacelocal' => 'currentLocation',
             'currentlocationstorageoffsite' => 'currentLocation',
             'currentlocationorganizationshared' => 'currentLocation',
             'currentlocationplaceshared' => 'currentLocation',
-            'movementcontact' => 'movementContact',
+            'movementcontactlocal' => 'movementContact',
             'movementcontactshared' => 'movementContact'
           }
           pairs_transforms = {
@@ -54,7 +54,7 @@ module CollectionSpace
             'currentlocationstorageoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
             'currentlocationorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
             'currentlocationplaceshared' => {'authority' => ['placeauthorities', 'place_shared']},
-            'movementcontact' => {'authority' => ['personauthorities', 'person']},
+            'movementcontactlocal' => {'authority' => ['personauthorities', 'person']},
             'movementcontactshared' => {'authority' => ['personauthorities', 'person_shared']}
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
