@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Batch
   include Mongoid::Document
   include Mongoid::Locker
   before_destroy :cleanup, if: proc { |b| b.type == 'import' }
   validates :name, uniqueness: { scope: :type }, if: proc { |b| b.type == 'import' }
-  validates_presence_of :key
+  validates_presence_of :key, :for, :name
   validates_uniqueness_of :key
 
   field :key,       type: String
@@ -13,6 +15,7 @@ class Batch
   field :name,      type: String
   field :processed, type: Integer, default: 0
   field :failed,    type: Integer, default: 0
+  field :succeeded, type: Integer, default: 0
   field :total,     type: Integer, default: 0
   field :start,     type: DateTime, default: Time.now
   field :end,       type: DateTime

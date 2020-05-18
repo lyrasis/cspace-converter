@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Helpers
   # returns the first data row in the CSV
   # type = String. Cspace profile/subdirectory in data directory
@@ -5,7 +7,7 @@ module Helpers
   def get_attributes(type, file)
     SmarterCSV.process(File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
       chunk_size: 1,
-      convert_values_to_numeric: false,
+      convert_values_to_numeric: false
     }.merge(Rails.application.config.csv_parser_options)) do |chunk|
       return JSON.parse(chunk[0].to_json)
     end
@@ -17,10 +19,12 @@ module Helpers
   # rownum = Integer. CSV row number, count starting from 1 and including header row.
   #  This lets you use the row number you see when you are looking at the data in Excel.
   def get_attributes_by_row(type, file, rownum)
-    SmarterCSV.process(File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
-      chunk_size: rownum - 1,
-      convert_values_to_numeric: false,
-    }.merge(Rails.application.config.csv_parser_options)) do |chunk|
+    SmarterCSV.process(
+      File.open(Rails.root.join('data', type, file), 'r:bom|utf-8'), {
+        chunk_size: rownum - 1,
+        convert_values_to_numeric: false
+      }.merge(Rails.application.config.csv_parser_options)
+    ) do |chunk|
       return JSON.parse(chunk.pop.to_json)
     end
   end
@@ -44,6 +48,19 @@ module Helpers
     end
   end
 
+  def urn_values(doc, xpath)
+    vals = []
+    doc.xpath(xpath).each do |element|
+      if element.text.start_with?('urn:')
+        parsed = CSURN.parse(element.text)
+        vals << [parsed[:type], parsed[:subtype], parsed[:label]].join(' - ')
+      else
+        vals << 'Not a URN'
+      end
+    end
+    vals.sort.join('; ').downcase
+  end
+
   def test_base_basic_date(date)
     expect(date.computed).to eq 'true'
     expect(date.parsed_datetime.to_s).to eq '2011-11-02T00:00:00+00:00'
@@ -56,13 +73,13 @@ module Helpers
 
   def test_converter(doc, record, xpaths)
     xpaths.each do |xpath|
-#      puts xpath
+      #      puts xpath
       doc_text = get_text(doc, xpath)
       record_text = get_text(record, xpath)
-#      unless doc_text == record_text
-#        puts "CONVERTER RESULT for #{xpath}: #{doc_text}"
-#        puts "EXPECTED RESULT for #{xpath}: #{record_text}"
-#      end
+      #      unless doc_text == record_text
+      #        puts "CONVERTER RESULT for #{xpath}: #{doc_text}"
+      #        puts "EXPECTED RESULT for #{xpath}: #{record_text}"
+      #      end
       expect(doc_text).not_to be_empty, -> { "Xpath for doc was empty: #{xpath}" }
       expect(record_text).not_to be_empty, -> { "Xpath for record was empty: #{xpath}" }
       expect(doc_text).to eq(record_text), -> { "Xpath match failure: #{xpath}\n#{doc_text}\n#{record_text}" }
