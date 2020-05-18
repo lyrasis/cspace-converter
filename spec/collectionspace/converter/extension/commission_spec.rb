@@ -32,9 +32,8 @@ RSpec.describe CollectionSpace::Converter::Extension::Commission do
         "/document/#{ac}/commissionDate"
       ].each do |xpath|
         context "#{xpath}" do
-          let(:nodeset) { doc.xpath(xpath) }
           it 'is not empty' do
-            expect(nodeset.size).to_not eq(0)
+            expect(doc.xpath(xpath).size).to_not eq(0)
           end
           
           it 'matches sample payload' do
@@ -52,16 +51,17 @@ RSpec.describe CollectionSpace::Converter::Extension::Commission do
         "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionBudgetType"
       ].each do |xpath|
         context "#{xpath}" do
+          let(:docurns) { urn_values(doc, xpath) }
           it 'is not empty' do
             expect(get_text(doc, xpath)).not_to be_empty
           end
 
           it 'values are URNs' do
-            expect(urn_values(doc, xpath)).not_to include('not a urn')
+            expect(docurns).not_to include('not a urn')
           end
           
           it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            expect(docurns).to eq(urn_values(record, xpath))
           end
         end
       end      
