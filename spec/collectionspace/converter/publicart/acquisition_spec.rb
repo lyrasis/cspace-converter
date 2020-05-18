@@ -44,6 +44,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         [
           "/document/#{p}/owner",
           "/document/#{p}/acquisitionSource",
+          "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingCurrency",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource"
         ].each do |xpath|
           context "#{xpath}" do
@@ -57,6 +58,24 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           end
         end
       end
+
+      context 'text fields in group with local place field' do
+        [
+          "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingValue",
+          "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSourceProvisos"
+        ].each do |xpath|
+          context "for xpath: #{xpath}" do
+            it 'is populated' do
+              expect(get_text(doc, xpath)).to_not be_empty
+            end
+            
+            it 'matches sample payload' do
+              expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
+            end
+          end
+        end
+      end
+      
       context 'when shared place' do
         let(:attributes) { get_attributes_by_row('publicart', 'acquisition_publicart.csv', 4) }
         let(:doc) { get_doc(publicartacquisition) }
