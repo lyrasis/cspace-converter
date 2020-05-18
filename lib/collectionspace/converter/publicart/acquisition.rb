@@ -6,31 +6,34 @@ module CollectionSpace
         def redefined_fields
           @redefined.concat([
             # not in publicart
-            'transferOfTitleNumber',
-            'groupPurchasePriceCurrency',
-            'groupPurchasePriceValue',
-            'objectOfferPriceCurrency',
-            'objectOfferPriceValue',
-            'objectPurchaseOfferPriceCurrency',
-            'objectPurchaseOfferPriceValue',
-            'objectPurchasePriceCurrency',
-            'objectPurchasePriceValue',
-            'originalObjectPurchasePriceCurrency',
-            'originalObjectPurchasePriceValue',
-            'approvalGroup',
-            'approvalIndividual',
-            'approvalStatus',
-            'approvalDate',
-            'approvalNote',
-            'acquisitionProvisos',
-            'fieldCollectionEventName',
-            'accessionDateGroup',
-            'acquisitionDateGroup',
+            'transferoftitlenumber',
+            'grouppurchasepricecurrency',
+            'grouppurchasepricevalue',
+            'objectofferpricecurrency',
+            'objectofferpricevalue',
+            'objectpurchaseofferpricecurrency',
+            'objectpurchaseofferpricevalue',
+            'objectpurchasepricecurrency',
+            'objectpurchasepricevalue',
+            'originalobjectpurchasepricecurrency',
+            'originalobjectpurchasepricevalue',
+            'approvalgroup',
+            'approvalindividual',
+            'approvalstatus',
+            'approvaldate',
+            'approvalnote',
+            'acquisitionprovisos',
+            'fieldcollectioneventname',
+            'accessiondategroup',
+            'acquisitiondategroup',
             # overridden by publicart
-            'acquisitionMethod',
-            'acquisitionSource',
+            'acquisitionmethod',
+            'acquisitionsource',
             'owner',
-            'acquisitionFundingSource'
+            'acquisitionfundingsource',
+            'acquisitionfundingcurrency',
+            'acquisitionfundingvalue',
+            'acquisitionfundingsourceprovisos'
           ])
           super
         end
@@ -61,7 +64,7 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtAcquisition.map_commission(xml, attributes)
+              PublicArtAcquisition.map_commission(xml, attributes, redefined_fields)
             end
           end
         end
@@ -140,38 +143,8 @@ module CollectionSpace
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
         end
 
-        def self.map_commission(xml, attributes)
-          #commissionDate
-          CSXML::Helpers.add_date_group(xml, 'commissionDate', CSDTP.parse(attributes['commissiondate']), suffix = '')
-          repeats = { 
-            'commissioningbodyperson' => ['commissioningBodyList', 'commissioningBody'],
-            'commissioningbodyorganization' => ['commissioningBodyList', 'commissioningBody']
-          }
-          repeatstransforms = {
-            'commissioningbodyperson' => {'authority' => ['personauthorities', 'person']},
-            'commissioningbodyorganizaion' => {'authority' => ['orgauthorities', 'organization']}
-          }
-          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
-          #commissionBudgetGroupList, commissionBudgetGroup
-          commision_data = {
-            'commissionprojectedvaluecurrency' => 'commissionProjectedValueCurrency',
-            'commissionactualvalueamount' => 'commissionActualValueAmount',
-            'commissionbudgettypenote' => 'commissionBudgetTypeNote',
-            'commissionprojectedvalueamount' => 'commissionProjectedValueAmount',
-            'commissionactualvaluecurrency' => 'commissionActualValueCurrency',
-            'commissionbudgettype' => 'commissionBudgetType',
-          }
-          commission_transforms = {
-            'commissionprojectedvaluecurrency' => {'vocab' => 'currency'},
-            'commissionactualvaluecurrency' => {'vocab' => 'currency'},
-            'commissionbudgettype' => {'vocab' => 'budgettype'}
-          }
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'commissionBudget',
-            commision_data,
-            commission_transforms
-          )
+        def self.map_commission(xml, attributes, redefined)
+          Commission.map_commission(xml, attributes.merge(redefined))
         end
       end
     end

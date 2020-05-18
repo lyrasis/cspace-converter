@@ -31,7 +31,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         "/document/#{p}/accessionDateGroup/dateDisplayDate",
         "/document/#{p}/acquisitionDateGroupList/acquisitionDateGroup/dateDisplayDate",
       ].each do |xpath|
-        context "for xpath: #{xpath}" do
+        context "xpath: #{xpath}" do
           it 'is empty' do
             expect(get_text(doc, xpath)).to be_empty
           end
@@ -40,16 +40,21 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
     end
 
     context 'fields overridden by publicart' do
-      context 'when local place' do
+      context 'authority/vocab fields' do
         [
-          "/document/#{p}/owner",
-          "/document/#{p}/acquisitionSource",
+          "/document/#{p}/owners/owner",
+          "/document/#{p}/acquisitionSources/acquisitionSource",
+          "/document/#{p}/acquisitionMethod",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingCurrency",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource"
         ].each do |xpath|
           context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            it 'is not empty' do
+              expect(get_text(doc, xpath)).to_not be_empty
+            end
+
+            it 'values are URNs' do
+              expect(urn_values(doc, xpath)).not_to include('not a urn')
             end
             
             it 'URNs match sample payload' do
@@ -59,13 +64,13 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         end
       end
 
-      context 'text fields in group with local place field' do
+      context 'non-authority/vocab fields in group(s) with overridden field(s)' do
         [
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingValue",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSourceProvisos"
         ].each do |xpath|
-          context "for xpath: #{xpath}" do
-            it 'is populated' do
+          context "xpath: #{xpath}" do
+            it 'is not empty' do
               expect(get_text(doc, xpath)).to_not be_empty
             end
             
@@ -75,85 +80,26 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           end
         end
       end
-      
-      context 'when shared place' do
-        let(:attributes) { get_attributes_by_row('publicart', 'acquisition_publicart.csv', 4) }
-        let(:doc) { get_doc(publicartacquisition) }
-        let(:record) { get_fixture('publicart_acquisition_row4.xml') }
-        [
-          "/document/#{p}/owner",
-          "/document/#{p}/acquisitionSource",
-          "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource"
-        ].each do |xpath|
-          context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
-            end
-            
-            it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
-            end
-          end
-        end
-      end
-      context 'when acquisitionMethod vocab' do
-        [
-          "/document/#{p}/acquisitionMethod"
-        ].each do |xpath|
-          context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
-            end
-          end
-        end
-      end
     end
   end
 
   describe 'map_publicart' do
     pa = 'acquisitions_publicart'
-    context 'publicart fields' do
+    context 'non-authority/vocab fields' do
       [
         "/document/#{pa}/accessionDate",
-        "/document/#{pa}/acquisitionDate",
-        "/document/#{pa}/acquisitionDate",
+        "/document/#{pa}/acquisitionDates/acquisitionDate",
       ].each do |xpath|
         context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
-          end
-          
-          it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
-          end
+            it 'is not empty' do
+              expect(get_text(doc, xpath)).to_not be_empty
+            end
+            
+            it 'matches sample payload' do
+              expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
+            end
         end
-      end      
-    end
-  end
-
-  describe 'map_commission' do
-    ac = 'acquisitions_commission'
-    context 'commission fields' do
-      [
-        "/document/#{ac}/commissionDate",
-        "/document/#{ac}/commissioningBody",
-        "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionProjectedValueCurrency",
-        "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionActualValueAmount",
-        "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionBudgetTypeNote",
-        "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionProjectedValueAmount",
-        "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionActualValueCurrency",
-        "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionBudgetType"
-      ].each do |xpath|
-        context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
-          end
-          
-          it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
-          end
-        end
-      end      
+      end
     end
   end
 end

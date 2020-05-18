@@ -30,13 +30,13 @@ module Helpers
   end
 
   def get_doc(converter)
-    Nokogiri::XML(converter.convert, nil, 'UTF-8').remove_namespaces!
+    Nokogiri::XML(converter.convert, nil, 'UTF-8'){ |c| c.noblanks }.remove_namespaces!
   end
 
   def get_fixture(file)
     File.open(
       Rails.root.join('spec', 'fixtures', 'files', file)
-    ) { |f| Nokogiri::XML(f).remove_namespaces! }
+    ) { |f| Nokogiri::XML(f){ |c| c.noblanks }.remove_namespaces! }
   end
 
   def get_text(doc, xpath)
@@ -48,6 +48,10 @@ module Helpers
     end
   end
 
+  def get_structured_date(doc, xpath)
+    doc.xpath("#{xpath}/dateDisplayDate").text
+  end
+  
   def urn_values(doc, xpath)
     vals = []
     doc.xpath(xpath).each do |element|
