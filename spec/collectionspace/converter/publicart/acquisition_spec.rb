@@ -31,9 +31,9 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         "/document/#{p}/accessionDateGroup/dateDisplayDate",
         "/document/#{p}/acquisitionDateGroupList/acquisitionDateGroup/dateDisplayDate",
       ].each do |xpath|
-        context "xpath: #{xpath}" do
+        context "#{xpath}" do
           it 'is empty' do
-            expect(get_text(doc, xpath)).to be_empty
+            verify_field_is_empty(doc, xpath)
           end
         end
       end
@@ -49,17 +49,17 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource"
         ].each do |xpath|
           context "#{xpath}" do
-            let(:docurns) { urn_values(doc, xpath) }
+            let(:urn_vals) { urn_values(doc, xpath) }
             it 'is not empty' do
-              expect(get_text(doc, xpath)).to_not be_empty
+              verify_field_is_populated(doc, xpath)
             end
 
             it 'values are URNs' do
-              expect(docurns).not_to include('not a urn')
+              verify_values_are_urns(urn_vals)
             end
             
             it 'URNs match sample payload' do
-              expect(docurns).to eq(urn_values(record, xpath))
+              verify_urn_match(urn_vals, record, xpath)
             end
           end
         end
@@ -71,13 +71,12 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSourceProvisos"
         ].each do |xpath|
           context "#{xpath}" do
-            let(:doctext) { get_text(doc, xpath) }
             it 'is not empty' do
-              expect(doctext).to_not be_empty
+              verify_field_is_populated(doc, xpath)
             end
             
             it 'matches sample payload' do
-              expect(doctext).to eq(get_text(record, xpath))
+              verify_value_match(doc, record, xpath)
             end
           end
         end
@@ -94,13 +93,13 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
       ].each do |xpath|
         context "#{xpath}" do
           let(:doctext) { get_text(doc, xpath) }
-          it 'is not empty' do
-            expect(doctext).to_not be_empty
-          end
-          
-          it 'matches sample payload' do
-            expect(doctext).to eq(get_text(record, xpath))
-          end
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+            
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
         end
       end
     end
