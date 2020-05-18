@@ -38,4 +38,8 @@ Steps:
 ./import.sh data/anthro/osteology_anthro_all.csv osteology1 osteology
 ./remote.sh transfer Osteology osteology1
 ./remote.sh delete Osteology osteology1
+
+./import.sh data/anthro/anthro_taxon_all.csv taxon1 taxonomy
+./remote.sh transfer Taxon taxon1
+./remote.sh delete Taxon taxon1
 ```

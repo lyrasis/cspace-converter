@@ -4,6 +4,7 @@
 !/.ruby-version
 !/.travis.yml
 !/log/.keep
+!.vscode/
 *.swp
 /.bundle
 /*.csv

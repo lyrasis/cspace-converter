@@ -4,7 +4,7 @@
 
   <div class="col-md-10">
 
-    <%= render partial: 'shared/title', :locals => { :title => identifier_for(@object) } %>
+    <%= render partial: 'shared/title', :locals => { :title => identifier_for(@object), :type => 'Row' } %>
 
     <div class="row">
       <div class="col-md-12">
@@ -31,6 +31,7 @@
           <thead>
             <tr>
               <th>Type</th>
+              <th>Subtype</th>
               <th>Identifier</th>
               <th>CSID</th>
             </tr>
@@ -39,6 +40,7 @@
             <% @object.collection_space_objects.each do |cspace_object| %>
               <tr>
                 <td><%= cspace_object.type %></td>
+                <td><%= cspace_object.subtype %></td>
                 <td><%= link_to cspace_object.identifier, send(category_path(cspace_object.category), cspace_object) %></td>
                 <td><%= cspace_object.csid %></td>
               </tr>

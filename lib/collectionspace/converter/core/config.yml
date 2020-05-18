@@ -36,10 +36,10 @@ registered_profiles:
         - name_field: acquisitionauthorizer
           authority_type: Person
           authority_subtype: person
-        - name_field: ownerPerson
+        - name_field: ownerperson
           authority_type: Person
           authority_subtype: person
-        - name_field: ownerOrganization
+        - name_field: ownerorganization
           authority_type: Organization
           authority_subtype: organization
   cataloging:
@@ -57,13 +57,13 @@ registered_profiles:
         - name_field: contentperson
           authority_type: Person
           authority_subtype: person
-        - name_field: inscriber
+        - name_field: inscriptioncontentinscriberperson
           authority_type: Person
           authority_subtype: person
-        - name_field: productionperson
+        - name_field: objectproductionperson
           authority_type: Person
           authority_subtype: person
-        - name_field: productionorg
+        - name_field: objectproductionorganization
           authority_type: Organization
           authority_subtype: organization
       Vocabularies:
@@ -96,7 +96,7 @@ registered_profiles:
         identifier: conditioncheckrefnumber
         title: conditioncheckrefnumber
       Authorities:
-        - name_field: conditionchecker
+        - name_field: conditioncheckerperson
           authority_type: Person
           authority_subtype: person
   conservation:
@@ -200,33 +200,45 @@ registered_profiles:
         identifier: entrynumber
         title: entrynumber
       Authorities:
-        - name_field: currentowner
+        - name_field: currentownerperson
           authority_type: Person
           authority_subtype: person
-        - name_field: depositor
+        - name_field: depositorperson
           authority_type: Person
           authority_subtype: person
         - name_field: fieldcollectionsource
           authority_type: Person
           authority_subtype: person
-        - name_field: fieldCollectors
+        - name_field: fieldcollectororganization
           authority_type: Organization
           authority_subtype: organization
-        - name_field: valuer
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: insurer
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: currentlocation
-          authority_type: Place
-          authority_subtype: place
-        - name_field: normallocation
-          authority_type: Place
-          authority_subtype: place
-        - name_field: conditioncheckerorassessor
+        - name_field: fieldcollectorperson
           authority_type: Person
           authority_subtype: person
+        - name_field: valuerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: valuerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: insurerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: insurerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: currentlocationplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: normallocationplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: conditioncheckerorassessorperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: conditioncheckerorassessororganization
+          authority_type: Organization
+          authority_subtype: organization
   loanin:
     type: Procedures
     enabled: true
@@ -269,7 +281,10 @@ registered_profiles:
         - name_field: borrowersauthorizer
           authority_type: Person
           authority_subtype: person
-        - name_field: borrower
+        - name_field: borrowerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: borrowerorganization
           authority_type: Organization
           authority_subtype: organization
   location:
@@ -352,10 +367,10 @@ registered_profiles:
         identifier: exitnumber
         title: exitnumber
       Authorities:
-        - name_field: currentownerorg
+        - name_field: currentownerorganization
           authority_type: Organization
           authority_subtype: organization
-        - name_field: currentowner
+        - name_field: currentownerperson
           authority_type: Person
           authority_subtype: person
   organization:
