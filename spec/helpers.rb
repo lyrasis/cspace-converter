@@ -89,4 +89,16 @@ module Helpers
       expect(doc_text).to eq(record_text), -> { "Xpath match failure: #{xpath}\n#{doc_text}\n#{record_text}" }
     end
   end
+
+  def verify_empty_field(doc, xpath)
+    expect(get_text(doc, xpath)).to be_empty
+  end
+
+  def verify_values_are_urns(urn_vals)
+    expect(urn_vals).not_to include('not a urn')
+  end
+
+  def verify_urn_match(urn_vals, record, xpath)
+    expect(urn_vals).to eq(urn_values(record, xpath))
+  end
 end
