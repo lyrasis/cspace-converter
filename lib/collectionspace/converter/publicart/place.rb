@@ -5,6 +5,10 @@ module CollectionSpace
         ::PublicArtPlace = CollectionSpace::Converter::PublicArt::PublicArtPlace
         def redefined_fields
           @redefined.concat([
+            'placeType',
+            'placeSource',
+            'placeOwnerGroupList/placeOwnerGroup/owner',
+            'placeOwnerGroupList/placeOwnerGroup/ownershipNote',
             'vCoordinates',
             'vLatitude',
             'vLongitude',
@@ -14,6 +18,15 @@ module CollectionSpace
             'vDepth',
             'vDistanceAboveSurface',
             'vUnitofMeasure',
+            'minElevationInMeters',
+            'maxElevationInMeters',
+            'minDepthInMeters',
+            'maxDepthInMeters',
+            'minDistanceAboveSurfaceInMeters',
+            'maxDistanceAboveSurfaceInMeters',
+            'vCoordSource',
+            'vCoordSourceRefId',
+            'ownershipDateGroup/dateDisplayDate',
             # overridden by publicart
             'addressMunicipality',
             'addressStateOrProvince',
@@ -63,16 +76,16 @@ module CollectionSpace
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
           #publicartPlaceOwnerGroupList, publicartPlaceOwnerGroup
           owner_data = {
-            "ownerorganization" => "owner",
-            "ownerperson" => "owner",
-            "ownershipdategroup" => "ownershipDateGroup",
-            "ownershipnote" => "ownershipNote",
-            "ownertype" => "ownerType"
+            "publicartownerorganization" => "owner",
+            "publicartownerperson" => "owner",
+            "publicartownershipdategroup" => "ownershipDateGroup",
+            "publicartownershipnote" => "ownershipNote",
+            "publicartownertype" => "ownerType"
           }
           owner_transforms = {
-            'ownerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'ownerperson' => {'authority' => ['personauthorities', 'person']},
-            'ownershipdategroup' => {'special' => 'structured_date'},
+            'publicartownerorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'publicartownerperson' => {'authority' => ['personauthorities', 'person']},
+            'publicartownershipdategroup' => {'special' => 'structured_date'},
           }
           CSXML.add_single_level_group_list(
             xml,
