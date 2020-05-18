@@ -30,8 +30,10 @@ module CollectionSpace
             'exhibitionObjectCase',
             'exhibitionObjectSeqNum',
             'exhibitionObjectRotation',
-            'exhibitionObjectNote'
+            'exhibitionObjectNote',
             # overridden by publicart
+            'organizer',
+            'venue'
           ])
           super
         end
@@ -60,6 +62,51 @@ module CollectionSpace
 
         def self.map_common(xml, attributes, redefined)
           CoreExhibition.map_common(xml, attributes.merge(redefined))
+          repeats = {
+            'organizerorganizationlocal' => ['organizers', 'organizer'],
+            'organizerpersonlocal' => ['organizers', 'organizer'],
+            'organizerorganizationshared' => ['organizers', 'organizer'],
+            'organizerpersonshared' => ['organizers', 'organizer'],
+
+          }
+          repeatstransforms = {
+            'organizerorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'organizerpersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'organizerorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
+            'organizerpersonshared' => {'authority' => ['personauthorities', 'person_shared']},
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+          # venueGroupList, venueGroup
+          venuedata = {
+            'venueorganizationlocal' => 'venue',
+            'venueplacelocal' => 'venue',
+            'venuestoragelocationlocal' => 'venue',
+            'venueorganizationshared' => 'venue',
+            'venueplaceshared' => 'venue',
+            'venuestoragelocationoffsite' => 'venue',
+            'venueopeningdate' => 'venueOpeningDate',
+            'venueclosingdate' => 'venueClosingDate',
+            'venueattendance' => 'venueAttendance',
+            'venueurl' => 'venueUrl'
+          }
+
+          venuetransforms = {
+            'venueorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'venueplace' => {'authority' => ['placeauthorities', 'place']},
+            'venuestoragelocation' => {'authority' => ['locationauthorities', 'location']},
+            'venueorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
+            'venueplaceshared' => {'authority' => ['placeauthorities', 'place_shared']},
+            'venuestoragelocationoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
+            'venueopeningdate' => {'special' => 'unstructured_date_stamp'},
+            'venueclosingdate' => {'special' => 'unstructured_date_stamp'},
+          }
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'venue',
+            venuedata,
+            venuetransforms
+          )
+          
         end
 
         def self.map_publicart(xml, attributes)
