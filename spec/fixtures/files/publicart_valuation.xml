@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="valuationcontrols">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-05-09T19:24:59.008Z</createdAt>
+    <createdAt>2020-05-18T18:01:23.490Z</createdAt>
     <updatedBy>admin@publicart.collectionspace.org</updatedBy>
     <createdBy>admin@publicart.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>5000</tenantId>
-    <refName>urn:cspace:publicart.collectionspace.org:valuationcontrols:id(30fcfb47-ed54-4520-9fe9)</refName>
-    <uri>/valuationcontrols/30fcfb47-ed54-4520-9fe9</uri>
-    <updatedAt>2020-05-09T19:26:29.607Z</updatedAt>
+    <refName>urn:cspace:publicart.collectionspace.org:valuationcontrols:id(e03c6fc0-2a1e-41bb-8cf4)</refName>
+    <uri>/valuationcontrols/e03c6fc0-2a1e-41bb-8cf4</uri>
+    <updatedAt>2020-05-18T18:01:23.490Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:valuationcontrols_common xmlns:ns2="http://collectionspace.org/services/valuationcontrol" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <valuationcontrolRefNumber>VAL2000.001</valuationcontrolRefNumber>
@@ -39,7 +39,7 @@
       <insuranceGroup>
         <insuranceNote>Insurer Note 2</insuranceNote>
         <insuranceRenewalDate>2002-06-05T00:00:00.000Z</insuranceRenewalDate>
-        <insurer>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Insurer21589052336608)'Insurer 2'</insurer>
+        <insurer>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(Insurer22808995122)'Insurer 2'</insurer>
         <insurancePolicyNumber>Insurer Policy Number 2</insurancePolicyNumber>
       </insuranceGroup>
     </insuranceGroupList>
