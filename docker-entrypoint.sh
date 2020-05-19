@@ -7,5 +7,4 @@ echo "export BUILD_VERSION=$BUILD_VERSION" >> /set_env
 source /set_env
 ./bin/rails runner 'Delayed::Backend::Mongoid::Job.create_indexes'
 ./bin/delayed_job start -n $PROCESSES
-./bin/rake cache:refresh
 exec "$@"
