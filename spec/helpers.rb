@@ -90,8 +90,12 @@ module Helpers
     end
   end
 
-  def verify_empty_field(doc, xpath)
+  def verify_field_is_empty(doc, xpath)
     expect(get_text(doc, xpath)).to be_empty
+  end
+
+  def verify_field_is_populated(doc, xpath)
+    expect(get_text(doc, xpath)).not_to be_empty
   end
 
   def verify_values_are_urns(urn_vals)
@@ -100,5 +104,9 @@ module Helpers
 
   def verify_urn_match(urn_vals, record, xpath)
     expect(urn_vals).to eq(urn_values(record, xpath))
+  end
+
+  def verify_value_match(doc, record, xpath)
+    expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
   end
 end
