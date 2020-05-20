@@ -28,12 +28,12 @@ by creating a `.env.local` file with custom settings.
 
 ```bash
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_BASE_URI=https://core.dev.collectionspace.org/cspace-services
-export CSPACE_CONVERTER_DB_NAME=nightly_core
-export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
-export CSPACE_CONVERTER_MODULE=Core
-export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
-export CSPACE_CONVERTER_PASSWORD=Administrator
+CSPACE_CONVERTER_BASE_URI=https://core.dev.collectionspace.org/cspace-services
+CSPACE_CONVERTER_DB_NAME=nightly_core
+CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
+CSPACE_CONVERTER_MODULE=Core
+CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
+CSPACE_CONVERTER_PASSWORD=Administrator
 ```
 
 The `CSPACE_CONVERTER_BASE_URI` variable must point to an _available_ ColletionSpace
