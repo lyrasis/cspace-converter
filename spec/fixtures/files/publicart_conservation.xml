@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="conservation">
   <ns2:conservation_publicart xmlns:ns2="http://collectionspace.org/services/conservation/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <proposedTreatmentStartDate>2000-04-13T00:00:00.000Z</proposedTreatmentStartDate>
+    <proposedTreatmentStartDate>2000-04-01T00:00:00.000Z</proposedTreatmentStartDate>
     <treatmentCostValue>500</treatmentCostValue>
     <conservationPriorityLevel>medium</conservationPriorityLevel>
     <proposedTreatmentEstCurrency>urn:cspace:publicart.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</proposedTreatmentEstCurrency>
     <analysisRecommendations>Analyst Recommendation Text</analysisRecommendations>
-    <proposedTreatmentEndDate>2000-07-13T00:00:00.000Z</proposedTreatmentEndDate>
+    <proposedTreatmentEndDate>2000-05-01T00:00:00.000Z</proposedTreatmentEndDate>
     <treatmentCostCurrency>urn:cspace:publicart.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</treatmentCostCurrency>
     <proposedTreatmentContractRestrictions>Restrictions sample text</proposedTreatmentContractRestrictions>
-    <proposedTreatmentEstValue>453</proposedTreatmentEstValue>
+    <proposedTreatmentEstValue>500</proposedTreatmentEstValue>
   </ns2:conservation_publicart>
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-05-11T08:58:14.859Z</createdAt>
+    <createdAt>2020-05-18T20:08:05.526Z</createdAt>
     <updatedBy>admin@publicart.collectionspace.org</updatedBy>
     <createdBy>admin@publicart.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>5000</tenantId>
-    <refName>urn:cspace:publicart.collectionspace.org:conservation:id(19e1e5f7-7775-4ae6-88f0)</refName>
-    <uri>/conservation/19e1e5f7-7775-4ae6-88f0</uri>
-    <updatedAt>2020-05-11T09:14:11.828Z</updatedAt>
+    <refName>urn:cspace:publicart.collectionspace.org:conservation:id(e2c5140c-aabf-480e-8185)</refName>
+    <uri>/conservation/e2c5140c-aabf-480e-8185</uri>
+    <updatedAt>2020-05-18T20:08:05.526Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:conservation_common xmlns:ns2="http://collectionspace.org/services/conservation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <treatmentStartDate>2000-04-01T00:00:00.000Z</treatmentStartDate>
@@ -40,19 +40,10 @@
     <conservators>
       <conservator>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1589187485034)'Ilze Bergs'</conservator>
       <conservator>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1589187452367)'Tina Lauva'</conservator>
+      <conservator>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Organization11589046127131)'Organization 1'</conservator>
     </conservators>
     <fabricationNote>Fabrication note text.</fabricationNote>
-    <destAnalysisGroupList>
-      <destAnalysisGroup>
-        <sampleBy/>
-        <destAnalysisApprovalNote/>
-        <sampleDescription/>
-        <destAnalysisApprovedDate/>
-        <sampleDate/>
-        <sampleReturned>false</sampleReturned>
-        <sampleReturnedLocation/>
-      </destAnalysisGroup>
-    </destAnalysisGroupList>
+    <destAnalysisGroupList/>
     <approvedDate>2000-03-01T00:00:00.000Z</approvedDate>
     <treatmentEndDate>2000-05-01T00:00:00.000Z</treatmentEndDate>
     <analysisMethod>Analytical methodology text.</analysisMethod>
@@ -67,8 +58,13 @@
       </otherPartyGroup>
       <otherPartyGroup>
         <otherParty>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(OgiKido1589187538610)'Ogi Kido'</otherParty>
-        <otherPartyNote>Other party note text 2.</otherPartyNote>
+        <otherPartyNote/>
         <otherPartyRole>urn:cspace:publicart.collectionspace.org:vocabularies:name(otherpartyrole):item:name(technician)'Technician'</otherPartyRole>
+      </otherPartyGroup>
+      <otherPartyGroup>
+        <otherParty>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(OtherOrganization12642976077)'Other Organization 1'</otherParty>
+        <otherPartyNote>Other party note text 3.</otherPartyNote>
+        <otherPartyRole>urn:cspace:publicart.collectionspace.org:vocabularies:name(otherpartyrole):item:name(preparator)'Preparator'</otherPartyRole>
       </otherPartyGroup>
     </otherPartyGroupList>
     <examinationGroupList>
