@@ -1,17 +1,13 @@
 ---
 registered_authorities:
-  - citationauthorities
-  - conceptauthorities
-  - locationauthorities
-  - orgauthorities
   - personauthorities
-  - placeauthorities
 registered_procedures:
   - CollectionObject
 registered_profiles:
   cataloging:
     type: Procedures
     enabled: true
+    identify_by_column: objectnumber
     required_headers:
       - objectnumber
     config:
@@ -80,7 +76,7 @@ registered_profiles:
       Vocabularies:
         - name_field: relationshiptype
           vocabulary_subtype: personrelationship
- hierarchies:
+  hierarchies:
     type: Hierarchies
     enabled: true
     required_headers:
