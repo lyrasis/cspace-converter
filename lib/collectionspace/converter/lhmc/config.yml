@@ -47,7 +47,40 @@ registered_profiles:
       Vocabularies:
         - name_field: numbertype
           vocabulary_subtype: numbertype
-  hierarchies:
+  person:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: LhmcPerson
+      name_field: termdisplayname
+      authority_type: Person
+      authority_subtype: person
+      Authorities:
+        - name_field: relatedpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: relatedpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
+        - name_field: placeorresidencelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: placeorresidencelocaltgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: publicationspersonlocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: publicationspersonworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+      Vocabularies:
+        - name_field: relationshiptype
+          vocabulary_subtype: personrelationship
+ hierarchies:
     type: Hierarchies
     enabled: true
     required_headers:
