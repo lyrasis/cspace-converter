@@ -17,12 +17,12 @@ Config:
 
 ```txt
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_BASE_URI=https://lhmc.dev.collectionspace.org/cspace-services
-export CSPACE_CONVERTER_DB_NAME=nightly_lhmc
-export CSPACE_CONVERTER_DOMAIN=lhmc.collectionspace.org
-export CSPACE_CONVERTER_MODULE=Lhmc
-export CSPACE_CONVERTER_USERNAME=admin@lhmc.collectionspace.org
-export CSPACE_CONVERTER_PASSWORD=Administrator
+CSPACE_CONVERTER_BASE_URI=https://lhmc.dev.collectionspace.org/cspace-services
+CSPACE_CONVERTER_DB_NAME=nightly_lhmc
+CSPACE_CONVERTER_DOMAIN=lhmc.collectionspace.org
+CSPACE_CONVERTER_MODULE=Lhmc
+CSPACE_CONVERTER_USERNAME=admin@lhmc.collectionspace.org
+CSPACE_CONVERTER_PASSWORD=Administrator
 ```
 
 Steps:
