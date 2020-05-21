@@ -30,13 +30,13 @@ module Helpers
   end
 
   def get_doc(converter)
-    Nokogiri::XML(converter.convert, nil, 'UTF-8').remove_namespaces!
+    Nokogiri::XML(converter.convert, nil, 'UTF-8'){ |c| c.noblanks }.remove_namespaces!
   end
 
   def get_fixture(file)
     File.open(
       Rails.root.join('spec', 'fixtures', 'files', file)
-    ) { |f| Nokogiri::XML(f).remove_namespaces! }
+    ) { |f| Nokogiri::XML(f){ |c| c.noblanks }.remove_namespaces! }
   end
 
   def get_text(doc, xpath)
@@ -48,6 +48,10 @@ module Helpers
     end
   end
 
+  def get_structured_date(doc, xpath)
+    doc.xpath("#{xpath}/dateDisplayDate").text
+  end
+  
   def urn_values(doc, xpath)
     vals = []
     doc.xpath(xpath).each do |element|
@@ -84,5 +88,25 @@ module Helpers
       expect(record_text).not_to be_empty, -> { "Xpath for record was empty: #{xpath}" }
       expect(doc_text).to eq(record_text), -> { "Xpath match failure: #{xpath}\n#{doc_text}\n#{record_text}" }
     end
+  end
+  
+  def verify_field_is_empty(doc, xpath)
+    expect(get_text(doc, xpath)).to be_empty
+  end
+
+  def verify_field_is_populated(doc, xpath)
+    expect(get_text(doc, xpath)).not_to be_empty
+  end
+
+  def verify_values_are_urns(urn_vals)
+    expect(urn_vals).not_to include('not a urn')
+  end
+
+  def verify_urn_match(urn_vals, record, xpath)
+    expect(urn_vals).to eq(urn_values(record, xpath))
+  end
+
+  def verify_value_match(doc, record, xpath)
+    expect(get_text(doc, xpath)).to eq(get_text(record, xpath))
   end
 end
