@@ -18,9 +18,9 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPerson do
         "/document/#{p}/nationalities/nationality",
         "/document/#{p}/nameNote"
       ].each do |xpath|
-        context "for xpath: #{xpath}" do
+        context "xpath: #{xpath}" do
           it 'is empty' do
-            expect(get_text(doc, xpath)).to be_empty
+            verify_field_is_empty(doc, xpath)
           end
         end
       end
@@ -30,17 +30,22 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPerson do
   describe 'map_publicart' do
     pa = 'persons_publicart'
     # socialMedia fields are tested in extension/social_media_spec.rb
-    context 'test' do
+    context 'authority/vocab fields' do
       [
         "/document/#{pa}/organizations/organization"
       ].each do |xpath|
         context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
+          let(:urn_vals) { urn_values(doc, xpath) }
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
+
+          it 'values are URNs' do
+            verify_values_are_urns(urn_vals)
           end
           
           it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            verify_urn_match(urn_vals, record, xpath)
           end
         end
       end
