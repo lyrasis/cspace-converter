@@ -14,58 +14,87 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtValuationControl 
           "/document/#{p}/valueSource"
         ].each do |xpath|
           context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            let(:urn_vals) { urn_values(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'values are URNs' do
+              verify_values_are_urns(urn_vals)
             end
             
             it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+              verify_urn_match(urn_vals, record, xpath)
             end
           end
         end
       end
+
       context 'when shared value source' do
-        let(:attributes) { get_attributes_by_row('publicart', 'valuationcontrol_publicart_all.csv', 3) }
-        let(:doc) { get_doc(publicartvaluationcontrol) }
-        let(:record) { get_fixture('publicart_valuation_row3.xml') }
         [
           "/document/#{p}/valueSource"
         ].each do |xpath|
           context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            let(:urn_vals) { urn_values(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'values are URNs' do
+              verify_values_are_urns(urn_vals)
             end
             
             it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+              verify_urn_match(urn_vals, record, xpath)
             end
           end
         end
       end
+      
     end
   end
 
   describe 'map_publicart' do
     pa = 'valuationcontrols_publicart'
-    context 'authority/vocabulary fields' do
+    context 'non-authority/vocab fields' do
       [
-        "/document/#{pa}/valueSourceRole",
-        "/document/#{pa}/insuranceGroupList/insuranceGroup/insurer",
         "/document/#{pa}/insuranceGroupList/insuranceGroup/insuranceNote",
         "/document/#{pa}/insuranceGroupList/insuranceGroup/insurancePolicyNumber",
         "/document/#{pa}/insuranceGroupList/insuranceGroup/insuranceRenewalDate",
-
       ].each do |xpath|
         context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
+          let(:doctext) { get_text(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+            
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
+        end
+      end
+    end
+    
+    context 'when local value source' do
+      [
+        "/document/#{pa}/valueSourceRole",
+        "/document/#{pa}/insuranceGroupList/insuranceGroup/insurer",
+      ].each do |xpath|
+        context "#{xpath}" do
+          let(:urn_vals) { urn_values(doc, xpath) }
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
+
+          it 'values are URNs' do
+            verify_values_are_urns(urn_vals)
           end
           
           it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            verify_urn_match(urn_vals, record, xpath)
           end
         end
-      end      
+      end
     end
   end
 end
