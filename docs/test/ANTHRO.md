@@ -17,12 +17,12 @@ Config:
 
 ```txt
 # DEVELOPMENT .env.local
-export CSPACE_CONVERTER_BASE_URI=https://anthro.dev.collectionspace.org/cspace-services
-export CSPACE_CONVERTER_DB_NAME=nightly_anthro
-export CSPACE_CONVERTER_DOMAIN=anthro.collectionspace.org
-export CSPACE_CONVERTER_MODULE=Anthro
-export CSPACE_CONVERTER_USERNAME=admin@anthro.collectionspace.org
-export CSPACE_CONVERTER_PASSWORD=Administrator
+CSPACE_CONVERTER_BASE_URI=https://anthro.dev.collectionspace.org/cspace-services
+CSPACE_CONVERTER_DB_NAME=nightly_anthro
+CSPACE_CONVERTER_DOMAIN=anthro.collectionspace.org
+CSPACE_CONVERTER_MODULE=Anthro
+CSPACE_CONVERTER_USERNAME=admin@anthro.collectionspace.org
+CSPACE_CONVERTER_PASSWORD=Administrator
 ```
 
 Steps:
@@ -38,4 +38,8 @@ Steps:
 ./import.sh data/anthro/osteology_anthro_all.csv osteology1 osteology
 ./remote.sh transfer Osteology osteology1
 ./remote.sh delete Osteology osteology1
+
+./import.sh data/anthro/anthro_taxon_all.csv taxon1 taxonomy
+./remote.sh transfer Taxon taxon1
+./remote.sh delete Taxon taxon1
 ```

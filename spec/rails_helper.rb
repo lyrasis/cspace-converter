@@ -7,7 +7,9 @@ require 'rspec/rails'
 require 'selenium-webdriver'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'webmock/rspec'
 require 'spec_helper'
+require 'securerandom'
 require_relative './helpers'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -25,6 +27,8 @@ require_relative './helpers'
 # require only the support files necessary.
 #
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 Capybara.register_driver :headless_firefox do |app|
   args = %w[-headless]

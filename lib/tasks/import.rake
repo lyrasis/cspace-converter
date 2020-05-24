@@ -45,7 +45,7 @@ namespace :import do
       profile:   args[:profile],
     }
     unless File.file? config[:filename]
-      Rails.logger.error "Invalid file #{config[:filename]}"
+      Rails.logger.error "#{config[:filename]} does not exist or is not a file"
       abort
     end
     Rails.logger.debug "Batch #{config[:batch]}; Profile #{config[:profile]}"
