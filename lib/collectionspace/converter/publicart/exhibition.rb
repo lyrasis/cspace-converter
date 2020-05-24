@@ -91,9 +91,9 @@ module CollectionSpace
           }
 
           venuetransforms = {
-            'venueorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'venueplace' => {'authority' => ['placeauthorities', 'place']},
-            'venuestoragelocation' => {'authority' => ['locationauthorities', 'location']},
+            'venueorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'venueplacelocal' => {'authority' => ['placeauthorities', 'place']},
+            'venuestoragelocationlocal' => {'authority' => ['locationauthorities', 'location']},
             'venueorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
             'venueplaceshared' => {'authority' => ['placeauthorities', 'place_shared']},
             'venuestoragelocationoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},

@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="exhibitions">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-05-18T17:00:24.728Z</createdAt>
+    <createdAt>2020-05-24T21:27:44.855Z</createdAt>
     <updatedBy>admin@publicart.collectionspace.org</updatedBy>
     <createdBy>admin@publicart.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>5000</tenantId>
-    <refName>urn:cspace:publicart.collectionspace.org:exhibitions:id(2374fa2c-a1bc-4fb7-8bbb)</refName>
-    <uri>/exhibitions/2374fa2c-a1bc-4fb7-8bbb</uri>
-    <updatedAt>2020-05-18T17:00:24.728Z</updatedAt>
+    <refName>urn:cspace:publicart.collectionspace.org:exhibitions:id(bc743572-7d73-4ad4-b8be)</refName>
+    <uri>/exhibitions/bc743572-7d73-4ad4-b8be</uri>
+    <updatedAt>2020-05-24T21:27:44.855Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:exhibitions_common xmlns:ns2="http://collectionspace.org/services/exhibition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <exhibitionObjectGroupList/>
     <venueGroupList>
       <venueGroup>
-        <venue>University of California, Berkeley</venue>
+        <venue>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(UniversityofCaliforniaBerkeley885438210)'University of California, Berkeley'</venue>
         <venueOpeningDate>2000-01-01T00:00:00.000Z</venueOpeningDate>
         <venueUrl>https://collectionspace.org</venueUrl>
         <venueAttendance>123</venueAttendance>
         <venueClosingDate>2000-02-01T00:00:00.000Z</venueClosingDate>
       </venueGroup>
       <venueGroup>
-        <venue>Oakland Museum of California</venue>
+        <venue>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(OaklandMuseumofCalifornia1589178195750)'Oakland Museum of California'</venue>
         <venueOpeningDate>2000-01-02T00:00:00.000Z</venueOpeningDate>
         <venueUrl>https://lyrasis.org</venueUrl>
         <venueAttendance>456</venueAttendance>
@@ -160,7 +160,7 @@
     <exhibitionSupportGroupList>
       <exhibitionSupportGroup>
         <exhibitionSupportNote>Support Note Text 1</exhibitionSupportNote>
-        <exhibitionSupport>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Organization11589046127131)'Organization 1'</exhibitionSupport>
+        <exhibitionSupport>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Organization11589178776943)'Organization 1'</exhibitionSupport>
       </exhibitionSupportGroup>
       <exhibitionSupportGroup>
         <exhibitionSupportNote>Support Note Text 2</exhibitionSupportNote>
