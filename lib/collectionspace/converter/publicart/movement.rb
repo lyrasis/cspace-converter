@@ -6,16 +6,16 @@ module CollectionSpace
          def redefined_fields
           @redefined.concat([
             # not in publicart
-            'normalLocation',
-            'inventoryActionRequired',
-            'frequencyForInventory',
-            'inventoryDate',
-            'nextInventoryDate',
-            'inventoryContact',
-            'inventoryNote',
+            'normallocation',
+            'inventoryactionrequired',
+            'frequencyforinventory',
+            'inventorydate',
+            'nextInventorydate',
+            'inventorycontact',
+            'inventorynote',
             # overridden by publicart
-            'currentLocation',
-            'movementContact'
+            'currentlocation',
+            'movementcontact'
           ])
           super
         end
