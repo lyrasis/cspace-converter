@@ -33,79 +33,102 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
         "/document/#{p}/vCoordSourceRefId",
         "/document/#{p}/placeOwnerGroupList/placeOwnerGroup/ownershipDateGroup/dateDisplayDate",
       ].each do |xpath|
-        context "for xpath: #{xpath}" do
+        context "#{xpath}" do
           it 'is empty' do
-            expect(get_text(doc, xpath)).to be_empty
+            verify_field_is_empty(doc, xpath)
           end
         end
       end
     end
 
     context 'fields overridden by publicart' do
-      context 'when local auth/vocab' do
+      context 'authority/vocab fields' do
         [
           "/document/#{p}/addrGroupList/addrGroup/addressMunicipality",
           "/document/#{p}/addrGroupList/addrGroup/addressStateOrProvince",
           "/document/#{p}/addrGroupList/addrGroup/addressCountry",
-          "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoReferencedBy",
+          "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoReferencedBy"
         ].each do |xpath|
           context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            let(:urn_vals) { urn_values(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'values are URNs' do
+              verify_values_are_urns(urn_vals)
             end
             
             it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+              verify_urn_match(urn_vals, record, xpath)
             end
           end
         end
       end
-      context 'when shared auth/vocab' do
-        let(:attributes) { get_attributes_by_row('publicart', 'place_authority.csv', 4) }
-        let(:doc) { get_doc(publicartplace) }
-        let(:record) { get_fixture('publicart_place_row4.xml') }
-        [
-          "/document/#{p}/addrGroupList/addrGroup/addressMunicipality",
-          "/document/#{p}/addrGroupList/addrGroup/addressStateOrProvince",
-          "/document/#{p}/addrGroupList/addrGroup/addressCountry",
-          "/document/#{p}/placeGeoRefGroupList/placeGeoRefGroup/geoReferencedBy",
-        ].each do |xpath|
-          context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
-            end
-            
-            it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
-            end
-          end
-        end
-      end
+
+      
     end
   end
 
   describe 'map_publicart' do
     pa = 'places_publicart'
-    context 'authority/vocabulary fields' do
+    context 'non-authority/vocab fields' do
       [
-        "/document/#{pa}/placementTypes/placementType",
-        "/document/#{pa}/publicArtPlaceTypes/publicArtPlaceType",
         "/document/#{pa}/placementEnvironment",
-        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/owner",
         "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownerType",
         "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipNote",
+      ].each do |xpath|
+        context "#{xpath}" do
+          let(:doctext) { get_text(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+            
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
+        end
+      end
+    end
+
+    context 'structured dates' do
+      [
         "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipDateGroup/dateDisplayDate"
       ].each do |xpath|
         context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
+          let(:doctext) { get_structured_date(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
+        end
+      end
+    end
+    
+    context 'authority/vocab fields' do
+      [
+        "/document/#{pa}/placementTypes/placementType",
+        "/document/#{pa}/publicArtPlaceTypes/publicArtPlaceType",
+        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/owner"
+      ].each do |xpath|
+        context "#{xpath}" do
+          let(:urn_vals) { urn_values(doc, xpath) }
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
+
+          it 'values are URNs' do
+            verify_values_are_urns(urn_vals)
           end
           
           it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+            verify_urn_match(urn_vals, record, xpath)
           end
         end
-      end      
+      end
     end
   end
 end
