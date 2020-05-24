@@ -93,16 +93,16 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtPlace do
 
     context 'structured dates' do
       [
-        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipDateGroup/dateDisplayDate"
+        "/document/#{pa}/publicartPlaceOwnerGroupList/publicartPlaceOwnerGroup/ownershipDateGroup"
       ].each do |xpath|
         context "#{xpath}" do
           let(:doctext) { get_structured_date(doc, xpath) }
             it 'is not empty' do
-              verify_field_is_populated(doc, xpath)
+              expect(doc.xpath(xpath).size).to_not eq(0)
             end
 
             it 'matches sample payload' do
-              verify_value_match(doc, record, xpath)
+              expect(get_structured_date(doc, xpath)).to eq(get_structured_date(record, xpath))
             end
         end
       end
