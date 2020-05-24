@@ -7,16 +7,16 @@ module CollectionSpace
           @redefined.concat([
             # not in publicart
             'hazard',
-            'hazardDate',
-            'hazardNote',
-            'securityRecommendations',
-            'storageRequirements',
-            'packingRecommendations',
-            'legalReqsHeldNumber',
-            'salvagePriorityCode',
-            'salvagePriorityCodeDate',
+            'hazarddate',
+            'hazardnote',
+            'securityrecommendations',
+            'storagerequirements',
+            'packingrecommendations',
+            'legalreqsheldnumber',
+            'salvageprioritycode',
+            'salvageprioritycodedate',
             # overridden by publicart
-            'conditionChecker'
+            'conditionchecker'
           ])
           super
         end
