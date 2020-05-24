@@ -7,7 +7,10 @@ module CollectionSpace
           @redefined.concat([
             # not in publicart
             # overridden by publicart
-            'valueSource'
+            'valuesourceorganizationlocal',
+            'valuesourceorganizationshared',
+            'valuesourcepersonlocal',
+            'valuesourcepersonshared'
           ])
           super
         end
