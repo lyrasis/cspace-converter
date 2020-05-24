@@ -6,18 +6,18 @@ module CollectionSpace
         def redefined_fields
           @redefined.concat([
             # not in publicart
-            'destAnalysisApprovedDate',
-            'destAnalysisApprovalNote',
-            'sampleBy',
-            'sampleDate',
-            'sampleDescription',
-            'sampleReturned',
-            'sampleReturnedLocation',
+            'destanalysisapproveddate',
+            'destanalysisapprovalnote',
+            'sampleby',
+            'sampledate',
+            'sampledescription',
+            'samplereturned',
+            'samplereturnedlocation',
             # overridden by publicart
             'conservator',
-            'otherParty',
-            'examinationStaff',
-            'approvedBy',
+            'otherparty',
+            'examinationstaff',
+            'approvedby',
             'researcher' 
           ])
           super
