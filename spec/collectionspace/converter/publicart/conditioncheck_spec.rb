@@ -20,31 +20,37 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtConditionCheck do
         "/document/#{p}/salvagePriorityCodeGroupList/salvagePriorityCodeGroup/salvagePriorityCode",
         "/document/#{p}/salvagePriorityCodeGroupList/salvagePriorityCodeGroup/salvagePriorityCodeDate"
       ].each do |xpath|
-        context "for xpath: #{xpath}" do
+        context "#{xpath}" do
           it 'is empty' do
-            expect(get_text(doc, xpath)).to be_empty
+            verify_field_is_empty(doc, xpath)
           end
         end
       end
     end
 
     context 'fields overridden by publicart' do
-      context 'when local checker' do
+      context 'local authority/vocab fields' do
         [
           "/document/#{p}/conditionChecker"
         ].each do |xpath|
           context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            let(:urn_vals) { urn_values(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'values are URNs' do
+              verify_values_are_urns(urn_vals)
             end
             
             it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+              verify_urn_match(urn_vals, record, xpath)
             end
           end
         end
       end
-      context 'when shared checker' do
+
+      context 'shared authority/vocab fields' do
         let(:attributes) { get_attributes_by_row('publicart', 'condition_check_publicart.csv', 7) }
         let(:doc) { get_doc(publicartconditioncheck) }
         let(:record) { get_fixture('publicart_conditioncheck_row7.xml') }
@@ -52,12 +58,17 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtConditionCheck do
           "/document/#{p}/conditionChecker"
         ].each do |xpath|
           context "#{xpath}" do
-            it 'all values will be URNs' do
-              expect(urn_values(doc, xpath)).not_to include('Not a URN')
+            let(:urn_vals) { urn_values(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'values are URNs' do
+              verify_values_are_urns(urn_vals)
             end
             
             it 'URNs match sample payload' do
-              expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
+              verify_urn_match(urn_vals, record, xpath)
             end
           end
         end
@@ -67,20 +78,21 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtConditionCheck do
 
   describe 'map_publicart' do
     pa = 'conditionchecks_publicart'
-    context 'test' do
+    context 'non-authority/vocab fields' do
       [
-        "/document/#{pa}/installationRecommendations",
+        "/document/#{pa}/installationRecommendations"
       ].each do |xpath|
         context "#{xpath}" do
-          it 'all values will be URNs' do
-            expect(urn_values(doc, xpath)).not_to include('Not a URN')
-          end
-          
-          it 'URNs match sample payload' do
-            expect(urn_values(doc, xpath)).to eq(urn_values(record, xpath))
-          end
+          let(:doctext) { get_text(doc, xpath) }
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+            
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
         end
-      end      
+      end
     end
   end
 end
