@@ -31,6 +31,9 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtValuationControl 
       end
 
       context 'when shared value source' do
+        let(:attributes) { get_attributes_by_row('publicart', 'valuationcontrol_publicart_all.csv', 3) }
+        let(:doc) { get_doc(publicartvaluationcontrol) }
+        let(:record) { get_fixture('publicart_valuation_row3.xml') }
         [
           "/document/#{p}/valueSource"
         ].each do |xpath|
