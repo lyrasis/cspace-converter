@@ -75,7 +75,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtValuationControl 
       end
     end
     
-    context 'when local value source' do
+    context 'authority/vocab fields' do
       [
         "/document/#{pa}/valueSourceRole",
         "/document/#{pa}/insuranceGroupList/insuranceGroup/insurer",
