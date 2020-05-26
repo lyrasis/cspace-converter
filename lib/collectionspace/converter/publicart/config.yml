@@ -30,22 +30,33 @@ registered_profiles:
         - owner
   cataloging:
     type: Procedures
+    enabled: true
+    identify_by_column: objectnumber
+    required_headers:
+      - objectnumber
     config:
       CollectionObject:
+        mapper: PublicArtCollectionObject
         identifier: objectnumber
-        title: title
+        title: objectnumber
       Authorities:
-        Person:
-        - contentperson
-        - inscriber
-        - objectproductionperson
-        - ownersperson
-        Organization:
-        - productionorg
-        - ownersorg
-        Concept:
-        - - material
-          - material_ca
+        - name_field: contentperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inscriptioncontentinscriberperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionorganization
+          authority_type: Organization
+          authority_subtype: organization
+      Vocabularies:
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
   conditioncheck:
     type: Procedures
     config:
