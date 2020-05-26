@@ -25,7 +25,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
     "/document/#{p}/personTermGroupList/personTermGroup/termSourceDetail",
     "/document/#{p}/personTermGroupList/personTermGroup/termSourceNote",
     "/document/#{p}/personTermGroupList/personTermGroup/termStatus",
-    "/document/#{p}/personTermGroupList/personTermGroup/termFormattedDisplayName",
+#    "/document/#{p}/personTermGroupList/personTermGroup/termFormattedDisplayName",
     { xpath: "/document/#{p}/birthDateGroup/dateDisplayDate", transform: ->(text) { text.split('-')[0] } },
     { xpath: "/document/#{p}/deathDateGroup/dateDisplayDate", transform: ->(text) { text.split('-')[0] } },
     "/document/#{p}/birthPlace",

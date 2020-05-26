@@ -60,13 +60,33 @@ module CollectionSpace
 	    "termtype" => "termType",
             "termflag" => "termFlag",
             "mainbodyname" => "mainBodyName",
-            "additionstoname" => "additionsToName" 
+            "additionstoname" => "additionsToName",
+
+            "termdisplaynamenonpreferred" => "termDisplayName",
+	    "termlanguagenonpreferred" => "termLanguage",
+	    "termnamenonpreferred" => "termName",
+	    "termprefforlangnonpreferred" => "termPrefForLang",
+	    "termqualifiernonpreferred" => "termQualifier",
+	    "termsourcenonpreferred" => "termSource",
+	    "termsourceidnonpreferred" => "termSourceID",
+	    "termsourcedetailnonpreferred" => "termSourceDetail",
+	    "termsourcenotenonpreferred" => "termSourceNote",
+ 	    "termstatusnonpreferred" => "termStatus",
+	    "termtypenonpreferred" => "termType",
+            "termflagnonpreferred" => "termFlag",
+            "mainbodynamenonpreferred" => "mainBodyName",
+            "additionstonamenonpreferred" => "additionsToName"
 	  }
           orgterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
             'termsource' => {'authority' => ['citationauthorities', 'citation']},
-            'termflag' => {'vocab' => 'orgtermflag'}
+            'termflag' => {'vocab' => 'orgtermflag'},
+
+            'termlanguagenonpreferred' => {'vocab' => 'languages'},
+            'termsourcenonpreferred' => {'authority' => ['citationauthorities', 'citation']},
+            'termflagnonpreferred' => {'vocab' => 'orgtermflag'}
           }
+          
           CSXML.add_single_level_group_list(
             xml,
             attributes,

@@ -1,6 +1,11 @@
 ---
 registered_authorities:
+  - citationauthorities
+  - conceptauthorities
+  - locationauthorities
+  - orgauthorities
   - personauthorities
+  - placeauthorities
 registered_procedures:
   - CollectionObject
 registered_profiles:
@@ -43,6 +48,27 @@ registered_profiles:
       Vocabularies:
         - name_field: numbertype
           vocabulary_subtype: numbertype
+  organization:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreOrganization
+      name_field: termdisplayname
+      authority_type: Organization
+      authority_subtype: organization
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: contactname
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
   person:
     type: Authorities
     enabled: true
@@ -73,7 +99,12 @@ registered_profiles:
         - name_field: publicationspersonworldcat
           authority_type: Citation
           authority_subtype: worldcat
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
       Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
         - name_field: relationshiptype
           vocabulary_subtype: personrelationship
   hierarchies:
