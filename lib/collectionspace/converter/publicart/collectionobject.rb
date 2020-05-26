@@ -199,26 +199,26 @@ module CollectionSpace
           )
           #textualInscriptionGroupList,textualInscriptionGroup 
           textualinscriptiondata = {
-            'inscriptioncontent' => 'inscriptionContent',
-            'inscriptioncontentinscriberperson' => 'inscriptionContentInscriber',
-            'inscriptioncontentinscriberorganizationlocal' => 'inscriptionContentInscriber',
-            'inscriptioncontentinscriberorganizationshared' => 'inscriptionContentInscriber',
-            'inscriptioncontentlanguage' => 'inscriptionContentLanguage',
-            'inscriptioncontentdategroup' => 'inscriptionContentDateGroup',
-            'inscriptioncontentposition' => 'inscriptionContentPosition',
-            'inscriptioncontentscript' => 'inscriptionContentScript',
-            'inscriptioncontenttype' => 'inscriptionContentType',
-            'inscriptioncontentmethod' => 'inscriptionContentMethod',
-            'inscriptioncontentinterpretation' => 'inscriptionContentInterpretation',
-            'inscriptioncontenttranslation' => 'inscriptionContentTranslation',
-            'inscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
+            'publicartinscriptioncontent' => 'inscriptionContent',
+            'publicartinscriptioncontentinscriberperson' => 'inscriptionContentInscriber',
+            'publicartinscriptioncontentinscriberorganizationlocal' => 'inscriptionContentInscriber',
+            'publicartinscriptioncontentinscriberorganizationshared' => 'inscriptionContentInscriber',
+            'publicartinscriptioncontentlanguage' => 'inscriptionContentLanguage',
+            'publicartinscriptioncontentdategroup' => 'inscriptionContentDateGroup',
+            'publicartinscriptioncontentposition' => 'inscriptionContentPosition',
+            'publicartinscriptioncontentscript' => 'inscriptionContentScript',
+            'publicartinscriptioncontenttype' => 'inscriptionContentType',
+            'publicartinscriptioncontentmethod' => 'inscriptionContentMethod',
+            'publicartinscriptioncontentinterpretation' => 'inscriptionContentInterpretation',
+            'publicartinscriptioncontenttranslation' => 'inscriptionContentTranslation',
+            'publicartinscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
           }
           textualinscriptiontransforms = {
-            'inscriptioncontentinscriberperson' => {'authority' => ['personauthorities', 'person']},
-            'inscriptioncontentinscriberorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
-            'inscriptioncontentinscriberorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
-            'inscriptioncontentlanguage' => {'vocab' => 'languages'},
-            'inscriptioncontentdategroup' => {'special' => 'structured_date'}
+            'publicartinscriptioncontentinscriberperson' => {'authority' => ['personauthorities', 'person']},
+            'publicartinscriptioncontentinscriberorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'publicartinscriptioncontentinscriberorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
+            'publicartinscriptioncontentlanguage' => {'vocab' => 'languages'},
+            'publicartinscriptioncontentdategroup' => {'special' => 'structured_date'}
           }
           CSXML.add_single_level_group_list(
             xml,
