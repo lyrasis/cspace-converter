@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-05-26T19:01:47.651Z</createdAt>
+    <createdAt>2020-05-26T20:02:18.414Z</createdAt>
     <updatedBy>admin@publicart.collectionspace.org</updatedBy>
     <createdBy>admin@publicart.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>5000</tenantId>
-    <refName>urn:cspace:publicart.collectionspace.org:collectionobjects:id(1bec0d7a-81e0-498f-9d89)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/1bec0d7a-81e0-498f-9d89</uri>
-    <updatedAt>2020-05-26T19:01:47.651Z</updatedAt>
+    <refName>urn:cspace:publicart.collectionspace.org:collectionobjects:id(548e46a8-ffbe-4066-b307)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/548e46a8-ffbe-4066-b307</uri>
+    <updatedAt>2020-05-26T20:02:18.414Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -293,13 +293,31 @@
     <technicalAttributeGroupList/>
     <nonTextualInscriptionGroupList/>
     <assocEventPersons/>
-    <objectProductionPersonGroupList/>
+    <objectProductionPersonGroupList>
+      <objectProductionPersonGroup>
+        <objectProductionPerson>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</objectProductionPerson>
+        <objectProductionPersonRole>artist</objectProductionPersonRole>
+      </objectProductionPersonGroup>
+      <objectProductionPersonGroup>
+        <objectProductionPerson>urn:cspace:publicart.collectionspace.org:personauthorities:name(person_shared):item:name(RichardJAnobile3255915175)'Richard J. Anobile'</objectProductionPerson>
+        <objectProductionPersonRole>author</objectProductionPersonRole>
+      </objectProductionPersonGroup>
+    </objectProductionPersonGroupList>
     <contentPersons/>
     <fieldCollectionSources/>
     <contentEventNameGroupList/>
     <ownersReferences/>
     <viewersReferences/>
-    <objectProductionOrganizationGroupList/>
+    <objectProductionOrganizationGroupList>
+      <objectProductionOrganizationGroup>
+        <objectProductionOrganizationRole>distributor</objectProductionOrganizationRole>
+        <objectProductionOrganization>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(AdmiralCorporation3241207369)'Admiral Corporation'</objectProductionOrganization>
+      </objectProductionOrganizationGroup>
+      <objectProductionOrganizationGroup>
+        <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
+        <objectProductionOrganization>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization_shared):item:name(BerkleyPublisingGroup131699749)'Berkley Publising Group'</objectProductionOrganization>
+      </objectProductionOrganizationGroup>
+    </objectProductionOrganizationGroupList>
     <publishToList>
       <publishTo>urn:cspace:publicart.collectionspace.org:vocabularies:name(publishto):item:name(paa)'paa'</publishTo>
       <publishTo>urn:cspace:publicart.collectionspace.org:vocabularies:name(publishto):item:name(none)'none'</publishTo>
