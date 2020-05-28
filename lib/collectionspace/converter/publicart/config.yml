@@ -129,19 +129,6 @@ registered_profiles:
       Authorities:
         Organization:
         - currentowner
-  person:
-    type: Authorities
-    enabled: true
-    identify_by_column: termdisplayname
-    required_headers:
-      - termdisplayname
-    config:
-      mapper: PublicArtPerson
-      name_field: termdisplayname
-      authority_type: Person
-      authority_subtype: person
-      Authorities: []
-      Vocabularies: []
   organization:
     type: Authorities
     enabled: true
@@ -153,7 +140,34 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Organization
       authority_subtype: organization
-      Authorities: []
+      Authorities:
+        - name_field: currentplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: foundingplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: foundingplaceshared
+          authority_type: Place
+          authority_subtype: place  
+      Vocabularies:
+        - name_field: placementtype
+          vocabulary_subtype: placementtypes
+  person:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: PublicArtPerson
+      name_field: termdisplayname
+      authority_type: Person
+      authority_subtype: person
+      Authorities:
+        - name_field: organization
+          authority_type: Organization
+          authority_subtype: organization
       Vocabularies: []
   valuationcontrol:
     type: Procedures
