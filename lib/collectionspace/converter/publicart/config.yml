@@ -153,6 +153,53 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Place
       authority_subtype: place
+      Authorities:
+        - name_field: publicartownerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartownerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: addresscountrylocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: addresscountryshared
+          authority_type: Place
+          authority_subtype: place
+        - name_field: addressmunicipalitylocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: addressmunicipalityshared
+          authority_type: Place
+          authority_subtype: place
+        - name_field: addressstateorprovincelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: addressstateorprovinceshared
+          authority_type: Place
+          authority_subtype: place
+        - name_field: addresscounty
+          authority_type: Place
+          authority_subtype: place
+        - name_field: georeferencedbyorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: georeferencedbyorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: georeferencedbypersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: georeferencedbypersonshared
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: publicartplacetype
+          vocabulary_subtype: placetypes
+        - name_field: placementtype
+          vocabulary_subtype: placementtypes
+        - name_field: addresstype
+          vocabulary_subtype: addresstype
   organization:
     type: Authorities
     enabled: true
