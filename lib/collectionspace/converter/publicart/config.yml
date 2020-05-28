@@ -67,24 +67,57 @@ registered_profiles:
         identifier: conservationnumber
         title: conservationnumber
       Authorities:
-        - name_field: conservatorperson
+        - name_field: conservatorpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: conservatororganization
+        - name_field: conservatorpersonshared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: conservatororganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: otherpartyperson
-          authority_type: Person
-          authority_subtype: person
-        - name_field: otherpartyorganization
+        - name_field: conservatororganizationshared
           authority_type: Organization
           authority_subtype: organization
-        - name_field: approvedby
+        - name_field: otherpartypersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: researcher
+        - name_field: otherpartypersonshared
           authority_type: Person
           authority_subtype: person
+        - name_field: otherpartyorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: otherpartyorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: approvedbylocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: approvedbyshared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: researcherlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: researchershared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: examinationstafflocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: examinationstaffshared
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: otherpartyrole
+          vocabulary_subtype: otherpartyrole
+        - name_field: examinationphase
+          vocabulary_subtype: examinationphase
+        - name_field: proposedtreatmentestcurrency
+          vocabulary_subtype: currency
+        - name_field: treatmentcostcurrency
+          vocabulary_subtype: currency
   exhibition:
     type: Procedures
     config:
