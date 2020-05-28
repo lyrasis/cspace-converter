@@ -30,7 +30,6 @@ module CollectionSpace
             ) do
               xml.parent.namespace = nil
               AnthroCollectionObject.map_anthro(xml, attributes)
-              AnthroCollectionObject.map_locality(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -39,7 +38,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_annotation(xml, attributes)
+              AnthroCollectionObject.map_annotation(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -87,11 +86,14 @@ module CollectionSpace
           CulturalCare.map_cultural_care(xml, attributes.merge(redefined))
         end
 
-        def self.map_locality(xml, attributes, redefined)
-          Locality.map_locality(xml, attributes.merge(redefined))
-        end
+        # def self.map_locality(xml, attributes, redefined)
+        #   Locality.map_locality(xml, attributes.merge(redefined))
+        # end
                 
         def self.map_anthro(xml, attributes)
+          # locality extension called here because it gets nested in the same namespace with
+          #   the rest of the anthro fields
+          Locality.map_locality(xml, attributes)
           
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # commingledRemainsGroupList
@@ -142,29 +144,8 @@ module CollectionSpace
           )
         end
 
-        def self.map_annotation(xml, attributes)
-          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-          # annotationGroupList
-          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-          annotation_data = {
-            'annotationnote' => 'annotationNote',
-            'annotationtype' => 'annotationType',
-            'annotationdate' => 'annotationDate',
-            'annotationauthor' => 'annotationAuthor'
-          }
-
-          annotation_transforms = {
-            'annotationauthor' => {'authority' => ['personauthorities', 'person']},
-            'annotationtype' => {'vocab' => 'annotationtype'},
-            'annotationdate' => {'special' => 'unstructured_date_string'}
-          }
-
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'annotation',
-            annotation_data,
-            annotation_transforms
-          )
+        def self.map_annotation(xml, attributes, redefined)
+          Annotation.map_annotation(xml, attributes.merge(redefined))
         end
         
         def self.map_nagpra(xml, attributes)

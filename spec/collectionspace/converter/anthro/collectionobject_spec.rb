@@ -10,9 +10,9 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
   end
 
   let(:common) { 'collectionobjects_common' }
+  let(:anthro) { 'collectionobjects_anthro' }
   
-  describe '#map' do
-    let(:anthro) { 'collectionobjects_anthro' }
+  describe '#map_anthro' do
 
     context 'sample data row 2' do
       let(:attributes) { get_attributes('anthro', 'collectionobject_partial.csv') }
@@ -82,28 +82,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
     end #  context 'sample data row 2'
   end # describe #map
 
-  describe '#map_annotation' do
-    let(:annotation) { 'collectionobjects_annotation' }
 
-    context 'sample data row 2' do
-      let(:attributes) { get_attributes('anthro', 'collectionobject_partial.csv') }
-      let(:annotationcollectionobject) { AnthroCollectionObject.new(attributes) }
-      let(:doc) { get_doc(annotationcollectionobject) }
-      let(:record) { get_fixture('anthro_collectionobject_2.xml') }
-      let(:xpaths) {[
-        "/document/#{annotation}/annotationGroupList/annotationGroup/annotationNote",
-        { xpath: "/document/#{annotation}/annotationGroupList/annotationGroup[1]/annotationType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{annotation}/annotationGroupList/annotationGroup[2]/annotationType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        "/document/#{annotation}/annotationGroupList/annotationGroup/annotationDate",
-        { xpath: "/document/#{annotation}/annotationGroupList/annotationGroup[1]/annotationAuthor", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-        { xpath: "/document/#{annotation}/annotationGroupList/annotationGroup[2]/annotationAuthor", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
-      ]}
-
-      it "Maps attributes correctly" do
-        test_converter(doc, record, xpaths)
-      end
-    end #  context 'sample data row 2'
-  end # describe #map
 
     describe '#map_nagpra' do
       let(:nagpra) { 'collectionobjects_nagpra' }
@@ -142,28 +121,5 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         end
       end
     end # describe #map
-    
-    describe '#map_cultural_care' do      
-      context 'sample data row 8 - culturalcare extension only' do
-        let(:attributes) { get_attributes_by_row('anthro', 'collectionobject_partial.csv', 8) }
-        let(:anthrocollectionobject) { AnthroCollectionObject.new(attributes) }
-        let(:doc) { get_doc(anthrocollectionobject) }
-        let(:record) { get_fixture('anthro_collectionobject_row8.xml') }
-        let(:xpaths) {[
-          "/document/*/objectNumber",
-          "/document/*/culturalCareNotes/culturalCareNote",
-          "/document/*/accessLimitationsGroupList/accessLimitationsGroup/limitationDetails",
-          { xpath: "/document/*/accessLimitationsGroupList/accessLimitationsGroup/limitationLevel", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-          { xpath: "/document/*/accessLimitationsGroupList/accessLimitationsGroup/limitationType", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-          "/document/*/accessLimitationsGroupList/accessLimitationsGroup/requestDate",
-          { xpath: "/document/*/accessLimitationsGroupList/accessLimitationsGroup/requester", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-          { xpath: "/document/*/accessLimitationsGroupList/accessLimitationsGroup/requestOnBehalfOf", transform: ->(text) {CSURN.parse(text)[:label].downcase} }
-        ]}
 
-        it "Maps attributes correctly" do
-          test_converter(doc, record, xpaths)
-        end
-      end
-    end # describe #map
-    
 end

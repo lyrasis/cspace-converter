@@ -20,7 +20,8 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              OHCCollectionObject.map_anthro(xml, attributes)
+              OHCCollectionObject.map_anthro(xml, attributes, redefined_fields)
+#              OHCCollectionObject.map_locality(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -29,7 +30,7 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              OHCCollectionObject.map_annotation(xml, attributes)
+              OHCCollectionObject.map_annotation(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -113,18 +114,19 @@ module CollectionSpace
           )
         end
 
-        # EXTENTIONS
-        def self.map_annotation(xml, attributes)
-          AnthroCollectionObject.map_annotation(xml, attributes)
+        # EXTENSIONS
+        def self.map_annotation(xml, attributes, redefined)
+          Annotation.map_annotation(xml, attributes.merge(redefined))
         end
 
-        def self.map_anthro(xml, attributes)
-          AnthroCollectionObject.map_anthro(xml, attributes)
+        def self.map_anthro(xml, attributes, redefined)
+          AnthroCollectionObject.map_anthro(xml, attributes.merge(redefined))
         end
 
         def self.map_nagpra(xml, attributes)
           AnthroCollectionObject.map_nagpra(xml, attributes)
         end
+
 
         def self.map_ohc(xml, attributes)
           pairs = {
