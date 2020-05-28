@@ -167,9 +167,21 @@ registered_profiles:
         identifier: valuationcontrolrefnumber
         title: valuationcontrolrefnumber
       Authorities:
-        - name_field: valuesourceperson
+        - name_field: valuesourcepersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: valuesourceorganization
+        - name_field: valuesourcepersonshared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: valuesourceorganizationlocal
           authority_type: Organization
           authority_subtype: organization
+        - name_field: valuesourceorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: insurer
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: valuesourcerole
+          vocabulary_subtype: valuationsourcerole
