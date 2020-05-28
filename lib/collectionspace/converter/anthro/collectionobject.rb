@@ -30,6 +30,7 @@ module CollectionSpace
             ) do
               xml.parent.namespace = nil
               AnthroCollectionObject.map_anthro(xml, attributes)
+              AnthroCollectionObject.map_locality(xml, attributes, redefined_fields)
             end
 
             xml.send(
@@ -85,29 +86,13 @@ module CollectionSpace
         def self.map_cultural_care(xml, attributes, redefined)
           CulturalCare.map_cultural_care(xml, attributes.merge(redefined))
         end
-        
-          def self.map_anthro(xml, attributes)
-          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-          # localityGroupList
-          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
-          locality_data = {
-            'fieldlocplace' => 'fieldLocPlace',
-            'fieldloccounty' => 'fieldLocCounty',
-            'fieldlocstate' => 'fieldLocState',
-            'localitynote' => 'localityNote'
-          }
 
-          locality_transforms = {
-            'fieldlocplace' => { 'authority' => ['placeauthorities', 'place'] }
-          }
-
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'locality',
-            locality_data,
-            locality_transforms
-          )
-
+        def self.map_locality(xml, attributes, redefined)
+          Locality.map_locality(xml, attributes.merge(redefined))
+        end
+                
+        def self.map_anthro(xml, attributes)
+          
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
           # commingledRemainsGroupList
           # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -204,7 +189,7 @@ module CollectionSpace
 
           CSXML::Helpers.add_date_group(
             xml, 'nagpraReportFiledDate', CSDTP.parse(attributes['nagprareportfileddate']), ''
-            )
+          )
 
         end
       end
