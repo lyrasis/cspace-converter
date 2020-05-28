@@ -99,9 +99,21 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
         "/document/*/personTermGroupList/personTermGroup/termDisplayName"
       ]}
 
-      it 'Maps required field(s) correctly without falling over' do
-        test_converter(doc, record, xpath_required)
-      end
+          context 'regular fields' do
+        [
+          "/document/#{p}/personTermGroupList/personTermGroup/termDisplayName",
+        ].each do |xpath|
+          context "#{xpath}" do
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
+          end
+        end
+          end
     end
   end
 end
