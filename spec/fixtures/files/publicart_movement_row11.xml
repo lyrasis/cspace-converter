@@ -14,6 +14,7 @@
     <inventoryContactList/>
     <movementMethods/>
     <currentLocation>urn:cspace:publicart.collectionspace.org:locationauthorities:name(location):item:name(SampleLocationText91588831925061)'Sample Location Text 9'</currentLocation>
+    <movementContact>urn:cspace:publicart.collectionspace.org:personauthorities:name(person_shared):item:name(SamplePerson11589796879672)'Sample Person 1'</movementContact>
   </ns2:movements_common>
   <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
     <account>
