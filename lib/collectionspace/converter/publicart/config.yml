@@ -40,23 +40,87 @@ registered_profiles:
         identifier: objectnumber
         title: objectnumber
       Authorities:
-        - name_field: contentperson
+        - name_field: contentpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: inscriptioncontentinscriberperson
+        - name_field: contentpersonshared
           authority_type: Person
           authority_subtype: person
-        - name_field: objectproductionperson
+        - name_field: publicartinscriptioncontentinscriberperson
           authority_type: Person
           authority_subtype: person
-        - name_field: objectproductionorganization
+        - name_field: publicartinscriptioncontentinscriberorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartinscriptioncontentinscriberorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: objectproductionpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionpersonshared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: objectproductionorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: computedcurrentlocation
+          authority_type: Location
+          authority_subtype: location
+        - name_field: contentconcept
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: contentorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: contentorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: ownerpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerpersonshared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: ownerorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: objectname
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: material
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: publicartcollection
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartproductionpersonpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: publicartproductionpersonpersonshared
+          authority_type: Person
+          authority_subtype: person
+        - name_field: publicartproductionpersonorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartproductionpersonorganizationshared
           authority_type: Organization
           authority_subtype: organization
       Vocabularies:
-        - name_field: titlelanguage
+        - name_field: responsibledepartment
+          vocabulary_subtype: program
+        - name_field: publicartinscriptioncontentlanguage
           vocabulary_subtype: languages
-        - name_field: titletranslationlanguage
-          vocabulary_subtype: languages
+        - name_field: publicartproductiondatetype
+          vocabulary_subtype: proddatetype
+        - name_field: publicartproductionpersonrole
+          vocabulary_subtype: prodpersonrole
   conditioncheck:
     type: Procedures
     config:
