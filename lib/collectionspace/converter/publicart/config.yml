@@ -123,12 +123,30 @@ registered_profiles:
         identifier: movementreferencenumber
         title: movementreferencenumber
       Authorities:
-        - name_field: movementcontact
+        - name_field: movementcontactlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: inventorycontact
+        - name_field: movementcontactshared
           authority_type: Person
           authority_subtype: person
+        - name_field: currentlocationstoragelocal
+          authority_type: Location
+          authority_subtype: location
+        - name_field: currentlocationorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: currentlocationplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: currentlocationstorageoffsite
+          authority_type: Location
+          authority_subtype: location
+        - name_field: currentlocationorganizationshared
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: currentlocationplaceshared
+          authority_type: Place
+          authority_subtype: place
   objectexit:
     type: Procedures
     config:
