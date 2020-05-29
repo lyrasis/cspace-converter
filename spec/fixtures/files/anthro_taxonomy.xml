@@ -1,56 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="taxon">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-04-16T16:40:02.361Z</createdAt>
+    <updatedBy>admin@anthro.collectionspace.org</updatedBy>
+    <createdBy>admin@anthro.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1500</tenantId>
+    <refName>urn:cspace:anthro.collectionspace.org:taxonomyauthority:name(taxon):item:name(Taxon11587055202363)'Taxon 1'</refName>
+    <uri>/taxonomyauthority/90bea8f7-5ee9-4c51-af0a/items/0be94fea-657c-40c4-9d9f</uri>
+    <updatedAt>2020-04-16T16:54:50.549Z</updatedAt>
+  </ns2:collectionspace_core>
   <ns2:taxon_common xmlns:ns2="http://collectionspace.org/services/taxonomy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <taxonNote>Taxon note text</taxonNote>
+    <rev>13</rev>
+    <sas>false</sas>
+    <taxonYear>2000</taxonYear>
     <taxonTermGroupList>
       <taxonTermGroup>
-        <termSourceID>18063</termSourceID>
-        <termSourceDetail/>
-        <termSourceNote>Extinct Species/Fossil</termSourceNote>
-        <termFormattedDisplayName/>
-        <termType>used for term</termType>
-        <taxonomicStatus/>
-        <termSource>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(ITIS1575566493696)'ITIS'</termSource>
-        <termStatus>accepted</termStatus>
-        <termLanguage/>
+        <termSourceID>Term source ID</termSourceID>
+        <termSourceDetail>Term source detail</termSourceDetail>
+        <termSourceNote>Term source note</termSourceNote>
+        <termFormattedDisplayName>Taxon One</termFormattedDisplayName>
+        <termType>descriptor</termType>
+        <taxonomicStatus>valid</taxonomicStatus>
+        <termSource>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(Termsourcetext1587055245438)'Term source text'</termSource>
+        <termStatus>provisional</termStatus>
+        <termLanguage>urn:cspace:anthro.collectionspace.org:vocabularies:name(languages):item:name(grc)'Ancient Greek'</termLanguage>
         <termName/>
-        <termQualifier/>
+        <termQualifier>Term qualifier text</termQualifier>
         <termPrefForLang>true</termPrefForLang>
-        <termDisplayName>Indeterminate Magnoliopsida</termDisplayName>
+        <termDisplayName>Taxon 1</termDisplayName>
         <termFlag>urn:cspace:anthro.collectionspace.org:vocabularies:name(taxontermflag):item:name(valid)'valid'</termFlag>
-      </taxonTermGroup>
-      <taxonTermGroup>
-        <termSourceID/>
-        <termSourceDetail/>
-        <termSourceNote/>
-        <termFormattedDisplayName/>
-        <termType/>
-        <taxonomicStatus/>
-        <termSource/>
-        <termStatus>rejected</termStatus>
-        <termLanguage/>
-        <termName/>
-        <termQualifier/>
-        <termPrefForLang>false</termPrefForLang>
-        <termDisplayName>Angiospermae</termDisplayName>
-        <termFlag/>
       </taxonTermGroup>
     </taxonTermGroupList>
     <commonNameGroupList>
       <commonNameGroup>
-        <commonName>Flowering plant</commonName>
-        <commonNameLanguage/>
-        <commonNameSourceDetail/>
-        <commonNameSource/>
+        <commonName>Taxon common name 1</commonName>
+        <commonNameLanguage>urn:cspace:anthro.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic'</commonNameLanguage>
+        <commonNameSourceDetail>Common name source detail 1</commonNameSourceDetail>
+        <commonNameSource>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(Commonnamesource11587055485791)'Common name source 1'</commonNameSource>
+      </commonNameGroup>
+      <commonNameGroup>
+        <commonName>Taxon common name 2</commonName>
+        <commonNameLanguage>urn:cspace:anthro.collectionspace.org:vocabularies:name(languages):item:name(hye)'Armenian'</commonNameLanguage>
+        <commonNameSourceDetail>Common name source detail 2</commonNameSourceDetail>
+        <commonNameSource>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(Commonnamesource21587055478108)'Common name source 2'</commonNameSource>
       </commonNameGroup>
     </commonNameGroupList>
-    <csid>3eb2143b-3a41-4cf6-bf54</csid>
-    <taxonCitationList/>
-    <taxonIsNamedHybrid>false</taxonIsNamedHybrid>
+    <csid>0be94fea-657c-40c4-9d9f</csid>
+    <taxonRank>domain</taxonRank>
+    <taxonCitationList>
+      <taxonCitation>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(CitationOne1587055404219)'Citation One'</taxonCitation>
+      <taxonCitation>urn:cspace:anthro.collectionspace.org:citationauthorities:name(citation):item:name(CitationTwo1587055409514)'Citation Two'</taxonCitation>
+    </taxonCitationList>
+    <taxonIsNamedHybrid>true</taxonIsNamedHybrid>
     <taxonRecordTypes/>
-    <shortIdentifier>IndeterminateMagnoliopsida1575566509572</shortIdentifier>
+    <taxonCurrency>current</taxonCurrency>
+    <shortIdentifier>Taxon11587055202363</shortIdentifier>
     <proposed>true</proposed>
-    <taxonAuthorGroupList/>
-    <refName>urn:cspace:anthro.collectionspace.org:taxonomyauthority:name(taxon):item:name(IndeterminateMagnoliopsida1575566509572)'Indeterminate Magnoliopsida'</refName>
-    <inAuthority>3848bda2-e628-44d2-9254</inAuthority>
+    <taxonAuthorGroupList>
+      <taxonAuthorGroup>
+        <taxonAuthorType>ascribed</taxonAuthorType>
+        <taxonAuthor>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(PersonOne1587055332259)'Person One'</taxonAuthor>
+      </taxonAuthorGroup>
+      <taxonAuthorGroup>
+        <taxonAuthorType>parenthetical</taxonAuthorType>
+        <taxonAuthor>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(PersonTwo1587055349665)'Person Two'</taxonAuthor>
+      </taxonAuthorGroup>
+    </taxonAuthorGroupList>
+    <refName>urn:cspace:anthro.collectionspace.org:taxonomyauthority:name(taxon):item:name(Taxon11587055202363)'Taxon 1'</refName>
+    <inAuthority>90bea8f7-5ee9-4c51-af0a</inAuthority>
   </ns2:taxon_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>aacb9c83-f3c0-4fc4-a215-b3f0ab239940</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@anthro.collectionspace.org</userId>
+      <tenantId>1500</tenantId>
+    </account>
+  </ns2:account_permission>
 </document>
