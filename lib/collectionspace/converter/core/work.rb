@@ -25,23 +25,44 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', config[:identifier] 
           #workTermGroupList, workTermGroup
           workterm_data = {
-	    "termdisplayname" => "termDisplayName",
-	    "termlanguage" => "termLanguage",
-	    "termname" => "termName",
-	    "termprefforlang" => "termPrefForLang",
-	    "termqualifier" => "termQualifier",
-	    "termsource" => "termSource",
-	    "termsourceid" => "termSourceID",
-	    "termsourcedetail" => "termSourceDetail",
-	    "termsourcenote" => "termSourceNote",
- 	    "termstatus" => "termStatus",
-	    "termtype" => "termType",
-            "termflag" => "termFlag",
-	  }
+	    'termdisplayname' => 'termDisplayName',
+	    'termlanguage' => 'termLanguage',
+	    'termname' => 'termName',
+	    'termprefforlang' => 'termPrefForLang',
+	    'termqualifier' => 'termQualifier',
+	    'termsourcelocal' => 'termSource',
+	    'termsourceworldcat' => 'termSource',
+	    'termsourceid' => 'termSourceID',
+	    'termsourcedetail' => 'termSourceDetail',
+	    'termsourcenote' => 'termSourceNote',
+ 	    'termstatus' => 'termStatus',
+	    'termtype' => 'termType',
+            'termflag' => 'termFlag',
+
+	    'termdisplaynamenonpreferred' => 'termDisplayName',
+	    'termlanguagenonpreferred' => 'termLanguage',
+	    'termnamenonpreferred' => 'termName',
+	    'termprefforlangnonpreferred' => 'termPrefForLang',
+	    'termqualifiernonpreferred' => 'termQualifier',
+	    'termsourcelocalnonpreferred' => 'termSource',
+	    'termsourceworldcatnonpreferred' => 'termSource',
+	    'termsourceidnonpreferred' => 'termSourceID',
+	    'termsourcedetailnonpreferred' => 'termSourceDetail',
+	    'termsourcenotenonpreferred' => 'termSourceNote',
+ 	    'termstatusnonpreferred' => 'termStatus',
+	    'termtypenonpreferred' => 'termType',
+            'termflagnonpreferred' => 'termFlag'
+          }
           workterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'authority' => ['citationauthorities', 'citation']},
-            'termflag' => {'vocab' => 'worktermflag'}
+            'termsourcelocal' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourceworldcat' => {'authority' => ['citationauthorities', 'worldcat']},
+            'termflag' => {'vocab' => 'worktermflag'},
+
+            'termlanguagenonpreferred' => {'vocab' => 'languages'},
+            'termsourcelocalnonpreferred' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourceworldcatnonpreferred' => {'authority' => ['citationauthorities', 'worldcat']},
+            'termflagnonpreferred' => {'vocab' => 'worktermflag'}
           }
           CSXML.add_single_level_group_list(
             xml,
