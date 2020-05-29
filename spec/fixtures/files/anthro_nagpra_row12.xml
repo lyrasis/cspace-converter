@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="claims">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-04-20T10:49:00.738Z</createdAt>
+    <updatedBy>admin@anthro.collectionspace.org</updatedBy>
+    <createdBy>admin@anthro.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1500</tenantId>
+    <refName>urn:cspace:anthro.collectionspace.org:claims:id(1e8e184d-3d5f-4b96-bec8)</refName>
+    <uri>/claims/1e8e184d-3d5f-4b96-bec8</uri>
+    <updatedAt>2020-04-20T10:49:00.738Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:claims_nagpra xmlns:ns2="http://collectionspace.org/services/claim/domain/nagpra" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <nagpraClaimSentToNatlGroupList/>
+    <nagpraClaimTransferGroupList/>
+    <nagpraClaimNoticeGroupList/>
+    <nagpraClaimSiteGroupList/>
+    <nagpraClaimNatlApprovalGroupList/>
+    <nagpraClaimAltNameGroupList/>
+    <nagpraClaimSentToLocalGroupList/>
+    <nagpraClaimTypes/>
+    <nagpraClaimNatlRespGroupList/>
+    <nagpraClaimGroupGroupList/>
+    <nagpraClaimNotes/>
+    <nagpraClaimInitialResponseGroupList/>
+    <nagpraClaimPeriodGroupList/>
+    <nagpraClaimLocalRecGroupList/>
+  </ns2:claims_nagpra>
+  <ns2:claims_common xmlns:ns2="http://collectionspace.org/services/claim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <claimReceivedGroupList/>
+    <claimantGroupList/>
+    <claimNumber>CL2020.1.11</claimNumber>
+  </ns2:claims_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>aacb9c83-f3c0-4fc4-a215-b3f0ab239940</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@anthro.collectionspace.org</userId>
+      <tenantId>1500</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

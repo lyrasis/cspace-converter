@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="claims">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-04-17T15:14:58.119Z</createdAt>
+    <updatedBy>admin@anthro.collectionspace.org</updatedBy>
+    <createdBy>admin@anthro.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>1500</tenantId>
+    <refName>urn:cspace:anthro.collectionspace.org:claims:id(e8bc5d85-9760-441e-8df5)</refName>
+    <uri>/claims/e8bc5d85-9760-441e-8df5</uri>
+    <updatedAt>2020-04-17T15:32:28.235Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:claims_nagpra xmlns:ns2="http://collectionspace.org/services/claim/domain/nagpra" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <objectsPhotographed>false</objectsPhotographed>
+    <nagpraClaimSentToNatlGroupList>
+      <nagpraClaimSentToNatlGroup>
+        <nagpraClaimSentToNatlNote>Sent to National Note 1</nagpraClaimSentToNatlNote>
+        <nagpraClaimSentToNatlDate>2000-04-24T00:00:00.000Z</nagpraClaimSentToNatlDate>
+      </nagpraClaimSentToNatlGroup>
+      <nagpraClaimSentToNatlGroup>
+        <nagpraClaimSentToNatlNote>Sent to National Note 2</nagpraClaimSentToNatlNote>
+        <nagpraClaimSentToNatlDate>2000-04-25T00:00:00.000Z</nagpraClaimSentToNatlDate>
+      </nagpraClaimSentToNatlGroup>
+    </nagpraClaimSentToNatlGroupList>
+    <tribeContactedForPackingPreferences>false</tribeContactedForPackingPreferences>
+    <objectsLocatedAndCountedNote>Objects located and counted Note.</objectsLocatedAndCountedNote>
+    <dateArrangedForTransferNote>Date arranged  Note.</dateArrangedForTransferNote>
+    <objectsMarkedAsDeaccessionedNote>Objects marked as deaccessioned Note.</objectsMarkedAsDeaccessionedNote>
+    <workingTeamNotifiedNote>Institutional NAGPRA team Note.</workingTeamNotifiedNote>
+    <accessionFileResearchCompleted>true</accessionFileResearchCompleted>
+    <registrationDocumentsDrafted>true</registrationDocumentsDrafted>
+    <objectsConsolidated>true</objectsConsolidated>
+    <workingTeamNotified>true</workingTeamNotified>
+    <nagpraClaimTransferGroupList>
+      <nagpraClaimTransferGroup>
+        <nagpraClaimTransferDate>2000-08-02T00:00:00.000Z</nagpraClaimTransferDate>
+        <nagpraClaimTransferNote>Transfer Note 1</nagpraClaimTransferNote>
+      </nagpraClaimTransferGroup>
+      <nagpraClaimTransferGroup>
+        <nagpraClaimTransferDate>2000-08-04T00:00:00.000Z</nagpraClaimTransferDate>
+        <nagpraClaimTransferNote>Transfer Note 2</nagpraClaimTransferNote>
+      </nagpraClaimTransferGroup>
+    </nagpraClaimTransferGroupList>
+    <nagpraClaimNoticeGroupList>
+      <nagpraClaimNoticeGroup>
+        <nagpraClaimNoticeNote>National Notice Note 1</nagpraClaimNoticeNote>
+        <nagpraClaimNoticeDateType>begin</nagpraClaimNoticeDateType>
+        <nagpraClaimNoticeDate>2000-07-11T00:00:00.000Z</nagpraClaimNoticeDate>
+      </nagpraClaimNoticeGroup>
+      <nagpraClaimNoticeGroup>
+        <nagpraClaimNoticeNote>National Notice Note 2</nagpraClaimNoticeNote>
+        <nagpraClaimNoticeDateType>end</nagpraClaimNoticeDateType>
+        <nagpraClaimNoticeDate>2000-07-19T00:00:00.000Z</nagpraClaimNoticeDate>
+      </nagpraClaimNoticeGroup>
+    </nagpraClaimNoticeGroupList>
+    <dateArrangedForTransfer>true</dateArrangedForTransfer>
+    <nagpraClaimSiteGroupList>
+      <nagpraClaimSiteGroup>
+        <nagpraClaimSiteName>urn:cspace:anthro.collectionspace.org:placeauthorities:name(place):item:name(Place11587136652352)'Place 1'</nagpraClaimSiteName>
+        <nagpraClaimSiteNote>Place Note 1</nagpraClaimSiteNote>
+      </nagpraClaimSiteGroup>
+      <nagpraClaimSiteGroup>
+        <nagpraClaimSiteName>urn:cspace:anthro.collectionspace.org:placeauthorities:name(place):item:name(Place21587136664681)'Place 2'</nagpraClaimSiteName>
+        <nagpraClaimSiteNote>Place Note 2</nagpraClaimSiteNote>
+      </nagpraClaimSiteGroup>
+    </nagpraClaimSiteGroupList>
+    <surroundingTribesContacted>false</surroundingTribesContacted>
+    <documentsArchivedNote>Claim documents archived Note</documentsArchivedNote>
+    <nagpraClaimNatlApprovalGroupList>
+      <nagpraClaimNatlApprovalGroup>
+        <nagpraClaimNatlApprovalDate>2000-05-05T00:00:00.000Z</nagpraClaimNatlApprovalDate>
+        <nagpraClaimNatlApprovalNote>National Publication Note 1</nagpraClaimNatlApprovalNote>
+      </nagpraClaimNatlApprovalGroup>
+      <nagpraClaimNatlApprovalGroup>
+        <nagpraClaimNatlApprovalDate>2000-05-09T00:00:00.000Z</nagpraClaimNatlApprovalDate>
+        <nagpraClaimNatlApprovalNote>National Publication Note 2</nagpraClaimNatlApprovalNote>
+      </nagpraClaimNatlApprovalGroup>
+    </nagpraClaimNatlApprovalGroupList>
+    <objectsMarkedAsDeaccessioned>false</objectsMarkedAsDeaccessioned>
+    <dispositionPossibilitiesDiscussed>true</dispositionPossibilitiesDiscussed>
+    <registrationDocumentsDraftedNote>Registration documents  Note.</registrationDocumentsDraftedNote>
+    <nagpraClaimAltNameGroupList>
+      <nagpraClaimAltNameGroup>
+        <nagpraClaimAltName>Sample Alternate name</nagpraClaimAltName>
+        <nagpraClaimAltNameNote>Sample Alternate note 1</nagpraClaimAltNameNote>
+      </nagpraClaimAltNameGroup>
+      <nagpraClaimAltNameGroup>
+        <nagpraClaimAltName>Sample Alternate number</nagpraClaimAltName>
+        <nagpraClaimAltNameNote>Sample Alternate note 2</nagpraClaimAltNameNote>
+      </nagpraClaimAltNameGroup>
+    </nagpraClaimAltNameGroupList>
+    <nagpraClaimSentToLocalGroupList>
+      <nagpraClaimSentToLocalGroup>
+        <nagpraClaimSentToLocalDate>2000-04-18T00:00:00.000Z</nagpraClaimSentToLocalDate>
+        <nagpraClaimSentToLocalNote>Sent to Committee Note 1</nagpraClaimSentToLocalNote>
+      </nagpraClaimSentToLocalGroup>
+      <nagpraClaimSentToLocalGroup>
+        <nagpraClaimSentToLocalDate>2000-04-19T00:00:00.000Z</nagpraClaimSentToLocalDate>
+        <nagpraClaimSentToLocalNote>Sent to Committee Note 2</nagpraClaimSentToLocalNote>
+      </nagpraClaimSentToLocalGroup>
+    </nagpraClaimSentToLocalGroupList>
+    <siteFileResearchCompleted>false</siteFileResearchCompleted>
+    <nagpraClaimTypes>
+      <nagpraClaimType>urn:cspace:anthro.collectionspace.org:vocabularies:name(nagpraclaimtype):item:name(needsFurtherResearch)'needs further research'</nagpraClaimType>
+      <nagpraClaimType>urn:cspace:anthro.collectionspace.org:vocabularies:name(nagpraclaimtype):item:name(affiliatedHsr)'affiliated human skeletal remains (HSR)'</nagpraClaimType>
+    </nagpraClaimTypes>
+    <surroundingTribesContactedNote>Surrounding Tribes Note.</surroundingTribesContactedNote>
+    <nagpraClaimNatlRespGroupList>
+      <nagpraClaimNatlRespGroup>
+        <nagpraClaimNatlRespNote>National Response Note 1</nagpraClaimNatlRespNote>
+        <nagpraClaimNatlRespDate>2000-05-02T00:00:00.000Z</nagpraClaimNatlRespDate>
+      </nagpraClaimNatlRespGroup>
+      <nagpraClaimNatlRespGroup>
+        <nagpraClaimNatlRespNote>National Response Note 2</nagpraClaimNatlRespNote>
+        <nagpraClaimNatlRespDate>2000-05-03T00:00:00.000Z</nagpraClaimNatlRespDate>
+      </nagpraClaimNatlRespGroup>
+    </nagpraClaimNatlRespGroupList>
+    <nagpraClaimGroupGroupList>
+      <nagpraClaimGroupGroup>
+        <nagpraClaimGroupNote>Cultural Group Note 1</nagpraClaimGroupNote>
+        <nagpraClaimGroupName>urn:cspace:anthro.collectionspace.org:conceptauthorities:name(ethculture):item:name(CulturalGroup11587136801052)'Cultural Group 1'</nagpraClaimGroupName>
+      </nagpraClaimGroupGroup>
+      <nagpraClaimGroupGroup>
+        <nagpraClaimGroupNote>Cultural Group Note 2</nagpraClaimGroupNote>
+        <nagpraClaimGroupName>urn:cspace:anthro.collectionspace.org:conceptauthorities:name(ethculture):item:name(CulturalGroup21587136811628)'Cultural Group 2'</nagpraClaimGroupName>
+      </nagpraClaimGroupGroup>
+    </nagpraClaimGroupGroupList>
+    <objectsConsolidatedNote>Objects consolidated Note.</objectsConsolidatedNote>
+    <objectsPhotographedNote>Objects photographed Note.</objectsPhotographedNote>
+    <accessionFileResearchCompletedNote>Accession file research Note.</accessionFileResearchCompletedNote>
+    <nagpraClaimNotes>
+      <nagpraClaimNote>Claim Note 1</nagpraClaimNote>
+      <nagpraClaimNote>Claim Note 2</nagpraClaimNote>
+    </nagpraClaimNotes>
+    <siteFileResearchCompletedNote>Site file research Note.</siteFileResearchCompletedNote>
+    <nagpraClaimInitialResponseGroupList>
+      <nagpraClaimInitialResponseGroup>
+        <nagpraClaimInitialResponseDate>2001-04-16T00:00:00.000Z</nagpraClaimInitialResponseDate>
+        <nagpraClaimInitialResponseNote>Initial response Note 1</nagpraClaimInitialResponseNote>
+      </nagpraClaimInitialResponseGroup>
+      <nagpraClaimInitialResponseGroup>
+        <nagpraClaimInitialResponseDate>2001-04-17T00:00:00.000Z</nagpraClaimInitialResponseDate>
+        <nagpraClaimInitialResponseNote>Initial response Note 2</nagpraClaimInitialResponseNote>
+      </nagpraClaimInitialResponseGroup>
+    </nagpraClaimInitialResponseGroupList>
+    <nagpraClaimPeriodGroupList>
+      <nagpraClaimPeriodGroup>
+        <nagpraClaimPeriodDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2000/05/18</dateDisplayDate>
+          <dateLatestScalarValue>2000-05-19T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>18</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2000</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2000-05-18T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </nagpraClaimPeriodDateGroup>
+        <nagpraClaimPeriodNote>Time Period Represented note 1</nagpraClaimPeriodNote>
+      </nagpraClaimPeriodGroup>
+      <nagpraClaimPeriodGroup>
+        <nagpraClaimPeriodDateGroup>
+          <scalarValuesComputed>true</scalarValuesComputed>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate>2000/05/19</dateDisplayDate>
+          <dateLatestScalarValue>2000-05-20T00:00:00.000Z</dateLatestScalarValue>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay>19</dateEarliestSingleDay>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear>2000</dateEarliestSingleYear>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth>5</dateEarliestSingleMonth>
+          <dateEarliestSingleEra>urn:cspace:anthro.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'</dateEarliestSingleEra>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue>2000-05-19T00:00:00.000Z</dateEarliestScalarValue>
+          <dateLatestMonth/>
+        </nagpraClaimPeriodDateGroup>
+        <nagpraClaimPeriodNote>Time Period Represented note 2</nagpraClaimPeriodNote>
+      </nagpraClaimPeriodGroup>
+    </nagpraClaimPeriodGroupList>
+    <documentsArchived>true</documentsArchived>
+    <objectsLocatedAndCounted>false</objectsLocatedAndCounted>
+    <tribeContactedForPackingPreferencesNote>Tribe contacted Note.</tribeContactedForPackingPreferencesNote>
+    <nagpraClaimName>Sample Claim Name</nagpraClaimName>
+    <nagpraClaimLocalRecGroupList>
+      <nagpraClaimLocalRecGroup>
+        <nagpraClaimLocalRecDate>2000-04-20T00:00:00.000Z</nagpraClaimLocalRecDate>
+        <nagpraClaimLocalRecNote>Recommendation Note 1</nagpraClaimLocalRecNote>
+      </nagpraClaimLocalRecGroup>
+      <nagpraClaimLocalRecGroup>
+        <nagpraClaimLocalRecDate>2000-04-21T00:00:00.000Z</nagpraClaimLocalRecDate>
+        <nagpraClaimLocalRecNote>Recommendation Note 2</nagpraClaimLocalRecNote>
+      </nagpraClaimLocalRecGroup>
+    </nagpraClaimLocalRecGroupList>
+    <dispositionPossibilitiesDiscussedNote>Disposition Possibility Note.</dispositionPossibilitiesDiscussedNote>
+  </ns2:claims_nagpra>
+  <ns2:claims_common xmlns:ns2="http://collectionspace.org/services/claim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <claimReceivedGroupList>
+      <claimReceivedGroup>
+        <claimReceivedDate>2000-12-12T00:00:00.000Z</claimReceivedDate>
+        <claimReceivedNote>Claim Field Note 1</claimReceivedNote>
+      </claimReceivedGroup>
+      <claimReceivedGroup>
+        <claimReceivedDate>2000-04-04T00:00:00.000Z</claimReceivedDate>
+        <claimReceivedNote>Claim Field Note 2</claimReceivedNote>
+      </claimReceivedGroup>
+    </claimReceivedGroupList>
+    <claimantGroupList>
+      <claimantGroup>
+        <claimantNote>Claimant Note 1</claimantNote>
+        <claimFiledBy>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(Person11587136569415)'Person 1'</claimFiledBy>
+        <claimFiledOnBehalfOf>urn:cspace:anthro.collectionspace.org:personauthorities:name(person):item:name(Person21587136593330)'Person 2'</claimFiledOnBehalfOf>
+      </claimantGroup>
+      <claimantGroup>
+        <claimantNote>Claimant Note 2</claimantNote>
+        <claimFiledBy>urn:cspace:anthro.collectionspace.org:orgauthorities:name(organization):item:name(Organization11587136583004)'Organization 1'</claimFiledBy>
+        <claimFiledOnBehalfOf>urn:cspace:anthro.collectionspace.org:orgauthorities:name(organization):item:name(Organization21587136613707)'Organization 2'</claimFiledOnBehalfOf>
+      </claimantGroup>
+    </claimantGroupList>
+    <claimNumber>CL2020.1.1</claimNumber>
+  </ns2:claims_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>aacb9c83-f3c0-4fc4-a215-b3f0ab239940</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@anthro.collectionspace.org</userId>
+      <tenantId>1500</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
