@@ -1,10 +1,15 @@
+# frozen_string_literal: true
+
+require_relative '../core/collectionobject'
+
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtCollectionObject < CollectionObject
+      class PublicArtCollectionObject < CoreCollectionObject
         ::PublicArtCollectionObject = CollectionSpace::Converter::PublicArt::PublicArtCollectionObject
-        def redefined_fields
-          @redefined.concat([
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          @redefined = [
             # not in publicart
             'objectcomponentname',
             'objectcomponentinformation',
@@ -101,80 +106,80 @@ module CollectionSpace
             'objectproductionperson',
             'objectproductionorganization',
             'owner'
-          ])
-          super
-        end      
+          ]
+        end
 
         def convert
-          run(wrapper: "document") do |xml|
+          run(wrapper: 'document') do |xml|
             xml.send(
-                "ns2:collectionobjects_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_common',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-              PublicArtCollectionObject.map_common(xml, attributes, redefined_fields)
+              map_common(xml, attributes)
             end
 
             #
             # Public Art extension fields
             #
             xml.send(
-              "ns2:collectionobjects_publicart",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/local/publicart",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_publicart',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/local/publicart',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-              PublicArtCollectionObject.map_publicart(xml, attributes)
+              map_publicart(xml, attributes)
             end
-          end #run(wrapper: "document") do |xml|
-        end #def convert
+          end # run(wrapper: "document") do |xml|
+        end # def convert
 
-        def self.map_common(xml, attributes, redefined)
-          CoreCollectionObject.map_common(xml, attributes.merge(redefined))
+        def map_common(xml, attributes)
+          super(xml, attributes.merge(redefined_fields))
+
           pairs = {
-            'computedcurrentlocation' => 'computedCurrentLocation',
+            'computedcurrentlocation' => 'computedCurrentLocation'
           }
           pairs_transforms = {
-            'computedcurrentlocation' => {'authority' => ['locationauthorities', 'indeterminate']}
+            'computedcurrentlocation' => { 'authority' => %w[locationauthorities indeterminate] }
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
           repeats = {
-            'responsibledepartment' => ['responsibleDepartments', 'responsibleDepartment'],
-            'contentconcept' => ['contentConcepts', 'contentConcept'],
-            'contentpersonlocal' => ['contentPersons', 'contentPerson'],
-            'contentpersonshared' => ['contentPersons', 'contentPerson'],
-            'contentorganizationlocal' => ['contentOrganizations', 'contentOrganization'],
-            'contentorganizationshared' => ['contentOrganizations', 'contentOrganization'],
-            'ownerpersonlocal' => ['owners', 'owner'],
-            'ownerpersonshared' => ['owners', 'owner'],
-            'ownerorganizationlocal' => ['owners', 'owner'],
-            'ownerorganizationshared' => ['owners', 'owner'],
-            
+            'responsibledepartment' => %w[responsibleDepartments responsibleDepartment],
+            'contentconcept' => %w[contentConcepts contentConcept],
+            'contentpersonlocal' => %w[contentPersons contentPerson],
+            'contentpersonshared' => %w[contentPersons contentPerson],
+            'contentorganizationlocal' => %w[contentOrganizations contentOrganization],
+            'contentorganizationshared' => %w[contentOrganizations contentOrganization],
+            'ownerpersonlocal' => %w[owners owner],
+            'ownerpersonshared' => %w[owners owner],
+            'ownerorganizationlocal' => %w[owners owner],
+            'ownerorganizationshared' => %w[owners owner]
+
           }
           repeat_transforms = {
-            'responsibledepartment' => {'vocab' => 'program'},
-            'contentconcept' => {'authority' => ['conceptauthorities', 'material']},
-            'contentpersonlocal' => {'authority' => ['personauthorities', 'person']},
-            'contentpersonshared' => {'authority' => ['personauthorities', 'person_shared']},
-            'contentorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
-            'contentorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
-            'ownerpersonlocal' => {'authority' => ['personauthorities', 'person']},
-            'ownerpersonshared' => {'authority' => ['personauthorities', 'person_shared']},
-            'ownerorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
-            'ownerorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
+            'responsibledepartment' => { 'vocab' => 'program' },
+            'contentconcept' => { 'authority' => %w[conceptauthorities material] },
+            'contentpersonlocal' => { 'authority' => %w[personauthorities person] },
+            'contentpersonshared' => { 'authority' => %w[personauthorities person_shared] },
+            'contentorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'contentorganizationshared' => { 'authority' => %w[orgauthorities organization_shared] },
+            'ownerpersonlocal' => { 'authority' => %w[personauthorities person] },
+            'ownerpersonshared' => { 'authority' => %w[personauthorities person_shared] },
+            'ownerorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'ownerorganizationshared' => { 'authority' => %w[orgauthorities organization_shared] }
 
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
-          #objectNameGroupList, objectNameGroup
+          # objectNameGroupList, objectNameGroup
           oname_data = {
             'objectname' => 'objectName',
             'objectnamenote' => 'objectNameNote'
           }
           oname_transforms = {
-            'objectname' => {'authority' => ['conceptauthorities', 'worktype']}
+            'objectname' => { 'authority' => %w[conceptauthorities worktype] }
           }
           CSXML.add_single_level_group_list(
             xml, attributes,
@@ -183,13 +188,13 @@ module CollectionSpace
             oname_transforms,
             list_suffix: 'List'
           )
-          #materialGroupList, materialGroup
+          # materialGroupList, materialGroup
           mat_data = {
             'material' => 'material',
             'materialcomponentnote' => 'materialComponentNote'
           }
           mat_transforms = {
-            'material' => {'authority' => ['conceptauthorities', 'material_ca']}
+            'material' => { 'authority' => %w[conceptauthorities material_ca] }
           }
           CSXML.add_single_level_group_list(
             xml, attributes,
@@ -197,7 +202,7 @@ module CollectionSpace
             mat_data,
             mat_transforms
           )
-          #textualInscriptionGroupList,textualInscriptionGroup 
+          # textualInscriptionGroupList,textualInscriptionGroup
           textualinscriptiondata = {
             'publicartinscriptioncontent' => 'inscriptionContent',
             'publicartinscriptioncontentinscriberperson' => 'inscriptionContentInscriber',
@@ -214,11 +219,11 @@ module CollectionSpace
             'publicartinscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
           }
           textualinscriptiontransforms = {
-            'publicartinscriptioncontentinscriberperson' => {'authority' => ['personauthorities', 'person']},
-            'publicartinscriptioncontentinscriberorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
-            'publicartinscriptioncontentinscriberorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']},
-            'publicartinscriptioncontentlanguage' => {'vocab' => 'languages'},
-            'publicartinscriptioncontentdategroup' => {'special' => 'structured_date'}
+            'publicartinscriptioncontentinscriberperson' => { 'authority' => %w[personauthorities person] },
+            'publicartinscriptioncontentinscriberorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'publicartinscriptioncontentinscriberorganizationshared' => { 'authority' => %w[orgauthorities organization_shared] },
+            'publicartinscriptioncontentlanguage' => { 'vocab' => 'languages' },
+            'publicartinscriptioncontentdategroup' => { 'special' => 'structured_date' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -227,15 +232,15 @@ module CollectionSpace
             textualinscriptiondata,
             textualinscriptiontransforms
           )
-          #objectProductionPersonGroupList, objectProductionPersonGroup
+          # objectProductionPersonGroupList, objectProductionPersonGroup
           objectprodpersondata = {
             'objectproductionpersonlocal' => 'objectProductionPerson',
             'objectproductionpersonshared' => 'objectProductionPerson',
             'objectproductionpersonrole' => 'objectProductionPersonRole'
           }
           objectprodpersontransforms = {
-            'objectproductionpersonlocal' => {'authority' => ['personauthorities', 'person']},
-            'objectproductionpersonshared' => {'authority' => ['personauthorities', 'person_shared']}
+            'objectproductionpersonlocal' => { 'authority' => %w[personauthorities person] },
+            'objectproductionpersonshared' => { 'authority' => %w[personauthorities person_shared] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -244,15 +249,15 @@ module CollectionSpace
             objectprodpersondata,
             objectprodpersontransforms
           )
-          #objectProductionOrganizationGroupList, objectProductionOrganizationGroup
+          # objectProductionOrganizationGroupList, objectProductionOrganizationGroup
           objectprodorgdata = {
             'objectproductionorganizationlocal' => 'objectProductionOrganization',
             'objectproductionorganizationshared' => 'objectProductionOrganization',
             'objectproductionorganizationrole' => 'objectProductionOrganizationRole'
           }
           objectprodorgtransforms = {
-            'objectproductionorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
-            'objectproductionorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']}
+            'objectproductionorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'objectproductionorganizationshared' => { 'authority' => %w[orgauthorities organization_shared] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -263,22 +268,22 @@ module CollectionSpace
           )
         end
 
-        def self.map_publicart(xml, attributes)
+        def map_publicart(xml, attributes)
           repeats = {
-            'publicartcollection' => ['publicartCollections', 'publicartCollection']
+            'publicartcollection' => %w[publicartCollections publicartCollection]
           }
           repeat_transforms = {
-            'publicartcollection' => {'authority' => ['orgauthorities', 'organization']}
+            'publicartcollection' => { 'authority' => %w[orgauthorities organization] }
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeat_transforms)
-          #publicartProductionDateGroupList, publicartProductionDateGroup
+          # publicartProductionDateGroupList, publicartProductionDateGroup
           ppd_data = {
             'publicartproductiondate' => 'publicartProductionDate',
             'publicartproductiondatetype' => 'publicartProductionDateType'
           }
           ppd_transforms = {
-            'publicartproductiondate' => {'special' => 'structured_date'},
-            'publicartproductiondatetype' => {'vocab' => 'proddatetype'}
+            'publicartproductiondate' => { 'special' => 'structured_date' },
+            'publicartproductiondatetype' => { 'vocab' => 'proddatetype' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -287,21 +292,21 @@ module CollectionSpace
             ppd_data,
             ppd_transforms
           )
-          #publicartProductionPersonGrouplist, publicartProductionPersonGroup
+          # publicartProductionPersonGrouplist, publicartProductionPersonGroup
           ppp_data = {
             'publicartproductionpersontype' => 'publicartProductionPersonType',
             'publicartproductionpersonrole' => 'publicartProductionPersonRole',
             'publicartproductionpersonpersonlocal' => 'publicartProductionPerson',
             'publicartproductionpersonpersonshared' => 'publicartProductionPerson',
             'publicartproductionpersonorganizationlocal' => 'publicartProductionPerson',
-            'publicartproductionpersonorganizationshared' => 'publicartProductionPerson',
+            'publicartproductionpersonorganizationshared' => 'publicartProductionPerson'
           }
           ppp_transforms = {
-            'publicartproductionpersonrole' => {'vocab' => 'prodpersonrole'},
-            'publicartproductionpersonpersonlocal' => {'authority' => ['personauthorities', 'person']},
-            'publicartproductionpersonorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
-            'publicartproductionpersonpersonshared' => {'authority' => ['personauthorities', 'person_shared']},
-            'publicartproductionpersonorganizationshared' => {'authority' => ['orgauthorities', 'organization_shared']}
+            'publicartproductionpersonrole' => { 'vocab' => 'prodpersonrole' },
+            'publicartproductionpersonpersonlocal' => { 'authority' => %w[personauthorities person] },
+            'publicartproductionpersonorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'publicartproductionpersonpersonshared' => { 'authority' => %w[personauthorities person_shared] },
+            'publicartproductionpersonorganizationshared' => { 'authority' => %w[orgauthorities organization_shared] }
           }
           CSXML.add_single_level_group_list(
             xml, attributes,
@@ -311,6 +316,6 @@ module CollectionSpace
           )
         end # def self.map
       end # class PublicArtCollectionObject
-    end #module PublicArt
+    end # module PublicArt
   end # module Converter
 end # module CollectionSpace

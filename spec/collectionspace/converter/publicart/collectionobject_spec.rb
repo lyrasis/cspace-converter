@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject do
@@ -14,7 +16,6 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
   let(:doc) { get_doc(pacollectionobject) }
   let(:record) { get_fixture('publicart_collectionobject.xml') }
 
-  
   describe '#map_common' do
     common = 'collectionobjects_common'
     context 'fields not included in publicart' do
@@ -108,16 +109,16 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
         "/document/#{common}/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionDateGroup/dateDisplayDate",
         "/document/#{common}/assocDateGroupList/assocDateGroup/assocStructuredDateGroup/dateDisplayDate",
         "/document/#{common}/ownershipDateGroupList/ownershipDateGroup/dateDisplayDate",
-        "/document/#{common}/fieldCollectionDateGroup/dateDisplayDate",
+        "/document/#{common}/fieldCollectionDateGroup/dateDisplayDate"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           it 'is empty' do
             verify_field_is_empty(doc, xpath)
           end
         end
       end
     end
-      
+
     context 'authority/vocab fields' do
       [
         "/document/#{common}/responsibleDepartments/responsibleDepartment",
@@ -125,10 +126,10 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
         "/document/#{common}/materialGroupList/materialGroup/material",
         "/document/#{common}/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber",
         "/document/#{common}/objectProductionPersonGroupList/objectProductionPersonGroup/objectProductionPerson",
-        "/document/#{common}/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganization", 
-        "/document/#{common}/owners/owner",
+        "/document/#{common}/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganization",
+        "/document/#{common}/owners/owner"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           let(:urn_vals) { urn_values(doc, xpath) }
           it 'is not empty' do
             verify_field_is_populated(doc, xpath)
@@ -137,13 +138,13 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
           it 'values are URNs' do
             verify_values_are_urns(urn_vals)
           end
-          
+
           it 'URNs match sample payload' do
             verify_urn_match(urn_vals, record, xpath)
           end
         end
-  end
-  end
+      end
+    end
   end
 
   describe '#map_publicart' do
@@ -155,7 +156,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
         "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup/publicartProductionPersonRole",
         "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup/publicartProductionDateType"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           let(:urn_vals) { urn_values(doc, xpath) }
           it 'is not empty' do
             verify_field_is_populated(doc, xpath)
@@ -164,7 +165,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
           it 'values are URNs' do
             verify_values_are_urns(urn_vals)
           end
-          
+
           it 'URNs match sample payload' do
             verify_urn_match(urn_vals, record, xpath)
           end
@@ -172,13 +173,11 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
       end
     end
 
-    
-
     context 'structured date fields' do
       [
         "/document/#{pa}/publicartProductionDateGroupList/publicartProductionDateGroup/publicartProductionDate"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           it 'is not empty' do
             expect(doc.xpath(xpath).size).to_not eq(0)
           end
@@ -191,19 +190,19 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtCollectionObject 
     end
 
     context 'non-authority/vocab fields' do
-        [
+      [
         "/document/#{pa}/publicartProductionPersonGroupList/publicartProductionPersonGroup/publicartProductionPersonType"
-        ].each do |xpath|
-          context "#{xpath}" do
-            it 'is not empty' do
-              verify_field_is_populated(doc, xpath)
-            end
-            
-            it 'matches sample payload' do
-              verify_value_match(doc, record, xpath)
-            end
+      ].each do |xpath|
+        context xpath.to_s do
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
+
+          it 'matches sample payload' do
+            verify_value_match(doc, record, xpath)
           end
         end
       end
+    end
   end
 end

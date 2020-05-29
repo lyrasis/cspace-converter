@@ -55,7 +55,7 @@ module CollectionSpace
         def self.extension(xml, attributes)
           # placementTypes
           placement_types_urns = []
-          placement_types = split_mvf attributes, 'placementtype'
+          placement_types = CSXML.split_mvf attributes, 'placementtype'
           placement_types.each do | placement_type |
             placement_types_urns << { "placementType" => CSURN.get_vocab_urn('placementtypes', placement_type) }
           end

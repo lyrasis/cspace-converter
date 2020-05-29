@@ -10,7 +10,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
   end
 
   let(:common) { 'collectionobjects_common' }
-  
+
   describe '#map' do
     let(:anthro) { 'collectionobjects_anthro' }
 
@@ -37,7 +37,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
           { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
           { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
           { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },    
+          { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
           "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/commingledRemainsNote",
           "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/sex",
           "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/count",
@@ -72,13 +72,13 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         xpath = "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[2]/objectProductionPeople"
         result = get_text(doc, xpath)
         expect(result).to include('conceptauthorities:name(archculture)')
-      end 
+      end
       it 'Maps overrides to objectProductionPeopleRole to vocab: prodpeoplerole' do
         xpath = "/document/#{common}/objectProductionPeopleGroupList/objectProductionPeopleGroup[2]/objectProductionPeopleRole"
         result = get_text(doc, xpath)
         expect(result).to include('vocabularies:name(prodpeoplerole)')
       end
-     
+
     end #  context 'sample data row 2'
   end # describe #map
 
@@ -120,7 +120,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
           { xpath: "/document/#{nagpra}/nagpraCategories/nagpraCategory[1]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
           { xpath: "/document/#{nagpra}/nagpraCategories/nagpraCategory[2]", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
           "/document/#{nagpra}/nagpraReportFiledDate/dateLatestScalarValue",
-          "/document/#{nagpra}/nagpraReportFiledDate/dateEarliestScalarValue"          
+          "/document/#{nagpra}/nagpraReportFiledDate/dateEarliestScalarValue"
         ]}
 
         it "Maps attributes correctly" do
@@ -142,8 +142,8 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         end
       end
     end # describe #map
-    
-    describe '#map_cultural_care' do      
+
+    describe '#map_cultural_care' do
       context 'sample data row 8 - culturalcare extension only' do
         let(:attributes) { get_attributes_by_row('anthro', 'collectionobject_partial.csv', 8) }
         let(:anthrocollectionobject) { AnthroCollectionObject.new(attributes) }
@@ -165,5 +165,5 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroCollectionObject do
         end
       end
     end # describe #map
-    
+
 end
