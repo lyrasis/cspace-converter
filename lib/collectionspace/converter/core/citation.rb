@@ -5,11 +5,11 @@ module CollectionSpace
         ::CoreCitation = CollectionSpace::Converter::Core::CoreCitation
         def convert
           run do |xml|
-            CoreCitation.map(xml, attributes, config)
+            CoreCitation.map_common(xml, attributes, config)
           end
         end
 
-        def self.map(xml, attributes, config)
+        def self.map_common(xml, attributes, config)
           pairs = {
             'citationnote' => 'citationNote'
           }
