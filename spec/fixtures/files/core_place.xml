@@ -29,14 +29,14 @@
         <addressStateOrProvince>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(AddressProvince1583503304457)'Address Province'</addressStateOrProvince>
       </addrGroup>
       <addrGroup>
-        <addressCountry>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(AddressCountry21583503366087)'Address Country 2'</addressCountry>
+        <addressCountry>urn:cspace:core.collectionspace.org:placeauthorities:name(tgn_place):item:name(AddressCountry21583503366087)'Address Country 2'</addressCountry>
         <addressCounty/>
         <addressPlace2>Address Line 2B</addressPlace2>
         <addressPlace1>Address Line 1B</addressPlace1>
         <addressType>urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(intersection)'intersection'</addressType>
-        <addressMunicipality>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(AddressMunicipality21583503279136)'Address Municipality 2'</addressMunicipality>
+        <addressMunicipality>urn:cspace:core.collectionspace.org:placeauthorities:name(tgn_place):item:name(AddressMunicipality21583503279136)'Address Municipality 2'</addressMunicipality>
         <addressPostCode>Address Code 456</addressPostCode>
-        <addressStateOrProvince>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(AddressState1583503312313)'Address State'</addressStateOrProvince>
+        <addressStateOrProvince>urn:cspace:core.collectionspace.org:placeauthorities:name(tgn_place):item:name(AddressState1583503312313)'Address State'</addressStateOrProvince>
       </addrGroup>
     </addrGroupList>
     <vLatitude>43°11′41″N</vLatitude>

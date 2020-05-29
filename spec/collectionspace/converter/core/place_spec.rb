@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe CollectionSpace::Converter::Core::CorePlace do
   let(:attributes) { get_attributes('core', 'place_core_all.csv') }
   let(:coreplace) { CorePlace.new(attributes) }
-  let(:doc) { Nokogiri::XML(coreplace.convert, nil, 'UTF-8') }
+  let(:doc) { get_doc(coreplace) }
   let(:record) { get_fixture('core_place.xml') }
   let(:xpaths) {[
     "/document/*/placeTermGroupList/placeTermGroup/termDisplayName",
