@@ -539,6 +539,32 @@ Hashes within inner arrays - One per value in subgroup in an element
 
         end
 
+        #typicalSizeGroupList, typicalSizeGroup, typicalSizeDimensionGroupList, typicalSizeDimensionGroup
+        def self.add_typical_size_group_list(xml, attributes)
+           typicalsizedata = {
+            'typicalsize' => 'typicalSize',
+            'dimension' => 'dimension',
+            'value' => 'value',
+            'measurementunit' => 'measurementUnit',
+
+          }
+          typicalsizedimensionsdata = [
+            'dimension',
+            'value',
+            'measurementUnit',
+          ]
+          CSXML.add_nested_group_lists(
+            xml, attributes,
+            'typicalSize',
+            typicalsizedata,
+            'typicalSizeDimension',
+            typicalsizedimensionsdata,
+            sublist_suffix: 'GroupList',
+            subgroup_suffix: 'Group'
+          )
+
+        end
+
         def self.add_pairs(xml, attributes, pairs, transforms={})
           return unless pairs
 
