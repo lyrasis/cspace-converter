@@ -5,10 +5,13 @@ module CollectionSpace
         ::CoreWork = CollectionSpace::Converter::Core::CoreWork
         def convert
           run do |xml|
-            CoreWork.map(xml, attributes, config)
+            CoreWork.map_common(xml, attributes, config)
           end
         end
-        def self.map(xml, attributes, config)
+        def self.map_common(xml, attributes, config)
+          #addrGroupList, addrGroup
+          Address.map_address(xml, attributes, ['place/local', 'place/tgn'])
+
           pairs = {
             'worktype' => 'workType',
             'workhistorynote' => 'workHistoryNote'
@@ -82,28 +85,6 @@ module CollectionSpace
             'publisher',
             publisher_data,
             publisher_transforms
-          )
-          #addrGroupList, addrGroup
-          address_data = {
-            'addresstype' => 'addressType',
-            'addressplace1' => 'addressPlace1',
-            'addressplace2' => 'addressPlace2',
-            'addressmunicipality' => 'addressMunicipality',
-            'addressstateorprovince' => 'addressStateOrProvince',
-            'addresspostcode' => 'addressPostCode',
-            'addresscountry' => 'addressCountry'
-          }
-          address_transforms = {
-            'addresscountry' => {'authority' => ['placeauthorities', 'place']},
-            'addressmunicipality' => {'authority' => ['placeauthorities', 'place']},
-            'addressstateorprovince' => {'authority' => ['placeauthorities', 'place']},
-            'addresstype' => {'vocab' => 'addresstype'}
-          }
-          CSXML.add_single_level_group_list(
-            xml, attributes,
-            'addr',
-            address_data,
-            address_transforms
           )
         end
       end

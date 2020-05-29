@@ -79,14 +79,14 @@
         <addressStateOrProvince>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(State11585579338236)'State 1'</addressStateOrProvince>
       </addrGroup>
       <addrGroup>
-        <addressCountry>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(Albania1585579290323)'Albania'</addressCountry>
+        <addressCountry>urn:cspace:core.collectionspace.org:placeauthorities:name(tgn_place):item:name(Albania1585579290323)'Albania'</addressCountry>
         <addressCounty/>
         <addressPlace2>Address Text 4</addressPlace2>
         <addressPlace1>Address Text 2</addressPlace1>
         <addressType>urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(personal)'personal'</addressType>
-        <addressMunicipality>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(Metropolis1585578961592)'Metropolis'</addressMunicipality>
+        <addressMunicipality>urn:cspace:core.collectionspace.org:placeauthorities:name(tgn_place):item:name(Metropolis1585578961592)'Metropolis'</addressMunicipality>
         <addressPostCode>67890</addressPostCode>
-        <addressStateOrProvince>urn:cspace:core.collectionspace.org:placeauthorities:name(place):item:name(State21585579344940)'State 2'</addressStateOrProvince>
+        <addressStateOrProvince>urn:cspace:core.collectionspace.org:placeauthorities:name(tgn_place):item:name(State21585579344940)'State 2'</addressStateOrProvince>
       </addrGroup>
     </addrGroupList>
     <shortIdentifier>WorkOne1585578202820</shortIdentifier>
