@@ -72,43 +72,43 @@ registered_profiles:
           authority_subtype: person
         - name_field: conservatorpersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: conservatororganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: conservatororganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: otherpartypersonlocal
           authority_type: Person
           authority_subtype: person
         - name_field: otherpartypersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: otherpartyorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: otherpartyorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: approvedbylocal
           authority_type: Person
           authority_subtype: person
         - name_field: approvedbyshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: researcherlocal
           authority_type: Person
           authority_subtype: person
         - name_field: researchershared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: examinationstafflocal
           authority_type: Person
           authority_subtype: person
         - name_field: examinationstaffshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
       Vocabularies:
         - name_field: otherpartyrole
           vocabulary_subtype: otherpartyrole
