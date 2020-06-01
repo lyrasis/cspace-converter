@@ -45,7 +45,7 @@ registered_profiles:
           authority_subtype: person
         - name_field: contentpersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: publicartinscriptioncontentinscriberperson
           authority_type: Person
           authority_subtype: person
@@ -54,19 +54,19 @@ registered_profiles:
           authority_subtype: organization
         - name_field: publicartinscriptioncontentinscriberorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: objectproductionpersonlocal
           authority_type: Person
           authority_subtype: person
         - name_field: objectproductionpersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: objectproductionorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: objectproductionorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: computedcurrentlocation
           authority_type: Location
           authority_subtype: location
@@ -78,19 +78,19 @@ registered_profiles:
           authority_subtype: organization
         - name_field: contentorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: ownerpersonlocal
           authority_type: Person
           authority_subtype: person
         - name_field: ownerpersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: ownerorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: ownerorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: objectname
           authority_type: Concept
           authority_subtype: concept
@@ -105,13 +105,13 @@ registered_profiles:
           authority_subtype: person
         - name_field: publicartproductionpersonpersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: publicartproductionpersonorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: publicartproductionpersonorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
       Vocabularies:
         - name_field: responsibledepartment
           vocabulary_subtype: program
