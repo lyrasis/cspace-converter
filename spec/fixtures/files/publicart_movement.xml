@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="movements">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-05T17:05:07.101Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>locked</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:movements:id(f869ba48-5e82-4f0d-8114)</refName>
+    <uri>/movements/f869ba48-5e82-4f0d-8114</uri>
+    <updatedAt>2020-05-05T17:05:08.245Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:movements_common xmlns:ns2="http://collectionspace.org/services/movement" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <inventoryContactList/>
+    <movementMethods>
+      <movementMethod>handcarried</movementMethod>
+      <movementMethod>forklift</movementMethod>
+    </movementMethods>
+    <currentLocation>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(SampleLocationText1588698039077)'Sample Location Text'</currentLocation>
+    <plannedRemovalDate>2000-05-02T00:00:00.000Z</plannedRemovalDate>
+    <removalDate>2000-06-14T00:00:00.000Z</removalDate>
+    <currentLocationNote>Sample Note</currentLocationNote>
+    <currentLocationFitness>suitable</currentLocationFitness>
+    <movementNote>Movement Note.</movementNote>
+    <movementContact>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(SamplePerson1588698192200)'Sample Person'</movementContact>
+    <locationDate>2000-02-02T00:00:00.000Z</locationDate>
+    <movementReferenceNumber>LOC2020.1.1</movementReferenceNumber>
+    <reasonForMove>exhibition</reasonForMove>
+  </ns2:movements_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>

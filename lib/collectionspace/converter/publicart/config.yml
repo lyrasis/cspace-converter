@@ -113,13 +113,40 @@ registered_profiles:
       Authorities: []
   movement:
     type: Procedures
+    enabled: true
+    identify_by_column: movementreferencenumber
+    required_headers:
+      - movementreferencenumber
     config:
       Movement:
+        mapper: PublicArtMovement
         identifier: movementreferencenumber
         title: movementreferencenumber
       Authorities:
-        Person:
-        - movementcontact
+        - name_field: movementcontactlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: movementcontactshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: currentlocationstoragelocal
+          authority_type: Location
+          authority_subtype: location
+        - name_field: currentlocationorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: currentlocationplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: currentlocationstorageoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
+        - name_field: currentlocationorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: currentlocationplaceshared
+          authority_type: Place
+          authority_subtype: place_shared
   objectexit:
     type: Procedures
     config:
