@@ -165,19 +165,19 @@ registered_profiles:
           authority_subtype: place
         - name_field: addresscountryshared
           authority_type: Place
-          authority_subtype: place
+          authority_subtype: place_shared
         - name_field: addressmunicipalitylocal
           authority_type: Place
           authority_subtype: place
         - name_field: addressmunicipalityshared
           authority_type: Place
-          authority_subtype: place
+          authority_subtype: place_shared
         - name_field: addressstateorprovincelocal
           authority_type: Place
           authority_subtype: place
         - name_field: addressstateorprovinceshared
           authority_type: Place
-          authority_subtype: place
+          authority_subtype: place_shared
         - name_field: addresscounty
           authority_type: Place
           authority_subtype: place
@@ -186,13 +186,13 @@ registered_profiles:
           authority_subtype: organization
         - name_field: georeferencedbyorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: georeferencedbypersonlocal
           authority_type: Person
           authority_subtype: person
         - name_field: georeferencedbypersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
       Vocabularies:
         - name_field: publicartplacetype
           vocabulary_subtype: placetypes
