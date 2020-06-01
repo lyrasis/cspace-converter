@@ -67,21 +67,42 @@ registered_profiles:
         identifier: exhibitionnumber
         title: exhibitionnumber
       Authorities:
-        - name_field: organizerorganization
+        - name_field: organizerorganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: organizerperson
+        - name_field: organizerorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: organizerpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: venueorganization
+        - name_field: organizerpersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: venueorganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: venueplace
+        - name_field: venueorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: venueplacelocal
           authority_type: Place
           authority_subtype: place
-        - name_field: venuestoragelocation
+        - name_field: venueplaceshared
+          authority_type: Place
+          authority_subtype: place_shared
+        - name_field: venuestoragelocationlocal
           authority_type: Location
           authority_subtype: location
+        - name_field: venuestoragelocationoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
+        - name_field: exhibitionsupportorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: exhibitionsupportperson
+          authority_type: Person
+          authority_subtype: person
   group:
     type: Procedures
     config:
