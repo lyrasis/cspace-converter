@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="places">
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-08T17:57:56.896Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CountryTwo1588960676896)'Country Two'</refName>
+    <uri>/placeauthorities/2330cbf0-9576-4c59-952a/items/4763b9f8-a115-4182-9bb3</uri>
+    <updatedAt>2020-05-08T17:57:56.896Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:places_common xmlns:ns2="http://collectionspace.org/services/place" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <addrGroupList/>
+    <shortIdentifier>CountryTwo1588960676896</shortIdentifier>
+    <placeGeoRefGroupList/>
+    <inAuthority>2330cbf0-9576-4c59-952a</inAuthority>
+    <refName>urn:cspace:publicart.collectionspace.org:placeauthorities:name(place):item:name(CountryTwo1588960676896)'Country Two'</refName>
+    <rev>0</rev>
+    <sas>false</sas>
+    <placeOwnerGroupList/>
+    <csid>4763b9f8-a115-4182-9bb3</csid>
+    <proposed>true</proposed>
+    <placeTermGroupList>
+      <placeTermGroup>
+        <termSourceID/>
+        <termSourceDetail/>
+        <termSourceNote/>
+        <termFormattedDisplayName/>
+        <nameDateGroup>
+          <scalarValuesComputed/>
+          <dateEarliestSingleCertainty/>
+          <dateEarliestSingleQualifierUnit/>
+          <dateDisplayDate/>
+          <dateLatestScalarValue/>
+          <dateEarliestSingleQualifierValue/>
+          <datePeriod/>
+          <dateLatestEra/>
+          <dateEarliestSingleDay/>
+          <dateEarliestSingleQualifier/>
+          <dateEarliestSingleYear/>
+          <dateLatestCertainty/>
+          <dateAssociation/>
+          <dateLatestDay/>
+          <dateEarliestSingleMonth/>
+          <dateEarliestSingleEra/>
+          <dateLatestYear/>
+          <dateLatestQualifierUnit/>
+          <dateNote/>
+          <dateLatestQualifierValue/>
+          <dateLatestQualifier/>
+          <dateEarliestScalarValue/>
+          <dateLatestMonth/>
+        </nameDateGroup>
+        <historicalStatus/>
+        <termType/>
+        <termSource/>
+        <nameNote/>
+        <termStatus/>
+        <termLanguage/>
+        <termName/>
+        <termQualifier/>
+        <termPrefForLang/>
+        <nameAbbrev/>
+        <termDisplayName>Country Two</termDisplayName>
+        <termFlag/>
+      </placeTermGroup>
+    </placeTermGroupList>
+  </ns2:places_common>
+  <ns2:places_publicart xmlns:ns2="http://collectionspace.org/services/place/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <publicArtPlaceTypes/>
+    <publicartPlaceOwnerGroupList/>
+    <placementTypes/>
+  </ns2:places_publicart>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
