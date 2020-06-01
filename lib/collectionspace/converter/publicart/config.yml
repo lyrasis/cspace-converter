@@ -149,7 +149,7 @@ registered_profiles:
           authority_subtype: place
         - name_field: foundingplaceshared
           authority_type: Place
-          authority_subtype: place  
+          authority_subtype: place_shared  
       Vocabularies:
         - name_field: placementtype
           vocabulary_subtype: placementtypes
