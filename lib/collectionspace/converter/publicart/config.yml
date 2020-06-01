@@ -35,37 +35,37 @@ registered_profiles:
           authority_subtype: person
         - name_field: acquisitionsourcepersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: acquisitionsourceorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: acquisitionsourceorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: ownerpersonlocal
           authority_type: Person
           authority_subtype: person
         - name_field: ownerpersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
         - name_field: ownerorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: ownerorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: acquisitionfundingsourceorganizationlocal
           authority_type: Organization
           authority_subtype: organization
         - name_field: acquisitionfundingsourceorganizationshared
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: acquisitionfundingsourcepersonlocal
           authority_type: Person
           authority_subtype: person
         - name_field: acquisitionfundingsourcepersonshared
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
       Vocabularies:
         - name_field: acquisitionmethod
           vocabulary_subtype: acquisitionmethod
