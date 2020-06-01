@@ -66,10 +66,10 @@ registered_profiles:
           authority_subtype: person
         - name_field: conditioncheckersharedorganization
           authority_type: Organization
-          authority_subtype: organization
+          authority_subtype: organization_shared
         - name_field: conditioncheckersharedperson
           authority_type: Person
-          authority_subtype: person
+          authority_subtype: person_shared
   exhibition:
     type: Procedures
     config:
