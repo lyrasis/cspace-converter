@@ -60,8 +60,8 @@ module CollectionSpace
             "dimensionNote" => attributes["dimension_note"],
           }
           dimensions = []
-          dims = split_mvf attributes, 'dimension'
-          values = split_mvf attributes, 'value'
+          dims = CSXML.split_mvf attributes, 'dimension'
+          values = CSXML.split_mvf attributes, 'value'
           unit = attributes["unit"]
           dims.each_with_index do |dim, index|
             dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit }
