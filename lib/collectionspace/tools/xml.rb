@@ -163,7 +163,7 @@ Hashes within inner arrays - One per value in subgroup in an element
         list_suffix: 'GroupList',
         group_suffix: 'Group'
       )
-        all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
+        all = all_elements.map{ |k, v| [k, {:values => CSXML.split_mvf(attributes, k), :field => v}] }.to_h
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{key} Group have uneven numbers of values")
         end
@@ -203,7 +203,7 @@ Hashes within inner arrays - One per value in subgroup in an element
         subgroup_suffix: 'SubGroup',
         include_subgrouplist_level: true
       )
-        all = all_elements.map{ |k, v| [k, {:values => CSDR.split_mvf(attributes, k), :field => v}] }.to_h
+        all = all_elements.map{ |k, v| [k, {:values => CSXML.split_mvf(attributes, k), :field => v}] }.to_h
         unless CSXML::Helpers.mvfs_even?(all)
           Rails.logger.warn("Multivalued fields used in #{topKey} Group have uneven numbers of values")
         end
@@ -293,6 +293,21 @@ Hashes within inner arrays - One per value in subgroup in an element
             end
           end
         end
+      end
+
+      # TODO: re-organize when moving to Transformer
+      # process multivalued fields by splitting them and returning a flat array of all elements
+      def self.split_mvf(attributes, *fields)
+        values = []
+        fields.each do |field|
+          # TODO: log a warning ? may be noisy ...
+          next unless attributes.has_key? field
+          values << attributes[field]
+            .to_s
+            .split(Rails.application.config.csv_mvf_delimiter)
+            .map(&:strip)
+        end
+        values.flatten.compact
       end
 
       module Helpers
@@ -631,7 +646,7 @@ Hashes within inner arrays - One per value in subgroup in an element
           collapsed_repeats = {}
 
           repeats.each{ |csvheader, fields|
-            values = CSDR.split_mvf(attributes, csvheader)
+            values = CSXML.split_mvf(attributes, csvheader)
             
             unless transforms.empty?
               if transforms.keys.include?(csvheader)
@@ -816,7 +831,7 @@ Hashes within inner arrays - One per value in subgroup in an element
         def self.safe_split(field, attributes, attribute)
           subfield = field.singularize
           subfield = "#{subfield}_" if reserved?(subfield)
-          CSDR.split_mvf(attributes, attribute).map do |p|
+          CSXML.split_mvf(attributes, attribute).map do |p|
             {
               subfield => p
             }
