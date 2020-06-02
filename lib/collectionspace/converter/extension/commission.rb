@@ -6,16 +6,16 @@ module CollectionSpace
       # Cultural Care Extension
       module Commission
         ::Commission = CollectionSpace::Converter::Extension::Commission
-        def self.map_commission(xml, attributes)
+        def map_commission(xml, attributes)
           #commissionDate
           CSXML::Helpers.add_date_group(xml, 'commissionDate', CSDTP.parse(attributes['commissiondate']), suffix = '')
           repeats = { 
-            'commissioningbodyperson' => ['commissioningBodyList', 'commissioningBody'],
-            'commissioningbodyorganization' => ['commissioningBodyList', 'commissioningBody']
+            'commissioningbodyperson' => %w[commissioningBodyList commissioningBody],
+            'commissioningbodyorganization' => %w[commissioningBodyList commissioningBody]
           }
           repeatstransforms = {
-            'commissioningbodyperson' => {'authority' => ['personauthorities', 'person']},
-            'commissioningbodyorganization' => {'authority' => ['orgauthorities', 'organization']}
+            'commissioningbodyperson' => { 'authority' => %w[personauthorities person] },
+            'commissioningbodyorganization' => { 'authority' => %w[orgauthorities organization] }
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           #commissionBudgetGroupList, commissionBudgetGroup
@@ -28,9 +28,9 @@ module CollectionSpace
             'commissionbudgettype' => 'commissionBudgetType',
           }
           commission_transforms = {
-            'commissionprojectedvaluecurrency' => {'vocab' => 'currency'},
-            'commissionactualvaluecurrency' => {'vocab' => 'currency'},
-            'commissionbudgettype' => {'vocab' => 'budgettype'}
+            'commissionprojectedvaluecurrency' => { 'vocab' => 'currency' },
+            'commissionactualvaluecurrency' => { 'vocab' => 'currency' },
+            'commissionbudgettype' => { 'vocab' => 'budgettype' }
           }
           CSXML.add_single_level_group_list(
             xml, attributes,
