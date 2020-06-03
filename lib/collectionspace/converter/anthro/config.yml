@@ -28,6 +28,7 @@ registered_profiles:
     config: {}
   nagpra:
     type: Procedures
+    enabled: true
     config:
       Nagpra:
         mapper: AnthroNagpra

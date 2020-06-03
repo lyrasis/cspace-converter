@@ -38,8 +38,8 @@ RSpec.describe CollectionSpace::Converter::Materials::MaterialsMaterial do
     { xpath: '/document/*/typicalUses/typicalUse', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     "/document/*/discontinued",
     { xpath: '/document/*/discontinuedBy', transform: ->(text) { CSURN.parse(text)[:label] } },
-    # "/document/*/discontinuedDate",
-    # "/document/*/productionDate",
+    "/document/*/discontinuedDate/dateDisplayDate",
+    "/document/*/productionDate/dateDisplayDate",
     "/document/*/productionNote",
     { xpath: '/document/*/materialProductionOrganizationGroupList/materialProductionOrganizationGroup[1]/materialProductionOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/materialProductionOrganizationGroupList/materialProductionOrganizationGroup[2]/materialProductionOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
@@ -73,10 +73,10 @@ RSpec.describe CollectionSpace::Converter::Materials::MaterialsMaterial do
     "/document/*/materialTermAttributionEditingGroupList/materialTermAttributionEditingGroup/materialTermAttributionEditingDate",
     { xpath: '/document/*/commonForm', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     { xpath: '/document/*/formTypeGroupList/formTypeGroup/formType', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    # "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSize",
-    # "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSize/typicalSizeDimensionGroupList/typicalSizeDimensionGroup/dimension",
-    # "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSize/typicalSizeDimensionGroupList/typicalSizeDimensionGroup/value",
-    # "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSize/typicalSizeDimensionGroupList/typicalSizeDimensionGroup/measurementUnit",
+    "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSize",
+    "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSizeDimensionGroupList/typicalSizeDimensionGroup/dimension",
+    "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSizeDimensionGroupList/typicalSizeDimensionGroup/value",
+    "/document/*/typicalSizeGroupList/typicalSizeGroup/typicalSizeDimensionGroupList/typicalSizeDimensionGroup/measurementUnit",
     "/document/*/formNote",
     { xpath: '/document/*/acousticalPropertyGroupList/acousticalPropertyGroup[1]/acousticalPropertyType', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     { xpath: '/document/*/acousticalPropertyGroupList/acousticalPropertyGroup[2]/acousticalPropertyType', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
@@ -102,15 +102,16 @@ RSpec.describe CollectionSpace::Converter::Materials::MaterialsMaterial do
     { xpath: '/document/*/additionalPropertyGroupList/additionalPropertyGroup/additionalPropertyType', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     "/document/*/additionalPropertyGroupList/additionalPropertyGroup/additionalPropertyNote",
     "/document/*/propertyNote",
-    "/document/*/recycledContentGroupList/recycledContentGroup/recycledContent",
+    "/document/*/recycledContentGroupList/recycledContentGroup/recycledContent", 
     "/document/*/recycledContentGroupList/recycledContentGroup/recycledContentHigh",
-    "/document/*/recycledContentGroupList/recycledContentGroup/recycledContentQualifier",
+    { xpath: "/document/*/recycledContentGroupList/recycledContentGroup[1]/recycledContentQualifier", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: "/document/*/recycledContentGroupList/recycledContentGroup[1]/recycledContentQualifier", transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     { xpath: '/document/*/lifecycleComponentGroupList/lifecycleComponentGroup/lifecycleComponent', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     "/document/*/lifecycleComponentGroupList/lifecycleComponentGroup/lifecycleComponentNote",
     "/document/*/embodiedEnergyGroupList/embodiedEnergyGroup/embodiedEnergyValue",
     "/document/*/embodiedEnergyGroupList/embodiedEnergyGroup/embodiedEnergyValueHigh",
     { xpath: '/document/*/embodiedEnergyGroupList/embodiedEnergyGroup[1]/embodiedEnergyUnit', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
-    # { xpath: '/document/*/embodiedEnergyGroupList/embodiedEnergyGroup[2]/embodiedEnergyUnit', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
+    { xpath: '/document/*/embodiedEnergyGroupList/embodiedEnergyGroup[2]/embodiedEnergyUnit', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     "/document/*/embodiedEnergyGroupList/embodiedEnergyGroup/embodiedEnergyNote",
     { xpath: '/document/*/certificationCreditGroupList/certificationCreditGroup/certificationProgram', transform: ->(text) { CSURN.parse(text)[:label].downcase } },
     "/document/*/certificationCreditGroupList/certificationCreditGroup/certificationCreditNote",
@@ -131,7 +132,24 @@ RSpec.describe CollectionSpace::Converter::Materials::MaterialsMaterial do
     "/document/*/processNote",
   ]}
 
-  it "Maps attributes correctly" do
-    test_converter(doc, record, xpaths)
+  context 'For maximally populuated record' do
+    it "Maps attributes correctly" do
+      test_converter(doc, record, xpaths)
+    end
   end
+  
+  context 'For minimally populated record' do
+    let(:attributes) { get_attributes_by_row('materials', 'materials_authority.csv', 3) }
+    let(:materialsmaterial) { MaterialsMaterial.new(attributes) }
+    let(:doc) { Nokogiri::XML(materialsmaterial.convert, nil, 'UTF-8') }
+    let(:record) { get_fixture('materials_authority_row3.xml') }     
+    let(:xpath_required) {[
+      "/document/*/materialTermGroupList/materialTermGroup/termDisplayName"
+    ]}
+
+    it 'Maps required field(s) correctly without falling over' do
+      test_converter(doc, record, xpath_required)
+    end
+  end
+
 end

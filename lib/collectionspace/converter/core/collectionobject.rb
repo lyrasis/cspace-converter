@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative '../default/record'
+
 module CollectionSpace
   module Converter
     module Core
@@ -5,11 +9,11 @@ module CollectionSpace
         ::CoreCollectionObject = CollectionSpace::Converter::Core::CoreCollectionObject
         def convert
           run do |xml|
-            CoreCollectionObject.map_common(xml, attributes)
+            map_common(xml, attributes)
           end
         end
 
-        def self.map_common(xml, attributes)
+        def map_common(xml, attributes)
           pairs = {
             'objectnumber' => 'objectNumber',
             'numberofobjects' => 'numberOfObjects',
@@ -51,86 +55,86 @@ module CollectionSpace
             'fieldcollectionnumber' => 'fieldCollectionNumber'
           }
           pairs_transforms = {
-            'agequalifier' => {'vocab' => 'agequalifier'},
-            'ownershipexchangepricecurrency' => {'vocab' => 'currency'},
-            'fieldcollectionplace' => {'authority' => ['placeauthorities', 'place']}
+            'agequalifier' => { 'vocab' => 'agequalifier' },
+            'ownershipexchangepricecurrency' => { 'vocab' => 'currency' },
+            'fieldcollectionplace' => { 'authority' => %w[placeauthorities place] }
           }
           CSXML::Helpers.add_title(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
           repeats = {
-            'briefdescription' => ['briefDescriptions', 'briefDescription'],
-            'comments' => ['comments', 'comment'],
-            'fieldcollectioneventname' => ['fieldColEventNames', 'fieldColEventName'],
-            'form' => ['forms', 'form'],
-            'responsibledepartment' => ['responsibleDepartments', 'responsibleDepartment'],
-            'style' => ['styles', 'style'],
-            'color' => ['colors', 'color'],
-            'objectstatus' => ['objectStatusList', 'objectStatus'],
-            'contentperson' => ['contentPersons', 'contentPerson'],
-            'inventorystatus' => ['inventoryStatusList', 'inventoryStatus'],
-            'publishto' => ['publishToList', 'publishTo'],
-            'objectproductionreason' => ['objectProductionReasons', 'objectProductionReason'],
-            'objectproductiondate' => ['objectProductionDateGroupList', 'objectProductionDateGroup'],
-            'ownerperson' => ['owners', 'owner'],
-            'ownerorganization' => ['owners', 'owner'],
-            'contentpeople' => ['contentPeoples', 'contentPeople'],
-            'contentplace' => ['contentPlaces', 'contentPlace'],
-            'contentscript' => ['contentScripts', 'contentScript'],
-            'contentorganization' => ['contentOrganizations', 'contentOrganization'],
-            'contentlanguage' => ['contentLanguages', 'contentLanguage'],
-            'contentactivity' => ['contentActivities', 'contentActivity'],
-            'contentposition' => ['contentPositions', 'contentPosition'], 
-            'contentconceptassociated' => ['contentConcepts', 'contentConcept'],
-            'contentconceptmaterial' => ['contentConcepts', 'contentConcept'],
-            'assoceventorganization' => ['assocEventOrganizations', 'assocEventOrganization'],
-            'assoceventpeople' => ['assocEventPeoples', 'assocEventPeople'],
-            'assoceventperson' => ['assocEventPersons', 'assocEventPerson'],
-            'assoceventplace' => ['assocEventPlaces', 'assocEventPlace'],
-            'ownersreference' => ['ownersReferences', 'ownersReference'],
-            'viewersreference' => ['viewersReferences', 'viewersReference'],
-            'fieldcollectionmethod' => ['fieldCollectionMethods', 'fieldCollectionMethod'],
-            'fieldcollectionsource' => ['fieldCollectionSources', 'fieldCollectionSource'],
-            'fieldcollectorperson' => ['fieldCollectors', 'fieldCollector'],
-            'fieldcollectororganization' => ['fieldCollectors', 'fieldCollector']
+            'briefdescription' => %w[briefDescriptions briefDescription],
+            'comments' => %w[comments comment],
+            'fieldcollectioneventname' => %w[fieldColEventNames fieldColEventName],
+            'form' => %w[forms form],
+            'responsibledepartment' => %w[responsibleDepartments responsibleDepartment],
+            'style' => %w[styles style],
+            'color' => %w[colors color],
+            'objectstatus' => %w[objectStatusList objectStatus],
+            'contentperson' => %w[contentPersons contentPerson],
+            'inventorystatus' => %w[inventoryStatusList inventoryStatus],
+            'publishto' => %w[publishToList publishTo],
+            'objectproductionreason' => %w[objectProductionReasons objectProductionReason],
+            'objectproductiondate' => %w[objectProductionDateGroupList objectProductionDateGroup],
+            'ownerperson' => %w[owners owner],
+            'ownerorganization' => %w[owners owner],
+            'contentpeople' => %w[contentPeoples contentPeople],
+            'contentplace' => %w[contentPlaces contentPlace],
+            'contentscript' => %w[contentScripts contentScript],
+            'contentorganization' => %w[contentOrganizations contentOrganization],
+            'contentlanguage' => %w[contentLanguages contentLanguage],
+            'contentactivity' => %w[contentActivities contentActivity],
+            'contentposition' => %w[contentPositions contentPosition],
+            'contentconceptassociated' => %w[contentConcepts contentConcept],
+            'contentconceptmaterial' => %w[contentConcepts contentConcept],
+            'assoceventorganization' => %w[assocEventOrganizations assocEventOrganization],
+            'assoceventpeople' => %w[assocEventPeoples assocEventPeople],
+            'assoceventperson' => %w[assocEventPersons assocEventPerson],
+            'assoceventplace' => %w[assocEventPlaces assocEventPlace],
+            'ownersreference' => %w[ownersReferences ownersReference],
+            'viewersreference' => %w[viewersReferences viewersReference],
+            'fieldcollectionmethod' => %w[fieldCollectionMethods fieldCollectionMethod],
+            'fieldcollectionsource' => %w[fieldCollectionSources fieldCollectionSource],
+            'fieldcollectorperson' => %w[fieldCollectors fieldCollector],
+            'fieldcollectororganization' => %w[fieldCollectors fieldCollector]
           }
           repeatstransforms = {
-            'contentperson' => {'authority' => ['personauthorities', 'person']},
-            'inventorystatus' => {'vocab' => 'inventorystatus'},
-            'publishto' => {'vocab' => 'publishto'},
-            'objectproductiondate' => {'special' => 'structured_date'},
-            'ownerperson' => {'authority' => ['personauthorities', 'person']},
-            'ownerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'contentorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'contentlanguage' => {'vocab' => 'languages'},
-            'contentconceptassociated' => {'authority' => ['conceptauthorities', 'concept']},
-            'contentconceptmaterial' => {'authority' => ['conceptauthorities', 'material_ca']},
-            'assoceventorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'assoceventperson' => {'authority' => ['personauthorities', 'person']},
-            'fieldcollectionmethod' => {'vocab' => 'collectionmethod'},
-            'fieldcollectionsource' => {'authority' => ['personauthorities', 'person']},
-            'fieldcollectorperson' => {'authority' => ['personauthorities', 'person']},
-            'fieldcollectororganization' => {'authority' => ['orgauthorities', 'organization']}
+            'contentperson' => { 'authority' => %w[personauthorities person] },
+            'inventorystatus' => { 'vocab' => 'inventorystatus' },
+            'publishto' => { 'vocab' => 'publishto' },
+            'objectproductiondate' => { 'special' => 'structured_date' },
+            'ownerperson' => { 'authority' => %w[personauthorities person] },
+            'ownerorganization' => { 'authority' => %w[orgauthorities organization] },
+            'contentorganization' => { 'authority' => %w[orgauthorities organization] },
+            'contentlanguage' => { 'vocab' => 'languages' },
+            'contentconceptassociated' => { 'authority' => %w[conceptauthorities concept] },
+            'contentconceptmaterial' => { 'authority' => %w[conceptauthorities material_ca] },
+            'assoceventorganization' => { 'authority' => %w[orgauthorities organization] },
+            'assoceventperson' => { 'authority' => %w[personauthorities person] },
+            'fieldcollectionmethod' => { 'vocab' => 'collectionmethod' },
+            'fieldcollectionsource' => { 'authority' => %w[personauthorities person] },
+            'fieldcollectorperson' => { 'authority' => %w[personauthorities person] },
+            'fieldcollectororganization' => { 'authority' => %w[orgauthorities organization] }
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
-          #measuredPartGroupList, measuredPartGroup 
+          # measuredPartGroupList, measuredPartGroup
           CSXML::Helpers.add_measured_part_group_list(xml, attributes)
-          #objectProductionDateGroupList, objectProductionDateGroup
+          # objectProductionDateGroupList, objectProductionDateGroup
           CSXML::Helpers.add_date_group_list(
             xml, 'objectProductionDate', attributes['objectproductiondate']
           )
-          #contentDateGroup
+          # contentDateGroup
           CSXML::Helpers.add_date_group(
             xml, 'contentDate', CSDTP.parse(attributes['contentdategroup'])
           )
-          #fieldCollectionDateGroup
+          # fieldCollectionDateGroup
           CSXML::Helpers.add_date_group(
             xml, 'fieldCollectionDate', CSDTP.parse(attributes['fieldcollectiondategroup'])
           )
-          #ownershipDateGroupList, ownershipDateGroup
+          # ownershipDateGroupList, ownershipDateGroup
           CSXML::Helpers.add_date_group_list(
             xml, 'ownershipDate', attributes['ownershipdate']
           )
-          #textualInscriptionGroupList,textualInscriptionGroup 
+          # textualInscriptionGroupList,textualInscriptionGroup
           textualinscriptiondata = {
             'inscriptioncontent' => 'inscriptionContent',
             'inscriptioncontentinscriberperson' => 'inscriptionContentInscriber',
@@ -146,10 +150,10 @@ module CollectionSpace
             'inscriptioncontenttransliteration' => 'inscriptionContentTransliteration'
           }
           textualinscriptiontransforms = {
-            'inscriptioncontentinscriberperson' => {'authority' => ['personauthorities', 'person']},
-            'inscriptioncontentinscriberorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'inscriptioncontentlanguage' => {'vocab' => 'languages'},
-            'inscriptioncontentdategroup' => {'special' => 'structured_date'}
+            'inscriptioncontentinscriberperson' => { 'authority' => %w[personauthorities person] },
+            'inscriptioncontentinscriberorganization' => { 'authority' => %w[orgauthorities organization] },
+            'inscriptioncontentlanguage' => { 'vocab' => 'languages' },
+            'inscriptioncontentdategroup' => { 'special' => 'structured_date' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -158,7 +162,7 @@ module CollectionSpace
             textualinscriptiondata,
             textualinscriptiontransforms
           )
-          #nonTextualInscriptionGroupList, nonTextualInscriptionGroup
+          # nonTextualInscriptionGroupList, nonTextualInscriptionGroup
           nontextualinscriptiondata = {
             'inscriptiondescriptiondategroup' => 'inscriptionDescriptionDateGroup',
             'inscriptiondescription' => 'inscriptionDescription',
@@ -170,9 +174,9 @@ module CollectionSpace
             'inscriptiondescriptiontype' => 'inscriptionDescriptionType'
           }
           nontextualinscriptiontransforms = {
-            'inscriptiondescriptioninscriberperson' => {'authority' => ['personauthorities', 'person']},
-            'inscriptiondescriptioninscriberorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'inscriptiondescriptiondategroup' => {'special' => 'structured_date'}
+            'inscriptiondescriptioninscriberperson' => { 'authority' => %w[personauthorities person] },
+            'inscriptiondescriptioninscriberorganization' => { 'authority' => %w[orgauthorities organization] },
+            'inscriptiondescriptiondategroup' => { 'special' => 'structured_date' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -181,13 +185,13 @@ module CollectionSpace
             nontextualinscriptiondata,
             nontextualinscriptiontransforms
           )
-          #objectProductionOrganizationGroupList, objectProductionOrganizationGroup
+          # objectProductionOrganizationGroupList, objectProductionOrganizationGroup
           objectprodorgdata = {
             'objectproductionorganization' => 'objectProductionOrganization',
             'objectproductionorganizationrole' => 'objectProductionOrganizationRole'
           }
           objectprodorgtransforms = {
-            'objectproductionorganization' => {'authority' => ['orgauthorities', 'organization']}
+            'objectproductionorganization' => { 'authority' => %w[orgauthorities organization] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -196,13 +200,13 @@ module CollectionSpace
             objectprodorgdata,
             objectprodorgtransforms
           )
-          #objectProductionPersonGroupList, objectProductionPersonGroup
+          # objectProductionPersonGroupList, objectProductionPersonGroup
           objectprodpersondata = {
             'objectproductionperson' => 'objectProductionPerson',
             'objectproductionpersonrole' => 'objectProductionPersonRole'
           }
           objectprodpersontransforms = {
-            'objectproductionperson' => {'authority' => ['personauthorities', 'person']}
+            'objectproductionperson' => { 'authority' => %w[personauthorities person] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -215,14 +219,14 @@ module CollectionSpace
           objectprodpeopledata = {
             'objectproductionpeople' => 'objectProductionPeople',
             'objectproductionpeoplerole' => 'objectProductionPeopleRole'
-          } 
+          }
           CSXML.add_single_level_group_list(
             xml,
             attributes,
             'objectProductionPeople',
-            objectprodpeopledata,
+            objectprodpeopledata
           )
-          #objectNameList, objectNameGroup
+          # objectNameList, objectNameGroup
           objectname_data = {
             'objectname' => 'objectName',
             'objectnamecurrency' => 'objectNameCurrency',
@@ -230,10 +234,10 @@ module CollectionSpace
             'objectnamesystem' => 'objectNameSystem',
             'objectnametype' => 'objectNameType',
             'objectnamelanguage' => 'objectNameLanguage',
-            'objectnamenote' => 'objectNameNote',
+            'objectnamenote' => 'objectNameNote'
           }
           objectname_transforms = {
-            'objectnamelanguage' => {'vocab' => 'languages'}
+            'objectnamelanguage' => { 'vocab' => 'languages' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -243,7 +247,7 @@ module CollectionSpace
             objectname_transforms,
             list_suffix: 'List'
           )
-          #otherNumberList, otherNumber
+          # otherNumberList, otherNumber
           othernumber_data = {
             'numbervalue' => 'numberValue',
             'numbertype' => 'numberType'
@@ -256,7 +260,7 @@ module CollectionSpace
             list_suffix: 'List',
             group_suffix: ''
           )
-          #objectComponentGroupList, objectComponentGroup
+          # objectComponentGroupList, objectComponentGroup
           objectcompdata = {
             'objectcomponentname' => 'objectComponentName',
             'objectcomponentinformation' => 'objectComponentInformation'
@@ -265,9 +269,9 @@ module CollectionSpace
             xml,
             attributes,
             'objectComponent',
-            objectcompdata,
+            objectcompdata
           )
-          #materialGroupList, materialGroup
+          # materialGroupList, materialGroup
           materialdata = {
             'materialname' => 'materialName',
             'material' => 'material',
@@ -281,7 +285,7 @@ module CollectionSpace
             'material',
             materialdata
           )
-          #technicalAttributeGroupList, technicalAttributeGroup
+          # technicalAttributeGroupList, technicalAttributeGroup
           techattribute_data = {
             'technicalattribute' => 'technicalAttribute',
             'technicalattributemeasurementunit' => 'technicalAttributeMeasurementUnit',
@@ -293,7 +297,7 @@ module CollectionSpace
             'technicalAttribute',
             techattribute_data
           )
-          #techniqueGroupList, techniqueGroup
+          # techniqueGroupList, techniqueGroup
           technique_data = {
             'technique' => 'technique',
             'techniquetype' => 'techniqueType'
@@ -304,7 +308,7 @@ module CollectionSpace
             'technique',
             technique_data
           )
-          #objectProductionPlaceGroupList, objectProductionPlaceGroup
+          # objectProductionPlaceGroupList, objectProductionPlaceGroup
           prodplace_data = {
             'objectproductionplace' => 'objectProductionPlace',
             'objectproductionplacerole' => 'objectProductionPlaceRole'
@@ -315,7 +319,7 @@ module CollectionSpace
             'objectProductionPlace',
             prodplace_data
           )
-          #usageGroupList, usageGroup
+          # usageGroupList, usageGroup
           usage_data = {
             'usage' => 'usage',
             'usagenote' => 'usageNote'
@@ -326,7 +330,7 @@ module CollectionSpace
             'usage',
             usage_data
           )
-          #contentEventNameGroupList, contentEventNameGroup
+          # contentEventNameGroupList, contentEventNameGroup
           contenteventname_data = {
             'contenteventname' => 'contentEventName',
             'contenteventnametype' => 'contentEventNameType'
@@ -337,7 +341,7 @@ module CollectionSpace
             'contentEventName',
             contenteventname_data
           )
-          #contentOtherGroupList, contentOtherGroup
+          # contentOtherGroupList, contentOtherGroup
           contentother_data = {
             'contentother' => 'contentOther',
             'contentothertype' => 'contentOtherType'
@@ -348,7 +352,7 @@ module CollectionSpace
             'contentOther',
             contentother_data
           )
-          #contentObjectGroupList, contentObjectGroup
+          # contentObjectGroupList, contentObjectGroup
           contentobject_data = {
             'contentobject' => 'contentObject',
             'contentobjecttype' => 'contentObjectType'
@@ -359,7 +363,7 @@ module CollectionSpace
             'contentObject',
             contentobject_data
           )
-          #assocActivityGroupList, assocActivityGroup
+          # assocActivityGroupList, assocActivityGroup
           assocactivity_data = {
             'assocactivity' => 'assocActivity',
             'assocactivitytype' => 'assocActivityType',
@@ -371,7 +375,7 @@ module CollectionSpace
             'assocActivity',
             assocactivity_data
           )
-          #assocObjectGroupList, assocObjectGroup
+          # assocObjectGroupList, assocObjectGroup
           assocobject_data = {
             'assocobject' => 'assocObject',
             'assocobjectnote' => 'assocObjectNote',
@@ -383,14 +387,14 @@ module CollectionSpace
             'assocObject',
             assocobject_data
           )
-          #assocConceptGroupList, assocConceptGroup
+          # assocConceptGroupList, assocConceptGroup
           assocconcept_data = {
             'assocconcept' => 'assocConcept',
             'assocconceptnote' => 'assocConceptNote',
             'assocconcepttype' => 'assocConceptType'
           }
           assocconcept_transforms = {
-            'assocconcept' => {'authority' => ['conceptauthorities', 'concept']} 
+            'assocconcept' => { 'authority' => %w[conceptauthorities concept] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -399,7 +403,7 @@ module CollectionSpace
             assocconcept_data,
             assocconcept_transforms
           )
-          #assocCulturalContextGroupList, assocCulturalContextGroup
+          # assocCulturalContextGroupList, assocCulturalContextGroup
           assocculturalcontext_data = {
             'assocculturalcontext' => 'assocCulturalContext',
             'assocculturalcontextnote' => 'assocCulturalContextNote',
@@ -411,14 +415,14 @@ module CollectionSpace
             'assocCulturalContext',
             assocculturalcontext_data
           )
-          #assocOrganizationGroupList, assocOrganizationGroup
+          # assocOrganizationGroupList, assocOrganizationGroup
           assocorganization_data = {
             'assocorganization' => 'assocOrganization',
             'assocorganizationtype' => 'assocOrganizationType',
             'assocorganizationnote' => 'assocOrganizationNote'
           }
           assocorganization_transforms = {
-            'assocorganization' => {'authority' => ['orgauthorities', 'organization']}
+            'assocorganization' => { 'authority' => %w[orgauthorities organization] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -427,7 +431,7 @@ module CollectionSpace
             assocorganization_data,
             assocorganization_transforms
           )
-          #assocPeopleGroupList, assocPeopleGroup
+          # assocPeopleGroupList, assocPeopleGroup
           assocpeople_data = {
             'assocpeople' => 'assocPeople',
             'assocpeoplenote' => 'assocPeopleNote',
@@ -439,14 +443,14 @@ module CollectionSpace
             'assocPeople',
             assocpeople_data
           )
-          #assocPersonGroupList, assocPersonGroup
+          # assocPersonGroupList, assocPersonGroup
           assocperson_data = {
             'assocperson' => 'assocPerson',
             'assocpersontype' => 'assocPersonType',
             'assocpersonnote' => 'assocPersonNote'
           }
           assocperson_transforms = {
-            'assocperson' => {'authority' => ['personauthorities', 'person']}
+            'assocperson' => { 'authority' => %w[personauthorities person] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -455,7 +459,7 @@ module CollectionSpace
             assocperson_data,
             assocperson_transforms
           )
-          #assocPlaceGroupList, assocPlaceGroup
+          # assocPlaceGroupList, assocPlaceGroup
           assocplace_data = {
             'assocplace' => 'assocPlace',
             'assocplacenote' => 'assocPlaceNote',
@@ -467,14 +471,14 @@ module CollectionSpace
             'assocPlace',
             assocplace_data
           )
-          #assocDateGroupList, assocDateGroup
+          # assocDateGroupList, assocDateGroup
           assocdate_data = {
             'assocdatenote' => 'assocDateNote',
             'assocdatetype' => 'assocDateType',
             'assocstructureddategroup' => 'assocStructuredDateGroup'
           }
           assocdate_transforms = {
-            'assocstructureddategroup' => {'special' => 'structured_date'}
+            'assocstructureddategroup' => { 'special' => 'structured_date' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -483,13 +487,13 @@ module CollectionSpace
             assocdate_data,
             assocdate_transforms
           )
-          #referenceGroupList, referenceGroup
+          # referenceGroupList, referenceGroup
           referencegroup_data = {
             'reference' => 'reference',
-            'referencenote' => 'referenceNote',
+            'referencenote' => 'referenceNote'
           }
           referencegroup_transforms = {
-            'reference' => {'authority' => ['citationauthorities', 'citation']}
+            'reference' => { 'authority' => %w[citationauthorities citation] }
           }
           CSXML.add_single_level_group_list(
             xml,
