@@ -70,7 +70,7 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/contentPeoples/contentPeople',
     '/document/*/contentPlaces/contentPlace',
     '/document/*/contentScripts/contentScript',
-    { xpath: '/document/*/contentOrganizations/contentOrganization', transform: ->(text) { CSURN.parse(text)[:label] } }, 
+    { xpath: '/document/*/contentOrganizations/contentOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentMethod',
     { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[1]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
@@ -209,18 +209,18 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionMethod',
     '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionInterpretation',
   ]}
-  
+
   context 'For maximally populuated record' do
     it "Maps attributes correctly" do
       test_converter(doc, record, xpaths)
     end
   end
-  
+
   context 'For minimally populated record' do
     let(:attributes) { get_attributes_by_row('core', 'cataloging_core_excerpt.csv', 102) }
     let(:corecollectionobject) { CoreCollectionObject.new(attributes) }
     let(:doc) { Nokogiri::XML(corecollectionobject.convert, nil, 'UTF-8') }
-    let(:record) { get_fixture('core_collectionobject_row102.xml') }     
+    let(:record) { get_fixture('core_collectionobject_row102.xml') }
     let(:xpath_required) {[
       '/document/*/objectNumber'
     ]}

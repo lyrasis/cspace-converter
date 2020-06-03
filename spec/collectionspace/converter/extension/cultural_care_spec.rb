@@ -29,7 +29,7 @@ RSpec.describe CollectionSpace::Converter::Extension::CulturalCare do
         "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup/limitationType",
         "/document/#{cc}/accessLimitationsGroupList/accessLimitationsGroup/requestOnBehalfOf"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           it 'all values will be URNs' do
             expect(urn_values(doc, xpath)).not_to include('Not a URN')
           end
