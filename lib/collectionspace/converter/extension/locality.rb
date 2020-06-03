@@ -3,11 +3,10 @@
 module CollectionSpace
   module Converter
     module Extension
-      # Contact Extension
       module Locality
         ::Locality = CollectionSpace::Converter::Extension::Locality
 
-        def self.map_locality(xml, attributes)
+        def map_locality(xml, attributes)
           # localityGroupList, localityGroup
           loc_data = {
             'fieldlocverbatim' => 'fieldLocVerbatim',
@@ -56,9 +55,9 @@ module CollectionSpace
             'georefdategroup' => 'geoRefDateGroup'
           }
           loc_transforms = {
-            'fieldlocplace' => {'authority' => ['placeauthorities', 'place']},
-            'vcoordsys' => {'vocab' => 'vcoordsys'},
-            'georefdategroup' => {'special' => 'structured_date'}
+            'fieldlocplace' => { 'authority' => %w[placeauthorities place] },
+            'vcoordsys' => { 'vocab' => 'vcoordsys' },
+            'georefdategroup' => { 'special' => 'structured_date' }
           }
 
           CSXML.add_single_level_group_list(
