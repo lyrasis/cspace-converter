@@ -103,6 +103,7 @@ module CollectionSpace
             'termtypenonpreferred' => {'vocab' => 'persontermtype'},
             'termflagnonpreferred' => {'vocab' => 'persontermflag'}
           }
+            
           CSXML.add_single_level_group_list(
             xml,
             attributes,
