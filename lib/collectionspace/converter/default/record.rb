@@ -3,20 +3,27 @@ module CollectionSpace
     module Default
       ::Default = CollectionSpace::Converter::Default
       class Record
-        ::CSDR = CollectionSpace::Converter::Default::Record
-        attr_reader :attributes, :config
+        attr_reader :attributes, :config, :redefined
         def initialize(attributes, config = {})
           @attributes = attributes
           @config = config
           @redefined = []
         end
 
-        # default implementation used by authorities
-        # overriden by sub-classes for procedures, returns converted record
+        # default implementation used by stub authorities / vocabularies
+        # overriden by sub-classes, returns converted record
         def convert
           run do |xml|
-            Record.map(xml, attributes)
+            map(xml, attributes)
           end
+        end
+
+        # default implementation used by stub authorities / vocabularies
+        def map(xml, attributes)
+          CSXML.add xml, 'shortIdentifier', attributes["shortidentifier"]
+          CSXML.add_group_list xml, attributes["termtype"], [{
+            "termDisplayName" => attributes["termdisplayname"],
+          }]
         end
 
         def redefined_fields
@@ -50,41 +57,8 @@ module CollectionSpace
           node.remove if node.content.blank? && node.attributes.blank?
         end
 
-        def self.map(xml, attributes)
-          CSXML.add xml, 'shortIdentifier', attributes["shortidentifier"]
-          CSXML.add_group_list xml, attributes["termtype"], [{
-            "termDisplayName" => attributes["termdisplayname"],
-          }]
-        end
-
-        # return an array of fields as a string
-        def self.scrub_fields(fields = [])
-          fields.compact.join(". ").squeeze(".").gsub(/\n|\t/, "").strip
-        end
-
         def self.service(subtype = nil)
           raise 'Must be implemented in subclass'
-        end
-
-        # process multivalued fields by splitting them and returning a flat array of all elements
-        def self.split_mvf(attributes, *fields)
-          values = []
-          fields.each do |field|
-            # TODO: log a warning ? may be noisy ...
-            next unless attributes.has_key? field
-            values << attributes[field]
-              .to_s
-              .split(Rails.application.config.csv_mvf_delimiter)
-              .map(&:strip)
-          end
-          values.flatten.compact
-        end
-
-        def self.to_boolean(field)
-          return nil unless field
-
-          # TODO: boolean validation
-          field.downcase
         end
       end
 
@@ -121,6 +95,7 @@ module CollectionSpace
       end
 
       class CollectionObject < Record
+        ::CollectionObject = CollectionSpace::Converter::Default::CollectionObject
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'collectionobjects', 'collectionobject', common

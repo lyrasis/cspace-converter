@@ -35,7 +35,7 @@ RSpec.describe CollectionSpace::Converter::OHC::OHCCollectionObject do
         ]
         test_converter(doc, record, xpaths)
       end
-      
+
 
       it "Remaps objectNameGroups correctly" do
         xpaths = [
@@ -116,7 +116,7 @@ RSpec.describe CollectionSpace::Converter::OHC::OHCCollectionObject do
       { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
       { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerUpper", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
       { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
-      { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },    
+      { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/behrensmeyerSingleLower", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
       "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup/minIndividuals",
       { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[1]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[1]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
       { xpath: "/document/#{anthro}/commingledRemainsGroupList/commingledRemainsGroup[2]/mortuaryTreatmentGroupList/mortuaryTreatmentGroup[1]/mortuaryTreatment", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
@@ -127,5 +127,5 @@ RSpec.describe CollectionSpace::Converter::OHC::OHCCollectionObject do
       test_converter(doc, record, xpaths)
     end
   end
-  
+
 end

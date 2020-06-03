@@ -5,11 +5,11 @@ module CollectionSpace
         ::CoreMovement = CollectionSpace::Converter::Core::CoreMovement
         def convert
           run do |xml|
-            CoreMovement.map(xml, attributes)
+            CoreMovement.map_common(xml, attributes)
           end
         end
 
-        def self.map(xml, attributes)
+        def self.map_common(xml, attributes)
           pairs = {
             'movementreferencenumber' => 'movementReferenceNumber',
             'normallocationstorage' => 'normalLocation',

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module CollectionSpace
   module Converter
     module Anthro
@@ -12,32 +10,84 @@ module CollectionSpace
         end
 
         def self.map(xml, attributes, config)
+          pairs = {
+            'taxonrank' => 'taxonRank',
+            'taxoncurrency' => 'taxonCurrency',
+            'taxonyear' => 'taxonYear',
+            'taxonisnamedhybrid' => 'taxonIsNamedHybrid',
+            'taxonnote' => 'taxonNote' 
+          }
+          CSXML::Helpers.add_pairs(xml, attributes, pairs)
+          repeats = {
+            'taxoncitation' => ['taxonCitationList', 'taxonCitation']
+          }
+          repeats_transforms = {
+            'taxoncitation' => {'authority' => ['citationauthorities', 'citation']}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
+          #identifier
           CSXML.add xml, 'shortIdentifier', config[:identifier]
-          CSXML.add_group_list xml, 'taxonTerm', [
-            {
-              'taxonomicStatus' => attributes['taxonomicstatus'],
-              'termDisplayName' => attributes['termdisplayname'],
-              'termFlag' => CSXML::Helpers.get_vocab('taxontermflag', attributes['termflag']),
-              'termFormattedDisplayName' => attributes['termformatteddisplayname'],
-              'termLanguage' => CSXML::Helpers.get_vocab('languages', attributes['termlanguage']),
-              'termName' => attributes['termname'],
-              'termPrefForLang' => attributes.fetch('termprefforlang', '').downcase,
-              'termQualifier' => attributes['termqualifier'],
-              'termSource' => CSXML::Helpers.get_vocab('citation', attributes['termsource']),
-              'termSourceID' => attributes['termsourceid'],
-              'termSourceDetail' => attributes['termsourcedetail'],
-              'termSourceNote' => attributes['termsourcenote'],
-              'termStatus' => attributes['termstatus'],
-              'termType' => attributes['termtype']
-            },
-            {
-              'termDisplayName' => attributes['additionaltermdisplayname'],
-              'termStatus' => attributes['additionaltermstatus']
-            }
-          ]
-          CSXML.add_group_list xml, 'commonName', [{
-            'commonName' => attributes['commonname']
-          }]
+          #taxonTermGroupList, taxonTermGroup
+          taxonterm_data = {
+	    "termdisplayname" => "termDisplayName",
+	    "termlanguage" => "termLanguage",
+	    "termprefforlang" => "termPrefForLang",
+	    "termqualifier" => "termQualifier",
+	    "termsource" => "termSource",
+	    "termsourceid" => "termSourceID",
+	    "termsourcedetail" => "termSourceDetail",
+	    "termsourcenote" => "termSourceNote",
+ 	    "termstatus" => "termStatus",
+	    "termtype" => "termType",
+            "termflag" => "termFlag",
+            "termformatteddisplayname" => "termFormattedDisplayName",
+            "taxonomicstatus" => "taxonomicStatus"
+	  }
+          taxonterm_transforms = {
+            'termlanguage' => {'vocab' => 'languages'},
+            'termsource' => {'authority' => ['citationauthorities', 'citation']},
+            'termflag' => {'vocab' => 'taxontermflag'}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'taxonTerm',
+            taxonterm_data,
+            taxonterm_transforms
+          )        
+          #commonNameGroupList, commonNameGroup
+          commonname_data = {
+            "commonname" => "commonName",
+            "commonnamelanguage" => "commonNameLanguage",
+            "commonnamesourcedetail" => "commonNameSourceDetail",
+            "commonnamesource" => "commonNameSource"
+          }
+          commonname_transforms = {
+            'commonnamelanguage' => {'vocab' => 'languages'},
+            'commonnamesource' => {'authority' => ['citationauthorities', 'citation']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'commonName',
+            commonname_data,
+            commonname_transforms
+          )
+          #taxonAuthorGroupList, taxonAuthorGroup
+          taxonauthor_data = {
+            "taxonauthor" => "taxonAuthor",
+            "taxonauthortype" => "taxonAuthorType"
+          }
+          taxonauthor_transforms = {
+            'taxonauthor' => {'authority' => ['personauthorities', 'person']}
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'taxonAuthor',
+            taxonauthor_data,
+            taxonauthor_transforms
+          )
         end
       end
     end

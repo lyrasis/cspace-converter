@@ -1,67 +1,74 @@
+# frozen_string_literal: true
+
+require_relative '../core/collectionobject'
+
 module CollectionSpace
   module Converter
     module Anthro
-      class AnthroCollectionObject < CollectionObject
+      class AnthroCollectionObject < CoreCollectionObject
         ::AnthroCollectionObject = CollectionSpace::Converter::Anthro::AnthroCollectionObject
+        include CulturalCare
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          @redefined = [
+            'objectproductionpeople',
+            'objectproductionpeoplerole'
+          ]
+        end
+
         def convert
-          run(wrapper: "document") do |xml|
+          run(wrapper: 'document') do |xml|
             xml.send(
-                "ns2:collectionobjects_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_common',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_common(xml, attributes, redefined_fields)
+              map_common(xml, attributes)
             end
 
             xml.send(
-              "ns2:collectionobjects_culturalcare",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/culturalcare",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_culturalcare',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/domain/culturalcare',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+              map_cultural_care(xml, attributes)
             end
 
             xml.send(
-                "ns2:collectionobjects_anthro",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/anthro",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_anthro',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/domain/anthro',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_anthro(xml, attributes)
+              map_anthro(xml, attributes)
             end
 
             xml.send(
-              "ns2:collectionobjects_annotation",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/annotation",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_annotation',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/domain/annotation',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_annotation(xml, attributes, redefined_fields)
+
+              map_annotation(xml, attributes)
+
             end
 
             xml.send(
-              "ns2:collectionobjects_nagpra",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/nagpra",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_nagpra',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/domain/nagpra',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              AnthroCollectionObject.map_nagpra(xml, attributes)
+              map_nagpra(xml, attributes)
             end
           end
         end
 
-        def redefined_fields
-          @redefined.concat([
-            'objectproductionpeople',
-            'objectproductionpeoplerole'
-          ])
-          super
-        end
-
-        def self.map_common(xml, attributes, redefined)
-          CoreCollectionObject.map_common(xml, attributes.merge(redefined))
+        def map_common(xml, attributes)
+          super(xml, attributes.merge(redefined_fields))
 
           opp_data = {
             'objectproductionpeopleethnoculture' => 'objectProductionPeople',
@@ -69,9 +76,9 @@ module CollectionSpace
             'objectproductionpeoplerole' => 'objectProductionPeopleRole'
           }
           opp_transforms = {
-            'objectproductionpeopleethnoculture' => {'authority' => ['conceptauthorities', 'ethculture']},
-            'objectproductionpeoplearchculture' =>  {'authority' => ['conceptauthorities', 'archculture']},
-            'objectproductionpeoplerole' => {'vocab' => 'prodpeoplerole'}
+            'objectproductionpeopleethnoculture' => { 'authority' => %w[conceptauthorities ethculture] },
+            'objectproductionpeoplearchculture' => { 'authority' => %w[conceptauthorities archculture] },
+            'objectproductionpeoplerole' => { 'vocab' => 'prodpeoplerole' }
           }
           CSXML.add_single_level_group_list(
             xml, attributes,
@@ -81,10 +88,27 @@ module CollectionSpace
           )
         end
 
-        # EXTENSIONS
-        def self.map_cultural_care(xml, attributes, redefined)
-          CulturalCare.map_cultural_care(xml, attributes.merge(redefined))
-        end
+        def map_anthro(xml, attributes)
+          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
+          # localityGroupList
+          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
+          locality_data = {
+            'fieldlocplace' => 'fieldLocPlace',
+            'fieldloccounty' => 'fieldLocCounty',
+            'fieldlocstate' => 'fieldLocState',
+            'localitynote' => 'localityNote'
+          }
+
+          locality_transforms = {
+            'fieldlocplace' => { 'authority' => %w[placeauthorities place] }
+          }
+
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'locality',
+            locality_data,
+            locality_transforms
+          )
 
         # def self.map_locality(xml, attributes, redefined)
         #   Locality.map_locality(xml, attributes.merge(redefined))
@@ -111,25 +135,22 @@ module CollectionSpace
             'mortuarytreatment' => 'mortuaryTreatment',
             'mortuarytreatmentnote' => 'mortuaryTreatmentNote'
           }
-          mortuary_treatment_fields = [
-            'mortuaryTreatment',
-            'mortuaryTreatmentNote'
+          mortuary_treatment_fields = %w[
+            mortuaryTreatment
+            mortuaryTreatmentNote
           ]
 
           commingled_transforms = {
-            'agerange' => {'replace' => [{'find' => ' - ',
-                                          'replace' => '-',
-                                          'type' => 'plain'}],
-                           'vocab' => 'agerange'
-                          },
-            'behrensmeyerupper' => {'special' => 'behrensmeyer_translate',
-                                    'vocab' => 'behrensmeyer'
-                                   },
-            'behrensmeyersinglelower' => {'special' => 'behrensmeyer_translate',
-                                          'vocab' => 'behrensmeyer'
-                                         },
-            'dentition' => {'special' => 'boolean'},
-            'mortuarytreatment' => {'vocab' => 'mortuarytreatment'}
+            'agerange' => { 'replace' => [{ 'find' => ' - ',
+                                            'replace' => '-',
+                                            'type' => 'plain' }],
+                            'vocab' => 'agerange' },
+            'behrensmeyerupper' => { 'special' => 'behrensmeyer_translate',
+                                     'vocab' => 'behrensmeyer' },
+            'behrensmeyersinglelower' => { 'special' => 'behrensmeyer_translate',
+                                           'vocab' => 'behrensmeyer' },
+            'dentition' => { 'special' => 'boolean' },
+            'mortuarytreatment' => { 'vocab' => 'mortuarytreatment' }
           }
 
           CSXML.add_nested_group_lists(
@@ -140,28 +161,49 @@ module CollectionSpace
             mortuary_treatment_fields,
             commingled_transforms,
             sublist_suffix: 'GroupList',
-            subgroup_suffix: 'Group',
+            subgroup_suffix: 'Group'
           )
         end
 
-        def self.map_annotation(xml, attributes, redefined)
-          Annotation.map_annotation(xml, attributes.merge(redefined))
+        def map_annotation(xml, attributes)
+          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
+          # annotationGroupList
+          # -=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=
+          annotation_data = {
+            'annotationnote' => 'annotationNote',
+            'annotationtype' => 'annotationType',
+            'annotationdate' => 'annotationDate',
+            'annotationauthor' => 'annotationAuthor'
+          }
+
+          annotation_transforms = {
+            'annotationauthor' => { 'authority' => %w[personauthorities person] },
+            'annotationtype' => { 'vocab' => 'annotationtype' },
+            'annotationdate' => { 'special' => 'unstructured_date_string' }
+          }
+
+          CSXML.add_single_level_group_list(
+            xml, attributes,
+            'annotation',
+            annotation_data,
+            annotation_transforms
+          )
         end
-        
-        def self.map_nagpra(xml, attributes)
+
+        def map_nagpra(xml, attributes)
           pairs = {
             'nagprareportfiled' => 'nagpraReportFiled',
             'nagprareportfiledby' => 'nagpraReportFiledBy'
           }
           pair_transforms = {
-            'nagprareportfiled' => {'special' => 'boolean'},
-            'nagprareportfiledby' => {'authority' => ['personauthorities', 'person']}
+            'nagprareportfiled' => { 'special' => 'boolean' },
+            'nagprareportfiledby' => { 'authority' => %w[personauthorities person] }
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pair_transforms)
 
           repeats = {
-            'repatriationnote' => ['repatriationNotes', 'repatriationNote'],
-            'nagpracategory' => ['nagpraCategories', 'nagpraCategory']
+            'repatriationnote' => %w[repatriationNotes repatriationNote],
+            'nagpracategory' => %w[nagpraCategories nagpraCategory]
           }
           repeat_transforms = {
             'nagpracategory' => { 'vocab' => 'nagpracategory' }
@@ -171,7 +213,6 @@ module CollectionSpace
           CSXML::Helpers.add_date_group(
             xml, 'nagpraReportFiledDate', CSDTP.parse(attributes['nagprareportfileddate']), ''
           )
-
         end
       end
     end
