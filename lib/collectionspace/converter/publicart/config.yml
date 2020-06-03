@@ -20,32 +20,150 @@ registered_procedures:
 registered_profiles:
   acquisition:
     type: Procedures
+    enabled: true
+    identify_by_column: acquisitionreferencenumber
+    required_headers:
+      - acquisitionreferencenumber
     config:
       Acquisition:
+        mapper: PublicArtAcquisition
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
-        Person:
-        - acquisitionauthorizer
-        - owner
+        - name_field: acquisitionsourcepersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: acquisitionsourcepersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: acquisitionsourceorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: acquisitionsourceorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: ownerpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerpersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: ownerorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: ownerorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: acquisitionfundingsourceorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: acquisitionfundingsourceorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: acquisitionfundingsourcepersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: acquisitionfundingsourcepersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+      Vocabularies:
+        - name_field: acquisitionmethod
+          vocabulary_subtype: acquisitionmethod
+        - name_field: acquisitionfundingcurrency
+          vocabulary_subtype: currency
   cataloging:
     type: Procedures
+    enabled: true
+    identify_by_column: objectnumber
+    required_headers:
+      - objectnumber
     config:
       CollectionObject:
+        mapper: PublicArtCollectionObject
         identifier: objectnumber
-        title: title
+        title: objectnumber
       Authorities:
-        Person:
-        - contentperson
-        - inscriber
-        - objectproductionperson
-        - ownersperson
-        Organization:
-        - productionorg
-        - ownersorg
-        Concept:
-        - - material
-          - material_ca
+        - name_field: contentpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: contentpersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: publicartinscriptioncontentinscriberperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: publicartinscriptioncontentinscriberorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartinscriptioncontentinscriberorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: objectproductionpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionpersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: objectproductionorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: objectproductionorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: computedcurrentlocation
+          authority_type: Location
+          authority_subtype: location
+        - name_field: contentconcept
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: contentorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: contentorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: ownerpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerpersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: ownerorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: ownerorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: objectname
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: material
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: publicartcollection
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartproductionpersonpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: publicartproductionpersonpersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: publicartproductionpersonorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: publicartproductionpersonorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+      Vocabularies:
+        - name_field: responsibledepartment
+          vocabulary_subtype: program
+        - name_field: publicartinscriptioncontentlanguage
+          vocabulary_subtype: languages
+        - name_field: publicartproductiondatetype
+          vocabulary_subtype: proddatetype
+        - name_field: publicartproductionpersonrole
+          vocabulary_subtype: prodpersonrole
   conditioncheck:
     type: Procedures
     config:
@@ -113,13 +231,40 @@ registered_profiles:
       Authorities: []
   movement:
     type: Procedures
+    enabled: true
+    identify_by_column: movementreferencenumber
+    required_headers:
+      - movementreferencenumber
     config:
       Movement:
+        mapper: PublicArtMovement
         identifier: movementreferencenumber
         title: movementreferencenumber
       Authorities:
-        Person:
-        - movementcontact
+        - name_field: movementcontactlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: movementcontactshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: currentlocationstoragelocal
+          authority_type: Location
+          authority_subtype: location
+        - name_field: currentlocationorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: currentlocationplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: currentlocationstorageoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
+        - name_field: currentlocationorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: currentlocationplaceshared
+          authority_type: Place
+          authority_subtype: place_shared
   objectexit:
     type: Procedures
     config:

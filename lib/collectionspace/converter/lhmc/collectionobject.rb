@@ -1,40 +1,43 @@
+# frozen_string_literal: true
+
+require_relative '../core/collectionobject'
+
 module CollectionSpace
   module Converter
     module Lhmc
-      class LhmcCollectionObject < CollectionObject
+      class LhmcCollectionObject < CoreCollectionObject
         ::LhmcCollectionObject = CollectionSpace::Converter::Lhmc::LhmcCollectionObject
+        include CulturalCare
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          # List all fields that will be overridden or removed here.
 
+          # IMPORTANT: If the field to be overridden is part of a grouping of fields (repeats or group list),
+          #   you need to list ALL the fields that are part of the group, and completely redefine the group
+          #   here. Otherwise, you will get the value of each field not listed twice.
 
-        # List all fields that will be overridden or removed here.
+          # Listing a field here, but not redefining it will remove it from the new module.
 
-        # IMPORTANT: If the field to be overridden is part of a grouping of fields (repeats or group list),
-        #   you need to list ALL the fields that are part of the group, and completely redefine the group
-        #   here. Otherwise, you will get the value of each field not listed twice.
+          # @redefined is an Array of fieldname values. We add fields to it.
 
-        # Listing a field here, but not redefining it will remove it from the new module.
+          # To use call the redefined_fields method definition from Default::Record, which
+          #   returns a Hash where each key is an element of @redefined and all values are nil
 
-        # @redefined is an Array of fieldname values. We add fields to it.
-
-        # Then super calls the redefined_fields method definition from Default::Record, which
-        #   returns a Hash where each key is an element of @redefined and all values are nil
-
-        # Later, we call the CoreCollectionObject and CulturalCare's .map_* methods.
-        #  Instead of sending the actual attributes from the CSV in those calls, we merge this
-        #  redefined_fields hash in with the real attributes hash, which replaces any existing data
-        #  in the listed fields with nil. 
-        def redefined_fields
-          @redefined.concat([
-            'numbertype',
-            'numbervalue',
-            'contentplace',
-            'inscriptioncontenttype',
-            'inscriptioncontentmethod',
-            'objectproductionplace',
-            'assocplace',
-            'ownershipplace',
-            'contentscript'
-          ])
-          super
+          # Later, we call the CoreCollectionObject and CulturalCare's .map_* methods.
+          #  Instead of sending the actual attributes from the CSV in those calls, we merge this
+          #  redefined_fields hash in with the real attributes hash, which replaces any existing data
+          #  in the listed fields with nil.
+          @redefined = %w[
+            numbertype
+            numbervalue
+            contentplace
+            inscriptioncontenttype
+            inscriptioncontentmethod
+            objectproductionplace
+            assocplace
+            ownershipplace
+            contentscript
+          ]
         end
 
         # convert is used to build the XML document, including the elements which group fields from
@@ -50,54 +53,41 @@ module CollectionSpace
         # NOTE:
         # The namespace for the core module is "common" because the "core" namespace is used for fields
         #  used across the CSpace application (like record created and updated timestamps). So, that's
-        #  confusing... 
+        #  confusing...
         def convert
-          run(wrapper: "document") do |xml|
+          run(wrapper: 'document') do |xml|
             # The xml.send wraps all fields in the <collectionobjects_common> element and defines
             #  the namespace attributes
             xml.send(
-                "ns2:collectionobjects_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_common',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
               # NOTE that we are calling the map_common method of LhmcCollectionObject!
-              #  This calls CoreCollectionObject.map_common (with overridden fields removed)
+              #  This calls CoreCollectionObject map_common (with overridden fields removed)
               #  to populate all non-overridden fields AND defines the logic for any overridden fields
-              LhmcCollectionObject.map_common(xml, attributes, redefined_fields)
+              map_common(xml, attributes)
             end
 
             xml.send(
-              "ns2:collectionobjects_culturalcare",
-              "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/culturalcare",
-              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_culturalcare',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/domain/culturalcare',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
               # Follows the same pattern as above. Note that we are not overriding any culturalcare
               #  fields at this time, but we follow the same pattern a) for consistency; and
               #  b) to make it easy to ever override a culturalcare field
-              LhmcCollectionObject.map_cultural_care(xml, attributes, redefined_fields)
+              map_cultural_care(xml, attributes)
             end
-
-            xml.send(
-                "ns2:collectionobjects_lhmc",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/lhmc",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
-            ) do
-              xml.parent.namespace = nil
-              # The map_lhmc method defines conversion logic for fields defined in the lhmc data
-              #   profile
-              # This logic cannot override itself, so we don't send the redefined_fields!
-              LhmcCollectionObject.map_lhmc(xml, attributes)
-            end
-
           end
         end
 
         # CORE
-        def self.map_common(xml, attributes, redefined)
+        def map_common(xml, attributes)
           # map non-overridden fields according to core logic
-          CoreCollectionObject.map_common(xml, attributes.merge(redefined))
+          super(xml, attributes.merge(redefined_fields))
 
           # OVERRIDES
           pairs = {
@@ -105,28 +95,28 @@ module CollectionSpace
             'ownershipplacetgn' => 'ownershipPlace'
           }
           pairs_transforms = {
-            'ownershipplacelocal' => {'authority' => ['placeauthorities', 'place']},
-            'ownershipplacetgn' => {'authority' => ['placeauthorities', 'tgn_place']}
+            'ownershipplacelocal' => { 'authority' => %w[placeauthorities place] },
+            'ownershipplacetgn' => { 'authority' => %w[placeauthorities tgn_place] }
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
-          
+
           repeats = {
-            'contentplacelocal' => ['contentPlaces', 'contentPlace'],
-            'contentplacetgn' => ['contentPlaces', 'contentPlace']
+            'contentplacelocal' => %w[contentPlaces contentPlace],
+            'contentplacetgn' => %w[contentPlaces contentPlace]
           }
           repeats_transforms = {
-            'contentplacelocal' => {'authority' => ['placeauthorities', 'place']},
-            'contentplacetgn' => {'authority' => ['placeauthorities', 'tgn_place']}
+            'contentplacelocal' => { 'authority' => %w[placeauthorities place] },
+            'contentplacetgn' => { 'authority' => %w[placeauthorities tgn_place] }
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
-          
-          #otherNumberList, otherNumber
+
+          # otherNumberList, otherNumber
           othernumber_data = {
             'numbervalue' => 'numberValue',
             'numbertype' => 'numberType'
           }
           othernumber_transforms = {
-            'numbertype' => {'vocab' => 'numbertype'}
+            'numbertype' => { 'vocab' => 'numbertype' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -144,8 +134,8 @@ module CollectionSpace
             'objectproductionrole' => 'objectProductionRole'
           }
           opp_transforms = {
-            'objectproductionplacelocal' => {'authority' => ['placeauthorities', 'place']},
-            'objectproductionplacetgn' => {'authority' => ['placeauthorities', 'tgn_place']},
+            'objectproductionplacelocal' => { 'authority' => %w[placeauthorities place] },
+            'objectproductionplacetgn' => { 'authority' => %w[placeauthorities tgn_place] }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -157,36 +147,26 @@ module CollectionSpace
             group_suffix: 'Group'
           )
 
-        assoc_data = {
-          'assocplacelocal' => 'assocPlace',
-          'assocplacetgn' => 'assocPlace',
-          'assocrole' => 'assocRole'
-        }
-        assoc_transforms = {
-          'assocplacelocal' => {'authority' => ['placeauthorities', 'place']},
-          'assocplacetgn' => {'authority' => ['placeauthorities', 'tgn_place']},
-        }
-        CSXML.add_single_level_group_list(
-          xml,
-          attributes,
-          'assocPlace',
-          assoc_data,
-          assoc_transforms,
-          list_suffix: 'GroupList',
-          group_suffix: 'Group'
-        )
+          assoc_data = {
+            'assocplacelocal' => 'assocPlace',
+            'assocplacetgn' => 'assocPlace',
+            'assocrole' => 'assocRole'
+          }
+          assoc_transforms = {
+            'assocplacelocal' => { 'authority' => %w[placeauthorities place] },
+            'assocplacetgn' => { 'authority' => %w[placeauthorities tgn_place] }
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'assocPlace',
+            assoc_data,
+            assoc_transforms,
+            list_suffix: 'GroupList',
+            group_suffix: 'Group'
+          )
         end
-        # PROFILE
-        def self.map_lhmc(xml, attributes)
-          # no fields are added except for those from cultural care extension
-        end
-
-        # EXTENSIONS
-        def self.map_cultural_care(xml, attributes, redefined)
-          CulturalCare.map_cultural_care(xml, attributes.merge(redefined))
-        end
-
-      end #class LhmcCollectionObject
-    end #module Lhmc
-  end #module Converter
-end #module CollectionSpace
+      end # class LhmcCollectionObject
+    end # module Lhmc
+  end # module Converter
+end # module CollectionSpace

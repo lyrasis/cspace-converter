@@ -30,11 +30,11 @@ module CollectionSpace
           # publicartRightsHolders (two CSV columns, rights_holder_org and owners_org)
           #
           rightsholders_urns = []
-          rightsholders = split_mvf attributes, 'rightsholder_person'
+          rightsholders = CSXML.split_mvf attributes, 'rightsholder_person'
           rightsholders.each do | rightsholder |
             rightsholders_urns << { "publicartRightsHolder" => CSURN.get_authority_urn('personauthorities', 'person', rightsholder) }
           end
-          rightsholders = split_mvf attributes, 'rightsholder_org'
+          rightsholders = CSXML.split_mvf attributes, 'rightsholder_org'
           rightsholders.each do |rightsholder|
             rightsholders_urns << { "publicartRightsHolder" => CSURN.get_authority_urn('orgauthorities', 'organization', rightsholder) }
           end
@@ -44,7 +44,7 @@ module CollectionSpace
           # publishToList
           #
           publishto_urns = []
-          publishto_list = split_mvf attributes, 'publishto'
+          publishto_list = CSXML.split_mvf attributes, 'publishto'
           publishto_list.each do | publishto |
             publishto_urns << { "publishTo" => CSURN.get_vocab_urn('publishto', publishto) }
           end

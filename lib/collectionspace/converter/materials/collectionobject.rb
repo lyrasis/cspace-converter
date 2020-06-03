@@ -1,42 +1,41 @@
+# frozen_string_literal: true
+
+require_relative '../core/collectionobject'
+
 module CollectionSpace
   module Converter
     module Materials
-      class MaterialsCollectionObject < CollectionObject
+      class MaterialsCollectionObject < CoreCollectionObject
         ::MaterialsCollectionObject = CollectionSpace::Converter::Materials::MaterialsCollectionObject
         def convert
-          run(wrapper: "document") do |xml|
+          run(wrapper: 'document') do |xml|
             xml.send(
-                "ns2:collectionobjects_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_common',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              CoreCollectionObject.map_common(xml, attributes.merge(redefined_fields))
+              map_common(xml, attributes) # same as core
             end
 
             xml.send(
-                "ns2:collectionobjects_materials",
-                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/local/materials",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              'ns2:collectionobjects_materials',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/local/materials',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              MaterialsCollectionObject.map(xml, attributes)
+              map_materials(xml, attributes)
             end
           end
         end
 
-        def redefined_fields
-          @redefined.concat(['redefinedfield'])
-          super
-        end
-
-        def self.map(xml, attributes)
+        def map_materials(xml, attributes)
           repeats = {
-              'materialgenericcolor' => ['materialGenericColors', 'materialGenericColor'],
-              'materialphysicaldescription' => ['materialPhysicalDescriptions', 'materialPhysicalDescription']
-            }
+            'materialgenericcolor' => %w[materialGenericColors materialGenericColor],
+            'materialphysicaldescription' => %w[materialPhysicalDescriptions materialPhysicalDescription]
+          }
           repeatstransforms = {
-            'materialgenericcolor' => {'vocab' => 'materialgenericcolor'},
+            'materialgenericcolor' => { 'vocab' => 'materialgenericcolor' }
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           materialconditiondata = {
@@ -44,7 +43,7 @@ module CollectionSpace
             'condition' => 'condition'
           }
           materialconditiontransforms = {
-            'condition' => {'vocab' => 'materialcondition'}
+            'condition' => { 'vocab' => 'materialcondition' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -58,7 +57,7 @@ module CollectionSpace
             'container' => 'container'
           }
           materialcontainertransforms = {
-            'container' => {'vocab' => 'materialcontainer'}
+            'container' => { 'vocab' => 'materialcontainer' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -72,7 +71,7 @@ module CollectionSpace
             'handlingnote' => 'handlingNote'
           }
           materialhandlingtransforms = {
-            'handling' => {'vocab' => 'materialhandling'}
+            'handling' => { 'vocab' => 'materialhandling' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -86,15 +85,15 @@ module CollectionSpace
             'finish' => 'finish'
           }
           materialfinishtransforms = {
-            'finish' => {'vocab' => 'materialfinish'}
-          } 
+            'finish' => { 'vocab' => 'materialfinish' }
+          }
           CSXML.add_single_level_group_list(
             xml,
             attributes,
             'materialFinish',
             materialfinishdata,
             materialfinishtransforms
-          )    
+          )
         end
       end
     end
