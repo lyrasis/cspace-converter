@@ -1,15 +1,20 @@
+# frozen_string_literal: true
+
+require_relative '../default/record'
+
 module CollectionSpace
   module Converter
     module Core
       class CorePlace < Place
         ::CorePlace = CollectionSpace::Converter::Core::CorePlace
+        include Address
         def convert
           run do |xml|
-            CorePlace.map(xml, attributes, config)
+            map_common(xml, attributes, config)
           end
         end
 
-        def self.map(xml, attributes, config)
+        def map_common(xml, attributes, config)
           pairs = {
             'placetype' => 'placeType',
             'placenote' => 'placeNote',
@@ -36,29 +41,54 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', config[:identifier] 
           #placeTermGroupList, placeTermGroup
           placeterm_data = {
-	    "termdisplayname" => "termDisplayName",
-	    "termlanguage" => "termLanguage",
-	    "termname" => "termName",
-	    "termprefforlang" => "termPrefForLang",
-	    "termqualifier" => "termQualifier",
-	    "termsource" => "termSource",
-	    "termsourceid" => "termSourceID",
-	    "termsourcedetail" => "termSourceDetail",
-	    "termsourcenote" => "termSourceNote",
- 	    "termstatus" => "termStatus",
-	    "termtype" => "termType",
-            "termflag" => "termFlag",
-            "termdisplaynamenonpreferred" => "termFormattedDisplayName",
-            "namedategroup" => "nameDateGroup",
-            "historicalstatus" => "historicalStatus",
-            "namenote" => "nameNote",
-            "nameabbrev" => "nameAbbrev" 
-	  }
+            'termdisplayname' => 'termDisplayName',
+            'termlanguage' => 'termLanguage',
+            'termname' => 'termName',
+            'termprefforlang' => 'termPrefForLang',
+            'termqualifier' => 'termQualifier',
+            'termsourcelocal' => 'termSource',
+            'termsourceworldcat' => 'termSource',
+            'termsourceid' => 'termSourceID',
+            'termsourcedetail' => 'termSourceDetail',
+            'termsourcenote' => 'termSourceNote',
+            'termstatus' => 'termStatus',
+            'termtype' => 'termType',
+            'termflag' => 'termFlag',
+            'namedategroup' => 'nameDateGroup',
+            'historicalstatus' => 'historicalStatus',
+            'namenote' => 'nameNote',
+            'nameabbrev' => 'nameAbbrev',
+            
+            'termdisplaynamenonpreferred' => 'termDisplayName',
+            'termlanguagenonpreferred' => 'termLanguage',
+            'termnamenonpreferred' => 'termName',
+            'termprefforlangnonpreferred' => 'termPrefForLang',
+            'termqualifiernonpreferred' => 'termQualifier',
+            'termsourcelocalnonpreferred' => 'termSource',
+            'termsourceworldcatnonpreferred' => 'termSource',
+            'termsourceidnonpreferred' => 'termSourceID',
+            'termsourcedetailnonpreferred' => 'termSourceDetail',
+            'termsourcenotenonpreferred' => 'termSourceNote',
+            'termstatusnonpreferred' => 'termStatus',
+            'termtypenonpreferred' => 'termType',
+            'termflagnonpreferred' => 'termFlag',
+            'namedategroupnonpreferred' => 'nameDateGroup',
+            'historicalstatusnonpreferred' => 'historicalStatus',
+            'namenotenonpreferred' => 'nameNote',
+            'nameabbrevnonpreferred' => 'nameAbbrev' 
+          }
           placeterm_transforms = {
-            'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'authority' => ['citationauthorities', 'citation']},
-            'namedategroup' => {'special' => 'structured_date'},
-            'termflag' => {'vocab' => 'placetermflag'}
+            'termlanguage' => { 'vocab' => 'languages' },
+            'termsourcelocal' => { 'authority' => %w[citationauthorities citation] },
+            'termsourceworldcat' => { 'authority' => %w[citationauthorities worldcat] },
+            'namedategroup' => { 'special' => 'structured_date' },
+            'termflag' => { 'vocab' => 'placetermflag' },
+
+            'termlanguagenonpreferred' => { 'vocab' => 'languages' },
+            'termsourcelocalnonpreferred' => { 'authority' => %w[citationauthorities citation] },
+            'termsourceworldcatnonpreferred' => { 'authority' => %w[citationauthorities worldcat] },
+            'namedategroupnonpreferred' => { 'special' => 'structured_date' },
+            'termflagnonpreferred' => { 'vocab' => 'placetermflag' }
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -69,15 +99,15 @@ module CollectionSpace
           )
           #placeOwnerGroupList, placeOwnerGroup
           owner_data = {
-            "ownerorganization" => "owner",
-            "ownerperson" => "owner",
+            "ownerorganizationlocal" => "owner",
+            "ownerpersonlocal" => "owner",
             "ownershipdategroup" => "ownershipDateGroup",
             "ownershipnote" => "ownershipNote"
           }
           owner_transforms = {
-            'ownerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'ownerperson' => {'authority' => ['personauthorities', 'person']},
-            'ownershipdategroup' => {'special' => 'structured_date'},
+            'ownerorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'ownerpersonlocal' => { 'authority' => %w[personauthorities person] },
+            'ownershipdategroup' => { 'special' => 'structured_date' },
           }
           CSXML.add_single_level_group_list(
             xml,
@@ -87,28 +117,8 @@ module CollectionSpace
             owner_transforms
           )
           #addrGroupList, addrGroup
-          address_data = {
-            "addresscountry" => "addressCountry",
-            "addressplace2" => "addressPlace2",
-            "addressplace1" => "addressPlace1",
-            "addresstype" => "addressType",
-            "addressmunicipality" => "addressMunicipality",
-            "addresspostcode" => "addressPostCode",
-            "addressstateorprovince" => "addressStateOrProvince",
-          }
-          address_transforms = {
-            'addresscountry' => {'authority' => ['placeauthorities', 'place']},
-            'addresstype' => {'vocab' => 'addresstype'},
-            'addressmunicipality' => {'authority' => ['placeauthorities', 'place']},
-            'addressstateorprovince' => {'authority' => ['placeauthorities', 'place']}
-          }
-          CSXML.add_single_level_group_list(
-            xml,
-            attributes,
-            'addr',
-            address_data,
-            address_transforms
-          )
+          map_address(xml, attributes, %w[place/local place/tgn])
+
           #placeGeoRefGroupList, #placeGeoRefGroup
           placegeo_data = {
             'decimallatitude' => 'decimalLatitude',
@@ -131,9 +141,9 @@ module CollectionSpace
 
           }
           placegeo_transforms = {
-            'georeferencedbyorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'georeferencedbyperson' => {'authority' => ['personauthorities', 'person']},
-            'georefdategroup' => {'special' => 'structured_date'}
+            'georeferencedbyorganization' => { 'authority' => %w[orgauthorities organization] },
+            'georeferencedbyperson' => { 'authority' => %w[personauthorities person] },
+            'georefdategroup' => { 'special' => 'structured_date' }
           }
           CSXML.add_single_level_group_list(
             xml,
