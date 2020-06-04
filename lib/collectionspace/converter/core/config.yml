@@ -86,9 +86,12 @@ registered_profiles:
         identifier: objectnumber
         title: objectnumber
       Authorities:
-        - name_field: contentperson
+        - name_field: contentpersonlocal
           authority_type: Person
           authority_subtype: person
+        - name_field: contentpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
         - name_field: contentorganizationlocal
           authority_type: Organization
           authority_subtype: organization
