@@ -38,6 +38,7 @@ module CollectionSpace
               'valuerperson' => 'valuer',
               'valuerorganization' => 'valuer',
               'normallocationstorage' => 'normalLocation',
+              'normallocationstorageoffsite' => 'normalLocation',
               'normallocationplace' => 'normalLocation',
               'normallocationorganization' => 'normalLocation'
             }
@@ -55,6 +56,7 @@ module CollectionSpace
             'valuerperson' => {'authority' => ['personauthorities', 'person']},
             'valuerorganization' => {'authority' => ['orgauthorities', 'organization']},
             'normallocationstorage' => {'authority' => ['locationauthorities', 'location']},
+            'normallocationstorageoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
             'normallocationplace' => {'authority' => ['placeauthorities', 'place']},
             'normallocationorganization' => {'authority' => ['orgauthorities', 'organization']},
           }
@@ -94,12 +96,14 @@ module CollectionSpace
             'currentlocationnote' => 'currentLocationNote',
             'currentlocationfitness' => 'currentLocationFitness',
             'currentlocationstorage' => 'currentLocation',
+            'currentlocationstorageoffsite' => 'currentLocation',
             'currentlocationplace' => 'currentLocation',
             'currentlocationorganization' => 'currentLocation'
           }
           currentlocationtransforms = {
             'currentlocationfitness' => {'vocab' => 'conditionfitness'},
             'currentlocationstorage' => {'authority' => ['locationauthorities', 'location']},
+            'currentlocationstorageoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
             'currentlocationplace' => {'authority' => ['placeauthorities', 'place']},
             'currentlocationorganization' => {'authority' => ['orgauthorities', 'organization']}
           }

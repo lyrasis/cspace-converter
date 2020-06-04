@@ -99,14 +99,16 @@ module CollectionSpace
           )
           #citationAgentInfoGroupList, citationAgentInfoGroup
           citationagent_data = {
-            "agentorganization" => "agent",
+            "agentorganizationlocal" => "agent",
+            "agentorganizationulan" => "agent",
             "agentpersonlocal" => "agent",
             "agentpersonulan" => "agent",
             "role" => "role",
             "note" => "note"
           }
           citationagent_transforms = {
-            'agentorganization' => {'authority' => ['orgauthorities', 'organization']},
+            'agentorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'agentorganizationulan' => {'authority' => ['orgauthorities', 'ulan_oa']},
             'agentpersonlocal' => {'authority' => ['personauthorities', 'person']},
             'agentpersonulan' => {'authority' => ['personauthorities', 'ulan_pa']},
             'role' => {'vocab' => 'agentinfotype'}
