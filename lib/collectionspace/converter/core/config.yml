@@ -89,9 +89,12 @@ registered_profiles:
         - name_field: contentperson
           authority_type: Person
           authority_subtype: person
-        - name_field: contentorganization
+        - name_field: contentorganizationlocal
           authority_type: Organization
           authority_subtype: organization
+        - name_field: contentorganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
         - name_field: inscriptioncontentinscriberperson
           authority_type: Person
           authority_subtype: person
@@ -101,9 +104,12 @@ registered_profiles:
         - name_field: objectproductionorganization
           authority_type: Organization
           authority_subtype: organization
-        - name_field: fieldcollectionplace
+        - name_field: fieldcollectionplacelocal
           authority_type: Place
           authority_subtype: place
+        - name_field: fieldcollectionplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
         - name_field: ownerperson
           authority_type: Person
           authority_subtype: person
@@ -131,9 +137,6 @@ registered_profiles:
         - name_field: fieldcollectororganization
           authority_type: Organization
           authority_subtype: organization
-        - name_field: inscriptioncontentinscriberperson
-          authority_type: Person
-          authority_subtype: person
         - name_field: inscriptioncontentinscriberorganization
           authority_type: Organization
           authority_subtype: organization
@@ -152,9 +155,12 @@ registered_profiles:
         - name_field: assocperson
           authority_type: Person
           authority_subtype: person
-        - name_field: reference
+        - name_field: referencelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: referenceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
       Vocabularies:
         - name_field: agequalifier
           vocabulary_subtype: agequalifier
@@ -172,6 +178,10 @@ registered_profiles:
           vocabulary_subtype: languages
         - name_field: objectnamelanguage
           vocabulary_subtype: languages
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
   citation: 
     type: Authorities
     enabled: true
@@ -184,24 +194,42 @@ registered_profiles:
       authority_type: Citation
       authority_subtype: citation
       Authorities: 
-        - name_field: termsource
+        - name_field: termsourcelocal
           authority_type: Citation
           authority_subtype: citation
-        - name_field: publicationplace
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+        - name_field: publicationplacelocal
           authority_type: Place
           authority_subtype: place
+        - name_field: publicationplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
         - name_field: publisher
           authority_type: Organization
           authority_subtype: organization
-        - name_field: agentorganization
+        - name_field: agentorganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: agentperson
+        - name_field: agentorganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
+        - name_field: agentpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: relatedterm
+        - name_field: agentpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
+        - name_field: relatedtermassociated
           authority_type: Concept
           authority_subtype: concept
+        - name_field: relatedtermactivity
+          authority_type: Concept
+          authority_subtype: activity
+        - name_field: relatedtermmaterial
+          authority_type: Concept
+          authority_subtype: material_ca
       Vocabularies: 
         - name_field: termlanguage
           vocabulary_subtype: languages
@@ -284,36 +312,66 @@ registered_profiles:
         identifier: exhibitionnumber
         title: exhibitionnumber
       Authorities:
-        - name_field: organizerorganization
+        - name_field: organizerorganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: organizerperson
+        - name_field: organizerorganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
+        - name_field: organizerpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: venueorganization
+        - name_field: organizerpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
+        - name_field: venueorganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: venueplace
+        - name_field: venueorganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
+        - name_field: venueplacelocal
           authority_type: Place
           authority_subtype: place
+        - name_field: venueplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
         - name_field: venuestoragelocation
           authority_type: Location
           authority_subtype: location
-        - name_field: exhibitionpersonperson
+        - name_field: venuestoragelocationoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
+        - name_field: exhibitionpersonpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: exhibitionpersonorganization
+        - name_field: exhibitionpersonpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
+        - name_field: exhibitionpersonorganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: sponsororganization
+        - name_field: exhibitionpersonorganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
+        - name_field: sponsororganizationlocal
           authority_type: Organization
           authority_subtype: organization
-        - name_field: sponsorperson
+        - name_field: sponsororganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
+        - name_field: sponsorpersonlocal
           authority_type: Person
           authority_subtype: person
-        - name_field: exhibitionreference
+        - name_field: sponsorpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
+        - name_field: exhibitionreferencelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: exhibitionreferenceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
       Vocabularies: 
         - name_field: type
           vocabulary_subtype: exhibitiontype
@@ -394,25 +452,31 @@ registered_profiles:
         - name_field: currentlocationplace
           authority_type: Place
           authority_subtype: place
+        - name_field: currentlocationstorage
+          authority_type: Location
+          authority_subtype: location
+        - name_field: currentlocationstorageoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
+        - name_field: currentlocationorganization
+          authority_type: Organization
+          authority_subtype: organization
         - name_field: normallocationplace
           authority_type: Place
           authority_subtype: place
+        - name_field: normallocationstorage
+          authority_type: Location
+          authority_subtype: location
+        - name_field: normallocationstorageoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
+        - name_field: normallocationorganization
+          authority_type: Organization
+          authority_subtype: organization
         - name_field: conditioncheckerorassessorperson
           authority_type: Person
           authority_subtype: person
         - name_field: conditioncheckerorassessororganization
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: normallocationstorage
-          authority_type: Location
-          authority_subtype: location
-        - name_field: normallocationorganization
-          authority_type: Organization
-          authority_subtype: organization
-        - name_field: currentlocationstorage
-          authority_type: Location
-          authority_subtype: location
-        - name_field: currentlocationorganization
           authority_type: Organization
           authority_subtype: organization
         - name_field: approvalindividual
@@ -521,14 +585,19 @@ registered_profiles:
       authority_type: Location
       authority_subtype: location
       Authorities:
-        - name_field: termsource
+        - name_field: termsourcelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
       Vocabularies:
         - name_field: locationtype
           vocabulary_subtype: locationtype
         - name_field: termlanguage
           vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: locationtermflag
   media:
     type: Procedures
     enabled: true
@@ -568,6 +637,8 @@ registered_profiles:
       Vocabularies:
         - name_field: language
           vocabulary_subtype: languages
+        - name_field: publishto
+          vocabulary_subtype: publishto
   movement:
     type: Procedures
     enabled: true
@@ -589,12 +660,18 @@ registered_profiles:
         - name_field: normallocationstorage
           authority_type: Location
           authority_subtype: location
+        - name_field: normallocationstorageoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
         - name_field: normallocationorganization
           authority_type: Organization
           authority_subtype: organization
         - name_field: currentlocationstorage
           authority_type: Location
           authority_subtype: location
+        - name_field: currentlocationstorageoffsite
+          authority_type: Location
+          authority_subtype: offsite_sla
         - name_field: currentlocationorganization
           authority_type: Organization
           authority_subtype: organization
@@ -617,9 +694,12 @@ registered_profiles:
       authority_type: Concept
       authority_subtype: nomenclature
       Authorities:
-        - name_field: termsource
+        - name_field: termsourcelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
       Vocabularies:
         - name_field: termlanguage
           vocabulary_subtype: languages
@@ -692,9 +772,12 @@ registered_profiles:
       authority_type: Organization
       authority_subtype: organization
       Authorities:
-        - name_field: termsource
+        - name_field: termsourcelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
         - name_field: contactname
           authority_type: Person
           authority_subtype: person
@@ -722,10 +805,14 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
-      Authorities: []
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
       Vocabularies:
-        - name_field: termsource
-          vocabulary_subtype: citation
         - name_field: termlanguage
           vocabulary_subtype: languages
         - name_field: termtype
@@ -744,24 +831,36 @@ registered_profiles:
       authority_type: Place
       authority_subtype: place
       Authorities:
-        - name_field: termsource
+        - name_field: termsourcelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
         - name_field: ownerperson
           authority_type: Person
           authority_subtype: person
         - name_field: ownerorganization
           authority_type: Organization
           authority_subtype: organization
-        - name_field: addresscountry
+        - name_field: addresscountrylocal
           authority_type: Place
           authority_subtype: place
-        - name_field: addressmunicipality
+        - name_field: addresscountrytgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: addressmunicipalitylocal
           authority_type: Place
           authority_subtype: place
-        - name_field: addressstateorprovince
+        - name_field: addressmunicipalitytgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: addressstateorprovincelocal
           authority_type: Place
           authority_subtype: place
+        - name_field: addressstateorprovincetgn
+          authority_type: Place
+          authority_subtype: tgn_place
         - name_field: georeferencedbyorganization
           authority_type: Organization
           authority_subtype: organization
@@ -829,9 +928,12 @@ registered_profiles:
       authority_type: Work
       authority_subtype: work
       Authorities:
-        - name_field: termsource
+        - name_field: termsourcelocal
           authority_type: Citation
           authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
         - name_field: creatorperson
           authority_type: Person
           authority_subtype: person
@@ -844,15 +946,24 @@ registered_profiles:
         - name_field: publisherorganization
           authority_type: Organization
           authority_subtype: organization
-        - name_field: addresscountry
+        - name_field: addresscountrylocal
           authority_type: Place
           authority_subtype: place
-        - name_field: addressmunicipality
+        - name_field: addresscountrytgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: addressmunicipalitylocal
           authority_type: Place
           authority_subtype: place
-        - name_field: addressstateorprovince
+        - name_field: addressmunicipalitytgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: addressstateorprovincelocal
           authority_type: Place
           authority_subtype: place
+        - name_field: addressstateorprovincetgn
+          authority_type: Place
+          authority_subtype: tgn_place
       Vocabularies:
         - name_field: worktype
           vocabulary_subtype: worktype
