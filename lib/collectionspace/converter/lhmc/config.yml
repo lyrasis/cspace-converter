@@ -7,8 +7,56 @@ registered_authorities:
   - personauthorities
   - placeauthorities
 registered_procedures:
+  - Acquisition
   - CollectionObject
 registered_profiles:
+  acquisition:
+    type: Procedures
+    enabled: true
+    identify_by_column: acquisitionreferencenumber
+    required_headers:
+      - acquisitionreferencenumber
+    config:
+      Acquisition:
+        mapper: CoreAcquisition
+        identifier: acquisitionreferencenumber
+        title: acquisitionreferencenumber
+      Authorities:
+        - name_field: acquisitionauthorizer
+          authority_type: Person
+          authority_subtype: person
+        - name_field: acquisitionsourceperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: acquisitionsourceorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: ownerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: acquisitionfundingsourceorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: acquisitionfundingsourceperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: approvalindividual
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: grouppurchasepricecurrency
+          vocabulary_subtype: currency
+        - name_field: objectpurchasepricecurrency
+          vocabulary_subtype: currency
+        - name_field: acquisitionfundingcurrency
+          vocabulary_subtype: currency
+        - name_field: approvalstatus
+          vocabulary_subtype: deaccessionapprovalstatus
+        - name_field: approvalgroup
+          vocabulary_subtype: deaccessionapprovalgroup
   cataloging:
     type: Procedures
     enabled: true

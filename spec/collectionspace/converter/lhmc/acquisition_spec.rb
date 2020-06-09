@@ -50,9 +50,7 @@ RSpec.describe CollectionSpace::Converter::Lhmc::LhmcAcquisition do
         end
       end
     end
-
     
-
     context 'regular fields' do
       [
         "/document/#{l}/receivedGroupList/receivedGroup/receivedDate"
@@ -68,9 +66,5 @@ RSpec.describe CollectionSpace::Converter::Lhmc::LhmcAcquisition do
         end
       end
     end
-
-
-
-
   end
 end
