@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document name="collectionobjects">
   <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <createdAt>2020-02-26T11:35:12.776Z</createdAt>
+    <createdAt>2020-06-09T14:52:13.474Z</createdAt>
     <updatedBy>admin@core.collectionspace.org</updatedBy>
     <createdBy>admin@core.collectionspace.org</createdBy>
     <workflowState>project</workflowState>
     <tenantId>1</tenantId>
-    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(677dde8e-25bd-417f-9b4a)'20CS.001.0001'</refName>
-    <uri>/collectionobjects/677dde8e-25bd-417f-9b4a</uri>
-    <updatedAt>2020-02-26T11:40:45.951Z</updatedAt>
+    <refName>urn:cspace:core.collectionspace.org:collectionobjects:id(ce31a536-91e9-4776-8def)'20CS.001.0001'</refName>
+    <uri>/collectionobjects/ce31a536-91e9-4776-8def</uri>
+    <updatedAt>2020-06-09T14:52:13.474Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fieldCollectionDateGroup>
@@ -313,7 +313,7 @@
         <referenceNote>Reference Infor Note 1</referenceNote>
       </referenceGroup>
       <referenceGroup>
-        <reference>urn:cspace:core.collectionspace.org:citationauthorities:name(citation):item:name(ReferenceInforText21581500388903)'Reference Infor Text 2'</reference>
+        <reference>urn:cspace:core.collectionspace.org:citationauthorities:name(worldcat):item:name(ReferenceInforText21496819973)'Reference Infor Text 2'</reference>
         <referenceNote>Reference Infor Note 2</referenceNote>
       </referenceGroup>
     </referenceGroupList>
@@ -571,7 +571,7 @@
             <dimensionNote/>
             <valueQualifier>Qualifier Text 3</valueQualifier>
             <valueDate>2000-02-06T00:00:00.000Z</valueDate>
-            <measuredBy>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(PatriciaJohnson1086899132)'Patricia Johnson'</measuredBy>
+            <measuredBy/>
             <dimension>depth</dimension>
             <value>0.5</value>
             <measurementMethod>ruler</measurementMethod>
@@ -744,7 +744,7 @@
     <viewersRole>Viewer's role Text</viewersRole>
     <contentPersons>
       <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(InokeAloha590526035)'Inoke Aloha'</contentPerson>
-      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(EleanorBrown1917333414)'Eleanor Brown'</contentPerson>
+      <contentPerson>urn:cspace:core.collectionspace.org:personauthorities:name(ulan_pa):item:name(EleanorBrown1917333414)'Eleanor Brown'</contentPerson>
     </contentPersons>
     <fieldCollectionSources>
       <fieldCollectionSource>urn:cspace:core.collectionspace.org:personauthorities:name(person):item:name(Fieldcollectionsource11581505467183)'Field collection source 1'</fieldCollectionSource>
@@ -776,10 +776,9 @@
       </objectProductionOrganizationGroup>
       <objectProductionOrganizationGroup>
         <objectProductionOrganizationRole>publisher</objectProductionOrganizationRole>
-        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581279667128)'Berkley Publising Group'</objectProductionOrganization>
+        <objectProductionOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(BerkleyPublisingGroup1581518588655)'Berkley Publising Group'</objectProductionOrganization>
       </objectProductionOrganizationGroup>
     </objectProductionOrganizationGroupList>
-    <computedCurrentLocation>urn:cspace:indeterminate:locationauthorities:name(indeterminate):item:name(indeterminate)'~Indeterminate Location~'</computedCurrentLocation>
     <viewersContributionNote>Viewer's contribution note</viewersContributionNote>
     <publishToList>
       <publishTo>urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'omeka'</publishTo>
@@ -799,7 +798,7 @@
     </assocOrganizationGroupList>
     <contentOrganizations>
       <contentOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(SampleOrganization3230669631)'Sample Organization'</contentOrganization>
-      <contentOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(organization):item:name(SampleOrganization22058716675)'Sample Organization 2'</contentOrganization>
+      <contentOrganization>urn:cspace:core.collectionspace.org:orgauthorities:name(ulan_oa):item:name(SampleOrganization22058716675)'Sample Organization 2'</contentOrganization>
     </contentOrganizations>
     <contentPlaces>
       <contentPlace>Content Place Text 1</contentPlace>

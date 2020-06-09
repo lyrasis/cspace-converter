@@ -51,13 +51,15 @@ module CollectionSpace
             'viewerspersonalexperience' => 'viewersPersonalExperience',
             'viewerspersonalresponse' => 'viewersPersonalResponse',
             'viewerscontributionnote' => 'viewersContributionNote',
-            'fieldcollectionplace' => 'fieldCollectionPlace',
+            'fieldcollectionplacelocal' => 'fieldCollectionPlace',
+            'fieldcollectionplacetgn' => 'fieldCollectionPlace',
             'fieldcollectionnumber' => 'fieldCollectionNumber'
           }
           pairs_transforms = {
             'agequalifier' => { 'vocab' => 'agequalifier' },
             'ownershipexchangepricecurrency' => { 'vocab' => 'currency' },
-            'fieldcollectionplace' => { 'authority' => %w[placeauthorities place] }
+            'fieldcollectionplacelocal' => { 'authority' => %w[placeauthorities place] },
+            'fieldcollectionplacetgn' => { 'authority' => %w[placeauthorities tgn_place] },
           }
           CSXML::Helpers.add_title(xml, attributes)
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
@@ -70,7 +72,8 @@ module CollectionSpace
             'style' => %w[styles style],
             'color' => %w[colors color],
             'objectstatus' => %w[objectStatusList objectStatus],
-            'contentperson' => %w[contentPersons contentPerson],
+            'contentpersonlocal' => %w[contentPersons contentPerson],
+            'contentpersonulan' => %w[contentPersons contentPerson],
             'inventorystatus' => %w[inventoryStatusList inventoryStatus],
             'publishto' => %w[publishToList publishTo],
             'objectproductionreason' => %w[objectProductionReasons objectProductionReason],
@@ -80,7 +83,8 @@ module CollectionSpace
             'contentpeople' => %w[contentPeoples contentPeople],
             'contentplace' => %w[contentPlaces contentPlace],
             'contentscript' => %w[contentScripts contentScript],
-            'contentorganization' => %w[contentOrganizations contentOrganization],
+            'contentorganizationlocal' => %w[contentOrganizations contentOrganization],
+            'contentorganizationulan' => %w[contentOrganizations contentOrganization],
             'contentlanguage' => %w[contentLanguages contentLanguage],
             'contentactivity' => %w[contentActivities contentActivity],
             'contentposition' => %w[contentPositions contentPosition],
@@ -98,13 +102,15 @@ module CollectionSpace
             'fieldcollectororganization' => %w[fieldCollectors fieldCollector]
           }
           repeatstransforms = {
-            'contentperson' => { 'authority' => %w[personauthorities person] },
+            'contentpersonlocal' => { 'authority' => %w[personauthorities person] },
+            'contentpersonulan' => { 'authority' => %w[personauthorities ulan_pa] },
             'inventorystatus' => { 'vocab' => 'inventorystatus' },
             'publishto' => { 'vocab' => 'publishto' },
             'objectproductiondate' => { 'special' => 'structured_date' },
             'ownerperson' => { 'authority' => %w[personauthorities person] },
             'ownerorganization' => { 'authority' => %w[orgauthorities organization] },
-            'contentorganization' => { 'authority' => %w[orgauthorities organization] },
+            'contentorganizationlocal' => { 'authority' => %w[orgauthorities organization] },
+            'contentorganizationulan' => { 'authority' => %w[orgauthorities ulan_oa] },
             'contentlanguage' => { 'vocab' => 'languages' },
             'contentconceptassociated' => { 'authority' => %w[conceptauthorities concept] },
             'contentconceptmaterial' => { 'authority' => %w[conceptauthorities material_ca] },
@@ -489,11 +495,13 @@ module CollectionSpace
           )
           # referenceGroupList, referenceGroup
           referencegroup_data = {
-            'reference' => 'reference',
+            'referencelocal' => 'reference',
+            'referenceworldcat' => 'reference',
             'referencenote' => 'referenceNote'
           }
           referencegroup_transforms = {
-            'reference' => { 'authority' => %w[citationauthorities citation] }
+            'referencelocal' => { 'authority' => %w[citationauthorities citation] },
+            'referenceworldcat' => { 'authority' => %w[citationauthorities worldcat] }
           }
           CSXML.add_single_level_group_list(
             xml,

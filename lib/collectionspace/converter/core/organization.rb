@@ -6,18 +6,18 @@ module CollectionSpace
         def convert
           run(wrapper: "document") do |xml|
             xml.send(
-                "ns2:organizations_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/organization",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              "ns2:organizations_common",
+              "xmlns:ns2" => "http://collectionspace.org/services/organization",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
               CoreOrganization.map_common(xml, attributes, config)
             end
 
             xml.send(
-                "ns2:contacts_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/contact",
-                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+              "ns2:contacts_common",
+              "xmlns:ns2" => "http://collectionspace.org/services/contact",
+              "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
               Contact.map_contact(xml, attributes)
@@ -47,26 +47,50 @@ module CollectionSpace
           CSXML.add xml, 'shortIdentifier', config[:identifier] 
           #orgTermGroupList, orgTermGroup
           orgterm_data = {
-	    "termdisplayname" => "termDisplayName",
-	    "termlanguage" => "termLanguage",
-	    "termname" => "termName",
-	    "termprefforlang" => "termPrefForLang",
-	    "termqualifier" => "termQualifier",
-	    "termsource" => "termSource",
-	    "termsourceid" => "termSourceID",
-	    "termsourcedetail" => "termSourceDetail",
-	    "termsourcenote" => "termSourceNote",
- 	    "termstatus" => "termStatus",
-	    "termtype" => "termType",
+            "termdisplayname" => "termDisplayName",
+            "termlanguage" => "termLanguage",
+            "termname" => "termName",
+            "termprefforlang" => "termPrefForLang",
+            "termqualifier" => "termQualifier",
+            'termsourcelocal' => 'termSource',
+            'termsourceworldcat' => 'termSource',
+            "termsourceid" => "termSourceID",
+            "termsourcedetail" => "termSourceDetail",
+            "termsourcenote" => "termSourceNote",
+            "termstatus" => "termStatus",
+            "termtype" => "termType",
             "termflag" => "termFlag",
             "mainbodyname" => "mainBodyName",
-            "additionstoname" => "additionsToName" 
-	  }
+            "additionstoname" => "additionsToName",
+
+            "termdisplaynamenonpreferred" => "termDisplayName",
+            "termlanguagenonpreferred" => "termLanguage",
+            "termnamenonpreferred" => "termName",
+            "termprefforlangnonpreferred" => "termPrefForLang",
+            "termqualifiernonpreferred" => "termQualifier",
+            'termsourcelocalnonpreferred' => 'termSource',
+            'termsourceworldcatnonpreferred' => 'termSource',
+            "termsourceidnonpreferred" => "termSourceID",
+            "termsourcedetailnonpreferred" => "termSourceDetail",
+            "termsourcenotenonpreferred" => "termSourceNote",
+            "termstatusnonpreferred" => "termStatus",
+            "termtypenonpreferred" => "termType",
+            "termflagnonpreferred" => "termFlag",
+            "mainbodynamenonpreferred" => "mainBodyName",
+            "additionstonamenonpreferred" => "additionsToName"
+          }
           orgterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'authority' => ['citationauthorities', 'citation']},
-            'termflag' => {'vocab' => 'orgtermflag'}
+            'termsourcelocal' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourceworldcat' => {'authority' => ['citationauthorities', 'worldcat']},
+            'termflag' => {'vocab' => 'orgtermflag'},
+
+            'termlanguagenonpreferred' => {'vocab' => 'languages'},
+            'termsourcelocalnonpreferred' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourceworldcatnonpreferred' => {'authority' => ['citationauthorities', 'worldcat']},
+            'termflagnonpreferred' => {'vocab' => 'orgtermflag'}
           }
+          
           CSXML.add_single_level_group_list(
             xml,
             attributes,

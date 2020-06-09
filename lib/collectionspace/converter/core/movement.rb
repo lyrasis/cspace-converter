@@ -13,8 +13,10 @@ module CollectionSpace
           pairs = {
             'movementreferencenumber' => 'movementReferenceNumber',
             'normallocationstorage' => 'normalLocation',
+            'normallocationstorageoffsite' => 'normalLocation',
             'normallocationorganization' => 'normalLocation',
             'currentlocationstorage' => 'currentLocation',
+            'currentlocationstorageoffsite' => 'currentLocation',
             'currentlocationorganization' => 'currentLocation',
             'currentlocationfitness' => 'currentLocationFitness',
             'currentlocationnote' => 'currentLocationNote',
@@ -32,8 +34,10 @@ module CollectionSpace
           }
           pairstransforms = {
             'normallocationstorage' => {'authority' => ['locationauthorities', 'location']},
+            'normallocationstorageoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
             'normallocationorganization' => {'authority' => ['orgauthorities', 'organization']},
             'currentlocationstorage' => {'authority' => ['locationauthorities', 'location']},
+            'currentlocationstorageoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
             'currentlocationorganization' => {'authority' => ['orgauthorities', 'organization']},
             'locationdate' => {'special' => 'unstructured_date_stamp'},
             'plannedremovaldate' => {'special' => 'unstructured_date_stamp'},

@@ -26,25 +26,36 @@ module CollectionSpace
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
 
           repeats = {
-            'organizerorganization' => ['organizers', 'organizer'],
-            'organizerperson' => ['organizers', 'organizer'],
-            'sponsororganization' => ['sponsors', 'sponsor'],
-            'sponsorperson' => ['sponsors', 'sponsor']
+            'organizerorganizationlocal' => ['organizers', 'organizer'],
+            'organizerorganizationulan' => ['organizers', 'organizer'],
+            'organizerpersonlocal' => ['organizers', 'organizer'],
+            'organizerpersonulan' => ['organizers', 'organizer'],
+            'sponsororganizationlocal' => ['sponsors', 'sponsor'],
+            'sponsororganizationulan' => ['sponsors', 'sponsor'],
+            'sponsorpersonlocal' => ['sponsors', 'sponsor'],
+            'sponsorpersonulan' => ['sponsors', 'sponsor']
 
           }
           repeatstransforms = {
-            'organizerorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'organizerperson' => {'authority' => ['personauthorities', 'person']},
-            'sponsororganization' => {'authority' => ['orgauthorities', 'organization']},
-            'sponsorperson' => {'authority' => ['personauthorities', 'person']}
+            'organizerorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'organizerorganizationulan' => {'authority' => ['orgauthorities', 'ulan_oa']},
+            'organizerpersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'organizerpersonulan' => {'authority' => ['personauthorities', 'ulan_pa']},
+            'sponsororganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'sponsororganizationulan' => {'authority' => ['orgauthorities', 'ulan_oa']},
+            'sponsorpersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'sponsorpersonulan' => {'authority' => ['personauthorities', 'ulan_pa']}
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
 
           # venueGroupList, venueGroup
           venuedata = {
-            'venueorganization' => 'venue',
-            'venueplace' => 'venue',
+            'venueorganizationlocal' => 'venue',
+            'venueorganizationulan' => 'venue',
+            'venueplacelocal' => 'venue',
+            'venueplacetgn' => 'venue',
             'venuestoragelocation' => 'venue',
+            'venuestoragelocationoffsite' => 'venue',
             'venueopeningdate' => 'venueOpeningDate',
             'venueclosingdate' => 'venueClosingDate',
             'venueattendance' => 'venueAttendance',
@@ -52,9 +63,12 @@ module CollectionSpace
           }
 
           venuetransforms = {
-            'venueorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'venueplace' => {'authority' => ['placeauthorities', 'place']},
+            'venueorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'venueorganizationulan' => {'authority' => ['orgauthorities', 'ulan_oa']},
+            'venueplacelocal' => {'authority' => ['placeauthorities', 'place']},
+            'venueplacetgn' => {'authority' => ['placeauthorities', 'tgn_place']},
             'venuestoragelocation' => {'authority' => ['locationauthorities', 'location']},
+            'venuestoragelocationoffsite' => {'authority' => ['locationauthorities', 'offsite_sla']},
             'venueopeningdate' => {'special' => 'unstructured_date_stamp'},
             'venueclosingdate' => {'special' => 'unstructured_date_stamp'},
           }
@@ -70,16 +84,20 @@ module CollectionSpace
             'workinggroupnote' => 'workingGroupNote',
             'workinggrouptitle' => 'workingGroupTitle',
             'exhibitionpersonrole' => 'exhibitionPersonRole',
-            'exhibitionpersonorganization' => 'exhibitionPerson',
-            'exhibitionpersonperson' => 'exhibitionPerson'
+            'exhibitionpersonorganizationlocal' => 'exhibitionPerson',
+            'exhibitionpersonorganizationulan' => 'exhibitionPerson',
+            'exhibitionpersonpersonlocal' => 'exhibitionPerson',
+            'exhibitionpersonpersonulan' => 'exhibitionPerson'
           }
           exhibitionpersondata = [
             'exhibitionPersonRole',
             'exhibitionPerson'
           ]
           eptransforms = {
-            'exhibitionpersonorganization' => {'authority' => ['orgauthorities', 'organization']},
-            'exhibitionpersonperson' => {'authority' => ['personauthorities', 'person']},
+            'exhibitionpersonorganizationlocal' => {'authority' => ['orgauthorities', 'organization']},
+            'exhibitionpersonorganizationulan' => {'authority' => ['orgauthorities', 'ulan_oa']},
+            'exhibitionpersonpersonlocal' => {'authority' => ['personauthorities', 'person']},
+            'exhibitionpersonpersonulan' => {'authority' => ['personauthorities', 'ulan_pa']},
             'exhibitionpersonrole' => {'vocab' => 'exhibitionpersonrole'}
           }
           CSXML.add_nested_group_lists(
@@ -113,12 +131,14 @@ module CollectionSpace
 
           # exhibitionReferenceGroupList, exhibitionReferenceGroup
           exhibitionreferencedata = {
-            'exhibitionreference' => 'exhibitionReference',
+            'exhibitionreferencelocal' => 'exhibitionReference',
+            'exhibitionreferenceworldcat' => 'exhibitionReference',
             'exhibitionreferencenote' => 'exhibitionReferenceNote',
             'exhibitionreferencetype' => 'exhibitionReferenceType'
           }
           ertransforms = {
-            'exhibitionreference' => {'authority' => ['citationauthorities', 'citation']},
+            'exhibitionreferencelocal' => {'authority' => ['citationauthorities', 'citation']},
+            'exhibitionreferenceworldcat' => {'authority' => ['citationauthorities', 'worldcat']},
             'exhibitionreferencetype' => {'vocab' => 'exhibitionreferencetype'}
           }
           CSXML.add_single_level_group_list(
