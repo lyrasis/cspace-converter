@@ -18,7 +18,7 @@ registered_profiles:
       - acquisitionreferencenumber
     config:
       Acquisition:
-        mapper: CoreAcquisition
+        mapper: LhmcAcquisition
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
