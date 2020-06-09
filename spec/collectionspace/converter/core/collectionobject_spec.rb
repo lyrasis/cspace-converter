@@ -5,15 +5,14 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
   let(:corecollectionobject) { CoreCollectionObject.new(attributes) }
   let(:doc) { Nokogiri::XML(corecollectionobject.convert, nil, 'UTF-8') }
   let(:record) { get_fixture('core_collectionobject.xml') }
-  let(:xpaths) {[
+
+  context 'non-authority/vocab fields' do
+    [
     '/document/*/objectNumber',
     '/document/*/numberOfObjects',
-    '/document/*/titleGroupList/titleGroup/title',
-    { xpath: '/document/*/titleGroupList/titleGroup/titleLanguage',  transform: ->(text) { text.gsub!(/urn:.*?item:name\([^)]+\)'([^']+)'/, '\1') } },
+    '/document/*/titleGroupList/titleGroup/title',    
     '/document/*/titleGroupList/titleGroup/titleType',
     '/document/*/titleGroupList/titleGroup/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslation',
-    { xpath: '/document/*/titleGroupList/titleGroup/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslationLanguage',
-    transform: ->(text) { text.gsub!(/urn:.*?item:name\([^)]+\)'([^']+)'/, '\1') } },
     '/document/*/collection',
     '/document/*/objectNameList/objectNameGroup/objectName',
     '/document/*/objectNameList/objectNameGroup/objectNameType',
@@ -21,10 +20,6 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/objectNameList/objectNameGroup/objectNameCurrency',
     '/document/*/objectNameList/objectNameGroup/objectNameNote',
     '/document/*/objectNameList/objectNameGroup/objectNameLevel',
-    { xpath: '/document/*/objectNameList/objectNameGroup[1]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/objectNameList/objectNameGroup[1]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/objectNameList/objectNameGroup[2]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/objectNameList/objectNameGroup[2]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/briefDescriptions/briefDescription',
     '/document/*/responsibleDepartments/responsibleDepartment',
     '/document/*/recordStatus',
@@ -44,8 +39,6 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/objectStatusList/objectStatus',
     '/document/*/otherNumberList/otherNumber/numberValue',
     '/document/*/otherNumberList/otherNumber/numberType',
-    { xpath: '/document/*/inventoryStatusList/inventoryStatus',  transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/publishToList/publishTo',  transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/assocPeopleGroupList/assocPeopleGroup/assocPeople',
     '/document/*/assocPeopleGroupList/assocPeopleGroup/assocPeopleType',
     '/document/*/assocPeopleGroupList/assocPeopleGroup/assocPeopleNote',
@@ -61,22 +54,11 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/objectComponentGroupList/objectComponentGroup/objectComponentName',
     '/document/*/objectComponentGroupList/objectComponentGroup/objectComponentInformation',
     #'/document/*/objectProductionDateGroupList/objectProductionDateGroup',
-    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[1]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[1]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[2]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[2]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup/objectProductionPersonRole',
-    { xpath: '/document/*/contentPersons/contentPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/contentPeoples/contentPeople',
     '/document/*/contentPlaces/contentPlace',
     '/document/*/contentScripts/contentScript',
-    { xpath: '/document/*/contentOrganizations/contentOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentMethod',
-    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[1]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[1]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[2]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[2]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup/objectProductionOrganizationRole',
     '/document/*/techniqueGroupList/techniqueGroup/technique',
     '/document/*/techniqueGroupList/techniqueGroup/techniqueType',
@@ -90,21 +72,14 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/contentOtherGroupList/contentOtherGroup/contentOtherType',
     '/document/*/contentOtherGroupList/contentOtherGroup/contentOther',
     '/document/*/contentDescription',
-    { xpath: '/document/*/contentLanguages/contentLanguage[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/contentLanguages/contentLanguage[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/contentLanguages/contentLanguage[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/contentLanguages/contentLanguage[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/contentActivities/contentActivity',
-    { xpath: '/document/*/contentConcepts/contentConcept', transform: ->(text) { CSURN.parse(text)[:label] } },
     #'/document/*/contentDateGroup',
     '/document/*/contentPositions/contentPosition',
     '/document/*/contentObjectGroupList/contentObjectGroup/contentObjectType',
     '/document/*/contentObjectGroupList/contentObjectGroup/contentObject',
     '/document/*/contentNote',
-    { xpath: '/document/*/ageQualifier', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/age',
     '/document/*/ageUnit',
-    { xpath: '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentMethod',
     '/document/*/materialGroupList/materialGroup/materialName',
     '/document/*/materialGroupList/materialGroup/material',
@@ -120,41 +95,21 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/assocObjectGroupList/assocObjectGroup/assocObject',
     '/document/*/assocObjectGroupList/assocObjectGroup/assocObjectNote',
     '/document/*/assocObjectGroupList/assocObjectGroup/assocObjectType',
-    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[1]/assocConcept', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[1]/assocConcept', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[2]/assocConcept', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[2]/assocConcept', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/assocConceptGroupList/assocConceptGroup/assocConceptNote',
     '/document/*/assocConceptGroupList/assocConceptGroup/assocConceptType',
     '/document/*/assocCulturalContextGroupList/assocCulturalContextGroup/assocCulturalContextNote',
     '/document/*/assocCulturalContextGroupList/assocCulturalContextGroup/assocCulturalContext',
     '/document/*/assocCulturalContextGroupList/assocCulturalContextGroup/assocCulturalContextType',
-    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[1]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[1]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[2]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[2]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/assocOrganizationGroupList/assocOrganizationGroup/assocOrganizationType',
     '/document/*/assocOrganizationGroupList/assocOrganizationGroup/assocOrganizationNote',
     '/document/*/assocPersonGroupList/assocPersonGroup/assocPersonNote',
     '/document/*/assocPersonGroupList/assocPersonGroup/assocPersonType',
-    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[1]/assocPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[1]/assocPerson', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[2]/assocPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[2]/assocPerson', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/assocPlaceGroupList/assocPlaceGroup/assocPlaceNote',
     '/document/*/assocPlaceGroupList/assocPlaceGroup/assocPlace',
     '/document/*/assocPlaceGroupList/assocPlaceGroup/assocPlaceType',
     '/document/*/assocEventName',
     '/document/*/assocEventNameType',
-    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/assocEventPeoples/assocEventPeople',
-    { xpath: '/document/*/assocEventPersons/assocEventPerson[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocEventPersons/assocEventPerson[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    { xpath: '/document/*/assocEventPersons/assocEventPerson[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
-    { xpath: '/document/*/assocEventPersons/assocEventPerson[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     '/document/*/assocEventPlaces/assocEventPlace',
     '/document/*/assocEventNote',
     '/document/*/assocDateGroupList/assocDateGroup/assocStructuredDateGroup/dateDisplayDate',
@@ -163,14 +118,12 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/objectHistoryNote',
     '/document/*/usageGroupList/usageGroup/usageNote',
     '/document/*/usageGroupList/usageGroup/usage',
-    { xpath: '/document/*/owners/owner', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/ownershipAccess',
     '/document/*/ownershipCategory',
     '/document/*/ownershipPlace',
     #'/document/*/ownershipDateGroupList/ownershipDateGroup',
     '/document/*/ownershipExchangeMethod',
     '/document/*/ownershipExchangeNote',
-    { xpath: '/document/*/ownershipExchangePriceCurrency', transform: ->(text) { CSURN.parse(text)[:label] } },
     '/document/*/ownershipExchangePriceValue',
     '/document/*/ownersPersonalExperience',
     '/document/*/ownersPersonalResponse',
@@ -181,12 +134,85 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     '/document/*/viewersPersonalResponse',
     '/document/*/viewersReferences/viewersReference',
     '/document/*/viewersContributionNote',
+    '/document/*/referenceGroupList/referenceGroup/referenceNote',
+    #'/document/*/fieldCollectionDateGroup',
+    '/document/*/fieldCollectionNumber',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescription',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionDateGroup/dateDisplayDate',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionPosition',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionType',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionMethod',
+    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionInterpretation',
+
+    ].each do |xpath|
+      context "#{xpath}" do
+        let(:doctext) { get_text(doc, xpath) }
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
+          
+          it 'matches sample payload' do
+            verify_value_match(doc, record, xpath)
+          end
+      end
+    end
+  end
+
+  context 'Authority/vocab fields' do
+    [
+    { xpath: '/document/*/titleGroupList/titleGroup/titleLanguage',  transform: ->(text) { text.gsub!(/urn:.*?item:name\([^)]+\)'([^']+)'/, '\1') } },
+    { xpath: '/document/*/titleGroupList/titleGroup/titleTranslationSubGroupList/titleTranslationSubGroup/titleTranslationLanguage',
+    transform: ->(text) { text.gsub!(/urn:.*?item:name\([^)]+\)'([^']+)'/, '\1') } },
+    { xpath: '/document/*/objectNameList/objectNameGroup[1]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectNameList/objectNameGroup[1]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/objectNameList/objectNameGroup[2]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectNameList/objectNameGroup[2]/objectNameLanguage', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/inventoryStatusList/inventoryStatus',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/publishToList/publishTo',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[1]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[1]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[2]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionPersonGroupList/objectProductionPersonGroup[2]/objectProductionPerson',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/contentPersons/contentPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/contentOrganizations/contentOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[1]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[1]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[2]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/objectProductionOrganizationGroupList/objectProductionOrganizationGroup[2]/objectProductionOrganization',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/contentLanguages/contentLanguage[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/contentLanguages/contentLanguage[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/contentLanguages/contentLanguage[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/contentLanguages/contentLanguage[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/contentConcepts/contentConcept', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/ageQualifier', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/textualInscriptionGroupList/textualInscriptionGroup/inscriptionContentInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[1]/assocConcept', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[1]/assocConcept', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[2]/assocConcept', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocConceptGroupList/assocConceptGroup[2]/assocConcept', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[1]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[1]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[2]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocOrganizationGroupList/assocOrganizationGroup[2]/assocOrganization', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[1]/assocPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[1]/assocPerson', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[2]/assocPerson', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocPersonGroupList/assocPersonGroup[2]/assocPerson', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocEventOrganizations/assocEventOrganization[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocEventPersons/assocEventPerson[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocEventPersons/assocEventPerson[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/assocEventPersons/assocEventPerson[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/assocEventPersons/assocEventPerson[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
+    { xpath: '/document/*/owners/owner', transform: ->(text) { CSURN.parse(text)[:label] } },
+    { xpath: '/document/*/ownershipExchangePriceCurrency', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/referenceGroupList/referenceGroup[1]/reference',  transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/referenceGroupList/referenceGroup[1]/reference',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
     { xpath: '/document/*/referenceGroupList/referenceGroup[2]/reference',  transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/referenceGroupList/referenceGroup[2]/reference',  transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    '/document/*/referenceGroupList/referenceGroup/referenceNote',
-    #'/document/*/fieldCollectionDateGroup',
     { xpath: '/document/*/fieldCollectionMethods/fieldCollectionMethod', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/fieldCollectionPlace', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/fieldCollectionSources/fieldCollectionSource[1]', transform: ->(text) { CSURN.parse(text)[:label] } },
@@ -197,37 +223,70 @@ RSpec.describe CollectionSpace::Converter::Core::CoreCollectionObject do
     { xpath: '/document/*/fieldCollectors/fieldCollector[1]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     { xpath: '/document/*/fieldCollectors/fieldCollector[2]', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/fieldCollectors/fieldCollector[2]', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    '/document/*/fieldCollectionNumber',
-    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescription',
     { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[1]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[1]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:subtype] } },
     { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[2]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:label] } },
     { xpath: '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup[2]/inscriptionDescriptionInscriber', transform: ->(text) { CSURN.parse(text)[:subtype] } },
-    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionDateGroup/dateDisplayDate',
-    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionPosition',
-    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionType',
-    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionMethod',
-    '/document/*/nonTextualInscriptionGroupList/nonTextualInscriptionGroup/inscriptionDescriptionInterpretation',
-  ]}
+    ].each do |xpath|
+      context "#{xpath}" do
+          let(:urn_vals) { urn_values(doc, xpath) }
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
 
-  context 'For maximally populuated record' do
-    it "Maps attributes correctly" do
-      test_converter(doc, record, xpaths)
-    end
-  end
+          it 'values are URNs' do
+            verify_values_are_urns(urn_vals)
+          end
+          
+          it 'URNs match sample payload' do
+            verify_urn_match(urn_vals, record, xpath)
+          end
+        end
+      end
 
   context 'For minimally populated record' do
     let(:attributes) { get_attributes_by_row('core', 'cataloging_core_excerpt.csv', 102) }
     let(:corecollectionobject) { CoreCollectionObject.new(attributes) }
     let(:doc) { Nokogiri::XML(corecollectionobject.convert, nil, 'UTF-8') }
     let(:record) { get_fixture('core_collectionobject_row102.xml') }
-    let(:xpath_required) {[
+      [
       '/document/*/objectNumber'
-    ]}
-
-    it 'Maps required field(s) correctly without falling over' do
-      test_converter(doc, record, xpath_required)
-    end
+      ].each do |xpath|
+          context "#{xpath}" do
+            it 'is not empty' do
+              verify_field_is_populated(doc, xpath)
+            end
+            
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
+          end
+        end
+      end
   end
 
+  context 'When fieldcollectionplace is tgn' do
+    let(:attributes) { get_attributes_by_row('core', 'cataloging_core_excerpt.csv', 3) }
+    let(:corecollectionobject) { CoreCollectionObject.new(attributes) }
+    let(:doc) { Nokogiri::XML(corecollectionobject.convert, nil, 'UTF-8') }
+    let(:record) { get_fixture('core_collectionobject_row3.xml') }
+      [
+      { xpath: '/document/*/fieldCollectionPlace', transform: ->(text) { CSURN.parse(text)[:label] } },
+      ].each do |xpath|
+      context "#{xpath}" do
+          let(:urn_vals) { urn_values(doc, xpath) }
+          it 'is not empty' do
+            verify_field_is_populated(doc, xpath)
+          end
+
+          it 'values are URNs' do
+            verify_values_are_urns(urn_vals)
+          end
+          
+          it 'URNs match sample payload' do
+            verify_urn_match(urn_vals, record, xpath)
+          end
+        end
+      end
+  end
 end
