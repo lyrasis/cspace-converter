@@ -207,3 +207,12 @@ registered_profiles:
       - narrower
       - broader
     config: {}
+  vocabularies:
+    type: Vocabularies
+    enabled: true
+    identify_by_column: displayname
+    required_headers:
+      - displayname
+      - vocabulary
+    config:
+      name_field: displayname
