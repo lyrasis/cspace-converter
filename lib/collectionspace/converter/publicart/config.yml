@@ -30,6 +30,9 @@ registered_profiles:
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
+        - name_field: acquisitionauthorizer
+          authority_type: Person
+          authority_subtype: person
         - name_field: acquisitionsourcepersonlocal
           authority_type: Person
           authority_subtype: person
