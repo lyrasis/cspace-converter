@@ -14,7 +14,7 @@ RSpec.describe CollectionSpace::Converter::Extension::Commission do
         "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionProjectedValueAmount",
         "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionBudgetTypeNote",
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           let(:docval) { get_text(doc, xpath) }
           it 'is not empty' do
             expect(docval).to_not be_empty
@@ -31,7 +31,7 @@ RSpec.describe CollectionSpace::Converter::Extension::Commission do
       [
         "/document/#{ac}/commissionDate"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           it 'is not empty' do
             expect(doc.xpath(xpath).size).to_not eq(0)
           end
@@ -50,7 +50,7 @@ RSpec.describe CollectionSpace::Converter::Extension::Commission do
         "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionActualValueCurrency",
         "/document/#{ac}/commissionBudgetGroupList/commissionBudgetGroup/commissionBudgetType"
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           let(:docurns) { urn_values(doc, xpath) }
           it 'is not empty' do
             expect(get_text(doc, xpath)).not_to be_empty

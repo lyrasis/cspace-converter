@@ -31,7 +31,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         "/document/#{p}/accessionDateGroup/dateDisplayDate",
         "/document/#{p}/acquisitionDateGroupList/acquisitionDateGroup/dateDisplayDate",
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           it 'is empty' do
             verify_field_is_empty(doc, xpath)
           end
@@ -48,7 +48,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingCurrency",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSource"
         ].each do |xpath|
-          context "#{xpath}" do
+          context xpath.to_s do
             let(:urn_vals) { urn_values(doc, xpath) }
             it 'is not empty' do
               verify_field_is_populated(doc, xpath)
@@ -70,7 +70,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingValue",
           "/document/#{p}/acquisitionFundingList/acquisitionFunding/acquisitionFundingSourceProvisos"
         ].each do |xpath|
-          context "#{xpath}" do
+          context xpath.to_s do
             it 'is not empty' do
               verify_field_is_populated(doc, xpath)
             end
@@ -91,7 +91,7 @@ RSpec.describe CollectionSpace::Converter::PublicArt::PublicArtAcquisition do
         "/document/#{pa}/accessionDate",
         "/document/#{pa}/acquisitionDates/acquisitionDate",
       ].each do |xpath|
-        context "#{xpath}" do
+        context xpath.to_s do
           let(:doctext) { get_text(doc, xpath) }
             it 'is not empty' do
               verify_field_is_populated(doc, xpath)
