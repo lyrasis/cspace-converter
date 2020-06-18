@@ -68,7 +68,86 @@ registered_profiles:
         mapper: LhmcCollectionObject
         identifier: objectnumber
         title: objectnumber
-      Authorities: 
+      Authorities:
+        - name_field: contentpersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: contentpersonulan
+          authority_type: Person
+          authority_subtype: ulan_pa
+        - name_field: contentorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: contentorganizationulan
+          authority_type: Organization
+          authority_subtype: ulan_oa
+        - name_field: inscriptioncontentinscriberperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: fieldcollectionplacelocal
+          authority_type: Place
+          authority_subtype: place
+        - name_field: fieldcollectionplacetgn
+          authority_type: Place
+          authority_subtype: tgn_place
+        - name_field: ownerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: ownerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: contentconceptassociated
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: contentconceptmaterial
+          authority_type: Concept
+          authority_subtype: material_ca
+        - name_field: assoceventorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: assoceventperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: fieldcollectionsource
+          authority_type: Person
+          authority_subtype: person
+        - name_field: fieldcollectorperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: fieldcollectororganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: inscriptioncontentinscriberorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: inscriptiondescriptioninscriberperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inscriptiondescriptioninscriberorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: assocconcept
+          authority_type: Concept
+          authority_subtype: concept
+        - name_field: assocorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: assocperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: referencelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: referenceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+        # LHMC-specific
         - name_field: assocplacelocal
           authority_type: Place
           authority_subtype: place
@@ -94,6 +173,27 @@ registered_profiles:
           authority_type: Place
           authority_subtype: tgn_place
       Vocabularies:
+        - name_field: agequalifier
+          vocabulary_subtype: agequalifier
+        - name_field: ownershipexchangepricecurrency
+          vocabulary_subtype: currency
+        - name_field: inventorystatus
+          vocabulary_subtype: inventorystatus
+        - name_field: publishto
+          vocabulary_subtype: publishto
+        - name_field: contentlanguage
+          vocabulary_subtype: languages
+        - name_field: fieldcollectionmethod
+          vocabulary_subtype: collectionmethod
+        - name_field: inscriptioncontentlanguage
+          vocabulary_subtype: languages
+        - name_field: objectnamelanguage
+          vocabulary_subtype: languages
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
+        #LHMC-specific
         - name_field: numbertype
           vocabulary_subtype: numbertype
   organization:
