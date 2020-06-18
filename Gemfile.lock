@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/collectionspace/collectionspace-client.git
+  revision: 3a3bdd270b87ca7896ae84f41c14dd3d461bd2c3
+  tag: v0.4.0
+  specs:
+    collectionspace-client (0.4.0)
+      httparty
+      json
+      nokogiri
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,10 +76,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    collectionspace-client (0.2.0)
-      httparty
-      json
-      nokogiri
     concurrent-ruby (1.1.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -99,7 +105,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.0)
-    httparty (0.17.1)
+    httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     i18n (0.9.5)
@@ -299,7 +305,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.4.0)
   coffee-rails (~> 4.1.0)
-  collectionspace-client (= 0.2.0)
+  collectionspace-client!
   daemons
   dbf
   delayed_job_mongoid
