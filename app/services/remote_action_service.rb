@@ -173,7 +173,7 @@ class RemoteActionService
   def self.perform_search_request(service:, value:)
     search_args = {
       path: service[:path],
-      type: "#{service[:schema]}_common",
+      namespace: "#{service[:schema]}_common",
       field: service[:identifier_field],
       expression: "= '#{value}'"
     }

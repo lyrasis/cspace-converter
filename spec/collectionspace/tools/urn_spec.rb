@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe CSURN do
-  before(:all) do
-    CacheObject.destroy_all
-  end
+  # TODO: delete
+  # before(:all) do
+  #   CacheObject.destroy_all
+  # end
 
   let(:vocab_urn) {
     "urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(english)'English'"
