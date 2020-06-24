@@ -385,10 +385,31 @@ registered_profiles:
       Vocabularies: []
   valuationcontrol:
     type: Procedures
+    enabled: true
+    identify_by_column: valuationcontrolrefnumber
+    required_headers:
+      - valuationcontrolrefnumber
     config:
       ValuationControl:
-        identifier: valuationcontrolreferencenumber
-        title: valuationcontrolreferencenumber
+        mapper: PublicArtValuationControl
+        identifier: valuationcontrolrefnumber
+        title: valuationcontrolrefnumber
       Authorities:
-        Person:
-        - source
+        - name_field: valuesourcepersonlocal
+          authority_type: Person
+          authority_subtype: person
+        - name_field: valuesourcepersonshared
+          authority_type: Person
+          authority_subtype: person_shared
+        - name_field: valuesourceorganizationlocal
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: valuesourceorganizationshared
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: insurer
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: valuesourcerole
+          vocabulary_subtype: valuationsourcerole
