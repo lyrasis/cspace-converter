@@ -88,7 +88,6 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
           end
         end
       end
-
     end
 
     context 'For minimally populated record' do
