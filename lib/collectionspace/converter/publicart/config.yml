@@ -166,13 +166,28 @@ registered_profiles:
           vocabulary_subtype: prodpersonrole
   conditioncheck:
     type: Procedures
+    enabled: true
+    identify_by_column: conditioncheckrefnumber
+    required_headers:
+      - conditioncheckrefnumber
     config:
       ConditionCheck:
-        identifier: conditioncheckreferencenumber
-        title: conditioncheckreferencenumber
+        mapper: PublicArtConditionCheck
+        identifier: conditioncheckrefnumber
+        title: conditioncheckrefnumber
       Authorities:
-        Person:
-        - conditionchecker
+        - name_field: conditioncheckerlocalorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: conditioncheckerlocalperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: conditioncheckersharedorganization
+          authority_type: Organization
+          authority_subtype: organization_shared
+        - name_field: conditioncheckersharedperson
+          authority_type: Person
+          authority_subtype: person_shared
   exhibition:
     type: Procedures
     enabled: true
