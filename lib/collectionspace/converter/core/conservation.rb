@@ -5,11 +5,11 @@ module CollectionSpace
         ::CoreConservation = CollectionSpace::Converter::Core::CoreConservation
         def convert
           run do |xml|
-            CoreConservation.map(xml, attributes)
+            CoreConservation.map_common(xml, attributes)
           end
         end
 
-        def self.map(xml, attributes)
+        def self.map_common(xml, attributes)
           pairs = {
             'conservationnumber' => 'conservationNumber',
             'treatmentpurpose' => 'treatmentPurpose',

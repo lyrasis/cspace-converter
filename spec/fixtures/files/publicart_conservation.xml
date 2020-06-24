@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="conservation">
+  <ns2:conservation_publicart xmlns:ns2="http://collectionspace.org/services/conservation/local/publicart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <proposedTreatmentStartDate>2000-04-01T00:00:00.000Z</proposedTreatmentStartDate>
+    <treatmentCostValue>500</treatmentCostValue>
+    <conservationPriorityLevel>medium</conservationPriorityLevel>
+    <proposedTreatmentEstCurrency>urn:cspace:publicart.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</proposedTreatmentEstCurrency>
+    <analysisRecommendations>Analyst Recommendation Text</analysisRecommendations>
+    <proposedTreatmentEndDate>2000-05-01T00:00:00.000Z</proposedTreatmentEndDate>
+    <treatmentCostCurrency>urn:cspace:publicart.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar'</treatmentCostCurrency>
+    <proposedTreatmentContractRestrictions>Restrictions sample text</proposedTreatmentContractRestrictions>
+    <proposedTreatmentEstValue>500</proposedTreatmentEstValue>
+  </ns2:conservation_publicart>
+  <ns2:collectionspace_core xmlns:ns2="http://collectionspace.org/collectionspace_core/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <createdAt>2020-05-18T20:08:05.526Z</createdAt>
+    <updatedBy>admin@publicart.collectionspace.org</updatedBy>
+    <createdBy>admin@publicart.collectionspace.org</createdBy>
+    <workflowState>project</workflowState>
+    <tenantId>5000</tenantId>
+    <refName>urn:cspace:publicart.collectionspace.org:conservation:id(e2c5140c-aabf-480e-8185)</refName>
+    <uri>/conservation/e2c5140c-aabf-480e-8185</uri>
+    <updatedAt>2020-05-18T20:08:05.526Z</updatedAt>
+  </ns2:collectionspace_core>
+  <ns2:conservation_common xmlns:ns2="http://collectionspace.org/services/conservation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <treatmentStartDate>2000-04-01T00:00:00.000Z</treatmentStartDate>
+    <conservationStatusGroupList>
+      <conservationStatusGroup>
+        <statusDate>2000-01-01T00:00:00.000Z</statusDate>
+        <status>urn:cspace:publicart.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysisapproved)'Analysis approved'</status>
+      </conservationStatusGroup>
+      <conservationStatusGroup>
+        <statusDate>2000-02-01T00:00:00.000Z</statusDate>
+        <status>urn:cspace:publicart.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysiscomplete)'Analysis complete'</status>
+      </conservationStatusGroup>
+    </conservationStatusGroupList>
+    <analysisResults>Analytical results text.</analysisResults>
+    <researcher>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(MaksimilanBogatyryov1589187877121)'Maksimilan Bogatyryov'</researcher>
+    <proposedAnalysis>Proposed analysis text.</proposedAnalysis>
+    <approvedBy>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(KaineheKimo1589187756422)'Kainehe Kimo'</approvedBy>
+    <conservators>
+      <conservator>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(IlzeBergs1589187485034)'Ilze Bergs'</conservator>
+      <conservator>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(TinaLauva1589187452367)'Tina Lauva'</conservator>
+      <conservator>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(Organization11589046127131)'Organization 1'</conservator>
+    </conservators>
+    <fabricationNote>Fabrication note text.</fabricationNote>
+    <destAnalysisGroupList/>
+    <approvedDate>2000-03-01T00:00:00.000Z</approvedDate>
+    <treatmentEndDate>2000-05-01T00:00:00.000Z</treatmentEndDate>
+    <analysisMethod>Analytical methodology text.</analysisMethod>
+    <treatmentSummary>Treatment summary text.</treatmentSummary>
+    <proposedTreatment>Proposed treatment text.</proposedTreatment>
+    <treatmentPurpose>urn:cspace:publicart.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(appraisal)'Appraisal'</treatmentPurpose>
+    <otherPartyGroupList>
+      <otherPartyGroup>
+        <otherParty>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(RinjiSato1589187528178)'Rinji Sato'</otherParty>
+        <otherPartyNote>Other party note text 1.</otherPartyNote>
+        <otherPartyRole>urn:cspace:publicart.collectionspace.org:vocabularies:name(otherpartyrole):item:name(conservator)'Conservator'</otherPartyRole>
+      </otherPartyGroup>
+      <otherPartyGroup>
+        <otherParty>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(OgiKido1589187538610)'Ogi Kido'</otherParty>
+        <otherPartyNote/>
+        <otherPartyRole>urn:cspace:publicart.collectionspace.org:vocabularies:name(otherpartyrole):item:name(technician)'Technician'</otherPartyRole>
+      </otherPartyGroup>
+      <otherPartyGroup>
+        <otherParty>urn:cspace:publicart.collectionspace.org:orgauthorities:name(organization):item:name(OtherOrganization12642976077)'Other Organization 1'</otherParty>
+        <otherPartyNote>Other party note text 3.</otherPartyNote>
+        <otherPartyRole>urn:cspace:publicart.collectionspace.org:vocabularies:name(otherpartyrole):item:name(preparator)'Preparator'</otherPartyRole>
+      </otherPartyGroup>
+    </otherPartyGroupList>
+    <examinationGroupList>
+      <examinationGroup>
+        <examinationStaff>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(ShaamikhSafar1589187624411)'Shaamikh Safar'</examinationStaff>
+        <examinationDate>2000-02-01T00:00:00.000Z</examinationDate>
+        <examinationPhase>urn:cspace:publicart.collectionspace.org:vocabularies:name(examinationphase):item:name(aftertreatment)'after treatment'</examinationPhase>
+        <examinationNote>Exam notes text 1.</examinationNote>
+      </examinationGroup>
+      <examinationGroup>
+        <examinationStaff>urn:cspace:publicart.collectionspace.org:personauthorities:name(person):item:name(KaamilMir1589187632125)'Kaamil Mir'</examinationStaff>
+        <examinationDate>2000-02-02T00:00:00.000Z</examinationDate>
+        <examinationPhase>urn:cspace:publicart.collectionspace.org:vocabularies:name(examinationphase):item:name(beforetreatment)'before treatment'</examinationPhase>
+        <examinationNote>Exam notes text 2.</examinationNote>
+      </examinationGroup>
+    </examinationGroupList>
+    <proposedAnalysisDate>2000-06-01T00:00:00.000Z</proposedAnalysisDate>
+    <conservationNumber>CON2000.001</conservationNumber>
+  </ns2:conservation_common>
+  <ns2:account_permission xmlns:ns2="http://collectionspace.org/services/authorization">
+    <account>
+      <accountId>4760cb4a-e3fe-4277-837a-13de6c454322</accountId>
+      <screenName>Administrator</screenName>
+      <userId>admin@publicart.collectionspace.org</userId>
+      <tenantId>5000</tenantId>
+    </account>
+  </ns2:account_permission>
+</document>
