@@ -30,6 +30,9 @@ registered_profiles:
         identifier: acquisitionreferencenumber
         title: acquisitionreferencenumber
       Authorities:
+        - name_field: acquisitionauthorizer
+          authority_type: Person
+          authority_subtype: person
         - name_field: acquisitionsourcepersonlocal
           authority_type: Person
           authority_subtype: person
@@ -42,6 +45,12 @@ registered_profiles:
         - name_field: acquisitionsourceorganizationshared
           authority_type: Organization
           authority_subtype: organization_shared
+        - name_field: commissioningbodyorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: commissioningbodyperson
+          authority_type: Person
+          authority_subtype: person
         - name_field: ownerpersonlocal
           authority_type: Person
           authority_subtype: person
@@ -70,6 +79,12 @@ registered_profiles:
         - name_field: acquisitionmethod
           vocabulary_subtype: acquisitionmethod
         - name_field: acquisitionfundingcurrency
+          vocabulary_subtype: currency
+        - name_field: commissionbudgettype
+          vocabulary_subtype: budgettype
+        - name_field: commissionactualvaluecurrency
+          vocabulary_subtype: currency
+        - name_field: commissionprojectedvaluecurrency
           vocabulary_subtype: currency
   cataloging:
     type: Procedures
