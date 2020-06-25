@@ -23,7 +23,7 @@ module CollectionSpace
 
       # public accessor to cached vocabulary terms
       def self.vocabulary(vocabulary, display_name)
-        fetch(cache_key(['vocabularies', vocabulary, display_name.gsub(/\W/, '')]))
+        fetch(cache_key(['vocabularies', vocabulary, display_name]))
       end
 
     end
