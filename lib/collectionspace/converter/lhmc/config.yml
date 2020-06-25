@@ -196,6 +196,14 @@ registered_profiles:
         #LHMC-specific
         - name_field: numbertype
           vocabulary_subtype: numbertype
+  hierarchies:
+    type: Hierarchies
+    enabled: true
+    required_headers:
+      - type
+      - narrower
+      - broader
+    config: {}
   organization:
     type: Authorities
     enabled: true
@@ -299,13 +307,14 @@ registered_profiles:
       authority_subtype: place
       Authorities: []
       Vocabularies: []
-  hierarchies:
-    type: Hierarchies
+  relationships:
+    type: Relationships
     enabled: true
     required_headers:
-      - type
-      - narrower
-      - broader
+      - subjectdocumenttype
+      - subjectidentifier
+      - objectdocumenttype
+      - objectidentifier
     config: {}
   vocabularies:
     type: Vocabularies
