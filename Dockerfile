@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.11
 
 ENV BUNDLER_VERSION=1.17.3 \
     TERM=linux \
@@ -17,6 +17,7 @@ RUN apk --no-cache add \
     ruby \
     ruby-bigdecimal \
     ruby-dev \
+    ruby-full \
     ruby-io-console \
     ruby-irb \
     ruby-json \
@@ -30,7 +31,7 @@ RUN mkdir -p /usr/app/
 WORKDIR /usr/app
 
 COPY Gemfile* /usr/app/
-RUN bundle install
+RUN bundle install --without development test
 
 COPY . /usr/app/
 RUN echo "export BUILD_DATE=`date '+%Y-%m-%d'`" > /set_env
