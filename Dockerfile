@@ -1,8 +1,9 @@
 FROM alpine:3.11
 
 ENV BUNDLER_VERSION=1.17.3 \
-    TERM=linux \
+    PORT=3000 \
     PS1="\n\n>> ruby \W \$ " \
+    TERM=linux \
     TZ=UTC
 
 RUN apk --no-cache add \
@@ -37,4 +38,4 @@ COPY . /usr/app/
 RUN echo "export BUILD_DATE=`date '+%Y-%m-%d'`" > /set_env
 
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
-CMD crond && bundle exec whenever --update-crontab && bundle exec rails s -b 0.0.0.0
+CMD crond && bundle exec whenever --update-crontab && bundle exec rails s -b 0.0.0.0 -p $PORT
