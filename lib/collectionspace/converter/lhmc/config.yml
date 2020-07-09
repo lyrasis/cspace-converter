@@ -204,6 +204,19 @@ registered_profiles:
       - narrower
       - broader
     config: {}
+  location:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreLocation
+      name_field: termdisplayname
+      authority_type: Location
+      authority_subtype: location
+      Authorities: []
+      Vocabularies: []
   organization:
     type: Authorities
     enabled: true
