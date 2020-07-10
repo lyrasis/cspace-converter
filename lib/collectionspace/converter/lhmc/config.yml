@@ -217,6 +217,18 @@ registered_profiles:
       authority_subtype: location
       Authorities: []
       Vocabularies: []
+  media:
+    type: Procedures
+    enabled: true
+    identify_by_column: identificationnumber
+    required_headers:
+      - identificationnumber
+    config:
+      Media:
+        mapper: CoreMedia
+        identifier: identificationnumber
+        title: identificationnumber
+      Authorities: []
   organization:
     type: Authorities
     enabled: true
