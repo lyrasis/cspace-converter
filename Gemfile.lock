@@ -1,20 +1,20 @@
 GIT
   remote: https://github.com/collectionspace/collectionspace-client.git
-  revision: 0206fe70221b6853d689c7fcfb16e32fe16de9ce
-  tag: v0.6.0
+  revision: b81f412a3e514c494fab1853a2dcea7d8c063a92
+  tag: v0.6.1
   specs:
-    collectionspace-client (0.6.0)
+    collectionspace-client (0.6.1)
       httparty
       json
       nokogiri
 
 GIT
   remote: https://github.com/collectionspace/collectionspace-refcache.git
-  revision: 74458f1f0013cdfa7348987dba8224844ff579f1
-  tag: v0.6.0
+  revision: 04a0bd9572f5df194a24d884b2bacd165fe99a1b
+  tag: v0.7.0
   specs:
-    collectionspace-refcache (0.6.0)
-      collectionspace-client (= 0.6.0)
+    collectionspace-refcache (0.7.0)
+      collectionspace-client (= 0.6.1)
       zache (~> 0.12.0)
 
 GEM
