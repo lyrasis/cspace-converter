@@ -22,8 +22,6 @@ module CollectionSpace
             numbertype
             numbervalue
             contentplace
-            inscriptioncontenttype
-            inscriptioncontentmethod
             objectproductionplace
             assocplace
             ownershipplace
