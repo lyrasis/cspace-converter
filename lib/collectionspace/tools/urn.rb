@@ -37,7 +37,7 @@ module CollectionSpace
           domain: parts[2],
           type: parts[3],
           subtype: parts[4].match(/\((.*)\)/).captures[0],
-          identifier: parts[6].match(/\((.*)\)/).captures[0],
+          identifier: parts[6].match(/\((.*?)\)/).captures[0],
           label: parts[6].match(/'(.*)'/).captures[0]
         }
       end

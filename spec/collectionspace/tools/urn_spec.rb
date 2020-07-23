@@ -11,6 +11,11 @@ RSpec.describe CSURN do
     "urn:cspace:core.collectionspace.org:locationauthorities:name(location):item:name(AR1U1Shelf14078111602)'A:R1:U1:Shelf 1'"
   end
 
+  let(:urn_with_parens) do
+    "urn:cspace:core.collectionspace.org:conceptauthorities:name(concept):item:name(JMAlexanderCompanyAtlantaGa1028284796)'J.M. Alexander & Company (Atlanta, Ga.)'"
+  end
+  
+
   it 'can generate vocabulary urn when not in cache' do
     expect(
       CSURN.get_vocab_urn('languages', 'English')
@@ -33,6 +38,15 @@ RSpec.describe CSURN do
     expect(parsed_urn[:subtype]).to eq 'location'
     expect(parsed_urn[:identifier]).to eq 'AR1U1Shelf14078111602'
     expect(parsed_urn[:label]).to eq 'A:R1:U1:Shelf 1'
+  end
+
+  it 'can parse a urn that contains colons in the name' do
+    parsed_urn = CSURN.parse(urn_with_parens)
+    expect(parsed_urn[:domain]).to eq 'core.collectionspace.org'
+    expect(parsed_urn[:type]).to eq 'conceptauthorities'
+    expect(parsed_urn[:subtype]).to eq 'concept'
+    expect(parsed_urn[:identifier]).to eq 'JMAlexanderCompanyAtlantaGa1028284796'
+    expect(parsed_urn[:label]).to eq 'J.M. Alexander & Company (Atlanta, Ga.)'
   end
 
   it 'can parse type from vocabulary refname' do
