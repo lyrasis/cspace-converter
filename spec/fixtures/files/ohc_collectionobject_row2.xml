@@ -11,6 +11,9 @@
     <updatedAt>2020-02-04T23:21:07.697Z</updatedAt>
   </ns2:collectionspace_core>
   <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <contentConcepts>
+      <contentConcept>urn:cspace:cspace.ohiohistory.org:conceptauthorities:name(concept):item:name(BeadsQmVhZHM)'Beads'</contentConcept>
+    </contentConcepts>
     <fieldCollectionDateGroup>
       <scalarValuesComputed/>
       <dateEarliestSingleCertainty/>
