@@ -84,6 +84,24 @@ registered_profiles:
       authority_subtype: citation
       Authorities: []
       Vocabularies: []
+  concept-associated:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreConcept
+      name_field: termdisplayname
+      authority_type: Concept
+      authority_subtype: concept
+      Authorities:
+        - name_field: termsource
+          authority_type: Citation
+          authority_subtype: citation
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
   conditioncheck:
     type: Procedures
     enabled: true

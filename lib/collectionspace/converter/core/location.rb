@@ -56,10 +56,14 @@ module CollectionSpace
             'termlanguage' => {'vocab' => 'languages'},
             'termsourcelocal' => {'authority' => ['citationauthorities', 'citation']},
             'termsourceworldcat' => {'authority' => ['citationauthorities', 'worldcat']},
+            'termprefforlang' => {'special' => 'boolean'},
+            'termflag' => {'vocab' => 'locationtermflag'},
 
             'termlanguagenonpreferred' => {'vocab' => 'languages'},
             'termsourcelocalnonpreferred' => {'authority' => ['citationauthorities', 'citation']},
-            'termsourceworldcatnonpreferred' => {'authority' => ['citationauthorities', 'worldcat']}
+            'termsourceworldcatnonpreferred' => {'authority' => ['citationauthorities', 'worldcat']},
+            'termprefforlangnonpreferred' => {'special' => 'boolean'},
+            'termflagnonpreferred' => {'vocab' => 'locationtermflag'}
           }
 
           CSXML.add_single_level_group_list(
