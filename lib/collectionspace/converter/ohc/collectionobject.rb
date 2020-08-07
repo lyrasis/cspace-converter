@@ -14,6 +14,8 @@ module CollectionSpace
             'assocpeople',
             'assocpeopletype',
             'assocpeoplenote',
+            'contentconceptassociated',
+            'contentconceptmaterial',
             'objectnametype',
             'objectnamesystem',
             'objectname',
@@ -79,6 +81,15 @@ module CollectionSpace
 
         def map_common(xml, attributes)
           super(xml, attributes.merge(redefined_fields))
+
+          repeats = {
+            'contentconcept' => %w[contentConcepts contentConcept],
+          }
+          repeatstransforms = {
+            'contentconcept' => { 'authority' => %w[conceptauthorities concept] },
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
+
 
           # assocPeopleGroupList , assocPeopleGroup
           assocpeopledata = {

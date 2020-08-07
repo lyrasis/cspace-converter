@@ -63,6 +63,15 @@ RSpec.describe CollectionSpace::Converter::OHC::OHCCollectionObject do
         ]
         test_converter(doc, record, xpaths)
       end
+
+      it "Remaps contentConcepts correctly" do
+        xpaths = [
+          { xpath: "/document/#{common}/contentConcepts/contentConcept", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/contentConcepts/contentConcept", transform: ->(text) {CSURN.parse(text)[:subtype]} },
+        ]
+        test_converter(doc, record, xpaths)
+      end
+
     end #  context 'sample data row 2'
   end # describe #map
 
