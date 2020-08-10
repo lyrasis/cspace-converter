@@ -247,6 +247,24 @@ registered_profiles:
         identifier: identificationnumber
         title: identificationnumber
       Authorities: []
+  movement:
+    type: Procedures
+    enabled: true
+    identify_by_column: movementreferencenumber
+    required_headers:
+      - movementreferencenumber
+    config:
+      Movement:
+        mapper: CoreMovement
+        identifier: movementreferencenumber
+        title: movementreferencenumber
+      Authorities:
+        - name_field: movementcontact
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inventorycontact
+          authority_type: Person
+          authority_subtype: person
   organization:
     type: Authorities
     enabled: true
