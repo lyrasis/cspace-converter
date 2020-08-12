@@ -13,7 +13,8 @@ class RowJob < ActiveJob::Base
       service.update_status(import_status: import_status, import_message: 'ok')
     rescue Exception => ex
       import_status = 0
-      logger.error "Error for import row: #{ex.message}"
+      logger.error "Error for import row: #{ex.message} at #{ex.backtrace_locations[0]}"
+      ex.backtrace_locations.each{ |btl| logger.debug btl }
       service.update_status(import_status: import_status, import_message: ex.message)
       service.object.collection_space_objects.destroy_all
     end

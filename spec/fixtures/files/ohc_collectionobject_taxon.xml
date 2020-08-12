@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document name="collectionobjects">
+  <ns2:collectionobjects_common xmlns:ns2="http://collectionspace.org/services/collectionobject" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <objectNumber>N TEST</objectNumber>
+    <numberOfObjects>10</numberOfObjects>
+    <collection>permanent-collection</collection>
+    <recordStatus>approved</recordStatus>
+    <sex>male</sex>
+    <fieldCollectionNumber>Field Collection Number: 5</fieldCollectionNumber>
+    <briefDescriptions>
+      <briefDescription>Test description.</briefDescription>
+    </briefDescriptions>
+    <forms>
+      <form>envelope</form>
+    </forms>
+    <responsibleDepartments>
+      <responsibleDepartment>natural-history</responsibleDepartment>
+    </responsibleDepartments>
+    <fieldCollectors>
+      <fieldCollector>urn:cspace:cspace.ohiohistory.org:personauthorities:name(person):item:name(CashionErin1550937130598)'Cashion, Erin B.'</fieldCollector>
+      <fieldCollector>urn:cspace:cspace.ohiohistory.org:orgauthorities:name(organization):item:name(OhioHistoryConnectionT2hpb0hpc3RvcnlDb25uZWN0aW9u)'Ohio History Connection'</fieldCollector>
+    </fieldCollectors>
+  </ns2:collectionobjects_common>
+    <ns2:collectionobjects_naturalhistory_extension xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/naturalhistory_extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <taxonomicIdentGroupList>
+      <taxonomicIdentGroup>
+        <taxon>urn:cspace:cspace.ohiohistory.org:taxonomyauthority:name(taxon):item:name(Abiesfraseri3555316480)'Abies fraseri'</taxon>
+        <identBy>urn:cspace:cspace.ohiohistory.org:personauthorities:name(person):item:name(CashionErinB2514515881)'Cashion, Erin B.'</identBy>
+      </taxonomicIdentGroup>
+    </taxonomicIdentGroupList>
+  </ns2:collectionobjects_naturalhistory_extension>
+  <ns2:collectionobjects_ohc xmlns:ns2="http://collectionspace.org/services/collectionobject/domain/ohc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <descriptionLevel>urn:cspace:cspace.ohiohistory.org:vocabularies:name(descriptionlevel):item:name(item)'item'</descriptionLevel>
+  </ns2:collectionobjects_ohc>
+</document>
