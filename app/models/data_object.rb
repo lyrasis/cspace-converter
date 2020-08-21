@@ -158,7 +158,7 @@ class DataObject
 
     if stub
       content_data = {
-        "shortidentifier" => name.downcase,
+        "shortidentifier" => name.gsub(/\W/, '').downcase,
         "displayname"     => name,
       }
     else

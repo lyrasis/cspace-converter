@@ -20,7 +20,7 @@ module CollectionSpace
 
       def self.get_vocab_urn(vocabulary, display_name)
         identifier = AuthCache.vocabulary(vocabulary, display_name)
-        identifier ||= display_name.to_s.downcase
+        identifier ||= display_name.to_s.gsub(/\W/, '').downcase
         generate(
           Lookup.converter_domain,
           'vocabularies',
