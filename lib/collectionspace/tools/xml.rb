@@ -96,6 +96,8 @@ Hashes within inner arrays - One per value in subgroup in an element
       )
         return unless elements.any?
 
+        elements = elements.each{ |group| group.transform_values!{ |v| v == '%NULLVALUE%' ? nil : v } }
+        
         #puts "\nELEMENTS FOR KEY: #{key}:"
         #pp(elements)
         #         puts "SUBKEY: #{sub_key}"
