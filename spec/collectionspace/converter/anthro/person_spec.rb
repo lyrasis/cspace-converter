@@ -14,7 +14,7 @@ RSpec.describe CollectionSpace::Converter::Anthro::AnthroPerson do
   describe '#map_common' do
     context 'authority/vocab fields' do
       [
-        "/document/#{@pa}/personRecordTypes/personRecordType"
+        "/document/#{@p}/personRecordTypes/personRecordType"
       ].each do |xpath|
         context "#{xpath}" do
           let(:urn_vals) { urn_values(doc, xpath) }

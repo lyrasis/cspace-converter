@@ -155,9 +155,7 @@ module CollectionSpace
             personterm_data,
             personterm_transforms
           )
-        end
 
-        def map_anthro(xml, attributes)
           repeats = {
             'personrecordtype' => ['personRecordTypes', 'personRecordType']
           }
@@ -166,6 +164,10 @@ module CollectionSpace
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
 
+        end
+
+        def map_anthro(xml, attributes)
+          # placeholder
         end
       end
     end
