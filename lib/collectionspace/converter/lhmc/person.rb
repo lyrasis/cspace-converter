@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
+require_relative '../core/person'
+
 module CollectionSpace
   module Converter
     module Lhmc
       class LhmcPerson < CorePerson
         ::LhmcPerson = CollectionSpace::Converter::Lhmc::LhmcPerson
+        include Contact
 
-
-        def redefined_fields
-          @redefined.concat([
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          @redefined = [
             # source overridden
             'birthplace',
             'deathplace'
-          ])
-          super
+          ]
         end
 
         def convert
@@ -25,9 +29,9 @@ module CollectionSpace
             ) do
               xml.parent.namespace = nil
               # NOTE that we are calling the map_common method of LhmcCollectionObject!
-              #  This calls CoreCollectionObject.map_common (with overridden fields removed)
+              #  This calls CorePerson.map_common (with overridden fields removed)
               #  to populate all non-overridden fields AND defines the logic for any overridden fields
-              LhmcPerson.map_common(xml, attributes, redefined_fields, config)
+              map_common(xml, attributes, config)
             end
 
             xml.send(
@@ -39,7 +43,7 @@ module CollectionSpace
               # The map_lhmc method defines conversion logic for fields defined in the lhmc data
               #   profile
               # This logic cannot override itself, so we don't send the redefined_fields!
-              LhmcPerson.map_lhmc(xml, attributes)
+              map_lhmc(xml, attributes)
             end
 
             xml.send(
@@ -48,15 +52,15 @@ module CollectionSpace
               "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              LhmcPerson.map_contact(xml, attributes, redefined_fields)
+              map_contact(xml, attributes.merge(redefined_fields))
             end
           end
         end
 
         # CORE
-        def self.map_common(xml, attributes, config, redefined)
+        def map_common(xml, attributes, config)
           # map non-overridden fields according to core logic
-          CorePerson.map_common(xml, attributes.merge(redefined), config)
+          super(xml, attributes.merge(redefined_fields), config)
 
           # OVERRIDES
           pairs = {
@@ -73,8 +77,9 @@ module CollectionSpace
           }
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairs_transforms)
         end
+        
         # PROFILE
-        def self.map_lhmc(xml, attributes)
+        def map_lhmc(xml, attributes)
           pairs = {
             'relatedpersonlocal' => 'relatedPerson',
             'relatedpersonulan' => 'relatedPerson',
@@ -113,7 +118,7 @@ module CollectionSpace
         end
 
         def self.map_contact(xml, attributes, redefined)
-          Contact.map_contact(xml, attributes.merge(redefined))
+
         end        
 
       end #class LhmcPerson

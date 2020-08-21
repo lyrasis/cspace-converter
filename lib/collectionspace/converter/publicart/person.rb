@@ -1,10 +1,18 @@
+# frozen_string_literal: true
+
+require_relative '../core/person'
+
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtPerson < Person
+      class PublicArtPerson < CorePerson
         ::PublicArtPerson = CollectionSpace::Converter::PublicArt::PublicArtPerson
-        def redefined_fields
-          @redefined.concat([
+        include Contact
+        include SocialMedia
+
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          @redefined = [
             'gender',
             'occupation',
             'schoolorstyle',
@@ -12,8 +20,7 @@ module CollectionSpace
             'nationality',
             'namenote',
             'bionote'
-          ])
-          super
+          ]
         end
         
         def convert
@@ -24,7 +31,7 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              PublicArtPerson.map_common(xml, attributes, config, redefined_fields)
+              map_common(xml, attributes.merge(redefined_fields), config)
             end
 
             xml.send(
@@ -33,8 +40,8 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtPerson.map_publicart(xml, attributes)
-              PublicArtPerson.map_social_media(xml, attributes, redefined_fields)
+              map_publicart(xml, attributes)
+              map_social_media(xml, attributes)
             end
 
             xml.send(
@@ -43,16 +50,17 @@ module CollectionSpace
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               xml.parent.namespace = nil
-              PublicArtPerson.map_contact(xml, attributes, redefined_fields)
+              map_contact(xml, attributes.merge(redefined_fields))
             end
           end
         end
 
-        def self.map_common(xml, attributes, config, redefined)
-          CorePerson.map_common(xml, attributes.merge(redefined), config)
+        def map_common(xml, attributes, config)
+          # map non-overridden fields according to core logic
+          super(xml, attributes, config)
         end
   
-        def self.map_publicart(xml, attributes)
+        def map_publicart(xml, attributes)
           repeats = { 
             'organization' => ['organizations', 'organization']
           }
@@ -61,14 +69,6 @@ module CollectionSpace
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
         end
-
-        def self.map_social_media(xml, attributes, redefined)
-          SocialMedia.map_social_media(xml, attributes.merge(redefined))
-        end
-        
-        def self.map_contact(xml, attributes, redefined)
-          Contact.map_contact(xml, attributes.merge(redefined))
-        end        
       end
     end
   end

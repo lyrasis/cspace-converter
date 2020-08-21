@@ -8,8 +8,9 @@ module CollectionSpace
         ::Contact = CollectionSpace::Converter::Extension::Contact
         # since this extension gets used in records in both Organization and
         # Person classes, it is not subclassed to a specific record type class
+        extend self # make map_contact callable from refactored and unrefactored record mappers
 
-        def self.map_contact(xml, attributes)
+        def map_contact(xml, attributes)
           # emailGroupList, emailGroup
           email_data = {
             'email' => 'email',

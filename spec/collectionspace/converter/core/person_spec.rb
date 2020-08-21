@@ -12,7 +12,9 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
       context 'authority/vocab fields' do
         [
           "/document/#{p}/personTermGroupList/personTermGroup/termLanguage",
-          "/document/#{p}/personTermGroupList/personTermGroup/termSource"
+          "/document/#{p}/personTermGroupList/personTermGroup/termSource",
+          "/document/#{p}/personTermGroupList/personTermGroup/termType",
+          "/document/#{p}/personTermGroupList/personTermGroup/termFlag",
         ].each do |xpath|
           context "#{xpath}" do
             let(:urn_vals) { urn_values(doc, xpath) }
@@ -61,7 +63,6 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
           "/document/#{p}/personTermGroupList/personTermGroup/title",
           "/document/#{p}/personTermGroupList/personTermGroup/nameAdditions",
           "/document/#{p}/personTermGroupList/personTermGroup/termPrefForLang",
-          "/document/#{p}/personTermGroupList/personTermGroup/termType",
           "/document/#{p}/personTermGroupList/personTermGroup/termQualifier",
           "/document/#{p}/personTermGroupList/personTermGroup/termSourceID",
           "/document/#{p}/personTermGroupList/personTermGroup/termSourceDetail",
