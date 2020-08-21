@@ -1,5 +1,6 @@
 ---
 registered_authorities:
+  - citationauthorities
   - personauthorities
   - taxonomyauthority
 registered_procedures:
@@ -55,6 +56,35 @@ registered_profiles:
         - name_field: inventoryanalyst
           authority_type: Person
           authority_subtype: person
+  person:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    defaults:
+      termtype: descriptor
+    config:
+      mapper: CorePerson
+      name_field: termdisplayname
+      authority_type: Person
+      authority_subtype: person
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termtype
+          vocabulary_subtype: persontermtype
+        - name_field: termflag
+          vocabulary_subtype: persontermflag
+        - name_field: relationshiptype
+          vocabulary_subtype: personrelationship        
   taxonomy:
     type: Authorities
     enabled: true

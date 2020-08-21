@@ -417,8 +417,22 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Person
       authority_subtype: person
-      Authorities: []
-      Vocabularies: []
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termtype
+          vocabulary_subtype: persontermtype
+        - name_field: termflag
+          vocabulary_subtype: persontermflag
+        - name_field: relationshiptype
+          vocabulary_subtype: personrelationship        
   place:
     type: Authorities
     enabled: true
