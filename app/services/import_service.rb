@@ -10,7 +10,7 @@ class ImportService
 
     def add_authority(name_field:, type:, subtype:, mapper: nil)
       display_name = object.csv_data[name_field]
-      return unless display_name
+      return if display_name.blank? || display_name == '%NULLVALUE%'
 
       service = Lookup.record_class(type).service(subtype)[:id]
       names_for(display_name).each do |name|
@@ -55,7 +55,7 @@ class ImportService
 
     def add_vocabulary(name_field:, subtype:, stub: false)
       display_name = object.csv_data[name_field]
-      return unless display_name
+      return if display_name.blank? || display_name == '%NULLVALUE%'
 
       names_for(display_name).each do |name|
         id = identifier_for(:vocabulary, 'vocabularies', subtype, name, stub)
