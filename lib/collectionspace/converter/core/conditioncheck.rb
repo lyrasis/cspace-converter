@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative '../default/record'
+
 module CollectionSpace
   module Converter
     module Core
@@ -5,11 +9,11 @@ module CollectionSpace
         ::CoreConditionCheck = CollectionSpace::Converter::Core::CoreConditionCheck
         def convert
           run do |xml|
-            CoreConditionCheck.map_common(xml, attributes)
+            map_common(xml, attributes)
           end
         end
 
-        def self.map_common(xml, attributes)
+        def map_common(xml, attributes)
           pairs = {
             'conditioncheckrefnumber' => 'conditionCheckRefNumber',
             'conditioncheckassessmentdate' => 'conditionCheckAssessmentDate',

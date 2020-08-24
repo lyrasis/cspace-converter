@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
+require_relative '../core/conditioncheck'
+
 module CollectionSpace
   module Converter
     module PublicArt
-      class PublicArtConditionCheck < ConditionCheck
+      class PublicArtConditionCheck < CoreConditionCheck
         ::PublicArtConditionCheck = CollectionSpace::Converter::PublicArt::PublicArtConditionCheck
-        def redefined_fields
-          @redefined.concat([
-            # not in publicart
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          @redefined = [
             'hazard',
             'hazarddate',
             'hazardnote',
@@ -17,8 +21,7 @@ module CollectionSpace
             'salvageprioritycodedate',
             # overridden by publicart
             'conditionchecker'
-          ])
-          super
+          ]
         end
 
         def convert
@@ -29,7 +32,7 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtConditionCheck.map_common(xml, attributes, redefined_fields)
+              map_common(xml, attributes)
             end
 
             xml.send(
@@ -38,13 +41,13 @@ module CollectionSpace
               'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
             ) do
               xml.parent.namespace = nil
-              PublicArtConditionCheck.map_publicart(xml, attributes)
+              map_publicart(xml, attributes)
             end
           end
         end
 
-        def self.map_common(xml, attributes, redefined)
-          CoreConditionCheck.map_common(xml, attributes.merge(redefined))
+        def map_common(xml, attributes)
+          super(xml, attributes.merge(redefined_fields))
           pairs = {
             'conditioncheckerlocalperson' => 'conditionChecker',
             'conditioncheckerlocalorganization' => 'conditionChecker',
@@ -60,7 +63,7 @@ module CollectionSpace
           CSXML::Helpers.add_pairs(xml, attributes, pairs, pairstransforms)
         end
   
-        def self.map_publicart(xml, attributes)
+        def map_publicart(xml, attributes)
           pairs = {
             'installationrecommendations' => 'installationRecommendations'
           }

@@ -360,6 +360,8 @@ Hashes within inner arrays - One per value in subgroup in an element
           # do not create vocab/authority URNs for blank values
           if value.blank?
             value = ''
+          elsif value == '%NULLVALUE%'
+            value = value
           else
             if config.keys.include?('vocab')
               vocab = config['vocab']

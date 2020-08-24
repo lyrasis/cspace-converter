@@ -1,0 +1,6 @@
+"conditioncheckrefnumber","conditionlhmc","conditionfacetlhmc","conditiondatelhmc","conditionnotelhmc"
+"2020.08.05","good, stable;good, stable;good, stable","Overall;Surface;Structure","2010-03-21;2010-03-21;2010-03-21","a & b;a & b;a & b"
+"2020.08.01","excellent, stable;excellent, stable;excellent, stable","Overall;Surface;Structure","2003-02-14;2003-02-14;2003-02-14","%NULLVALUE%;%NULLVALUE%;%NULLVALUE%"
+"2020.08.02","excellent","%NULLVALUE%","2003-02-14","%NULLVALUE%"
+"2020.08.03","%NULLVALUE%","%NULLVALUE%","2003-02-14","see condition summary"
+"2020.08.04","fair, stable","Surface","2003-02-14","Overall: good, stable: fair: good, stable"

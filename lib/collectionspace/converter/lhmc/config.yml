@@ -214,6 +214,26 @@ registered_profiles:
       Vocabularies:
         - name_field: termlanguage
           vocabulary_subtype: languages
+  conditioncheck:
+    type: Procedures
+    enabled: true
+    identify_by_column: conditioncheckrefnumber
+    required_headers:
+      - conditioncheckrefnumber
+    config:
+      ConditionCheck:
+        mapper: LhmcConditionCheck
+        identifier: conditioncheckrefnumber
+        title: conditioncheckrefnumber
+      Authorities:
+        - name_field: conditioncheckerperson
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: conditionlhmc
+          vocabulary_subtype: condition
+        - name_field: conditionfacetlhmc
+          vocabulary_subtype: conditionfacet
   hierarchies:
     type: Hierarchies
     enabled: true
