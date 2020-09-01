@@ -16,6 +16,39 @@ RSpec.describe CollectionSpace::Converter::OHC::OHCCollectionObject do
   let(:ohc) { 'collectionobjects_ohc' }
 
   describe '#map' do
+    context 'naturalhistory extension fields' do
+      let(:attributes) { get_attributes('ohc', 'collectionobject_taxon.csv') }
+      let(:ohccollectionobject) { OHCCollectionObject.new(attributes) }
+      let(:doc) { get_doc(ohccollectionobject) }
+      let(:record) { get_fixture('ohc_collectionobject_taxon.xml') }
+
+      describe '#map_natural_history_collectionobject' do
+        nh = 'collectionobjects_naturalhistory_extension'
+
+        context 'authority/vocab fields' do
+          [
+            "/document/#{nh}/taxonomicIdentGroupList/taxonomicIdentGroup/taxon",
+            "/document/#{nh}/taxonomicIdentGroupList/taxonomicIdentGroup/identBy",
+          ].each do |xpath|
+            context xpath.to_s do
+              let(:urn_vals) { urn_values(doc, xpath) }
+              it 'is not empty' do
+                verify_field_is_populated(doc, xpath)
+              end
+
+              it 'values are URNs' do
+                verify_values_are_urns(urn_vals)
+              end
+
+              it 'URNs match sample payload' do
+                verify_urn_match(urn_vals, record, xpath)
+              end
+            end
+          end
+        end
+      end
+    end
+    
     context 'sample data row 2' do
       let(:attributes) { get_attributes('ohc', 'collectionobject_ohc_specific.csv') }
       let(:ohccollectionobject) { OHCCollectionObject.new(attributes) }

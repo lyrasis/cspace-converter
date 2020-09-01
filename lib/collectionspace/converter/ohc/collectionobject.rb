@@ -56,7 +56,15 @@ module CollectionSpace
               xml.parent.namespace = nil
 
               map_annotation(xml, attributes)
+            end
 
+            xml.send(
+              'ns2:collectionobjects_naturalhistory_extension',
+              'xmlns:ns2' => 'http://collectionspace.org/services/collectionobject/domain/naturalhistory_extension',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
+            ) do
+              xml.parent.namespace = nil
+              map_natural_history_collectionobject(xml, attributes)
             end
 
             xml.send(
