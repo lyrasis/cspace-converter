@@ -402,8 +402,27 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Organization
       authority_subtype: organization
-      Authorities: []
-      Vocabularies: []
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+        - name_field: contactname
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: organizationrecordtype
+          vocabulary_subtype: organizationtype
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: orgtermflag
+        - name_field: contactrole
+          vocabulary_subtype: contactrole
+        - name_field: contactstatus
+          vocabulary_subtype: contactstatus
   person:
     type: Authorities
     enabled: true
