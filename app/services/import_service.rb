@@ -91,10 +91,11 @@ class ImportService
     end
 
     def identifier_for(method, type, subtype, name, stub)
-      identifier = if method == :authority
-        AuthCache.authority(type, subtype, name)
+      if method == :authority
+        identifier = AuthCache.authority(type, subtype, name)
       elsif method == :vocabulary
-        AuthCache.vocabulary(subtype, name)
+        identifier = AuthCache.vocabulary(subtype, name)
+        identifier ||= AuthCache.vocabulary(subtype, name.downcase)
       end
       # we don't want to create a stub record when identifier is found
       return nil if identifier && stub
