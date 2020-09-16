@@ -362,6 +362,8 @@ Hashes within inner arrays - One per value in subgroup in an element
             value = ''
           elsif value == '%NULLVALUE%'
             value = value
+          elsif value == '💣' # bomb emoji
+            value = value
           else
             if config.keys.include?('vocab')
               vocab = config['vocab']
