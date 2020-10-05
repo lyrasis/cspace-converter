@@ -49,12 +49,18 @@ module CollectionSpace
             }
           end
           traverse_and_clean(builder.doc)
+          clear_deleted_fields(builder.doc)
           builder.to_xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
         end
 
         def traverse_and_clean(node)
           node.children.map { |child| traverse_and_clean(child) }
           node.remove if node.content.blank? && node.attributes.blank?
+        end
+
+        def clear_deleted_fields(node)
+          node.children.map { |child| clear_deleted_fields(child) }
+          node.content = '' if node.content.match('💣')
         end
 
         def self.service(subtype = nil)
