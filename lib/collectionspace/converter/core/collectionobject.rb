@@ -64,6 +64,7 @@ module CollectionSpace
           repeats = {
             'briefdescription' => %w[briefDescriptions briefDescription],
             'comments' => %w[comments comment],
+            'comment' => %w[comments comment],
             'fieldcollectioneventname' => %w[fieldColEventNames fieldColEventName],
             'form' => %w[forms form],
             'responsibledepartment' => %w[responsibleDepartments responsibleDepartment],
