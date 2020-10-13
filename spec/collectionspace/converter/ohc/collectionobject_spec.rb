@@ -108,6 +108,22 @@ RSpec.describe CollectionSpace::Converter::OHC::OHCCollectionObject do
     end #  context 'sample data row 2'
   end # describe #map
 
+  context 'sample data row 7' do
+      let(:attributes) { get_attributes_by_row('ohc', 'collectionobject_ohc_specific.csv', 7) }
+      let(:ohccollectionobject) { OHCCollectionObject.new(attributes) }
+      let(:doc) { get_doc(ohccollectionobject) }
+      let(:record) { get_fixture('ohc_collectionobject_row7.xml') }
+
+      
+
+      it "Maps OHC material field correctly" do
+        xpaths = [
+          { xpath: "/document/#{common}/materialGroupList/materialGroup/material", transform: ->(text) {CSURN.parse(text)[:label].downcase} },
+          { xpath: "/document/#{common}/materialGroupList/materialGroup/material", transform: ->(text) {CSURN.parse(text)[:subtype]} }
+        ]
+        test_converter(doc, record, xpaths)
+      end
+    end
 
   context 'all OHC skeletal fields (integration)' do
     let(:attributes) { get_attributes('ohc', 'collectionobject_remains.csv') }
