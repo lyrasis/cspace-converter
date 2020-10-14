@@ -16,6 +16,11 @@ module CollectionSpace
             'assocpeoplenote',
             'contentconceptassociated',
             'contentconceptmaterial',
+            'material',
+            'materialcomponent',
+            'materialcomponentnote',
+            'materialname',
+            'materialsource',
             'objectnametype',
             'objectnamesystem',
             'objectname',
@@ -114,6 +119,25 @@ module CollectionSpace
             'assocPeople',
             assocpeopledata,
             aptransform
+          )
+
+          # materialGroupList, materialGroup
+          materialdata = {
+            'materialname' => 'materialName',
+            'material' => 'material',
+            'materialcomponent' => 'materialComponent',
+            'materialcomponentnote' => 'materialComponentNote',
+            'materialsource' => 'materialSource'
+          }
+          materialtransform = {
+            'material' => { 'authority' => %w[conceptauthorities material_ca] }
+          }
+          CSXML.add_single_level_group_list(
+            xml,
+            attributes,
+            'material',
+            materialdata,
+            materialtransform
           )
 
           # objectNameList, objectNameGroup
