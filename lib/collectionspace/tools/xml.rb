@@ -4,7 +4,7 @@ module CollectionSpace
       ::CSXML = CollectionSpace::Tools::XML
 
       def self.add(xml, key, value)
-        return unless value
+        return if value.blank? || value == '%NULLVALUE%'
 
         xml.send(key.to_sym, value)
       end
@@ -20,7 +20,7 @@ module CollectionSpace
         return unless elements.any?
 
         xml.send("#{key}#{suffix}".to_sym) {
-          elements.each {|k, v| xml.send(k.to_sym, v)}
+          elements.each {|k, v| xml.send(k.to_sym, v.to_s.sub(/^%NULLVALUE%$/, ''))}
         }
       end
 
@@ -97,12 +97,11 @@ Hashes within inner arrays - One per value in subgroup in an element
         return unless elements.any?
 
         elements = elements.each{ |group| group.transform_values!{ |v| v == '%NULLVALUE%' ? nil : v } }
-        
-        #puts "\nELEMENTS FOR KEY: #{key}:"
-        #pp(elements)
-        #         puts "SUBKEY: #{sub_key}"
-        #         puts "SUBELEMENTS:"
-        #         pp(sub_elements)
+
+                pp(elements)
+                puts "SUBKEY: #{sub_key}"
+                puts "SUBELEMENTS:"
+                pp(sub_elements)
 
         xml.send("#{key}#{list_suffix}".to_sym) {
           elements.each_with_index do |element, index|
@@ -259,7 +258,7 @@ Hashes within inner arrays - One per value in subgroup in an element
         xml.send("#{key}List".to_sym) {
           elements.each do |element|
             xml.send("#{key}#{key_suffix}".to_sym) {
-              element.each {|k, v| xml.send(k.to_sym, v)}
+              element.each {|k, v| xml.send(k.to_sym, v.to_s.sub(/^%NULLVALUE%$/, ''))}
             }
           end
         }
@@ -270,7 +269,7 @@ Hashes within inner arrays - One per value in subgroup in an element
 
         xml.send("#{key}#{key_suffix}".to_sym) {
           elements.each do |element|
-            element.each {|k, v| xml.send(k.to_sym, v)}
+            element.each {|k, v| xml.send(k.to_sym, v.to_s.sub(/^%NULLVALUE%$/, ''))}
           end
         }
       end
@@ -664,7 +663,7 @@ Hashes within inner arrays - One per value in subgroup in an element
             unless collapsed_repeats.has_key?(parent)
               collapsed_repeats[parent] = {'childField' => child, 'values' => []}
             end
-            values.each{ |v| collapsed_repeats[parent]['values'] << v }
+            values.each{ |v| collapsed_repeats[parent]['values'] << v unless v.blank? || v == '%NULLVALUE%' }
           }
 
 
