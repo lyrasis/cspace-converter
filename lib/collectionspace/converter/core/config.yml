@@ -317,7 +317,13 @@ registered_profiles:
       authority_type: Location
       authority_subtype: location
       Authorities: []
-      Vocabularies: []
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: locationtermflag
+        - name_field: locationtype
+          vocabulary_subtype: locationtype
   media:
     type: Procedures
     enabled: true
