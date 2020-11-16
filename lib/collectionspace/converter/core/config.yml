@@ -522,7 +522,9 @@ registered_profiles:
       authority_type: Work
       authority_subtype: work
       Authorities: []
-      Vocabularies: []
+      Vocabularies:
+        - name_field: worktype
+          vocabulary_subtype: worktype
   vocabularies:
     type: Vocabularies
     enabled: true
