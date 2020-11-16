@@ -196,6 +196,19 @@ registered_profiles:
         #LHMC-specific
         - name_field: numbertype
           vocabulary_subtype: numbertype
+  citation:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreCitation
+      name_field: termdisplayname
+      authority_type: Citation
+      authority_subtype: citation
+      Authorities: []
+      Vocabularies: []
   concept-associated:
     type: Authorities
     enabled: true
@@ -386,7 +399,13 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Place
       authority_subtype: place
-      Authorities: []
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourcelocalnonpreferred
+          authority_type: Citation
+          authority_subtype: citation
       Vocabularies: []
   relationships:
     type: Relationships
@@ -397,6 +416,21 @@ registered_profiles:
       - objectdocumenttype
       - objectidentifier
     config: {}
+  work:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreWork
+      name_field: termdisplayname
+      authority_type: Work
+      authority_subtype: work
+      Authorities: []
+      Vocabularies:
+        - name_field: worktype
+          vocabulary_subtype: worktype
   vocabularies:
     type: Vocabularies
     enabled: true
