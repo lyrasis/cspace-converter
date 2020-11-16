@@ -66,6 +66,9 @@ registered_profiles:
         - name_field: objectproductionorganization
           authority_type: Organization
           authority_subtype: organization
+        - name_field: namedcollection
+          authority_type: Work
+          authority_subtype: work
       Vocabularies:
         - name_field: titlelanguage
           vocabulary_subtype: languages

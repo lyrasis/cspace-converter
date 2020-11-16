@@ -172,6 +172,9 @@ registered_profiles:
         - name_field: ownershipplacetgn
           authority_type: Place
           authority_subtype: tgn_place
+        - name_field: namedcollection
+          authority_type: Work
+          authority_subtype: work
       Vocabularies:
         - name_field: agequalifier
           vocabulary_subtype: agequalifier

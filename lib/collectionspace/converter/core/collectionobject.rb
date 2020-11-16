@@ -96,7 +96,8 @@ module CollectionSpace
             'fieldcollectionmethod' => %w[fieldCollectionMethods fieldCollectionMethod],
             'fieldcollectionsource' => %w[fieldCollectionSources fieldCollectionSource],
             'fieldcollectorperson' => %w[fieldCollectors fieldCollector],
-            'fieldcollectororganization' => %w[fieldCollectors fieldCollector]
+            'fieldcollectororganization' => %w[fieldCollectors fieldCollector],
+            'namedcollection' => %w[namedCollections namedCollection]
           }
           repeatstransforms = {
             'contentperson' => { 'authority' => %w[personauthorities person] },
@@ -114,7 +115,8 @@ module CollectionSpace
             'fieldcollectionmethod' => { 'vocab' => 'collectionmethod' },
             'fieldcollectionsource' => { 'authority' => %w[personauthorities person] },
             'fieldcollectorperson' => { 'authority' => %w[personauthorities person] },
-            'fieldcollectororganization' => { 'authority' => %w[orgauthorities organization] }
+            'fieldcollectororganization' => { 'authority' => %w[orgauthorities organization] },
+            'namedcollection' => { 'authority' => %w[workauthorities work] }
           }
           CSXML::Helpers.add_repeats(xml, attributes, repeats, repeatstransforms)
           # measuredPartGroupList, measuredPartGroup
