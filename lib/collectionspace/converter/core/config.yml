@@ -528,6 +528,8 @@ registered_profiles:
       Vocabularies:
         - name_field: worktype
           vocabulary_subtype: worktype
+        - name_field: creatortype
+          vocabulary_subtype: workcreatortype
   vocabularies:
     type: Vocabularies
     enabled: true
