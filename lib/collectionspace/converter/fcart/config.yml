@@ -201,3 +201,26 @@ registered_profiles:
           vocabulary_subtype: persontermflag
         - name_field: relationshiptype
           vocabulary_subtype: personrelationship
+  work:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreWork
+      name_field: termdisplayname
+      authority_type: Work
+      authority_subtype: work
+      Authorities:
+        - name_field: creatorperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: creatororganization
+          authority_type: Organization
+          authority_subtype: organization
+      Vocabularies:
+        - name_field: worktype
+          vocabulary_subtype: worktype
+        - name_field: creatortype
+          vocabulary_subtype: workcreatortype
