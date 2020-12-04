@@ -9,6 +9,38 @@ registered_authorities:
 registered_procedures:
   - Exhibition
 registered_profiles:
+  cataloging:
+    type: Procedures
+    enabled: true
+    identify_by_column: objectnumber
+    required_headers:
+      - objectnumber
+    config:
+      CollectionObject:
+        mapper: CoreCollectionObject
+        identifier: objectnumber
+        title: objectnumber
+      Authorities:
+        - name_field: contentperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inscriptioncontentinscriberperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: namedcollection
+          authority_type: Work
+          authority_subtype: work
+      Vocabularies:
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
   citation:
     type: Authorities
     enabled: true
