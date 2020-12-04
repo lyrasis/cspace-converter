@@ -524,7 +524,13 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Work
       authority_subtype: work
-      Authorities: []
+      Authorities:
+        - name_field: creatorperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: creatororganization
+          authority_type: Organization
+          authority_subtype: organization
       Vocabularies:
         - name_field: worktype
           vocabulary_subtype: worktype
