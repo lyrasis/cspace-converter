@@ -12,7 +12,9 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
       context 'authority/vocab fields' do
         [
           "/document/#{p}/personTermGroupList/personTermGroup/termLanguage",
-          "/document/#{p}/personTermGroupList/personTermGroup/termSource"
+          "/document/#{p}/personTermGroupList/personTermGroup/termSource",
+          "/document/#{p}/personTermGroupList/personTermGroup/termType",
+          "/document/#{p}/personTermGroupList/personTermGroup/termFlag",
         ].each do |xpath|
           context "#{xpath}" do
             let(:urn_vals) { urn_values(doc, xpath) }
@@ -49,7 +51,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
       end
       
 
-    context 'regular fields' do
+      context 'regular fields' do
         [
           "/document/#{p}/personTermGroupList/personTermGroup/termDisplayName",
           "/document/#{p}/personTermGroupList/personTermGroup/termName",
@@ -61,7 +63,6 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
           "/document/#{p}/personTermGroupList/personTermGroup/title",
           "/document/#{p}/personTermGroupList/personTermGroup/nameAdditions",
           "/document/#{p}/personTermGroupList/personTermGroup/termPrefForLang",
-          "/document/#{p}/personTermGroupList/personTermGroup/termType",
           "/document/#{p}/personTermGroupList/personTermGroup/termQualifier",
           "/document/#{p}/personTermGroupList/personTermGroup/termSourceID",
           "/document/#{p}/personTermGroupList/personTermGroup/termSourceDetail",
@@ -98,7 +99,7 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
         "/document/*/personTermGroupList/personTermGroup/termDisplayName"
       ]}
 
-          context 'regular fields' do
+      context 'regular fields' do
         [
           "/document/#{p}/personTermGroupList/personTermGroup/termDisplayName",
         ].each do |xpath|
@@ -112,7 +113,29 @@ RSpec.describe CollectionSpace::Converter::Core::CorePerson do
             end
           end
         end
+      end
+    end
+
+    context 'For field group field with blank value in first group' do
+      let(:attributes) { get_attributes('core', 'person_null_field_group.csv') }
+      let(:doc) { get_doc(coreperson) }
+      let(:record) { get_fixture('core_person_null_field_group.xml') }
+      let(:xpath_required) {[
+        "/document/*/personTermGroupList/personTermGroup/termDisplayName"
+      ]}
+
+      context 'regular fields' do
+        [
+          "/document/#{p}/personTermGroupList/personTermGroup[1]/termSourceNote",
+          "/document/#{p}/personTermGroupList/personTermGroup[2]/termSourceNote"
+        ].each do |xpath|
+          context "#{xpath}" do
+            it 'matches sample payload' do
+              verify_value_match(doc, record, xpath)
+            end
           end
+        end
+      end
     end
   end
 end

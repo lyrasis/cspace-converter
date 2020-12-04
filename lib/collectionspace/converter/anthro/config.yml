@@ -1,5 +1,6 @@
 ---
 registered_authorities:
+  - citationauthorities
   - personauthorities
   - taxonomyauthority
 registered_procedures:
@@ -55,7 +56,66 @@ registered_profiles:
         - name_field: inventoryanalyst
           authority_type: Person
           authority_subtype: person
-  taxonomy:
+  organization:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreOrganization
+      name_field: termdisplayname
+      authority_type: Organization
+      authority_subtype: organization
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+        - name_field: contactname
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: organizationrecordtype
+          vocabulary_subtype: organizationtype
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: orgtermflag
+        - name_field: contactrole
+          vocabulary_subtype: contactrole
+        - name_field: contactstatus
+          vocabulary_subtype: contactstatus
+  person:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: AnthroPerson
+      name_field: termdisplayname
+      authority_type: Person
+      authority_subtype: person
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: personrecordtype
+          vocabulary_subtype: persontermtype
+        - name_field: termflag
+          vocabulary_subtype: persontermflag
+        - name_field: relationshiptype
+          vocabulary_subtype: personrelationship        
+  taxonomy-local:
     type: Authorities
     enabled: true
     required_headers:
@@ -65,5 +125,17 @@ registered_profiles:
       name_field: termdisplayname
       authority_type: Taxon
       authority_subtype: taxon
+      Authorities: []
+      Vocabularies: []
+  taxonomy-common:
+    type: Authorities
+    enabled: true
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: AnthroTaxon
+      name_field: termdisplayname
+      authority_type: Taxon
+      authority_subtype: common_ta
       Authorities: []
       Vocabularies: []

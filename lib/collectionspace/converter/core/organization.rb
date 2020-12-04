@@ -52,7 +52,8 @@ module CollectionSpace
             'termname' => 'termName',
             'termprefforlang' => 'termPrefForLang',
             'termqualifier' => 'termQualifier',
-            'termsource' => 'termSource',
+            'termsourcelocal' => 'termSource',
+            'termsourceworldcat' => 'termSource',
             'termsourceid' => 'termSourceID',
             'termsourcedetail' => 'termSourceDetail',
             'termsourcenote' => 'termSourceNote',
@@ -68,7 +69,8 @@ module CollectionSpace
             'termnamenonpreferred' => 'termName',
             'termprefforlangnonpreferred' => 'termPrefForLang',
             'termqualifiernonpreferred' => 'termQualifier',
-            'termsourcenonpreferred' => 'termSource',
+            'termsourcelocalnonpreferred' => 'termSource',
+            'termsourceworldcatnonpreferred' => 'termSource',
             'termsourceidnonpreferred' => 'termSourceID',
             'termsourcedetailnonpreferred' => 'termSourceDetail',
             'termsourcenotenonpreferred' => 'termSourceNote',
@@ -81,11 +83,13 @@ module CollectionSpace
 
           orgterm_transforms = {
             'termlanguage' => {'vocab' => 'languages'},
-            'termsource' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourcelocal' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourceworldcat' => {'authority' => ['citationauthorities', 'worldcat']},
             'termflag' => {'vocab' => 'orgtermflag'},
 
             'termlanguagenonpreferred' => {'vocab' => 'languages'},
-            'termsourcenonpreferred' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourcelocalnonpreferred' => {'authority' => ['citationauthorities', 'citation']},
+            'termsourceworldcatnonpreferred' => {'authority' => ['citationauthorities', 'worldcat']},
             'termflagnonpreferred' => {'vocab' => 'orgtermflag'}
           }
           

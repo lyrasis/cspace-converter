@@ -6,7 +6,9 @@ module CollectionSpace
       # Social Media Extension
       module SocialMedia
         ::SocialMedia = CollectionSpace::Converter::Extension::SocialMedia
-        def self.map_social_media(xml, attributes)
+        extend self
+        
+        def map_social_media(xml, attributes)
           # socialMediaGroupList, socialMediaGroup
           socialmedia_data = {
             'socialmediahandle' => 'socialMediaHandle',

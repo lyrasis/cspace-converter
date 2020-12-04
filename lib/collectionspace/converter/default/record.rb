@@ -402,6 +402,7 @@ module CollectionSpace
       end
 
       class Person < Record
+        ::Person = CollectionSpace::Converter::Default::Person
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'persons', 'person', common

@@ -1,16 +1,64 @@
 # frozen_string_literal: true
 
-require_relative '../default/record'
+require_relative '../core/person'
 
 module CollectionSpace
   module Converter
-    module Core
-      class CorePerson < Person
-        ::CorePerson = CollectionSpace::Converter::Core::CorePerson
+    module Anthro
+      class AnthroPerson < CorePerson
+        ::AnthroPerson = CollectionSpace::Converter::Anthro::AnthroPerson
         include Contact
         
+        def initialize(attributes, config = {})
+          super(attributes, config)
+          @redefined = [
+            'title' ,
+            'initials',
+            'forename',
+            'surname',
+            'nameadditions',
+            'middlename',
+            'salutation',
+            'termdisplayname',
+            'termlanguage',
+            'termname',
+            'termprefforlang',
+            'termqualifier',
+            'termsource',
+            'termsourcelocal',
+            'termsourceworldcat',
+            'termsourceid',
+            'termsourcedetail',
+            'termsourcenote',
+            'termstatus',
+            'termtype',
+            'termflag',
+            'titlenonpreferred',
+            'initialsnonpreferred',
+            'forenamenonpreferred',
+            'surnamenonpreferred',
+            'nameadditionsnonpreferred',
+            'middlenamenonpreferred',
+            'salutationnonpreferred',
+            'termdisplaynamenonpreferred',
+            'termlanguagenonpreferred',
+            'termnamenonpreferred',
+            'termprefforlangnonpreferred',
+            'termqualifiernonpreferred',
+            'termsourcenonpreferred',
+            'termsourcelocalnonpreferred',
+            'termsourceworldcatnonpreferred',
+            'termsourceidnonpreferred',
+            'termsourcedetailnonpreferred',
+            'termsourcenotenonpreferred',
+            'termstatusnonpreferred',
+            'termtypenonpreferred',
+            'termflagnonpreferred',
+          ]
+        end
+
         def convert
-          run(wrapper: "document") do |xml|
+          run(wrapper: 'document') do |xml|
             xml.send(
                 "ns2:persons_common",
                 "xmlns:ns2" => "http://collectionspace.org/services/person",
@@ -28,28 +76,20 @@ module CollectionSpace
               xml.parent.namespace = nil
               map_contact(xml, attributes)
             end
+
+            xml.send(
+              'ns2:persons_anthro',
+              'xmlns:ns2' => 'http://collectionspace.org/services/person/domain/anthro',
+              'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance'
+            ) do
+              xml.parent.namespace = nil
+              map_anthro(xml, attributes)
+            end
           end
         end
 
         def map_common(xml, attributes, config)
-          pairs = {
-            'birthplace' => 'birthPlace',
-            'deathplace' => 'deathPlace',
-            'gender' => 'gender',
-            'bionote' => 'bioNote',
-            'namenote' => 'nameNote'
-          }
-          CSXML::Helpers.add_pairs(xml, attributes, pairs)
-
-          repeats = { 
-            'group' => ['groups', 'group'],
-            'nationality' => ['nationalities', 'nationality'],
-            'occupation' => ['occupations', 'occupation'],
-            'schoolorstyle' => ['schoolsOrStyles', 'schoolOrStyle'],
-          }
-          CSXML::Helpers.add_repeats(xml, attributes, repeats)
-
-          CSXML.add xml, 'shortIdentifier', config[:identifier]
+          super(xml, attributes.merge(redefined_fields), config)
           #personTermGroupList, personTermGroup
           personterm_data = {
             'title'  => 'title', 
@@ -100,13 +140,11 @@ module CollectionSpace
             'termsource' => {'authority' => ['citationauthorities', 'citation']},
             'termsourcelocal' => {'authority' => ['citationauthorities', 'citation']},
             'termsourceworldcat' => {'authority' => ['citationauthorities', 'worldcat']},
-            'termtype' => {'vocab' => 'persontermtype'},
             'termflag' => {'vocab' => 'persontermflag'},
             'termlanguagenonpreferred' => {'vocab' => 'languages'},
             'termsourcenonpreferred' => {'authority' => ['citationauthorities', 'citation']},
             'termsourcelocalnonpreferred' => {'authority' => ['citationauthorities', 'citation']},
             'termsourceworldcatnonpreferred' => {'authority' => ['citationauthorities', 'worldcat']},
-            'termtypenonpreferred' => {'vocab' => 'persontermtype'},
             'termflagnonpreferred' => {'vocab' => 'persontermflag'}
           }
             
@@ -117,14 +155,19 @@ module CollectionSpace
             personterm_data,
             personterm_transforms
           )
-          #birthDateGroup
-          CSXML::Helpers.add_date_group(
-            xml, 'birthDate', CSDTP.parse(attributes['birthdategroup'])
-          )
-          #deathDateGroup
-          CSXML::Helpers.add_date_group(
-            xml, 'deathDate', CSDTP.parse(attributes['deathdategroup'])
-          )
+
+          repeats = {
+            'personrecordtype' => ['personRecordTypes', 'personRecordType']
+          }
+          repeats_transforms = {
+            'personrecordtype' => {'vocab' => 'persontermtype'}
+          }
+          CSXML::Helpers.add_repeats(xml, attributes, repeats, repeats_transforms)
+
+        end
+
+        def map_anthro(xml, attributes)
+          # placeholder
         end
       end
     end

@@ -1,0 +1,226 @@
+---
+registered_authorities:
+  - citationauthorities
+  - conceptauthorities
+  - locationauthorities
+  - orgauthorities
+  - personauthorities
+  - placeauthorities
+registered_procedures:
+  - Exhibition
+registered_profiles:
+  cataloging:
+    type: Procedures
+    enabled: true
+    identify_by_column: objectnumber
+    required_headers:
+      - objectnumber
+    config:
+      CollectionObject:
+        mapper: CoreCollectionObject
+        identifier: objectnumber
+        title: objectnumber
+      Authorities:
+        - name_field: contentperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: inscriptioncontentinscriberperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: objectproductionorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: namedcollection
+          authority_type: Work
+          authority_subtype: work
+      Vocabularies:
+        - name_field: titlelanguage
+          vocabulary_subtype: languages
+        - name_field: titletranslationlanguage
+          vocabulary_subtype: languages
+  citation:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreCitation
+      name_field: termdisplayname
+      authority_type: Citation
+      authority_subtype: citation
+      Authorities: []
+      Vocabularies: []
+  exhibition:
+    type: Procedures
+    enabled: true
+    identify_by_column: exhibitionnumber
+    required_headers:
+      - exhibitionnumber
+    config:
+      Exhibition:
+        mapper: CoreExhibition
+        identifier: exhibitionnumber
+        title: exhibitionnumber
+      Authorities:
+        - name_field: organizerorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: organizerperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: venueorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: venueplace
+          authority_type: Place
+          authority_subtype: place
+        - name_field: venuestoragelocation
+          authority_type: Location
+          authority_subtype: location
+        - name_field: exhibitionpersonperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: exhibitionpersonorganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: sponsororganization
+          authority_type: Organization
+          authority_subtype: organization
+        - name_field: sponsorperson
+          authority_type: Person
+          authority_subtype: person
+  hierarchies:
+    type: Hierarchies
+    enabled: true
+    required_headers:
+      - type
+      - narrower
+      - broader
+    config: {}
+  location-local:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreLocation
+      name_field: termdisplayname
+      authority_type: Location
+      authority_subtype: location
+      Authorities: []
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: locationtermflag
+        - name_field: locationtype
+          vocabulary_subtype: locationtype
+  location-offsite:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreLocation
+      name_field: termdisplayname
+      authority_type: Location
+      authority_subtype: offsite_sla
+      Authorities: []
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: locationtermflag
+        - name_field: locationtype
+          vocabulary_subtype: locationtype
+  organization:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreOrganization
+      name_field: termdisplayname
+      authority_type: Organization
+      authority_subtype: organization
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourcelocalnonpreferred
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: contactname
+          authority_type: Person
+          authority_subtype: person
+      Vocabularies:
+        - name_field: organizationrecordtype
+          vocabulary_subtype: organizationtype
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termflag
+          vocabulary_subtype: orgtermflag
+        - name_field: contactrole
+          vocabulary_subtype: contactrole
+        - name_field: contactstatus
+          vocabulary_subtype: contactstatus
+  person:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CorePerson
+      name_field: termdisplayname
+      authority_type: Person
+      authority_subtype: person
+      Authorities:
+        - name_field: termsourcelocal
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourcelocalnonpreferred
+          authority_type: Citation
+          authority_subtype: citation
+        - name_field: termsourceworldcat
+          authority_type: Citation
+          authority_subtype: worldcat
+      Vocabularies:
+        - name_field: termlanguage
+          vocabulary_subtype: languages
+        - name_field: termtype
+          vocabulary_subtype: persontermtype
+        - name_field: termflag
+          vocabulary_subtype: persontermflag
+        - name_field: relationshiptype
+          vocabulary_subtype: personrelationship
+  work:
+    type: Authorities
+    enabled: true
+    identify_by_column: termdisplayname
+    required_headers:
+      - termdisplayname
+    config:
+      mapper: CoreWork
+      name_field: termdisplayname
+      authority_type: Work
+      authority_subtype: work
+      Authorities:
+        - name_field: creatorperson
+          authority_type: Person
+          authority_subtype: person
+        - name_field: creatororganization
+          authority_type: Organization
+          authority_subtype: organization
+      Vocabularies:
+        - name_field: worktype
+          vocabulary_subtype: worktype
+        - name_field: creatortype
+          vocabulary_subtype: workcreatortype
